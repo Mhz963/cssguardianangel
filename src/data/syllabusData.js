@@ -100,8 +100,6 @@ const optionalGroups = [
   },
 ]
 
-const referenceUrl = 'https://thecsspoint.com/css-syllabus/'
-
 const slugify = (value) =>
   value
     .toLowerCase()
@@ -156,12 +154,10 @@ const detailedSubjectPages = [
   return {
     ...subject,
     sourceSlug,
-    sourceUrl: sourceData?.sourceUrl ?? referenceUrl,
-    sourceTitle: sourceData?.title ?? subject.title,
     outlineImages: sourceData?.outlineImages ?? [],
     outlineSections: sourceData?.outlineSections ?? [],
     outline: sourceData?.outline ?? [],
   }
 })
 
-export { compulsorySubjects, optionalGroups, detailedSubjectPages, referenceUrl, slugify }
+export { compulsorySubjects, optionalGroups, detailedSubjectPages, slugify }

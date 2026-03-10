@@ -6,7 +6,6 @@ import {
   compulsorySubjects,
   detailedSubjectPages,
   optionalGroups,
-  referenceUrl,
   slugify,
 } from './data/syllabusData'
 
@@ -287,15 +286,7 @@ function HomePage() {
               Guardian Angel is an independent platform dedicated to helping CSS aspirants across
               Pakistan access premium quality education completely free of cost.
             </p>
-            <p className="hero-tagline">Where Merit Meets Opportunity</p>
-            <div className="hero-actions">
-              <a className="btn btn-primary" href="#mission">
-                Explore Mission
-              </a>
-              <a className="btn btn-secondary" href="#student-message">
-                Read Student Message
-              </a>
-            </div>
+            
           </div>
         </section>
       </section>
@@ -339,10 +330,10 @@ function HomePage() {
             </p>
           </div>
           <div className="message-actions">
-            <a className="btn btn-primary home-action-btn" href="/css-rules">
+            <Link className="btn btn-primary home-action-btn" to="/css-rules">
               Browse CSS Rules
-            </a>
-          </div>
+            </Link>
+      </div>
         </section>
 
         <section className="cta container reveal-on-scroll" id="join">
@@ -352,11 +343,11 @@ function HomePage() {
             <p className="cta-subtext">
               High quality study material built for aspirants who are ready to work hard and
               serve the nation.
-            </p>
-          </div>
-          <a className="btn btn-primary home-action-btn" href="/css-syllabus">
+        </p>
+      </div>
+          <Link className="btn btn-primary home-action-btn" to="/css-syllabus">
             Browse CSS Syllabus
-          </a>
+          </Link>
         </section>
       </main>
     </>
@@ -399,17 +390,6 @@ function CssSyllabusPage() {
           ))}
         </div>
 
-        <article className="about-syllabus">
-          <h3>Reference Source</h3>
-          <p>
-            Course list and grouping are based on the source syllabus page. Open the original
-            source at{' '}
-            <a href={referenceUrl} target="_blank" rel="noreferrer">
-              The CSS Point
-            </a>
-            .
-          </p>
-        </article>
       </section>
     </main>
   )
@@ -529,7 +509,6 @@ function SubjectDetailPage() {
 
         <article className="subject-outline">
           <h2>Course Outline</h2>
-          <p>{subject.sourceTitle}</p>
           {subject.outlineImages?.length > 0 ? (
             <div className="outline-images">
               {subject.outlineImages.map((imagePath) => (
@@ -558,10 +537,7 @@ function SubjectDetailPage() {
               ))}
             </ul>
           ) : (
-            <p>
-              Detailed outline was not available in readable format on the source page. Please open
-              the original source for this subject.
-            </p>
+            <p>Detailed outline is not available yet for this subject.</p>
           )}
         </article>
 
@@ -569,9 +545,6 @@ function SubjectDetailPage() {
           <Link className="btn btn-secondary" to="/css-syllabus">
             Back to CSS Syllabus
           </Link>
-          <a className="btn btn-primary" href={subject.sourceUrl} target="_blank" rel="noreferrer">
-            Open Original Source
-          </a>
         </div>
       </section>
     </main>
@@ -663,9 +636,9 @@ function ScrollToTopOnRouteChange() {
 function App() {
   const [theme, setTheme] = useState(() => {
     try {
-      return localStorage.getItem('ga-theme') || 'light'
+      return localStorage.getItem('ga-theme') || 'dark'
     } catch {
-      return 'light'
+      return 'dark'
     }
   })
 
