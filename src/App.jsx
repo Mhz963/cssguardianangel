@@ -1995,8 +1995,12 @@ function GuardianStudyPlannerPage({ authUser }) {
       y = 56
       doc.setFont('helvetica', 'bold')
       doc.setFontSize(28)
-      doc.text('Table of Contents', marginX, y)
-      y += 40
+      doc.text('Table of Contents', pageWidth / 2, y, { align: 'center' })
+      y += 56
+      const tocSubjectFontSize = 16
+      const tocPageNumberFontSize = 14
+      const tocLineHeight = 22
+      const tocRowGap = 14 // approx one line break between entries
       tocEntries.forEach((entry, index) => {
         const subjectLabel = `${index + 1}. ${entry.title}`
         const pageLabel = `Page ${entry.page}`
@@ -2004,21 +2008,21 @@ function GuardianStudyPlannerPage({ authUser }) {
         const maxSubjectWidth = maxTextWidth - pageLabelWidth - 20
         const subjectLines = doc.splitTextToSize(subjectLabel, maxSubjectWidth)
 
-        ensureSpace(subjectLines.length * 30 + 4)
+        ensureSpace(subjectLines.length * tocLineHeight + tocRowGap)
         doc.setFont('helvetica', 'bold')
-        doc.setFontSize(20)
+        doc.setFontSize(tocSubjectFontSize)
         subjectLines.forEach((line, lineIndex) => {
           doc.text(line, marginX, y)
           if (lineIndex === 0) {
             doc.setFont('helvetica', 'normal')
-            doc.setFontSize(16)
+            doc.setFontSize(tocPageNumberFontSize)
             doc.text(pageLabel, pageWidth - marginX, y, { align: 'right' })
             doc.setFont('helvetica', 'bold')
-            doc.setFontSize(20)
+            doc.setFontSize(tocSubjectFontSize)
           }
-          y += 30
+          y += tocLineHeight
         })
-        y += 2
+        y += tocRowGap
       })
 
       // Footer page numbers
