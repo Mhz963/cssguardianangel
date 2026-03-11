@@ -18,6 +18,7 @@ import {
   optionalGroups,
   slugify,
 } from './data/syllabusData'
+import { jsPDF } from 'jspdf'
 
 const pillars = [
   {
@@ -171,7 +172,9 @@ const cssRulesSections = [
 
 const formatPastPaperTitle = (relativePath) => {
   const fileName = relativePath.split('/').pop() || ''
-  const noTimestamp = fileName.replace(/^\d{4}-\d{2}-\d{2}-\d{2}-\d{2}-\d{2}-/, '')
+  const noTimestamp = fileName
+    .replace(/^\d{4}-\d{2}-\d{2}-\d{2}-\d{2}-\d{2}-/, '')
+    .replace(/^\d{4}-\d{2}-\d{2}-/, '')
   const withoutExt = noTimestamp.replace(/\.pdf$/i, '')
   return withoutExt
     .replace(/&amp;/gi, '&')
@@ -499,15 +502,58 @@ const DUMMY_TEST_PROFILE = {
   password: 'Study@123',
   fullName: 'Guardian Test Student',
 }
+const TESTING_SIGNIN_DRAFT_KEY = 'ga-testing-signin-draft'
+const TESTING_PLANNER_FORM_KEY = 'ga-testing-planner-form'
 
 const DEFAULT_PLANNER_FORM = {
   examDate: '',
   studyHours: '6',
-  productiveWindow: 'morning',
+  productiveHours: ['07:00-08:00', '08:00-09:00', '09:00-10:00'],
   stage: 'beginner',
+  cssAttempt: 'first',
   difficulty: 'difficult',
   learningPreference: 'lectures-first',
 }
+
+const PRODUCTIVE_HOUR_OPTIONS = Array.from({ length: 18 }, (_, index) => {
+  const startHour = index + 5
+  const endHour = startHour + 1
+  const id = `${`${startHour}`.padStart(2, '0')}:00-${`${endHour}`.padStart(2, '0')}:00`
+  return {
+    id,
+    startHour,
+    label: `${`${startHour}`.padStart(2, '0')}:00 - ${`${endHour}`.padStart(2, '0')}:00`,
+  }
+})
+const PLANNER_CORE_COMPULSORY_SUBJECTS = compulsorySubjects.slice(0, 5)
+const COMPULSORY_ELECTIVE_OPTIONS = [
+  'Islamiat (100 Marks)',
+  'Comparative Study of Major Religions (For Non Muslims)',
+]
+const WATERMARK_IMAGE_URL = new URL('../data/watermark.png', import.meta.url).href
+const LOCAL_OUTLINE_IMAGE_URLS = {
+  punjabi: [new URL('../data/punjabi-literature-outline-merged.png', import.meta.url).href],
+  sindhi: [new URL('../data/sindhi-literature-outline-merged.png', import.meta.url).href],
+  balochi: [new URL('../data/balochi-literature-outline-merged.png', import.meta.url).href],
+}
+const OPTIONAL_SUBJECT_META = optionalGroups.flatMap((group, groupIndex) =>
+  group.subjects.map((subject) => {
+    const marksMatch = subject.match(/\((\d+)\s*Marks\)/i)
+    const marks = marksMatch ? Number(marksMatch[1]) : 100
+    const baseTitle = subject.replace(/\s*\(\d+\s*Marks\)/i, '').trim()
+    return {
+      subject,
+      baseTitle,
+      group: group.group,
+      groupIndex,
+      rules: group.rules,
+      marks,
+    }
+  }),
+)
+const OPTIONAL_META_MAP = Object.fromEntries(
+  OPTIONAL_SUBJECT_META.map((item) => [item.subject, item]),
+)
 
 const CALENDAR_STATUS_OPTIONS = [
   { id: 'planned', label: 'Planned Study', className: 'status-planned' },
@@ -518,6 +564,18 @@ const CALENDAR_STATUS_OPTIONS = [
   { id: 'rest', label: 'Rest / Recovery', className: 'status-rest' },
   { id: 'skipped', label: 'Skipped', className: 'status-skipped' },
 ]
+
+const SUBJECT_PERFORMANCE_LEVELS = [
+  { id: 'Survivor', scoreHint: 'around 40 marks' },
+  { id: 'Contendor', scoreHint: 'above 50 marks' },
+  { id: 'Topper', scoreHint: 'above 65 marks' },
+]
+const PERFORMANCE_LEVEL_SCORE_MAP = {
+  Survivor: 40,
+  Contendor: 50,
+  Topper: 65,
+}
+const clampToPercent = (value) => Math.max(0, Math.min(100, Math.round(value)))
 
 const formatDayKey = (date) => {
   const year = date.getFullYear()
@@ -549,6 +607,87 @@ const formatStopwatch = (totalSeconds) => {
   const minutes = Math.floor((safe % 3600) / 60)
   const seconds = safe % 60
   return `${`${hours}`.padStart(2, '0')}:${`${minutes}`.padStart(2, '0')}:${`${seconds}`.padStart(2, '0')}`
+}
+
+const formatDateDDMMYYYY = (isoDate) => {
+  if (!isoDate) return '--/--/----'
+  const [year, month, day] = isoDate.split('-')
+  if (!year || !month || !day) return '--/--/----'
+  return `${day}/${month}/${year}`
+}
+
+const stripHundredMarks = (value) => value.replace(/\s*\(100\s*Marks\)/gi, '').trim()
+
+const fileToDataUrl = (blob) =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader()
+    reader.onload = () => resolve(reader.result)
+    reader.onerror = reject
+    reader.readAsDataURL(blob)
+  })
+
+const resolveOutlineImageCandidates = (sourceUrl, imagePath) => {
+  if (!imagePath) return []
+  if (/^https?:\/\//i.test(imagePath)) return [imagePath]
+
+  const candidates = new Set()
+
+  // Prefer same-origin media first (works when files are hosted in this app).
+  try {
+    candidates.add(new URL(imagePath, window.location.origin).toString())
+  } catch {
+    // ignore URL parse issues and continue fallbacks
+  }
+
+  if (imagePath.startsWith('/')) {
+    if (sourceUrl) {
+      try {
+        const origin = new URL(sourceUrl).origin
+        candidates.add(`${origin}${imagePath}`)
+      } catch {
+        // ignore fallback parse failure
+      }
+    }
+    candidates.add(imagePath)
+    return Array.from(candidates)
+  }
+  if (sourceUrl) {
+    try {
+      candidates.add(new URL(imagePath, sourceUrl).toString())
+    } catch {
+      // ignore fallback parse failure
+    }
+  }
+  candidates.add(imagePath)
+  return Array.from(candidates)
+}
+
+const imageUrlToPngDataUrl = async (imageUrl) => {
+  const response = await fetch(imageUrl)
+  if (!response.ok) throw new Error('Unable to fetch outline image.')
+  const contentType = response.headers.get('content-type') || ''
+  if (!contentType.toLowerCase().startsWith('image/')) {
+    throw new Error('Fetched resource is not an image.')
+  }
+  const blob = await response.blob()
+  const objectUrl = URL.createObjectURL(blob)
+  try {
+    const imageElement = await new Promise((resolve, reject) => {
+      const img = new Image()
+      img.onload = () => resolve(img)
+      img.onerror = reject
+      img.src = objectUrl
+    })
+    const canvas = document.createElement('canvas')
+    canvas.width = imageElement.width
+    canvas.height = imageElement.height
+    const ctx = canvas.getContext('2d')
+    if (!ctx) throw new Error('Unable to prepare image canvas.')
+    ctx.drawImage(imageElement, 0, 0)
+    return canvas.toDataURL('image/png')
+  } finally {
+    URL.revokeObjectURL(objectUrl)
+  }
 }
 
 function Header({ theme, onToggleTheme, authUser, onLogout }) {
@@ -1250,7 +1389,18 @@ function SubjectDetailPage() {
 function SignInPage({ onSignIn, authUser }) {
   const navigate = useNavigate()
   const location = useLocation()
-  const [form, setForm] = useState({ username: '', password: '' })
+  const [form, setForm] = useState(() => {
+    try {
+      const raw = localStorage.getItem(TESTING_SIGNIN_DRAFT_KEY)
+      const draft = raw ? JSON.parse(raw) : null
+      return {
+        username: draft?.username || '',
+        password: draft?.password || '',
+      }
+    } catch {
+      return { username: '', password: '' }
+    }
+  })
   const [error, setError] = useState('')
 
   useEffect(() => {
@@ -1259,6 +1409,14 @@ function SignInPage({ onSignIn, authUser }) {
       navigate(nextPath, { replace: true })
     }
   }, [authUser, navigate, location.state])
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(TESTING_SIGNIN_DRAFT_KEY, JSON.stringify(form))
+    } catch {
+      // Ignore storage failures and continue with in-memory interactions.
+    }
+  }, [form])
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -1337,18 +1495,59 @@ function SignInPage({ onSignIn, authUser }) {
 
 function GuardianStudyPlannerPage({ authUser }) {
   const profileStorageKey = `ga-profile-${authUser.username}`
-  const [activePlannerTab, setActivePlannerTab] = useState('strategy')
+  const [activePlannerTab, setActivePlannerTab] = useState('subjects')
   const [form, setForm] = useState(() => {
     try {
       const raw = localStorage.getItem(profileStorageKey)
       const profile = raw ? JSON.parse(raw) : null
-      return { ...DEFAULT_PLANNER_FORM, ...(profile?.plannerForm || {}) }
+      const fallbackRaw = localStorage.getItem(TESTING_PLANNER_FORM_KEY)
+      const fallbackForm = fallbackRaw ? JSON.parse(fallbackRaw) : null
+      return {
+        ...DEFAULT_PLANNER_FORM,
+        ...(fallbackForm || {}),
+        ...(profile?.plannerForm || {}),
+      }
     } catch {
       return { ...DEFAULT_PLANNER_FORM }
     }
   })
   const [plan, setPlan] = useState(null)
   const [error, setError] = useState('')
+  const [selectedOptionalSubjects, setSelectedOptionalSubjects] = useState(() => {
+    try {
+      const raw = localStorage.getItem(profileStorageKey)
+      const profile = raw ? JSON.parse(raw) : null
+      const next = profile?.selectedOptionalSubjects
+      if (Array.isArray(next)) return next.filter((item) => OPTIONAL_META_MAP[item])
+      return []
+    } catch {
+      return []
+    }
+  })
+  const [selectedCompulsoryElective, setSelectedCompulsoryElective] = useState(() => {
+    try {
+      const raw = localStorage.getItem(profileStorageKey)
+      const profile = raw ? JSON.parse(raw) : null
+      const stored = profile?.selectedCompulsoryElective
+      if (COMPULSORY_ELECTIVE_OPTIONS.includes(stored)) return stored
+      return 'Islamiat (100 Marks)'
+    } catch {
+      return 'Islamiat (100 Marks)'
+    }
+  })
+  const [subjectsLocked, setSubjectsLocked] = useState(() => {
+    try {
+      const raw = localStorage.getItem(profileStorageKey)
+      const profile = raw ? JSON.parse(raw) : null
+      return Boolean(profile?.subjectsLocked)
+    } catch {
+      return false
+    }
+  })
+  const [draggingSubject, setDraggingSubject] = useState('')
+  const [outlinePdfUrl, setOutlinePdfUrl] = useState('')
+  const [outlinePdfFileName, setOutlinePdfFileName] = useState('Guardian_Angel_CSS_Course_Outline.pdf')
+  const [isGeneratingOutlinePdf, setIsGeneratingOutlinePdf] = useState(false)
   const [calendarMonth, setCalendarMonth] = useState(() => {
     const now = new Date()
     return new Date(now.getFullYear(), now.getMonth(), 1)
@@ -1383,6 +1582,34 @@ function GuardianStudyPlannerPage({ authUser }) {
       return []
     }
   })
+  const [subjectPerformanceLevels, setSubjectPerformanceLevels] = useState(() => {
+    try {
+      const raw = localStorage.getItem(profileStorageKey)
+      const profile = raw ? JSON.parse(raw) : null
+      return profile?.subjectPerformanceLevels || {}
+    } catch {
+      return {}
+    }
+  })
+  const [draggingPerformanceSubject, setDraggingPerformanceSubject] = useState('')
+  const [isManualDmcEnabled, setIsManualDmcEnabled] = useState(() => {
+    try {
+      const raw = localStorage.getItem(profileStorageKey)
+      const profile = raw ? JSON.parse(raw) : null
+      return profile?.isManualDmcEnabled || false
+    } catch {
+      return false
+    }
+  })
+  const [manualDmcScores, setManualDmcScores] = useState(() => {
+    try {
+      const raw = localStorage.getItem(profileStorageKey)
+      const profile = raw ? JSON.parse(raw) : null
+      return profile?.manualDmcScores || {}
+    } catch {
+      return {}
+    }
+  })
 
   useEffect(() => {
     try {
@@ -1390,15 +1617,35 @@ function GuardianStudyPlannerPage({ authUser }) {
         username: authUser.username,
         fullName: authUser.fullName,
         plannerForm: form,
+        selectedCompulsoryElective,
+        selectedOptionalSubjects,
+        subjectsLocked,
+        subjectPerformanceLevels,
+        isManualDmcEnabled,
+        manualDmcScores,
         completedDays,
         dayStatuses,
         timerSessions,
       }
       localStorage.setItem(profileStorageKey, JSON.stringify(profilePayload))
+      localStorage.setItem(TESTING_PLANNER_FORM_KEY, JSON.stringify(form))
     } catch {
       // Ignore storage failures and continue with in-memory interactions.
     }
-  }, [authUser, profileStorageKey, form, completedDays, dayStatuses, timerSessions])
+  }, [
+    authUser,
+    profileStorageKey,
+    form,
+    selectedCompulsoryElective,
+    selectedOptionalSubjects,
+    subjectsLocked,
+    subjectPerformanceLevels,
+    isManualDmcEnabled,
+    manualDmcScores,
+    completedDays,
+    dayStatuses,
+    timerSessions,
+  ])
 
   useEffect(() => {
     if (timerStatus !== 'running') return undefined
@@ -1408,9 +1655,394 @@ function GuardianStudyPlannerPage({ authUser }) {
     return () => window.clearInterval(timerId)
   }, [timerStatus])
 
+  useEffect(
+    () => () => {
+      if (outlinePdfUrl) URL.revokeObjectURL(outlinePdfUrl)
+    },
+    [outlinePdfUrl],
+  )
+
   const handleChange = (event) => {
     const { name, value } = event.target
     setForm((current) => ({ ...current, [name]: value }))
+  }
+
+  const handleProductiveHourToggle = (slotId) => {
+    setForm((current) => {
+      const exists = current.productiveHours.includes(slotId)
+      const nextHours = exists
+        ? current.productiveHours.filter((id) => id !== slotId)
+        : [...current.productiveHours, slotId]
+      return { ...current, productiveHours: nextHours.sort() }
+    })
+  }
+
+  const calculateOptionalTotals = (subjects) => {
+    const totalMarks = subjects.reduce((sum, subject) => sum + (OPTIONAL_META_MAP[subject]?.marks || 0), 0)
+    const totalPapers = subjects.reduce((sum, subject) => {
+      const marks = OPTIONAL_META_MAP[subject]?.marks || 100
+      return sum + (marks === 200 ? 2 : 1)
+    }, 0)
+    return { totalMarks, totalPapers }
+  }
+
+  const canSelectSubject = (subject, currentSubjects) => {
+    const meta = OPTIONAL_META_MAP[subject]
+    if (!meta) return { ok: false, message: 'Invalid optional subject.' }
+    if (currentSubjects.includes(subject)) return { ok: false, message: 'Subject already selected.' }
+
+    const inSameGroup = currentSubjects.filter((item) => OPTIONAL_META_MAP[item]?.group === meta.group)
+    if (meta.group === 'Group II') {
+      const has200 = inSameGroup.some((item) => OPTIONAL_META_MAP[item]?.marks === 200)
+      if (meta.marks === 200 && inSameGroup.length > 0) {
+        return { ok: false, message: 'Group II: 200 marks subject cannot be combined with other Group II subjects.' }
+      }
+      if (meta.marks === 100 && has200) {
+        return { ok: false, message: 'Group II already has a 200 marks subject.' }
+      }
+      if (meta.marks === 100 && inSameGroup.length >= 2) {
+        return { ok: false, message: 'Group II allows max two 100 marks subjects.' }
+      }
+    } else if (inSameGroup.length >= 1) {
+      return { ok: false, message: `${meta.group} allows only one subject.` }
+    }
+
+    const candidate = [...currentSubjects, subject]
+    const { totalMarks, totalPapers } = calculateOptionalTotals(candidate)
+    if (totalMarks > 600) return { ok: false, message: 'Optional selection exceeds 600 marks.' }
+    if (totalPapers > 6) return { ok: false, message: 'Optional selection exceeds 6 papers.' }
+    return { ok: true }
+  }
+
+  const handleAddOptionalSubject = (subject) => {
+    if (subjectsLocked) return
+    setSelectedOptionalSubjects((current) => {
+      const currentTotals = calculateOptionalTotals(current)
+      if (
+        !current.includes(subject) &&
+        (currentTotals.totalMarks >= 600 || currentTotals.totalPapers >= 6)
+      ) {
+        setError('Optional selection is full (600 marks / 6 papers). Remove one subject to add another.')
+        return current
+      }
+      const validation = canSelectSubject(subject, current)
+      if (!validation.ok) {
+        setError(validation.message)
+        return current
+      }
+      setError('')
+      return [...current, subject]
+    })
+  }
+
+  const handleOptionalDrop = (groupName, event) => {
+    event.preventDefault()
+    if (subjectsLocked) return
+    const subject = event.dataTransfer.getData('text/plain') || draggingSubject
+    if (!subject) return
+    const meta = OPTIONAL_META_MAP[subject]
+    if (!meta || meta.group !== groupName) {
+      setError('Drop each subject in its own syllabus group box.')
+      return
+    }
+    handleAddOptionalSubject(subject)
+    setDraggingSubject('')
+  }
+
+  const handleOptionalSubjectRemove = (subject) => {
+    if (subjectsLocked) return
+    setSelectedOptionalSubjects((current) => current.filter((item) => item !== subject))
+    setError('')
+  }
+
+  const handleLockSubjects = () => {
+    if (!selectedCompulsoryElective) {
+      setError('Select one compulsory option (Islamiat or Comparative Study of Major Religions).')
+      return
+    }
+    const { totalMarks, totalPapers } = calculateOptionalTotals(selectedOptionalSubjects)
+    if (totalMarks !== 600 || totalPapers !== 6) {
+      setError('Lock requires exactly 600 optional marks and 6 papers.')
+      return
+    }
+    setError('')
+    setSubjectsLocked(true)
+  }
+
+  const handleUnlockSubjects = () => {
+    setSubjectsLocked(false)
+  }
+
+  const handleGenerateCourseOutlinePdf = async () => {
+    if (!subjectsLocked) {
+      setError('Lock subjects first, then generate your finalized course-outline PDF.')
+      return
+    }
+
+    const compulsoryFinal = [...PLANNER_CORE_COMPULSORY_SUBJECTS, selectedCompulsoryElective].map((title) => ({
+      kind: 'Compulsory',
+      displayTitle: stripHundredMarks(title),
+      sourceTitle: title,
+    }))
+    const optionalFinal = selectedOptionalPapers.map((item) => ({
+      kind: 'Optional',
+      displayTitle: stripHundredMarks(item.paper),
+      sourceTitle: item.sourceSubject,
+      group: item.group,
+    }))
+    const finalizedSubjects = [...compulsoryFinal, ...optionalFinal]
+
+    if (finalizedSubjects.length !== 12) {
+      setError('Finalized selection must contain exactly 12 subjects/papers before PDF generation.')
+      return
+    }
+
+    setError('')
+    setIsGeneratingOutlinePdf(true)
+    try {
+      const doc = new jsPDF({ unit: 'pt', format: 'a4' })
+      const pageWidth = doc.internal.pageSize.getWidth()
+      const pageHeight = doc.internal.pageSize.getHeight()
+      const marginX = 42
+      const maxTextWidth = pageWidth - marginX * 2
+      const pageBottom = pageHeight - 48
+      const contentStartY = 48
+      let y = contentStartY
+
+      let watermarkDataUrl = ''
+      try {
+        const watermarkResponse = await fetch(WATERMARK_IMAGE_URL)
+        if (watermarkResponse.ok) {
+          watermarkDataUrl = await fileToDataUrl(await watermarkResponse.blob())
+        }
+      } catch {
+        watermarkDataUrl = ''
+      }
+
+      const applyWatermark = () => {
+        if (!watermarkDataUrl) return
+        const width = pageWidth - 24
+        const height = pageHeight * 0.476
+        doc.addImage(
+          watermarkDataUrl,
+          'PNG',
+          (pageWidth - width) / 2,
+          (pageHeight - height) / 2,
+          width,
+          height,
+        )
+      }
+
+      const ensureSpace = (neededHeight = 20) => {
+        if (y + neededHeight <= pageBottom) return
+        doc.addPage()
+        applyWatermark()
+        y = contentStartY
+      }
+
+      const drawWrappedText = (text, options = {}) => {
+        const { fontSize = 10.5, lineHeight = 14, indent = 0, fontStyle = 'normal' } = options
+        const lines = doc.splitTextToSize(text, maxTextWidth - indent)
+        ensureSpace(lines.length * lineHeight + 2)
+        doc.setFont('helvetica', fontStyle)
+        doc.setFontSize(fontSize)
+        lines.forEach((line) => {
+          doc.text(line, marginX + indent, y)
+          y += lineHeight
+        })
+      }
+
+      // Cover page
+      applyWatermark()
+      doc.setFont('helvetica', 'bold')
+      doc.setFontSize(34)
+      doc.text('Guardian Angel', pageWidth / 2, pageHeight / 2 - 30, { align: 'center' })
+      doc.setFontSize(28)
+      doc.text('Finalized CSS Course Outline', pageWidth / 2, pageHeight / 2 + 12, { align: 'center' })
+      doc.setFont('helvetica', 'normal')
+      doc.setFontSize(12)
+      doc.text(`Candidate: ${authUser.fullName || authUser.username}`, pageWidth / 2, pageHeight - 34, {
+        align: 'center',
+      })
+
+      // Table of contents placeholder page
+      doc.addPage()
+      applyWatermark()
+      const tocPage = doc.getNumberOfPages()
+
+      // Subject content pages
+      const tocEntries = []
+      for (let index = 0; index < finalizedSubjects.length; index += 1) {
+        const subject = finalizedSubjects[index]
+        const source = detailedSubjectPages.find((item) => item.title === subject.sourceTitle)
+        const subjectPage = doc.getNumberOfPages() + 1
+        tocEntries.push({
+          title: subject.displayTitle,
+          page: subjectPage,
+        })
+
+        doc.addPage()
+        applyWatermark()
+        y = contentStartY
+
+        drawWrappedText(`${index + 1}. ${subject.displayTitle}`, {
+          fontSize: 16,
+          lineHeight: 20,
+          fontStyle: 'bold',
+        })
+        y += 6
+
+        if (source?.outlineSections?.length) {
+          source.outlineSections.forEach((section) => {
+            drawWrappedText(section.heading, { fontSize: 12.8, lineHeight: 17, fontStyle: 'bold' })
+            if (section.points?.length) {
+              section.points.forEach((point) =>
+                drawWrappedText(`- ${point}`, {
+                  fontSize: 11.2,
+                  lineHeight: 15,
+                  indent: 8,
+                }),
+              )
+            }
+            y += 4
+          })
+        } else if (source?.outline?.length) {
+          drawWrappedText('Course Outline', { fontSize: 12.8, lineHeight: 17, fontStyle: 'bold' })
+          source.outline.forEach((point) =>
+            drawWrappedText(`- ${point}`, {
+              fontSize: 11.2,
+              lineHeight: 15,
+              indent: 8,
+            }),
+          )
+        } else if (LOCAL_OUTLINE_IMAGE_URLS[source?.sourceSlug]?.length || source?.outlineImages?.length) {
+          const imageList =
+            LOCAL_OUTLINE_IMAGE_URLS[source?.sourceSlug] || source.outlineImages || []
+          for (const imagePath of imageList) {
+            const imageCandidates = /^https?:\/\//i.test(imagePath)
+              ? [imagePath]
+              : resolveOutlineImageCandidates(source.sourceUrl, imagePath)
+            let imageAdded = false
+            for (const imageUrl of imageCandidates) {
+              try {
+                const imageDataUrl = await imageUrlToPngDataUrl(imageUrl)
+                const imageProps = doc.getImageProperties(imageDataUrl)
+                if (pageBottom - y < 220) {
+                  doc.addPage()
+                  applyWatermark()
+                  y = contentStartY
+                  drawWrappedText(`${index + 1}. ${subject.displayTitle}`, {
+                    fontSize: 16,
+                    lineHeight: 20,
+                    fontStyle: 'bold',
+                  })
+                  y += 6
+                }
+
+                const maxImageHeight = Math.min(pageHeight * 0.78, pageBottom - y - 8)
+                const aspect = imageProps.height / imageProps.width
+                let drawWidth = maxTextWidth
+                let drawHeight = drawWidth * aspect
+                if (drawHeight > maxImageHeight) {
+                  drawHeight = maxImageHeight
+                  drawWidth = drawHeight / aspect
+                }
+                ensureSpace(drawHeight + 12)
+                const centeredX = marginX + (maxTextWidth - drawWidth) / 2
+                doc.addImage(imageDataUrl, 'PNG', centeredX, y, drawWidth, drawHeight)
+                y += drawHeight + 10
+                imageAdded = true
+                break
+              } catch {
+                // Try next candidate URL.
+              }
+            }
+            if (!imageAdded) {
+              drawWrappedText(`- Outline image could not be loaded from available sources.`, {
+                fontSize: 9.6,
+                lineHeight: 13,
+                indent: 8,
+              })
+            }
+          }
+        } else {
+          drawWrappedText('Detailed outline is currently unavailable for this subject.', {
+            fontSize: 10,
+            lineHeight: 14,
+            indent: 8,
+          })
+        }
+
+        y += 10
+        ensureSpace(18)
+        doc.setFont('helvetica', 'bold')
+        doc.setFontSize(12)
+        doc.text('*****************************************************', pageWidth / 2, y, {
+          align: 'center',
+        })
+        y += 16
+      }
+
+      // Fill table of contents
+      doc.setPage(tocPage)
+      y = 56
+      doc.setFont('helvetica', 'bold')
+      doc.setFontSize(28)
+      doc.text('Table of Contents', marginX, y)
+      y += 40
+      tocEntries.forEach((entry, index) => {
+        const subjectLabel = `${index + 1}. ${entry.title}`
+        const pageLabel = `Page ${entry.page}`
+        const pageLabelWidth = doc.getTextWidth(pageLabel)
+        const maxSubjectWidth = maxTextWidth - pageLabelWidth - 20
+        const subjectLines = doc.splitTextToSize(subjectLabel, maxSubjectWidth)
+
+        ensureSpace(subjectLines.length * 30 + 4)
+        doc.setFont('helvetica', 'bold')
+        doc.setFontSize(20)
+        subjectLines.forEach((line, lineIndex) => {
+          doc.text(line, marginX, y)
+          if (lineIndex === 0) {
+            doc.setFont('helvetica', 'normal')
+            doc.setFontSize(16)
+            doc.text(pageLabel, pageWidth - marginX, y, { align: 'right' })
+            doc.setFont('helvetica', 'bold')
+            doc.setFontSize(20)
+          }
+          y += 30
+        })
+        y += 2
+      })
+
+      // Footer page numbers
+      const totalPages = doc.getNumberOfPages()
+      for (let pageNumber = 1; pageNumber <= totalPages; pageNumber += 1) {
+        doc.setPage(pageNumber)
+        doc.setFont('helvetica', 'normal')
+        doc.setFontSize(9)
+        doc.text(
+          `Page ${pageNumber} of ${totalPages}`,
+          pageWidth - marginX,
+          pageHeight - 18,
+          { align: 'right' },
+        )
+      }
+
+      const blob = doc.output('blob')
+      const nextPdfUrl = URL.createObjectURL(blob)
+      setOutlinePdfUrl((current) => {
+        if (current) URL.revokeObjectURL(current)
+        return nextPdfUrl
+      })
+
+      const stamp = new Date()
+      const fileStamp = `${stamp.getFullYear()}-${`${stamp.getMonth() + 1}`.padStart(2, '0')}-${`${stamp.getDate()}`.padStart(2, '0')}`
+      setOutlinePdfFileName(`Guardian_Angel_Finalized_CSS_Outline_${fileStamp}.pdf`)
+    } catch {
+      setError('Unable to generate course-outline PDF. Please try again.')
+    } finally {
+      setIsGeneratingOutlinePdf(false)
+    }
   }
 
   const handleGeneratePlan = (event) => {
@@ -1434,19 +2066,29 @@ function GuardianStudyPlannerPage({ authUser }) {
       setError('Please enter realistic study hours between 2 and 14.')
       return
     }
+    if (!Array.isArray(form.productiveHours) || form.productiveHours.length === 0) {
+      setError('Select at least one productive one-hour slot.')
+      return
+    }
 
-    let lectureShare = form.learningPreference === 'lectures-first' ? 0.36 : 0.24
-    let selfStudyShare = form.learningPreference === 'lectures-first' ? 0.4 : 0.5
-    let revisionShare = 1 - lectureShare - selfStudyShare
+    const stageShareMap = {
+      beginner: { lecture: 0.44, selfStudy: 0.36, revision: 0.2 },
+      revision: { lecture: 0.2, selfStudy: 0.35, revision: 0.45 },
+      'mock-exams': { lecture: 0.12, selfStudy: 0.28, revision: 0.6 },
+    }
+    const stageShares = stageShareMap[form.stage] || stageShareMap.beginner
+    let lectureShare = stageShares.lecture
+    let selfStudyShare = stageShares.selfStudy
+    let revisionShare = stageShares.revision
 
-    if (form.stage === 'beginner') {
-      lectureShare += 0.08
-      selfStudyShare -= 0.02
-      revisionShare -= 0.06
-    } else if (form.stage === 'advanced') {
-      lectureShare -= 0.08
-      selfStudyShare -= 0.02
-      revisionShare += 0.1
+    if (form.learningPreference === 'lectures-first') {
+      lectureShare += 0.06
+      selfStudyShare -= 0.03
+      revisionShare -= 0.03
+    } else {
+      lectureShare -= 0.03
+      selfStudyShare += 0.04
+      revisionShare -= 0.01
     }
 
     if (form.difficulty === 'easy') {
@@ -1466,12 +2108,25 @@ function GuardianStudyPlannerPage({ authUser }) {
     selfStudyShare /= normalizedTotal
     revisionShare /= normalizedTotal
 
-    const lectureHours = Number((studyHours * lectureShare).toFixed(1))
-    const selfStudyHours = Number((studyHours * selfStudyShare).toFixed(1))
-    const revisionHours = Number((studyHours - lectureHours - selfStudyHours).toFixed(1))
+    const attemptFactorMap = { first: 1, second: 1.07, third: 1.12 }
+    const difficultyFactorMap = { easy: 0.92, moderate: 1, difficult: 1.09, 'extremely difficult': 1.16 }
+    const urgencyFactor = remainingDays > 150 ? 0.95 : remainingDays > 90 ? 1 : remainingDays > 45 ? 1.08 : 1.16
+    const attemptFactor = attemptFactorMap[form.cssAttempt] || 1
+    const difficultyFactor = difficultyFactorMap[form.difficulty] || 1
+    const productivityFactor = Math.min(1.16, 0.9 + form.productiveHours.length * 0.02)
+    const effectiveStudyHours = Math.min(
+      14,
+      Number((studyHours * urgencyFactor * attemptFactor * difficultyFactor * productivityFactor).toFixed(2)),
+    )
 
-    const startHourMap = { morning: 6, afternoon: 13, night: 19 }
-    let cursor = startHourMap[form.productiveWindow] * 60
+    const lectureHours = Number((effectiveStudyHours * lectureShare).toFixed(1))
+    const selfStudyHours = Number((effectiveStudyHours * selfStudyShare).toFixed(1))
+    const revisionHours = Number((effectiveStudyHours - lectureHours - selfStudyHours).toFixed(1))
+
+    const selectedSlots = PRODUCTIVE_HOUR_OPTIONS.filter((slot) =>
+      form.productiveHours.includes(slot.id),
+    ).sort((a, b) => a.startHour - b.startHour)
+    let cursor = (selectedSlots[0]?.startHour || 7) * 60
     const sessionBlocks = [
       {
         title: 'Lecture Session',
@@ -1527,12 +2182,25 @@ function GuardianStudyPlannerPage({ authUser }) {
       examDate,
       remainingDays,
       studyHours,
+      effectiveStudyHours,
       lectureHours,
       selfStudyHours,
       revisionHours,
       timetable,
       weeklyConsolidation,
       phaseStrategy,
+      selectedSlots: selectedSlots.map((slot) => slot.label),
+      formula: {
+        expression:
+          'effectiveHours = baseHours x urgencyFactor x attemptFactor x difficultyFactor x productivityFactor',
+        values: {
+          baseHours: studyHours,
+          urgencyFactor,
+          attemptFactor,
+          difficultyFactor,
+          productivityFactor,
+        },
+      },
       breakPlan: [
         'Take a 10-minute break after every 50 minutes of deep study.',
         'After every 3 focused blocks, take a 25-30 minute recovery break.',
@@ -1635,6 +2303,276 @@ function GuardianStudyPlannerPage({ authUser }) {
       ? Math.min(100, (totalWeekStudiedMinutes / totalWeekRequiredMinutes) * 100)
       : 0
   const selectedStatus = selectedCalendarDay ? dayStatuses[selectedCalendarDay] || 'planned' : 'planned'
+  const selectedOptionalByGroup = optionalGroups
+    .map((group) => ({
+      group: group.group,
+      subjects: selectedOptionalSubjects.filter((item) => OPTIONAL_META_MAP[item]?.group === group.group),
+    }))
+    .filter((entry) => entry.subjects.length > 0)
+  const selectedOptionalSorted = optionalGroups.flatMap((group) =>
+    selectedOptionalSubjects.filter((subject) => OPTIONAL_META_MAP[subject]?.group === group.group),
+  )
+  const selectedOptionalPapers = selectedOptionalByGroup.flatMap((entry) =>
+    entry.subjects.flatMap((subject) => {
+      const meta = OPTIONAL_META_MAP[subject]
+      if (!meta) return []
+      if (meta.marks === 200) {
+        return [
+          `${meta.baseTitle} I (100 Marks)`,
+          `${meta.baseTitle} II (100 Marks)`,
+        ].map((paper) => ({
+          group: entry.group,
+          groupIndex: meta.groupIndex,
+          paper,
+          sourceSubject: subject,
+        }))
+      }
+      return [
+        {
+          group: entry.group,
+          groupIndex: meta.groupIndex,
+          paper: `${meta.baseTitle} (100 Marks)`,
+          sourceSubject: subject,
+        },
+      ]
+    }),
+  )
+  const { totalMarks: selectedOptionalMarks, totalPapers: selectedOptionalPaperCount } =
+    calculateOptionalTotals(selectedOptionalSubjects)
+  const isOptionalSelectionFull = selectedOptionalMarks >= 600 || selectedOptionalPaperCount >= 6
+  const compulsoryForAnalysis = [...PLANNER_CORE_COMPULSORY_SUBJECTS, selectedCompulsoryElective].map((item) =>
+    stripHundredMarks(item),
+  )
+  const optionalForAnalysis = selectedOptionalPapers.map((item) => stripHundredMarks(item.paper))
+  const performanceSubjects = [...new Set([...compulsoryForAnalysis, ...optionalForAnalysis])].filter(Boolean)
+
+  useEffect(() => {
+    setSubjectPerformanceLevels((current) => {
+      const next = {}
+      performanceSubjects.forEach((subject) => {
+        next[subject] = current[subject] || 'Survivor'
+      })
+      const hasChanged =
+        Object.keys(next).length !== Object.keys(current).length ||
+        Object.keys(next).some((key) => next[key] !== current[key])
+      return hasChanged ? next : current
+    })
+  }, [performanceSubjects])
+
+  const performanceRows = performanceSubjects.map((subject) => ({
+    subject,
+    level: subjectPerformanceLevels[subject] || 'Survivor',
+  }))
+  useEffect(() => {
+    setManualDmcScores((current) => {
+      const next = {}
+      performanceRows.forEach((item) => {
+        if (Object.prototype.hasOwnProperty.call(current, item.subject)) {
+          next[item.subject] = current[item.subject]
+        }
+      })
+      const hasChanged =
+        Object.keys(next).length !== Object.keys(current).length ||
+        Object.keys(next).some((key) => next[key] !== current[key])
+      return hasChanged ? next : current
+    })
+  }, [performanceRows])
+
+  const strongSubjects = performanceRows.filter((item) => item.level === 'Topper').map((item) => item.subject)
+  const competitiveSubjects = performanceRows
+    .filter((item) => item.level === 'Contendor')
+    .map((item) => item.subject)
+  const weakSubjects = performanceRows.filter((item) => item.level === 'Survivor').map((item) => item.subject)
+
+  const overallPerformanceStatus =
+    performanceRows.length === 0
+      ? 'Start by selecting subjects in Subject Locker to generate analysis.'
+      : strongSubjects.length >= Math.ceil(performanceRows.length / 3)
+        ? 'Current profile is high ambition heavy. Rebalance effort to protect consistency.'
+        : competitiveSubjects.length >= weakSubjects.length
+          ? 'Current profile is competitive and progressing in the right direction.'
+          : 'Current profile is foundation focused. Push more subjects into competitive range.'
+
+  const performanceAdvice = [
+    weakSubjects.length > 0
+      ? `Subjects needing focused improvement: ${weakSubjects.join(', ')}.`
+      : 'No critical weak bucket currently. Keep consistency to maintain momentum.',
+    'Suggested focus: answer writing structure, timed past-paper practice, and weekly revision cycles.',
+    'Balanced preparation advice: keep strong subjects stable, convert contendor subjects to confident range, and allocate extra hours to weak bucket every week.',
+  ]
+  const performanceByLevel = SUBJECT_PERFORMANCE_LEVELS.map((level) => ({
+    ...level,
+    subjects: performanceRows
+      .filter((item) => item.level === level.id)
+      .map((item) => item.subject),
+  }))
+  const compulsorySubjectSet = new Set(compulsoryForAnalysis.filter(Boolean))
+  const optionalSubjectSet = new Set(optionalForAnalysis.filter(Boolean))
+  const performanceScoreRows = performanceRows.map((item) => ({
+    ...item,
+    autoScore: PERFORMANCE_LEVEL_SCORE_MAP[item.level] ?? 0,
+    section: compulsorySubjectSet.has(item.subject) ? 'Compulsory' : optionalSubjectSet.has(item.subject) ? 'Optionals' : 'Optionals',
+  }))
+  const scoredPerformanceRows = performanceScoreRows.map((item) => {
+    const rawManualScore = Number(manualDmcScores[item.subject])
+    const normalizedManualScore = Number.isFinite(rawManualScore)
+      ? Math.max(0, Math.min(100, Math.round(rawManualScore)))
+      : item.autoScore
+    return {
+      ...item,
+      score: isManualDmcEnabled ? normalizedManualScore : item.autoScore,
+    }
+  })
+  const compulsoryScoreRows = scoredPerformanceRows.filter((item) => item.section === 'Compulsory')
+  const optionalScoreRows = scoredPerformanceRows.filter((item) => item.section === 'Optionals')
+  const projectedScoreTotal = scoredPerformanceRows.reduce((sum, item) => sum + item.score, 0)
+  const projectedMaxTotal = performanceScoreRows.length * 100
+  const subjectLockerScore = clampToPercent(
+    (selectedOptionalMarks / 600) * 65 +
+      (selectedOptionalPaperCount / 6) * 20 +
+      (selectedCompulsoryElective ? 5 : 0) +
+      (subjectsLocked ? 10 : 0),
+  )
+  const strategyFormCompletion =
+    [
+      Boolean(form.examDate),
+      Number(form.studyHours) > 0,
+      form.productiveHours.length > 0,
+      Boolean(form.stage),
+      Boolean(form.cssAttempt),
+      Boolean(form.difficulty),
+      Boolean(form.learningPreference),
+    ].filter(Boolean).length / 7
+  const strategyScore = plan
+    ? clampToPercent(
+        strategyFormCompletion * 35 +
+          Math.min(25, (plan.effectiveStudyHours / 8) * 25) +
+          Math.min(20, plan.selectedSlots.length * 7) +
+          (plan.remainingDays > 0 ? 20 : 10),
+      )
+    : clampToPercent(strategyFormCompletion * 55)
+  const topperRatio = performanceRows.length > 0 ? strongSubjects.length / performanceRows.length : 0
+  const contendorRatio = performanceRows.length > 0 ? competitiveSubjects.length / performanceRows.length : 0
+  const performanceScoreAverage =
+    performanceRows.length > 0 ? projectedScoreTotal / Math.max(1, performanceRows.length) : 0
+  const performanceScore = clampToPercent(
+    performanceScoreAverage * 0.85 + topperRatio * 12 + contendorRatio * 8,
+  )
+  const timerTrackedDays = new Set(timerSessions.map((item) => item.dayKey)).size
+  const timerConsistencyPercent = clampToPercent((timerTrackedDays / 14) * 100)
+  const timerScore = clampToPercent(
+    weeklyProgressPercent * 0.5 + dailyProgressPercent * 0.25 + timerConsistencyPercent * 0.25,
+  )
+  const allStatusValues = Object.values(dayStatuses)
+  const calendarTaggedDays = allStatusValues.length
+  const calendarCompletedDays = Object.values(dayStatuses).filter((status) => status === 'completed').length
+  const calendarRevisionDays = Object.values(dayStatuses).filter((status) => status === 'revision').length
+  const calendarMockDays = Object.values(dayStatuses).filter((status) => status === 'mock-test').length
+  const calendarSkippedDays = Object.values(dayStatuses).filter((status) => status === 'skipped').length
+  const calendarEngagementPercent = clampToPercent((calendarTaggedDays / 20) * 100)
+  const calendarExecutionPercent =
+    calendarTaggedDays > 0 ? (calendarCompletedDays / calendarTaggedDays) * 100 : 0
+  const calendarScore =
+    calendarTaggedDays === 0
+      ? 0
+      : clampToPercent(
+          calendarEngagementPercent * 0.45 +
+            calendarExecutionPercent * 0.45 +
+            (calendarRevisionDays + calendarMockDays) * 1.2 -
+            calendarSkippedDays * 1.4,
+        )
+  const guardianReportRows = [
+    {
+      key: 'subjects',
+      label: 'Subject Locker',
+      score: subjectLockerScore,
+      note: `${selectedOptionalMarks}/600 optional marks selected, ${selectedOptionalPaperCount}/6 papers, ${subjectsLocked ? 'locked' : 'draft mode'}.`,
+    },
+    {
+      key: 'strategy',
+      label: 'Strategy Builder',
+      score: strategyScore,
+      note: plan
+        ? `${plan.remainingDays} days remaining, ${plan.effectiveStudyHours}h effective daily target, ${plan.selectedSlots.length} productive slot(s).`
+        : 'Study strategy not generated yet.',
+    },
+    {
+      key: 'performance',
+      label: 'Performance Analysis',
+      score: performanceScore,
+      note:
+        performanceRows.length > 0
+          ? `Topper: ${strongSubjects.length}, Contendor: ${competitiveSubjects.length}, Survivor: ${weakSubjects.length}.`
+          : 'No performance allocation yet.',
+    },
+    {
+      key: 'timer',
+      label: 'Timer & Analytics',
+      score: timerScore,
+      note: `${studiedTodayMinutes} min today, ${weeklyProgressPercent.toFixed(0)}% weekly completion, ${timerTrackedDays} tracked day(s) in recent logs.`,
+    },
+    {
+      key: 'calendar',
+      label: 'Guardian Calendar',
+      score: calendarScore,
+      note: `${calendarTaggedDays} tagged day(s), ${calendarCompletedDays} completed, ${calendarSkippedDays} skipped.`,
+    },
+  ]
+  const guardianOverallScore = clampToPercent(
+    subjectLockerScore * 0.23 +
+      strategyScore * 0.22 +
+      performanceScore * 0.23 +
+      timerScore * 0.17 +
+      calendarScore * 0.15,
+  )
+  const guardianOverallStatus =
+    guardianOverallScore >= 80
+      ? 'High Potential - execution quality is strong and competitive.'
+      : guardianOverallScore >= 65
+        ? 'Promising - good direction, now tighten consistency and output.'
+        : guardianOverallScore >= 50
+          ? 'Developing - build stronger routine and convert plans into daily evidence.'
+          : 'Early Stage - establish fundamentals before accelerating.'
+  const guardianStrengthSignals = [
+    subjectsLocked ? 'Subject selection is finalized and structurally valid.' : '',
+    strongSubjects.length >= 4 ? 'Multiple subjects are already in Topper range.' : '',
+    weeklyProgressPercent >= 70 ? 'Weekly timer completion is on a strong trajectory.' : '',
+    calendarCompletedDays >= 5 ? 'Calendar execution indicates steady follow-through.' : '',
+  ].filter(Boolean)
+  const guardianRiskSignals = [
+    !subjectsLocked ? 'Subject locker is not locked yet. Finalize to prevent frequent switching.' : '',
+    !plan ? 'Strategy is not generated yet. Create your timetable to set daily targets.' : '',
+    weakSubjects.length >= 4 ? 'Large Survivor bucket. Raise these subjects with answer-writing drills.' : '',
+    weeklyProgressPercent < 45 ? 'Timer evidence is low versus target. Increase focused sessions.' : '',
+    calendarSkippedDays >= 3 ? 'Frequent skipped days are reducing momentum. Use catch-up blocks.' : '',
+  ].filter(Boolean)
+  const guardianActionPlan = [
+    weakSubjects.length
+      ? `Next 10 days: prioritize Survivor subjects first (${weakSubjects.slice(0, 4).join(', ')}).`
+      : 'Next 10 days: maintain momentum by protecting Topper and Contendor subjects.',
+    'Run at least 5 timed answers per week (mix compulsory + optionals) and evaluate structure.',
+    requiredDailyMinutes
+      ? `Protect minimum ${requiredDailyMinutes} focused minutes daily and recover missed time within 48 hours.`
+      : 'Generate strategy first, then protect a non-negotiable daily study target.',
+    'Mark every study day in Guardian Calendar with completed, revision, or mock-test status.',
+    'Review this report every week and move one subject from Survivor to Contendor.',
+  ]
+
+  const handlePerformanceDrop = (levelId, event) => {
+    event.preventDefault()
+    const subject = event.dataTransfer.getData('text/plain') || draggingPerformanceSubject
+    if (!subject) return
+    setSubjectPerformanceLevels((current) => ({ ...current, [subject]: levelId }))
+    setDraggingPerformanceSubject('')
+  }
+  const handleManualDmcScoreChange = (subject, value) => {
+    const numericValue = Number(value)
+    if (!Number.isFinite(numericValue)) return
+    setManualDmcScores((current) => ({
+      ...current,
+      [subject]: Math.max(0, Math.min(100, Math.round(numericValue))),
+    }))
+  }
 
   return (
     <main className="page-main">
@@ -1654,11 +2592,29 @@ function GuardianStudyPlannerPage({ authUser }) {
               <button
                 type="button"
                 role="tab"
+                aria-selected={activePlannerTab === 'subjects'}
+                className={`planner-tab ${activePlannerTab === 'subjects' ? 'active' : ''}`}
+                onClick={() => setActivePlannerTab('subjects')}
+              >
+                Subject Locker
+              </button>
+              <button
+                type="button"
+                role="tab"
                 aria-selected={activePlannerTab === 'strategy'}
                 className={`planner-tab ${activePlannerTab === 'strategy' ? 'active' : ''}`}
                 onClick={() => setActivePlannerTab('strategy')}
               >
                 Strategy Builder
+              </button>
+              <button
+                type="button"
+                role="tab"
+                aria-selected={activePlannerTab === 'performance'}
+                className={`planner-tab ${activePlannerTab === 'performance' ? 'active' : ''}`}
+                onClick={() => setActivePlannerTab('performance')}
+              >
+                Performance Analysis
               </button>
               <button
                 type="button"
@@ -1678,10 +2634,222 @@ function GuardianStudyPlannerPage({ authUser }) {
               >
                 Guardian Calendar
               </button>
+              <button
+                type="button"
+                role="tab"
+                aria-selected={activePlannerTab === 'report'}
+                className={`planner-tab ${activePlannerTab === 'report' ? 'active' : ''}`}
+                onClick={() => setActivePlannerTab('report')}
+              >
+                Guardian Angel Report
+              </button>
             </div>
           </aside>
 
           <div className="planner-content">
+            {activePlannerTab === 'subjects' ? (
+              <article className="planner-card subject-locker-card">
+                <div className="subject-locker-head">
+                  <div>
+                    <h3>CSS Subject Locker</h3>
+                    <p>
+                      Drag subjects in their own group cards and lock at 600 marks.
+                    </p>
+                  </div>
+                  <div className={`subject-lock-badge ${subjectsLocked ? 'locked' : ''}`}>
+                    {subjectsLocked ? 'Locked' : 'Draft Mode'}
+                  </div>
+                </div>
+
+                <section className="subject-panel">
+                  <h4>Compulsory Subjects</h4>
+                  <ul className="subject-pill-list">
+                    {PLANNER_CORE_COMPULSORY_SUBJECTS.map((subject) => (
+                      <li key={subject} className="subject-pill compulsory">
+                        {subject}
+                      </li>
+                    ))}
+                    <li className="subject-pill compulsory optional">
+                      {selectedCompulsoryElective || 'Select one compulsory option'}
+                    </li>
+                  </ul>
+                  {!subjectsLocked ? (
+                    <div className="compulsory-elective-box">
+                      <p>Choose one option:</p>
+                      <div className="compulsory-elective-options">
+                        {COMPULSORY_ELECTIVE_OPTIONS.map((option) => (
+                          <label
+                            key={option}
+                            className={`compulsory-elective-option ${
+                              selectedCompulsoryElective === option ? 'selected' : ''
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="compulsoryElective"
+                              value={option}
+                              checked={selectedCompulsoryElective === option}
+                              onChange={() => setSelectedCompulsoryElective(option)}
+                            />
+                            <span>{option}</span>
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+                  ) : null}
+                </section>
+
+                {subjectsLocked ? (
+                  <section className="subject-panel">
+                    <h4>Optional Subjects (Locked)</h4>
+                    <ul className="subject-pill-list">
+                      {selectedOptionalSorted.map((subject) => (
+                        <li key={subject} className="subject-pill optional">
+                          {subject}
+                        </li>
+                      ))}
+                    </ul>
+                  </section>
+                ) : (
+                  <div
+                    className={`subject-locker-grid grouped-optionals-grid ${
+                      isOptionalSelectionFull ? 'selection-capped' : ''
+                    }`}
+                  >
+                    {optionalGroups.map((group) => {
+                      const selectedInGroup = selectedOptionalSubjects.filter(
+                        (subject) => OPTIONAL_META_MAP[subject]?.group === group.group,
+                      )
+                      return (
+                        <section
+                          key={group.group}
+                          className={`subject-panel optional-group-panel ${
+                            isOptionalSelectionFull ? 'capped' : ''
+                          }`}
+                          onDragOver={(event) => {
+                            if (!subjectsLocked && !isOptionalSelectionFull) event.preventDefault()
+                          }}
+                          onDrop={(event) => handleOptionalDrop(group.group, event)}
+                        >
+                          <h4>{group.group}</h4>
+                          <p className="group-rule">{group.rules}</p>
+                          <div className="optional-pool">
+                            {group.subjects.map((subject) => {
+                              const isSelected = selectedOptionalSubjects.includes(subject)
+                              const shouldDisable = isOptionalSelectionFull && !isSelected
+                              return (
+                                <button
+                                  key={subject}
+                                  type="button"
+                                  className={`subject-chip ${isSelected ? 'selected' : ''}`}
+                                  draggable={!subjectsLocked && !shouldDisable}
+                                  disabled={shouldDisable}
+                                  onDragStart={(event) => {
+                                    if (subjectsLocked || shouldDisable) return
+                                    event.dataTransfer.setData('text/plain', subject)
+                                    setDraggingSubject(subject)
+                                  }}
+                                  onDragEnd={() => setDraggingSubject('')}
+                                  onClick={() => handleAddOptionalSubject(subject)}
+                                >
+                                  {subject}
+                                </button>
+                              )
+                            })}
+                          </div>
+
+                          <div className="group-selected-strip">
+                            <p>Selected from {group.group}</p>
+                            {selectedInGroup.length > 0 ? (
+                              <ul className="group-selected-list">
+                                {selectedInGroup.map((subject) => (
+                                  <li key={subject}>
+                                    <span>{subject}</span>
+                                    {!subjectsLocked ? (
+                                      <button
+                                        type="button"
+                                        className="slot-clear-btn"
+                                        onClick={() => handleOptionalSubjectRemove(subject)}
+                                      >
+                                        Remove
+                                      </button>
+                                    ) : null}
+                                  </li>
+                                ))}
+                              </ul>
+                            ) : (
+                              <strong>Drop group subjects here</strong>
+                            )}
+                          </div>
+                        </section>
+                      )
+                    })}
+                  </div>
+                )}
+
+                {!subjectsLocked ? (
+                  <section className="subject-panel selected-panel">
+                    <h4>Selected Optional Papers (Group-wise)</h4>
+                    <p className="subject-selection-meta">
+                      Total: <strong>{selectedOptionalMarks} Marks</strong> | Papers:{' '}
+                      <strong>{selectedOptionalPaperCount}/6</strong>
+                    </p>
+                    {selectedOptionalPapers.length > 0 ? (
+                      <ul className="planner-list">
+                        {selectedOptionalPapers.map((item) => (
+                          <li key={`${item.group}-${item.paper}`}>
+                            <strong>{item.group}:</strong> {item.paper}
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p className="subject-selection-meta">No optional papers selected yet.</p>
+                    )}
+                  </section>
+                ) : null}
+
+                <div className="subject-locker-actions">
+                  {!subjectsLocked ? (
+                    <button className="btn btn-primary" type="button" onClick={handleLockSubjects}>
+                      Lock Subjects
+                    </button>
+                  ) : (
+                    <button className="btn btn-secondary" type="button" onClick={handleUnlockSubjects}>
+                      Unlock for Editing
+                    </button>
+                  )}
+                  <p>
+                    {subjectsLocked
+                      ? 'Subjects are locked'
+                      : 'Lock works only at exactly 600 marks and 6 papers (200 marks subjects split into Paper I/II).'}
+                  </p>
+                </div>
+                {subjectsLocked ? (
+                  <div className="subject-outline-pdf-actions">
+                    <button
+                      className="btn btn-primary"
+                      type="button"
+                      onClick={handleGenerateCourseOutlinePdf}
+                      disabled={isGeneratingOutlinePdf}
+                    >
+                      {isGeneratingOutlinePdf ? 'Generating PDF...' : 'Generate Course Outline PDF'}
+                    </button>
+                    {outlinePdfUrl ? (
+                      <>
+                        <a className="btn btn-secondary" href={outlinePdfUrl} target="_blank" rel="noreferrer">
+                          View PDF
+                        </a>
+                        <a className="btn btn-secondary" href={outlinePdfUrl} download={outlinePdfFileName}>
+                          Download PDF
+                        </a>
+                      </>
+                    ) : null}
+                  </div>
+                ) : null}
+                {error ? <p className="planner-error">{error}</p> : null}
+              </article>
+            ) : null}
+
             {activePlannerTab === 'strategy' ? (
               <>
                 <article className="planner-card">
@@ -1690,6 +2858,7 @@ function GuardianStudyPlannerPage({ authUser }) {
                     <label>
                       What is the expected date of your CSS examination?
                       <input name="examDate" type="date" value={form.examDate} onChange={handleChange} required />
+                      <small>Selected (dd/mm/yyyy): {formatDateDDMMYYYY(form.examDate)}</small>
                     </label>
 
                     <label>
@@ -1708,19 +2877,35 @@ function GuardianStudyPlannerPage({ authUser }) {
 
                     <label>
                       During which hours are you most productive?
-                      <select name="productiveWindow" value={form.productiveWindow} onChange={handleChange}>
-                        <option value="morning">Morning</option>
-                        <option value="afternoon">Afternoon</option>
-                        <option value="night">Night</option>
-                      </select>
+                      <div className="productive-hours-grid">
+                        {PRODUCTIVE_HOUR_OPTIONS.map((slot) => (
+                          <label key={slot.id} className="productive-hour-option">
+                            <input
+                              type="checkbox"
+                              checked={form.productiveHours.includes(slot.id)}
+                              onChange={() => handleProductiveHourToggle(slot.id)}
+                            />
+                            <span>{slot.label}</span>
+                          </label>
+                        ))}
+                      </div>
                     </label>
 
                     <label>
                       What stage of preparation are you currently in?
                       <select name="stage" value={form.stage} onChange={handleChange}>
                         <option value="beginner">Beginner</option>
-                        <option value="intermediate">Intermediate</option>
-                        <option value="advanced">Advanced</option>
+                        <option value="revision">Revision</option>
+                        <option value="mock-exams">Mock Exams</option>
+                      </select>
+                    </label>
+
+                    <label>
+                      Which CSS attempt is this?
+                      <select name="cssAttempt" value={form.cssAttempt} onChange={handleChange}>
+                        <option value="first">First Attempt</option>
+                        <option value="second">Second Attempt</option>
+                        <option value="third">Third Attempt</option>
                       </select>
                     </label>
 
@@ -1763,6 +2948,25 @@ function GuardianStudyPlannerPage({ authUser }) {
                       Daily split: Lecture <strong>{plan.lectureHours}h</strong>, Self-study{' '}
                       <strong>{plan.selfStudyHours}h</strong>, Revision <strong>{plan.revisionHours}h</strong>
                     </p>
+                    <p className="planner-meta">
+                      Effective study target: <strong>{plan.effectiveStudyHours}h/day</strong> (base{' '}
+                      {plan.studyHours}h adjusted by factors)
+                    </p>
+                    <p className="planner-meta">
+                      Productive slots: <strong>{plan.selectedSlots.join(', ')}</strong>
+                    </p>
+
+                    <div className="planner-formula">
+                      <h4>Testing Formula (Visible for QA)</h4>
+                      <p>{plan.formula.expression}</p>
+                      <ul className="planner-list">
+                        <li>baseHours: {plan.formula.values.baseHours}</li>
+                        <li>urgencyFactor: {plan.formula.values.urgencyFactor.toFixed(2)}</li>
+                        <li>attemptFactor: {plan.formula.values.attemptFactor.toFixed(2)}</li>
+                        <li>difficultyFactor: {plan.formula.values.difficultyFactor.toFixed(2)}</li>
+                        <li>productivityFactor: {plan.formula.values.productivityFactor.toFixed(2)}</li>
+                      </ul>
+                    </div>
 
                     <div className="planner-grid">
                       <div>
@@ -1813,6 +3017,208 @@ function GuardianStudyPlannerPage({ authUser }) {
                   </article>
                 ) : null}
               </>
+            ) : null}
+
+            {activePlannerTab === 'performance' ? (
+              <article className="planner-card">
+                <h3>Subject Performance Analyzer</h3>
+                <p className="planner-meta">
+                  Select one level for each subject: Survivor (around 40), Contendor (above 50),
+                  Topper (above 65).
+                </p>
+
+                {performanceRows.length === 0 ? (
+                  <p className="planner-meta">
+                    No subjects available yet. Add subjects in Subject Locker first.
+                  </p>
+                ) : (
+                  <div className="performance-dnd-board">
+                    <div className="performance-source-card">
+                      <h4>Subjects (Drag)</h4>
+                      <div className="performance-subject-list">
+                        {performanceRows.map((item) => (
+                          <button
+                            key={item.subject}
+                            type="button"
+                            className="performance-subject-chip"
+                            draggable
+                            onDragStart={(event) => {
+                              event.dataTransfer.setData('text/plain', item.subject)
+                              setDraggingPerformanceSubject(item.subject)
+                            }}
+                            onDragEnd={() => setDraggingPerformanceSubject('')}
+                          >
+                            {item.subject}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="performance-columns">
+                      {performanceByLevel.map((level) => (
+                        <section
+                          key={level.id}
+                          className="performance-column"
+                          onDragOver={(event) => event.preventDefault()}
+                          onDrop={(event) => handlePerformanceDrop(level.id, event)}
+                        >
+                          <header>
+                            <h4>{level.id}</h4>
+                            <p>{level.scoreHint}</p>
+                          </header>
+                          <div className="performance-column-body">
+                            {level.subjects.length > 0 ? (
+                              level.subjects.map((subject) => (
+                                <div
+                                  key={subject}
+                                  className="performance-assigned-chip"
+                                  draggable
+                                  onDragStart={(event) => {
+                                    event.dataTransfer.setData('text/plain', subject)
+                                    setDraggingPerformanceSubject(subject)
+                                  }}
+                                  onDragEnd={() => setDraggingPerformanceSubject('')}
+                                >
+                                  {subject}
+                                </div>
+                              ))
+                            ) : (
+                              <p className="performance-drop-hint">Drop subjects here</p>
+                            )}
+                          </div>
+                        </section>
+                      ))}
+                    </div>
+
+                    <div className="performance-dmc">
+                      <h4>Projected CSS DMC</h4>
+                      <div className="performance-dmc-controls">
+                        <label className="performance-dmc-toggle">
+                          <input
+                            type="checkbox"
+                            checked={isManualDmcEnabled}
+                            onChange={(event) => setIsManualDmcEnabled(event.target.checked)}
+                          />
+                          Enable manual adjustment
+                        </label>
+                        {isManualDmcEnabled ? (
+                          <button
+                            type="button"
+                            className="btn btn-secondary"
+                            onClick={() => setManualDmcScores({})}
+                          >
+                            Reset to level based scores
+                          </button>
+                        ) : null}
+                      </div>
+                      <div className="performance-dmc-table-wrap">
+                        <table className="performance-dmc-table">
+                          <thead>
+                            <tr>
+                              <th scope="col">Subject</th>
+                              <th scope="col">Level</th>
+                              <th scope="col">Expected Marks</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr className="performance-dmc-section-row">
+                              <td colSpan={3}>Compulsory</td>
+                            </tr>
+                            {compulsoryScoreRows.length > 0 ? (
+                              compulsoryScoreRows.map((item) => (
+                                <tr key={`dmc-compulsory-${item.subject}`}>
+                                  <td>{item.subject}</td>
+                                  <td>{item.level}</td>
+                                  <td>
+                                    <input
+                                      type="number"
+                                      min="0"
+                                      max="100"
+                                      step="1"
+                                      className="performance-dmc-input"
+                                      value={item.score}
+                                      disabled={!isManualDmcEnabled}
+                                      onChange={(event) =>
+                                        handleManualDmcScoreChange(item.subject, event.target.value)
+                                      }
+                                    />
+                                  </td>
+                                </tr>
+                              ))
+                            ) : (
+                              <tr>
+                                <td colSpan={3}>No compulsory subjects in current selection.</td>
+                              </tr>
+                            )}
+                            <tr className="performance-dmc-section-row">
+                              <td colSpan={3}>Optionals</td>
+                            </tr>
+                            {optionalScoreRows.length > 0 ? (
+                              optionalScoreRows.map((item) => (
+                                <tr key={`dmc-optional-${item.subject}`}>
+                                  <td>{item.subject}</td>
+                                  <td>{item.level}</td>
+                                  <td>
+                                    <input
+                                      type="number"
+                                      min="0"
+                                      max="100"
+                                      step="1"
+                                      className="performance-dmc-input"
+                                      value={item.score}
+                                      disabled={!isManualDmcEnabled}
+                                      onChange={(event) =>
+                                        handleManualDmcScoreChange(item.subject, event.target.value)
+                                      }
+                                    />
+                                  </td>
+                                </tr>
+                              ))
+                            ) : (
+                              <tr>
+                                <td colSpan={3}>No optional subjects in current selection.</td>
+                              </tr>
+                            )}
+                          </tbody>
+                        </table>
+                      </div>
+                      <p className="performance-dmc-total">
+                        <strong>Total Projected Marks:</strong> {projectedScoreTotal} / {projectedMaxTotal}
+                      </p>
+                    </div>
+                  </div>
+                )}
+
+                <div className="performance-summary">
+                  <h4>Overall Preparation Status</h4>
+                  <p>{overallPerformanceStatus}</p>
+
+                  <p>
+                    <strong>Strong subjects (Topper):</strong>{' '}
+                    {strongSubjects.length ? strongSubjects.join(', ') : 'None'}
+                  </p>
+                  <p>
+                    <strong>Competitive subjects (Contendor):</strong>{' '}
+                    {competitiveSubjects.length ? competitiveSubjects.join(', ') : 'None'}
+                  </p>
+                  <p>
+                    <strong>Weak subjects (Survivor):</strong>{' '}
+                    {weakSubjects.length ? weakSubjects.join(', ') : 'None'}
+                  </p>
+
+                  <h4>Constructive Feedback</h4>
+                  <ul className="planner-list">
+                    {performanceAdvice.map((line) => (
+                      <li key={line}>{line}</li>
+                    ))}
+                  </ul>
+
+                  <p className="planner-message">
+                    Stay consistent every week and trust the process. Focused preparation compounds
+                    into extraordinary CSS results.
+                  </p>
+                </div>
+              </article>
             ) : null}
 
             {activePlannerTab === 'timer' ? (
@@ -1986,6 +3392,99 @@ function GuardianStudyPlannerPage({ authUser }) {
           </p>
               </article>
             ) : null}
+
+            {activePlannerTab === 'report' ? (
+              <article className="planner-card guardian-report-card">
+                <h3>Guardian Angel Report</h3>
+                <p className="planner-meta">
+                  Deep assessment generated from Subject Locker, Strategy Builder, Performance Analysis,
+                  Timer and Guardian Calendar.
+                </p>
+
+                <div className="guardian-report-overview">
+                  <div>
+                    <p>Overall Readiness Score</p>
+                    <strong>{guardianOverallScore}/100</strong>
+                    <span>{guardianOverallStatus}</span>
+                  </div>
+                </div>
+
+                <div className="guardian-report-grid">
+                  {guardianReportRows.map((row) => (
+                    <article key={row.key} className="guardian-report-metric">
+                      <h4>{row.label}</h4>
+                      <strong>{row.score}%</strong>
+                      <div className="progress-track" aria-label={`${row.label} score`}>
+                        <span style={{ width: `${row.score}%` }} />
+                      </div>
+                      <p>{row.note}</p>
+                    </article>
+                  ))}
+                </div>
+
+                <div className="guardian-report-sections">
+                  <section>
+                    <h4>Current Potential Signals</h4>
+                    <ul className="planner-list">
+                      {(guardianStrengthSignals.length > 0
+                        ? guardianStrengthSignals
+                        : ['Potential signals are limited right now. Build stronger execution evidence.']
+                      ).map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </section>
+
+                  <section>
+                    <h4>Critical Risk Signals</h4>
+                    <ul className="planner-list">
+                      {(guardianRiskSignals.length > 0
+                        ? guardianRiskSignals
+                        : ['No major risk cluster detected currently. Protect your consistency.']
+                      ).map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </section>
+                </div>
+
+                <div className="guardian-report-sections">
+                  <section>
+                    <h4>Calculated Current Status</h4>
+                    <p>
+                      Candidate is operating at <strong>{guardianOverallScore}% readiness</strong> with a
+                      projected performance profile of <strong>{performanceScoreAverage.toFixed(1)}</strong>{' '}
+                      marks per selected subject. The present pattern suggests{' '}
+                      <strong>{strongSubjects.length}</strong> high performance subjects,{' '}
+                      <strong>{competitiveSubjects.length}</strong> competitive subjects, and{' '}
+                      <strong>{weakSubjects.length}</strong> subjects needing urgent uplift.
+                    </p>
+                    <p>
+                      Execution evidence from productivity systems shows{' '}
+                      <strong>{weeklyProgressPercent.toFixed(0)}%</strong> weekly timer completion and{' '}
+                      <strong>{calendarTaggedDays}</strong> calendar tagged days. The immediate priority is
+                      to convert planning intent into consistently completed study blocks.
+                    </p>
+                  </section>
+                </div>
+
+                <div className="guardian-report-sections">
+                  <section>
+                    <h4>Next Cycle Action Plan</h4>
+                    <ul className="planner-list">
+                      {guardianActionPlan.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </section>
+                </div>
+
+                <p className="planner-message">
+                  You are closer than you think. Execute the next 14 days with discipline and Guardian
+                  Angel will keep your preparation direction sharp, measurable, and competitive.
+                </p>
+              </article>
+            ) : null}
           </div>
         </div>
       </section>
@@ -2006,20 +3505,17 @@ function Footer() {
             </div>
           </Link>
           <p>
-            Empowering Pakistan&apos;s Future Leaders, where merit meets opportunity.
+            Empowering Pakistan&apos;s Future Leaders
           </p>
         </div>
 
         <div className="footer-links">
           <h4>Explore</h4>
-          <a href="/#mission">Mission</a>
-          <a href="/#why-guardian-angel">Why Guardian Angel</a>
           <Link to="/css-syllabus">CSS Syllabus</Link>
           <Link to="/css-rules">CSS Rules</Link>
           <Link to="/css-past-papers">CSS Past Papers</Link>
           <Link to="/css-study-material">CSS Study Material</Link>
           <Link to="/guardian-study-planner">Guardian Study Planner</Link>
-          <a href="/#student-message">Student Message</a>
         </div>
 
         <div className="footer-links">

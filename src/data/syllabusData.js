@@ -154,6 +154,7 @@ const detailedSubjectPages = [
   return {
     ...subject,
     sourceSlug,
+    sourceUrl: sourceData?.sourceUrl ?? '',
     outlineImages: sourceData?.outlineImages ?? [],
     outlineSections: sourceData?.outlineSections ?? [],
     outline: sourceData?.outline ?? [],
