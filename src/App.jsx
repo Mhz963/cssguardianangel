@@ -1,5 +1,15 @@
 import { useEffect, useState } from 'react'
-import { BrowserRouter, Link, NavLink, Route, Routes, useLocation, useParams } from 'react-router-dom'
+import {
+  BrowserRouter,
+  Link,
+  NavLink,
+  Navigate,
+  Route,
+  Routes,
+  useLocation,
+  useNavigate,
+  useParams,
+} from 'react-router-dom'
 import './App.css'
 import logo from './assets/guardian-angel-logo.png'
 import {
@@ -159,7 +169,389 @@ const cssRulesSections = [
   },
 ]
 
-function Header({ theme, onToggleTheme }) {
+const formatPastPaperTitle = (relativePath) => {
+  const fileName = relativePath.split('/').pop() || ''
+  const noTimestamp = fileName.replace(/^\d{4}-\d{2}-\d{2}-\d{2}-\d{2}-\d{2}-/, '')
+  const withoutExt = noTimestamp.replace(/\.pdf$/i, '')
+  return withoutExt
+    .replace(/&amp;/gi, '&')
+    .replace(/-+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+}
+
+const formatStudySlideTitle = (fileName) => {
+  const withoutExt = fileName.replace(/\.(ppt|pptx|pdf)$/i, '')
+  return withoutExt
+    .replace(/^Guardian_Angel_CSS_/i, '')
+    .replace(/_/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+}
+
+const extractLectureNumber = (fileName) => {
+  const match = fileName.match(/Lecture_(\d+)/i)
+  return match ? Number(match[1]) : null
+}
+
+const criminologySlideFiles = [
+  'Guardian_Angel_CSS_Criminology_Lecture_1_Motivation.pptx',
+  'Guardian_Angel_CSS_Criminology_Lecture_2_Section_I.pptx',
+  'Guardian_Angel_CSS_Criminology_Lecture_3_Section_II.pptx',
+  'Guardian_Angel_CSS_Criminology_Lecture_4_Section_III.pptx',
+  'Guardian_Angel_CSS_Criminology_Lecture_5_Section_IV.pptx',
+]
+
+const genderStudiesSlideFiles = [
+  'Guardian_Angel_CSS_Gender_Studies_Lecture_1_Motivation.pptx',
+  'Guardian_Angel_CSS_Gender_Studies_Lecture_2_Section_I.pptx',
+  'Guardian_Angel_CSS_Gender_Studies_Lecture_3_Social_Construction_of_Gender.pptx',
+  'Guardian_Angel_CSS_Gender_Studies_Lecture_4_Feminist_Theories_and_Practice.pptx',
+  'Guardian_Angel_CSS_Gender_Studies_Lecture_5_Feminist_Movements.pptx',
+  'Guardian_Angel_CSS_Gender_Studies_Lecture_6_Gender_and_Development.pptx',
+  'Guardian_Angel_CSS_Gender_Studies_Lecture_7_Status_of_Women_in_Pakistan.pptx',
+  'Guardian_Angel_CSS_Gender_Studies_Lecture_8_Gender_and_Governance.pptx',
+  'Guardian_Angel_CSS_Gender_Studies_Lecture_9_Gender_Based_Violence.pptx',
+  'Guardian_Angel_CSS_Gender_Studies_Lecture_10_Case_Studies.pptx',
+]
+
+const criminologySlides = criminologySlideFiles.map((fileName) => ({
+  title: formatStudySlideTitle(fileName),
+  lectureNumber: extractLectureNumber(fileName),
+  fileName,
+  url: new URL(`../data/CSS Crimionlgy Lecture Sides/${fileName}`, import.meta.url).href,
+}))
+
+const genderStudiesSlides = genderStudiesSlideFiles.map((fileName) => ({
+  title: formatStudySlideTitle(fileName),
+  lectureNumber: extractLectureNumber(fileName),
+  fileName,
+  url: new URL(`../data/CSS Gender Studies Lecture Sides/${fileName}`, import.meta.url).href,
+}))
+
+const cssStudyMaterials = [
+  {
+    subject: 'Criminology',
+    description: 'Foundational to advanced criminology lectures curated for CSS aspirants.',
+    slides: criminologySlides,
+  },
+  {
+    subject: 'Gender Studies',
+    description: 'Complete lecture sequence covering core concepts, theories, and case studies.',
+    slides: genderStudiesSlides,
+  },
+]
+
+const cssPastPapers2025Paths = [
+  'assets/media/2025-06-05-06-24-08-Accountancy-&amp;-Auditing-I-.pdf',
+  'assets/media/2025-06-05-06-24-11-Accountancy-&amp;-Auditing-II-.pdf',
+  'assets/media/2025-06-05-06-24-16-AGRICULTURE-&amp;-FORESTRY-.pdf',
+  'assets/media/2025-06-05-06-24-19-ANTHROPOLOGY--.pdf',
+  'assets/media/2025-06-05-06-24-23-APPLIED-MATHS.pdf',
+  'assets/media/2025-06-05-06-24-27-ARABIC.pdf',
+  'assets/media/2025-06-05-06-24-32-BALOCHI.pdf',
+  'assets/media/2025-06-05-06-24-36-BOTANY.pdf',
+  'assets/media/2025-06-05-06-24-40-BRITISH-HISTORY.pdf',
+  'assets/media/2025-06-05-06-24-44-BUSINESS-ADMN.pdf',
+  'assets/media/2025-06-05-06-24-48-CHEMISTRY-1.pdf',
+  'assets/media/2025-06-05-06-24-52-CHEMISTRY-2.pdf',
+  'assets/media/2025-06-05-06-24-56-COMARATIVE-ST.-NM-.pdf',
+  'assets/media/2025-06-05-06-25-04-COMPUTER-SCIENCE-PAPER-1.pdf',
+  'assets/media/2025-06-05-06-25-08-COMPUTER-SCIENCE-PAPER-2.pdf',
+  'assets/media/2025-06-05-06-25-12-CONSTITUTIONAL-LAW.pdf',
+  'assets/media/2025-06-05-06-25-16-CRIMINOLOGY.pdf',
+  'assets/media/2025-06-05-06-25-20-ECONOMICS-PAPER-1.pdf',
+  'assets/media/2025-06-05-06-25-25-ECONOMICS-PAPER-2.pdf',
+  'assets/media/2025-06-05-06-25-33-ENGLISH-(P&amp;C).pdf',
+  'assets/media/2025-06-05-06-25-37-ENGLISH-LITERATURE.pdf',
+  'assets/media/2025-06-05-06-27-15-ENVIRONMENTAL-SC..pdf',
+  'assets/media/2025-06-05-06-27-22-ESSAY-25.pdf',
+  'assets/media/2025-06-05-06-27-29-EUROPEAN-HISTORY.pdf',
+  'assets/media/2025-06-05-06-27-34-GENDER-STUDIES.pdf',
+  'assets/media/2025-06-05-06-27-42-GEOGRAPHY.pdf',
+  'assets/media/2025-06-05-06-27-45-GEOLOGY.pdf',
+  'assets/media/2025-06-05-06-29-50-GK2--(CA)-.pdf',
+  'assets/media/2025-06-05-06-29-55-GK3-PAK-AFFAIRS-.pdf',
+  'assets/media/2025-06-05-06-30-01-GK-I.pdf',
+  'assets/media/2025-06-05-06-32-49-GOVERNANCE-&amp;-P.P..pdf',
+  'assets/media/2025-06-05-06-32-52-History-of-USA.pdf',
+  'assets/media/2025-06-05-06-32-56-HISTORY-PAK-&amp;-INDIA.pdf',
+  'assets/media/2025-06-05-06-32-59-INTERNATIONAL-LAW.pdf',
+  'assets/media/2025-06-05-06-33-04-IR-1.pdf',
+  'assets/media/2025-06-05-06-33-07-IR-II.pdf',
+  'assets/media/2025-06-05-06-33-10-ISLAMIC-HISTORY.pdf',
+  'assets/media/2025-06-05-06-33-15-ISLAMIC-STUDIES.pdf',
+  'assets/media/2025-06-05-06-33-20-JOURNALISM-&amp;-Mass-communication-.pdf',
+  'assets/media/2025-06-05-06-33-25-LAW.pdf',
+  'assets/media/2025-06-05-06-33-28-MERCANTILE-LAW.pdf',
+  'assets/media/2025-06-05-06-33-33-MUSLIM-LAW-&amp;-JURIS.pdf',
+  'assets/media/2025-06-05-06-33-40-PASHTO-.pdf',
+  'assets/media/2025-06-05-06-33-44-PERSIAN.pdf',
+  'assets/media/2025-06-05-06-33-48-PHILOSOPHY.pdf',
+  'assets/media/2025-06-05-06-33-53-PHYSICS-1.pdf',
+  'assets/media/2025-06-05-06-33-56-PHYSICS-2.pdf',
+  'assets/media/2025-06-05-06-34-00-POL.SCIENCE-PAPER-1.pdf',
+  'assets/media/2025-06-05-06-34-05-POL.SCIENCE-PAPER-2.pdf',
+  'assets/media/2025-06-05-06-34-11-PSYCHOLOGY.pdf',
+  'assets/media/2025-06-05-06-34-16-PUBLIC-ADMNISTRATION.pdf',
+  'assets/media/2025-06-05-06-34-20-PUNJABI.pdf',
+  'assets/media/2025-06-05-06-34-23-PURE-MATHS.pdf',
+  'assets/media/2025-06-05-06-34-30-SINDHI.pdf',
+  'assets/media/2025-06-05-06-34-34-SOCIOLOGY-.pdf',
+  'assets/media/2025-06-05-06-34-39-STATISTICS.pdf',
+  'assets/media/2025-06-05-06-34-43-TOWN-PLANNING.pdf',
+  'assets/media/2025-06-05-06-34-49-URDU-LITERATURE.pdf',
+  'assets/media/2025-06-05-06-34-56-ZOOLOGY.pdf',
+]
+
+const cssPastPapers2025 = cssPastPapers2025Paths.map((path) => ({
+  title: formatPastPaperTitle(path),
+  url: `https://www.fpsc.gov.pk/${path.replace(/&amp;/gi, '&')}`,
+}))
+
+const cssPastPapers2024Paths = [
+  'assets/media/2024-06-27-05-06-15-PURE-MATHS.pdf',
+  'assets/media/2024-06-27-05-06-15-AGRICULTURE-&amp;-FORESTRY-.pdf',
+  'assets/media/2024-06-27-05-06-15-ARABIC.pdf',
+  'assets/media/2024-06-27-05-06-15-BALOCHI.pdf',
+  'assets/media/2024-06-27-05-06-15-CRIMINOLOGY.pdf',
+  'assets/media/2024-06-27-05-06-15-ECONOMICS-PAPER-2.pdf',
+  'assets/media/2024-06-27-05-06-15-ECONOMICS-PAPER-1.pdf',
+  'assets/media/2024-06-27-05-06-15-CONSTITUTIONAL-LAW.pdf',
+  'assets/media/2024-06-27-05-06-15-COMPUTER-SCIENCE-PAPER-1.pdf',
+  'assets/media/2024-06-27-05-06-15-COMPUTER-SCIENCE-PAPER-2.pdf',
+  'assets/media/2024-06-27-05-06-15-ENGLISH-LITERATURE.pdf',
+  'assets/media/2024-06-27-05-06-15-ENVIRONMENTAL-SC..pdf',
+  'assets/media/2024-06-27-05-06-15-ESSAY.pdf',
+  'assets/media/2024-06-27-05-06-15-GENDER-STUDIES.pdf',
+  'assets/media/2024-06-27-05-06-15-EUROPEAN-HISTORY.pdf',
+  'assets/media/2024-06-27-05-06-15-ENGLISH-(P&amp;C).pdf',
+  'assets/media/2024-06-27-05-06-15-History-of-USA.pdf',
+  'assets/media/2024-06-27-05-06-15-GOVERNANCE-&amp;-P.P..pdf',
+  'assets/media/2024-06-27-05-06-15-GK-I.pdf',
+  'assets/media/2024-06-27-05-06-15-GK2--(CA)-.pdf',
+  'assets/media/2024-06-27-05-06-15-GK3-PAK-AFFAIRS-.pdf',
+  'assets/media/2024-06-27-05-06-15-GEOGRAPHY.pdf',
+  'assets/media/2024-06-27-05-06-15-INTERNATIONAL-LAW.pdf',
+  'assets/media/2024-06-27-05-06-15-HISTORY-PAK-&amp;-INDIA.pdf',
+  'assets/media/2024-06-27-05-06-15-IR-II.pdf',
+  'assets/media/2024-06-27-05-06-15-ISLAMIC-HISTORY.pdf',
+  'assets/media/2024-06-27-05-06-15-LAW.pdf',
+  'assets/media/2024-06-27-05-06-15-JOURNALISM-&amp;-Mass-communication-.pdf',
+  'assets/media/2024-06-27-05-06-15-ISLAMIC-STUDIES.pdf',
+  'assets/media/2024-06-27-05-06-15-MUSLIM-LAW-&amp;-JURIS.pdf',
+  'assets/media/2024-06-27-05-06-15-PERSIAN.pdf',
+  'assets/media/2024-06-27-05-06-15-PHILOSOPHY.pdf',
+  'assets/media/2024-06-27-05-06-15-PASHTO-.pdf',
+  'assets/media/2024-06-27-05-06-15-PSYCHOLOGY.pdf',
+  'assets/media/2024-06-27-05-06-15-POL.SCIENCE-PAPER-2.pdf',
+]
+
+const cssPastPapers2024 = cssPastPapers2024Paths.map((path) => ({
+  title: formatPastPaperTitle(path),
+  url: `https://www.fpsc.gov.pk/${path.replace(/&amp;/gi, '&')}`,
+}))
+
+const cssPastPapers2023Paths = [
+  'assets/media/2024-06-13-Computer-Science,-Paper-2.pdf',
+  'assets/media/2024-06-13-Economics-Paper-1.pdf',
+  'assets/media/2024-06-13-English-(P&amp;C)-subjective.pdf',
+  'assets/media/2024-06-13-Economics-2.pdf',
+  'assets/media/2024-06-13-English-Literature.pdf',
+  'assets/media/2024-06-13-Criminology.pdf',
+  'assets/media/2024-06-13-Environmental-Science.pdf',
+  'assets/media/2024-06-13-Essay.pdf',
+  'assets/media/2024-06-13-European-History.pdf',
+  'assets/media/2024-06-13-Gender-Studies.pdf',
+  'assets/media/2024-06-13-Geology.pdf',
+  'assets/media/2024-06-13-Geography.pdf',
+  'assets/media/2024-06-13-GK3-(Pakistan-Affairs).pdf',
+  'assets/media/2024-06-13-Governance-&amp;-P.Policies.pdf',
+  'assets/media/2024-06-13-GK-I-(General-Science-and-Ability).pdf',
+  'assets/media/2024-06-13-History-of-Pakistan-&amp;-India.pdf',
+  'assets/media/2024-06-13-IR-II.pdf',
+  'assets/media/2024-06-13-International-Law.pdf',
+  'assets/media/2024-06-13-IR-1.pdf',
+  'assets/media/2024-06-13-History-of-USA.pdf',
+  'assets/media/2024-06-13-Islamic-History-and-Culture.pdf',
+  'assets/media/2024-06-13-Islamic-Studies.pdf',
+  'assets/media/2024-06-13-Law.pdf',
+  'assets/media/2024-06-13-Journalism-and-Mass-Communication.pdf',
+  'assets/media/2024-06-13-Persian.pdf',
+  'assets/media/2024-06-13-Philosophy.pdf',
+  'assets/media/2024-06-13-Muslim-Law-&amp;-Jurisprudence.pdf',
+  'assets/media/2024-06-13-Physics-Paper-2.pdf',
+  'assets/media/2024-06-13-Physics-Paper-1.pdf',
+  'assets/media/2024-06-13-Mercantile-Law.pdf',
+  'assets/media/2024-06-13-Pol-Science-Paper-1.pdf',
+  'assets/media/2024-06-13-Psychology.pdf',
+  'assets/media/2024-06-13-Punjabi-subjective.pdf',
+  'assets/media/2024-06-13-Pol-Science-Paper-2.pdf',
+  'assets/media/2024-06-13-Pure-Mathematics.pdf',
+  'assets/media/2024-06-13-Public-Administration.pdf',
+  'assets/media/2024-06-13-Town-Planning-and-Urban-Mgmt.pdf',
+  'assets/media/2024-06-13-Pushto.pdf',
+  'assets/media/2024-06-13-Sociology.pdf',
+  'assets/media/2024-06-13-Sindhi.pdf',
+  'assets/media/2024-06-13-Statistics.pdf',
+  'assets/media/2024-06-13-Urdu-Literature.pdf',
+  'assets/media/2024-06-13-Zoology.pdf',
+  'assets/media/2024-06-13-Accountancy-&amp;-Auditing-I.pdf',
+  'assets/media/2024-06-13-Accountancy-&amp;-Auditing-II.pdf',
+  'assets/media/2024-06-13-Agriculture-&amp;-Forestry.pdf',
+  'assets/media/2024-06-13-Applied-Mathematics.pdf',
+  'assets/media/2024-06-13-Anthropology.pdf',
+  'assets/media/2024-06-13-Arabic.pdf',
+  'assets/media/2024-06-13-Balochi.pdf',
+  'assets/media/2024-06-13-Botany.pdf',
+  'assets/media/2024-06-13-British-History.pdf',
+  'assets/media/2024-06-13-Chemistry,-Paper-I.pdf',
+  'assets/media/2024-06-13-Chemistry-II.pdf',
+  'assets/media/2024-06-13-Business-Administration.pdf',
+  'assets/media/2024-06-13-Comparitive--Studies.-NM.pdf',
+]
+
+const cssPastPapers2023 = cssPastPapers2023Paths.map((path) => ({
+  title: formatPastPaperTitle(path),
+  url: `https://www.fpsc.gov.pk/${path.replace(/&amp;/gi, '&')}`,
+}))
+
+const cssPastPapers2022Paths = [
+  'assets/media/2024-06-13-Constitutional-Law-subjective.pdf',
+  'assets/media/2024-06-13-European-History-subjective.pdf',
+  'assets/media/2024-06-13-Gender-Studies-subjective.pdf',
+  'assets/media/2024-06-13-GK3-PAK-AFFAIRS-SUBJECTIVE.pdf',
+  'assets/media/2024-06-13-GK-I--subjective.pdf',
+  'assets/media/2024-06-13-History-of-Pakistan-&amp;-India-subjective.pdf',
+  'assets/media/2024-06-13-International-Law--subjective.pdf',
+  'assets/media/2024-06-13-HISTORY-OF-THE-USA-SUBJECTIVE.pdf',
+  'assets/media/2024-06-13-IR-1-SUBJECTIVE.pdf',
+  'assets/media/2024-06-13-IR-II-Subjective-.pdf',
+  'assets/media/2024-06-13-ISLAMIC-HISTORY-AND-CULTURE-SUBJECTIVE.pdf',
+  'assets/media/2024-06-13-LAW-SUBJECTIVE.pdf',
+  'assets/media/2024-06-13-JOURNALISM-&amp;-MASS-COM-SUBJECTIVE.pdf',
+  'assets/media/2024-06-13-Islamic-Studies-subjective.pdf',
+  'assets/media/2024-06-13-PASHTO-SUBJECTIVE.pdf',
+  'assets/media/2024-06-13-MERCANTILE-LAW-SUBJECTIVE.pdf',
+  'assets/media/2024-06-13-Muslim-Law-&amp;-Jurisprudence-subjective.pdf',
+  'assets/media/2024-06-13-PHILOSOPHY-SUBJECTIVE.pdf',
+  'assets/media/2024-06-13-PHYSICS-PAPER-1-SUBJECTIVE.pdf',
+  'assets/media/2024-06-13-Persian-subjective.pdf',
+  'assets/media/2024-06-13-POL.SCIENCE-PAPER-1.-SUBJECTIVE.pdf',
+  'assets/media/2024-06-13-Physics-II-subjective.pdf',
+  'assets/media/2024-06-13-POL.SCIENCE-PAPER-2.-SUBJECTIVE.pdf',
+  'assets/media/2024-06-13-PURE-MATHEMATICS-SUBJECTIVE.pdf',
+  'assets/media/2024-06-13-Public-Administration-subjective.pdf',
+  'assets/media/2024-06-13-Psychology-subjective.pdf',
+  'assets/media/2024-06-13-SOCIOLOGY-SUBJECTIVE.pdf',
+  'assets/media/2024-06-13-Sindhi-subjective.pdf',
+  'assets/media/2024-06-13-Statistics-subjective.pdf',
+  'assets/media/2024-06-13-TOWN-PLANNING-&amp;-URBAN-MNGT-SUBJECTIVE.pdf',
+  'assets/media/2024-06-13-Urdu-Literature-subjective.pdf',
+  'assets/media/2024-06-13-Zoology-subjective.pdf',
+  'assets/media/2024-06-13-Accountancy-&amp;-Auditing-II--subjective.pdf',
+  'assets/media/2024-06-13-Accountancy-&amp;-Auditing-I--subjective.pdf',
+  'assets/media/2024-06-13-AGRICULTURE-&amp;-FORESTRY-SUBJECTIVE.pdf',
+  'assets/media/2024-06-13-ANTHROPOLOGY-SUBJECTIVE.pdf',
+  'assets/media/2024-06-13-Balochi-subjective.pdf',
+  'assets/media/2024-06-13-Botany-subjective.pdf',
+  'assets/media/2024-06-13-BUSINESS-ADMINISTRATION-SUBJECTIVE.pdf',
+  'assets/media/2024-06-13-APPLIED-MATHEMATICS-SUBJECTIVE.pdf',
+  'assets/media/2024-06-13-British-History-subjective.pdf',
+  'assets/media/2024-06-13-Chemistry,-Paper-I-subjective.pdf',
+  'assets/media/2024-06-13-Chemistry-II--subjective.pdf',
+  'assets/media/2024-06-13-COMARATIVE-ST.-NM-SUBJECTIVE-(1).pdf',
+  'assets/media/2024-06-13-Computer-Science,-Paper-2-subjective.pdf',
+  'assets/media/2024-06-13-COMPUTER-SCIENCE-PAPER-1-SUBJECTIVE.pdf',
+]
+
+const cssPastPapers2022 = cssPastPapers2022Paths.map((path) => ({
+  title: formatPastPaperTitle(path),
+  url: `https://www.fpsc.gov.pk/${path.replace(/&amp;/gi, '&')}`,
+}))
+
+const cssPastPapersByYear = [
+  {
+    year: '2025',
+    sourceUrl: 'https://www.fpsc.gov.pk/category/css-2025-descriptive-papers-1241569033-2025-06-05',
+    papers: cssPastPapers2025,
+  },
+  {
+    year: '2024',
+    sourceUrl: 'https://www.fpsc.gov.pk/category/css-2023-descriptive-papers-516644049-2024-06-27',
+    papers: cssPastPapers2024,
+  },
+  {
+    year: '2023',
+    sourceUrl: 'https://fpsc.gov.pk/category/css-2023-descriptive-papers-1663083777-2024-06-13',
+    papers: cssPastPapers2023,
+  },
+  {
+    year: '2022',
+    sourceUrl: 'https://fpsc.gov.pk/category/css-2023-descriptive-papers-815643912-2024-06-13',
+    papers: cssPastPapers2022,
+  },
+]
+
+const MS_PER_DAY = 24 * 60 * 60 * 1000
+const DUMMY_TEST_PROFILE = {
+  username: 'guardian.student',
+  password: 'Study@123',
+  fullName: 'Guardian Test Student',
+}
+
+const DEFAULT_PLANNER_FORM = {
+  examDate: '',
+  studyHours: '6',
+  productiveWindow: 'morning',
+  stage: 'beginner',
+  difficulty: 'difficult',
+  learningPreference: 'lectures-first',
+}
+
+const CALENDAR_STATUS_OPTIONS = [
+  { id: 'planned', label: 'Planned Study', className: 'status-planned' },
+  { id: 'completed', label: 'Marked Completed', className: 'status-completed' },
+  { id: 'revision', label: 'Revision Focus', className: 'status-revision' },
+  { id: 'mock-test', label: 'Mock Test Day', className: 'status-mock' },
+  { id: 'catch-up', label: 'Catch-up Day', className: 'status-catchup' },
+  { id: 'rest', label: 'Rest / Recovery', className: 'status-rest' },
+  { id: 'skipped', label: 'Skipped', className: 'status-skipped' },
+]
+
+const formatDayKey = (date) => {
+  const year = date.getFullYear()
+  const month = `${date.getMonth() + 1}`.padStart(2, '0')
+  const day = `${date.getDate()}`.padStart(2, '0')
+  return `${year}-${month}-${day}`
+}
+
+const startOfDay = (date) => new Date(date.getFullYear(), date.getMonth(), date.getDate())
+
+const addDays = (date, days) => {
+  const next = new Date(date)
+  next.setDate(next.getDate() + days)
+  return next
+}
+
+const formatClock = (totalMinutes) => {
+  const safeMinutes = ((totalMinutes % 1440) + 1440) % 1440
+  const hour24 = Math.floor(safeMinutes / 60)
+  const minute = safeMinutes % 60
+  const suffix = hour24 >= 12 ? 'PM' : 'AM'
+  const hour12 = hour24 % 12 || 12
+  return `${hour12}:${`${minute}`.padStart(2, '0')} ${suffix}`
+}
+
+const formatStopwatch = (totalSeconds) => {
+  const safe = Math.max(0, Math.floor(totalSeconds))
+  const hours = Math.floor(safe / 3600)
+  const minutes = Math.floor((safe % 3600) / 60)
+  const seconds = safe % 60
+  return `${`${hours}`.padStart(2, '0')}:${`${minutes}`.padStart(2, '0')}:${`${seconds}`.padStart(2, '0')}`
+}
+
+function Header({ theme, onToggleTheme, authUser, onLogout }) {
   const [animateToggle, setAnimateToggle] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
@@ -167,6 +559,9 @@ function Header({ theme, onToggleTheme }) {
     { label: 'Home', to: '/' },
     { label: 'CSS Rules', to: '/css-rules' },
     { label: 'CSS Syllabus', to: '/css-syllabus' },
+    { label: 'CSS Past Papers', to: '/css-past-papers' },
+    { label: 'CSS Study Material', to: '/css-study-material' },
+    { label: 'Guardian Study Planner', to: '/guardian-study-planner' },
   ]
 
   const handleThemeToggle = () => {
@@ -176,6 +571,18 @@ function Header({ theme, onToggleTheme }) {
   }
 
   const closeMobileMenu = () => setIsMobileMenuOpen(false)
+
+  const renderNavLabel = (label) => {
+    const words = label.trim().split(/\s+/)
+    if (words.length <= 2) return label
+
+    return (
+      <span className="nav-label-multiline">
+        <span>{words.slice(0, 2).join(' ')}</span>
+        <span className="nav-label-secondary">{words.slice(2).join(' ')}</span>
+      </span>
+    )
+  }
 
   return (
     <header className="topbar">
@@ -201,45 +608,66 @@ function Header({ theme, onToggleTheme }) {
         </button>
 
         <nav className={`nav ${isMobileMenuOpen ? 'nav-open' : ''}`}>
-          {navItems.map((item) =>
-            item.to.startsWith('/#') ? (
-              <a key={item.label} href={item.to} onClick={closeMobileMenu}>
-                {item.label}
-              </a>
-            ) : (
-              <NavLink
-                key={item.label}
-                to={item.to}
-                className={({ isActive }) => (isActive ? 'nav-active' : '')}
-                onClick={closeMobileMenu}
-              >
-                {item.label}
-              </NavLink>
-            ),
-          )}
-          <a className="btn btn-nav" href="/#student-message" onClick={closeMobileMenu}>
-            Start Preparation
-          </a>
-          <button
-            className={`btn btn-secondary theme-toggle ${animateToggle ? 'animate' : ''}`}
-            type="button"
-            onClick={handleThemeToggle}
-            aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-            title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-          >
-            <span aria-hidden="true" className="theme-icon">
-              {theme === 'dark' ? (
-                <svg viewBox="0 0 24 24" role="img">
-                  <circle cx="12" cy="12" r="4.2" />
-                  <path d="M12 2.2v3M12 18.8v3M2.2 12h3M18.8 12h3M4.8 4.8l2.1 2.1M17.1 17.1l2.1 2.1M19.2 4.8l-2.1 2.1M6.9 17.1l-2.1 2.1" />
-                </svg>
+          <div className="nav-links">
+            {navItems.map((item) =>
+              item.to.startsWith('/#') ? (
+                <a key={item.label} href={item.to} onClick={closeMobileMenu}>
+                {renderNavLabel(item.label)}
+                </a>
               ) : (
-                <svg viewBox="0 0 24 24" role="img">
-                  <path d="M21 14.8A9.2 9.2 0 1 1 9.2 3a7.5 7.5 0 1 0 11.8 11.8Z" />
-                </svg>
-              )}
-            </span>
-          </button>
+                <NavLink
+                  key={item.label}
+                  to={item.to}
+                  className={({ isActive }) => (isActive ? 'nav-active' : '')}
+                  onClick={closeMobileMenu}
+                >
+                {renderNavLabel(item.label)}
+                </NavLink>
+              ),
+            )}
+          </div>
+
+          <div className="nav-actions">
+            <a className="btn btn-nav" href="/#student-message" onClick={closeMobileMenu}>
+              Start Preparation
+            </a>
+            {authUser ? (
+              <button
+                className="btn btn-secondary nav-auth-btn"
+                type="button"
+                onClick={() => {
+                  closeMobileMenu()
+                  onLogout()
+                }}
+              >
+                Logout
+              </button>
+            ) : (
+              <Link className="btn btn-secondary nav-auth-btn" to="/signin" onClick={closeMobileMenu}>
+                Sign In
+              </Link>
+            )}
+            <button
+              className={`btn btn-secondary theme-toggle ${animateToggle ? 'animate' : ''}`}
+              type="button"
+              onClick={handleThemeToggle}
+              aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+              title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+            >
+              <span aria-hidden="true" className="theme-icon">
+                {theme === 'dark' ? (
+                  <svg viewBox="0 0 24 24" role="img">
+                    <circle cx="12" cy="12" r="4.2" />
+                    <path d="M12 2.2v3M12 18.8v3M2.2 12h3M18.8 12h3M4.8 4.8l2.1 2.1M17.1 17.1l2.1 2.1M19.2 4.8l-2.1 2.1M6.9 17.1l-2.1 2.1" />
+                  </svg>
+                ) : (
+                  <svg viewBox="0 0 24 24" role="img">
+                    <path d="M21 14.8A9.2 9.2 0 1 1 9.2 3a7.5 7.5 0 1 0 11.8 11.8Z" />
+                  </svg>
+                )}
+              </span>
+            </button>
+          </div>
         </nav>
       </div>
     </header>
@@ -281,7 +709,7 @@ function HomePage() {
         <section className="hero container">
           <div className="hero-copy reveal-on-scroll">
             
-            <h1>Pakistan&apos;s First Free, High Quality CSS Preparation Platform</h1>
+            <h1>Empowering Pakistan’s Future Leaders</h1>
             <p className="subtext">
               Guardian Angel is an independent platform dedicated to helping CSS aspirants across
               Pakistan access premium quality education completely free of cost.
@@ -459,6 +887,274 @@ function CssRulesPage() {
   )
 }
 
+function CssPastPapersPage() {
+  const [query, setQuery] = useState('')
+  const [selectedYear, setSelectedYear] = useState(() => cssPastPapersByYear[0]?.year || '')
+  const [isYearMenuOpen, setIsYearMenuOpen] = useState(false)
+  const normalizedQuery = query.trim().toLowerCase()
+  const paperCount = cssPastPapersByYear.reduce((total, item) => total + item.papers.length, 0)
+  const selectedYearData = cssPastPapersByYear.find((item) => item.year === selectedYear) || null
+  const visiblePapers = selectedYearData
+    ? normalizedQuery
+      ? selectedYearData.papers.filter((paper) => paper.title.toLowerCase().includes(normalizedQuery))
+      : selectedYearData.papers
+    : []
+
+  return (
+    <main className="page-main">
+      <section className="container css-rules-page">
+        <div className="section-title">
+          <p>CSS Past Papers</p>
+          <h2>CSS 2025 Descriptive Papers</h2>
+        </div>
+
+        <p className="rules-source">
+          Source format:{' '}
+          <a
+            href="https://www.fpsc.gov.pk/category/previous-question-papers/2024"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Federal Public Service Commission (FPSC)
+          </a>
+        </p>
+
+        <div className="papers-toolbar">
+          <div className={`year-select ${isYearMenuOpen ? 'open' : ''}`}>
+            <button
+              className="year-select-trigger"
+              type="button"
+              aria-haspopup="listbox"
+              aria-expanded={isYearMenuOpen}
+              onClick={() => setIsYearMenuOpen((current) => !current)}
+            >
+              <span>{selectedYear || 'Select year'}</span>
+              <span className="year-select-icon">⌄</span>
+            </button>
+            {isYearMenuOpen ? (
+              <div className="year-select-menu" role="listbox" aria-label="Select CSS past papers year">
+                {cssPastPapersByYear.map((item) => (
+                  <button
+                    key={item.year}
+                    type="button"
+                    role="option"
+                    aria-selected={selectedYear === item.year}
+                    className={selectedYear === item.year ? 'selected' : ''}
+                    onClick={() => {
+                      setSelectedYear(item.year)
+                      setQuery('')
+                      setIsYearMenuOpen(false)
+                    }}
+                  >
+                    {item.year}
+                  </button>
+                ))}
+              </div>
+            ) : null}
+          </div>
+          <input
+            type="search"
+            placeholder="Search paper name"
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+            aria-label="Search CSS past papers"
+            disabled={!selectedYearData}
+          />
+          <p>{selectedYearData ? `${visiblePapers.length} papers` : `${paperCount} papers total`}</p>
+        </div>
+
+        {!selectedYearData ? (
+          <article className="papers-empty">
+            <h3>Select a year to view papers</h3>
+            <p>Choose a year from the dropdown above. Papers for that year will appear instantly.</p>
+          </article>
+        ) : (
+          <>
+            <p className="papers-year-source">
+              Source:{' '}
+              <a href={selectedYearData.sourceUrl} target="_blank" rel="noreferrer">
+                FPSC CSS {selectedYearData.year} Descriptive Papers
+              </a>
+            </p>
+
+            <div className="papers-grid">
+              {visiblePapers.map((paper) => (
+                <article className="paper-item" key={paper.url}>
+                  <h3>{paper.title}</h3>
+                  <a className="btn btn-primary" href={paper.url} target="_blank" rel="noreferrer">
+                    Open PDF
+                  </a>
+                </article>
+              ))}
+            </div>
+          </>
+        )}
+      </section>
+    </main>
+  )
+}
+
+function CssStudyMaterialPage() {
+  const [query, setQuery] = useState('')
+  const [downloadingSubject, setDownloadingSubject] = useState('')
+  const [openSubject, setOpenSubject] = useState('')
+  const totalSlides = cssStudyMaterials.reduce((count, group) => count + group.slides.length, 0)
+  const normalizedQuery = query.trim().toLowerCase()
+  const filteredTotal = cssStudyMaterials.reduce(
+    (count, group) =>
+      count +
+      group.slides.filter((slide) => slide.title.toLowerCase().includes(normalizedQuery)).length,
+    0,
+  )
+
+  const getPublicSlideUrl = (slide) => new URL(slide.url, window.location.origin).toString()
+
+  const triggerSlideDownload = (slide) => {
+    const publicSlideUrl = getPublicSlideUrl(slide)
+    const anchor = document.createElement('a')
+    anchor.href = publicSlideUrl
+    anchor.download = slide.fileName
+    anchor.rel = 'noopener'
+    document.body.append(anchor)
+    anchor.click()
+    anchor.remove()
+  }
+
+  const handleDownloadAll = async (group) => {
+    const visibleSlides = group.slides.filter((slide) =>
+      slide.title.toLowerCase().includes(normalizedQuery),
+    )
+    if (visibleSlides.length === 0) return
+
+    setDownloadingSubject(group.subject)
+    for (const slide of visibleSlides) {
+      triggerSlideDownload(slide)
+      await new Promise((resolve) => window.setTimeout(resolve, 170))
+    }
+    window.setTimeout(() => setDownloadingSubject(''), 250)
+  }
+
+  const openSlideViewer = (slide) => {
+    const publicSlideUrl = getPublicSlideUrl(slide)
+    const onlineViewerUrl = `https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(publicSlideUrl)}`
+    window.open(onlineViewerUrl, '_blank', 'noopener,noreferrer')
+  }
+
+  return (
+    <main className="page-main">
+      <section className="container css-rules-page">
+        <div className="section-title">
+          <p>CSS Study Material</p>
+          <h2>Criminology & Gender Studies Lecture Slides</h2>
+        </div>
+
+        <p className="rules-source">
+          Access organized lecture slides with quick view and one-click download.
+          <strong>{` ${totalSlides} slides available in total.`}</strong>
+        </p>
+
+        <div className="study-toolbar">
+          <input
+            type="search"
+            placeholder="Search by slide title (e.g. Lecture 3, Governance, Criminology)"
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+            aria-label="Search CSS study material slides"
+          />
+          <p>
+            {normalizedQuery ? `${filteredTotal} matching slides` : `${totalSlides} total slides`}
+          </p>
+        </div>
+
+        <div className="study-groups">
+          {cssStudyMaterials.map((group) => {
+            const visibleSlides = group.slides.filter((slide) =>
+              slide.title.toLowerCase().includes(normalizedQuery),
+            )
+            const isOpen = openSubject === group.subject
+
+            return (
+              <article className={`study-group-card ${isOpen ? 'open' : ''}`} key={group.subject}>
+                <button
+                  className="study-group-trigger"
+                  type="button"
+                  onClick={() => setOpenSubject((current) => (current === group.subject ? '' : group.subject))}
+                  aria-expanded={isOpen}
+                >
+                  <span>{group.subject}</span>
+                  <span className="rule-icon">{isOpen ? '−' : '+'}</span>
+                </button>
+
+                <div className={`study-group-body ${isOpen ? 'open' : ''}`}>
+                  <header className="study-group-head">
+                    <div className="study-group-topbar">
+                      <div>
+                        <p>{group.description}</p>
+                      </div>
+                      <div className="study-group-meta">
+                        <span>{`${visibleSlides.length}/${group.slides.length} shown`}</span>
+                        <button
+                          className="btn btn-primary"
+                          type="button"
+                          onClick={() => handleDownloadAll(group)}
+                          disabled={visibleSlides.length === 0 || downloadingSubject === group.subject}
+                        >
+                          {downloadingSubject === group.subject
+                            ? 'Downloading...'
+                            : `Download All (${visibleSlides.length})`}
+                        </button>
+                      </div>
+                    </div>
+                  </header>
+
+                  {visibleSlides.length === 0 ? (
+                    <article className="papers-empty study-empty">
+                      <h3>No matching slides in {group.subject}</h3>
+                      <p>Try a different keyword to view slides for this section.</p>
+                    </article>
+                  ) : (
+                    <div className="study-slides-grid">
+                      {visibleSlides.map((slide) => (
+                        <article className="study-slide-item" key={slide.url}>
+                          <div>
+                            <div className="study-slide-top">
+                              <p className="study-slide-tag">Lecture Slide</p>
+                              <span className="study-lecture-badge">
+                                {slide.lectureNumber ? `Lecture ${slide.lectureNumber}` : 'Lecture'}
+                              </span>
+                            </div>
+                            <h4>{slide.title}</h4>
+                          </div>
+                          <div className="study-slide-actions">
+                            <button
+                              className="btn btn-secondary"
+                              type="button"
+                              onClick={() => openSlideViewer(slide)}
+                            >
+                              View Slide
+                            </button>
+                            <a
+                              className="btn btn-primary"
+                              href={getPublicSlideUrl(slide)}
+                              download={slide.fileName}
+                            >
+                              Download
+                            </a>
+                          </div>
+                        </article>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </article>
+            )
+          })}
+        </div>
+      </section>
+    </main>
+  )
+}
+
 function SubjectDetailPage() {
   const { subjectSlug } = useParams()
   const slugAliases = {
@@ -551,6 +1247,752 @@ function SubjectDetailPage() {
   )
 }
 
+function SignInPage({ onSignIn, authUser }) {
+  const navigate = useNavigate()
+  const location = useLocation()
+  const [form, setForm] = useState({ username: '', password: '' })
+  const [error, setError] = useState('')
+
+  useEffect(() => {
+    if (authUser) {
+      const nextPath = location.state?.from || '/guardian-study-planner'
+      navigate(nextPath, { replace: true })
+    }
+  }, [authUser, navigate, location.state])
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    setError('')
+
+    const isValidUser =
+      form.username.trim() === DUMMY_TEST_PROFILE.username &&
+      form.password === DUMMY_TEST_PROFILE.password
+
+    if (!isValidUser) {
+      setError('Invalid credentials. Use the testing credentials shown below.')
+      return
+    }
+
+    onSignIn({
+      username: DUMMY_TEST_PROFILE.username,
+      fullName: DUMMY_TEST_PROFILE.fullName,
+    })
+
+    const nextPath = location.state?.from || '/guardian-study-planner'
+    navigate(nextPath, { replace: true })
+  }
+
+  return (
+    <main className="page-main">
+      <section className="container auth-page">
+        <div className="section-title">
+          <p>Sign In Required</p>
+          <h2>Access Guardian Study Planner</h2>
+        </div>
+
+        <article className="planner-card auth-card">
+          <h3>Testing Credentials</h3>
+          <p className="auth-note">
+            Username: <strong>{DUMMY_TEST_PROFILE.username}</strong> | Password:{' '}
+            <strong>{DUMMY_TEST_PROFILE.password}</strong>
+          </p>
+
+          <form className="planner-form" onSubmit={handleSubmit}>
+            <label>
+              Username
+              <input
+                name="username"
+                type="text"
+                value={form.username}
+                onChange={(event) =>
+                  setForm((current) => ({ ...current, username: event.target.value }))
+                }
+                required
+              />
+            </label>
+
+            <label>
+              Password
+              <input
+                name="password"
+                type="password"
+                value={form.password}
+                onChange={(event) =>
+                  setForm((current) => ({ ...current, password: event.target.value }))
+                }
+                required
+              />
+            </label>
+
+            <button className="btn btn-primary planner-submit" type="submit">
+              Sign In
+            </button>
+            {error ? <p className="planner-error">{error}</p> : null}
+          </form>
+        </article>
+      </section>
+    </main>
+  )
+}
+
+function GuardianStudyPlannerPage({ authUser }) {
+  const profileStorageKey = `ga-profile-${authUser.username}`
+  const [activePlannerTab, setActivePlannerTab] = useState('strategy')
+  const [form, setForm] = useState(() => {
+    try {
+      const raw = localStorage.getItem(profileStorageKey)
+      const profile = raw ? JSON.parse(raw) : null
+      return { ...DEFAULT_PLANNER_FORM, ...(profile?.plannerForm || {}) }
+    } catch {
+      return { ...DEFAULT_PLANNER_FORM }
+    }
+  })
+  const [plan, setPlan] = useState(null)
+  const [error, setError] = useState('')
+  const [calendarMonth, setCalendarMonth] = useState(() => {
+    const now = new Date()
+    return new Date(now.getFullYear(), now.getMonth(), 1)
+  })
+  const [completedDays, setCompletedDays] = useState(() => {
+    try {
+      const raw = localStorage.getItem(profileStorageKey)
+      const profile = raw ? JSON.parse(raw) : null
+      return profile?.completedDays || {}
+    } catch {
+      return {}
+    }
+  })
+  const [dayStatuses, setDayStatuses] = useState(() => {
+    try {
+      const raw = localStorage.getItem(profileStorageKey)
+      const profile = raw ? JSON.parse(raw) : null
+      return profile?.dayStatuses || {}
+    } catch {
+      return {}
+    }
+  })
+  const [selectedCalendarDay, setSelectedCalendarDay] = useState(null)
+  const [timerStatus, setTimerStatus] = useState('idle')
+  const [elapsedSeconds, setElapsedSeconds] = useState(0)
+  const [timerSessions, setTimerSessions] = useState(() => {
+    try {
+      const raw = localStorage.getItem(profileStorageKey)
+      const profile = raw ? JSON.parse(raw) : null
+      return profile?.timerSessions || []
+    } catch {
+      return []
+    }
+  })
+
+  useEffect(() => {
+    try {
+      const profilePayload = {
+        username: authUser.username,
+        fullName: authUser.fullName,
+        plannerForm: form,
+        completedDays,
+        dayStatuses,
+        timerSessions,
+      }
+      localStorage.setItem(profileStorageKey, JSON.stringify(profilePayload))
+    } catch {
+      // Ignore storage failures and continue with in-memory interactions.
+    }
+  }, [authUser, profileStorageKey, form, completedDays, dayStatuses, timerSessions])
+
+  useEffect(() => {
+    if (timerStatus !== 'running') return undefined
+    const timerId = window.setInterval(() => {
+      setElapsedSeconds((current) => current + 1)
+    }, 1000)
+    return () => window.clearInterval(timerId)
+  }, [timerStatus])
+
+  const handleChange = (event) => {
+    const { name, value } = event.target
+    setForm((current) => ({ ...current, [name]: value }))
+  }
+
+  const handleGeneratePlan = (event) => {
+    event.preventDefault()
+    setError('')
+
+    const examDate = new Date(`${form.examDate}T23:59:59`)
+    const today = startOfDay(new Date())
+    const remainingDays = Math.ceil((examDate - today) / MS_PER_DAY)
+    const studyHours = Number(form.studyHours)
+
+    if (!form.examDate || Number.isNaN(examDate.getTime())) {
+      setError('Please provide a valid CSS exam date.')
+      return
+    }
+    if (remainingDays <= 0) {
+      setError('Exam date should be in the future so the planner can generate a timeline.')
+      return
+    }
+    if (!Number.isFinite(studyHours) || studyHours < 2 || studyHours > 14) {
+      setError('Please enter realistic study hours between 2 and 14.')
+      return
+    }
+
+    let lectureShare = form.learningPreference === 'lectures-first' ? 0.36 : 0.24
+    let selfStudyShare = form.learningPreference === 'lectures-first' ? 0.4 : 0.5
+    let revisionShare = 1 - lectureShare - selfStudyShare
+
+    if (form.stage === 'beginner') {
+      lectureShare += 0.08
+      selfStudyShare -= 0.02
+      revisionShare -= 0.06
+    } else if (form.stage === 'advanced') {
+      lectureShare -= 0.08
+      selfStudyShare -= 0.02
+      revisionShare += 0.1
+    }
+
+    if (form.difficulty === 'easy') {
+      lectureShare += 0.03
+      revisionShare -= 0.03
+    } else if (form.difficulty === 'extremely difficult') {
+      lectureShare -= 0.03
+      revisionShare += 0.05
+      selfStudyShare -= 0.02
+    }
+
+    lectureShare = Math.max(0.15, lectureShare)
+    selfStudyShare = Math.max(0.25, selfStudyShare)
+    revisionShare = Math.max(0.2, revisionShare)
+    const normalizedTotal = lectureShare + selfStudyShare + revisionShare
+    lectureShare /= normalizedTotal
+    selfStudyShare /= normalizedTotal
+    revisionShare /= normalizedTotal
+
+    const lectureHours = Number((studyHours * lectureShare).toFixed(1))
+    const selfStudyHours = Number((studyHours * selfStudyShare).toFixed(1))
+    const revisionHours = Number((studyHours - lectureHours - selfStudyHours).toFixed(1))
+
+    const startHourMap = { morning: 6, afternoon: 13, night: 19 }
+    let cursor = startHourMap[form.productiveWindow] * 60
+    const sessionBlocks = [
+      {
+        title: 'Lecture Session',
+        durationMinutes: Math.round(lectureHours * 60),
+        focus: 'Watch lectures and make short concept notes.',
+      },
+      {
+        title: 'Self-Study Session',
+        durationMinutes: Math.round(selfStudyHours * 60),
+        focus: 'Read syllabus topics, solve questions, and build recall.',
+      },
+      {
+        title: 'Revision Session',
+        durationMinutes: Math.round(Math.max(45, revisionHours * 60)),
+        focus: 'Revise key notes and practice answer structuring.',
+      },
+    ]
+
+    const timetable = sessionBlocks.map((block, index) => {
+      const start = cursor
+      const end = cursor + block.durationMinutes
+      cursor = end
+      if (index < sessionBlocks.length - 1) cursor += 15
+      return {
+        ...block,
+        timeRange: `${formatClock(start)} - ${formatClock(end)}`,
+      }
+    })
+
+    const weeklyConsolidation = []
+    for (let dayOffset = 6; dayOffset < remainingDays; dayOffset += 7) {
+      weeklyConsolidation.push(formatDayKey(addDays(today, dayOffset)))
+    }
+
+    const phaseStrategy =
+      remainingDays > 120
+        ? [
+            'Phase 1 (Foundation): 45% of timeline for concept clarity and lectures.',
+            'Phase 2 (Coverage): 35% for topic completion and answer writing.',
+            'Phase 3 (Final Revision): 20% for mocks and quick revision cycles.',
+          ]
+        : remainingDays > 60
+          ? [
+              'Phase 1 (Acceleration): 55% for focused coverage of core topics.',
+              'Phase 2 (Revision + Practice): 45% for test practice and weak-area repair.',
+            ]
+          : [
+              'Phase 1 (High-Intensity Revision): 70% for revision, recall, and past-paper practice.',
+              'Phase 2 (Final Polishing): 30% for exam-like timed practice and confidence building.',
+            ]
+
+    setPlan({
+      examDate,
+      remainingDays,
+      studyHours,
+      lectureHours,
+      selfStudyHours,
+      revisionHours,
+      timetable,
+      weeklyConsolidation,
+      phaseStrategy,
+      breakPlan: [
+        'Take a 10-minute break after every 50 minutes of deep study.',
+        'After every 3 focused blocks, take a 25-30 minute recovery break.',
+        'Sleep target: at least 7 hours daily to protect retention and consistency.',
+      ],
+    })
+  }
+
+  const handleTimerStart = () => {
+    if (timerStatus === 'idle') setElapsedSeconds(0)
+    setTimerStatus('running')
+  }
+
+  const handleTimerPause = () => {
+    if (timerStatus !== 'running') return
+    setTimerStatus('paused')
+  }
+
+  const handleTimerStop = () => {
+    if (elapsedSeconds > 0) {
+      const completedAt = new Date()
+      const dayKey = formatDayKey(completedAt)
+      setTimerSessions((current) => [
+        ...current,
+        {
+          id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+          completedAt: completedAt.toISOString(),
+          dayKey,
+          durationSeconds: elapsedSeconds,
+        },
+      ])
+      setCompletedDays((current) => ({ ...current, [dayKey]: true }))
+    }
+    setElapsedSeconds(0)
+    setTimerStatus('idle')
+  }
+
+  const handleTimerReset = () => {
+    setElapsedSeconds(0)
+    setTimerStatus('idle')
+  }
+
+  const handleCalendarStatusChange = (dayKey, statusId) => {
+    if (!dayKey) return
+    setDayStatuses((current) => ({ ...current, [dayKey]: statusId }))
+    if (statusId === 'completed') setCompletedDays((current) => ({ ...current, [dayKey]: true }))
+    if (statusId !== 'completed') {
+      setCompletedDays((current) => {
+        if (!current[dayKey]) return current
+        const next = { ...current }
+        delete next[dayKey]
+        return next
+      })
+    }
+  }
+
+  const monthLabel = calendarMonth.toLocaleDateString('en-US', {
+    month: 'long',
+    year: 'numeric',
+  })
+  const firstWeekday = new Date(
+    calendarMonth.getFullYear(),
+    calendarMonth.getMonth(),
+    1,
+  ).getDay()
+  const daysInMonth = new Date(calendarMonth.getFullYear(), calendarMonth.getMonth() + 1, 0).getDate()
+  const examDayKey = plan ? formatDayKey(plan.examDate) : null
+  const consolidationSet = new Set(plan?.weeklyConsolidation ?? [])
+  const todayKey = formatDayKey(new Date())
+  const currentSessionMinutes = Math.floor(elapsedSeconds / 60)
+  const todaySessionMinutes = timerSessions
+    .filter((item) => item.dayKey === todayKey)
+    .reduce((sum, item) => sum + Math.floor(item.durationSeconds / 60), 0)
+  const studiedTodayMinutes = todaySessionMinutes + currentSessionMinutes
+  const requiredDailyMinutes = plan ? Math.round(plan.studyHours * 60) : 0
+  const remainingTodayMinutes = Math.max(requiredDailyMinutes - studiedTodayMinutes, 0)
+  const dailyProgressPercent =
+    requiredDailyMinutes > 0 ? Math.min(100, (studiedTodayMinutes / requiredDailyMinutes) * 100) : 0
+
+  const weekDays = Array.from({ length: 7 }, (_, index) => addDays(startOfDay(new Date()), index - 6))
+  const weeklyProgress = weekDays.map((day) => {
+    const dayKey = formatDayKey(day)
+    const minutesFromLogs = timerSessions
+      .filter((item) => item.dayKey === dayKey)
+      .reduce((sum, item) => sum + Math.floor(item.durationSeconds / 60), 0)
+    const todayExtra = dayKey === todayKey ? currentSessionMinutes : 0
+    const studiedMinutes = minutesFromLogs + todayExtra
+    return {
+      dayKey,
+      label: day.toLocaleDateString('en-US', { weekday: 'short' }),
+      studiedMinutes,
+      requiredMinutes: requiredDailyMinutes,
+      ratio: requiredDailyMinutes > 0 ? Math.min(100, (studiedMinutes / requiredDailyMinutes) * 100) : 0,
+    }
+  })
+  const totalWeekStudiedMinutes = weeklyProgress.reduce((sum, item) => sum + item.studiedMinutes, 0)
+  const totalWeekRequiredMinutes = requiredDailyMinutes * 7
+  const weeklyProgressPercent =
+    totalWeekRequiredMinutes > 0
+      ? Math.min(100, (totalWeekStudiedMinutes / totalWeekRequiredMinutes) * 100)
+      : 0
+  const selectedStatus = selectedCalendarDay ? dayStatuses[selectedCalendarDay] || 'planned' : 'planned'
+
+  return (
+    <main className="page-main">
+      <section className="container planner-page">
+        <div className="section-title">
+          <p>Guardian Study Planner</p>
+          <h2>Build Your Personalized CSS Preparation Strategy</h2>
+        </div>
+        <div className="planner-shell">
+          <aside className="planner-sidebar">
+            <div className="planner-sidebar-head">
+              <p>Signed in as</p>
+              <h3>{authUser.fullName || authUser.username}</h3>
+              <span>@{authUser.username}</span>
+            </div>
+            <div className="planner-tabs" role="tablist" aria-label="Guardian planner sections">
+              <button
+                type="button"
+                role="tab"
+                aria-selected={activePlannerTab === 'strategy'}
+                className={`planner-tab ${activePlannerTab === 'strategy' ? 'active' : ''}`}
+                onClick={() => setActivePlannerTab('strategy')}
+              >
+                Strategy Builder
+              </button>
+              <button
+                type="button"
+                role="tab"
+                aria-selected={activePlannerTab === 'timer'}
+                className={`planner-tab ${activePlannerTab === 'timer' ? 'active' : ''}`}
+                onClick={() => setActivePlannerTab('timer')}
+              >
+                Timer & Analytics
+              </button>
+              <button
+                type="button"
+                role="tab"
+                aria-selected={activePlannerTab === 'calendar'}
+                className={`planner-tab ${activePlannerTab === 'calendar' ? 'active' : ''}`}
+                onClick={() => setActivePlannerTab('calendar')}
+              >
+                Guardian Calendar
+              </button>
+            </div>
+          </aside>
+
+          <div className="planner-content">
+            {activePlannerTab === 'strategy' ? (
+              <>
+                <article className="planner-card">
+                  <h3>Planner Questions</h3>
+                  <form className="planner-form" onSubmit={handleGeneratePlan}>
+                    <label>
+                      What is the expected date of your CSS examination?
+                      <input name="examDate" type="date" value={form.examDate} onChange={handleChange} required />
+                    </label>
+
+                    <label>
+                      How many hours can you realistically study per day?
+                      <input
+                        name="studyHours"
+                        type="number"
+                        min="2"
+                        max="14"
+                        step="0.5"
+                        value={form.studyHours}
+                        onChange={handleChange}
+                        required
+                      />
+                    </label>
+
+                    <label>
+                      During which hours are you most productive?
+                      <select name="productiveWindow" value={form.productiveWindow} onChange={handleChange}>
+                        <option value="morning">Morning</option>
+                        <option value="afternoon">Afternoon</option>
+                        <option value="night">Night</option>
+                      </select>
+                    </label>
+
+                    <label>
+                      What stage of preparation are you currently in?
+                      <select name="stage" value={form.stage} onChange={handleChange}>
+                        <option value="beginner">Beginner</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="advanced">Advanced</option>
+                      </select>
+                    </label>
+
+                    <label>
+                      How difficult do you personally consider CSS?
+                      <select name="difficulty" value={form.difficulty} onChange={handleChange}>
+                        <option value="easy">Easy</option>
+                        <option value="moderate">Moderate</option>
+                        <option value="difficult">Difficult</option>
+                        <option value="extremely difficult">Extremely Difficult</option>
+                      </select>
+                    </label>
+
+                    <label>
+                      Do you prefer lectures first or self-study first?
+                      <select
+                        name="learningPreference"
+                        value={form.learningPreference}
+                        onChange={handleChange}
+                      >
+                        <option value="lectures-first">Lectures First</option>
+                        <option value="self-study-first">Self-Study First</option>
+                      </select>
+                    </label>
+
+                    <button className="btn btn-primary planner-submit" type="submit">
+                      Generate Study Strategy
+                    </button>
+                    {error ? <p className="planner-error">{error}</p> : null}
+                  </form>
+                </article>
+
+                {plan ? (
+                  <article className="planner-card planner-output">
+                    <h3>Your Personalized Preparation Strategy</h3>
+                    <p className="planner-meta">
+                      Days remaining until exam: <strong>{plan.remainingDays}</strong>
+                    </p>
+                    <p className="planner-meta">
+                      Daily split: Lecture <strong>{plan.lectureHours}h</strong>, Self-study{' '}
+                      <strong>{plan.selfStudyHours}h</strong>, Revision <strong>{plan.revisionHours}h</strong>
+                    </p>
+
+                    <div className="planner-grid">
+                      <div>
+                        <h4>Daily Timetable</h4>
+                        <ul className="planner-list">
+                          {plan.timetable.map((slot) => (
+                            <li key={slot.title}>
+                              <strong>{slot.timeRange}</strong> - {slot.title}: {slot.focus}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      <div>
+                        <h4>Break Intervals to Avoid Burnout</h4>
+                        <ul className="planner-list">
+                          {plan.breakPlan.map((item) => (
+                            <li key={item}>{item}</li>
+                          ))}
+                        </ul>
+
+                        <h4>Weekly Consolidation Days</h4>
+                        <ul className="planner-list">
+                          {plan.weeklyConsolidation.length > 0 ? (
+                            plan.weeklyConsolidation.slice(0, 8).map((day) => (
+                              <li key={day}>
+                                {day}: Light revision + one timed past-paper question + reflection notes.
+                              </li>
+                            ))
+                          ) : (
+                            <li>No full week available yet; add mini consolidation every 3rd day.</li>
+                          )}
+                        </ul>
+                      </div>
+                    </div>
+
+                    <h4>Preparation Phases Until Exam</h4>
+                    <ul className="planner-list">
+                      {plan.phaseStrategy.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+
+                    <p className="planner-message">
+                      Stay consistent, protect your routine, and trust your daily process. Small focused
+                      wins every day will compound into CSS success.
+                    </p>
+                  </article>
+                ) : null}
+              </>
+            ) : null}
+
+            {activePlannerTab === 'timer' ? (
+              <article className="planner-card planner-timer-card">
+          <div className="planner-timer-header">
+            <h3>Guardian Study Timer</h3>
+            <p>Track your focused minutes with start, pause, and stop controls.</p>
+          </div>
+          <div className="timer-display">{formatStopwatch(elapsedSeconds)}</div>
+          <div className="timer-controls">
+            {timerStatus === 'running' ? (
+              <button className="btn btn-secondary" type="button" onClick={handleTimerPause}>
+                Pause
+              </button>
+            ) : (
+              <button className="btn btn-primary" type="button" onClick={handleTimerStart}>
+                {timerStatus === 'paused' ? 'Resume' : 'Start'}
+              </button>
+            )}
+            <button className="btn btn-primary" type="button" onClick={handleTimerStop}>
+              Stop & Save Session
+            </button>
+            <button className="btn btn-secondary" type="button" onClick={handleTimerReset}>
+              Reset
+            </button>
+          </div>
+
+          <div className="study-metrics">
+            <article className="metric-card">
+              <p>Today Studied</p>
+              <strong>{studiedTodayMinutes} min</strong>
+            </article>
+            <article className="metric-card">
+              <p>Today Required</p>
+              <strong>{requiredDailyMinutes || '--'} min</strong>
+            </article>
+            <article className="metric-card">
+              <p>Still Needed Today</p>
+              <strong>{requiredDailyMinutes ? `${remainingTodayMinutes} min` : 'Generate a plan'}</strong>
+            </article>
+            <article className="metric-card">
+              <p>Weekly Completion</p>
+              <strong>{requiredDailyMinutes ? `${weeklyProgressPercent.toFixed(0)}%` : '--'}</strong>
+            </article>
+          </div>
+
+          <div className="progress-track" aria-label="Daily progress">
+            <span style={{ width: `${dailyProgressPercent}%` }} />
+          </div>
+          <p className="progress-caption">
+            Daily target progress: {requiredDailyMinutes ? `${dailyProgressPercent.toFixed(0)}%` : 'Generate your study strategy first.'}
+          </p>
+
+          <h4>Last 7 Days Study Graph</h4>
+          <div className="study-chart">
+            {weeklyProgress.map((item) => (
+              <div key={item.dayKey} className="chart-col">
+                <div className="chart-bar-wrap">
+                  <span className="chart-bar" style={{ height: `${item.ratio}%` }} />
+                </div>
+                <small>{item.label}</small>
+                <em>{item.studiedMinutes}m</em>
+              </div>
+            ))}
+          </div>
+              </article>
+            ) : null}
+
+            {activePlannerTab === 'calendar' ? (
+              <article className="planner-card guardian-calendar">
+          <div className="calendar-header">
+            <h3>Interactive Guardian Calendar</h3>
+            <div className="calendar-nav">
+              <button
+                type="button"
+                className="btn btn-secondary calendar-btn"
+                onClick={() =>
+                  setCalendarMonth(
+                    new Date(calendarMonth.getFullYear(), calendarMonth.getMonth() - 1, 1),
+                  )
+                }
+              >
+                Prev
+              </button>
+              <strong>{monthLabel}</strong>
+              <button
+                type="button"
+                className="btn btn-secondary calendar-btn"
+                onClick={() =>
+                  setCalendarMonth(
+                    new Date(calendarMonth.getFullYear(), calendarMonth.getMonth() + 1, 1),
+                  )
+                }
+              >
+                Next
+              </button>
+            </div>
+          </div>
+
+          <div className="calendar-grid calendar-weekdays">
+            {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
+              <span key={day}>{day}</span>
+            ))}
+          </div>
+
+          <div className="calendar-grid">
+            {Array.from({ length: firstWeekday }).map((_, index) => (
+              <span key={`blank-${index}`} className="calendar-day blank" />
+            ))}
+            {Array.from({ length: daysInMonth }).map((_, index) => {
+              const date = new Date(calendarMonth.getFullYear(), calendarMonth.getMonth(), index + 1)
+              const dayKey = formatDayKey(date)
+              const isToday = dayKey === todayKey
+              const isExamDay = dayKey === examDayKey
+              const isConsolidationDay = consolidationSet.has(dayKey)
+              const statusId = dayStatuses[dayKey]
+              const statusClass = CALENDAR_STATUS_OPTIONS.find((item) => item.id === statusId)?.className || ''
+              const isDone = statusId === 'completed' || Boolean(completedDays[dayKey])
+
+              return (
+                <button
+                  key={dayKey}
+                  type="button"
+                  className={`calendar-day ${isToday ? 'today' : ''} ${isExamDay ? 'exam-day' : ''} ${
+                    isConsolidationDay ? 'consolidation-day' : ''
+                  } ${isDone ? 'done' : ''} ${statusClass} ${selectedCalendarDay === dayKey ? 'selected' : ''}`}
+                  onClick={() => setSelectedCalendarDay(dayKey)}
+                  title="Click to set day status"
+                >
+                  {index + 1}
+                </button>
+              )
+            })}
+          </div>
+
+          <div className="calendar-status-panel">
+            <h4>Date Action Panel</h4>
+            {selectedCalendarDay ? (
+              <>
+                <p>
+                  Selected date: <strong>{selectedCalendarDay}</strong>
+                </p>
+                <label className="calendar-status-label">
+                  Update status
+                  <select
+                    value={selectedStatus}
+                    onChange={(event) =>
+                      handleCalendarStatusChange(selectedCalendarDay, event.target.value)
+                    }
+                  >
+                    {CALENDAR_STATUS_OPTIONS.map((item) => (
+                      <option key={item.id} value={item.id}>
+                        {item.label}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+              </>
+            ) : (
+              <p>Click any day in calendar to assign status.</p>
+            )}
+          </div>
+
+          <p className="calendar-legend">
+            Legend: <span className="dot today" /> Today <span className="dot exam" /> Exam Day{' '}
+            <span className="dot consolidation" /> Consolidation <span className="dot done" /> Marked
+            Complete
+            <span className="dot planned" /> Planned <span className="dot revision" /> Revision{' '}
+            <span className="dot mock" /> Mock Test <span className="dot catchup" /> Catch-up{' '}
+            <span className="dot rest" /> Rest <span className="dot skipped" /> Skipped
+          </p>
+              </article>
+            ) : null}
+          </div>
+        </div>
+      </section>
+    </main>
+  )
+}
+
 function Footer() {
   return (
     <footer className="footer">
@@ -564,8 +2006,7 @@ function Footer() {
             </div>
           </Link>
           <p>
-            Pakistan&apos;s first free, high quality CSS preparation platform, independently led by
-            Guardian Angel, where merit meets opportunity.
+            Empowering Pakistan&apos;s Future Leaders, where merit meets opportunity.
           </p>
         </div>
 
@@ -575,6 +2016,9 @@ function Footer() {
           <a href="/#why-guardian-angel">Why Guardian Angel</a>
           <Link to="/css-syllabus">CSS Syllabus</Link>
           <Link to="/css-rules">CSS Rules</Link>
+          <Link to="/css-past-papers">CSS Past Papers</Link>
+          <Link to="/css-study-material">CSS Study Material</Link>
+          <Link to="/guardian-study-planner">Guardian Study Planner</Link>
           <a href="/#student-message">Student Message</a>
         </div>
 
@@ -634,6 +2078,14 @@ function ScrollToTopOnRouteChange() {
 }
 
 function App() {
+  const [authUser, setAuthUser] = useState(() => {
+    try {
+      const raw = localStorage.getItem('ga-auth-user')
+      return raw ? JSON.parse(raw) : null
+    } catch {
+      return null
+    }
+  })
   const [theme, setTheme] = useState(() => {
     try {
       return localStorage.getItem('ga-theme') || 'dark'
@@ -675,6 +2127,15 @@ function App() {
     }
   }, [])
 
+  useEffect(() => {
+    try {
+      if (authUser) localStorage.setItem('ga-auth-user', JSON.stringify(authUser))
+      else localStorage.removeItem('ga-auth-user')
+    } catch {
+      // Ignore storage failures and continue with in-memory auth state.
+    }
+  }, [authUser])
+
   return (
     <BrowserRouter>
       <ScrollToTopOnRouteChange />
@@ -682,11 +2143,29 @@ function App() {
         <Header
           theme={theme}
           onToggleTheme={() => setTheme((current) => (current === 'dark' ? 'light' : 'dark'))}
+          authUser={authUser}
+          onLogout={() => setAuthUser(null)}
         />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/css-syllabus" element={<CssSyllabusPage />} />
           <Route path="/css-rules" element={<CssRulesPage />} />
+          <Route path="/css-past-papers" element={<CssPastPapersPage />} />
+          <Route path="/css-study-material" element={<CssStudyMaterialPage />} />
+          <Route
+            path="/signin"
+            element={<SignInPage authUser={authUser} onSignIn={(user) => setAuthUser(user)} />}
+          />
+          <Route
+            path="/guardian-study-planner"
+            element={
+              authUser ? (
+                <GuardianStudyPlannerPage authUser={authUser} />
+              ) : (
+                <Navigate to="/signin" replace state={{ from: '/guardian-study-planner' }} />
+              )
+            }
+          />
           <Route path="/css-syllabus/:subjectSlug" element={<SubjectDetailPage />} />
           <Route path="*" element={<HomePage />} />
         </Routes>
