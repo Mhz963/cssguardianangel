@@ -570,6 +570,12 @@ const SUBJECT_PERFORMANCE_LEVELS = [
   { id: 'Contendor', scoreHint: 'above 50 marks' },
   { id: 'Topper', scoreHint: 'above 65 marks' },
 ]
+const getNextPerformanceLevel = (currentLevel) => {
+  const levelOrder = SUBJECT_PERFORMANCE_LEVELS.map((item) => item.id)
+  const currentIndex = levelOrder.indexOf(currentLevel)
+  if (currentIndex < 0) return levelOrder[0]
+  return levelOrder[(currentIndex + 1) % levelOrder.length]
+}
 const PERFORMANCE_LEVEL_SCORE_MAP = {
   Survivor: 40,
   Contendor: 50,
@@ -1592,6 +1598,7 @@ function GuardianStudyPlannerPage({ authUser }) {
     }
   })
   const [draggingPerformanceSubject, setDraggingPerformanceSubject] = useState('')
+  const [selectedPerformanceSubject, setSelectedPerformanceSubject] = useState('')
   const [isManualDmcEnabled, setIsManualDmcEnabled] = useState(() => {
     try {
       const raw = localStorage.getItem(profileStorageKey)
@@ -2350,6 +2357,10 @@ function GuardianStudyPlannerPage({ authUser }) {
     setSubjectPerformanceLevels((current) => {
       const next = {}
       performanceSubjects.forEach((subject) => {
+        if (subject === 'English (Precis & Composition)') {
+          next[subject] = 'Contendor'
+          return
+        }
         next[subject] = current[subject] || 'Survivor'
       })
       const hasChanged =
@@ -2363,6 +2374,14 @@ function GuardianStudyPlannerPage({ authUser }) {
     subject,
     level: subjectPerformanceLevels[subject] || 'Survivor',
   }))
+  useEffect(() => {
+    if (
+      selectedPerformanceSubject &&
+      !performanceRows.some((item) => item.subject === selectedPerformanceSubject)
+    ) {
+      setSelectedPerformanceSubject('')
+    }
+  }, [performanceRows, selectedPerformanceSubject])
   useEffect(() => {
     setManualDmcScores((current) => {
       const next = {}
@@ -2564,6 +2583,25 @@ function GuardianStudyPlannerPage({ authUser }) {
     if (!subject) return
     setSubjectPerformanceLevels((current) => ({ ...current, [subject]: levelId }))
     setDraggingPerformanceSubject('')
+    setSelectedPerformanceSubject(subject)
+  }
+  const handlePerformanceAssign = (subject, levelId) => {
+    if (!subject) return
+    setSubjectPerformanceLevels((current) => ({ ...current, [subject]: levelId }))
+  }
+  const handlePerformanceChipClick = (subject) => {
+    const isCoarsePointer =
+      typeof window !== 'undefined' &&
+      typeof window.matchMedia === 'function' &&
+      window.matchMedia('(pointer: coarse)').matches
+    if (isCoarsePointer) {
+      const currentLevel = subjectPerformanceLevels[subject] || 'Survivor'
+      const nextLevel = getNextPerformanceLevel(currentLevel)
+      handlePerformanceAssign(subject, nextLevel)
+      setSelectedPerformanceSubject(subject)
+      return
+    }
+    setSelectedPerformanceSubject(subject)
   }
   const handleManualDmcScoreChange = (subject, value) => {
     const numericValue = Number(value)
@@ -3034,19 +3072,25 @@ function GuardianStudyPlannerPage({ authUser }) {
                 ) : (
                   <div className="performance-dnd-board">
                     <div className="performance-source-card">
-                      <h4>Subjects (Drag)</h4>
+                      <h4>Subjects (Tap/Drag)</h4>
+                      <p className="performance-touch-note">
+                        Mobile: tap a subject to cycle Survivor, Contendor, Topper.
+                      </p>
                       <div className="performance-subject-list">
                         {performanceRows.map((item) => (
                           <button
                             key={item.subject}
                             type="button"
-                            className="performance-subject-chip"
+                            className={`performance-subject-chip ${
+                              selectedPerformanceSubject === item.subject ? 'is-selected' : ''
+                            }`}
                             draggable
                             onDragStart={(event) => {
                               event.dataTransfer.setData('text/plain', item.subject)
                               setDraggingPerformanceSubject(item.subject)
                             }}
                             onDragEnd={() => setDraggingPerformanceSubject('')}
+                            onClick={() => handlePerformanceChipClick(item.subject)}
                           >
                             {item.subject}
                           </button>
@@ -3071,13 +3115,16 @@ function GuardianStudyPlannerPage({ authUser }) {
                               level.subjects.map((subject) => (
                                 <div
                                   key={subject}
-                                  className="performance-assigned-chip"
+                                  className={`performance-assigned-chip ${
+                                    selectedPerformanceSubject === subject ? 'is-selected' : ''
+                                  }`}
                                   draggable
                                   onDragStart={(event) => {
                                     event.dataTransfer.setData('text/plain', subject)
                                     setDraggingPerformanceSubject(subject)
                                   }}
                                   onDragEnd={() => setDraggingPerformanceSubject('')}
+                                  onClick={() => handlePerformanceChipClick(subject)}
                                 >
                                   {subject}
                                 </div>

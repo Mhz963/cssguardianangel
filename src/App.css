@@ -989,6 +989,8 @@ a {
   display: grid;
   gap: 0.9rem;
   margin-top: 0.9rem;
+  min-width: 0;
+  overflow-x: hidden;
 }
 
 .performance-source-card {
@@ -996,6 +998,9 @@ a {
   border-radius: 12px;
   background: var(--bg-secondary);
   padding: 0.85rem;
+  box-sizing: border-box;
+  min-width: 0;
+  overflow-x: hidden;
 }
 
 .performance-source-card h4 {
@@ -1003,20 +1008,36 @@ a {
   font-size: 0.95rem;
 }
 
+.performance-touch-note {
+  margin: 0 0 0.65rem;
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+}
+
 .performance-subject-list {
   display: flex;
   flex-wrap: wrap;
   gap: 0.55rem;
+  min-width: 0;
+  overflow-x: hidden;
 }
 
 .performance-subject-chip,
 .performance-assigned-chip {
+  box-sizing: border-box;
   border: 1px solid var(--border-soft);
   background: linear-gradient(130deg, color-mix(in srgb, var(--brand-gold) 18%, transparent), var(--input-bg));
   color: var(--text-primary);
   border-radius: 999px;
   padding: 0.42rem 0.72rem;
   font-size: 0.84rem;
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   cursor: grab;
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
@@ -1039,19 +1060,29 @@ a {
   outline-offset: 2px;
 }
 
+.performance-subject-chip.is-selected,
+.performance-assigned-chip.is-selected {
+  border-color: color-mix(in srgb, var(--brand-gold) 78%, var(--border-soft));
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--brand-gold) 35%, transparent);
+}
+
 .performance-columns {
   display: grid;
   gap: 0.8rem;
   grid-template-columns: repeat(3, minmax(0, 1fr));
+  min-width: 0;
 }
 
 .performance-column {
+  box-sizing: border-box;
   border: 1px solid var(--border-soft);
   border-radius: 12px;
   background: var(--bg-secondary);
   min-height: 220px;
   display: grid;
   grid-template-rows: auto 1fr;
+  min-width: 0;
+  overflow-x: hidden;
 }
 
 .performance-column header {
@@ -1075,6 +1106,7 @@ a {
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
+  min-width: 0;
   gap: 0.5rem;
 }
 
@@ -1194,6 +1226,7 @@ a {
 
 .performance-dmc-table-wrap {
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .performance-dmc-table {
@@ -2796,7 +2829,7 @@ a {
 
   .planner-card {
     padding: 0.9rem;
-    overflow: hidden;
+    overflow: visible;
   }
 
   .planner-sidebar {
@@ -2863,12 +2896,100 @@ a {
     grid-template-columns: 1fr;
   }
 
+  .performance-subject-list,
+  .performance-column-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.45rem;
+  }
+
+  .performance-subject-chip,
+  .performance-assigned-chip {
+    width: 100%;
+    max-width: 100%;
+    justify-content: flex-start;
+  }
+
+  .performance-dnd-board,
+  .performance-source-card,
+  .performance-columns,
+  .performance-column,
+  .performance-column-body,
+  .performance-dmc,
+  .performance-dmc-table-wrap {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .performance-source-card,
+  .performance-column,
+  .performance-column-body {
+    overflow-x: clip !important;
+  }
+
+  .performance-subject-chip,
+  .performance-assigned-chip {
+    inline-size: 100% !important;
+    block-size: auto;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+  }
+
+  .performance-dmc-table {
+    min-width: 0 !important;
+    width: 100% !important;
+    table-layout: fixed;
+  }
+
+  .performance-dmc-table th,
+  .performance-dmc-table td {
+    font-size: 0.78rem;
+    padding: 0.45rem 0.4rem;
+  }
+
+  .performance-dmc-table th:nth-child(1),
+  .performance-dmc-table td:nth-child(1) {
+    width: 52%;
+    overflow-wrap: anywhere;
+  }
+
+  .performance-dmc-table th:nth-child(2),
+  .performance-dmc-table td:nth-child(2) {
+    width: 20%;
+  }
+
+  .performance-dmc-table th:nth-child(3),
+  .performance-dmc-table td:nth-child(3) {
+    width: 28%;
+  }
+
+  .performance-dmc-input {
+    width: 100%;
+    min-width: 64px;
+  }
+
   .guardian-report-grid {
     grid-template-columns: 1fr;
   }
 
   .footer-top {
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 0.9rem;
+  }
+
+  .footer-brand {
+    flex: 1 1 100%;
+    max-width: none;
+  }
+
+  .footer-links {
+    flex: 1 1 calc(50% - 0.45rem);
+    min-width: 0;
   }
 
   .footer-bottom {
@@ -2946,6 +3067,12 @@ a {
 
   .planner-card {
     padding: 0.8rem;
+  }
+
+  .performance-dmc-table th,
+  .performance-dmc-table td {
+    font-size: 0.74rem;
+    padding: 0.4rem 0.35rem;
   }
 
   .calendar-grid {
