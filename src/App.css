@@ -1982,45 +1982,79 @@ a {
 }
 
 @media (max-width: 720px) {
+  .topbar .container {
+    width: min(1120px, 94%);
+  }
+
   .topbar {
     background: var(--topbar-bg);
   }
 
   .topbar-inner {
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-items: center;
+    min-height: 64px;
   }
 
   .brand {
     order: 1;
     margin-left: 0;
+    min-width: 0;
+    gap: 0.55rem;
+  }
+
+  .brand > div {
+    min-width: 0;
+  }
+
+  .brand strong,
+  .brand span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .brand strong {
+    font-size: 0.98rem;
+  }
+
+  .brand span {
+    font-size: 0.82rem;
   }
 
   .nav-toggle {
     display: inline-flex;
     order: 2;
     margin-left: auto;
+    z-index: 31;
   }
 
   .nav {
     order: 3;
-    width: 100%;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 78px;
+    width: 100vw;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
     gap: 0.75rem;
     padding: 0;
     margin-top: 0;
     border: 1px solid transparent;
-    border-radius: 12px;
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0 0 14px 14px;
     background: rgb(5 7 13 / 82%);
     backdrop-filter: blur(8px);
-    overflow: hidden;
+    overflow: hidden auto;
     max-height: 0;
     opacity: 0;
     transform: translateY(-10px);
     pointer-events: none;
+    overscroll-behavior: contain;
     transition:
       max-height 0.42s cubic-bezier(0.22, 1, 0.36, 1),
       opacity 0.3s ease,
@@ -2037,13 +2071,30 @@ a {
     margin-left: 0;
   }
 
+  .nav-links a,
+  .nav-actions .btn {
+    white-space: nowrap;
+  }
+
+  .nav-label-multiline {
+    display: inline;
+    line-height: 1.2;
+    text-align: left;
+  }
+
+  .nav-label-secondary {
+    margin-top: 0;
+    margin-left: 0.3rem;
+    display: inline;
+  }
+
   .nav.nav-open {
-    max-height: 420px;
+    max-height: calc(100dvh - 78px);
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
-    padding: 0.8rem;
-    margin-top: 0.6rem;
+    padding: 0.9rem;
+    margin-top: 0;
     border-color: var(--topbar-border);
   }
 
@@ -2167,6 +2218,14 @@ a {
 }
 
 @media (max-width: 480px) {
+  .topbar .container {
+    width: min(1120px, 95%);
+  }
+
+  .brand span {
+    display: none;
+  }
+
   .intro {
     min-height: 68vh;
   }
