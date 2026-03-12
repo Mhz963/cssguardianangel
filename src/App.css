@@ -1679,6 +1679,34 @@ a {
   margin-top: 0;
 }
 
+.planner-step-nav {
+  border: 1px solid var(--border-soft);
+  border-radius: 16px;
+  background: var(--surface-gradient);
+  padding: 0.9rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.planner-step-nav p {
+  margin: 0;
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.planner-step-nav .btn {
+  width: 100%;
+}
+
+.planner-step-placeholder {
+  display: block;
+  width: 100%;
+  min-height: 42px;
+}
+
 .planner-form {
   display: grid;
   gap: 0.8rem;
@@ -1750,6 +1778,48 @@ a {
 .subject-locker-head p {
   margin: 0.35rem 0 0;
   color: var(--text-secondary);
+}
+
+.subject-locker-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 180;
+  background: rgb(0 0 0 / 52%);
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+}
+
+.subject-locker-modal {
+  width: min(560px, 100%);
+  border-radius: 16px;
+  border: 1px solid rgb(239 68 68 / 55%);
+  background: linear-gradient(145deg, rgb(127 29 29 / 95%), rgb(69 10 10 / 96%));
+  box-shadow: 0 22px 50px rgb(0 0 0 / 45%);
+  padding: 1rem;
+  display: grid;
+  gap: 0.7rem;
+}
+
+.subject-locker-modal h4 {
+  margin: 0;
+  color: #fecaca;
+  font-size: 1.08rem;
+}
+
+.subject-locker-modal p {
+  margin: 0;
+  color: #fee2e2;
+  line-height: 1.45;
+}
+
+.subject-locker-modal .btn {
+  width: fit-content;
+  justify-self: end;
+  min-width: 148px;
+  background: linear-gradient(135deg, #ef4444, #b91c1c);
+  border-color: transparent;
+  color: #fff;
 }
 
 .subject-lock-badge {
@@ -2088,6 +2158,39 @@ a {
 
 .timer-controls .btn {
   width: auto;
+}
+
+.social-balance-card {
+  position: relative;
+}
+
+.social-limit-field {
+  display: grid;
+  gap: 0.38rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.social-limit-field input {
+  border: 1px solid var(--border-soft);
+  border-radius: 10px;
+  background: var(--input-bg);
+  color: var(--text-primary);
+  padding: 0.5rem 0.62rem;
+  font: inherit;
+  width: min(220px, 100%);
+}
+
+.social-timer-display {
+  border-color: color-mix(in srgb, var(--brand-gold) 40%, var(--border-soft));
+}
+
+.social-progress-track span {
+  background: linear-gradient(90deg, #22c55e, #16a34a);
+}
+
+.social-progress-track.over-limit span {
+  background: linear-gradient(90deg, #ef4444, #b91c1c);
 }
 
 .study-metrics {
@@ -2848,6 +2951,14 @@ a {
   .planner-tab {
     padding: 0.55rem 0.72rem;
     text-align: center;
+  }
+
+  .planner-step-nav {
+    grid-template-columns: 1fr;
+  }
+
+  .planner-step-nav p {
+    order: -1;
   }
 
   .study-metrics {

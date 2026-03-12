@@ -570,6 +570,16 @@ const SUBJECT_PERFORMANCE_LEVELS = [
   { id: 'Contendor', scoreHint: 'above 50 marks' },
   { id: 'Topper', scoreHint: 'above 65 marks' },
 ]
+const DEFAULT_SOCIAL_DAILY_LIMIT_MINUTES = 60
+const PLANNER_TAB_SEQUENCE = [
+  { id: 'subjects', label: 'Subject Locker' },
+  { id: 'strategy', label: 'Strategy Builder' },
+  { id: 'performance', label: 'Performance Analysis' },
+  { id: 'timer', label: 'Timer & Analytics' },
+  { id: 'social', label: 'Social Balance' },
+  { id: 'calendar', label: 'Guardian Calendar' },
+  { id: 'report', label: 'Guardian Angel Report' },
+]
 const getNextPerformanceLevel = (currentLevel) => {
   const levelOrder = SUBJECT_PERFORMANCE_LEVELS.map((item) => item.id)
   const currentIndex = levelOrder.indexOf(currentLevel)
@@ -613,6 +623,12 @@ const formatStopwatch = (totalSeconds) => {
   const minutes = Math.floor((safe % 3600) / 60)
   const seconds = safe % 60
   return `${`${hours}`.padStart(2, '0')}:${`${minutes}`.padStart(2, '0')}:${`${seconds}`.padStart(2, '0')}`
+}
+const resolveElapsedSeconds = (accumulatedSeconds, startedAtMs) => {
+  if (!startedAtMs) return Math.max(0, Math.floor(accumulatedSeconds || 0))
+  const base = Math.max(0, Math.floor(accumulatedSeconds || 0))
+  const delta = Math.max(0, Math.floor((Date.now() - startedAtMs) / 1000))
+  return base + delta
 }
 
 const formatDateDDMMYYYY = (isoDate) => {
@@ -1519,6 +1535,7 @@ function GuardianStudyPlannerPage({ authUser }) {
   })
   const [plan, setPlan] = useState(null)
   const [error, setError] = useState('')
+  const [subjectLockerModalMessage, setSubjectLockerModalMessage] = useState('')
   const [selectedOptionalSubjects, setSelectedOptionalSubjects] = useState(() => {
     try {
       const raw = localStorage.getItem(profileStorageKey)
@@ -1577,13 +1594,125 @@ function GuardianStudyPlannerPage({ authUser }) {
     }
   })
   const [selectedCalendarDay, setSelectedCalendarDay] = useState(null)
-  const [timerStatus, setTimerStatus] = useState('idle')
-  const [elapsedSeconds, setElapsedSeconds] = useState(0)
+  const [timerStatus, setTimerStatus] = useState(() => {
+    try {
+      const raw = localStorage.getItem(profileStorageKey)
+      const profile = raw ? JSON.parse(raw) : null
+      const storedStatus = profile?.timerState?.status
+      return storedStatus === 'running' || storedStatus === 'paused' ? storedStatus : 'idle'
+    } catch {
+      return 'idle'
+    }
+  })
+  const [timerAccumulatedSeconds, setTimerAccumulatedSeconds] = useState(() => {
+    try {
+      const raw = localStorage.getItem(profileStorageKey)
+      const profile = raw ? JSON.parse(raw) : null
+      const stored = Number(profile?.timerState?.accumulatedSeconds)
+      return Number.isFinite(stored) ? Math.max(0, Math.floor(stored)) : 0
+    } catch {
+      return 0
+    }
+  })
+  const [timerStartedAtMs, setTimerStartedAtMs] = useState(() => {
+    try {
+      const raw = localStorage.getItem(profileStorageKey)
+      const profile = raw ? JSON.parse(raw) : null
+      const startedAtMs = Number(profile?.timerState?.startedAtMs)
+      const storedStatus = profile?.timerState?.status
+      if (storedStatus !== 'running' || !Number.isFinite(startedAtMs)) return null
+      return startedAtMs
+    } catch {
+      return null
+    }
+  })
+  const [elapsedSeconds, setElapsedSeconds] = useState(() => {
+    try {
+      const raw = localStorage.getItem(profileStorageKey)
+      const profile = raw ? JSON.parse(raw) : null
+      const timerState = profile?.timerState || {}
+      const accumulated = Number(timerState.accumulatedSeconds)
+      const safeAccumulated = Number.isFinite(accumulated) ? accumulated : 0
+      if (timerState.status === 'running' && Number.isFinite(Number(timerState.startedAtMs))) {
+        return resolveElapsedSeconds(safeAccumulated, Number(timerState.startedAtMs))
+      }
+      return Math.max(0, Math.floor(safeAccumulated))
+    } catch {
+      return 0
+    }
+  })
   const [timerSessions, setTimerSessions] = useState(() => {
     try {
       const raw = localStorage.getItem(profileStorageKey)
       const profile = raw ? JSON.parse(raw) : null
       return profile?.timerSessions || []
+    } catch {
+      return []
+    }
+  })
+  const [socialTimerStatus, setSocialTimerStatus] = useState(() => {
+    try {
+      const raw = localStorage.getItem(profileStorageKey)
+      const profile = raw ? JSON.parse(raw) : null
+      const storedStatus = profile?.socialTimerState?.status
+      return storedStatus === 'running' || storedStatus === 'paused' ? storedStatus : 'idle'
+    } catch {
+      return 'idle'
+    }
+  })
+  const [socialTimerAccumulatedSeconds, setSocialTimerAccumulatedSeconds] = useState(() => {
+    try {
+      const raw = localStorage.getItem(profileStorageKey)
+      const profile = raw ? JSON.parse(raw) : null
+      const stored = Number(profile?.socialTimerState?.accumulatedSeconds)
+      return Number.isFinite(stored) ? Math.max(0, Math.floor(stored)) : 0
+    } catch {
+      return 0
+    }
+  })
+  const [socialTimerStartedAtMs, setSocialTimerStartedAtMs] = useState(() => {
+    try {
+      const raw = localStorage.getItem(profileStorageKey)
+      const profile = raw ? JSON.parse(raw) : null
+      const startedAtMs = Number(profile?.socialTimerState?.startedAtMs)
+      const storedStatus = profile?.socialTimerState?.status
+      if (storedStatus !== 'running' || !Number.isFinite(startedAtMs)) return null
+      return startedAtMs
+    } catch {
+      return null
+    }
+  })
+  const [socialElapsedSeconds, setSocialElapsedSeconds] = useState(() => {
+    try {
+      const raw = localStorage.getItem(profileStorageKey)
+      const profile = raw ? JSON.parse(raw) : null
+      const socialTimerState = profile?.socialTimerState || {}
+      const accumulated = Number(socialTimerState.accumulatedSeconds)
+      const safeAccumulated = Number.isFinite(accumulated) ? accumulated : 0
+      if (socialTimerState.status === 'running' && Number.isFinite(Number(socialTimerState.startedAtMs))) {
+        return resolveElapsedSeconds(safeAccumulated, Number(socialTimerState.startedAtMs))
+      }
+      return Math.max(0, Math.floor(safeAccumulated))
+    } catch {
+      return 0
+    }
+  })
+  const [socialDailyLimitMinutes, setSocialDailyLimitMinutes] = useState(() => {
+    try {
+      const raw = localStorage.getItem(profileStorageKey)
+      const profile = raw ? JSON.parse(raw) : null
+      const stored = Number(profile?.socialDailyLimitMinutes)
+      if (!Number.isFinite(stored)) return DEFAULT_SOCIAL_DAILY_LIMIT_MINUTES
+      return Math.max(10, Math.min(360, Math.round(stored)))
+    } catch {
+      return DEFAULT_SOCIAL_DAILY_LIMIT_MINUTES
+    }
+  })
+  const [socialTimerSessions, setSocialTimerSessions] = useState(() => {
+    try {
+      const raw = localStorage.getItem(profileStorageKey)
+      const profile = raw ? JSON.parse(raw) : null
+      return profile?.socialTimerSessions || []
     } catch {
       return []
     }
@@ -1633,6 +1762,18 @@ function GuardianStudyPlannerPage({ authUser }) {
         completedDays,
         dayStatuses,
         timerSessions,
+        socialTimerSessions,
+        socialDailyLimitMinutes,
+        timerState: {
+          status: timerStatus,
+          accumulatedSeconds: timerAccumulatedSeconds,
+          startedAtMs: timerStartedAtMs,
+        },
+        socialTimerState: {
+          status: socialTimerStatus,
+          accumulatedSeconds: socialTimerAccumulatedSeconds,
+          startedAtMs: socialTimerStartedAtMs,
+        },
       }
       localStorage.setItem(profileStorageKey, JSON.stringify(profilePayload))
       localStorage.setItem(TESTING_PLANNER_FORM_KEY, JSON.stringify(form))
@@ -1652,15 +1793,55 @@ function GuardianStudyPlannerPage({ authUser }) {
     completedDays,
     dayStatuses,
     timerSessions,
+    socialTimerSessions,
+    socialDailyLimitMinutes,
+    timerStatus,
+    timerAccumulatedSeconds,
+    timerStartedAtMs,
+    socialTimerStatus,
+    socialTimerAccumulatedSeconds,
+    socialTimerStartedAtMs,
   ])
 
   useEffect(() => {
-    if (timerStatus !== 'running') return undefined
-    const timerId = window.setInterval(() => {
-      setElapsedSeconds((current) => current + 1)
-    }, 1000)
-    return () => window.clearInterval(timerId)
-  }, [timerStatus])
+    if (timerStatus !== 'running' || !timerStartedAtMs) {
+      setElapsedSeconds(Math.max(0, Math.floor(timerAccumulatedSeconds)))
+      return undefined
+    }
+    const syncElapsed = () => {
+      setElapsedSeconds(resolveElapsedSeconds(timerAccumulatedSeconds, timerStartedAtMs))
+    }
+    syncElapsed()
+    const timerId = window.setInterval(syncElapsed, 1000)
+    window.addEventListener('visibilitychange', syncElapsed)
+    window.addEventListener('focus', syncElapsed)
+    return () => {
+      window.clearInterval(timerId)
+      window.removeEventListener('visibilitychange', syncElapsed)
+      window.removeEventListener('focus', syncElapsed)
+    }
+  }, [timerStatus, timerAccumulatedSeconds, timerStartedAtMs])
+
+  useEffect(() => {
+    if (socialTimerStatus !== 'running' || !socialTimerStartedAtMs) {
+      setSocialElapsedSeconds(Math.max(0, Math.floor(socialTimerAccumulatedSeconds)))
+      return undefined
+    }
+    const syncElapsed = () => {
+      setSocialElapsedSeconds(
+        resolveElapsedSeconds(socialTimerAccumulatedSeconds, socialTimerStartedAtMs),
+      )
+    }
+    syncElapsed()
+    const timerId = window.setInterval(syncElapsed, 1000)
+    window.addEventListener('visibilitychange', syncElapsed)
+    window.addEventListener('focus', syncElapsed)
+    return () => {
+      window.clearInterval(timerId)
+      window.removeEventListener('visibilitychange', syncElapsed)
+      window.removeEventListener('focus', syncElapsed)
+    }
+  }, [socialTimerStatus, socialTimerAccumulatedSeconds, socialTimerStartedAtMs])
 
   useEffect(
     () => () => {
@@ -1692,11 +1873,43 @@ function GuardianStudyPlannerPage({ authUser }) {
     }, 0)
     return { totalMarks, totalPapers }
   }
+  const validateGroupIIRule = (subjects) => {
+    const groupII = subjects.filter((item) => OPTIONAL_META_MAP[item]?.group === 'Group II')
+    if (groupII.length === 0) {
+      return {
+        ok: false,
+        message:
+          'Group II is mandatory: select either one 200 marks subject (Physics/Chemistry) or two 100 marks subjects.',
+      }
+    }
+    const count200 = groupII.filter((item) => OPTIONAL_META_MAP[item]?.marks === 200).length
+    const count100 = groupII.filter((item) => OPTIONAL_META_MAP[item]?.marks === 100).length
+    const isValidSingle200 = count200 === 1 && groupII.length === 1
+    const isValidDouble100 = count200 === 0 && count100 === 2 && groupII.length === 2
+    if (isValidSingle200 || isValidDouble100) return { ok: true }
+    return {
+      ok: false,
+      message:
+        'Group II rule: select either one 200 marks subject (Physics/Chemistry) or two 100 marks subjects.',
+    }
+  }
 
   const canSelectSubject = (subject, currentSubjects) => {
     const meta = OPTIONAL_META_MAP[subject]
     if (!meta) return { ok: false, message: 'Invalid optional subject.' }
     if (currentSubjects.includes(subject)) return { ok: false, message: 'Subject already selected.' }
+
+    const currentGroupII = currentSubjects.filter((item) => OPTIONAL_META_MAP[item]?.group === 'Group II')
+    const currentGroupII200 = currentGroupII.filter((item) => OPTIONAL_META_MAP[item]?.marks === 200).length
+    const currentGroupII100 = currentGroupII.filter((item) => OPTIONAL_META_MAP[item]?.marks === 100).length
+    if (meta.group !== 'Group II' && currentGroupII200 === 0 && currentGroupII100 === 1) {
+      return {
+        ok: false,
+        reason: 'group2-incomplete-block',
+        message:
+          'First complete Group II subjects of 200 marks, or remove subjects from Group II to proceed.',
+      }
+    }
 
     const inSameGroup = currentSubjects.filter((item) => OPTIONAL_META_MAP[item]?.group === meta.group)
     if (meta.group === 'Group II') {
@@ -1734,9 +1947,15 @@ function GuardianStudyPlannerPage({ authUser }) {
       }
       const validation = canSelectSubject(subject, current)
       if (!validation.ok) {
+        if (validation.reason === 'group2-incomplete-block') {
+          setSubjectLockerModalMessage(validation.message)
+          setError('')
+          return current
+        }
         setError(validation.message)
         return current
       }
+      setSubjectLockerModalMessage('')
       setError('')
       return [...current, subject]
     })
@@ -1759,12 +1978,18 @@ function GuardianStudyPlannerPage({ authUser }) {
   const handleOptionalSubjectRemove = (subject) => {
     if (subjectsLocked) return
     setSelectedOptionalSubjects((current) => current.filter((item) => item !== subject))
+    setSubjectLockerModalMessage('')
     setError('')
   }
 
   const handleLockSubjects = () => {
     if (!selectedCompulsoryElective) {
       setError('Select one compulsory option (Islamiat or Comparative Study of Major Religions).')
+      return
+    }
+    const groupIIValidation = validateGroupIIRule(selectedOptionalSubjects)
+    if (!groupIIValidation.ok) {
+      setError(groupIIValidation.message)
       return
     }
     const { totalMarks, totalPapers } = calculateOptionalTotals(selectedOptionalSubjects)
@@ -2221,17 +2446,30 @@ function GuardianStudyPlannerPage({ authUser }) {
   }
 
   const handleTimerStart = () => {
-    if (timerStatus === 'idle') setElapsedSeconds(0)
+    if (timerStatus === 'running') return
+    if (timerStatus === 'idle') {
+      setTimerAccumulatedSeconds(0)
+      setElapsedSeconds(0)
+    }
+    setTimerStartedAtMs(Date.now())
     setTimerStatus('running')
   }
 
   const handleTimerPause = () => {
-    if (timerStatus !== 'running') return
+    if (timerStatus !== 'running' || !timerStartedAtMs) return
+    const nextElapsedSeconds = resolveElapsedSeconds(timerAccumulatedSeconds, timerStartedAtMs)
+    setTimerAccumulatedSeconds(nextElapsedSeconds)
+    setElapsedSeconds(nextElapsedSeconds)
+    setTimerStartedAtMs(null)
     setTimerStatus('paused')
   }
 
   const handleTimerStop = () => {
-    if (elapsedSeconds > 0) {
+    const finalElapsedSeconds =
+      timerStatus === 'running' && timerStartedAtMs
+        ? resolveElapsedSeconds(timerAccumulatedSeconds, timerStartedAtMs)
+        : elapsedSeconds
+    if (finalElapsedSeconds > 0) {
       const completedAt = new Date()
       const dayKey = formatDayKey(completedAt)
       setTimerSessions((current) => [
@@ -2240,18 +2478,78 @@ function GuardianStudyPlannerPage({ authUser }) {
           id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
           completedAt: completedAt.toISOString(),
           dayKey,
-          durationSeconds: elapsedSeconds,
+          durationSeconds: finalElapsedSeconds,
         },
       ])
       setCompletedDays((current) => ({ ...current, [dayKey]: true }))
     }
     setElapsedSeconds(0)
+    setTimerAccumulatedSeconds(0)
+    setTimerStartedAtMs(null)
     setTimerStatus('idle')
   }
 
   const handleTimerReset = () => {
     setElapsedSeconds(0)
+    setTimerAccumulatedSeconds(0)
+    setTimerStartedAtMs(null)
     setTimerStatus('idle')
+  }
+
+  const handleSocialTimerStart = () => {
+    if (socialTimerStatus === 'running') return
+    if (socialTimerStatus === 'idle') {
+      setSocialTimerAccumulatedSeconds(0)
+      setSocialElapsedSeconds(0)
+    }
+    setSocialTimerStartedAtMs(Date.now())
+    setSocialTimerStatus('running')
+  }
+
+  const handleSocialTimerPause = () => {
+    if (socialTimerStatus !== 'running' || !socialTimerStartedAtMs) return
+    const nextElapsedSeconds = resolveElapsedSeconds(socialTimerAccumulatedSeconds, socialTimerStartedAtMs)
+    setSocialTimerAccumulatedSeconds(nextElapsedSeconds)
+    setSocialElapsedSeconds(nextElapsedSeconds)
+    setSocialTimerStartedAtMs(null)
+    setSocialTimerStatus('paused')
+  }
+
+  const handleSocialTimerStop = () => {
+    const finalElapsedSeconds =
+      socialTimerStatus === 'running' && socialTimerStartedAtMs
+        ? resolveElapsedSeconds(socialTimerAccumulatedSeconds, socialTimerStartedAtMs)
+        : socialElapsedSeconds
+    if (finalElapsedSeconds > 0) {
+      const completedAt = new Date()
+      const dayKey = formatDayKey(completedAt)
+      setSocialTimerSessions((current) => [
+        ...current,
+        {
+          id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+          completedAt: completedAt.toISOString(),
+          dayKey,
+          durationSeconds: finalElapsedSeconds,
+        },
+      ])
+    }
+    setSocialElapsedSeconds(0)
+    setSocialTimerAccumulatedSeconds(0)
+    setSocialTimerStartedAtMs(null)
+    setSocialTimerStatus('idle')
+  }
+
+  const handleSocialTimerReset = () => {
+    setSocialElapsedSeconds(0)
+    setSocialTimerAccumulatedSeconds(0)
+    setSocialTimerStartedAtMs(null)
+    setSocialTimerStatus('idle')
+  }
+
+  const handleSocialLimitChange = (event) => {
+    const numericValue = Number(event.target.value)
+    if (!Number.isFinite(numericValue)) return
+    setSocialDailyLimitMinutes(Math.max(10, Math.min(360, Math.round(numericValue))))
   }
 
   const handleCalendarStatusChange = (dayKey, statusId) => {
@@ -2290,6 +2588,32 @@ function GuardianStudyPlannerPage({ authUser }) {
   const remainingTodayMinutes = Math.max(requiredDailyMinutes - studiedTodayMinutes, 0)
   const dailyProgressPercent =
     requiredDailyMinutes > 0 ? Math.min(100, (studiedTodayMinutes / requiredDailyMinutes) * 100) : 0
+  const currentSocialSessionMinutes = Math.floor(socialElapsedSeconds / 60)
+  const todaySocialLoggedMinutes = socialTimerSessions
+    .filter((item) => item.dayKey === todayKey)
+    .reduce((sum, item) => sum + Math.floor(item.durationSeconds / 60), 0)
+  const socialUsedTodayMinutes = todaySocialLoggedMinutes + currentSocialSessionMinutes
+  const socialOveruseMinutes = Math.max(socialUsedTodayMinutes - socialDailyLimitMinutes, 0)
+  const socialDailyUsagePercent = Math.min(
+    200,
+    (socialUsedTodayMinutes / Math.max(1, socialDailyLimitMinutes)) * 100,
+  )
+  const socialPerformancePenaltyFactor =
+    socialOveruseMinutes === 0
+      ? 1
+      : Math.max(
+          0.7,
+          1 -
+            Math.min(
+              0.3,
+              (socialOveruseMinutes / Math.max(1, socialDailyLimitMinutes)) * 0.35,
+            ),
+        )
+  const socialDisciplineScore = clampToPercent(
+    100 -
+      (socialOveruseMinutes / Math.max(1, socialDailyLimitMinutes)) * 65 -
+      Math.max(0, socialUsedTodayMinutes - socialDailyLimitMinutes * 0.7) * 0.15,
+  )
 
   const weekDays = Array.from({ length: 7 }, (_, index) => addDays(startOfDay(new Date()), index - 6))
   const weeklyProgress = weekDays.map((day) => {
@@ -2313,6 +2637,20 @@ function GuardianStudyPlannerPage({ authUser }) {
     totalWeekRequiredMinutes > 0
       ? Math.min(100, (totalWeekStudiedMinutes / totalWeekRequiredMinutes) * 100)
       : 0
+  const socialWeeklyUsage = weekDays.map((day) => {
+    const dayKey = formatDayKey(day)
+    const minutesFromLogs = socialTimerSessions
+      .filter((item) => item.dayKey === dayKey)
+      .reduce((sum, item) => sum + Math.floor(item.durationSeconds / 60), 0)
+    const todayExtra = dayKey === todayKey ? currentSocialSessionMinutes : 0
+    return {
+      dayKey,
+      label: day.toLocaleDateString('en-US', { weekday: 'short' }),
+      socialMinutes: minutesFromLogs + todayExtra,
+    }
+  })
+  const socialWeeklyAverageMinutes =
+    socialWeeklyUsage.reduce((sum, item) => sum + item.socialMinutes, 0) / Math.max(1, socialWeeklyUsage.length)
   const selectedStatus = selectedCalendarDay ? dayStatuses[selectedCalendarDay] || 'planned' : 'planned'
   const selectedOptionalByGroup = optionalGroups
     .map((group) => ({
@@ -2478,9 +2816,10 @@ function GuardianStudyPlannerPage({ authUser }) {
   const contendorRatio = performanceRows.length > 0 ? competitiveSubjects.length / performanceRows.length : 0
   const performanceScoreAverage =
     performanceRows.length > 0 ? projectedScoreTotal / Math.max(1, performanceRows.length) : 0
-  const performanceScore = clampToPercent(
+  const basePerformanceScore = clampToPercent(
     performanceScoreAverage * 0.85 + topperRatio * 12 + contendorRatio * 8,
   )
+  const performanceScore = clampToPercent(basePerformanceScore * socialPerformancePenaltyFactor)
   const timerTrackedDays = new Set(timerSessions.map((item) => item.dayKey)).size
   const timerConsistencyPercent = clampToPercent((timerTrackedDays / 14) * 100)
   const timerScore = clampToPercent(
@@ -2540,13 +2879,23 @@ function GuardianStudyPlannerPage({ authUser }) {
       score: calendarScore,
       note: `${calendarTaggedDays} tagged day(s), ${calendarCompletedDays} completed, ${calendarSkippedDays} skipped.`,
     },
+    {
+      key: 'social',
+      label: 'Social Balance',
+      score: socialDisciplineScore,
+      note:
+        socialOveruseMinutes > 0
+          ? `${socialUsedTodayMinutes} min social use today (limit ${socialDailyLimitMinutes} min): over by ${socialOveruseMinutes} min.`
+          : `${socialUsedTodayMinutes} min social use today within limit (${socialDailyLimitMinutes} min).`,
+    },
   ]
   const guardianOverallScore = clampToPercent(
-    subjectLockerScore * 0.23 +
-      strategyScore * 0.22 +
-      performanceScore * 0.23 +
-      timerScore * 0.17 +
-      calendarScore * 0.15,
+    subjectLockerScore * 0.2 +
+      strategyScore * 0.19 +
+      performanceScore * 0.21 +
+      timerScore * 0.16 +
+      calendarScore * 0.12 +
+      socialDisciplineScore * 0.12,
   )
   const guardianOverallStatus =
     guardianOverallScore >= 80
@@ -2561,6 +2910,7 @@ function GuardianStudyPlannerPage({ authUser }) {
     strongSubjects.length >= 4 ? 'Multiple subjects are already in Topper range.' : '',
     weeklyProgressPercent >= 70 ? 'Weekly timer completion is on a strong trajectory.' : '',
     calendarCompletedDays >= 5 ? 'Calendar execution indicates steady follow-through.' : '',
+    socialOveruseMinutes === 0 ? 'Social media is within the daily discipline limit.' : '',
   ].filter(Boolean)
   const guardianRiskSignals = [
     !subjectsLocked ? 'Subject locker is not locked yet. Finalize to prevent frequent switching.' : '',
@@ -2568,6 +2918,9 @@ function GuardianStudyPlannerPage({ authUser }) {
     weakSubjects.length >= 4 ? 'Large Survivor bucket. Raise these subjects with answer-writing drills.' : '',
     weeklyProgressPercent < 45 ? 'Timer evidence is low versus target. Increase focused sessions.' : '',
     calendarSkippedDays >= 3 ? 'Frequent skipped days are reducing momentum. Use catch-up blocks.' : '',
+    socialOveruseMinutes > 0
+      ? `Social usage exceeded limit by ${socialOveruseMinutes} minutes and reduced performance score impact.`
+      : '',
   ].filter(Boolean)
   const guardianActionPlan = [
     weakSubjects.length
@@ -2577,9 +2930,19 @@ function GuardianStudyPlannerPage({ authUser }) {
     requiredDailyMinutes
       ? `Protect minimum ${requiredDailyMinutes} focused minutes daily and recover missed time within 48 hours.`
       : 'Generate strategy first, then protect a non-negotiable daily study target.',
+    socialOveruseMinutes > 0
+      ? `Cut social media by at least ${Math.ceil(socialOveruseMinutes / 2)} minutes tomorrow to recover readiness score.`
+      : 'Keep social media usage within the daily limit to protect readiness score.',
     'Mark every study day in Guardian Calendar with completed, revision, or mock-test status.',
     'Review this report every week and move one subject from Survivor to Contendor.',
   ]
+  const plannerStepIndex = Math.max(
+    0,
+    PLANNER_TAB_SEQUENCE.findIndex((item) => item.id === activePlannerTab),
+  )
+  const previousPlannerStep = plannerStepIndex > 0 ? PLANNER_TAB_SEQUENCE[plannerStepIndex - 1] : null
+  const nextPlannerStep =
+    plannerStepIndex < PLANNER_TAB_SEQUENCE.length - 1 ? PLANNER_TAB_SEQUENCE[plannerStepIndex + 1] : null
 
   const handlePerformanceDrop = (levelId, event) => {
     event.preventDefault()
@@ -2606,6 +2969,10 @@ function GuardianStudyPlannerPage({ authUser }) {
       return
     }
     setSelectedPerformanceSubject(subject)
+  }
+  const handlePlannerStepChange = (targetStep) => {
+    if (!targetStep) return
+    setActivePlannerTab(targetStep.id)
   }
   const handleManualDmcScoreChange = (subject, value) => {
     const numericValue = Number(value)
@@ -2670,6 +3037,15 @@ function GuardianStudyPlannerPage({ authUser }) {
               <button
                 type="button"
                 role="tab"
+                aria-selected={activePlannerTab === 'social'}
+                className={`planner-tab ${activePlannerTab === 'social' ? 'active' : ''}`}
+                onClick={() => setActivePlannerTab('social')}
+              >
+                Social Balance
+              </button>
+              <button
+                type="button"
+                role="tab"
                 aria-selected={activePlannerTab === 'calendar'}
                 className={`planner-tab ${activePlannerTab === 'calendar' ? 'active' : ''}`}
                 onClick={() => setActivePlannerTab('calendar')}
@@ -2702,7 +3078,6 @@ function GuardianStudyPlannerPage({ authUser }) {
                     {subjectsLocked ? 'Locked' : 'Draft Mode'}
                   </div>
                 </div>
-
                 <section className="subject-panel">
                   <h4>Compulsory Subjects</h4>
                   <ul className="subject-pill-list">
@@ -2890,6 +3265,27 @@ function GuardianStudyPlannerPage({ authUser }) {
                 ) : null}
                 {error ? <p className="planner-error">{error}</p> : null}
               </article>
+            ) : null}
+
+            {subjectLockerModalMessage ? (
+              <div className="subject-locker-modal-overlay" role="presentation">
+                <div
+                  className="subject-locker-modal"
+                  role="alertdialog"
+                  aria-live="assertive"
+                  aria-label="Group II selection warning"
+                >
+                  <h4>Selection blocked</h4>
+                  <p>{subjectLockerModalMessage}</p>
+                  <button
+                    type="button"
+                    className="btn btn-primary"
+                    onClick={() => setSubjectLockerModalMessage('')}
+                  >
+                    OK, I Understand
+                  </button>
+                </div>
+              </div>
             ) : null}
 
             {activePlannerTab === 'strategy' ? (
@@ -3236,6 +3632,12 @@ function GuardianStudyPlannerPage({ authUser }) {
                       <p className="performance-dmc-total">
                         <strong>Total Projected Marks:</strong> {projectedScoreTotal} / {projectedMaxTotal}
                       </p>
+                      <p className="planner-meta">
+                        Performance formula: <strong>finalScore = baseScore x socialPenaltyFactor</strong> |
+                        baseScore: <strong>{basePerformanceScore}</strong>, socialPenaltyFactor:{' '}
+                        <strong>{socialPerformancePenaltyFactor.toFixed(2)}</strong>, finalScore:{' '}
+                        <strong>{performanceScore}</strong>
+                      </p>
                     </div>
                   </div>
                 )}
@@ -3335,6 +3737,89 @@ function GuardianStudyPlannerPage({ authUser }) {
               </div>
             ))}
           </div>
+              </article>
+            ) : null}
+
+            {activePlannerTab === 'social' ? (
+              <article className="planner-card planner-timer-card social-balance-card">
+                <div className="planner-timer-header">
+                  <h3>Social Balance Tracker</h3>
+                  <p>
+                    Start this timer when you open social media. Staying within your limit protects your
+                    performance score.
+                  </p>
+                </div>
+
+                <label className="social-limit-field">
+                  Daily social media limit (minutes)
+                  <input
+                    type="number"
+                    min="10"
+                    max="360"
+                    step="5"
+                    value={socialDailyLimitMinutes}
+                    onChange={handleSocialLimitChange}
+                  />
+                </label>
+
+                <div className="timer-display social-timer-display">
+                  {formatStopwatch(socialElapsedSeconds)}
+                </div>
+
+                <div className="timer-controls">
+                  {socialTimerStatus === 'running' ? (
+                    <button className="btn btn-secondary" type="button" onClick={handleSocialTimerPause}>
+                      Pause Social Timer
+                    </button>
+                  ) : (
+                    <button className="btn btn-primary" type="button" onClick={handleSocialTimerStart}>
+                      {socialTimerStatus === 'paused' ? 'Resume Social Timer' : 'Start Social Timer'}
+                    </button>
+                  )}
+                  <button className="btn btn-primary" type="button" onClick={handleSocialTimerStop}>
+                    Stop & Save Social Session
+                  </button>
+                  <button className="btn btn-secondary" type="button" onClick={handleSocialTimerReset}>
+                    Reset
+                  </button>
+                </div>
+
+                <div className="study-metrics">
+                  <article className="metric-card">
+                    <p>Used Today</p>
+                    <strong>{socialUsedTodayMinutes} min</strong>
+                  </article>
+                  <article className="metric-card">
+                    <p>Daily Limit</p>
+                    <strong>{socialDailyLimitMinutes} min</strong>
+                  </article>
+                  <article className="metric-card">
+                    <p>Overuse</p>
+                    <strong>{socialOveruseMinutes > 0 ? `${socialOveruseMinutes} min` : '0 min'}</strong>
+                  </article>
+                  <article className="metric-card">
+                    <p>Performance Impact</p>
+                    <strong>{`${Math.round((1 - socialPerformancePenaltyFactor) * 100)}% penalty`}</strong>
+                  </article>
+                </div>
+
+                <div
+                  className={`progress-track social-progress-track ${
+                    socialOveruseMinutes > 0 ? 'over-limit' : ''
+                  }`}
+                  aria-label="Social media limit usage"
+                >
+                  <span style={{ width: `${Math.min(100, socialDailyUsagePercent)}%` }} />
+                </div>
+                <p className="progress-caption">
+                  {socialOveruseMinutes > 0
+                    ? `You exceeded your social limit by ${socialOveruseMinutes} minutes. This is currently reducing your performance score.`
+                    : `You are within your daily social limit. Current usage: ${socialDailyUsagePercent.toFixed(0)}% of limit.`}
+                </p>
+
+                <p className="planner-meta">
+                  Last 7 days average social usage: <strong>{socialWeeklyAverageMinutes.toFixed(0)} min/day</strong>
+                </p>
               </article>
             ) : null}
 
@@ -3449,7 +3934,7 @@ function GuardianStudyPlannerPage({ authUser }) {
                 <h3>Guardian Angel Report</h3>
                 <p className="planner-meta">
                   Deep assessment generated from Subject Locker, Strategy Builder, Performance Analysis,
-                  Timer and Guardian Calendar.
+                  Timer, Social Balance and Guardian Calendar.
                 </p>
 
                 <div className="guardian-report-overview">
@@ -3536,6 +4021,35 @@ function GuardianStudyPlannerPage({ authUser }) {
                 </p>
               </article>
             ) : null}
+
+            <div className="planner-step-nav" aria-label="Study planner step navigation">
+              {previousPlannerStep ? (
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  onClick={() => handlePlannerStepChange(previousPlannerStep)}
+                >
+                  Previous
+                </button>
+              ) : (
+                <span className="planner-step-placeholder" aria-hidden="true" />
+              )}
+              <p>
+                Step {plannerStepIndex + 1} of {PLANNER_TAB_SEQUENCE.length}:{' '}
+                <strong>{PLANNER_TAB_SEQUENCE[plannerStepIndex].label}</strong>
+              </p>
+              {nextPlannerStep ? (
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={() => handlePlannerStepChange(nextPlannerStep)}
+                >
+                  Next
+                </button>
+              ) : (
+                <span className="planner-step-placeholder" aria-hidden="true" />
+              )}
+            </div>
           </div>
         </div>
       </section>
