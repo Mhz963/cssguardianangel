@@ -1126,6 +1126,12 @@ a {
   gap: 0.95rem;
 }
 
+.report-pdf-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
 .guardian-report-overview {
   border: 1px solid var(--border-soft);
   border-radius: 12px;
@@ -1193,6 +1199,98 @@ a {
 
 .guardian-report-sections h4 {
   margin: 0 0 0.55rem;
+}
+
+.guardian-gamification-panel {
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+  background: var(--bg-secondary);
+  padding: 0.85rem;
+  display: grid;
+  gap: 0.8rem;
+}
+
+.guardian-gamification-head h4 {
+  margin: 0;
+}
+
+.guardian-gamification-head p {
+  margin: 0.28rem 0 0;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+.guardian-gamification-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.55rem;
+}
+
+.guardian-gamification-stats article {
+  border: 1px solid var(--border-soft);
+  border-radius: 10px;
+  padding: 0.6rem;
+  background: color-mix(in srgb, var(--brand-gold) 10%, var(--bg-secondary));
+}
+
+.guardian-gamification-stats p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+}
+
+.guardian-gamification-stats strong {
+  display: block;
+  margin-top: 0.2rem;
+}
+
+.guardian-badge-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.6rem;
+}
+
+.guardian-badge-card {
+  border: 1px solid var(--border-soft);
+  border-radius: 10px;
+  padding: 0.7rem;
+  background: var(--bg-secondary);
+  display: grid;
+  gap: 0.4rem;
+}
+
+.guardian-badge-card.unlocked {
+  border-color: color-mix(in srgb, #22c55e 58%, var(--border-soft));
+  background: color-mix(in srgb, #22c55e 12%, var(--bg-secondary));
+}
+
+.guardian-badge-status {
+  margin: 0;
+  font-size: 0.76rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.guardian-badge-card h5 {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.guardian-badge-card p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+}
+
+.guardian-badge-card small {
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+}
+
+.guardian-next-badge {
+  margin: 0;
+  color: var(--text-secondary);
 }
 
 .performance-dmc {
@@ -1274,6 +1372,18 @@ a {
 .performance-dmc-total {
   margin: 0.7rem 0 0;
   color: var(--text-primary);
+}
+
+.performance-dmc-total.low {
+  color: #ef4444;
+}
+
+.performance-dmc-total.mid {
+  color: #facc15;
+}
+
+.performance-dmc-total.high {
+  color: #22c55e;
 }
 
 .study-group-head h3 {
@@ -2238,6 +2348,50 @@ a {
   color: var(--text-secondary);
 }
 
+.focus-recovery-card {
+  border: 1px solid color-mix(in srgb, var(--brand-gold) 40%, var(--border-soft));
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--brand-gold) 10%, var(--bg-secondary));
+  padding: 0.85rem;
+  display: grid;
+  gap: 0.65rem;
+}
+
+.focus-recovery-card h4 {
+  margin: 0;
+}
+
+.focus-recovery-card p {
+  margin: 0;
+  color: var(--text-secondary);
+}
+
+.focus-recovery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.6rem;
+}
+
+.focus-recovery-day {
+  border: 1px solid var(--border-soft);
+  border-radius: 10px;
+  background: var(--bg-secondary);
+  padding: 0.7rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.focus-recovery-day h5 {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.focus-recovery-day p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.84rem;
+}
+
 .study-chart {
   display: grid;
   grid-template-columns: repeat(7, minmax(0, 1fr));
@@ -3083,6 +3237,15 @@ a {
   }
 
   .guardian-report-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .guardian-gamification-stats,
+  .guardian-badge-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .focus-recovery-grid {
     grid-template-columns: 1fr;
   }
 

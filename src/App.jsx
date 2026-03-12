@@ -1571,6 +1571,11 @@ function GuardianStudyPlannerPage({ authUser }) {
   const [outlinePdfUrl, setOutlinePdfUrl] = useState('')
   const [outlinePdfFileName, setOutlinePdfFileName] = useState('Guardian_Angel_CSS_Course_Outline.pdf')
   const [isGeneratingOutlinePdf, setIsGeneratingOutlinePdf] = useState(false)
+  const [weeklyReportPdfUrl, setWeeklyReportPdfUrl] = useState('')
+  const [weeklyReportPdfFileName, setWeeklyReportPdfFileName] = useState(
+    'Guardian_Angel_Weekly_Report_Card.pdf',
+  )
+  const [isGeneratingWeeklyReportPdf, setIsGeneratingWeeklyReportPdf] = useState(false)
   const [calendarMonth, setCalendarMonth] = useState(() => {
     const now = new Date()
     return new Date(now.getFullYear(), now.getMonth(), 1)
@@ -1846,8 +1851,9 @@ function GuardianStudyPlannerPage({ authUser }) {
   useEffect(
     () => () => {
       if (outlinePdfUrl) URL.revokeObjectURL(outlinePdfUrl)
+      if (weeklyReportPdfUrl) URL.revokeObjectURL(weeklyReportPdfUrl)
     },
-    [outlinePdfUrl],
+    [outlinePdfUrl, weeklyReportPdfUrl],
   )
 
   const handleChange = (event) => {
@@ -1875,13 +1881,7 @@ function GuardianStudyPlannerPage({ authUser }) {
   }
   const validateGroupIIRule = (subjects) => {
     const groupII = subjects.filter((item) => OPTIONAL_META_MAP[item]?.group === 'Group II')
-    if (groupII.length === 0) {
-      return {
-        ok: false,
-        message:
-          'Group II is mandatory: select either one 200 marks subject (Physics/Chemistry) or two 100 marks subjects.',
-      }
-    }
+    if (groupII.length === 0) return { ok: true }
     const count200 = groupII.filter((item) => OPTIONAL_META_MAP[item]?.marks === 200).length
     const count100 = groupII.filter((item) => OPTIONAL_META_MAP[item]?.marks === 100).length
     const isValidSingle200 = count200 === 1 && groupII.length === 1
@@ -2445,6 +2445,117 @@ function GuardianStudyPlannerPage({ authUser }) {
     })
   }
 
+  const handleGenerateWeeklyReportPdf = () => {
+    setIsGeneratingWeeklyReportPdf(true)
+    try {
+      const doc = new jsPDF({ unit: 'pt', format: 'a4' })
+      const pageWidth = doc.internal.pageSize.getWidth()
+      const pageHeight = doc.internal.pageSize.getHeight()
+      const marginX = 42
+      const maxWidth = pageWidth - marginX * 2
+      const pageBottom = pageHeight - 42
+      let y = 56
+
+      const ensureSpace = (needed = 20) => {
+        if (y + needed <= pageBottom) return
+        doc.addPage()
+        y = 52
+      }
+      const drawText = (text, options = {}) => {
+        const { size = 11, lineHeight = 15, style = 'normal', bullet = false } = options
+        const prefix = bullet ? '- ' : ''
+        const lines = doc.splitTextToSize(`${prefix}${text}`, maxWidth)
+        ensureSpace(lines.length * lineHeight + 4)
+        doc.setFont('helvetica', style)
+        doc.setFontSize(size)
+        lines.forEach((line) => {
+          doc.text(line, marginX, y)
+          y += lineHeight
+        })
+      }
+      const drawSection = (title) => {
+        ensureSpace(26)
+        doc.setFont('helvetica', 'bold')
+        doc.setFontSize(14)
+        doc.text(title, marginX, y)
+        y += 18
+      }
+
+      const stamp = new Date()
+      const dateLabel = stamp.toLocaleDateString('en-GB')
+      doc.setFont('helvetica', 'bold')
+      doc.setFontSize(24)
+      doc.text('Guardian Angel Weekly Report Card', marginX, y)
+      y += 24
+      doc.setFont('helvetica', 'normal')
+      doc.setFontSize(11)
+      doc.text(`Candidate: ${authUser.fullName || authUser.username}`, marginX, y)
+      y += 16
+      doc.text(`Generated on: ${dateLabel}`, marginX, y)
+      y += 20
+
+      drawSection('Overall Performance Snapshot')
+      drawText(`Overall readiness: ${guardianOverallScore}/100 (${guardianOverallStatus})`, { style: 'bold' })
+      drawText(
+        `Weekly completion: ${weeklyProgressPercent.toFixed(0)}% | Social overuse today: ${socialOveruseMinutes} min | Current streak: ${currentStudyStreak} day(s).`,
+      )
+      y += 8
+
+      drawSection('Progress Metrics')
+      guardianReportRows.forEach((row) => {
+        drawText(`${row.label}: ${row.score}%`, { style: 'bold' })
+        drawText(row.note)
+      })
+
+      drawSection('Current Risks')
+      const risks =
+        guardianRiskSignals.length > 0
+          ? guardianRiskSignals
+          : ['No major risk cluster detected currently. Maintain current consistency.']
+      risks.forEach((risk) => drawText(risk, { bullet: true }))
+
+      drawSection('Focus Recovery Protocol')
+      if (focusRecoveryProtocol) {
+        drawText(
+          `Backlog: ${focusRecoveryProtocol.backlogMinutes} min | Safe cap: ${focusRecoveryProtocol.maxExtraPerDay} min/day`,
+        )
+        focusRecoveryProtocol.recoveryDays.forEach((day) => {
+          drawText(`${day.dayLabel}: +${day.extraMinutes} min (target ${day.totalTarget} min)`, {
+            bullet: true,
+          })
+        })
+      } else {
+        drawText('No catch-up needed this week. Keep current execution momentum.')
+      }
+
+      drawSection('Next-Week Targets')
+      nextWeekTargets.forEach((target) => drawText(target, { bullet: true }))
+
+      const totalPages = doc.getNumberOfPages()
+      for (let pageNumber = 1; pageNumber <= totalPages; pageNumber += 1) {
+        doc.setPage(pageNumber)
+        doc.setFont('helvetica', 'normal')
+        doc.setFontSize(9)
+        doc.text(`Page ${pageNumber} of ${totalPages}`, pageWidth - marginX, pageHeight - 18, {
+          align: 'right',
+        })
+      }
+
+      const blob = doc.output('blob')
+      const nextPdfUrl = URL.createObjectURL(blob)
+      setWeeklyReportPdfUrl((current) => {
+        if (current) URL.revokeObjectURL(current)
+        return nextPdfUrl
+      })
+      const fileStamp = `${stamp.getFullYear()}-${`${stamp.getMonth() + 1}`.padStart(2, '0')}-${`${stamp.getDate()}`.padStart(2, '0')}`
+      setWeeklyReportPdfFileName(`Guardian_Angel_Weekly_Report_Card_${fileStamp}.pdf`)
+    } catch {
+      setError('Unable to generate weekly report PDF. Please try again.')
+    } finally {
+      setIsGeneratingWeeklyReportPdf(false)
+    }
+  }
+
   const handleTimerStart = () => {
     if (timerStatus === 'running') return
     if (timerStatus === 'idle') {
@@ -2637,6 +2748,50 @@ function GuardianStudyPlannerPage({ authUser }) {
     totalWeekRequiredMinutes > 0
       ? Math.min(100, (totalWeekStudiedMinutes / totalWeekRequiredMinutes) * 100)
       : 0
+  const weeklyDeficitMinutes = Math.max(totalWeekRequiredMinutes - totalWeekStudiedMinutes, 0)
+  const missedDailyTarget =
+    requiredDailyMinutes > 0 &&
+    remainingTodayMinutes >= Math.max(20, Math.round(requiredDailyMinutes * 0.2))
+  const missedWeeklyTarget = requiredDailyMinutes > 0 && weeklyProgressPercent < 75
+  const shouldShowRecoveryProtocol = Boolean(plan) && (missedDailyTarget || missedWeeklyTarget)
+  const focusRecoveryProtocol = (() => {
+    if (!shouldShowRecoveryProtocol || !plan) return null
+    const weightedBacklogMinutes = Math.round(remainingTodayMinutes + weeklyDeficitMinutes * 0.35)
+    const backlogMinutes = Math.max(30, weightedBacklogMinutes)
+    const maxExtraPerDay = Math.min(90, Math.max(30, Math.round(requiredDailyMinutes * 0.35)))
+    let remaining = backlogMinutes
+    const dailyExtras = [0, 0, 0].map((_, index) => {
+      const daysLeft = 3 - index
+      const allocation = Math.min(maxExtraPerDay, Math.max(20, Math.ceil(remaining / daysLeft)))
+      remaining = Math.max(0, remaining - allocation)
+      return allocation
+    })
+    const totalRecovered = dailyExtras.reduce((sum, minutes) => sum + minutes, 0)
+    const unresolvedMinutes = Math.max(0, backlogMinutes - totalRecovered)
+    const recoveryDays = dailyExtras.map((extraMinutes, index) => {
+      const dayDate = addDays(startOfDay(new Date()), index + 1)
+      const dayLabel = dayDate.toLocaleDateString('en-US', { weekday: 'long' })
+      const totalTarget = requiredDailyMinutes + extraMinutes
+      return {
+        id: `${dayLabel}-${index}`,
+        dayLabel,
+        extraMinutes,
+        totalTarget,
+        protocol: [
+          `Add ${extraMinutes} focused recovery minutes.`,
+          'Use 2 deep-work blocks (50 min each) with 10-minute breaks.',
+          'Close the day with 20 minutes of revision recap and error log.',
+        ],
+      }
+    })
+    return {
+      backlogMinutes,
+      maxExtraPerDay,
+      totalRecovered,
+      unresolvedMinutes,
+      recoveryDays,
+    }
+  })()
   const socialWeeklyUsage = weekDays.map((day) => {
     const dayKey = formatDayKey(day)
     const minutesFromLogs = socialTimerSessions
@@ -2651,6 +2806,105 @@ function GuardianStudyPlannerPage({ authUser }) {
   })
   const socialWeeklyAverageMinutes =
     socialWeeklyUsage.reduce((sum, item) => sum + item.socialMinutes, 0) / Math.max(1, socialWeeklyUsage.length)
+  const studyConsistencyThresholdMinutes =
+    requiredDailyMinutes > 0 ? Math.max(30, Math.round(requiredDailyMinutes * 0.6)) : 60
+  const rollingStudyDays = Array.from({ length: 30 }, (_, index) =>
+    addDays(startOfDay(new Date()), -(29 - index)),
+  ).map((day) => {
+    const dayKey = formatDayKey(day)
+    const minutesFromLogs = timerSessions
+      .filter((item) => item.dayKey === dayKey)
+      .reduce((sum, item) => sum + Math.floor(item.durationSeconds / 60), 0)
+    const todayExtra = dayKey === todayKey ? currentSessionMinutes : 0
+    return {
+      dayKey,
+      studiedMinutes: minutesFromLogs + todayExtra,
+    }
+  })
+  const currentStudyStreak = (() => {
+    let streak = 0
+    for (let index = rollingStudyDays.length - 1; index >= 0; index -= 1) {
+      if (rollingStudyDays[index].studiedMinutes >= studyConsistencyThresholdMinutes) streak += 1
+      else break
+    }
+    return streak
+  })()
+  const longestStudyStreak = (() => {
+    let longest = 0
+    let current = 0
+    rollingStudyDays.forEach((day) => {
+      if (day.studiedMinutes >= studyConsistencyThresholdMinutes) {
+        current += 1
+        longest = Math.max(longest, current)
+      } else {
+        current = 0
+      }
+    })
+    return longest
+  })()
+  const recent14StudyDays = rollingStudyDays.slice(-14)
+  const recent14HitDays = recent14StudyDays.filter(
+    (item) => item.studiedMinutes >= studyConsistencyThresholdMinutes,
+  ).length
+  const studyConsistencyPercent14 = clampToPercent((recent14HitDays / Math.max(1, recent14StudyDays.length)) * 100)
+  const revisionDaysCount = Object.values(dayStatuses).filter((status) => status === 'revision').length
+  const mockTestDaysCount = Object.values(dayStatuses).filter((status) => status === 'mock-test').length
+  const socialWithinLimitDays7 = socialWeeklyUsage.filter(
+    (item) => item.socialMinutes <= socialDailyLimitMinutes,
+  ).length
+  const gamificationBadges = [
+    {
+      id: 'first-session',
+      title: 'First Focus Session',
+      description: 'Complete your first tracked study session.',
+      unlocked: timerSessions.length > 0 || elapsedSeconds > 0,
+      progress: Math.min(100, ((timerSessions.length > 0 ? 1 : 0) / 1) * 100),
+    },
+    {
+      id: 'streak-3',
+      title: 'Consistency Starter',
+      description: `Maintain a ${studyConsistencyThresholdMinutes}+ min streak for 3 days.`,
+      unlocked: currentStudyStreak >= 3,
+      progress: Math.min(100, (currentStudyStreak / 3) * 100),
+    },
+    {
+      id: 'streak-7',
+      title: 'Week Warrior',
+      description: `Maintain a ${studyConsistencyThresholdMinutes}+ min streak for 7 days.`,
+      unlocked: currentStudyStreak >= 7,
+      progress: Math.min(100, (currentStudyStreak / 7) * 100),
+    },
+    {
+      id: 'consistency-14',
+      title: 'Rhythm Keeper',
+      description: 'Hit study target on at least 10 of last 14 days.',
+      unlocked: recent14HitDays >= 10,
+      progress: Math.min(100, (recent14HitDays / 10) * 100),
+    },
+    {
+      id: 'revision-7',
+      title: 'Revision Milestone',
+      description: 'Mark 7 revision-focused days in Guardian Calendar.',
+      unlocked: revisionDaysCount >= 7,
+      progress: Math.min(100, (revisionDaysCount / 7) * 100),
+    },
+    {
+      id: 'mock-3',
+      title: 'Mock Momentum',
+      description: 'Complete 3 mock-test days.',
+      unlocked: mockTestDaysCount >= 3,
+      progress: Math.min(100, (mockTestDaysCount / 3) * 100),
+    },
+    {
+      id: 'social-discipline',
+      title: 'Digital Discipline',
+      description: 'Stay within social limit for all last 7 days.',
+      unlocked: socialWithinLimitDays7 >= 7,
+      progress: Math.min(100, (socialWithinLimitDays7 / 7) * 100),
+    },
+  ]
+  const unlockedBadgeCount = gamificationBadges.filter((badge) => badge.unlocked).length
+  const nextBadgeTarget = gamificationBadges.find((badge) => !badge.unlocked) || null
   const selectedStatus = selectedCalendarDay ? dayStatuses[selectedCalendarDay] || 'planned' : 'planned'
   const selectedOptionalByGroup = optionalGroups
     .map((group) => ({
@@ -2699,11 +2953,8 @@ function GuardianStudyPlannerPage({ authUser }) {
     setSubjectPerformanceLevels((current) => {
       const next = {}
       performanceSubjects.forEach((subject) => {
-        if (subject === 'English (Precis & Composition)') {
-          next[subject] = 'Contendor'
-          return
-        }
-        next[subject] = current[subject] || 'Survivor'
+        const defaultLevel = subject === 'English (Precis & Composition)' ? 'Contendor' : 'Survivor'
+        next[subject] = current[subject] || defaultLevel
       })
       const hasChanged =
         Object.keys(next).length !== Object.keys(current).length ||
@@ -2788,6 +3039,8 @@ function GuardianStudyPlannerPage({ authUser }) {
   const optionalScoreRows = scoredPerformanceRows.filter((item) => item.section === 'Optionals')
   const projectedScoreTotal = scoredPerformanceRows.reduce((sum, item) => sum + item.score, 0)
   const projectedMaxTotal = performanceScoreRows.length * 100
+  const projectedScoreBand =
+    projectedScoreTotal < 600 ? 'low' : projectedScoreTotal <= 670 ? 'mid' : 'high'
   const subjectLockerScore = clampToPercent(
     (selectedOptionalMarks / 600) * 65 +
       (selectedOptionalPaperCount / 6) * 20 +
@@ -2921,6 +3174,9 @@ function GuardianStudyPlannerPage({ authUser }) {
     socialOveruseMinutes > 0
       ? `Social usage exceeded limit by ${socialOveruseMinutes} minutes and reduced performance score impact.`
       : '',
+    focusRecoveryProtocol
+      ? `Targets are off-track. A 3-day recovery protocol is generated (${focusRecoveryProtocol.backlogMinutes} min backlog).`
+      : '',
   ].filter(Boolean)
   const guardianActionPlan = [
     weakSubjects.length
@@ -2933,8 +3189,26 @@ function GuardianStudyPlannerPage({ authUser }) {
     socialOveruseMinutes > 0
       ? `Cut social media by at least ${Math.ceil(socialOveruseMinutes / 2)} minutes tomorrow to recover readiness score.`
       : 'Keep social media usage within the daily limit to protect readiness score.',
+    focusRecoveryProtocol
+      ? `Follow Focus Recovery Protocol for next 3 days: +${focusRecoveryProtocol.recoveryDays.map((day) => day.extraMinutes).join('/')} min.`
+      : 'No recovery protocol needed currently. Maintain current pace and consistency.',
     'Mark every study day in Guardian Calendar with completed, revision, or mock-test status.',
     'Review this report every week and move one subject from Survivor to Contendor.',
+  ]
+  const nextWeekTargets = [
+    requiredDailyMinutes > 0
+      ? `Study minimum ${requiredDailyMinutes} focused minutes daily for next 7 days.`
+      : 'Generate strategy and set a daily minimum study target.',
+    `Reach at least ${Math.max(75, Math.min(90, Math.round(weeklyProgressPercent + 8)))}% weekly completion.`,
+    `Keep social media usage within ${socialDailyLimitMinutes} minutes per day.`,
+    weakSubjects.length > 0
+      ? `Move at least one subject from Survivor to Contendor (${weakSubjects.slice(0, 2).join(', ')}).`
+      : 'Protect current subject strength and convert one Contendor subject to Topper.',
+    focusRecoveryProtocol
+      ? `Complete 3-day Focus Recovery Protocol (+${focusRecoveryProtocol.recoveryDays
+          .map((day) => day.extraMinutes)
+          .join('/') } min).`
+      : `Extend consistency streak from ${currentStudyStreak} to at least ${Math.max(3, currentStudyStreak + 2)} days.`,
   ]
   const plannerStepIndex = Math.max(
     0,
@@ -3629,7 +3903,7 @@ function GuardianStudyPlannerPage({ authUser }) {
                           </tbody>
                         </table>
                       </div>
-                      <p className="performance-dmc-total">
+                      <p className={`performance-dmc-total ${projectedScoreBand}`}>
                         <strong>Total Projected Marks:</strong> {projectedScoreTotal} / {projectedMaxTotal}
                       </p>
                       <p className="planner-meta">
@@ -3724,6 +3998,40 @@ function GuardianStudyPlannerPage({ authUser }) {
           <p className="progress-caption">
             Daily target progress: {requiredDailyMinutes ? `${dailyProgressPercent.toFixed(0)}%` : 'Generate your study strategy first.'}
           </p>
+
+          {focusRecoveryProtocol ? (
+            <section className="focus-recovery-card">
+              <h4>Focus Recovery Protocol (Auto 3-Day Catch-up)</h4>
+              <p>
+                You are behind target. Recovery backlog: <strong>{focusRecoveryProtocol.backlogMinutes} min</strong>.
+                Extra recovery is capped at <strong>{focusRecoveryProtocol.maxExtraPerDay} min/day</strong> to stay
+                burnout-safe.
+              </p>
+              <div className="focus-recovery-grid">
+                {focusRecoveryProtocol.recoveryDays.map((day) => (
+                  <article key={day.id} className="focus-recovery-day">
+                    <h5>{day.dayLabel}</h5>
+                    <p>
+                      Total target: <strong>{day.totalTarget} min</strong> ({requiredDailyMinutes} baseline +{' '}
+                      {day.extraMinutes} recovery)
+                    </p>
+                    <ul className="planner-list">
+                      {day.protocol.map((item) => (
+                        <li key={`${day.id}-${item}`}>{item}</li>
+                      ))}
+                    </ul>
+                  </article>
+                ))}
+              </div>
+              {focusRecoveryProtocol.unresolvedMinutes > 0 ? (
+                <p className="planner-meta">
+                  Remaining unresolved backlog after safe cap:{' '}
+                  <strong>{focusRecoveryProtocol.unresolvedMinutes} min</strong>. Continue with the same protocol
+                  for another 1-2 days if needed.
+                </p>
+              ) : null}
+            </section>
+          ) : null}
 
           <h4>Last 7 Days Study Graph</h4>
           <div className="study-chart">
@@ -3936,6 +4244,26 @@ function GuardianStudyPlannerPage({ authUser }) {
                   Deep assessment generated from Subject Locker, Strategy Builder, Performance Analysis,
                   Timer, Social Balance and Guardian Calendar.
                 </p>
+                <div className="report-pdf-actions">
+                  <button
+                    className="btn btn-primary"
+                    type="button"
+                    onClick={handleGenerateWeeklyReportPdf}
+                    disabled={isGeneratingWeeklyReportPdf}
+                  >
+                    {isGeneratingWeeklyReportPdf ? 'Generating Weekly PDF...' : 'Generate Weekly PDF Report Card'}
+                  </button>
+                  {weeklyReportPdfUrl ? (
+                    <>
+                      <a className="btn btn-secondary" href={weeklyReportPdfUrl} target="_blank" rel="noreferrer">
+                        View Weekly PDF
+                      </a>
+                      <a className="btn btn-secondary" href={weeklyReportPdfUrl} download={weeklyReportPdfFileName}>
+                        Download Weekly PDF
+                      </a>
+                    </>
+                  ) : null}
+                </div>
 
                 <div className="guardian-report-overview">
                   <div>
@@ -3957,6 +4285,87 @@ function GuardianStudyPlannerPage({ authUser }) {
                     </article>
                   ))}
                 </div>
+
+                <div className="guardian-gamification-panel">
+                  <div className="guardian-gamification-head">
+                    <h4>Consistency & Badge Tracker</h4>
+                    <p>
+                      Lightweight gamification to reinforce study discipline without distracting from
+                      preparation.
+                    </p>
+                  </div>
+
+                  <div className="guardian-gamification-stats">
+                    <article>
+                      <p>Current study streak</p>
+                      <strong>{currentStudyStreak} day(s)</strong>
+                    </article>
+                    <article>
+                      <p>Longest streak (30 days)</p>
+                      <strong>{longestStudyStreak} day(s)</strong>
+                    </article>
+                    <article>
+                      <p>14-day consistency</p>
+                      <strong>{studyConsistencyPercent14}%</strong>
+                    </article>
+                    <article>
+                      <p>Badges unlocked</p>
+                      <strong>
+                        {unlockedBadgeCount}/{gamificationBadges.length}
+                      </strong>
+                    </article>
+                  </div>
+
+                  <div className="guardian-badge-grid">
+                    {gamificationBadges.map((badge) => (
+                      <article
+                        key={badge.id}
+                        className={`guardian-badge-card ${badge.unlocked ? 'unlocked' : 'locked'}`}
+                      >
+                        <p className="guardian-badge-status">
+                          {badge.unlocked ? 'Unlocked' : 'In Progress'}
+                        </p>
+                        <h5>{badge.title}</h5>
+                        <p>{badge.description}</p>
+                        <div className="progress-track" aria-label={`${badge.title} progress`}>
+                          <span style={{ width: `${Math.round(badge.progress)}%` }} />
+                        </div>
+                        <small>{Math.round(badge.progress)}% complete</small>
+                      </article>
+                    ))}
+                  </div>
+
+                  {nextBadgeTarget ? (
+                    <p className="guardian-next-badge">
+                      Next target: <strong>{nextBadgeTarget.title}</strong> ({Math.round(nextBadgeTarget.progress)}
+                      % complete)
+                    </p>
+                  ) : (
+                    <p className="guardian-next-badge">
+                      All current milestones unlocked. Keep consistency to sustain elite performance.
+                    </p>
+                  )}
+                </div>
+
+                {focusRecoveryProtocol ? (
+                  <div className="guardian-report-sections">
+                    <section>
+                      <h4>Focus Recovery Protocol (3-Day Auto Plan)</h4>
+                      <p>
+                        Backlog identified: <strong>{focusRecoveryProtocol.backlogMinutes} minutes</strong>. Recovery is
+                        intentionally capped to prevent burnout while restoring momentum.
+                      </p>
+                      <ul className="planner-list">
+                        {focusRecoveryProtocol.recoveryDays.map((day) => (
+                          <li key={`report-${day.id}`}>
+                            <strong>{day.dayLabel}:</strong> +{day.extraMinutes} min recovery (target {day.totalTarget}{' '}
+                            min)
+                          </li>
+                        ))}
+                      </ul>
+                    </section>
+                  </div>
+                ) : null}
 
                 <div className="guardian-report-sections">
                   <section>
