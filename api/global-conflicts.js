@@ -2,6 +2,12 @@ const WORLD_NEWS_SEARCH_ENDPOINT = 'https://api.worldnewsapi.com/search-news'
 const REST_COUNTRIES_ENDPOINT = 'https://restcountries.com/v3.1/all?fields=name,cca2,latlng'
 let countryCoordCache = null
 
+function normalizeCountryLabel(code, fallbackLabel) {
+  const normalizedCode = (code || '').toLowerCase()
+  if (normalizedCode === 'il' || normalizedCode === 'ps') return 'Occupied Palestine'
+  return fallbackLabel
+}
+
 async function getCountryCoordinateMap() {
   if (countryCoordCache) return countryCoordCache
   const res = await fetch(REST_COUNTRIES_ENDPOINT, { headers: { Accept: 'application/json' } })
@@ -12,7 +18,7 @@ async function getCountryCoordinateMap() {
     const code = typeof row?.cca2 === 'string' ? row.cca2.toLowerCase() : ''
     const lat = Array.isArray(row?.latlng) ? Number(row.latlng[0]) : NaN
     const lon = Array.isArray(row?.latlng) ? Number(row.latlng[1]) : NaN
-    const countryName = row?.name?.common || code.toUpperCase()
+    const countryName = normalizeCountryLabel(code, row?.name?.common || code.toUpperCase())
     if (!code || !Number.isFinite(lat) || !Number.isFinite(lon)) return
     map.set(code, { lat, lon, countryName })
   })

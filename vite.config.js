@@ -6,6 +6,11 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
   const apiKey = env.WORLDNEWSAPI_KEY || ''
   let countryCoordCache = null
+  const normalizeCountryLabel = (code, fallbackLabel) => {
+    const normalizedCode = (code || '').toLowerCase()
+    if (normalizedCode === 'il' || normalizedCode === 'ps') return 'Occupied Palestine'
+    return fallbackLabel
+  }
 
   return {
     plugins: [
@@ -198,7 +203,7 @@ export default defineConfig(({ mode }) => {
                   const code = typeof row?.cca2 === 'string' ? row.cca2.toLowerCase() : ''
                   const lat = Array.isArray(row?.latlng) ? Number(row.latlng[0]) : NaN
                   const lon = Array.isArray(row?.latlng) ? Number(row.latlng[1]) : NaN
-                  const countryName = row?.name?.common || code.toUpperCase()
+                  const countryName = normalizeCountryLabel(code, row?.name?.common || code.toUpperCase())
                   if (!code || !Number.isFinite(lat) || !Number.isFinite(lon)) return
                   map.set(code, { lat, lon, countryName })
                 })

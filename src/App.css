@@ -3483,6 +3483,21 @@ a {
   filter: saturate(0.9) contrast(1.05);
 }
 
+.global-leaflet-map .occupied-palestine-overlay-label {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  color: #111;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-shadow: none;
+}
+
+.global-leaflet-map .occupied-palestine-overlay-label::before {
+  display: none;
+}
+
 .global-conflict-list {
   display: grid;
   gap: 0.65rem;
