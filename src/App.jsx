@@ -346,6 +346,38 @@ const genderStudiesSlideFiles = [
   'Guardian_Angel_CSS_Gender_Studies_Lecture_10_Case_Studies.pptx',
 ]
 
+const internationalRelationsISlideFiles = [
+  'Guardian_Angel_CSS_International_Relations_Lecture_1_Motivation.pptx',
+  'Guardian_Angel_CSS_International_Relations_Lecture_2_Introduction.pptx',
+  'Guardian_Angel_CSS_International_Relations_Lecture_3_Theories_and_Approaches.pptx',
+  'Guardian_Angel_CSS_International_Relations_Lecture_4_International_Political_Security.pptx',
+  'Guardian_Angel_CSS_International_Relations_Lecture_5_Strategic_Approach.pptx',
+  'Guardian_Angel_CSS_International_Relations_Lecture_6_International_Political_Economy.pptx',
+  'Guardian_Angel_CSS_International_Relations_Lecture_7_International_Political_Community.pptx',
+  'Guardian_Angel_CSS_International_Relations_Lecture_8_Approaches_to_Peace.pptx',
+  'Guardian_Angel_CSS_International_Relations_Lecture_9_International_Political_Institutions.pptx',
+]
+
+const internationalRelationsIISlideFiles = [
+  'Guardian_Angel_CSS_International_Relations_Paper_II_Lecture_1_Interwar_Period.pptx',
+  'Guardian_Angel_CSS_International_Relations_Paper_II_Lecture_2_Cold_War.pptx',
+  'Guardian_Angel_CSS_International_Relations_Paper_II_Lecture_3_Post_Cold_War.pptx',
+  'Guardian_Angel_CSS_International_Relations_Paper_II_Lecture_4_International_and_Regional_Organizations.pptx',
+  'Guardian_Angel_CSS_International_Relations_Paper_II_Lecture_5_Foreign_Policy_Selected_Countries.pptx',
+  'Guardian_Angel_CSS_International_Relations_Paper_II_Lecture_6_South_Asia.pptx',
+  'Guardian_Angel_CSS_International_Relations_Paper_II_Lecture_7_Weapons_of_Mass_Destruction.pptx',
+  'Guardian_Angel_CSS_International_Relations_Paper_II_Lecture_8_Contemporary_Issues.pptx',
+]
+
+const businessAdministrationSlideFiles = [
+  'Guardian_Angel_CSS_Business_Administration_Lecture_1_Motivation.pptx',
+  'Guardian_Angel_CSS_Business_Administration_Lecture_2_Management.pptx',
+  'Guardian_Angel_CSS_Business_Administration_Lecture_3_HR_Management.pptx',
+  'Guardian_Angel_CSS_Business_Administration_Lecture_4_Financial_Management.pptx',
+  'Guardian_Angel_CSS_Business_Administration_Lecture_5_Operations_and_Supply_Chain_Management.pptx',
+  'Guardian_Angel_CSS_Business_Administration_Lecture_6_Marketing.pptx',
+]
+
 const criminologySlides = criminologySlideFiles.map((fileName) => ({
   title: formatStudySlideTitle(fileName),
   lectureNumber: extractLectureNumber(fileName),
@@ -360,6 +392,27 @@ const genderStudiesSlides = genderStudiesSlideFiles.map((fileName) => ({
   url: new URL(`../data/CSS Gender Studies Lecture Sides/${fileName}`, import.meta.url).href,
 }))
 
+const internationalRelationsISlides = internationalRelationsISlideFiles.map((fileName) => ({
+  title: formatStudySlideTitle(fileName),
+  lectureNumber: extractLectureNumber(fileName),
+  fileName,
+  url: new URL(`../data/CSS International Relations I Lecture Slides/${fileName}`, import.meta.url).href,
+}))
+
+const internationalRelationsIISlides = internationalRelationsIISlideFiles.map((fileName) => ({
+  title: formatStudySlideTitle(fileName),
+  lectureNumber: extractLectureNumber(fileName),
+  fileName,
+  url: new URL(`../data/CSS International Relations II Lecture Slides/${fileName}`, import.meta.url).href,
+}))
+
+const businessAdministrationSlides = businessAdministrationSlideFiles.map((fileName) => ({
+  title: formatStudySlideTitle(fileName),
+  lectureNumber: extractLectureNumber(fileName),
+  fileName,
+  url: new URL(`../data/CSS Business Administration Lecture Slides/${fileName}`, import.meta.url).href,
+}))
+
 const cssStudyMaterials = [
   {
     subject: 'Criminology',
@@ -370,6 +423,23 @@ const cssStudyMaterials = [
     subject: 'Gender Studies',
     description: 'Complete lecture sequence covering core concepts, theories, and case studies.',
     slides: genderStudiesSlides,
+  },
+  {
+    subject: 'International Relations I',
+    description: 'Paper I lecture sequence covering theory, security, strategy, economy, and institutions.',
+    slides: internationalRelationsISlides,
+  },
+  {
+    subject: 'International Relations II',
+    description:
+      'Paper II lecture sequence covering interwar period, Cold War, South Asia, organizations, and contemporary issues.',
+    slides: internationalRelationsIISlides,
+  },
+  {
+    subject: 'Business Administration',
+    description:
+      'Lecture sequence covering management, HR, finance, operations, supply chain, and marketing for CSS preparation.',
+    slides: businessAdministrationSlides,
   },
 ]
 
@@ -1598,7 +1668,7 @@ function CssStudyMaterialPage() {
       <section className="container css-rules-page">
         <div className="section-title">
           <p>CSS Study Material</p>
-          <h2>Criminology & Gender Studies Lecture Slides</h2>
+          <h2>Criminology, Gender Studies, and IR Lecture Slides</h2>
         </div>
 
         <p className="rules-source">
@@ -1609,7 +1679,7 @@ function CssStudyMaterialPage() {
         <div className="study-toolbar">
           <input
             type="search"
-            placeholder="Search by slide title (e.g. Lecture 3, Governance, Criminology)"
+            placeholder="Search by slide title (e.g. Lecture 3, International Relations, Criminology)"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             aria-label="Search CSS study material slides"
@@ -6026,8 +6096,8 @@ function GlobalConflictMapTab() {
           className="global-leaflet-map"
         >
           <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            attribution='Tiles &copy; Esri &mdash; Source: Esri, Garmin, GeoTechnologies, Inc, USGS, METI/NASA'
+            url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}"
           />
           <CircleMarker
             center={[30.3753, 69.3451]}
