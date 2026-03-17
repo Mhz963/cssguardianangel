@@ -637,6 +637,14 @@ const formatDateDDMMYYYY = (isoDate) => {
   if (!year || !month || !day) return '--/--/----'
   return `${day}/${month}/${year}`
 }
+const parseIsoDate = (isoDate) => {
+  if (!isoDate) return null
+  const [year, month, day] = isoDate.split('-').map(Number)
+  if (!year || !month || !day) return null
+  const parsed = new Date(year, month - 1, day)
+  if (Number.isNaN(parsed.getTime())) return null
+  return parsed
+}
 
 const stripHundredMarks = (value) => value.replace(/\s*\(100\s*Marks\)/gi, '').trim()
 
@@ -718,6 +726,7 @@ function Header({ theme, onToggleTheme, authUser, onLogout }) {
 
   const navItems = [
     { label: 'Home', to: '/' },
+    { label: 'Current Affairs', to: '/current-affairs' },
     { label: 'CSS Rules', to: '/css-rules' },
     { label: 'CSS Syllabus', to: '/css-syllabus' },
     { label: 'CSS Past Papers', to: '/css-past-papers' },
@@ -1533,6 +1542,13 @@ function GuardianStudyPlannerPage({ authUser }) {
       return { ...DEFAULT_PLANNER_FORM }
     }
   })
+  const [isExamDatePickerOpen, setIsExamDatePickerOpen] = useState(false)
+  const [examDatePickerMonth, setExamDatePickerMonth] = useState(() => {
+    const parsed = parseIsoDate(form.examDate)
+    if (parsed) return new Date(parsed.getFullYear(), parsed.getMonth(), 1)
+    const now = new Date()
+    return new Date(now.getFullYear(), now.getMonth(), 1)
+  })
   const [plan, setPlan] = useState(null)
   const [error, setError] = useState('')
   const [subjectLockerModalMessage, setSubjectLockerModalMessage] = useState('')
@@ -1573,7 +1589,7 @@ function GuardianStudyPlannerPage({ authUser }) {
   const [isGeneratingOutlinePdf, setIsGeneratingOutlinePdf] = useState(false)
   const [weeklyReportPdfUrl, setWeeklyReportPdfUrl] = useState('')
   const [weeklyReportPdfFileName, setWeeklyReportPdfFileName] = useState(
-    'Guardian_Angel_Weekly_Report_Card.pdf',
+    'Guardian_Angel_Report.pdf',
   )
   const [isGeneratingWeeklyReportPdf, setIsGeneratingWeeklyReportPdf] = useState(false)
   const [calendarMonth, setCalendarMonth] = useState(() => {
@@ -1860,6 +1876,17 @@ function GuardianStudyPlannerPage({ authUser }) {
     const { name, value } = event.target
     setForm((current) => ({ ...current, [name]: value }))
   }
+  const handleExamDateSelect = (date) => {
+    const dateKey = formatDayKey(date)
+    setForm((current) => ({ ...current, examDate: dateKey }))
+    setIsExamDatePickerOpen(false)
+  }
+
+  useEffect(() => {
+    const parsed = parseIsoDate(form.examDate)
+    if (!parsed) return
+    setExamDatePickerMonth(new Date(parsed.getFullYear(), parsed.getMonth(), 1))
+  }, [form.examDate])
 
   const handleProductiveHourToggle = (slotId) => {
     setForm((current) => {
@@ -2445,7 +2472,7 @@ function GuardianStudyPlannerPage({ authUser }) {
     })
   }
 
-  const handleGenerateWeeklyReportPdf = () => {
+  const handleGenerateWeeklyReportPdf = async () => {
     setIsGeneratingWeeklyReportPdf(true)
     try {
       const doc = new jsPDF({ unit: 'pt', format: 'a4' })
@@ -2455,10 +2482,41 @@ function GuardianStudyPlannerPage({ authUser }) {
       const maxWidth = pageWidth - marginX * 2
       const pageBottom = pageHeight - 42
       let y = 56
+      const generatedAt = new Date()
+      const generatedDateLabel = generatedAt.toLocaleDateString('en-GB')
+      const generatedTimeLabel = generatedAt.toLocaleTimeString('en-GB', {
+        hour: '2-digit',
+        minute: '2-digit',
+      })
+
+      let watermarkDataUrl = ''
+      try {
+        const watermarkResponse = await fetch(WATERMARK_IMAGE_URL)
+        if (watermarkResponse.ok) {
+          watermarkDataUrl = await fileToDataUrl(await watermarkResponse.blob())
+        }
+      } catch {
+        watermarkDataUrl = ''
+      }
+
+      const applyWatermark = () => {
+        if (!watermarkDataUrl) return
+        const width = pageWidth - 24
+        const height = pageHeight * 0.476
+        doc.addImage(
+          watermarkDataUrl,
+          'PNG',
+          (pageWidth - width) / 2,
+          (pageHeight - height) / 2,
+          width,
+          height,
+        )
+      }
 
       const ensureSpace = (needed = 20) => {
         if (y + needed <= pageBottom) return
         doc.addPage()
+        applyWatermark()
         y = 52
       }
       const drawText = (text, options = {}) => {
@@ -2481,33 +2539,87 @@ function GuardianStudyPlannerPage({ authUser }) {
         y += 18
       }
 
-      const stamp = new Date()
-      const dateLabel = stamp.toLocaleDateString('en-GB')
+      applyWatermark()
       doc.setFont('helvetica', 'bold')
       doc.setFontSize(24)
-      doc.text('Guardian Angel Weekly Report Card', marginX, y)
+      doc.text('Guardian Angel Candidate Report', marginX, y)
       y += 24
       doc.setFont('helvetica', 'normal')
       doc.setFontSize(11)
       doc.text(`Candidate: ${authUser.fullName || authUser.username}`, marginX, y)
       y += 16
-      doc.text(`Generated on: ${dateLabel}`, marginX, y)
+      doc.text(`Generated on: ${generatedDateLabel} at ${generatedTimeLabel}`, marginX, y)
       y += 20
 
-      drawSection('Overall Performance Snapshot')
-      drawText(`Overall readiness: ${guardianOverallScore}/100 (${guardianOverallStatus})`, { style: 'bold' })
+      drawSection('Executive Readiness Snapshot')
+      drawText(`Overall readiness score: ${guardianOverallScore}/100`, { style: 'bold' })
+      drawText(`Status interpretation: ${guardianOverallStatus}`)
       drawText(
         `Weekly completion: ${weeklyProgressPercent.toFixed(0)}% | Social overuse today: ${socialOveruseMinutes} min | Current streak: ${currentStudyStreak} day(s).`,
       )
       y += 8
 
-      drawSection('Progress Metrics')
+      drawSection('Module by Module Assessment')
       guardianReportRows.forEach((row) => {
         drawText(`${row.label}: ${row.score}%`, { style: 'bold' })
         drawText(row.note)
       })
 
-      drawSection('Current Risks')
+      drawSection('Expected DMC Projection')
+      drawText(
+        `Scoring mode: ${isManualDmcEnabled ? 'Manual adjustment enabled in DMC section' : 'Auto level based scoring (Survivor 40, Contendor 50, Topper 65)'}`,
+      )
+      drawText(
+        `Projected total marks: ${projectedScoreTotal} / ${projectedMaxTotal} (${projectedScoreBand.toUpperCase()} band)`,
+        { style: 'bold' },
+      )
+      drawText(
+        `Compulsory subtotal: ${compulsoryScoreRows.reduce((sum, item) => sum + item.score, 0)} / ${compulsoryScoreRows.length * 100}`,
+      )
+      drawText(
+        `Optionals subtotal: ${optionalScoreRows.reduce((sum, item) => sum + item.score, 0)} / ${optionalScoreRows.length * 100}`,
+      )
+      drawText('Compulsory detail:', { style: 'bold' })
+      if (compulsoryScoreRows.length > 0) {
+        compulsoryScoreRows.forEach((item) =>
+          drawText(`${item.subject} | ${item.level} | ${item.score} marks`, { bullet: true }),
+        )
+      } else {
+        drawText('No compulsory subjects found in current mapping.', { bullet: true })
+      }
+      drawText('Optional detail:', { style: 'bold' })
+      if (optionalScoreRows.length > 0) {
+        optionalScoreRows.forEach((item) =>
+          drawText(`${item.subject} | ${item.level} | ${item.score} marks`, { bullet: true }),
+        )
+      } else {
+        drawText('No optional subjects found in current mapping.', { bullet: true })
+      }
+
+      drawSection('Performance Intelligence')
+      drawText(
+        `Strong (Topper): ${strongSubjects.length} | Competitive (Contendor): ${competitiveSubjects.length} | Weak (Survivor): ${weakSubjects.length}`,
+      )
+      if (strongSubjects.length > 0) {
+        drawText(`Strong subjects: ${strongSubjects.join(', ')}`)
+      }
+      if (competitiveSubjects.length > 0) {
+        drawText(`Competitive subjects: ${competitiveSubjects.join(', ')}`)
+      }
+      if (weakSubjects.length > 0) {
+        drawText(`Weak subjects needing uplift: ${weakSubjects.join(', ')}`)
+      }
+
+      drawSection('Timer and Calendar Evidence')
+      drawText(`Today studied: ${studiedTodayMinutes} min | Daily target: ${requiredDailyMinutes || 0} min`)
+      drawText(
+        `Weekly studied: ${totalWeekStudiedMinutes} min | Weekly required: ${totalWeekRequiredMinutes} min | Completion: ${weeklyProgressPercent.toFixed(0)}%`,
+      )
+      drawText(
+        `Calendar tagged days: ${calendarTaggedDays} | Completed: ${calendarCompletedDays} | Revision: ${calendarRevisionDays} | Mock tests: ${calendarMockDays} | Skipped: ${calendarSkippedDays}`,
+      )
+
+      drawSection('Critical Risks and Recommendations')
       const risks =
         guardianRiskSignals.length > 0
           ? guardianRiskSignals
@@ -2530,6 +2642,16 @@ function GuardianStudyPlannerPage({ authUser }) {
 
       drawSection('Next-Week Targets')
       nextWeekTargets.forEach((target) => drawText(target, { bullet: true }))
+      drawSection('Next Cycle Action Plan')
+      guardianActionPlan.forEach((item) => drawText(item, { bullet: true }))
+
+      drawSection('Closing Note')
+      drawText(
+        'This report is generated by Guardian Angel to provide a measurable, structured, and actionable view of current CSS preparation quality.',
+      )
+      drawText(
+        'Execute this plan with discipline over the next 14 days and regenerate this report to track progress objectively.',
+      )
 
       const totalPages = doc.getNumberOfPages()
       for (let pageNumber = 1; pageNumber <= totalPages; pageNumber += 1) {
@@ -2547,13 +2669,89 @@ function GuardianStudyPlannerPage({ authUser }) {
         if (current) URL.revokeObjectURL(current)
         return nextPdfUrl
       })
-      const fileStamp = `${stamp.getFullYear()}-${`${stamp.getMonth() + 1}`.padStart(2, '0')}-${`${stamp.getDate()}`.padStart(2, '0')}`
-      setWeeklyReportPdfFileName(`Guardian_Angel_Weekly_Report_Card_${fileStamp}.pdf`)
+      const fileStamp = `${generatedAt.getFullYear()}-${`${generatedAt.getMonth() + 1}`.padStart(2, '0')}-${`${generatedAt.getDate()}`.padStart(2, '0')}`
+      setWeeklyReportPdfFileName(`Guardian_Angel_Report_${fileStamp}.pdf`)
     } catch {
-      setError('Unable to generate weekly report PDF. Please try again.')
+      setError('Unable to generate Guardian Angel report PDF. Please try again.')
     } finally {
       setIsGeneratingWeeklyReportPdf(false)
     }
+  }
+  const postWeeklyPdfToNativeApp = async (action) => {
+    if (!weeklyReportPdfUrl) return false
+    if (
+      typeof window === 'undefined' ||
+      !window.ReactNativeWebView ||
+      typeof window.ReactNativeWebView.postMessage !== 'function'
+    ) {
+      return false
+    }
+    try {
+      const response = await fetch(weeklyReportPdfUrl)
+      if (!response.ok) return false
+      const blob = await response.blob()
+      const dataUrl = await fileToDataUrl(blob)
+      const payloadString = String(dataUrl || '')
+      const fileName = weeklyReportPdfFileName || 'Guardian_Angel_Report.pdf'
+      const chunkSize = 24000
+      const totalChunks = Math.ceil(payloadString.length / chunkSize)
+      if (totalChunks <= 1) {
+        window.ReactNativeWebView.postMessage(
+          JSON.stringify({
+            type: 'ga_pdf_blob',
+            action,
+            fileName,
+            dataUrl: payloadString,
+          }),
+        )
+      } else {
+        const streamId = `ga_pdf_ui_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`
+        window.ReactNativeWebView.postMessage(
+          JSON.stringify({
+            type: 'ga_pdf_chunk_start',
+            id: streamId,
+            action,
+            fileName,
+            total: totalChunks,
+          }),
+        )
+        for (let index = 0; index < totalChunks; index += 1) {
+          window.ReactNativeWebView.postMessage(
+            JSON.stringify({
+              type: 'ga_pdf_chunk',
+              id: streamId,
+              index,
+              total: totalChunks,
+              chunk: payloadString.slice(index * chunkSize, (index + 1) * chunkSize),
+            }),
+          )
+        }
+        window.ReactNativeWebView.postMessage(JSON.stringify({ type: 'ga_pdf_chunk_end', id: streamId }))
+      }
+      return true
+    } catch {
+      return false
+    }
+  }
+  const handleViewWeeklyReportPdf = async () => {
+    if (!weeklyReportPdfUrl) return
+    const handledInApp = await postWeeklyPdfToNativeApp('view')
+    if (handledInApp) return
+    const opened = window.open(weeklyReportPdfUrl, '_blank', 'noopener,noreferrer')
+    if (!opened) {
+      window.location.href = weeklyReportPdfUrl
+    }
+  }
+  const handleDownloadWeeklyReportPdf = async () => {
+    if (!weeklyReportPdfUrl) return
+    const handledInApp = await postWeeklyPdfToNativeApp('download')
+    if (handledInApp) return
+    const link = document.createElement('a')
+    link.href = weeklyReportPdfUrl
+    link.download = weeklyReportPdfFileName || 'Guardian_Angel_Report.pdf'
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
   }
 
   const handleTimerStart = () => {
@@ -2727,6 +2925,22 @@ function GuardianStudyPlannerPage({ authUser }) {
   )
 
   const weekDays = Array.from({ length: 7 }, (_, index) => addDays(startOfDay(new Date()), index - 6))
+  const examPickerMonthLabel = examDatePickerMonth.toLocaleDateString('en-US', {
+    month: 'long',
+    year: 'numeric',
+  })
+  const examPickerFirstWeekday = new Date(
+    examDatePickerMonth.getFullYear(),
+    examDatePickerMonth.getMonth(),
+    1,
+  ).getDay()
+  const examPickerDaysInMonth = new Date(
+    examDatePickerMonth.getFullYear(),
+    examDatePickerMonth.getMonth() + 1,
+    0,
+  ).getDate()
+  const selectedExamDateKey = form.examDate || ''
+  const todayDateKey = formatDayKey(new Date())
   const weeklyProgress = weekDays.map((day) => {
     const dayKey = formatDayKey(day)
     const minutesFromLogs = timerSessions
@@ -3569,7 +3783,88 @@ function GuardianStudyPlannerPage({ authUser }) {
                   <form className="planner-form" onSubmit={handleGeneratePlan}>
                     <label>
                       What is the expected date of your CSS examination?
-                      <input name="examDate" type="date" value={form.examDate} onChange={handleChange} required />
+                      <div className="strategy-date-picker">
+                        <button
+                          type="button"
+                          className="strategy-date-trigger"
+                          onClick={() => setIsExamDatePickerOpen((current) => !current)}
+                          aria-expanded={isExamDatePickerOpen}
+                        >
+                          {form.examDate ? formatDateDDMMYYYY(form.examDate) : 'Select date (dd/mm/yyyy)'}
+                        </button>
+                        {isExamDatePickerOpen ? (
+                          <div className="strategy-calendar-popup">
+                            <div className="strategy-calendar-head">
+                              <button
+                                type="button"
+                                className="btn btn-secondary calendar-btn"
+                                onClick={() =>
+                                  setExamDatePickerMonth(
+                                    new Date(
+                                      examDatePickerMonth.getFullYear(),
+                                      examDatePickerMonth.getMonth() - 1,
+                                      1,
+                                    ),
+                                  )
+                                }
+                              >
+                                Prev
+                              </button>
+                              <strong>{examPickerMonthLabel}</strong>
+                              <button
+                                type="button"
+                                className="btn btn-secondary calendar-btn"
+                                onClick={() =>
+                                  setExamDatePickerMonth(
+                                    new Date(
+                                      examDatePickerMonth.getFullYear(),
+                                      examDatePickerMonth.getMonth() + 1,
+                                      1,
+                                    ),
+                                  )
+                                }
+                              >
+                                Next
+                              </button>
+                            </div>
+
+                            <div className="calendar-grid calendar-weekdays strategy-calendar-weekdays">
+                              {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
+                                <span key={day}>{day}</span>
+                              ))}
+                            </div>
+
+                            <div className="calendar-grid strategy-calendar-days">
+                              {Array.from({ length: examPickerFirstWeekday }).map((_, index) => (
+                                <span key={`picker-blank-${index}`} className="calendar-day blank" />
+                              ))}
+                              {Array.from({ length: examPickerDaysInMonth }).map((_, index) => {
+                                const dayDate = new Date(
+                                  examDatePickerMonth.getFullYear(),
+                                  examDatePickerMonth.getMonth(),
+                                  index + 1,
+                                )
+                                const dayKey = formatDayKey(dayDate)
+                                const isToday = dayKey === todayDateKey
+                                const isSelected = dayKey === selectedExamDateKey
+                                return (
+                                  <button
+                                    key={`picker-${dayKey}`}
+                                    type="button"
+                                    className={`calendar-day ${isToday ? 'today' : ''} ${
+                                      isSelected ? 'selected exam-day' : ''
+                                    }`}
+                                    onClick={() => handleExamDateSelect(dayDate)}
+                                  >
+                                    {index + 1}
+                                  </button>
+                                )
+                              })}
+                            </div>
+                          </div>
+                        ) : null}
+                      </div>
+                      <input type="hidden" name="examDate" value={form.examDate} />
                       <small>Selected (dd/mm/yyyy): {formatDateDDMMYYYY(form.examDate)}</small>
                     </label>
 
@@ -4251,16 +4546,24 @@ function GuardianStudyPlannerPage({ authUser }) {
                     onClick={handleGenerateWeeklyReportPdf}
                     disabled={isGeneratingWeeklyReportPdf}
                   >
-                    {isGeneratingWeeklyReportPdf ? 'Generating Weekly PDF...' : 'Generate Weekly PDF Report Card'}
+                    {isGeneratingWeeklyReportPdf ? 'Generating Guardian Report PDF...' : 'Generate Guardian Report PDF'}
                   </button>
                   {weeklyReportPdfUrl ? (
                     <>
-                      <a className="btn btn-secondary" href={weeklyReportPdfUrl} target="_blank" rel="noreferrer">
-                        View Weekly PDF
-                      </a>
-                      <a className="btn btn-secondary" href={weeklyReportPdfUrl} download={weeklyReportPdfFileName}>
-                        Download Weekly PDF
-                      </a>
+                      <button
+                        className="btn btn-secondary"
+                        type="button"
+                        onClick={handleViewWeeklyReportPdf}
+                      >
+                        View Report PDF
+                      </button>
+                      <button
+                        className="btn btn-secondary"
+                        type="button"
+                        onClick={handleDownloadWeeklyReportPdf}
+                      >
+                        Download Report PDF
+                      </button>
                     </>
                   ) : null}
                 </div>
@@ -4508,6 +4811,384 @@ function Footer() {
   )
 }
 
+function formatNewsTimestamp(value) {
+  if (!value) return ''
+  try {
+    const date = typeof value === 'number' ? new Date(value) : new Date(value)
+    if (Number.isNaN(date.getTime())) return ''
+    return date.toLocaleString(undefined, {
+      year: 'numeric',
+      month: 'short',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+    })
+  } catch {
+    return ''
+  }
+}
+
+function CurrentAffairsPage() {
+  const [items, setItems] = useState([])
+  const [status, setStatus] = useState('idle') // idle | loading | error | success
+  const [error, setError] = useState('')
+  const [query, setQuery] = useState('')
+  const [lastUpdatedAt, setLastUpdatedAt] = useState(null)
+  const [page, setPage] = useState(1)
+  const [totalResults, setTotalResults] = useState(0)
+
+  const pageSize = 24
+  const maxResultsCap = 100 // NewsAPI returns max 100 results for many plans
+  const effectiveTotal = Math.min(totalResults || 0, maxResultsCap)
+  const totalPages = Math.max(1, Math.ceil(effectiveTotal / pageSize) || 1)
+
+  const fetchNews = async ({ signal } = {}) => {
+    setStatus('loading')
+    setError('')
+    try {
+      const trimmedQuery = query.trim()
+      const effectiveQuery = trimmedQuery.length > 0 ? trimmedQuery : 'global'
+      const cacheKey = `ga-current-affairs-cache::newsapi::${effectiveQuery.toLowerCase()}::p${page}::s${pageSize}`
+      const cacheTtlMs = 8 * 60 * 1000
+
+      try {
+        const raw = localStorage.getItem(cacheKey)
+        if (raw) {
+          const cached = JSON.parse(raw)
+          if (
+            cached?.ts &&
+            Array.isArray(cached?.items) &&
+            typeof cached?.totalResults === 'number' &&
+            Date.now() - cached.ts < cacheTtlMs
+          ) {
+            setItems(cached.items)
+            setTotalResults(cached.totalResults)
+            setLastUpdatedAt(cached.ts)
+            setStatus('success')
+            return
+          }
+        }
+      } catch {
+        // Ignore cache failures.
+      }
+
+      const url =
+        '/api/current-affairs?' +
+        new URLSearchParams({
+          q: effectiveQuery,
+          pageSize: String(pageSize),
+          page: String(page),
+        }).toString()
+
+      const res = await fetch(url, { signal, headers: { Accept: 'application/json' } })
+      if (!res.ok) throw new Error(`News service returned ${res.status}`)
+      const data = await res.json()
+      const articles = Array.isArray(data?.articles) ? data.articles : []
+      const nextTotalResults = typeof data?.totalResults === 'number' ? data.totalResults : 0
+      const normalized = articles
+        .map((article) => ({
+          id: article?.url || article?.title || String(Math.random()),
+          title: article?.title || 'Untitled',
+          url: article?.url || '',
+          source: article?.source?.name || '',
+          domain: (() => {
+            try {
+              return article?.url ? new URL(article.url).hostname.replace(/^www\./, '') : ''
+            } catch {
+              return ''
+            }
+          })(),
+          date: article?.publishedAt || '',
+          image: article?.urlToImage || '',
+          snippet: article?.description || '',
+        }))
+        .filter((article) => article.url && article.title)
+
+      setItems(normalized)
+      setTotalResults(nextTotalResults)
+      setLastUpdatedAt(Date.now())
+      try {
+        localStorage.setItem(
+          cacheKey,
+          JSON.stringify({ ts: Date.now(), items: normalized, totalResults: nextTotalResults }),
+        )
+      } catch {
+        // Ignore cache failures.
+      }
+      setStatus('success')
+    } catch (err) {
+      if (err?.name === 'AbortError') return
+      setItems([])
+      setTotalResults(0)
+      const message = err?.message || 'Unable to load news right now.'
+      setError(
+        message.includes('429')
+          ? 'News provider is rate-limiting requests (429). Please wait a minute and try Refresh again.'
+          : message,
+      )
+      setStatus('error')
+    }
+  }
+
+  useEffect(() => {
+    const controller = new AbortController()
+    fetchNews({ signal: controller.signal })
+    return () => controller.abort()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [page])
+
+  const handleRefresh = () => {
+    const controller = new AbortController()
+    fetchNews({ signal: controller.signal })
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    setPage(1)
+    const controller = new AbortController()
+    fetchNews({ signal: controller.signal })
+  }
+
+  return (
+    <main className="page-main container">
+      <section className="section-title">
+        <p>Live global updates</p>
+        <h2>Current Affairs</h2>
+      </section>
+
+      <section className="current-affairs-shell">
+        <div className="current-affairs-toolbar glass-panel">
+          <div className="current-affairs-toolbar-head">
+            <h3>Hot headlines worldwide</h3>
+            <p>
+              Powered by NewsAPI. Last updated{' '}
+              {lastUpdatedAt ? <strong>{formatNewsTimestamp(lastUpdatedAt)}</strong> : '—'}.
+            </p>
+          </div>
+
+          <form className="current-affairs-search" onSubmit={handleSubmit}>
+            <input
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              placeholder="Search topics (e.g., elections, economy, climate, tech)"
+              aria-label="Search current affairs"
+            />
+            <button className="btn btn-primary" type="submit" disabled={status === 'loading'}>
+              Search
+            </button>
+            <button className="btn btn-secondary" type="button" onClick={handleRefresh} disabled={status === 'loading'}>
+              Refresh
+            </button>
+          </form>
+        </div>
+
+        <div className="current-affairs-pagination" aria-label="News pagination controls">
+          <button
+            className="btn btn-secondary"
+            type="button"
+            onClick={() => setPage((current) => Math.max(1, current - 1))}
+            disabled={status === 'loading' || page <= 1}
+          >
+            ← Prev
+          </button>
+          <p className="current-affairs-pagination-meta">
+            Page <strong>{page}</strong> of <strong>{totalPages}</strong>{' '}
+            {effectiveTotal > 0 ? <span>• {effectiveTotal} results</span> : null}
+          </p>
+          <button
+            className="btn btn-secondary"
+            type="button"
+            onClick={() => setPage((current) => Math.min(totalPages, current + 1))}
+            disabled={status === 'loading' || page >= totalPages}
+          >
+            Next →
+          </button>
+        </div>
+
+        {status === 'loading' ? (
+          <div className="current-affairs-loading">
+            <p>Fetching the latest headlines…</p>
+          </div>
+        ) : null}
+
+        {status === 'error' ? (
+          <div className="current-affairs-error glass-panel">
+            <h3>Couldn’t load news</h3>
+            <p>{error}</p>
+            <button className="btn btn-primary" type="button" onClick={handleRefresh}>
+              Try again
+            </button>
+          </div>
+        ) : null}
+
+        {status === 'success' ? (
+          <div className="current-affairs-grid">
+            {items.length === 0 ? (
+              <div className="current-affairs-empty glass-panel">
+                <h3>No results</h3>
+                <p>Try searching a broader topic like “global”, “economy”, or “technology”.</p>
+              </div>
+            ) : (
+              items.map((article) => (
+                <a
+                  key={article.id}
+                  className="current-affairs-card"
+                  href={article.url}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <div className="current-affairs-card-media" aria-hidden="true">
+                    {article.image ? <img src={article.image} alt="" loading="lazy" /> : <span />}
+                  </div>
+                  <div className="current-affairs-card-body">
+                    <p className="current-affairs-meta">
+                      <span>{article.domain || article.source || 'Global'}</span>
+                      {article.date ? <span>• {formatNewsTimestamp(article.date)}</span> : null}
+                    </p>
+                    <h3>{article.title}</h3>
+                    {article.snippet ? <p className="current-affairs-snippet">{article.snippet}</p> : null}
+                    <span className="current-affairs-readmore">Read full story →</span>
+                  </div>
+                </a>
+              ))
+            )}
+          </div>
+        ) : null}
+      </section>
+    </main>
+  )
+}
+
+function StickyNotesWidget() {
+  const [isOpen, setIsOpen] = useState(false)
+  const [draft, setDraft] = useState('')
+  const [notes, setNotes] = useState(() => {
+    try {
+      const raw = localStorage.getItem('ga-sticky-notes')
+      const parsed = raw ? JSON.parse(raw) : []
+      return Array.isArray(parsed) ? parsed : []
+    } catch {
+      return []
+    }
+  })
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('ga-sticky-notes', JSON.stringify(notes))
+    } catch {
+      // Ignore storage failures.
+    }
+  }, [notes])
+
+  const handlePaste = async () => {
+    try {
+      if (!navigator?.clipboard?.readText) return
+      const text = await navigator.clipboard.readText()
+      if (typeof text === 'string' && text.trim()) {
+        setDraft((current) => (current ? `${current}\n${text}` : text))
+        setIsOpen(true)
+      }
+    } catch {
+      // Clipboard can fail due to browser permissions.
+    }
+  }
+
+  const handleSave = () => {
+    const text = draft.trim()
+    if (!text) return
+    const note = {
+      id: `${Date.now()}_${Math.random().toString(16).slice(2)}`,
+      text,
+      createdAt: Date.now(),
+    }
+    setNotes((current) => [note, ...current].slice(0, 30))
+    setDraft('')
+    setIsOpen(true)
+  }
+
+  const handleDelete = (id) => setNotes((current) => current.filter((note) => note.id !== id))
+
+  const handleCopy = async (text) => {
+    try {
+      await navigator.clipboard.writeText(text)
+    } catch {
+      // Ignore copy failures.
+    }
+  }
+
+  return (
+    <div className="sticky-notes-wrap" aria-label="Sticky notes">
+      <button
+        className="sticky-notes-fab"
+        type="button"
+        onClick={() => setIsOpen((current) => !current)}
+        aria-label={isOpen ? 'Close sticky notes' : 'Open sticky notes'}
+        title="Sticky notes"
+      >
+        <svg viewBox="0 0 24 24" role="img" aria-hidden="true">
+          <path d="M6.5 3.8h11c1 0 1.8.8 1.8 1.8v9.3c0 .5-.2.9-.5 1.3l-3.7 3.7c-.3.3-.8.5-1.3.5H6.5c-1 0-1.8-.8-1.8-1.8V5.6c0-1 .8-1.8 1.8-1.8Z" fill="none" />
+          <path d="M15.5 19.8v-3.2c0-.8.6-1.4 1.4-1.4h3.2" fill="none" />
+          <path d="M8 8h8M8 11.2h8M8 14.4h5.6" fill="none" />
+        </svg>
+      </button>
+
+      {isOpen ? (
+        <div className="sticky-notes-panel glass-panel" role="dialog" aria-label="Sticky notes panel">
+          <div className="sticky-notes-head">
+            <div>
+              <h3>Sticky Notes</h3>
+              <p>Paste anything here and save it for later.</p>
+            </div>
+            <button className="btn btn-secondary" type="button" onClick={() => setIsOpen(false)}>
+              Close
+            </button>
+          </div>
+
+          <div className="sticky-notes-compose">
+            <textarea
+              value={draft}
+              onChange={(event) => setDraft(event.target.value)}
+              placeholder="Paste or type notes…"
+              rows={5}
+            />
+            <div className="sticky-notes-actions">
+              <button className="btn btn-secondary" type="button" onClick={handlePaste}>
+                Paste
+              </button>
+              <button className="btn btn-primary" type="button" onClick={handleSave} disabled={!draft.trim()}>
+                Save note
+              </button>
+            </div>
+          </div>
+
+          <div className="sticky-notes-list">
+            {notes.length === 0 ? (
+              <div className="sticky-notes-empty">
+                <p>No saved notes yet.</p>
+              </div>
+            ) : (
+              notes.map((note) => (
+                <div key={note.id} className="sticky-note">
+                  <p className="sticky-note-meta">{formatNewsTimestamp(note.createdAt)}</p>
+                  <pre className="sticky-note-text">{note.text}</pre>
+                  <div className="sticky-note-actions">
+                    <button className="btn btn-secondary" type="button" onClick={() => handleCopy(note.text)}>
+                      Copy
+                    </button>
+                    <button className="btn btn-secondary" type="button" onClick={() => handleDelete(note.id)}>
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+        </div>
+      ) : null}
+    </div>
+  )
+}
+
 function BackToTopButton() {
   const [isVisible, setIsVisible] = useState(false)
 
@@ -4618,6 +5299,7 @@ function App() {
         />
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/current-affairs" element={<CurrentAffairsPage />} />
           <Route path="/css-syllabus" element={<CssSyllabusPage />} />
           <Route path="/css-rules" element={<CssRulesPage />} />
           <Route path="/css-past-papers" element={<CssPastPapersPage />} />
@@ -4640,6 +5322,7 @@ function App() {
           <Route path="*" element={<HomePage />} />
         </Routes>
         <Footer />
+        <StickyNotesWidget />
         <BackToTopButton />
       </div>
     </BrowserRouter>
