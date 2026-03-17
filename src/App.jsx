@@ -726,7 +726,7 @@ function Header({ theme, onToggleTheme, authUser, onLogout }) {
 
   const navItems = [
     { label: 'Home', to: '/' },
-    { label: 'Current Affairs', to: '/current-affairs' },
+    { label: 'Global Affairs', to: '/global-affairs' },
     { label: 'CSS Rules', to: '/css-rules' },
     { label: 'CSS Syllabus', to: '/css-syllabus' },
     { label: 'CSS Past Papers', to: '/css-past-papers' },
@@ -4828,9 +4828,37 @@ function formatNewsTimestamp(value) {
   }
 }
 
-function CurrentAffairsPage() {
+function normalizeNewsSnippet(value) {
+  if (typeof value !== 'string') return ''
+  let decoded = value
+  if (typeof document !== 'undefined') {
+    const parser = document.createElement('textarea')
+    parser.innerHTML = decoded
+    decoded = parser.value
+  }
+  return decoded.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim()
+}
+
+function NewsCardMedia({ image }) {
+  const [hasLoadError, setHasLoadError] = useState(false)
+  const hasImage = typeof image === 'string' && image.trim() && !hasLoadError
+
+  return (
+    <div className="current-affairs-card-media" aria-hidden="true">
+      {hasImage ? (
+        <img src={image} alt="" loading="lazy" onError={() => setHasLoadError(true)} />
+      ) : (
+        <div className="current-affairs-card-media-fallback">
+          <span>Image not available</span>
+        </div>
+      )}
+    </div>
+  )
+}
+
+function WorldAffairsPage() {
   const [items, setItems] = useState([])
-  const [status, setStatus] = useState('idle') // idle | loading | error | success
+  const [status, setStatus] = useState('idle')
   const [error, setError] = useState('')
   const [query, setQuery] = useState('')
   const [lastUpdatedAt, setLastUpdatedAt] = useState(null)
@@ -4838,7 +4866,7 @@ function CurrentAffairsPage() {
   const [totalResults, setTotalResults] = useState(0)
 
   const pageSize = 24
-  const maxResultsCap = 100 // NewsAPI returns max 100 results for many plans
+  const maxResultsCap = 100000
   const effectiveTotal = Math.min(totalResults || 0, maxResultsCap)
   const totalPages = Math.max(1, Math.ceil(effectiveTotal / pageSize) || 1)
 
@@ -4848,7 +4876,234 @@ function CurrentAffairsPage() {
     try {
       const trimmedQuery = query.trim()
       const effectiveQuery = trimmedQuery.length > 0 ? trimmedQuery : 'global'
-      const cacheKey = `ga-current-affairs-cache::newsapi::${effectiveQuery.toLowerCase()}::p${page}::s${pageSize}`
+      const cacheKey = `ga-global-affairs-cache::${effectiveQuery.toLowerCase()}::p${page}::s${pageSize}`
+      const cacheTtlMs = 8 * 60 * 1000
+
+      try {
+        const raw = localStorage.getItem(cacheKey)
+        if (raw) {
+          const cached = JSON.parse(raw)
+          if (
+            cached?.ts &&
+            Array.isArray(cached?.items) &&
+            typeof cached?.totalResults === 'number' &&
+            Date.now() - cached.ts < cacheTtlMs
+          ) {
+            setItems(cached.items)
+            setTotalResults(cached.totalResults)
+            setLastUpdatedAt(cached.ts)
+            setStatus('success')
+            return
+          }
+        }
+      } catch {
+        // Ignore cache failures.
+      }
+
+      const url =
+        '/api/global-affairs?' +
+        new URLSearchParams({
+          q: effectiveQuery,
+          pageSize: String(pageSize),
+          page: String(page),
+        }).toString()
+
+      const res = await fetch(url, { signal, headers: { Accept: 'application/json' } })
+      if (!res.ok) throw new Error(`News service returned ${res.status}`)
+      const data = await res.json()
+      const articles = Array.isArray(data?.articles) ? data.articles : []
+      const nextTotalResults = typeof data?.totalResults === 'number' ? data.totalResults : 0
+      const normalized = articles
+        .map((article) => ({
+          id: article?.url || article?.title || String(Math.random()),
+          title: article?.title || 'Untitled',
+          url: article?.url || '',
+          source: article?.source?.name || '',
+          domain: (() => {
+            try {
+              return article?.url ? new URL(article.url).hostname.replace(/^www\./, '') : ''
+            } catch {
+              return ''
+            }
+          })(),
+          date: article?.publishedAt || '',
+          image: article?.urlToImage || '',
+          snippet: normalizeNewsSnippet(article?.description || ''),
+        }))
+        .filter((article) => article.url && article.title)
+
+      setItems(normalized)
+      setTotalResults(nextTotalResults)
+      setLastUpdatedAt(Date.now())
+      try {
+        localStorage.setItem(
+          cacheKey,
+          JSON.stringify({ ts: Date.now(), items: normalized, totalResults: nextTotalResults }),
+        )
+      } catch {
+        // Ignore cache failures.
+      }
+      setStatus('success')
+    } catch (err) {
+      if (err?.name === 'AbortError') return
+      setItems([])
+      setTotalResults(0)
+      const message = err?.message || 'Unable to load news right now.'
+      setError(
+        message.includes('429')
+          ? 'News provider is rate-limiting requests (429). Please wait a minute and try Refresh again.'
+          : message,
+      )
+      setStatus('error')
+    }
+  }
+
+  useEffect(() => {
+    const controller = new AbortController()
+    fetchNews({ signal: controller.signal })
+    return () => controller.abort()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [page])
+
+  const handleRefresh = () => {
+    const controller = new AbortController()
+    fetchNews({ signal: controller.signal })
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    setPage(1)
+    const controller = new AbortController()
+    fetchNews({ signal: controller.signal })
+  }
+
+  return (
+    <section className="current-affairs-shell">
+      <div className="current-affairs-toolbar glass-panel">
+        <div className="current-affairs-toolbar-head">
+          <h3>Global headlines</h3>
+          <p>
+            Powered by World News API. Last updated{' '}
+            {lastUpdatedAt ? <strong>{formatNewsTimestamp(lastUpdatedAt)}</strong> : '—'}.
+          </p>
+        </div>
+
+        <form className="current-affairs-search" onSubmit={handleSubmit}>
+          <input
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+            placeholder="Search topics (e.g., elections, economy, climate, tech)"
+            aria-label="Search global affairs"
+          />
+          <button className="btn btn-primary" type="submit" disabled={status === 'loading'}>
+            Search
+          </button>
+          <button className="btn btn-secondary" type="button" onClick={handleRefresh} disabled={status === 'loading'}>
+            Refresh
+          </button>
+        </form>
+      </div>
+
+      {status === 'loading' ? (
+        <div className="current-affairs-loading">
+          <p>Fetching the latest headlines…</p>
+        </div>
+      ) : null}
+
+      {status === 'error' ? (
+        <div className="current-affairs-error glass-panel">
+          <h3>Couldn’t load news</h3>
+          <p>{error}</p>
+          <button className="btn btn-primary" type="button" onClick={handleRefresh}>
+            Try again
+          </button>
+        </div>
+      ) : null}
+
+      {status === 'success' ? (
+        <>
+          <div className="current-affairs-grid">
+            {items.length === 0 ? (
+              <div className="current-affairs-empty glass-panel">
+                <h3>No results</h3>
+                <p>Try searching a broader topic like “global”, “economy”, or “technology”.</p>
+              </div>
+            ) : (
+              items.map((article) => (
+                <a
+                  key={article.id}
+                  className="current-affairs-card"
+                  href={article.url}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <NewsCardMedia image={article.image} />
+                  <div className="current-affairs-card-body">
+                    <p className="current-affairs-meta">
+                      <span>{article.domain || article.source || 'Global'}</span>
+                      {article.date ? <span>• {formatNewsTimestamp(article.date)}</span> : null}
+                    </p>
+                    <h3>{article.title}</h3>
+                    {article.snippet ? <p className="current-affairs-snippet">{article.snippet}</p> : null}
+                    <span className="current-affairs-readmore">Read full story →</span>
+                  </div>
+                </a>
+              ))
+            )}
+          </div>
+
+          {items.length > 0 ? (
+            <div className="current-affairs-pagination" aria-label="News pagination controls">
+              <button
+                className="btn btn-secondary"
+                type="button"
+                onClick={() => setPage((current) => Math.max(1, current - 1))}
+                disabled={status === 'loading' || page <= 1}
+              >
+                ← Prev
+              </button>
+              <p className="current-affairs-pagination-meta">
+                Page <strong>{page}</strong> of <strong>{totalPages}</strong>{' '}
+                {effectiveTotal > 0 ? <span>• {effectiveTotal} results</span> : null}
+              </p>
+              <button
+                className="btn btn-secondary"
+                type="button"
+                onClick={() => setPage((current) => Math.min(totalPages, current + 1))}
+                disabled={status === 'loading' || page >= totalPages}
+              >
+                Next →
+              </button>
+            </div>
+          ) : null}
+        </>
+      ) : null}
+    </section>
+  )
+}
+
+function PakistanAffairsPage() {
+  const [items, setItems] = useState([])
+  const [status, setStatus] = useState('idle') // idle | loading | error | success
+  const [error, setError] = useState('')
+  const [query, setQuery] = useState('')
+  const [lastUpdatedAt, setLastUpdatedAt] = useState(null)
+  const [page, setPage] = useState(1)
+  const [totalResults, setTotalResults] = useState(0)
+  const [feed, setFeed] = useState('top') // top | all | politics
+
+  const pageSize = 24
+  const maxResultsCap = 100000
+  const effectiveTotal = Math.min(totalResults || 0, maxResultsCap)
+  const totalPages = Math.max(1, Math.ceil(effectiveTotal / pageSize) || 1)
+
+  const fetchNews = async ({ signal } = {}) => {
+    setStatus('loading')
+    setError('')
+    try {
+      const trimmedQuery = query.trim()
+      const effectiveQuery = trimmedQuery.length > 0 ? trimmedQuery : 'pakistan'
+      const cacheKey = `ga-pakistan-affairs-cache::${feed}::${effectiveQuery.toLowerCase()}::p${page}::s${pageSize}`
       const cacheTtlMs = 8 * 60 * 1000
 
       try {
@@ -4878,6 +5133,7 @@ function CurrentAffairsPage() {
           q: effectiveQuery,
           pageSize: String(pageSize),
           page: String(page),
+          feed,
         }).toString()
 
       const res = await fetch(url, { signal, headers: { Accept: 'application/json' } })
@@ -4900,7 +5156,7 @@ function CurrentAffairsPage() {
           })(),
           date: article?.publishedAt || '',
           image: article?.urlToImage || '',
-          snippet: article?.description || '',
+          snippet: normalizeNewsSnippet(article?.description || ''),
         }))
         .filter((article) => article.url && article.title)
 
@@ -4952,26 +5208,59 @@ function CurrentAffairsPage() {
   return (
     <main className="page-main container">
       <section className="section-title">
-        <p>Live global updates</p>
-        <h2>Current Affairs</h2>
+        <p>Live updates from Pakistan</p>
+        <h2>Pakistan Affairs</h2>
       </section>
 
       <section className="current-affairs-shell">
         <div className="current-affairs-toolbar glass-panel">
           <div className="current-affairs-toolbar-head">
-            <h3>Hot headlines worldwide</h3>
+            <h3>Pakistan headlines</h3>
             <p>
-              Powered by NewsAPI. Last updated{' '}
+              Powered by World News API. Last updated{' '}
               {lastUpdatedAt ? <strong>{formatNewsTimestamp(lastUpdatedAt)}</strong> : '—'}.
             </p>
+          </div>
+
+          <div className="current-affairs-feed-tabs" role="tablist" aria-label="Pakistan affairs feed">
+            <button
+              type="button"
+              className={`current-affairs-feed-tab ${feed === 'top' ? 'active' : ''}`}
+              onClick={() => {
+                setFeed('top')
+                setPage(1)
+              }}
+            >
+              Top News
+            </button>
+            <button
+              type="button"
+              className={`current-affairs-feed-tab ${feed === 'all' ? 'active' : ''}`}
+              onClick={() => {
+                setFeed('all')
+                setPage(1)
+              }}
+            >
+              Search News
+            </button>
+            <button
+              type="button"
+              className={`current-affairs-feed-tab ${feed === 'politics' ? 'active' : ''}`}
+              onClick={() => {
+                setFeed('politics')
+                setPage(1)
+              }}
+            >
+              Politics
+            </button>
           </div>
 
           <form className="current-affairs-search" onSubmit={handleSubmit}>
             <input
               value={query}
               onChange={(event) => setQuery(event.target.value)}
-              placeholder="Search topics (e.g., elections, economy, climate, tech)"
-              aria-label="Search current affairs"
+              placeholder="Search Pakistan topics (e.g., elections, economy, security)"
+              aria-label="Search Pakistan affairs"
             />
             <button className="btn btn-primary" type="submit" disabled={status === 'loading'}>
               Search
@@ -4980,29 +5269,6 @@ function CurrentAffairsPage() {
               Refresh
             </button>
           </form>
-        </div>
-
-        <div className="current-affairs-pagination" aria-label="News pagination controls">
-          <button
-            className="btn btn-secondary"
-            type="button"
-            onClick={() => setPage((current) => Math.max(1, current - 1))}
-            disabled={status === 'loading' || page <= 1}
-          >
-            ← Prev
-          </button>
-          <p className="current-affairs-pagination-meta">
-            Page <strong>{page}</strong> of <strong>{totalPages}</strong>{' '}
-            {effectiveTotal > 0 ? <span>• {effectiveTotal} results</span> : null}
-          </p>
-          <button
-            className="btn btn-secondary"
-            type="button"
-            onClick={() => setPage((current) => Math.min(totalPages, current + 1))}
-            disabled={status === 'loading' || page >= totalPages}
-          >
-            Next →
-          </button>
         </div>
 
         {status === 'loading' ? (
@@ -5022,39 +5288,96 @@ function CurrentAffairsPage() {
         ) : null}
 
         {status === 'success' ? (
-          <div className="current-affairs-grid">
-            {items.length === 0 ? (
-              <div className="current-affairs-empty glass-panel">
-                <h3>No results</h3>
-                <p>Try searching a broader topic like “global”, “economy”, or “technology”.</p>
-              </div>
-            ) : (
-              items.map((article) => (
-                <a
-                  key={article.id}
-                  className="current-affairs-card"
-                  href={article.url}
-                  target="_blank"
-                  rel="noreferrer"
+          <>
+            <div className="current-affairs-grid">
+              {items.length === 0 ? (
+                <div className="current-affairs-empty glass-panel">
+                  <h3>No results</h3>
+                  <p>Try searching a broader topic like “global”, “economy”, or “technology”.</p>
+                </div>
+              ) : (
+                items.map((article) => (
+                  <a
+                    key={article.id}
+                    className="current-affairs-card"
+                    href={article.url}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <NewsCardMedia image={article.image} />
+                    <div className="current-affairs-card-body">
+                      <p className="current-affairs-meta">
+                        <span>{article.domain || article.source || 'Global'}</span>
+                        {article.date ? <span>• {formatNewsTimestamp(article.date)}</span> : null}
+                      </p>
+                      <h3>{article.title}</h3>
+                      {article.snippet ? <p className="current-affairs-snippet">{article.snippet}</p> : null}
+                      <span className="current-affairs-readmore">Read full story →</span>
+                    </div>
+                  </a>
+                ))
+              )}
+            </div>
+
+            {items.length > 0 ? (
+              <div className="current-affairs-pagination" aria-label="News pagination controls">
+                <button
+                  className="btn btn-secondary"
+                  type="button"
+                  onClick={() => setPage((current) => Math.max(1, current - 1))}
+                  disabled={status === 'loading' || page <= 1 || feed === 'top'}
                 >
-                  <div className="current-affairs-card-media" aria-hidden="true">
-                    {article.image ? <img src={article.image} alt="" loading="lazy" /> : <span />}
-                  </div>
-                  <div className="current-affairs-card-body">
-                    <p className="current-affairs-meta">
-                      <span>{article.domain || article.source || 'Global'}</span>
-                      {article.date ? <span>• {formatNewsTimestamp(article.date)}</span> : null}
-                    </p>
-                    <h3>{article.title}</h3>
-                    {article.snippet ? <p className="current-affairs-snippet">{article.snippet}</p> : null}
-                    <span className="current-affairs-readmore">Read full story →</span>
-                  </div>
-                </a>
-              ))
-            )}
-          </div>
+                  ← Prev
+                </button>
+                <p className="current-affairs-pagination-meta">
+                  Page <strong>{page}</strong> of <strong>{totalPages}</strong>{' '}
+                  {effectiveTotal > 0 ? <span>• {effectiveTotal} results</span> : null}
+                </p>
+                <button
+                  className="btn btn-secondary"
+                  type="button"
+                  onClick={() => setPage((current) => Math.min(totalPages, current + 1))}
+                  disabled={status === 'loading' || page >= totalPages || feed === 'top'}
+                >
+                  Next →
+                </button>
+              </div>
+            ) : null}
+          </>
         ) : null}
       </section>
+    </main>
+  )
+}
+
+function GlobalAffairsPage({ defaultTab = 'global' }) {
+  const [activeTab, setActiveTab] = useState(defaultTab)
+
+  return (
+    <main className="page-main container">
+      <section className="section-title">
+        <p>International & Pakistan coverage</p>
+        <h2>Global Affairs</h2>
+      </section>
+
+      <div className="current-affairs-feed-tabs" role="tablist" aria-label="Global vs Pakistan affairs">
+        <button
+          type="button"
+          className={`current-affairs-feed-tab ${activeTab === 'global' ? 'active' : ''}`}
+          onClick={() => setActiveTab('global')}
+        >
+          Current Affairs (World)
+        </button>
+        <button
+          type="button"
+          className={`current-affairs-feed-tab ${activeTab === 'pakistan' ? 'active' : ''}`}
+          onClick={() => setActiveTab('pakistan')}
+        >
+          Pakistan Affairs
+        </button>
+      </div>
+
+      {activeTab === 'global' ? <WorldAffairsPage /> : <PakistanAffairsPage />}
     </main>
   )
 }
@@ -5299,7 +5622,8 @@ function App() {
         />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/current-affairs" element={<CurrentAffairsPage />} />
+          <Route path="/pakistan-affairs" element={<GlobalAffairsPage defaultTab="pakistan" />} />
+          <Route path="/global-affairs" element={<GlobalAffairsPage defaultTab="global" />} />
           <Route path="/css-syllabus" element={<CssSyllabusPage />} />
           <Route path="/css-rules" element={<CssRulesPage />} />
           <Route path="/css-past-papers" element={<CssPastPapersPage />} />
