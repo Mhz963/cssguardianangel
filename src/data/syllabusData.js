@@ -41,7 +41,7 @@ const optionalGroups = [
       'Business Administration (100 Marks)',
       'Public Administration (100 Marks)',
       'Governance & Public Policies (100 Marks)',
-      'Town Planning & Urban-Management (100 Marks)',
+      'Town Planning & Urban Management (100 Marks)',
     ],
   },
   {

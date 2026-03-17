@@ -141,7 +141,7 @@ const homeFaqs = [
       'Yes. Many serious aspirants prepare through disciplined self study, authentic books, official documents, and consistent writing practice. Academy dependence is not a guarantee of success; clarity, consistency, and self accountability are.',
   },
   {
-    question: 'Is relying on ready-made CSS notes enough for exam success?',
+    question: 'Is relying on ready made CSS notes enough for exam success?',
     answer:
       'No. Notes can help in quick revision, but over reliance weakens conceptual command and originality. FPSC rewards critical thinking and argument quality. Build your own topic outlines after research so your answers remain unique and high scoring.',
   },
@@ -171,9 +171,9 @@ const cssRulesSections = [
   {
     title: 'CSS Age Limit',
     content: [
-      "1. No candidate shall be eligible for admission to the competitive examination unless he is neither below the age of twenty-one years nor above the age of thirty years on the cut-off date.",
+      "1. No candidate shall be eligible for admission to the competitive examination unless he is neither below the age of twenty one years nor above the age of thirty years on the cut off date.",
       "Explanation: A candidate born on or before the 31st day of December, 1988 and on or after the 2nd day of January, 1998 shall not be eligible for the competitive examination of the year 2019.",
-      "2. Two years relaxation in upper-age limit of a candidate shall be admissible in respect of the following categories, namely:",
+      "2. Two years relaxation in upper age limit of a candidate shall be admissible in respect of the following categories, namely:",
       "(a) the candidates belonging to the scheduled caste and Buddhist community subject to production of a certificate, in support of their claim, as set out in the application form prescribed by the Commission from time to time and issued by Deputy Commissioner, District Magistrate or such other person by whatever name called and authorized in this behalf;",
       "(b) the candidates belonging to the recognized Tribes who are permanent residents of the areas mentioned below and whose families have been living in these areas, subject to production of a certificate, in support of their claim, as set out in the application form prescribed by the Commission from time to time and issued by Deputy Commissioner, District Magistrate or such other person by whatever name called and authorized in this behalf:",
       "(i) Baluchistan;",
@@ -182,26 +182,26 @@ const cssRulesSections = [
       "(iv) former Tribal Areas of Mardan and Hazara Divisions; and",
       "(v) Upper Tanawal Area of Hazara Division;",
       "(c) the candidates who are permanent residents of Azad Kashmir Territory, subject to production of a certificate in support of their claim, as set out in the application form prescribed by the Commission from time to time and issued by the Division to which business of Azad Jammu and Kashmir stands allocated;",
-      "(d) the candidates who are permanent residents of Gilgit-Baltistan including Gilgit, Diamir, Baltistan, Ghizer and Guanche, subject to production of a certificate in support of their claim, as set out in the application form prescribed by the Commission from time to time and issued by the Deputy Commissioner, District Magistrate or such other person by whatever name called and authorized in this behalf;",
+      "(d) the candidates who are permanent residents of Gilgit Baltistan including Gilgit, Diamir, Baltistan, Ghizer and Guanche, subject to production of a certificate in support of their claim, as set out in the application form prescribed by the Commission from time to time and issued by the Deputy Commissioner, District Magistrate or such other person by whatever name called and authorized in this behalf;",
       "(e) the special candidates, namely, physically impaired, hearing or speech impaired and visually impaired, subject to production of certificate of disability in support of their claim issued by an officer of the Federal Government or, as the case may be, Provincial Government duly authorized in this behalf;",
-      "(f) in-service Government servants, armed forces personnel, contract employees, including the Government servants of Azad Jammu and Kashmir, who possess a minimum of two years continuous Government service as on the cut-off date subject to production of departmental permission certificate from the competent authority as set out by the Commission from time to time. Employees of nationalized banks, State Bank of Pakistan, Water and Power Development Authority, regulatory authorities, autonomous bodies and other semi-autonomous bodies are not entitled to the age-relaxation under these rules:",
-      "Provided that period of extraordinary leave (EOL) shall not be considered as period spent on duty under Fundamental Rule-9(6) for grant of age-relaxation under these rules.",
-      "3. The relaxation in upper age-limits prescribed in these rules shall be permitted upto the maximum period of an individual concession and not by the total period of the concessions taken together, if admissible in any case.",
-      "4. Except as provided in these rules, a candidate shall not be entitled to further relaxation in age-limit under any other rule for the time being in force or on any other ground.",
+      "(f) in service Government servants, armed forces personnel, contract employees, including the Government servants of Azad Jammu and Kashmir, who possess a minimum of two years continuous Government service as on the cut off date subject to production of departmental permission certificate from the competent authority as set out by the Commission from time to time. Employees of nationalized banks, State Bank of Pakistan, Water and Power Development Authority, regulatory authorities, autonomous bodies and other semi autonomous bodies are not entitled to the age relaxation under these rules:",
+      "Provided that period of extraordinary leave (EOL) shall not be considered as period spent on duty under Fundamental Rule 9(6) for grant of age relaxation under these rules.",
+      "3. The relaxation in upper age limits prescribed in these rules shall be permitted upto the maximum period of an individual concession and not by the total period of the concessions taken together, if admissible in any case.",
+      "4. Except as provided in these rules, a candidate shall not be entitled to further relaxation in age limit under any other rule for the time being in force or on any other ground.",
     ],
   },
   {
-    title: 'CSS Cut-off Date',
+    title: 'CSS Cut off Date',
     content: [
       "The cutoff date for determining the eligibility of the candidate in terms of age, qualifications, domicile shall be the 31st day of December of the year preceding the year of competitive examination.",
-      "Explanation: For competitive examination 2019 the cut-off date thereof shall be the 31st day of December, 2018.",
+      "Explanation: For competitive examination 2019 the cut off date thereof shall be the 31st day of December, 2018.",
     ],
   },
   {
     title: 'CSS Educational Qualifications',
     content: [
       "1. A candidate for competitive examination must hold at least a second division or grade \"C\" bachelor's degree in any faculty of one of the Pakistani universities or an equivalent degree or comparable educational qualifications of a foreign university recognized by the Higher Education Commission (HEC), subject to production of equivalence certificate issued by HEC.",
-      "2. Where a candidate does not hold the required degree on or before the cut-off date, he shall be required to produce a certificate from the duly authorized officer of the concerned degree awarding institution, to the effect that the candidate has fulfilled all the requirements of the said degree and has cleared and passed the examination for the said degree on or before the cut-off date. The candidate however would be required to produce the said degree before the final result is declared by the Commission.",
+      "2. Where a candidate does not hold the required degree on or before the cut off date, he shall be required to produce a certificate from the duly authorized officer of the concerned degree awarding institution, to the effect that the candidate has fulfilled all the requirements of the said degree and has cleared and passed the examination for the said degree on or before the cut off date. The candidate however would be required to produce the said degree before the final result is declared by the Commission.",
       "3. A candidate who has obtained a third division or 'D' grade in his bachelor's degree shall be eligible for the competitive examination in cases where he has obtained a higher division or grade in master's degree.",
     ],
   },
@@ -234,14 +234,14 @@ const cssRulesSections = [
       '7. No plea that hardcopy of online application form or any document attached therewith has been lost or delayed in the post shall be entertained.',
       "8. The candidate shall have to pay or deposit two hundred and fifty Rupees in the Commission's head of account as fine, if hard copy of online application is received without signature, subject to no other deficiency in application or attached documents, otherwise his application shall stand rejected.",
       '9. Hardcopy of the online application must be dispatched in a separate envelope. Two or more applications in one envelope shall not be acceptable.',
-      "10. Candidate shall pay two thousand two hundred Rupees, or such other fee as the Commission may determine from time to time, as application fee for competitive examination as per procedure prescribed in Appendix-II and deposited in the nearest Government's treasury or in State Bank or National Bank of Pakistan under the head of account C02101-Organs of State Exam Fee (FPSC Receipt). Cash, postal orders, bank drafts and cheques shall not be accepted by the Commission.",
+      "10. Candidate shall pay two thousand two hundred Rupees, or such other fee as the Commission may determine from time to time, as application fee for competitive examination as per procedure prescribed in Appendix II and deposited in the nearest Government's treasury or in State Bank or National Bank of Pakistan under the head of account C02101 Organs of State Exam Fee (FPSC Receipt). Cash, postal orders, bank drafts and cheques shall not be accepted by the Commission.",
       '11. Original treasury receipt for written examination must be attached with the application form to be deposited to the Commission. Without providing original treasury receipt, the application of the candidate shall be rejected.',
       '12. Subjects for the competitive examination shall comprise compulsory papers of 600 marks and optional papers of 600 marks.',
       '13. Optional subjects must be selected carefully, as wrong selection of subjects shall lead to rejection of candidature.',
       '14. Combination of optional subjects once chosen before closing date for submission of online application or corrected in hard copy of online application shall be treated as final and no request for change in subjects shall be allowed thereafter.',
-      '15. A candidate who misses any compulsory or optional subject of written examination for medical or any other reasons shall neither be allowed to appear in the remaining subjects nor separate examination for re-appearing in that missed paper shall be allowed.',
-      '16. No candidate shall be eligible to avail more than three chances of the competitive examination within prescribed age-limits.',
-      'Explanation.- A candidate shall be deemed to have attempted the examination and his chance stand consumed, if he actually appeared in any one or more papers of the competitive examination and even if he tendered blank answer book or sheet and even if rejected subsequently.',
+      '15. A candidate who misses any compulsory or optional subject of written examination for medical or any other reasons shall neither be allowed to appear in the remaining subjects nor separate examination for re appearing in that missed paper shall be allowed.',
+      '16. No candidate shall be eligible to avail more than three chances of the competitive examination within prescribed age limits.',
+      'Explanation. A candidate shall be deemed to have attempted the examination and his chance stand consumed, if he actually appeared in any one or more papers of the competitive examination and even if he tendered blank answer book or sheet and even if rejected subsequently.',
       '17. A candidate who conceals the number of previous attempts, shall be liable to prosecution leading to his disqualification under these rules.',
       "18. No candidate shall be admitted to the examination hall who does not hold original Computerized National Identity Card (CNIC) and admission certificate generated or downloaded from the Commission's website i.e. www.fpsc.gov.pk as admission certificate shall not be sent through post.",
       '19. A candidate who arrives at examination hall or centre late, than the time mentioned in admission certificate and date sheet, he shall not be allowed to sit in the examination.',
@@ -277,11 +277,11 @@ const cssRulesSections = [
   {
     title: 'CSS Medical Examination',
     content: [
-      '1. All candidates must be in good mental and bodily health and free from any physical defect likely to interfere with the discharge of their duties. The candidates who after such medical examination which the Commission and the appointing authority may prescribe are found not to satisfy these requirements shall not be appointed except special candidates as mentioned in sub-rule (2) of CSS Competitive Examination Rules, 2019.',
+      '1. All candidates must be in good mental and bodily health and free from any physical defect likely to interfere with the discharge of their duties. The candidates who after such medical examination which the Commission and the appointing authority may prescribe are found not to satisfy these requirements shall not be appointed except special candidates as mentioned in sub rule (2) of CSS Competitive Examination Rules, 2019.',
       '2. Special candidates in the categories of physically impaired, hearing or speech impaired and visually impaired shall be eligible to compete for competitive examination against all Occupational Groups and Services according to his choice.',
       '3. Special candidates who are visually impaired or physically impaired shall be provided helper (writer), if they have been, by any Federal or a Provincial Council for Rehabilitation of Disabled Persons, declared permanently incapacitated with respect to writing and a disability certificate in that regard has been attached by them with application form and also requested for provision of helper in their application form. The Commission shall arrange the helper from within the available staff of the Commission deputed at the examination centre. The role of the helper would merely be to reproduce in writing the words so uttered by the special candidate. No intellectual contribution by the helper shall be permissible. The educational level of the helper would be graduation, intermediate or matriculation as per availability at the examination centre. No request for helper of choice or venue of the examination shall be entertained. The special candidate alongwith helper shall remain within the examination hall till conclusion of the paper.',
       '4. Extra time of 15 minutes per hour shall only be allowed to visually impaired candidates. The other categories of special candidates shall not be allowed extra time.',
-      "5. The special candidate referred to in sub-rules (3) and (4) of CSS Competitive Examination Rules, 2019 may attempt the question paper on computer, as the case may be, for which facility shall only be provided at the Commission's headquarters and its provincial offices, however, no TA/DA shall be admissible. Such computer literate candidates shall fill the relevant entries in the online application form, else they shall not be allowed to attempt the paper on computer.",
+      "5. The special candidate referred to in sub rules (3) and (4) of CSS Competitive Examination Rules, 2019 may attempt the question paper on computer, as the case may be, for which facility shall only be provided at the Commission's headquarters and its provincial offices, however, no TA/DA shall be admissible. Such computer literate candidates shall fill the relevant entries in the online application form, else they shall not be allowed to attempt the paper on computer.",
       '6. No application or medical certificate regarding claim for disability or request for provision of helper or computer on medical grounds or sudden accident, shall be accepted after the closing date, except where the claim has been made in the application form before the closing date and certificate of disability as aforesaid attached as an evidence.',
       '7. Candidates who qualify the written examination shall be medically examined by the medical board constituted for the purpose. If any candidate remains absent twice in his medical examination, his candidature shall automatically stand rejected and no appeal in this regard shall be entertained and his chance shall be considered as consumed.',
       "8. In order to prevent disappointment, candidates may get themselves examined by a Government's medical officer of the standing of a civil surgeon before applying for admission to the examination.",
@@ -291,7 +291,7 @@ const cssRulesSections = [
     title: 'CSS Viva Voce',
     content: [
       '1. A candidate who is declared qualified in written examination shall be interviewed by a board who shall have before them a record of his career, both academic and extramural and he shall be asked questions on matters of general interest. The object of the interview is to assess his suitability for the services for which he is entered and in framing their assessment the board shall attach particular importance to the moral and ethical qualities of the candidates, his intelligence and alertness of mind, his vigour and strength of character and his potential qualities of leadership. The board shall take into consideration his extramural activities such as sports, debates, hobbies, etc., and their effect on his physique and character, in assessing his merit.',
-      '2. All candidates are expected to have basic knowledge regarding Islam and Pakistan. Questions may be asked in the viva voce on these subjects. Persons securing less than pass marks in these subjects shall not be considered for appointment, irrespective of their proficiency in other fields. However, the non-Muslim candidates shall not be asked any question regarding Islam.',
+      '2. All candidates are expected to have basic knowledge regarding Islam and Pakistan. Questions may be asked in the viva voce on these subjects. Persons securing less than pass marks in these subjects shall not be considered for appointment, irrespective of their proficiency in other fields. However, the non Muslim candidates shall not be asked any question regarding Islam.',
       '3. Viva voce shall be of 300 marks. A candidate who fails to secure at least 100 marks in viva voce shall be considered to have failed and shall not be eligible for appointment.',
       '4. The result of viva voce shall be intimated to all candidates in due course of time.',
     ],
@@ -688,7 +688,7 @@ const CALENDAR_STATUS_OPTIONS = [
   { id: 'completed', label: 'Marked Completed', className: 'status-completed' },
   { id: 'revision', label: 'Revision Focus', className: 'status-revision' },
   { id: 'mock-test', label: 'Mock Test Day', className: 'status-mock' },
-  { id: 'catch-up', label: 'Catch-up Day', className: 'status-catchup' },
+  { id: 'catch-up', label: 'Catch up Day', className: 'status-catchup' },
   { id: 'rest', label: 'Rest / Recovery', className: 'status-rest' },
   { id: 'skipped', label: 'Skipped', className: 'status-skipped' },
 ]
@@ -703,11 +703,212 @@ const PLANNER_TAB_SEQUENCE = [
   { id: 'subjects', label: 'Subject Locker' },
   { id: 'strategy', label: 'Strategy Builder' },
   { id: 'performance', label: 'Performance Analysis' },
+  { id: 'examiner', label: 'AI Examiner' },
   { id: 'timer', label: 'Timer & Analytics' },
   { id: 'social', label: 'Social Balance' },
   { id: 'calendar', label: 'Guardian Calendar' },
   { id: 'report', label: 'Guardian Angel Report' },
 ]
+const AI_EXAM_PAPER_TYPES = [
+  { id: 'essay', label: 'Essay' },
+  { id: 'precis', label: 'English Precis & Composition' },
+  { id: 'current-affairs', label: 'Current Affairs' },
+  { id: 'pakistan-affairs', label: 'Pakistan Affairs' },
+  { id: 'islamiat', label: 'Islamiat / Comparative Studies' },
+]
+const AI_EXAM_CRITERIA = [
+  {
+    id: 'relevance',
+    label: 'Question Relevance',
+    weight: 20,
+    feedback:
+      'Stay tightly aligned with the asked question. Build every major paragraph around the command words and scope.',
+  },
+  {
+    id: 'structure',
+    label: 'Structure & Flow',
+    weight: 20,
+    feedback:
+      'Use clear introduction, argument body, and conclusion. Strong transitions improve readability and examiner confidence.',
+  },
+  {
+    id: 'analysis',
+    label: 'Analysis Depth',
+    weight: 20,
+    feedback:
+      'Move beyond description. Add causes, impacts, counter points, policy options, and reasoned judgment.',
+  },
+  {
+    id: 'evidence',
+    label: 'Evidence & Examples',
+    weight: 20,
+    feedback:
+      'Support key claims with current examples, policy references, constitutional context, and comparative insights.',
+  },
+  {
+    id: 'language',
+    label: 'Language & Expression',
+    weight: 20,
+    feedback:
+      'Use concise, formal, and precise language. Keep sentence control, grammar discipline, and exam appropriate tone.',
+  },
+]
+
+const normalizeWhitespace = (value) => value.replace(/\s+/g, ' ').trim()
+
+const splitAnswerParagraphs = (answerText) =>
+  answerText
+    .split(/\n+/)
+    .map((part) => normalizeWhitespace(part))
+    .filter(Boolean)
+
+const countMatches = (text, regex) => (text.match(regex) || []).length
+
+const buildAiExamReport = ({ question, answer, paperType }) => {
+  const normalizedQuestion = normalizeWhitespace(question.toLowerCase())
+  const normalizedAnswer = normalizeWhitespace(answer)
+  const answerLower = normalizedAnswer.toLowerCase()
+  const paragraphs = splitAnswerParagraphs(answer)
+  const words = normalizedAnswer.split(' ').filter(Boolean)
+  const wordCount = words.length
+  const sentenceCount = Math.max(1, countMatches(normalizedAnswer, /[.!?]+/g))
+  const avgWordsPerSentence = wordCount / sentenceCount
+
+  const transitionCount = countMatches(
+    answerLower,
+    /\b(however|moreover|therefore|furthermore|consequently|in addition|on the other hand|in contrast)\b/g,
+  )
+  const evidenceCount = countMatches(
+    answerLower,
+    /\b(according|report|policy|constitution|article|fpsc|data|survey|budget|law|un|imf|world bank|sbp)\b/g,
+  )
+  const analysisCount = countMatches(
+    answerLower,
+    /\b(because|therefore|impact|implication|challenge|opportunity|cause|effect|recommend|policy)\b/g,
+  )
+  const questionKeywords = normalizedQuestion
+    .split(/[^a-z0-9]+/i)
+    .filter((token) => token.length > 4)
+    .slice(0, 8)
+  const keywordHits = questionKeywords.filter((token) => answerLower.includes(token)).length
+  const keywordCoverage = questionKeywords.length > 0 ? keywordHits / questionKeywords.length : 0.6
+
+  const paperFloor = paperType === 'essay' ? 0.5 : 0.44
+  const structureSignal =
+    (Math.min(paragraphs.length, 8) / 8) * 0.45 +
+    (Math.min(transitionCount, 8) / 8) * 0.35 +
+    (avgWordsPerSentence >= 11 && avgWordsPerSentence <= 28 ? 0.2 : 0.1)
+  const evidenceSignal = Math.min(evidenceCount, 10) / 10
+  const analysisSignal = Math.min(analysisCount, 12) / 12
+  const relevanceSignal = Math.min(1, keywordCoverage + (wordCount > 280 ? 0.08 : 0))
+  const languageSignal =
+    (avgWordsPerSentence >= 12 && avgWordsPerSentence <= 24 ? 0.55 : 0.38) +
+    (wordCount >= 280 ? 0.25 : wordCount >= 180 ? 0.16 : 0.08) +
+    (paragraphs.length >= 4 ? 0.2 : 0.1)
+
+  const scoreSignals = {
+    relevance: relevanceSignal,
+    structure: Math.min(1, structureSignal),
+    analysis: Math.max(paperFloor, analysisSignal),
+    evidence: Math.max(0.35, evidenceSignal),
+    language: Math.min(1, languageSignal),
+  }
+
+  const criteriaScores = AI_EXAM_CRITERIA.map((criterion) => {
+    const signal = scoreSignals[criterion.id] || 0.4
+    const rawScore = Math.round(signal * criterion.weight)
+    const bounded = Math.max(Math.round(criterion.weight * 0.35), Math.min(criterion.weight, rawScore))
+    return {
+      ...criterion,
+      score: bounded,
+      maxScore: criterion.weight,
+    }
+  })
+
+  const totalScore = criteriaScores.reduce((sum, item) => sum + item.score, 0)
+  const grade =
+    totalScore >= 75
+      ? 'Strong Competitive Band'
+      : totalScore >= 60
+        ? 'Improving Competitive Band'
+        : 'Needs Focused Rebuild'
+
+  const weaknesses = criteriaScores
+    .filter((item) => item.score <= Math.round(item.maxScore * 0.62))
+    .sort((a, b) => a.score - b.score)
+    .map((item) => item.label)
+
+  const lineFeedback = paragraphs.slice(0, 8).map((paragraph, index) => {
+    const short = paragraph.length > 210 ? `${paragraph.slice(0, 210)}...` : paragraph
+    const paragraphLower = paragraph.toLowerCase()
+    let feedback = 'Good direction. Improve precision and add one concrete evidence point.'
+
+    if (index === 0 && !/\b(thesis|argue|position|contend|this essay)\b/.test(paragraphLower)) {
+      feedback = 'Opening lacks a clear thesis. State your exact stance in the first lines.'
+    } else if (paragraph.length < 85) {
+      feedback = 'This paragraph is too short. Expand reasoning with cause effect and policy implications.'
+    } else if (!/\b(because|therefore|however|thus|consequently)\b/.test(paragraphLower)) {
+      feedback = 'Add analytical connectors to improve logical flow and examiner readability.'
+    } else if (!/\b(data|report|constitution|policy|article|example|case)\b/.test(paragraphLower)) {
+      feedback = 'Argument is present but evidence is thin. Add one statistic, constitutional point, or case example.'
+    }
+
+    return {
+      id: `line-${index + 1}`,
+      snippet: short,
+      feedback,
+    }
+  })
+
+  const improvedOutline = [
+    'Context and Thesis: define scope and present a one line stance.',
+    'Core Argument 1: structural cause + current evidence + implication for Pakistan.',
+    'Core Argument 2: institutional/policy dimension + comparative reference.',
+    'Counter Argument and Rebuttal: address strongest opposing view and respond logically.',
+    'Actionable Recommendations: short, implementable, and prioritized policy steps.',
+    'Conclusion: concise synthesis with a forward looking exam ready finish.',
+  ]
+
+  const weakRotation = weaknesses.length > 0 ? weaknesses : ['Question Relevance', 'Analysis Depth']
+  const sevenDayDrills = Array.from({ length: 7 }).map((_, dayIndex) => {
+    const area = weakRotation[dayIndex % weakRotation.length]
+    const dayLabel = `Day ${dayIndex + 1}`
+    return {
+      id: `drill-${dayIndex + 1}`,
+      dayLabel,
+      focusArea: area,
+      task:
+        area === 'Language & Expression'
+          ? 'Write one intro and one conclusion for the same topic in under 22 minutes, then refine sentence control.'
+          : area === 'Evidence & Examples'
+            ? 'Build an evidence bank of 8 points (facts, policies, reports) and use at least 3 in a timed answer.'
+            : area === 'Structure & Flow'
+              ? 'Create a full answer skeleton with heading flow, then write with explicit transition markers.'
+              : area === 'Question Relevance'
+                ? 'Annotate the question command words and write a focused response plan before drafting.'
+                : 'Write one timed answer and add causes, impacts, and policy recommendations in each body section.',
+      targetMinutes: 90,
+      statusSuggestion: dayIndex % 3 === 2 ? 'mock-test' : 'revision',
+    }
+  })
+
+  const nextAttemptPrompt =
+    'Re attempt the same question in 35 to 40 minutes after completing Day 3 drills, then compare marks progression.'
+
+  return {
+    generatedAt: new Date().toISOString(),
+    totalScore,
+    grade,
+    wordCount,
+    criteriaScores,
+    weaknesses,
+    lineFeedback,
+    improvedOutline,
+    sevenDayDrills,
+    nextAttemptPrompt,
+  }
+}
+
 const getNextPerformanceLevel = (currentLevel) => {
   const levelOrder = SUBJECT_PERFORMANCE_LEVELS.map((item) => item.id)
   const currentIndex = levelOrder.indexOf(currentLevel)
@@ -1401,7 +1602,7 @@ function CssStudyMaterialPage() {
         </div>
 
         <p className="rules-source">
-          Access organized lecture slides with quick view and one-click download.
+          Access organized lecture slides with quick view and one click download.
           <strong>{` ${totalSlides} slides available in total.`}</strong>
         </p>
 
@@ -1949,6 +2150,35 @@ function GuardianStudyPlannerPage({ authUser }) {
       return {}
     }
   })
+  const [aiExamDraft, setAiExamDraft] = useState(() => {
+    try {
+      const raw = localStorage.getItem(profileStorageKey)
+      const profile = raw ? JSON.parse(raw) : null
+      return (
+        profile?.aiExamDraft || {
+          paperType: 'essay',
+          question: '',
+          answer: '',
+        }
+      )
+    } catch {
+      return {
+        paperType: 'essay',
+        question: '',
+        answer: '',
+      }
+    }
+  })
+  const [aiExamResult, setAiExamResult] = useState(() => {
+    try {
+      const raw = localStorage.getItem(profileStorageKey)
+      const profile = raw ? JSON.parse(raw) : null
+      return profile?.aiExamResult || null
+    } catch {
+      return null
+    }
+  })
+  const [aiExamError, setAiExamError] = useState('')
 
   useEffect(() => {
     try {
@@ -1962,6 +2192,8 @@ function GuardianStudyPlannerPage({ authUser }) {
         subjectPerformanceLevels,
         isManualDmcEnabled,
         manualDmcScores,
+        aiExamDraft,
+        aiExamResult,
         completedDays,
         dayStatuses,
         timerSessions,
@@ -1993,6 +2225,8 @@ function GuardianStudyPlannerPage({ authUser }) {
     subjectPerformanceLevels,
     isManualDmcEnabled,
     manualDmcScores,
+    aiExamDraft,
+    aiExamResult,
     completedDays,
     dayStatuses,
     timerSessions,
@@ -2216,7 +2450,7 @@ function GuardianStudyPlannerPage({ authUser }) {
 
   const handleGenerateCourseOutlinePdf = async () => {
     if (!subjectsLocked) {
-      setError('Lock subjects first, then generate your finalized course-outline PDF.')
+      setError('Lock subjects first, then generate your finalized course outline PDF.')
       return
     }
 
@@ -2484,7 +2718,7 @@ function GuardianStudyPlannerPage({ authUser }) {
       const fileStamp = `${stamp.getFullYear()}-${`${stamp.getMonth() + 1}`.padStart(2, '0')}-${`${stamp.getDate()}`.padStart(2, '0')}`
       setOutlinePdfFileName(`Guardian_Angel_Finalized_CSS_Outline_${fileStamp}.pdf`)
     } catch {
-      setError('Unable to generate course-outline PDF. Please try again.')
+      setError('Unable to generate course outline PDF. Please try again.')
     } finally {
       setIsGeneratingOutlinePdf(false)
     }
@@ -2512,7 +2746,7 @@ function GuardianStudyPlannerPage({ authUser }) {
       return
     }
     if (!Array.isArray(form.productiveHours) || form.productiveHours.length === 0) {
-      setError('Select at least one productive one-hour slot.')
+      setError('Select at least one productive one hour slot.')
       return
     }
 
@@ -2579,7 +2813,7 @@ function GuardianStudyPlannerPage({ authUser }) {
         focus: 'Watch lectures and make short concept notes.',
       },
       {
-        title: 'Self-Study Session',
+        title: 'Self Study Session',
         durationMinutes: Math.round(selfStudyHours * 60),
         focus: 'Read syllabus topics, solve questions, and build recall.',
       },
@@ -2616,11 +2850,11 @@ function GuardianStudyPlannerPage({ authUser }) {
         : remainingDays > 60
           ? [
               'Phase 1 (Acceleration): 55% for focused coverage of core topics.',
-              'Phase 2 (Revision + Practice): 45% for test practice and weak-area repair.',
+              'Phase 2 (Revision + Practice): 45% for test practice and weak area repair.',
             ]
           : [
-              'Phase 1 (High-Intensity Revision): 70% for revision, recall, and past-paper practice.',
-              'Phase 2 (Final Polishing): 30% for exam-like timed practice and confidence building.',
+              'Phase 1 (High Intensity Revision): 70% for revision, recall, and past paper practice.',
+              'Phase 2 (Final Polishing): 30% for exam like timed practice and confidence building.',
             ]
 
     setPlan({
@@ -2819,10 +3053,10 @@ function GuardianStudyPlannerPage({ authUser }) {
           })
         })
       } else {
-        drawText('No catch-up needed this week. Keep current execution momentum.')
+        drawText('No catch up needed this week. Keep current execution momentum.')
       }
 
-      drawSection('Next-Week Targets')
+      drawSection('Next Week Targets')
       nextWeekTargets.forEach((target) => drawText(target, { bullet: true }))
       drawSection('Next Cycle Action Plan')
       guardianActionPlan.forEach((item) => drawText(item, { bullet: true }))
@@ -3175,7 +3409,7 @@ function GuardianStudyPlannerPage({ authUser }) {
         totalTarget,
         protocol: [
           `Add ${extraMinutes} focused recovery minutes.`,
-          'Use 2 deep-work blocks (50 min each) with 10-minute breaks.',
+          'Use 2 deep work blocks (50 min each) with 10 minute breaks.',
           'Close the day with 20 minutes of revision recap and error log.',
         ],
       }
@@ -3280,14 +3514,14 @@ function GuardianStudyPlannerPage({ authUser }) {
     {
       id: 'revision-7',
       title: 'Revision Milestone',
-      description: 'Mark 7 revision-focused days in Guardian Calendar.',
+      description: 'Mark 7 revision focused days in Guardian Calendar.',
       unlocked: revisionDaysCount >= 7,
       progress: Math.min(100, (revisionDaysCount / 7) * 100),
     },
     {
       id: 'mock-3',
       title: 'Mock Momentum',
-      description: 'Complete 3 mock-test days.',
+      description: 'Complete 3 mock test days.',
       unlocked: mockTestDaysCount >= 3,
       progress: Math.min(100, (mockTestDaysCount / 3) * 100),
     },
@@ -3405,7 +3639,7 @@ function GuardianStudyPlannerPage({ authUser }) {
     weakSubjects.length > 0
       ? `Subjects needing focused improvement: ${weakSubjects.join(', ')}.`
       : 'No critical weak bucket currently. Keep consistency to maintain momentum.',
-    'Suggested focus: answer writing structure, timed past-paper practice, and weekly revision cycles.',
+    'Suggested focus: answer writing structure, timed past paper practice, and weekly revision cycles.',
     'Balanced preparation advice: keep strong subjects stable, convert contendor subjects to confident range, and allocate extra hours to weak bucket every week.',
   ]
   const performanceByLevel = SUBJECT_PERFORMANCE_LEVELS.map((level) => ({
@@ -3558,15 +3792,15 @@ function GuardianStudyPlannerPage({ authUser }) {
     subjectsLocked ? 'Subject selection is finalized and structurally valid.' : '',
     strongSubjects.length >= 4 ? 'Multiple subjects are already in Topper range.' : '',
     weeklyProgressPercent >= 70 ? 'Weekly timer completion is on a strong trajectory.' : '',
-    calendarCompletedDays >= 5 ? 'Calendar execution indicates steady follow-through.' : '',
+    calendarCompletedDays >= 5 ? 'Calendar execution indicates steady follow through.' : '',
     socialOveruseMinutes === 0 ? 'Social media is within the daily discipline limit.' : '',
   ].filter(Boolean)
   const guardianRiskSignals = [
     !subjectsLocked ? 'Subject locker is not locked yet. Finalize to prevent frequent switching.' : '',
     !plan ? 'Strategy is not generated yet. Create your timetable to set daily targets.' : '',
-    weakSubjects.length >= 4 ? 'Large Survivor bucket. Raise these subjects with answer-writing drills.' : '',
+    weakSubjects.length >= 4 ? 'Large Survivor bucket. Raise these subjects with answer writing drills.' : '',
     weeklyProgressPercent < 45 ? 'Timer evidence is low versus target. Increase focused sessions.' : '',
-    calendarSkippedDays >= 3 ? 'Frequent skipped days are reducing momentum. Use catch-up blocks.' : '',
+    calendarSkippedDays >= 3 ? 'Frequent skipped days are reducing momentum. Use catch up blocks.' : '',
     socialOveruseMinutes > 0
       ? `Social usage exceeded limit by ${socialOveruseMinutes} minutes and reduced performance score impact.`
       : '',
@@ -3581,14 +3815,14 @@ function GuardianStudyPlannerPage({ authUser }) {
     'Run at least 5 timed answers per week (mix compulsory + optionals) and evaluate structure.',
     requiredDailyMinutes
       ? `Protect minimum ${requiredDailyMinutes} focused minutes daily and recover missed time within 48 hours.`
-      : 'Generate strategy first, then protect a non-negotiable daily study target.',
+      : 'Generate strategy first, then protect a non negotiable daily study target.',
     socialOveruseMinutes > 0
       ? `Cut social media by at least ${Math.ceil(socialOveruseMinutes / 2)} minutes tomorrow to recover readiness score.`
       : 'Keep social media usage within the daily limit to protect readiness score.',
     focusRecoveryProtocol
       ? `Follow Focus Recovery Protocol for next 3 days: +${focusRecoveryProtocol.recoveryDays.map((day) => day.extraMinutes).join('/')} min.`
       : 'No recovery protocol needed currently. Maintain current pace and consistency.',
-    'Mark every study day in Guardian Calendar with completed, revision, or mock-test status.',
+    'Mark every study day in Guardian Calendar with completed, revision, or mock test status.',
     'Review this report every week and move one subject from Survivor to Contendor.',
   ]
   const nextWeekTargets = [
@@ -3652,6 +3886,53 @@ function GuardianStudyPlannerPage({ authUser }) {
       [subject]: Math.max(0, Math.min(100, Math.round(numericValue))),
     }))
   }
+  const handleAiExamDraftChange = (field, value) => {
+    setAiExamDraft((current) => ({ ...current, [field]: value }))
+  }
+  const handleAiExamEvaluate = (event) => {
+    event.preventDefault()
+    const question = (aiExamDraft.question || '').trim()
+    const answer = (aiExamDraft.answer || '').trim()
+
+    if (question.length < 12) {
+      setAiExamError('Please enter a full question statement before evaluation.')
+      return
+    }
+    if (answer.length < 220) {
+      setAiExamError('Please provide a fuller answer (minimum around 220 characters) for realistic scoring.')
+      return
+    }
+
+    const report = buildAiExamReport({
+      question,
+      answer,
+      paperType: aiExamDraft.paperType || 'essay',
+    })
+    setAiExamResult(report)
+    setAiExamError('')
+  }
+  const handleAiExamReset = () => {
+    setAiExamDraft({
+      paperType: 'essay',
+      question: '',
+      answer: '',
+    })
+    setAiExamResult(null)
+    setAiExamError('')
+  }
+  const handleAiExamApplyDrillsToCalendar = () => {
+    if (!aiExamResult?.sevenDayDrills?.length) return
+    const start = startOfDay(new Date())
+    setDayStatuses((current) => {
+      const next = { ...current }
+      aiExamResult.sevenDayDrills.forEach((drill, index) => {
+        const key = formatDayKey(addDays(start, index))
+        next[key] = drill.statusSuggestion === 'mock-test' ? 'mock-test' : 'revision'
+      })
+      return next
+    })
+    setActivePlannerTab('calendar')
+  }
 
   return (
     <main className="page-main">
@@ -3694,6 +3975,15 @@ function GuardianStudyPlannerPage({ authUser }) {
                 onClick={() => setActivePlannerTab('performance')}
               >
                 Performance Analysis
+              </button>
+              <button
+                type="button"
+                role="tab"
+                aria-selected={activePlannerTab === 'examiner'}
+                className={`planner-tab ${activePlannerTab === 'examiner' ? 'active' : ''}`}
+                onClick={() => setActivePlannerTab('examiner')}
+              >
+                AI Examiner
               </button>
               <button
                 type="button"
@@ -3876,7 +4166,7 @@ function GuardianStudyPlannerPage({ authUser }) {
 
                 {!subjectsLocked ? (
                   <section className="subject-panel selected-panel">
-                    <h4>Selected Optional Papers (Group-wise)</h4>
+                    <h4>Selected Optional Papers (Group wise)</h4>
                     <p className="subject-selection-meta">
                       Total: <strong>{selectedOptionalMarks} Marks</strong> | Papers:{' '}
                       <strong>{selectedOptionalPaperCount}/6</strong>
@@ -4109,14 +4399,14 @@ function GuardianStudyPlannerPage({ authUser }) {
                     </label>
 
                     <label>
-                      Do you prefer lectures first or self-study first?
+                      Do you prefer lectures first or self study first?
                       <select
                         name="learningPreference"
                         value={form.learningPreference}
                         onChange={handleChange}
                       >
                         <option value="lectures-first">Lectures First</option>
-                        <option value="self-study-first">Self-Study First</option>
+                        <option value="self-study-first">Self Study First</option>
                       </select>
                     </label>
 
@@ -4182,7 +4472,7 @@ function GuardianStudyPlannerPage({ authUser }) {
                           {plan.weeklyConsolidation.length > 0 ? (
                             plan.weeklyConsolidation.slice(0, 8).map((day) => (
                               <li key={day}>
-                                {day}: Light revision + one timed past-paper question + reflection notes.
+                                {day}: Light revision + one timed past paper question + reflection notes.
                               </li>
                             ))
                           ) : (
@@ -4425,6 +4715,136 @@ function GuardianStudyPlannerPage({ authUser }) {
               </article>
             ) : null}
 
+            {activePlannerTab === 'examiner' ? (
+              <article className="planner-card ai-examiner-card">
+                <h3>AI CSS Examiner and Marks Predictor</h3>
+                <p className="planner-meta">
+                  Paste your answer to get estimated marks, examiner style feedback, and a targeted 7 day
+                  writing drill plan.
+                </p>
+
+                <form className="planner-form ai-examiner-form" onSubmit={handleAiExamEvaluate}>
+                  <label>
+                    Paper Type
+                    <select
+                      value={aiExamDraft.paperType}
+                      onChange={(event) => handleAiExamDraftChange('paperType', event.target.value)}
+                    >
+                      {AI_EXAM_PAPER_TYPES.map((item) => (
+                        <option key={item.id} value={item.id}>
+                          {item.label}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+
+                  <label>
+                    Question Prompt
+                    <textarea
+                      value={aiExamDraft.question}
+                      onChange={(event) => handleAiExamDraftChange('question', event.target.value)}
+                      rows={4}
+                      placeholder="Paste the exact CSS question here."
+                    />
+                  </label>
+
+                  <label>
+                    Your Answer Draft
+                    <textarea
+                      value={aiExamDraft.answer}
+                      onChange={(event) => handleAiExamDraftChange('answer', event.target.value)}
+                      rows={12}
+                      placeholder="Write or paste your answer here."
+                    />
+                  </label>
+
+                  <div className="ai-examiner-actions">
+                    <button className="btn btn-primary" type="submit">
+                      Evaluate Answer
+                    </button>
+                    <button className="btn btn-secondary" type="button" onClick={handleAiExamReset}>
+                      Reset
+                    </button>
+                  </div>
+                  {aiExamError ? <p className="planner-error">{aiExamError}</p> : null}
+                </form>
+
+                {aiExamResult ? (
+                  <div className="ai-examiner-results">
+                    <div className="ai-examiner-summary">
+                      <article className="ai-score-box">
+                        <p>Estimated Marks</p>
+                        <strong>{aiExamResult.totalScore}/100</strong>
+                        <span>{aiExamResult.grade}</span>
+                      </article>
+                      <article className="ai-score-box">
+                        <p>Word Count</p>
+                        <strong>{aiExamResult.wordCount}</strong>
+                        <span>Use this to calibrate answer depth.</span>
+                      </article>
+                    </div>
+
+                    <section className="ai-rubric-grid">
+                      {aiExamResult.criteriaScores.map((criterion) => (
+                        <article key={criterion.id} className="ai-rubric-card">
+                          <h4>{criterion.label}</h4>
+                          <strong>
+                            {criterion.score}/{criterion.maxScore}
+                          </strong>
+                          <p>{criterion.feedback}</p>
+                        </article>
+                      ))}
+                    </section>
+
+                    <section>
+                      <h4>Line by Line Weakness Review</h4>
+                      <ul className="planner-list ai-line-feedback-list">
+                        {aiExamResult.lineFeedback.map((item) => (
+                          <li key={item.id}>
+                            <strong>{item.snippet}</strong>
+                            <span>{item.feedback}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </section>
+
+                    <section>
+                      <h4>Improved High Scoring Outline</h4>
+                      <ul className="planner-list">
+                        {aiExamResult.improvedOutline.map((item) => (
+                          <li key={item}>{item}</li>
+                        ))}
+                      </ul>
+                    </section>
+
+                    <section className="ai-drills-panel">
+                      <div className="ai-drills-head">
+                        <h4>Auto 7 Day Improvement Drills</h4>
+                        <button
+                          className="btn btn-secondary"
+                          type="button"
+                          onClick={handleAiExamApplyDrillsToCalendar}
+                        >
+                          Apply to Guardian Calendar
+                        </button>
+                      </div>
+                      <ul className="planner-list">
+                        {aiExamResult.sevenDayDrills.map((drill) => (
+                          <li key={drill.id}>
+                            <strong>
+                              {drill.dayLabel} - {drill.focusArea}
+                            </strong>{' '}
+                            ({drill.targetMinutes} min): {drill.task}
+                          </li>
+                        ))}
+                      </ul>
+                      <p className="planner-meta">{aiExamResult.nextAttemptPrompt}</p>
+                    </section>
+                  </div>
+                ) : null}
+              </article>
+            ) : null}
+
             {activePlannerTab === 'timer' ? (
               <article className="planner-card planner-timer-card">
           <div className="planner-timer-header">
@@ -4478,11 +4898,11 @@ function GuardianStudyPlannerPage({ authUser }) {
 
           {focusRecoveryProtocol ? (
             <section className="focus-recovery-card">
-              <h4>Focus Recovery Protocol (Auto 3-Day Catch-up)</h4>
+              <h4>Focus Recovery Protocol (Auto 3 Day Catch up)</h4>
               <p>
                 You are behind target. Recovery backlog: <strong>{focusRecoveryProtocol.backlogMinutes} min</strong>.
                 Extra recovery is capped at <strong>{focusRecoveryProtocol.maxExtraPerDay} min/day</strong> to stay
-                burnout-safe.
+                burnout safe.
               </p>
               <div className="focus-recovery-grid">
                 {focusRecoveryProtocol.recoveryDays.map((day) => (
@@ -4504,7 +4924,7 @@ function GuardianStudyPlannerPage({ authUser }) {
                 <p className="planner-meta">
                   Remaining unresolved backlog after safe cap:{' '}
                   <strong>{focusRecoveryProtocol.unresolvedMinutes} min</strong>. Continue with the same protocol
-                  for another 1-2 days if needed.
+                  for another 1 to 2 days if needed.
                 </p>
               ) : null}
             </section>
@@ -4708,7 +5128,7 @@ function GuardianStudyPlannerPage({ authUser }) {
             <span className="dot consolidation" /> Consolidation <span className="dot done" /> Marked
             Complete
             <span className="dot planned" /> Planned <span className="dot revision" /> Revision{' '}
-            <span className="dot mock" /> Mock Test <span className="dot catchup" /> Catch-up{' '}
+            <span className="dot mock" /> Mock Test <span className="dot catchup" /> Catch up{' '}
             <span className="dot rest" /> Rest <span className="dot skipped" /> Skipped
           </p>
               </article>
@@ -4835,7 +5255,7 @@ function GuardianStudyPlannerPage({ authUser }) {
                 {focusRecoveryProtocol ? (
                   <div className="guardian-report-sections">
                     <section>
-                      <h4>Focus Recovery Protocol (3-Day Auto Plan)</h4>
+                      <h4>Focus Recovery Protocol (3 Day Auto Plan)</h4>
                       <p>
                         Backlog identified: <strong>{focusRecoveryProtocol.backlogMinutes} minutes</strong>. Recovery is
                         intentionally capped to prevent burnout while restoring momentum.
@@ -5134,7 +5554,7 @@ function WorldAffairsPage() {
       const message = err?.message || 'Unable to load news right now.'
       setError(
         message.includes('429')
-          ? 'News provider is rate-limiting requests (429). Please wait a minute and try Refresh again.'
+          ? 'News provider is rate limiting requests (429). Please wait a minute and try Refresh again.'
           : message,
       )
       setStatus('error')
@@ -5362,7 +5782,7 @@ function PakistanAffairsPage() {
       const message = err?.message || 'Unable to load news right now.'
       setError(
         message.includes('429')
-          ? 'News provider is rate-limiting requests (429). Please wait a minute and try Refresh again.'
+          ? 'News provider is rate limiting requests (429). Please wait a minute and try Refresh again.'
           : message,
       )
       setStatus('error')
@@ -6056,6 +6476,62 @@ function SeoMetaManager() {
   return null
 }
 
+function useRemoveVisibleWordHyphens() {
+  useEffect(() => {
+    const shouldSkipNode = (node) => {
+      const parent = node.parentElement
+      if (!parent) return true
+      const blockedTags = new Set(['SCRIPT', 'STYLE', 'NOSCRIPT', 'TEXTAREA', 'CODE', 'PRE'])
+      return blockedTags.has(parent.tagName)
+    }
+
+    const normalizeNodeText = (node) => {
+      if (!node || shouldSkipNode(node)) return
+      const original = node.nodeValue || ''
+      if (!original || original.includes('http://') || original.includes('https://')) return
+      const normalized = original.replace(/\b([A-Za-z]+)-([A-Za-z]+)\b/g, '$1 $2')
+      if (normalized !== original) node.nodeValue = normalized
+    }
+
+    const normalizeTree = (root) => {
+      if (!root) return
+      const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT)
+      let current = walker.nextNode()
+      while (current) {
+        normalizeNodeText(current)
+        current = walker.nextNode()
+      }
+    }
+
+    normalizeTree(document.body)
+
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.type === 'characterData') {
+          normalizeNodeText(mutation.target)
+          return
+        }
+
+        mutation.addedNodes.forEach((addedNode) => {
+          if (addedNode.nodeType === Node.TEXT_NODE) {
+            normalizeNodeText(addedNode)
+            return
+          }
+          if (addedNode.nodeType === Node.ELEMENT_NODE) normalizeTree(addedNode)
+        })
+      })
+    })
+
+    observer.observe(document.body, {
+      childList: true,
+      characterData: true,
+      subtree: true,
+    })
+
+    return () => observer.disconnect()
+  }, [])
+}
+
 function App() {
   const [authUser, setAuthUser] = useState(() => {
     try {
@@ -6114,6 +6590,8 @@ function App() {
       // Ignore storage failures and continue with in-memory auth state.
     }
   }, [authUser])
+
+  useRemoveVisibleWordHyphens()
 
   return (
     <BrowserRouter>
