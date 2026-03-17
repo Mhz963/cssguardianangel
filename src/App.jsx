@@ -6023,6 +6023,11 @@ function PakistanAffairsPage() {
 }
 
 function GlobalConflictMapTab() {
+  const normalizeCountryDisplayName = (value) => {
+    const raw = String(value || '').trim()
+    if (raw.toLowerCase() === 'israel') return 'Occupied Palestine'
+    return raw
+  }
   const [showConflicts, setShowConflicts] = useState(false)
   const [countries, setCountries] = useState([])
   const [isLoading, setIsLoading] = useState(false)
@@ -6036,7 +6041,20 @@ function GlobalConflictMapTab() {
       const res = await fetch('/api/global-conflicts')
       if (!res.ok) throw new Error(`Conflict API returned ${res.status}`)
       const data = await res.json()
-      const nextCountries = Array.isArray(data?.countries) ? data.countries : []
+      const nextCountries = Array.isArray(data?.countries)
+        ? data.countries.map((country) => ({
+            ...country,
+            country: normalizeCountryDisplayName(country.country),
+            conflicts: Array.isArray(country.conflicts)
+              ? country.conflicts.map((conflict) => ({
+                  ...conflict,
+                  countryName: normalizeCountryDisplayName(
+                    conflict.countryName || conflict.country || country.country,
+                  ),
+                }))
+              : [],
+          }))
+        : []
       setCountries(nextCountries)
       if (nextCountries.length === 0) setLoadError('No conflict data returned right now. Please try again.')
     } catch (error) {
