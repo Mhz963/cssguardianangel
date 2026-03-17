@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { CircleMarker, MapContainer, TileLayer } from 'react-leaflet'
 import {
   BrowserRouter,
   Link,
@@ -10,6 +11,7 @@ import {
   useNavigate,
   useParams,
 } from 'react-router-dom'
+import 'leaflet/dist/leaflet.css'
 import './App.css'
 import logo from './assets/guardian-angel-logo.png'
 import {
@@ -19,6 +21,59 @@ import {
   slugify,
 } from './data/syllabusData'
 import { jsPDF } from 'jspdf'
+
+const SITE_URL = 'https://mhzguardianangel.vercel.app'
+
+const DEFAULT_SEO = {
+  title: 'Guardian Angel | CSS Preparation Platform Pakistan',
+  description:
+    'Guardian Angel provides free CSS preparation resources in Pakistan, including CSS syllabus, CSS rules, past papers, current affairs, Pakistan affairs, and guided study planning.',
+  keywords:
+    'CSS Pakistan, FPSC CSS exam, CSS preparation, CSS syllabus, CSS past papers, CSS rules, current affairs Pakistan, Pakistan affairs, CSS essay preparation, CSS optional subjects',
+}
+
+const SEO_BY_PATH = {
+  '/': {
+    title: 'Guardian Angel | Free CSS Preparation Platform in Pakistan',
+    description:
+      'Prepare for the FPSC CSS exam with free CSS syllabus coverage, past papers, current affairs analysis, Pakistan affairs updates, and practical study guidance.',
+  },
+  '/css-syllabus': {
+    title: 'CSS Syllabus | Compulsory and Optional Subjects',
+    description:
+      'Explore the complete FPSC CSS syllabus with compulsory and optional subjects to build a focused and strategic preparation plan.',
+  },
+  '/css-rules': {
+    title: 'CSS Rules and Eligibility | FPSC Guidance',
+    description:
+      'Review CSS eligibility, age limit, attempts, domicile, and official rule guidance to verify your FPSC CSS exam readiness.',
+  },
+  '/css-past-papers': {
+    title: 'CSS Past Papers | Download and Practice',
+    description:
+      'Access CSS past papers by subject to identify examiner trends, practice answer writing, and strengthen high scoring preparation.',
+  },
+  '/css-study-material': {
+    title: 'CSS Study Material | Free Preparation Resources',
+    description:
+      'Get free CSS study material for compulsory and optional subjects with topic wise coverage for consistent and exam oriented preparation.',
+  },
+  '/global-affairs': {
+    title: 'Global Affairs | Current Affairs, Pakistan Affairs, Global Conflict Map',
+    description:
+      'Track global current affairs, Pakistan specific developments, and global conflict signals through an interactive map for CSS preparation.',
+  },
+  '/signin': {
+    title: 'Sign In | Guardian Angel',
+    description:
+      'Sign in to Guardian Angel to access personalized CSS preparation features and your protected study planner.',
+  },
+  '/guardian-study-planner': {
+    title: 'Guardian Study Planner | CSS Planning Tool',
+    description:
+      'Create a disciplined CSS study routine with a practical planner built for consistency, revision cycles, and answer writing goals.',
+  },
+}
 
 const pillars = [
   {
@@ -36,6 +91,79 @@ const pillars = [
   {
     title: 'Equal Opportunity',
     text: 'Students from every city, village, and background can prepare for CSS.',
+  },
+]
+
+const homeFaqs = [
+  {
+    question: 'What is CSS in Pakistan and why is the FPSC CSS exam so competitive?',
+    answer:
+      'CSS (Central Superior Services) is Pakistan’s top federal competitive examination conducted by FPSC. It is highly competitive because candidates are tested on analytical writing, current affairs, Pakistan affairs, general ability, and optional subjects under strict merit and allocation standards.',
+  },
+  {
+    question: 'What are the latest CSS eligibility criteria, age limit, education requirement, and attempts?',
+    answer:
+      'Always verify from official FPSC notifications, but core CSS exam eligibility areas usually include age limit, educational qualification, nationality, domicile, and number of attempts. Do not rely on social media rumors; read the latest FPSC rules and public notices yourself before applying.',
+  },
+  {
+    question: 'How can I create a complete CSS preparation plan for compulsory and optional subjects?',
+    answer:
+      'Build a weekly study plan around CSS compulsory subjects (Essay, Precis, General Science and Ability, Current Affairs, Pakistan Affairs, Islamic Studies/Comparative Religion) and your selected optional subjects. Use topic wise targets, answer writing practice, and monthly revision cycles.',
+  },
+  {
+    question: 'How should beginners start CSS preparation with FPSC syllabus and past papers?',
+    answer:
+      'Start with the official FPSC CSS syllabus and then map each topic with past paper trends. Build a weekly plan for compulsory subjects, optional subject coverage, answer writing, and revision. Past papers should guide preparation direction, not random notes.',
+  },
+  {
+    question: 'What is the best strategy for CSS Current Affairs and Pakistan Affairs preparation?',
+    answer:
+      'Use a structured method: daily newspaper analysis, weekly issue briefs, monthly revision sheets, and timed answer practice. Focus on causes, impacts, policy options, and Pakistan’s national interest. Depth and analysis beat copied facts.',
+  },
+  {
+    question: 'How should I prepare CSS Essay and English Precis for high marks?',
+    answer:
+      'For CSS Essay and English Precis, focus on clarity, structure, grammar, argument flow, and regular writing drills under timed conditions. Read quality editorials, outline before writing, and get critical feedback. Improvement comes from iteration, not shortcuts.',
+  },
+  {
+    question: 'How important are FPSC past papers and examiner trends in CSS preparation?',
+    answer:
+      'Past papers are essential because they reveal recurring themes, paper style, and depth expected by examiners. Use them to prioritize topics, but avoid memorized templates. FPSC rewards relevance, balanced argument, and independent analysis in answers.',
+  },
+  {
+    question: 'Can self study beat academy culture for CSS exam preparation in Pakistan?',
+    answer:
+      'Yes. Self study can outperform academy dependence when done with discipline and accountability. A serious candidate who follows FPSC syllabus, authentic books, past papers, and writing practice can build stronger conceptual understanding than someone passively consuming lectures.',
+  },
+  {
+    question: 'Can I pass CSS without joining expensive academies in Pakistan?',
+    answer:
+      'Yes. Many serious aspirants prepare through disciplined self study, authentic books, official documents, and consistent writing practice. Academy dependence is not a guarantee of success; clarity, consistency, and self accountability are.',
+  },
+  {
+    question: 'Is relying on ready-made CSS notes enough for exam success?',
+    answer:
+      'No. Notes can help in quick revision, but over reliance weakens conceptual command and originality. FPSC rewards critical thinking and argument quality. Build your own topic outlines after research so your answers remain unique and high scoring.',
+  },
+  {
+    question: 'Which optional subjects are best in CSS and how should I choose them?',
+    answer:
+      'There is no universal “best optional subject.” Choose based on syllabus fit, interest, background, scoring potential over recent trends, and overlap with compulsory papers. A well chosen subject plus smart preparation is better than chasing hearsay.',
+  },
+  {
+    question: 'How do I avoid low quality notes culture and improve critical thinking for CSS?',
+    answer:
+      'Replace copy paste notes with active research: compare multiple sources, ask why and how, build your own thesis, and write evidence based arguments. This develops original thinking, which is exactly what competitive civil service exams require.',
+  },
+  {
+    question: 'What is the right mindset for CSS success: consistency, self belief, and faith?',
+    answer:
+      'CSS is a marathon. Stay consistent, review progress weekly, correct mistakes honestly, and protect your confidence. Work hard with discipline, keep self belief, and place your trust in Allah Almighty for outcomes while fulfilling your responsibility with excellence.',
+  },
+  {
+    question: 'How many hours should I study daily for CSS and how do I stay motivated?',
+    answer:
+      'Quality matters more than raw hours. Most candidates improve with focused daily blocks, regular writing, and weekly performance review. Keep strong self belief, do honest effort, and place your trust in Allah Almighty while maintaining discipline and patience.',
   },
 ]
 
@@ -868,6 +996,7 @@ function HomePage() {
 
   return (
     <>
+      <HomeFaqStructuredData />
       <section className="intro" id="home">
         <div className="intro-video" aria-hidden="true">
           <video autoPlay loop muted playsInline preload="metadata" poster={logo}>
@@ -947,9 +1076,62 @@ function HomePage() {
             Browse CSS Syllabus
           </Link>
         </section>
+
+        <section className="home-faq container reveal-on-scroll" id="css-faq">
+          <div className="section-title">
+            <p>CSS Frequently Asked Questions</p>
+            <h2>Smart Preparation, Not Notes Culture</h2>
+          </div>
+          <HomeFaqAccordion />
+        </section>
       </main>
     </>
   )
+}
+
+function HomeFaqAccordion() {
+  const [openFaqIndex, setOpenFaqIndex] = useState(0)
+
+  return (
+    <div className="home-faq-accordion">
+      {homeFaqs.map((faq, index) => {
+        const isOpen = openFaqIndex === index
+        return (
+          <article key={faq.question} className={`home-faq-item ${isOpen ? 'open' : ''}`}>
+            <button
+              className="home-faq-trigger"
+              type="button"
+              onClick={() => setOpenFaqIndex((current) => (current === index ? -1 : index))}
+              aria-expanded={isOpen}
+            >
+              <h3>{faq.question}</h3>
+              <span className="home-faq-icon" aria-hidden="true">{isOpen ? '−' : '+'}</span>
+            </button>
+            <div className={`home-faq-body ${isOpen ? 'open' : ''}`} aria-hidden={!isOpen}>
+              <p>{faq.answer}</p>
+            </div>
+          </article>
+        )
+      })}
+    </div>
+  )
+}
+
+function HomeFaqStructuredData() {
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: homeFaqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  }
+
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 }
 
 function CssSyllabusPage() {
@@ -4861,9 +5043,11 @@ function WorldAffairsPage() {
   const [status, setStatus] = useState('idle')
   const [error, setError] = useState('')
   const [query, setQuery] = useState('')
+  const [appliedQuery, setAppliedQuery] = useState('global')
   const [lastUpdatedAt, setLastUpdatedAt] = useState(null)
   const [page, setPage] = useState(1)
   const [totalResults, setTotalResults] = useState(0)
+  const [refreshSeed, setRefreshSeed] = useState(0)
 
   const pageSize = 24
   const maxResultsCap = 100000
@@ -4874,8 +5058,7 @@ function WorldAffairsPage() {
     setStatus('loading')
     setError('')
     try {
-      const trimmedQuery = query.trim()
-      const effectiveQuery = trimmedQuery.length > 0 ? trimmedQuery : 'global'
+      const effectiveQuery = appliedQuery
       const cacheKey = `ga-global-affairs-cache::${effectiveQuery.toLowerCase()}::p${page}::s${pageSize}`
       const cacheTtlMs = 8 * 60 * 1000
 
@@ -4963,18 +5146,17 @@ function WorldAffairsPage() {
     fetchNews({ signal: controller.signal })
     return () => controller.abort()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page])
+  }, [appliedQuery, page, refreshSeed])
 
   const handleRefresh = () => {
-    const controller = new AbortController()
-    fetchNews({ signal: controller.signal })
+    setRefreshSeed((current) => current + 1)
   }
 
   const handleSubmit = (event) => {
     event.preventDefault()
+    const nextAppliedQuery = query.trim() || 'global'
+    setAppliedQuery(nextAppliedQuery)
     setPage(1)
-    const controller = new AbortController()
-    fetchNews({ signal: controller.signal })
   }
 
   return (
@@ -5087,10 +5269,12 @@ function PakistanAffairsPage() {
   const [status, setStatus] = useState('idle') // idle | loading | error | success
   const [error, setError] = useState('')
   const [query, setQuery] = useState('')
+  const [appliedQuery, setAppliedQuery] = useState('pakistan')
   const [lastUpdatedAt, setLastUpdatedAt] = useState(null)
   const [page, setPage] = useState(1)
   const [totalResults, setTotalResults] = useState(0)
   const [feed, setFeed] = useState('top') // top | all | politics
+  const [refreshSeed, setRefreshSeed] = useState(0)
 
   const pageSize = 24
   const maxResultsCap = 100000
@@ -5101,8 +5285,7 @@ function PakistanAffairsPage() {
     setStatus('loading')
     setError('')
     try {
-      const trimmedQuery = query.trim()
-      const effectiveQuery = trimmedQuery.length > 0 ? trimmedQuery : 'pakistan'
+      const effectiveQuery = appliedQuery
       const cacheKey = `ga-pakistan-affairs-cache::${feed}::${effectiveQuery.toLowerCase()}::p${page}::s${pageSize}`
       const cacheTtlMs = 8 * 60 * 1000
 
@@ -5191,18 +5374,17 @@ function PakistanAffairsPage() {
     fetchNews({ signal: controller.signal })
     return () => controller.abort()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page])
+  }, [appliedQuery, page, feed, refreshSeed])
 
   const handleRefresh = () => {
-    const controller = new AbortController()
-    fetchNews({ signal: controller.signal })
+    setRefreshSeed((current) => current + 1)
   }
 
   const handleSubmit = (event) => {
     event.preventDefault()
+    const nextAppliedQuery = query.trim() || 'pakistan'
+    setAppliedQuery(nextAppliedQuery)
     setPage(1)
-    const controller = new AbortController()
-    fetchNews({ signal: controller.signal })
   }
 
   return (
@@ -5350,8 +5532,237 @@ function PakistanAffairsPage() {
   )
 }
 
+function GlobalConflictMapTab() {
+  const [showConflicts, setShowConflicts] = useState(false)
+  const [countries, setCountries] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
+  const [loadError, setLoadError] = useState('')
+  const [selectedCountry, setSelectedCountry] = useState(null)
+  const [selectedConflict, setSelectedConflict] = useState(null)
+  const loadConflicts = async () => {
+    setIsLoading(true)
+    setLoadError('')
+    try {
+      const res = await fetch('/api/global-conflicts')
+      if (!res.ok) throw new Error(`Conflict API returned ${res.status}`)
+      const data = await res.json()
+      const nextCountries = Array.isArray(data?.countries) ? data.countries : []
+      setCountries(nextCountries)
+      if (nextCountries.length === 0) setLoadError('No conflict data returned right now. Please try again.')
+    } catch (error) {
+      if (error?.name === 'AbortError') return
+      setLoadError(error?.message || 'Unable to load conflict map data.')
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  const allConflicts = countries.flatMap((country) =>
+    (country.conflicts || []).map((conflict) => ({
+      ...conflict,
+      countryName: country.country,
+    })),
+  )
+
+  const openCountryConflict = (country) => {
+    setSelectedCountry(country)
+    setSelectedConflict((country?.conflicts || [])[0] || null)
+  }
+
+  return (
+    <section className="global-map-shell">
+      <div className="global-map-head glass-panel">
+        <div>
+          <h3>Global Map</h3>
+          <p>Track major conflict hotspots and open each marker for a concise situation brief.</p>
+        </div>
+        <button
+          className="btn btn-primary"
+          type="button"
+          onClick={() => {
+            const next = !showConflicts
+            setShowConflicts(next)
+            if (next) {
+              setSelectedCountry(null)
+              setSelectedConflict(null)
+              loadConflicts()
+            }
+          }}
+        >
+          {showConflicts ? 'Hide Global Conflicts' : 'View Global Conflicts'}
+        </button>
+      </div>
+
+      {isLoading ? <p className="global-map-note">Loading live conflict data...</p> : null}
+      {loadError ? <p className="global-map-note error">{loadError}</p> : null}
+
+      <div className="global-map-board glass-panel">
+        <MapContainer
+          center={[30.3753, 69.3451]}
+          zoom={5}
+          minZoom={2}
+          maxZoom={8}
+          worldCopyJump
+          className="global-leaflet-map"
+        >
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          <CircleMarker
+            center={[30.3753, 69.3451]}
+            radius={7}
+            pathOptions={{ color: '#f2d56b', weight: 2, fillColor: '#f2d56b', fillOpacity: 0.35 }}
+          />
+          {showConflicts
+            ? countries.map((country) => (
+                <CircleMarker
+                  key={country.countryId}
+                  center={[country.lat, country.lon]}
+                  radius={8}
+                  pathOptions={{ color: '#ef4444', weight: 2, fillColor: '#ef4444', fillOpacity: 0.72 }}
+                  eventHandlers={{ click: () => openCountryConflict(country) }}
+                />
+              ))
+            : null}
+        </MapContainer>
+      </div>
+
+      {showConflicts ? (
+        <div className="global-conflict-list">
+          {allConflicts.map((conflict) => (
+            <button
+              key={`${conflict.id}_${conflict.countryName || conflict.country || ''}`}
+              type="button"
+              className="global-conflict-item"
+              onClick={() => {
+                const country = countries.find((item) => item.country === conflict.countryName)
+                if (country) setSelectedCountry(country)
+                setSelectedConflict(conflict)
+              }}
+            >
+              <strong>{conflict.title}</strong>
+              <span>{conflict.countryName}</span>
+            </button>
+          ))}
+        </div>
+      ) : null}
+
+      {selectedConflict ? (
+        <div
+          className="global-conflict-modal-overlay"
+          role="presentation"
+          onClick={() => {
+            setSelectedConflict(null)
+            setSelectedCountry(null)
+          }}
+        >
+          <article
+            className="global-conflict-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-label={`${selectedConflict.title} details`}
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              className="global-conflict-modal-close"
+              type="button"
+              aria-label="Close conflict details"
+              onClick={() => {
+                setSelectedConflict(null)
+                setSelectedCountry(null)
+              }}
+            >
+              ×
+            </button>
+            <div className="global-conflict-modal-content">
+              <h4>{selectedConflict.title}</h4>
+              <p className="global-conflict-modal-meta">
+                <strong>{selectedConflict.countryName || selectedConflict.country || selectedCountry?.country}</strong>
+              </p>
+              <p>{selectedConflict.summary}</p>
+              <p>
+                <strong>Started:</strong> {selectedConflict.startedAt ? formatNewsTimestamp(selectedConflict.startedAt) : 'Unknown'}
+              </p>
+              {selectedConflict.articleUrl ? (
+                <a className="btn btn-secondary" href={selectedConflict.articleUrl} target="_blank" rel="noreferrer">
+                  Read source
+                </a>
+              ) : null}
+              {selectedCountry?.conflicts?.length > 1 ? (
+                <div className="global-conflict-modal-list">
+                  <p><strong>Other conflicts in this country:</strong></p>
+                  <div>
+                    {selectedCountry.conflicts.map((conflict) => (
+                      <button
+                        key={conflict.id}
+                        type="button"
+                        className="global-conflict-modal-list-btn"
+                        onClick={() =>
+                          setSelectedConflict({
+                            ...conflict,
+                            countryName: selectedCountry.country,
+                          })
+                        }
+                      >
+                        {conflict.title}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              ) : null}
+              <button
+                className="btn btn-primary"
+                type="button"
+                onClick={() => {
+                  setSelectedConflict(null)
+                  setSelectedCountry(null)
+                }}
+              >
+                Close
+              </button>
+            </div>
+          </article>
+        </div>
+      ) : null}
+    </section>
+  )
+}
+
 function GlobalAffairsPage({ defaultTab = 'global' }) {
-  const [activeTab, setActiveTab] = useState(defaultTab)
+  const location = useLocation()
+  const navigate = useNavigate()
+  const allowedTabs = ['global', 'pakistan', 'map']
+  const getResolvedTab = (value) => {
+    if (!value) return defaultTab
+    return allowedTabs.includes(value) ? value : defaultTab
+  }
+
+  const [activeTab, setActiveTab] = useState(() => {
+    const params = new URLSearchParams(location.search)
+    return getResolvedTab(params.get('tab'))
+  })
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search)
+    const urlTab = getResolvedTab(params.get('tab'))
+    if (urlTab !== activeTab) setActiveTab(urlTab)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.search, defaultTab])
+
+  const switchTab = (tabId) => {
+    const nextTab = getResolvedTab(tabId)
+    setActiveTab(nextTab)
+    const params = new URLSearchParams(location.search)
+    params.set('tab', nextTab)
+    navigate(
+      {
+        pathname: location.pathname,
+        search: `?${params.toString()}`,
+      },
+      { replace: true },
+    )
+  }
 
   return (
     <main className="page-main container">
@@ -5364,20 +5775,29 @@ function GlobalAffairsPage({ defaultTab = 'global' }) {
         <button
           type="button"
           className={`current-affairs-feed-tab ${activeTab === 'global' ? 'active' : ''}`}
-          onClick={() => setActiveTab('global')}
+          onClick={() => switchTab('global')}
         >
           Current Affairs (World)
         </button>
         <button
           type="button"
           className={`current-affairs-feed-tab ${activeTab === 'pakistan' ? 'active' : ''}`}
-          onClick={() => setActiveTab('pakistan')}
+          onClick={() => switchTab('pakistan')}
         >
           Pakistan Affairs
         </button>
+        <button
+          type="button"
+          className={`current-affairs-feed-tab ${activeTab === 'map' ? 'active' : ''}`}
+          onClick={() => switchTab('map')}
+        >
+          Global Map
+        </button>
       </div>
 
-      {activeTab === 'global' ? <WorldAffairsPage /> : <PakistanAffairsPage />}
+      {activeTab === 'global' ? <WorldAffairsPage /> : null}
+      {activeTab === 'pakistan' ? <PakistanAffairsPage /> : null}
+      {activeTab === 'map' ? <GlobalConflictMapTab /> : null}
     </main>
   )
 }
@@ -5551,6 +5971,91 @@ function ScrollToTopOnRouteChange() {
   return null
 }
 
+const upsertMetaTag = (name, content, attr = 'name') => {
+  if (!content) return
+  const selector = `meta[${attr}="${name}"]`
+  let tag = document.head.querySelector(selector)
+  if (!tag) {
+    tag = document.createElement('meta')
+    tag.setAttribute(attr, name)
+    document.head.appendChild(tag)
+  }
+  tag.setAttribute('content', content)
+}
+
+const upsertLinkTag = (rel, href) => {
+  if (!href) return
+  let tag = document.head.querySelector(`link[rel="${rel}"]`)
+  if (!tag) {
+    tag = document.createElement('link')
+    tag.setAttribute('rel', rel)
+    document.head.appendChild(tag)
+  }
+  tag.setAttribute('href', href)
+}
+
+const resolveRouteSeo = (pathname, search) => {
+  if (pathname.startsWith('/css-syllabus/')) {
+    return {
+      title: 'CSS Subject Details | Guardian Angel',
+      description:
+        'Review subject wise CSS syllabus details and prepare each topic with better structure, relevant references, and focused answer writing practice.',
+    }
+  }
+
+  if (pathname === '/global-affairs') {
+    const tab = new URLSearchParams(search).get('tab')
+    if (tab === 'pakistan') {
+      return {
+        title: 'Pakistan Affairs News | Guardian Angel',
+        description:
+          'Follow Pakistan affairs updates, policy developments, and national issues relevant for CSS preparation and quality analytical writing.',
+      }
+    }
+    if (tab === 'map') {
+      return {
+        title: 'Global Conflict Map | Guardian Angel',
+        description:
+          'Explore an interactive global conflict map with conflict summaries to support stronger current affairs analysis for CSS preparation.',
+      }
+    }
+  }
+
+  return SEO_BY_PATH[pathname] || DEFAULT_SEO
+}
+
+function SeoMetaManager() {
+  const location = useLocation()
+
+  useEffect(() => {
+    const seo = resolveRouteSeo(location.pathname, location.search)
+    const canonicalUrl = `${SITE_URL}${location.pathname}${location.search || ''}`
+
+    document.title = seo.title
+    document.documentElement.setAttribute('lang', 'en')
+
+    upsertMetaTag('description', seo.description)
+    upsertMetaTag('keywords', DEFAULT_SEO.keywords)
+    upsertMetaTag('robots', 'index, follow, max-image-preview:large')
+
+    upsertMetaTag('og:title', seo.title, 'property')
+    upsertMetaTag('og:description', seo.description, 'property')
+    upsertMetaTag('og:type', 'website', 'property')
+    upsertMetaTag('og:url', canonicalUrl, 'property')
+    upsertMetaTag('og:site_name', 'Guardian Angel', 'property')
+    upsertMetaTag('og:image', `${SITE_URL}/favicon.png`, 'property')
+
+    upsertMetaTag('twitter:card', 'summary_large_image')
+    upsertMetaTag('twitter:title', seo.title)
+    upsertMetaTag('twitter:description', seo.description)
+    upsertMetaTag('twitter:image', `${SITE_URL}/favicon.png`)
+
+    upsertLinkTag('canonical', canonicalUrl)
+  }, [location.pathname, location.search])
+
+  return null
+}
+
 function App() {
   const [authUser, setAuthUser] = useState(() => {
     try {
@@ -5613,6 +6118,7 @@ function App() {
   return (
     <BrowserRouter>
       <ScrollToTopOnRouteChange />
+      <SeoMetaManager />
       <div className="site">
         <Header
           theme={theme}
