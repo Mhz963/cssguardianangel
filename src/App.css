@@ -1724,6 +1724,15 @@ a {
   max-width: 860px;
 }
 
+.study-material-mantra {
+  text-align: center;
+  font-size: clamp(1.08rem, 2.2vw, 1.42rem);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  margin: 0.15rem auto 1.15rem;
+  max-width: 860px;
+}
+
 .blog-write-widget-wrap {
   display: flex;
   justify-content: flex-end;

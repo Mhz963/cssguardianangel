@@ -2088,12 +2088,14 @@ function CssStudyMaterialPage() {
       <section className="container css-rules-page">
         <div className="section-title">
           <p>CSS Study Material</p>
-          <h2>Criminology, Gender Studies, and IR Lecture Slides</h2>
+          <h2>Comprehensive CSS Lecture Slides for Smart Preparation</h2>
         </div>
 
-        <p className="rules-source">
-          Access organized lecture slides with quick view and one click download.
-          <strong>{` ${totalSlides} slides available in total.`}</strong>
+        <p className="rules-source study-material-mantra">
+          <span className="guardian-highlight-word">
+            Study smarter with organized content and instant downloads
+          </span>
+          
         </p>
 
         <div className="study-toolbar">
