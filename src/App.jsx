@@ -73,7 +73,7 @@ const SEO_BY_PATH = {
     description:
       'Create a disciplined CSS study routine with a practical planner built for consistency, revision cycles, and answer writing goals.',
   },
-  '/blog': {
+  '/blogs': {
     title: 'CSS Blog | Guardian Angel Insights',
     description:
       'Read practical CSS preparation blogs on strategy, current affairs analysis, answer writing, and exam discipline by Guardian Angel.',
@@ -380,7 +380,7 @@ const blogPosts = [
 ]
 
 const getBlogWordCount = (post) => {
-  const source = `${post?.excerpt || ''}`.trim()
+  const source = `${post?.content || post?.excerpt || ''}`.trim()
   if (!source) return 0
   return source.split(/\s+/).filter(Boolean).length
 }
@@ -389,6 +389,13 @@ const getBlogReadTime = (post) => {
   const words = getBlogWordCount(post)
   const minutes = Math.max(1, Math.ceil(words / 200))
   return `${minutes} min read`
+}
+
+const hasOffensiveBlogLanguage = (text) => {
+  const normalized = String(text || '')
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, ' ')
+  return BLOG_OFFENSIVE_WORDS.some((word) => new RegExp(`\\b${word}\\b`, 'i').test(normalized))
 }
 
 const BLOG_CATEGORY_FILTERS = [
@@ -403,8 +410,38 @@ const FEATURED_BLOG_SLUGS = [
   'css-jawan-spirit-discipline-and-unity',
   'research-mindset-for-css-success',
 ]
+const USER_BLOGS_STORAGE_KEY = 'ga-user-blogs'
+const BLOG_OFFENSIVE_WORDS = [
+  'abuse',
+  'bastard',
+  'bitch',
+  'bloody',
+  'bullshit',
+  'chutiya',
+  'damn',
+  'fool',
+  'fuck',
+  'fucking',
+  'haramzada',
+  'harami',
+  'idiot',
+  'jerk',
+  'kameena',
+  'lanat',
+  'loser',
+  'madarchod',
+  'moron',
+  'motherfucker',
+  'randi',
+  'shit',
+  'slut',
+  'stupid',
+]
 
 const getBlogCategories = (post) => {
+  if (Array.isArray(post?.categories) && post.categories.length > 0) {
+    return post.categories.filter((item) => BLOG_CATEGORY_FILTERS.includes(item) && item !== 'All')
+  }
   const text = `${post?.title || ''} ${post?.excerpt || ''}`.toLowerCase()
   const tags = new Set()
 
@@ -1444,7 +1481,7 @@ function Header({ theme, onToggleTheme, authUser, onLogout }) {
       ],
     },
     ...(authUser ? [{ label: 'Guardian Study Planner', to: '/guardian-study-planner' }] : []),
-    { label: 'Blogs', to: '/blog' },
+    { label: 'Blogs', to: '/blogs' },
   ]
 
   const handleThemeToggle = () => {
@@ -2161,17 +2198,34 @@ function CssStudyMaterialPage() {
   )
 }
 
-function BlogPage() {
+function BlogPage({ authUser }) {
   const { blogSlug } = useParams()
   const location = useLocation()
   const navigate = useNavigate()
   const [activeCategory, setActiveCategory] = useState('All')
   const [selectedBlog, setSelectedBlog] = useState(null)
-  const featuredPosts = blogPosts
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false)
+  const [publishError, setPublishError] = useState('')
+  const [blogDraft, setBlogDraft] = useState({
+    title: '',
+    category: 'Motivation',
+    content: '',
+  })
+  const [userBlogs, setUserBlogs] = useState(() => {
+    try {
+      const raw = localStorage.getItem(USER_BLOGS_STORAGE_KEY)
+      const parsed = raw ? JSON.parse(raw) : []
+      return Array.isArray(parsed) ? parsed : []
+    } catch {
+      return []
+    }
+  })
+  const allBlogs = [...userBlogs, ...blogPosts]
+  const featuredPosts = allBlogs
     .filter((post) => FEATURED_BLOG_SLUGS.includes(post.slug))
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
-  const visiblePosts = blogPosts.filter((post) =>
+  const visiblePosts = allBlogs.filter((post) =>
     activeCategory === 'All' ? true : getBlogCategories(post).includes(activeCategory),
   )
   const regularPosts = visiblePosts.filter((post) => !FEATURED_BLOG_SLUGS.includes(post.slug))
@@ -2179,8 +2233,8 @@ function BlogPage() {
     '@context': 'https://schema.org',
     '@type': 'Blog',
     name: 'Guardian Angel CSS Blog',
-    url: `${SITE_URL}/blog`,
-    blogPost: blogPosts.map((post) => ({
+    url: `${SITE_URL}/blogs`,
+    blogPost: allBlogs.map((post) => ({
       '@type': 'BlogPosting',
       headline: post.title,
       datePublished: post.date,
@@ -2195,20 +2249,71 @@ function BlogPage() {
       },
       description: post.excerpt,
       timeRequired: `PT${Math.max(1, Math.ceil(getBlogWordCount(post) / 200))}M`,
-      mainEntityOfPage: `${SITE_URL}/blog/${post.slug}`,
+      mainEntityOfPage: `${SITE_URL}/blogs/${post.slug}`,
     })),
   }
+  const closeCreateModal = () => {
+    setIsCreateModalOpen(false)
+    setPublishError('')
+  }
+  const handlePublishBlog = (event) => {
+    event.preventDefault()
+    if (!authUser) {
+      setPublishError('Please sign in to publish a blog.')
+      return
+    }
+    const title = blogDraft.title.trim()
+    const content = blogDraft.content.trim()
+    const category = blogDraft.category
+    if (title.length < 8) {
+      setPublishError('Blog title should be at least 8 characters.')
+      return
+    }
+    if (content.split(/\s+/).filter(Boolean).length < 40) {
+      setPublishError('Blog content should be at least 40 words for publishing.')
+      return
+    }
+    if (hasOffensiveBlogLanguage(`${title} ${content}`)) {
+      setPublishError('Abusive or offensive language is not allowed in blog content.')
+      return
+    }
+    const baseSlug = slugify(title) || `blog-${Date.now()}`
+    let uniqueSlug = baseSlug
+    let suffix = 1
+    const existingSlugs = new Set(allBlogs.map((post) => post.slug))
+    while (existingSlugs.has(uniqueSlug)) {
+      uniqueSlug = `${baseSlug}-${suffix}`
+      suffix += 1
+    }
+    const words = content.split(/\s+/).filter(Boolean)
+    const excerpt = words.slice(0, 70).join(' ')
+    const nextPost = {
+      slug: uniqueSlug,
+      title,
+      date: new Date().toISOString(),
+      author: authUser.fullName || authUser.username || 'Guardian User',
+      excerpt: excerpt.length < content.length ? `${excerpt}...` : excerpt,
+      content,
+      categories: [category],
+      internalLinks: [],
+      externalLinks: [],
+      isUserGenerated: true,
+    }
+    setUserBlogs((current) => [nextPost, ...current])
+    setBlogDraft({ title: '', category: 'Motivation', content: '' })
+    setPublishError('')
+    setIsCreateModalOpen(false)
+    openBlogModal(nextPost)
+  }
   const openBlogModal = (post) => {
-    setSelectedBlog(post)
-    const targetPath = `/blog/${post.slug}`
+    const targetPath = `/blogs/${post.slug}`
     if (location.pathname !== targetPath) {
       navigate(targetPath)
     }
   }
   const closeBlogModal = () => {
-    setSelectedBlog(null)
-    if (location.pathname !== '/blog') {
-      navigate('/blog')
+    if (blogSlug) {
+      navigate('/blogs')
     }
   }
 
@@ -2217,9 +2322,9 @@ function BlogPage() {
       setSelectedBlog(null)
       return
     }
-    const matched = blogPosts.find((post) => post.slug === blogSlug) || null
+    const matched = allBlogs.find((post) => post.slug === blogSlug) || null
     setSelectedBlog(matched)
-  }, [blogSlug])
+  }, [blogSlug, allBlogs])
 
   useEffect(() => {
     if (!selectedBlog) return undefined
@@ -2234,6 +2339,13 @@ function BlogPage() {
       window.removeEventListener('keydown', handleEscape)
     }
   }, [selectedBlog])
+  useEffect(() => {
+    try {
+      localStorage.setItem(USER_BLOGS_STORAGE_KEY, JSON.stringify(userBlogs))
+    } catch {
+      // Ignore storage errors and continue with in-memory state.
+    }
+  }, [userBlogs])
 
   return (
     <main className="page-main">
@@ -2243,9 +2355,18 @@ function BlogPage() {
           <p>Guardian Angel Blog</p>
           <h2>CSS Strategy, Writing, and Current Affairs Insights</h2>
         </div>
-        <p className="rules-source">
-          Concise, practical mini blogs designed for  CSS Jawans.
+        <p className="rules-source blog-jawan-mantra">
+          <span className="guardian-highlight-word">
+            Focus, Discipline and Determination, defines a CSS Jawan
+          </span>
         </p>
+        {authUser ? (
+          <div className="blog-write-widget-wrap">
+            <button type="button" className="btn btn-primary blog-write-widget" onClick={() => setIsCreateModalOpen(true)}>
+              Write a Blog
+            </button>
+          </div>
+        ) : null}
 
         <div className="blog-category-chips" role="tablist" aria-label="Blog categories">
           {BLOG_CATEGORY_FILTERS.map((category) => (
@@ -2375,7 +2496,7 @@ function BlogPage() {
                 By <strong>{selectedBlog.author}</strong> · {formatNewsTimestamp(selectedBlog.date)} ·{' '}
                 {getBlogReadTime(selectedBlog)}
               </p>
-              <p className="blog-modal-content">{selectedBlog.excerpt}</p>
+              <p className="blog-modal-content">{selectedBlog.content || selectedBlog.excerpt}</p>
               <div className="blog-links">
                 <div className="blog-link-row">
                   {selectedBlog.internalLinks.map((item) => (
@@ -2408,9 +2529,75 @@ function BlogPage() {
             </article>
           </div>
         ) : null}
+        {isCreateModalOpen ? (
+          <div className="blog-modal-overlay" onClick={closeCreateModal} role="dialog" aria-modal="true">
+            <article className="blog-modal-card blog-create-modal" onClick={(event) => event.stopPropagation()}>
+              <button
+                type="button"
+                className="blog-modal-close"
+                onClick={closeCreateModal}
+                aria-label="Close create blog"
+              >
+                ×
+              </button>
+              <h3>Publish Your Blog</h3>
+              <form className="blog-create-form" onSubmit={handlePublishBlog}>
+                <label>
+                  Blog Title
+                  <input
+                    type="text"
+                    value={blogDraft.title}
+                    onChange={(event) => setBlogDraft((current) => ({ ...current, title: event.target.value }))}
+                    placeholder="Enter blog title"
+                    required
+                  />
+                </label>
+                <label>
+                  Category
+                  <select
+                    value={blogDraft.category}
+                    onChange={(event) =>
+                      setBlogDraft((current) => ({ ...current, category: event.target.value }))
+                    }
+                  >
+                    {BLOG_CATEGORY_FILTERS.filter((item) => item !== 'All').map((category) => (
+                      <option key={category} value={category}>
+                        {category}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                <label>
+                  Blog Content
+                  <textarea
+                    rows={10}
+                    value={blogDraft.content}
+                    onChange={(event) => setBlogDraft((current) => ({ ...current, content: event.target.value }))}
+                    placeholder="Write your blog here..."
+                    required
+                  />
+                </label>
+                {publishError ? <p className="planner-error">{publishError}</p> : null}
+                <div className="blog-create-actions">
+                  <button type="submit" className="btn btn-primary">
+                    Publish Blog
+                  </button>
+                  <button type="button" className="btn btn-secondary" onClick={closeCreateModal}>
+                    Cancel
+                  </button>
+                </div>
+              </form>
+            </article>
+          </div>
+        ) : null}
       </section>
     </main>
   )
+}
+
+function LegacyBlogSlugRedirect() {
+  const { blogSlug } = useParams()
+  return <Navigate to={`/blogs/${blogSlug || ''}`} replace />
 }
 
 function SubjectDetailPage() {
@@ -7583,7 +7770,7 @@ const upsertLinkTag = (rel, href) => {
 }
 
 const resolveRouteSeo = (pathname, search) => {
-  if (pathname.startsWith('/blog/')) {
+  if (pathname.startsWith('/blogs/')) {
     return {
       title: 'CSS Blog Article | Guardian Angel',
       description:
@@ -7788,8 +7975,10 @@ function App() {
           <Route path="/css-rules" element={<CssRulesPage />} />
           <Route path="/css-past-papers" element={<CssPastPapersPage />} />
           <Route path="/css-study-material" element={<CssStudyMaterialPage />} />
-          <Route path="/blog" element={<BlogPage />} />
-          <Route path="/blog/:blogSlug" element={<BlogPage />} />
+          <Route path="/blogs" element={<BlogPage authUser={authUser} />} />
+          <Route path="/blogs/:blogSlug" element={<BlogPage authUser={authUser} />} />
+          <Route path="/blog" element={<Navigate to="/blogs" replace />} />
+          <Route path="/blog/:blogSlug" element={<LegacyBlogSlugRedirect />} />
           <Route
             path="/signin"
             element={<SignInPage authUser={authUser} onSignIn={(user) => setAuthUser(user)} />}
