@@ -2162,6 +2162,7 @@ function CssStudyMaterialPage() {
 }
 
 function BlogPage() {
+  const { blogSlug } = useParams()
   const location = useLocation()
   const navigate = useNavigate()
   const [activeCategory, setActiveCategory] = useState('All')
@@ -2194,32 +2195,31 @@ function BlogPage() {
       },
       description: post.excerpt,
       timeRequired: `PT${Math.max(1, Math.ceil(getBlogWordCount(post) / 200))}M`,
-      mainEntityOfPage: `${SITE_URL}/blog#${post.slug}`,
+      mainEntityOfPage: `${SITE_URL}/blog/${post.slug}`,
     })),
   }
   const openBlogModal = (post) => {
     setSelectedBlog(post)
-    const targetHash = `#${post.slug}`
-    if (location.hash !== targetHash) {
-      navigate(`${location.pathname}${location.search}${targetHash}`)
+    const targetPath = `/blog/${post.slug}`
+    if (location.pathname !== targetPath) {
+      navigate(targetPath)
     }
   }
   const closeBlogModal = () => {
     setSelectedBlog(null)
-    if (location.hash) {
-      navigate(`${location.pathname}${location.search}`)
+    if (location.pathname !== '/blog') {
+      navigate('/blog')
     }
   }
 
   useEffect(() => {
-    const hashSlug = location.hash.replace(/^#/, '').trim()
-    if (!hashSlug) {
+    if (!blogSlug) {
       setSelectedBlog(null)
       return
     }
-    const matched = blogPosts.find((post) => post.slug === hashSlug) || null
+    const matched = blogPosts.find((post) => post.slug === blogSlug) || null
     setSelectedBlog(matched)
-  }, [location.hash])
+  }, [blogSlug])
 
   useEffect(() => {
     if (!selectedBlog) return undefined
@@ -7583,6 +7583,14 @@ const upsertLinkTag = (rel, href) => {
 }
 
 const resolveRouteSeo = (pathname, search) => {
+  if (pathname.startsWith('/blog/')) {
+    return {
+      title: 'CSS Blog Article | Guardian Angel',
+      description:
+        'Read detailed CSS preparation blog articles on strategy, self study, writing quality, and exam mindset by Guardian Angel.',
+    }
+  }
+
   if (pathname.startsWith('/css-syllabus/')) {
     return {
       title: 'CSS Subject Details | Guardian Angel',
@@ -7781,6 +7789,7 @@ function App() {
           <Route path="/css-past-papers" element={<CssPastPapersPage />} />
           <Route path="/css-study-material" element={<CssStudyMaterialPage />} />
           <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blog/:blogSlug" element={<BlogPage />} />
           <Route
             path="/signin"
             element={<SignInPage authUser={authUser} onSignIn={(user) => setAuthUser(user)} />}
