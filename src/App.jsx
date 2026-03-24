@@ -73,6 +73,11 @@ const SEO_BY_PATH = {
     description:
       'Create a disciplined CSS study routine with a practical planner built for consistency, revision cycles, and answer writing goals.',
   },
+  '/blog': {
+    title: 'CSS Blog | Guardian Angel Insights',
+    description:
+      'Read practical CSS preparation blogs on strategy, current affairs analysis, answer writing, and exam discipline by Guardian Angel.',
+  },
 }
 
 const pillars = [
@@ -166,6 +171,260 @@ const homeFaqs = [
       'Quality matters more than raw hours. Most candidates improve with focused daily blocks, regular writing, and weekly performance review. Keep strong self belief, do honest effort, and place your trust in Allah Almighty while maintaining discipline and patience.',
   },
 ]
+
+const blogPosts = [
+  {
+    slug: 'how-to-start-css-preparation-smartly',
+    title: 'How to Start CSS Preparation Smartly in Pakistan',
+    date: '2026-03-17T11:18:00+05:00',
+    readTime: '5 min read',
+    author: 'Guardian Angel',
+    excerpt:
+      'Most aspirants fail early because they start with random notes instead of structure. Begin from the official syllabus, define weekly outputs, and align study blocks with past paper patterns.',
+    internalLinks: [
+      { label: 'Explore CSS Syllabus', to: '/css-syllabus' },
+      { label: 'Build your plan in Study Planner', to: '/guardian-study-planner' },
+    ],
+    externalLinks: [
+      { label: 'FPSC Official Website', url: 'https://fpsc.gov.pk/' },
+      { label: 'Pakistan Bureau of Statistics', url: 'https://www.pbs.gov.pk/' },
+    ],
+  },
+  {
+    slug: 'css-essay-and-precis-writing-framework',
+    title: 'CSS Essay and Precis: A Practical Writing Framework',
+    date: '2026-03-17T12:42:00+05:00',
+    readTime: '4 min read',
+    author: 'Guardian Angel',
+    excerpt:
+      'Strong writing comes from repeatable structure: thesis clarity, argument flow, evidence placement, and conclusion discipline. Practice with time limits and weekly review loops.',
+    internalLinks: [
+      { label: 'Practice with CSS Past Papers', to: '/css-past-papers' },
+      { label: 'Use AI Examiner for feedback', to: '/guardian-study-planner' },
+    ],
+    externalLinks: [
+      { label: 'Dawn Editorials', url: 'https://www.dawn.com/' },
+      { label: 'UN Official Portal', url: 'https://www.un.org/' },
+    ],
+  },
+  {
+    slug: 'current-affairs-analysis-for-css',
+    title: 'Current Affairs Analysis for CSS: Depth Over Headlines',
+    date: '2026-03-17T14:07:00+05:00',
+    readTime: '5 min read',
+    author: 'Guardian Angel',
+    excerpt:
+      'Reading news is not enough. Convert events into causes, implications, policy options, and Pakistan centric conclusions. This turns information into examiner worthy analysis.',
+    internalLinks: [
+      { label: 'Track Global Affairs Feed', to: '/global-affairs?tab=global' },
+      { label: 'Review Pakistan Affairs Feed', to: '/global-affairs?tab=pakistan' },
+    ],
+    externalLinks: [
+      { label: 'Ministry of Foreign Affairs Pakistan', url: 'https://mofa.gov.pk/' },
+      { label: 'State Bank of Pakistan', url: 'https://www.sbp.org.pk/' },
+    ],
+  },
+  {
+    slug: 'optional-subject-selection-without-hype',
+    title: 'Choosing CSS Optional Subjects Without Hype',
+    date: '2026-03-17T15:36:00+05:00',
+    readTime: '4 min read',
+    author: 'Guardian Angel',
+    excerpt:
+      'Do not chase rumors about scoring trends in isolation. Pick optionals based on interest, overlap, writing comfort, and long term sustainability for consistent performance.',
+    internalLinks: [
+      { label: 'Check optional groups in syllabus', to: '/css-syllabus' },
+      { label: 'Use Subject Locker in planner', to: '/guardian-study-planner' },
+    ],
+    externalLinks: [
+      { label: 'HEC Pakistan', url: 'https://hec.gov.pk/' },
+      { label: 'World Bank Data', url: 'https://data.worldbank.org/' },
+    ],
+  },
+  {
+    slug: 'self-study-discipline-and-consistency',
+    title: 'Self Study Discipline: The Real CSS Advantage',
+    date: '2026-03-17T22:14:00+05:00',
+    readTime: '4 min read',
+    author: 'Guardian Angel',
+    excerpt:
+      'Academy dependence can hide weak fundamentals. Self study with measurable daily targets, revision cycles, and honest feedback creates durable performance for competitive exams.',
+    internalLinks: [
+      { label: 'Read CSS Rules and eligibility', to: '/css-rules' },
+      { label: 'Get free CSS Study Material', to: '/css-study-material' },
+    ],
+    externalLinks: [
+      { label: 'Press Information Department Pakistan', url: 'https://pid.gov.pk/' },
+      { label: 'FPSC Official Website', url: 'https://fpsc.gov.pk/' },
+    ],
+  },
+  {
+    slug: 'research-mindset-for-css-success',
+    title: 'Research Mindset for CSS Success: Think Beyond Ready Notes',
+    date: '2026-03-18T23:41:00+05:00',
+    readTime: '5 min read',
+    author: 'Guardian Angel',
+    excerpt:
+      'Top CSS aspirants do not memorize copied notes. They compare sources, build arguments, test assumptions, and write original analysis. Research based preparation creates durable confidence and better marks.',
+    internalLinks: [
+      { label: 'Read CSS Rules and standards', to: '/css-rules' },
+      { label: 'Practice with CSS Past Papers', to: '/css-past-papers' },
+    ],
+    externalLinks: [
+      { label: 'FPSC Official Website', url: 'https://fpsc.gov.pk/' },
+      { label: 'World Bank Data', url: 'https://data.worldbank.org/' },
+    ],
+  },
+  {
+    slug: 'stop-academy-dependence-build-self-study-system',
+    title: 'Stop Academy Dependence and Build a Self Study System',
+    date: '2026-03-18T00:26:00+05:00',
+    readTime: '4 min read',
+    author: 'Guardian Angel',
+    excerpt:
+      'Academies can support, but dependency weakens initiative. Build your own weekly system with topic goals, writing drills, review checkpoints, and correction loops. Ownership of preparation drives real growth.',
+    internalLinks: [
+      { label: 'Open CSS Study Material', to: '/css-study-material' },
+      { label: 'Use Guardian Study Planner', to: '/guardian-study-planner' },
+    ],
+    externalLinks: [
+      { label: 'HEC Pakistan', url: 'https://hec.gov.pk/' },
+      { label: 'Pakistan Bureau of Statistics', url: 'https://www.pbs.gov.pk/' },
+    ],
+  },
+  {
+    slug: 'confidence-without-comparison-in-css-journey',
+    title: 'Confidence Without Comparison in Your CSS Journey',
+    date: '2026-03-18T01:12:00+05:00',
+    readTime: '4 min read',
+    author: 'Guardian Angel',
+    excerpt:
+      'Do not measure your future by someone else’s pace. Consistent personal progress, not social comparison, creates exam readiness. Compete with your previous self and improve one measurable metric each week.',
+    internalLinks: [
+      { label: 'Track your progress in planner', to: '/guardian-study-planner' },
+      { label: 'Review optional subjects strategy', to: '/css-syllabus' },
+    ],
+    externalLinks: [
+      { label: 'State Bank of Pakistan', url: 'https://www.sbp.org.pk/' },
+      { label: 'Dawn News', url: 'https://www.dawn.com/' },
+    ],
+  },
+  {
+    slug: 'healthy-competition-no-judgement-css',
+    title: 'Healthy Competition in CSS: No Judgement, No Negativity',
+    date: '2026-03-18T02:37:00+05:00',
+    readTime: '4 min read',
+    author: 'Guardian Angel',
+    excerpt:
+      'Competitive exams require discipline, not arrogance. Respect fellow aspirants, avoid judgemental thinking, and focus on your preparation ethics. A healthy mindset sustains performance under pressure.',
+    internalLinks: [
+      { label: 'Improve writing with AI Examiner', to: '/guardian-study-planner' },
+      { label: 'Read current affairs updates', to: '/global-affairs?tab=global' },
+    ],
+    externalLinks: [
+      { label: 'United Nations', url: 'https://www.un.org/' },
+      { label: 'Press Information Department Pakistan', url: 'https://pid.gov.pk/' },
+    ],
+  },
+  {
+    slug: 'faith-hardwork-and-destiny-css-success',
+    title: 'Faith, Hard Work, and Destiny: A Balanced CSS Success Mindset',
+    date: '2026-03-18T13:05:00+05:00',
+    readTime: '5 min read',
+    author: 'Guardian Angel',
+    excerpt:
+      'Work with excellence, stay patient, and keep faith in Allah Almighty. Your duty is sincere effort and disciplined consistency. Outcomes are in Allah’s wisdom, and what is written for you is always best.',
+    internalLinks: [
+      { label: 'Start your disciplined study plan', to: '/guardian-study-planner' },
+      { label: 'Review CSS Rules before exam cycle', to: '/css-rules' },
+    ],
+    externalLinks: [
+      { label: 'FPSC Official Website', url: 'https://fpsc.gov.pk/' },
+      { label: 'Ministry of Foreign Affairs Pakistan', url: 'https://mofa.gov.pk/' },
+    ],
+  },
+  {
+    slug: 'css-motivation-consistency-over-intensity',
+    title: 'CSS Motivation Strategy: Consistency Over Intensity',
+    date: '2026-03-18T11:53:00+05:00',
+    readTime: '4 min read',
+    author: 'Guardian Angel',
+    excerpt:
+      'Burnout comes from irregular high intensity bursts. Sustainable success comes from stable daily blocks, realistic revision cycles, and weekly reflection. Small consistent wins beat short lived extremes.',
+    internalLinks: [
+      { label: 'Get structured plan from Strategy Builder', to: '/guardian-study-planner' },
+      { label: 'Practice from verified past papers', to: '/css-past-papers' },
+    ],
+    externalLinks: [
+      { label: 'Pakistan Bureau of Statistics', url: 'https://www.pbs.gov.pk/' },
+      { label: 'World Bank Data', url: 'https://data.worldbank.org/' },
+    ],
+  },
+]
+
+const BLOG_CATEGORY_FILTERS = [
+  'All',
+  'Motivation',
+  'Self Study',
+  'Current Affairs',
+  'Writing Skills',
+  'Mindset & Faith',
+]
+
+const getBlogCategories = (post) => {
+  const text = `${post?.title || ''} ${post?.excerpt || ''}`.toLowerCase()
+  const tags = new Set()
+
+  if (/\bmotivation|discipline|consistency|confidence\b/.test(text)) tags.add('Motivation')
+  if (/\bself study|academy|notes|research\b/.test(text)) tags.add('Self Study')
+  if (/\bcurrent affairs|pakistan affairs|news|foreign|policy\b/.test(text)) tags.add('Current Affairs')
+  if (/\bessay|precis|writing|argument|thesis\b/.test(text)) tags.add('Writing Skills')
+  if (/\bfaith|allah|destiny|mindset|judgement|competition\b/.test(text)) tags.add('Mindset & Faith')
+
+  if (tags.size === 0) tags.add('Motivation')
+  return Array.from(tags)
+}
+
+const getFaqHelpfulLinks = (question) => {
+  const q = (question || '').toLowerCase()
+  const officialFpsc = { label: 'FPSC Official Website', url: 'https://fpsc.gov.pk/' }
+  const officialHec = { label: 'HEC Pakistan', url: 'https://hec.gov.pk/' }
+  const pbs = { label: 'Pakistan Bureau of Statistics', url: 'https://www.pbs.gov.pk/' }
+  const sbp = { label: 'State Bank of Pakistan', url: 'https://www.sbp.org.pk/' }
+  const mofa = { label: 'Ministry of Foreign Affairs Pakistan', url: 'https://mofa.gov.pk/' }
+  const pid = { label: 'Press Information Department', url: 'https://pid.gov.pk/' }
+  const un = { label: 'United Nations', url: 'https://www.un.org/' }
+  const worldBank = { label: 'World Bank Data', url: 'https://data.worldbank.org/' }
+  const dawn = { label: 'Dawn News', url: 'https://www.dawn.com/' }
+  const internalRules = { label: 'Read CSS Rules on Guardian Angel', url: '/css-rules' }
+  const internalSyllabus = { label: 'Explore CSS Syllabus', url: '/css-syllabus' }
+  const internalPastPapers = { label: 'Practice CSS Past Papers', url: '/css-past-papers' }
+  const internalStudyMaterial = { label: 'Open CSS Study Material', url: '/css-study-material' }
+  const internalPlanner = { label: 'Use Guardian Study Planner', url: '/guardian-study-planner' }
+  const internalCurrentAffairs = { label: 'Track Current Affairs and Pakistan Affairs', url: '/global-affairs?tab=global' }
+  const internalMap = { label: 'Open Global Conflict Map', url: '/global-affairs?tab=map' }
+
+  let links = [officialFpsc, internalPlanner, internalSyllabus]
+
+  if (q.includes('eligibility') || q.includes('age limit') || q.includes('attempts')) {
+    links = [officialFpsc, officialHec, internalRules, internalSyllabus]
+  } else if (q.includes('syllabus') || q.includes('optional') || q.includes('subjects')) {
+    links = [officialFpsc, internalSyllabus, internalStudyMaterial, internalPlanner]
+  } else if (q.includes('past papers') || q.includes('examiner trends')) {
+    links = [officialFpsc, internalPastPapers, internalSyllabus, internalPlanner]
+  } else if (q.includes('current affairs') || q.includes('pakistan affairs')) {
+    links = [dawn, pid, mofa, pbs, internalCurrentAffairs, internalMap]
+  } else if (q.includes('essay') || q.includes('precis') || q.includes('english')) {
+    links = [dawn, internalPastPapers, internalStudyMaterial, internalPlanner]
+  } else if (q.includes('self study') || q.includes('notes') || q.includes('academy')) {
+    links = [officialFpsc, sbp, worldBank, un, internalStudyMaterial, internalPlanner]
+  } else if (q.includes('strategy') || q.includes('plan') || q.includes('hours')) {
+    links = [officialFpsc, pbs, sbp, internalPlanner, internalPastPapers]
+  }
+
+  const unique = links.filter((item, index, arr) => arr.findIndex((x) => x.url === item.url) === index)
+  return unique.slice(0, 5)
+}
 
 const cssRulesSections = [
   {
@@ -769,15 +1028,25 @@ const SUBJECT_PERFORMANCE_LEVELS = [
   { id: 'Topper', scoreHint: 'above 65 marks' },
 ]
 const DEFAULT_SOCIAL_DAILY_LIMIT_MINUTES = 60
+const resolveScoreToneClass = (scoreValue, maxValue = 100) => {
+  const rawScore = Number(scoreValue)
+  const rawMax = Number(maxValue)
+  if (!Number.isFinite(rawScore)) return 'score-tone-mid'
+  const safeMax = Number.isFinite(rawMax) && rawMax > 0 ? rawMax : 100
+  const normalized = (rawScore / safeMax) * 100
+  if (normalized < 40) return 'score-tone-low'
+  if (normalized <= 60) return 'score-tone-mid'
+  return 'score-tone-high'
+}
 const PLANNER_TAB_SEQUENCE = [
   { id: 'subjects', label: 'Subject Locker' },
   { id: 'strategy', label: 'Strategy Builder' },
   { id: 'performance', label: 'Performance Analysis' },
-  { id: 'examiner', label: 'AI Examiner' },
   { id: 'timer', label: 'Timer & Analytics' },
   { id: 'social', label: 'Social Balance' },
   { id: 'calendar', label: 'Guardian Calendar' },
   { id: 'report', label: 'Guardian Angel Report' },
+  { id: 'examiner', label: 'AI Examiner' },
 ]
 const AI_EXAM_PAPER_TYPES = [
   { id: 'essay', label: 'Essay' },
@@ -1122,15 +1391,23 @@ const imageUrlToPngDataUrl = async (imageUrl) => {
 function Header({ theme, onToggleTheme, authUser, onLogout }) {
   const [animateToggle, setAnimateToggle] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isResourceMenuOpen, setIsResourceMenuOpen] = useState(false)
+  const location = useLocation()
 
   const navItems = [
     { label: 'Home', to: '/' },
     { label: 'Global Affairs', to: '/global-affairs' },
-    { label: 'CSS Rules', to: '/css-rules' },
-    { label: 'CSS Syllabus', to: '/css-syllabus' },
-    { label: 'CSS Past Papers', to: '/css-past-papers' },
-    { label: 'CSS Study Material', to: '/css-study-material' },
+    {
+      label: 'CSS Resource Library',
+      children: [
+        { label: 'CSS Rules', to: '/css-rules' },
+        { label: 'CSS Syllabus', to: '/css-syllabus' },
+        { label: 'CSS Past Papers', to: '/css-past-papers' },
+        { label: 'CSS Study Material', to: '/css-study-material' },
+      ],
+    },
     { label: 'Guardian Study Planner', to: '/guardian-study-planner' },
+    { label: 'Blogs', to: '/blog' },
   ]
 
   const handleThemeToggle = () => {
@@ -1139,19 +1416,23 @@ function Header({ theme, onToggleTheme, authUser, onLogout }) {
     window.setTimeout(() => setAnimateToggle(false), 800)
   }
 
-  const closeMobileMenu = () => setIsMobileMenuOpen(false)
-
-  const renderNavLabel = (label) => {
-    const words = label.trim().split(/\s+/)
-    if (words.length <= 2) return label
-
-    return (
-      <span className="nav-label-multiline">
-        <span>{words.slice(0, 2).join(' ')}</span>
-        <span className="nav-label-secondary">{words.slice(2).join(' ')}</span>
-      </span>
-    )
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false)
+    setIsResourceMenuOpen(false)
   }
+  const handleResourceMenuToggle = (event) => {
+    event.preventDefault()
+    event.stopPropagation()
+    setIsResourceMenuOpen((current) => !current)
+  }
+
+  const isResourceRoute = (pathname) =>
+    pathname === '/css-rules' ||
+    pathname === '/css-syllabus' ||
+    pathname === '/css-past-papers' ||
+    pathname === '/css-study-material'
+
+  const renderNavLabel = (label) => label
 
   return (
     <header className="topbar">
@@ -1179,7 +1460,42 @@ function Header({ theme, onToggleTheme, authUser, onLogout }) {
         <nav className={`nav ${isMobileMenuOpen ? 'nav-open' : ''}`}>
           <div className="nav-links">
             {navItems.map((item) =>
-              item.to.startsWith('/#') ? (
+              item.children ? (
+                <div
+                  key={item.label}
+                  className={`nav-item-group ${isResourceRoute(location.pathname) ? 'nav-active' : ''} ${
+                    isResourceMenuOpen ? 'open' : ''
+                  }`}
+                  onMouseEnter={() => {
+                    if (!isMobileMenuOpen) setIsResourceMenuOpen(true)
+                  }}
+                  onMouseLeave={() => {
+                    if (!isMobileMenuOpen) setIsResourceMenuOpen(false)
+                  }}
+                >
+                  <button
+                    type="button"
+                    className="nav-group-trigger"
+                    aria-expanded={isResourceMenuOpen}
+                    aria-haspopup="true"
+                    onClick={handleResourceMenuToggle}
+                  >
+                    {item.label}
+                  </button>
+                  <div className="nav-submenu">
+                    {item.children.map((child) => (
+                      <NavLink
+                        key={child.label}
+                        to={child.to}
+                        className={({ isActive }) => `nav-sub-link ${isActive ? 'nav-active' : ''}`}
+                        onClick={closeMobileMenu}
+                      >
+                        {child.label}
+                      </NavLink>
+                    ))}
+                  </div>
+                </div>
+              ) : item.to.startsWith('/#') ? (
                 <a key={item.label} href={item.to} onClick={closeMobileMenu}>
                 {renderNavLabel(item.label)}
                 </a>
@@ -1286,6 +1602,17 @@ function HomePage() {
             </p>
             
           </div>
+          <div className="hero-constitutional-note reveal-on-scroll">
+            <p>
+              The Constitution of Pakistan <span className="guardian-highlight-word">(Article 25-A)</span>{' '}
+              guarantees free and compulsory education for
+              every citizen.
+            </p>
+            <p>
+              <span className="guardian-highlight-word">Guardian Angel</span> is committed to upholding
+              this right by making quality knowledge accessible to all.
+            </p>
+          </div>
         </section>
       </section>
 
@@ -1380,6 +1707,25 @@ function HomeFaqAccordion() {
             </button>
             <div className={`home-faq-body ${isOpen ? 'open' : ''}`} aria-hidden={!isOpen}>
               <p>{faq.answer}</p>
+              <div className="home-faq-links">
+                {getFaqHelpfulLinks(faq.question).map((item) =>
+                  item.url.startsWith('/') ? (
+                    <Link key={`${faq.question}-${item.label}`} to={item.url} className="home-faq-link-chip">
+                      {item.label}
+                    </Link>
+                  ) : (
+                    <a
+                      key={`${faq.question}-${item.label}`}
+                      href={item.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="home-faq-link-chip"
+                    >
+                      {item.label}
+                    </a>
+                  ),
+                )}
+              </div>
             </div>
           </article>
         )
@@ -1472,7 +1818,7 @@ function CssRulesPage() {
         <p className="rules-source">
           Source:{' '}
           <a
-            href="https://www.fpsc.gov.pk/category/introduction-as-per-css-rules-2019"
+            href="https://fpsc.gov.pk/"
             target="_blank"
             rel="noreferrer"
           >
@@ -1534,7 +1880,7 @@ function CssPastPapersPage() {
         <p className="rules-source">
           Source format:{' '}
           <a
-            href="https://www.fpsc.gov.pk/category/previous-question-papers/2024"
+            href="https://fpsc.gov.pk/"
             target="_blank"
             rel="noreferrer"
           >
@@ -1772,6 +2118,111 @@ function CssStudyMaterialPage() {
               </article>
             )
           })}
+        </div>
+      </section>
+    </main>
+  )
+}
+
+function BlogPage() {
+  const [activeCategory, setActiveCategory] = useState('All')
+  const visiblePosts = blogPosts.filter((post) =>
+    activeCategory === 'All' ? true : getBlogCategories(post).includes(activeCategory),
+  )
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'Blog',
+    name: 'Guardian Angel CSS Blog',
+    url: `${SITE_URL}/blog`,
+    blogPost: blogPosts.map((post) => ({
+      '@type': 'BlogPosting',
+      headline: post.title,
+      datePublished: post.date,
+      dateModified: post.date,
+      author: {
+        '@type': 'Person',
+        name: post.author,
+      },
+      publisher: {
+        '@type': 'Organization',
+        name: 'Guardian Angel',
+      },
+      description: post.excerpt,
+      mainEntityOfPage: `${SITE_URL}/blog#${post.slug}`,
+    })),
+  }
+
+  return (
+    <main className="page-main">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <section className="container blog-page" id="css-blog">
+        <div className="section-title">
+          <p>Guardian Angel Blog</p>
+          <h2>CSS Strategy, Writing, and Current Affairs Insights</h2>
+        </div>
+        <p className="rules-source">
+          Read concise, practical mini blogs designed for serious CSS aspirants. Each post includes verified
+          external references and relevant internal resources for deeper preparation.
+        </p>
+
+        <div className="blog-category-chips" role="tablist" aria-label="Blog categories">
+          {BLOG_CATEGORY_FILTERS.map((category) => (
+            <button
+              key={category}
+              type="button"
+              role="tab"
+              aria-selected={activeCategory === category}
+              className={`blog-category-chip ${activeCategory === category ? 'active' : ''}`}
+              onClick={() => setActiveCategory(category)}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+
+        <div className="blog-grid">
+          {visiblePosts.map((post) => (
+            <article className="blog-card" key={post.slug} id={post.slug}>
+              <h3>{post.title}</h3>
+              <p className="blog-meta">
+                By <strong>{post.author}</strong> · {formatNewsTimestamp(post.date)} · {post.readTime}
+              </p>
+              <p>{post.excerpt}</p>
+              <div className="blog-tag-row">
+                {getBlogCategories(post).map((tag) => (
+                  <span key={`${post.slug}-${tag}`} className="blog-tag">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              <div className="blog-links">
+                <div className="blog-link-row">
+                  {post.internalLinks.map((item) => (
+                    <Link key={`${post.slug}-${item.to}`} to={item.to} className="home-faq-link-chip">
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              <div className="blog-links">
+                <div className="blog-link-row">
+                  {post.externalLinks.map((item) => (
+                    <a
+                      key={`${post.slug}-${item.url}`}
+                      href={item.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="home-faq-link-chip"
+                    >
+                      {item.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </article>
+          ))}
         </div>
       </section>
     </main>
@@ -2045,6 +2496,11 @@ function GuardianStudyPlannerPage({ authUser }) {
     'Guardian_Angel_Report.pdf',
   )
   const [isGeneratingWeeklyReportPdf, setIsGeneratingWeeklyReportPdf] = useState(false)
+  const [performancePdfUrl, setPerformancePdfUrl] = useState('')
+  const [performancePdfFileName, setPerformancePdfFileName] = useState(
+    'Guardian_Angel_Performance_Analysis.pdf',
+  )
+  const [isGeneratingPerformancePdf, setIsGeneratingPerformancePdf] = useState(false)
   const [calendarMonth, setCalendarMonth] = useState(() => {
     const now = new Date()
     return new Date(now.getFullYear(), now.getMonth(), 1)
@@ -2354,8 +2810,9 @@ function GuardianStudyPlannerPage({ authUser }) {
     () => () => {
       if (outlinePdfUrl) URL.revokeObjectURL(outlinePdfUrl)
       if (weeklyReportPdfUrl) URL.revokeObjectURL(weeklyReportPdfUrl)
+      if (performancePdfUrl) URL.revokeObjectURL(performancePdfUrl)
     },
-    [outlinePdfUrl, weeklyReportPdfUrl],
+    [outlinePdfUrl, weeklyReportPdfUrl, performancePdfUrl],
   )
 
   const handleChange = (event) => {
@@ -3024,6 +3481,134 @@ function GuardianStudyPlannerPage({ authUser }) {
         doc.text(title, marginX, y)
         y += 18
       }
+      const drawDmcStyleTable = (title, rows, sectionType) => {
+        const tableWidth = maxWidth
+        const columnWidths = [tableWidth * 0.43, tableWidth * 0.14, tableWidth * 0.14, tableWidth * 0.14, tableWidth * 0.15]
+        const rowPaddingY = 5
+        const defaultRowHeight = 20
+        const borderColor = [168, 168, 168]
+        const titleFill = [25, 85, 147]
+        const headerFill = [232, 236, 242]
+
+        const passingFor = (totalMarks) => {
+          if (sectionType === 'optional') return totalMarks >= 200 ? 66 : 33
+          if (totalMarks >= 300) return 120
+          if (totalMarks >= 200) return 80
+          return 40
+        }
+        const normalizedRows = rows.map((row) => {
+          const totalMarks = Number.isFinite(Number(row.maxMarks)) ? Math.max(0, Number(row.maxMarks)) : 100
+          const marksObtained = Number.isFinite(Number(row.score)) ? Math.round(Number(row.score)) : 0
+          return {
+            subject: String(row.subject || ''),
+            totalMarks,
+            passingMarks: passingFor(totalMarks),
+            marksObtained,
+            accepted: marksObtained,
+          }
+        })
+        const subtotalTotal = normalizedRows.reduce((sum, row) => sum + row.totalMarks, 0)
+        const subtotalObtained = normalizedRows.reduce((sum, row) => sum + row.marksObtained, 0)
+
+        const drawTableHeader = () => {
+          ensureSpace(48)
+          doc.setDrawColor(...borderColor)
+          doc.setFillColor(...titleFill)
+          doc.rect(marginX, y, tableWidth, 18, 'F')
+          doc.setTextColor(255, 255, 255)
+          doc.setFont('helvetica', 'bold')
+          doc.setFontSize(11)
+          doc.text(title.toUpperCase(), marginX + 8, y + 12)
+          y += 18
+
+          doc.setFillColor(...headerFill)
+          doc.rect(marginX, y, tableWidth, 22, 'F')
+          doc.setTextColor(40, 40, 40)
+          doc.setFont('helvetica', 'bold')
+          doc.setFontSize(9.4)
+          const headerLabels = [
+            'Subject',
+            'Total Marks',
+            'Passing Marks',
+            'Marks Obtained',
+            'Accepted',
+          ]
+          let x = marginX
+          headerLabels.forEach((label, index) => {
+            doc.rect(x, y, columnWidths[index], 22)
+            doc.text(label, x + (index === 0 ? 6 : columnWidths[index] / 2), y + 14, {
+              align: index === 0 ? 'left' : 'center',
+            })
+            x += columnWidths[index]
+          })
+          y += 22
+        }
+        const drawRow = (row, isSummary = false) => {
+          doc.setFont('helvetica', isSummary ? 'bold' : 'normal')
+          doc.setFontSize(9.6)
+          const subjectLines = doc.splitTextToSize(row.subject, columnWidths[0] - 10)
+          const rowHeight = Math.max(defaultRowHeight, subjectLines.length * 11 + rowPaddingY * 2)
+          ensureSpace(rowHeight + 2)
+          if (y + rowHeight > pageBottom) {
+            doc.addPage()
+            applyWatermark()
+            y = 52
+            drawTableHeader()
+          }
+          let x = marginX
+          const values = [
+            row.subject,
+            String(row.totalMarks),
+            String(row.passingMarks),
+            String(row.marksObtained),
+            String(row.accepted),
+          ]
+          values.forEach((value, index) => {
+            doc.setDrawColor(...borderColor)
+            doc.rect(x, y, columnWidths[index], rowHeight)
+            if (index === 0) {
+              let textY = y + rowPaddingY + 8
+              subjectLines.forEach((line) => {
+                doc.text(line, x + 6, textY)
+                textY += 11
+              })
+            } else {
+              doc.text(value, x + columnWidths[index] / 2, y + rowHeight / 2 + 3, {
+                align: 'center',
+              })
+            }
+            x += columnWidths[index]
+          })
+          y += rowHeight
+        }
+
+        drawTableHeader()
+        if (normalizedRows.length === 0) {
+          drawRow(
+            {
+              subject: 'No subjects available in this section.',
+              totalMarks: 0,
+              passingMarks: 0,
+              marksObtained: 0,
+              accepted: 0,
+            },
+            false,
+          )
+        } else {
+          normalizedRows.forEach((row) => drawRow(row))
+          drawRow(
+            {
+              subject: `${title} Total`,
+              totalMarks: subtotalTotal,
+              passingMarks: passingFor(subtotalTotal),
+              marksObtained: subtotalObtained,
+              accepted: subtotalObtained,
+            },
+            true,
+          )
+        }
+        y += 10
+      }
 
       applyWatermark()
       doc.setFont('helvetica', 'bold')
@@ -3161,6 +3746,178 @@ function GuardianStudyPlannerPage({ authUser }) {
       setError('Unable to generate Guardian Angel report PDF. Please try again.')
     } finally {
       setIsGeneratingWeeklyReportPdf(false)
+    }
+  }
+  const handleGeneratePerformanceAnalysisPdf = async () => {
+    if (performanceRows.length === 0) {
+      setError('No performance data available yet. Add and classify subjects first.')
+      return
+    }
+
+    setError('')
+    setIsGeneratingPerformancePdf(true)
+    try {
+      const doc = new jsPDF({ unit: 'pt', format: 'a4' })
+      const pageWidth = doc.internal.pageSize.getWidth()
+      const pageHeight = doc.internal.pageSize.getHeight()
+      const marginX = 42
+      const maxWidth = pageWidth - marginX * 2
+      const pageBottom = pageHeight - 42
+      let y = 56
+      const generatedAt = new Date()
+      const generatedDateLabel = generatedAt.toLocaleDateString('en-GB')
+      const generatedTimeLabel = generatedAt.toLocaleTimeString('en-GB', {
+        hour: '2-digit',
+        minute: '2-digit',
+      })
+
+      let watermarkDataUrl = ''
+      try {
+        const watermarkResponse = await fetch(WATERMARK_IMAGE_URL)
+        if (watermarkResponse.ok) {
+          watermarkDataUrl = await fileToDataUrl(await watermarkResponse.blob())
+        }
+      } catch {
+        watermarkDataUrl = ''
+      }
+
+      const applyWatermark = () => {
+        if (!watermarkDataUrl) return
+        const width = pageWidth - 24
+        const height = pageHeight * 0.476
+        doc.addImage(
+          watermarkDataUrl,
+          'PNG',
+          (pageWidth - width) / 2,
+          (pageHeight - height) / 2,
+          width,
+          height,
+        )
+      }
+      const ensureSpace = (needed = 20) => {
+        if (y + needed <= pageBottom) return
+        doc.addPage()
+        applyWatermark()
+        y = 52
+      }
+      const drawText = (text, options = {}) => {
+        const { size = 11, lineHeight = 15, style = 'normal', bullet = false } = options
+        const prefix = bullet ? '- ' : ''
+        const lines = doc.splitTextToSize(`${prefix}${text}`, maxWidth)
+        ensureSpace(lines.length * lineHeight + 4)
+        doc.setFont('helvetica', style)
+        doc.setFontSize(size)
+        lines.forEach((line) => {
+          doc.text(line, marginX, y)
+          y += lineHeight
+        })
+      }
+      const drawSection = (title) => {
+        ensureSpace(26)
+        doc.setFont('helvetica', 'bold')
+        doc.setFontSize(14)
+        doc.text(title, marginX, y)
+        y += 18
+      }
+
+      applyWatermark()
+      doc.setFont('helvetica', 'bold')
+      doc.setFontSize(24)
+      doc.text('Guardian Angel Performance Analysis', marginX, y)
+      y += 24
+      doc.setFont('helvetica', 'normal')
+      doc.setFontSize(11)
+      doc.text(`Candidate: ${authUser.fullName || authUser.username}`, marginX, y)
+      y += 16
+      doc.text(`Generated on: ${generatedDateLabel} at ${generatedTimeLabel}`, marginX, y)
+      y += 20
+
+      drawSection('Projected CSS DMC Snapshot')
+      drawText(
+        `Projected total marks: ${projectedScoreTotal} / ${projectedMaxTotal} (${projectedScoreBand.toUpperCase()} band)`,
+        { style: 'bold' },
+      )
+      drawText(
+        `Performance formula: finalScore = baseScore x socialPenaltyFactor | baseScore: ${basePerformanceScore}, socialPenaltyFactor: ${socialPerformancePenaltyFactor.toFixed(2)}, finalScore: ${performanceScore}`,
+      )
+      drawText(
+        `Compulsory subtotal: ${compulsoryScoreRows.reduce((sum, item) => sum + item.score, 0)} / ${compulsoryScoreRows.length * 100}`,
+      )
+      drawText(
+        `Optionals subtotal: ${optionalScoreRows.reduce((sum, item) => sum + item.score, 0)} / ${optionalScoreRows.length * 100}`,
+      )
+      drawText('Compulsory detail:', { style: 'bold' })
+      if (compulsoryScoreRows.length > 0) {
+        compulsoryScoreRows.forEach((item) =>
+          drawText(`${item.subject} | ${item.level} | ${item.score} marks`, { bullet: true }),
+        )
+      } else {
+        drawText('No compulsory subjects found in current mapping.', { bullet: true })
+      }
+      drawText('Optional detail:', { style: 'bold' })
+      if (optionalScoreRows.length > 0) {
+        optionalScoreRows.forEach((item) =>
+          drawText(`${item.subject} | ${item.level} | ${item.score} marks`, { bullet: true }),
+        )
+      } else {
+        drawText('No optional subjects found in current mapping.', { bullet: true })
+      }
+
+      drawSection('Overall Status and Action Guidance')
+      drawText(`Overall preparation status: ${overallPerformanceStatus}`)
+      drawText(
+        `Strong subjects (Topper): ${strongSubjects.length ? strongSubjects.join(', ') : 'None assigned yet.'}`,
+      )
+      drawText(
+        `Competitive subjects (Contendor): ${
+          competitiveSubjects.length ? competitiveSubjects.join(', ') : 'None assigned yet.'
+        }`,
+      )
+      drawText(
+        `Weak subjects (Survivor): ${weakSubjects.length ? weakSubjects.join(', ') : 'None assigned yet.'}`,
+      )
+      y += 4
+      drawText('Constructive feedback:', { style: 'bold' })
+      performanceAdvice.forEach((line) => drawText(line, { bullet: true }))
+
+      const totalPages = doc.getNumberOfPages()
+      for (let pageNumber = 1; pageNumber <= totalPages; pageNumber += 1) {
+        doc.setPage(pageNumber)
+        doc.setFont('helvetica', 'normal')
+        doc.setFontSize(9)
+        doc.text(`Page ${pageNumber} of ${totalPages}`, pageWidth - marginX, pageHeight - 18, {
+          align: 'right',
+        })
+      }
+
+      const blob = doc.output('blob')
+      const nextPdfUrl = URL.createObjectURL(blob)
+      setPerformancePdfUrl((current) => {
+        if (current) URL.revokeObjectURL(current)
+        return nextPdfUrl
+      })
+      const fileStamp = `${generatedAt.getFullYear()}-${`${generatedAt.getMonth() + 1}`.padStart(2, '0')}-${`${generatedAt.getDate()}`.padStart(2, '0')}`
+      setPerformancePdfFileName(`Guardian_Angel_Performance_Analysis_${fileStamp}.pdf`)
+    } catch {
+      setError('Unable to generate performance analysis PDF. Please try again.')
+    } finally {
+      setIsGeneratingPerformancePdf(false)
+    }
+  }
+  const handleViewPerformancePdf = () => {
+    if (!performancePdfUrl) return
+    setError('')
+    const opened = window.open(performancePdfUrl, '_blank', 'noopener,noreferrer')
+    if (!opened) {
+      setError('Popup was blocked. Please allow popups to open the PDF in a new tab.')
+    }
+  }
+  const handleDownloadPerformancePdf = () => {
+    if (!performancePdfUrl) return
+    setError('')
+    const opened = window.open(performancePdfUrl, '_blank', 'noopener,noreferrer')
+    if (!opened) {
+      setError('Popup was blocked. Please allow popups to open the PDF in a new tab.')
     }
   }
   const postWeeklyPdfToNativeApp = async (action) => {
@@ -3724,6 +4481,7 @@ function GuardianStudyPlannerPage({ authUser }) {
     ...item,
     autoScore: PERFORMANCE_LEVEL_SCORE_MAP[item.level] ?? 0,
     section: compulsorySubjectSet.has(item.subject) ? 'Compulsory' : optionalSubjectSet.has(item.subject) ? 'Optionals' : 'Optionals',
+    maxMarks: optionalSubjectSet.has(item.subject) ? OPTIONAL_META_MAP[item.subject]?.marks || 100 : 100,
   }))
   const scoredPerformanceRows = performanceScoreRows.map((item) => {
     const rawManualScore = Number(manualDmcScores[item.subject])
@@ -4049,15 +4807,6 @@ function GuardianStudyPlannerPage({ authUser }) {
               <button
                 type="button"
                 role="tab"
-                aria-selected={activePlannerTab === 'examiner'}
-                className={`planner-tab ${activePlannerTab === 'examiner' ? 'active' : ''}`}
-                onClick={() => setActivePlannerTab('examiner')}
-              >
-                AI Examiner
-              </button>
-              <button
-                type="button"
-                role="tab"
                 aria-selected={activePlannerTab === 'timer'}
                 className={`planner-tab ${activePlannerTab === 'timer' ? 'active' : ''}`}
                 onClick={() => setActivePlannerTab('timer')}
@@ -4090,6 +4839,15 @@ function GuardianStudyPlannerPage({ authUser }) {
                 onClick={() => setActivePlannerTab('report')}
               >
                 Guardian Angel Report
+              </button>
+              <button
+                type="button"
+                role="tab"
+                aria-selected={activePlannerTab === 'examiner'}
+                className={`planner-tab ${activePlannerTab === 'examiner' ? 'active' : ''}`}
+                onClick={() => setActivePlannerTab('examiner')}
+              >
+                AI Examiner
               </button>
             </div>
           </aside>
@@ -4693,7 +5451,7 @@ function GuardianStudyPlannerPage({ authUser }) {
                                       min="0"
                                       max="100"
                                       step="1"
-                                      className="performance-dmc-input"
+                                      className={`performance-dmc-input ${resolveScoreToneClass(item.score)}`}
                                       value={item.score}
                                       disabled={!isManualDmcEnabled}
                                       onChange={(event) =>
@@ -4722,7 +5480,7 @@ function GuardianStudyPlannerPage({ authUser }) {
                                       min="0"
                                       max="100"
                                       step="1"
-                                      className="performance-dmc-input"
+                                      className={`performance-dmc-input ${resolveScoreToneClass(item.score)}`}
                                       value={item.score}
                                       disabled={!isManualDmcEnabled}
                                       onChange={(event) =>
@@ -4741,14 +5499,52 @@ function GuardianStudyPlannerPage({ authUser }) {
                         </table>
                       </div>
                       <p className={`performance-dmc-total ${projectedScoreBand}`}>
-                        <strong>Total Projected Marks:</strong> {projectedScoreTotal} / {projectedMaxTotal}
+                        <strong>Total Projected Marks:</strong>{' '}
+                        <span className={resolveScoreToneClass(projectedScoreTotal, projectedMaxTotal)}>
+                          {projectedScoreTotal}
+                        </span>{' '}
+                        / {projectedMaxTotal}
                       </p>
                       <p className="planner-meta">
                         Performance formula: <strong>finalScore = baseScore x socialPenaltyFactor</strong> |
-                        baseScore: <strong>{basePerformanceScore}</strong>, socialPenaltyFactor:{' '}
+                        baseScore:{' '}
+                        <strong className={resolveScoreToneClass(basePerformanceScore)}>
+                          {basePerformanceScore}
+                        </strong>
+                        , socialPenaltyFactor:{' '}
                         <strong>{socialPerformancePenaltyFactor.toFixed(2)}</strong>, finalScore:{' '}
-                        <strong>{performanceScore}</strong>
+                        <strong className={resolveScoreToneClass(performanceScore)}>{performanceScore}</strong>
                       </p>
+                      <div className="report-pdf-actions">
+                        <button
+                          type="button"
+                          className="btn btn-secondary"
+                          onClick={handleGeneratePerformanceAnalysisPdf}
+                          disabled={isGeneratingPerformancePdf}
+                        >
+                          {isGeneratingPerformancePdf
+                            ? 'Generating Performance PDF...'
+                            : 'Generate Performance PDF'}
+                        </button>
+                        {performancePdfUrl ? (
+                          <>
+                            <button
+                              type="button"
+                              className="btn btn-secondary"
+                              onClick={handleViewPerformancePdf}
+                            >
+                              View PDF
+                            </button>
+                            <button
+                              type="button"
+                              className="btn btn-secondary"
+                              onClick={handleDownloadPerformancePdf}
+                            >
+                              Download PDF
+                            </button>
+                          </>
+                        ) : null}
+                      </div>
                     </div>
                   </div>
                 )}
@@ -4786,7 +5582,8 @@ function GuardianStudyPlannerPage({ authUser }) {
             ) : null}
 
             {activePlannerTab === 'examiner' ? (
-              <article className="planner-card ai-examiner-card">
+              <div className="ai-examiner-hold-shell">
+                <article className="planner-card ai-examiner-card">
                 <h3>AI CSS Examiner and Marks Predictor</h3>
                 <p className="planner-meta">
                   Paste your answer to get estimated marks, examiner style feedback, and a targeted 7 day
@@ -4844,7 +5641,12 @@ function GuardianStudyPlannerPage({ authUser }) {
                     <div className="ai-examiner-summary">
                       <article className="ai-score-box">
                         <p>Estimated Marks</p>
-                        <strong>{aiExamResult.totalScore}/100</strong>
+                        <strong>
+                          <span className={resolveScoreToneClass(aiExamResult.totalScore)}>
+                            {aiExamResult.totalScore}
+                          </span>
+                          /100
+                        </strong>
                         <span>{aiExamResult.grade}</span>
                       </article>
                       <article className="ai-score-box">
@@ -4859,7 +5661,10 @@ function GuardianStudyPlannerPage({ authUser }) {
                         <article key={criterion.id} className="ai-rubric-card">
                           <h4>{criterion.label}</h4>
                           <strong>
-                            {criterion.score}/{criterion.maxScore}
+                            <span className={resolveScoreToneClass(criterion.score, criterion.maxScore)}>
+                              {criterion.score}
+                            </span>
+                            /{criterion.maxScore}
                           </strong>
                           <p>{criterion.feedback}</p>
                         </article>
@@ -4912,7 +5717,18 @@ function GuardianStudyPlannerPage({ authUser }) {
                     </section>
                   </div>
                 ) : null}
-              </article>
+                </article>
+                <div className="ai-examiner-dev-overlay" role="dialog" aria-modal="true">
+                  <div className="ai-examiner-dev-modal">
+                    <h4>AI Examiner Module Update</h4>
+                    <p>
+                      This feature is currently in development stage.
+                      <br />
+                      A refined version by Guardian Angel will be released soon.
+                    </p>
+                  </div>
+                </div>
+              </div>
             ) : null}
 
             {activePlannerTab === 'timer' ? (
@@ -5211,39 +6027,15 @@ function GuardianStudyPlannerPage({ authUser }) {
                   Deep assessment generated from Subject Locker, Strategy Builder, Performance Analysis,
                   Timer, Social Balance and Guardian Calendar.
                 </p>
-                <div className="report-pdf-actions">
-                  <button
-                    className="btn btn-primary"
-                    type="button"
-                    onClick={handleGenerateWeeklyReportPdf}
-                    disabled={isGeneratingWeeklyReportPdf}
-                  >
-                    {isGeneratingWeeklyReportPdf ? 'Generating Guardian Report PDF...' : 'Generate Guardian Report PDF'}
-                  </button>
-                  {weeklyReportPdfUrl ? (
-                    <>
-                      <button
-                        className="btn btn-secondary"
-                        type="button"
-                        onClick={handleViewWeeklyReportPdf}
-                      >
-                        View Report PDF
-                      </button>
-                      <button
-                        className="btn btn-secondary"
-                        type="button"
-                        onClick={handleDownloadWeeklyReportPdf}
-                      >
-                        Download Report PDF
-                      </button>
-                    </>
-                  ) : null}
-                </div>
-
                 <div className="guardian-report-overview">
                   <div>
                     <p>Overall Readiness Score</p>
-                    <strong>{guardianOverallScore}/100</strong>
+                    <strong>
+                      <span className={resolveScoreToneClass(guardianOverallScore)}>
+                        {guardianOverallScore}
+                      </span>
+                      /100
+                    </strong>
                     <span>{guardianOverallStatus}</span>
                   </div>
                 </div>
@@ -5252,7 +6044,7 @@ function GuardianStudyPlannerPage({ authUser }) {
                   {guardianReportRows.map((row) => (
                     <article key={row.key} className="guardian-report-metric">
                       <h4>{row.label}</h4>
-                      <strong>{row.score}%</strong>
+                      <strong className={resolveScoreToneClass(row.score)}>{row.score}%</strong>
                       <div className="progress-track" aria-label={`${row.label} score`}>
                         <span style={{ width: `${row.score}%` }} />
                       </div>
@@ -5281,7 +6073,9 @@ function GuardianStudyPlannerPage({ authUser }) {
                     </article>
                     <article>
                       <p>14-day consistency</p>
-                      <strong>{studyConsistencyPercent14}%</strong>
+                      <strong className={resolveScoreToneClass(studyConsistencyPercent14)}>
+                        {studyConsistencyPercent14}%
+                      </strong>
                     </article>
                     <article>
                       <p>Badges unlocked</p>
@@ -5403,6 +6197,36 @@ function GuardianStudyPlannerPage({ authUser }) {
                   You are closer than you think. Execute the next 14 days with discipline and Guardian
                   Angel will keep your preparation direction sharp, measurable, and competitive.
                 </p>
+                <div className="report-pdf-actions">
+                  <button
+                    className="btn btn-primary"
+                    type="button"
+                    onClick={handleGenerateWeeklyReportPdf}
+                    disabled={isGeneratingWeeklyReportPdf}
+                  >
+                    {isGeneratingWeeklyReportPdf
+                      ? 'Generating Guardian Report PDF...'
+                      : 'Generate Guardian Report PDF'}
+                  </button>
+                  {weeklyReportPdfUrl ? (
+                    <>
+                      <button
+                        className="btn btn-secondary"
+                        type="button"
+                        onClick={handleViewWeeklyReportPdf}
+                      >
+                        View Report PDF
+                      </button>
+                      <button
+                        className="btn btn-secondary"
+                        type="button"
+                        onClick={handleDownloadWeeklyReportPdf}
+                      >
+                        Download Report PDF
+                      </button>
+                    </>
+                  ) : null}
+                </div>
               </article>
             ) : null}
 
@@ -6769,6 +7593,7 @@ function App() {
           <Route path="/css-rules" element={<CssRulesPage />} />
           <Route path="/css-past-papers" element={<CssPastPapersPage />} />
           <Route path="/css-study-material" element={<CssStudyMaterialPage />} />
+          <Route path="/blog" element={<BlogPage />} />
           <Route
             path="/signin"
             element={<SignInPage authUser={authUser} onSignIn={(user) => setAuthUser(user)} />}
