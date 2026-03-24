@@ -143,7 +143,7 @@ const homeFaqs = [
   {
     question: 'Can I pass CSS without joining expensive academies in Pakistan?',
     answer:
-      'Yes. Many serious aspirants prepare through disciplined self study, authentic books, official documents, and consistent writing practice. Academy dependence is not a guarantee of success; clarity, consistency, and self accountability are.',
+      'Yes. Many serious Jawans prepare through disciplined self study, authentic books, official documents, and consistent writing practice. Academy dependence is not a guarantee of success; clarity, consistency, and self accountability are.',
   },
   {
     question: 'Is relying on ready made CSS notes enough for exam success?',
@@ -180,7 +180,7 @@ const blogPosts = [
     readTime: '5 min read',
     author: 'Guardian Angel',
     excerpt:
-      'Most aspirants fail early because they start with random notes instead of structure. Begin from the official syllabus, define weekly outputs, and align study blocks with past paper patterns.',
+      'Most Jawans fail early because they start with random notes instead of structure. Begin from the official syllabus, define weekly outputs, and align study blocks with past paper patterns.',
     internalLinks: [
       { label: 'Explore CSS Syllabus', to: '/css-syllabus' },
       { label: 'Build your plan in Study Planner', to: '/guardian-study-planner' },
@@ -260,12 +260,12 @@ const blogPosts = [
   },
   {
     slug: 'research-mindset-for-css-success',
-    title: 'Research Mindset for CSS Success: Think Beyond Ready Notes',
+    title: 'Research Mindset for CSS Success: Think Beyond Ready-Made Notes',
     date: '2026-03-18T23:41:00+05:00',
     readTime: '5 min read',
     author: 'Guardian Angel',
     excerpt:
-      'Top CSS aspirants do not memorize copied notes. They compare sources, build arguments, test assumptions, and write original analysis. Research based preparation creates durable confidence and better marks.',
+      'Top CSS Jawans do not memorize copied notes. They compare sources, build arguments, test assumptions, and write original analysis. Research based preparation creates durable confidence and better marks.',
     internalLinks: [
       { label: 'Read CSS Rules and standards', to: '/css-rules' },
       { label: 'Practice with CSS Past Papers', to: '/css-past-papers' },
@@ -316,7 +316,7 @@ const blogPosts = [
     readTime: '4 min read',
     author: 'Guardian Angel',
     excerpt:
-      'Competitive exams require discipline, not arrogance. Respect fellow aspirants, avoid judgemental thinking, and focus on your preparation ethics. A healthy mindset sustains performance under pressure.',
+      'Competitive exams require discipline, not arrogance. Respect fellow Jawans, avoid judgemental thinking, and focus on your preparation ethics. A healthy mindset sustains performance under pressure.',
     internalLinks: [
       { label: 'Improve writing with AI Examiner', to: '/guardian-study-planner' },
       { label: 'Read current affairs updates', to: '/global-affairs?tab=global' },
@@ -360,7 +360,36 @@ const blogPosts = [
       { label: 'World Bank Data', url: 'https://data.worldbank.org/' },
     ],
   },
+  {
+    slug: 'css-jawan-spirit-discipline-and-unity',
+    title: 'CSS Jawans: The Soldiers of Knowledge',
+    date: '2026-03-19T00:44:00+05:00',
+    readTime: '4 min read',
+    author: 'Guardian Angel',
+    excerpt:
+      'A CSS Jawan is not just a student but a soldier of knowledge who lives and breathes the mission of CSS, someone who eats, sleeps, thinks, and drinks CSS with complete dedication and discipline. This identity is not limited to success or failure because a CSS Jawan includes every person connected to this journey whether an aspirant, a struggling candidate, a qualifier, or a serving officer, with no discrimination among them as all share the same purpose of growth and service to the nation. The journey is not only about passing an exam but about building character, consistency, and intellectual strength, and through platforms like Guardian Angel, this mission is supported so that every CSS Jawan has the opportunity to turn effort into achievement and purpose into impact.',
+    internalLinks: [
+      { label: 'Build mission routine in Guardian Study Planner', to: '/guardian-study-planner' },
+      { label: 'Practice with CSS Past Papers', to: '/css-past-papers' },
+    ],
+    externalLinks: [
+      { label: 'FPSC Official Website', url: 'https://fpsc.gov.pk/' },
+      { label: 'Press Information Department Pakistan', url: 'https://pid.gov.pk/' },
+    ],
+  },
 ]
+
+const getBlogWordCount = (post) => {
+  const source = `${post?.excerpt || ''}`.trim()
+  if (!source) return 0
+  return source.split(/\s+/).filter(Boolean).length
+}
+
+const getBlogReadTime = (post) => {
+  const words = getBlogWordCount(post)
+  const minutes = Math.max(1, Math.ceil(words / 200))
+  return `${minutes} min read`
+}
 
 const BLOG_CATEGORY_FILTERS = [
   'All',
@@ -369,6 +398,10 @@ const BLOG_CATEGORY_FILTERS = [
   'Current Affairs',
   'Writing Skills',
   'Mindset & Faith',
+]
+const FEATURED_BLOG_SLUGS = [
+  'css-jawan-spirit-discipline-and-unity',
+  'research-mindset-for-css-success',
 ]
 
 const getBlogCategories = (post) => {
@@ -380,6 +413,10 @@ const getBlogCategories = (post) => {
   if (/\bcurrent affairs|pakistan affairs|news|foreign|policy\b/.test(text)) tags.add('Current Affairs')
   if (/\bessay|precis|writing|argument|thesis\b/.test(text)) tags.add('Writing Skills')
   if (/\bfaith|allah|destiny|mindset|judgement|competition\b/.test(text)) tags.add('Mindset & Faith')
+  if (post?.slug === 'css-jawan-spirit-discipline-and-unity') {
+    tags.add('Self Study')
+    tags.add('Mindset & Faith')
+  }
 
   if (tags.size === 0) tags.add('Motivation')
   return Array.from(tags)
@@ -675,7 +712,7 @@ const businessAdministrationSlides = businessAdministrationSlideFiles.map((fileN
 const cssStudyMaterials = [
   {
     subject: 'Criminology',
-    description: 'Foundational to advanced criminology lectures curated for CSS aspirants.',
+    description: 'Foundational to advanced criminology lectures curated for CSS Jawans.',
     slides: criminologySlides,
   },
   {
@@ -1406,7 +1443,7 @@ function Header({ theme, onToggleTheme, authUser, onLogout }) {
         { label: 'CSS Study Material', to: '/css-study-material' },
       ],
     },
-    { label: 'Guardian Study Planner', to: '/guardian-study-planner' },
+    ...(authUser ? [{ label: 'Guardian Study Planner', to: '/guardian-study-planner' }] : []),
     { label: 'Blogs', to: '/blog' },
   ]
 
@@ -1597,7 +1634,7 @@ function HomePage() {
             
             <h1>Empowering Pakistan’s Future Leaders</h1>
             <p className="subtext">
-              Guardian Angel is an independent platform dedicated to helping CSS aspirants across
+              Guardian Angel is an independent platform dedicated to helping CSS Jawans across
               Pakistan access premium quality education completely free of cost.
             </p>
             
@@ -1666,7 +1703,7 @@ function HomePage() {
             
             <h2>If you have the determination, Guardian Angel will provide the guidance</h2>
             <p className="cta-subtext">
-              High quality study material built for aspirants who are ready to work hard and
+              High quality study material built for Jawans who are ready to work hard and
               serve the nation.
         </p>
       </div>
@@ -2125,10 +2162,18 @@ function CssStudyMaterialPage() {
 }
 
 function BlogPage() {
+  const location = useLocation()
+  const navigate = useNavigate()
   const [activeCategory, setActiveCategory] = useState('All')
+  const [selectedBlog, setSelectedBlog] = useState(null)
+  const featuredPosts = blogPosts
+    .filter((post) => FEATURED_BLOG_SLUGS.includes(post.slug))
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+
   const visiblePosts = blogPosts.filter((post) =>
     activeCategory === 'All' ? true : getBlogCategories(post).includes(activeCategory),
   )
+  const regularPosts = visiblePosts.filter((post) => !FEATURED_BLOG_SLUGS.includes(post.slug))
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'Blog',
@@ -2148,9 +2193,47 @@ function BlogPage() {
         name: 'Guardian Angel',
       },
       description: post.excerpt,
+      timeRequired: `PT${Math.max(1, Math.ceil(getBlogWordCount(post) / 200))}M`,
       mainEntityOfPage: `${SITE_URL}/blog#${post.slug}`,
     })),
   }
+  const openBlogModal = (post) => {
+    setSelectedBlog(post)
+    const targetHash = `#${post.slug}`
+    if (location.hash !== targetHash) {
+      navigate(`${location.pathname}${location.search}${targetHash}`)
+    }
+  }
+  const closeBlogModal = () => {
+    setSelectedBlog(null)
+    if (location.hash) {
+      navigate(`${location.pathname}${location.search}`)
+    }
+  }
+
+  useEffect(() => {
+    const hashSlug = location.hash.replace(/^#/, '').trim()
+    if (!hashSlug) {
+      setSelectedBlog(null)
+      return
+    }
+    const matched = blogPosts.find((post) => post.slug === hashSlug) || null
+    setSelectedBlog(matched)
+  }, [location.hash])
+
+  useEffect(() => {
+    if (!selectedBlog) return undefined
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    const handleEscape = (event) => {
+      if (event.key === 'Escape') closeBlogModal()
+    }
+    window.addEventListener('keydown', handleEscape)
+    return () => {
+      document.body.style.overflow = previousOverflow
+      window.removeEventListener('keydown', handleEscape)
+    }
+  }, [selectedBlog])
 
   return (
     <main className="page-main">
@@ -2161,8 +2244,7 @@ function BlogPage() {
           <h2>CSS Strategy, Writing, and Current Affairs Insights</h2>
         </div>
         <p className="rules-source">
-          Read concise, practical mini blogs designed for serious CSS aspirants. Each post includes verified
-          external references and relevant internal resources for deeper preparation.
+          Concise, practical mini blogs designed for  CSS Jawans.
         </p>
 
         <div className="blog-category-chips" role="tablist" aria-label="Blog categories">
@@ -2180,14 +2262,66 @@ function BlogPage() {
           ))}
         </div>
 
+        <div className="blog-featured-section">
+          <div className="blog-featured-head">
+            <h3>Featured</h3>
+          </div>
+          <div className="blog-grid blog-featured-grid">
+            {featuredPosts.map((post) => (
+              <article
+                className="blog-card blog-card-featured"
+                key={`featured-${post.slug}`}
+                id={`featured-${post.slug}`}
+                role="button"
+                tabIndex={0}
+                onClick={() => openBlogModal(post)}
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault()
+                    openBlogModal(post)
+                  }
+                }}
+              >
+                <p className="blog-featured-badge">Featured</p>
+                <h3>{post.title}</h3>
+                <p className="blog-meta">
+                  By <strong>{post.author}</strong> · {formatNewsTimestamp(post.date)} · {getBlogReadTime(post)}
+                </p>
+                <p className="blog-excerpt">{post.excerpt}</p>
+                <div className="blog-tag-row">
+                  {getBlogCategories(post).map((tag) => (
+                    <span key={`${post.slug}-featured-${tag}`} className="blog-tag">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+        <div className="blog-featured-separator" aria-hidden="true" />
+
         <div className="blog-grid">
-          {visiblePosts.map((post) => (
-            <article className="blog-card" key={post.slug} id={post.slug}>
+          {regularPosts.map((post) => (
+            <article
+              className="blog-card"
+              key={post.slug}
+              id={post.slug}
+              role="button"
+              tabIndex={0}
+              onClick={() => openBlogModal(post)}
+              onKeyDown={(event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                  event.preventDefault()
+                  openBlogModal(post)
+                }
+              }}
+            >
               <h3>{post.title}</h3>
               <p className="blog-meta">
-                By <strong>{post.author}</strong> · {formatNewsTimestamp(post.date)} · {post.readTime}
+                By <strong>{post.author}</strong> · {formatNewsTimestamp(post.date)} · {getBlogReadTime(post)}
               </p>
-              <p>{post.excerpt}</p>
+              <p className="blog-excerpt">{post.excerpt}</p>
               <div className="blog-tag-row">
                 {getBlogCategories(post).map((tag) => (
                   <span key={`${post.slug}-${tag}`} className="blog-tag">
@@ -2199,7 +2333,12 @@ function BlogPage() {
               <div className="blog-links">
                 <div className="blog-link-row">
                   {post.internalLinks.map((item) => (
-                    <Link key={`${post.slug}-${item.to}`} to={item.to} className="home-faq-link-chip">
+                    <Link
+                      key={`${post.slug}-${item.to}`}
+                      to={item.to}
+                      className="home-faq-link-chip"
+                      onClick={(event) => event.stopPropagation()}
+                    >
                       {item.label}
                     </Link>
                   ))}
@@ -2215,6 +2354,7 @@ function BlogPage() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="home-faq-link-chip"
+                      onClick={(event) => event.stopPropagation()}
                     >
                       {item.label}
                     </a>
@@ -2224,6 +2364,50 @@ function BlogPage() {
             </article>
           ))}
         </div>
+        {selectedBlog ? (
+          <div className="blog-modal-overlay" onClick={closeBlogModal} role="dialog" aria-modal="true">
+            <article className="blog-modal-card" onClick={(event) => event.stopPropagation()}>
+              <button type="button" className="blog-modal-close" onClick={closeBlogModal} aria-label="Close blog">
+                ×
+              </button>
+              <h3>{selectedBlog.title}</h3>
+              <p className="blog-meta">
+                By <strong>{selectedBlog.author}</strong> · {formatNewsTimestamp(selectedBlog.date)} ·{' '}
+                {getBlogReadTime(selectedBlog)}
+              </p>
+              <p className="blog-modal-content">{selectedBlog.excerpt}</p>
+              <div className="blog-links">
+                <div className="blog-link-row">
+                  {selectedBlog.internalLinks.map((item) => (
+                    <Link
+                      key={`${selectedBlog.slug}-modal-${item.to}`}
+                      to={item.to}
+                      className="home-faq-link-chip"
+                      onClick={closeBlogModal}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+              <div className="blog-links">
+                <div className="blog-link-row">
+                  {selectedBlog.externalLinks.map((item) => (
+                    <a
+                      key={`${selectedBlog.slug}-modal-${item.url}`}
+                      href={item.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="home-faq-link-chip"
+                    >
+                      {item.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </article>
+          </div>
+        ) : null}
       </section>
     </main>
   )
@@ -4705,6 +4889,9 @@ function GuardianStudyPlannerPage({ authUser }) {
   const handlePlannerStepChange = (targetStep) => {
     if (!targetStep) return
     setActivePlannerTab(targetStep.id)
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
   }
   const handleManualDmcScoreChange = (subject, value) => {
     const numericValue = Number(value)
