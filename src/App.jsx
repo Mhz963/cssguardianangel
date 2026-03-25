@@ -2040,10 +2040,15 @@ function CssStudyMaterialPage() {
   const [openSubject, setOpenSubject] = useState('')
   const totalSlides = cssStudyMaterials.reduce((count, group) => count + group.slides.length, 0)
   const normalizedQuery = query.trim().toLowerCase()
+  const matchesStudyQuery = (slide, subjectTitle) => {
+    if (!normalizedQuery) return true
+    const searchable = [slide.title || '', slide.fileName || '', subjectTitle || ''].join(' ').toLowerCase()
+    return searchable.includes(normalizedQuery)
+  }
   const filteredTotal = cssStudyMaterials.reduce(
     (count, group) =>
       count +
-      group.slides.filter((slide) => slide.title.toLowerCase().includes(normalizedQuery)).length,
+      group.slides.filter((slide) => matchesStudyQuery(slide, group.subject)).length,
     0,
   )
 
@@ -2061,9 +2066,7 @@ function CssStudyMaterialPage() {
   }
 
   const handleDownloadAll = async (group) => {
-    const visibleSlides = group.slides.filter((slide) =>
-      slide.title.toLowerCase().includes(normalizedQuery),
-    )
+    const visibleSlides = group.slides.filter((slide) => matchesStudyQuery(slide, group.subject))
     if (visibleSlides.length === 0) return
 
     setDownloadingSubject(group.subject)
@@ -2093,10 +2096,28 @@ function CssStudyMaterialPage() {
   const additionalOptionalStudyMaterials = cssStudyMaterials.filter(
     (item) => item.category === 'optional' && !optionalSubjectsInSyllabus.has(item.subject),
   )
+  const hasQuery = normalizedQuery.length > 0
+  const getVisibleSlidesForGroup = (group) =>
+    group.slides.filter((slide) => matchesStudyQuery(slide, group.subject))
+  const hasMatchInGroup = (group) => getVisibleSlidesForGroup(group).length > 0
+  const visibleCompulsoryStudyMaterials = hasQuery
+    ? compulsoryStudyMaterials.filter(hasMatchInGroup)
+    : compulsoryStudyMaterials
+  const visibleOptionalSections = hasQuery
+    ? optionalSections
+        .map((section) => ({
+          ...section,
+          subjects: section.subjects.filter(hasMatchInGroup),
+        }))
+        .filter((section) => section.subjects.length > 0)
+    : optionalSections
+  const visibleAdditionalOptionalStudyMaterials = hasQuery
+    ? additionalOptionalStudyMaterials.filter(hasMatchInGroup)
+    : additionalOptionalStudyMaterials
 
   const renderStudyGroup = (group) => {
-    const visibleSlides = group.slides.filter((slide) => slide.title.toLowerCase().includes(normalizedQuery))
-    const isOpen = openSubject === group.subject
+    const visibleSlides = getVisibleSlidesForGroup(group)
+    const isOpen = hasQuery ? true : openSubject === group.subject
 
     return (
       <article className={`study-group-card ${isOpen ? 'open' : ''}`} key={group.subject}>
@@ -2199,16 +2220,16 @@ function CssStudyMaterialPage() {
           </p>
         </div>
 
-        {compulsoryStudyMaterials.length > 0 ? (
+        {visibleCompulsoryStudyMaterials.length > 0 ? (
           <>
             <h3 className="study-category-title">Compulsory Subjects</h3>
-            <div className="study-groups">{compulsoryStudyMaterials.map(renderStudyGroup)}</div>
+            <div className="study-groups">{visibleCompulsoryStudyMaterials.map(renderStudyGroup)}</div>
           </>
         ) : null}
 
-        {optionalSections.length > 0 ? (
+        {visibleOptionalSections.length > 0 ? (
           <>
-            {optionalSections.map((section) => (
+            {visibleOptionalSections.map((section) => (
               <div key={section.group}>
                 <h3 className="study-category-title">{section.group}</h3>
                 <div className="study-groups">{section.subjects.map(renderStudyGroup)}</div>
@@ -2217,10 +2238,10 @@ function CssStudyMaterialPage() {
           </>
         ) : null}
 
-        {additionalOptionalStudyMaterials.length > 0 ? (
+        {visibleAdditionalOptionalStudyMaterials.length > 0 ? (
           <div>
             <h3 className="study-category-title">Additional Optional Subjects</h3>
-            <div className="study-groups">{additionalOptionalStudyMaterials.map(renderStudyGroup)}</div>
+            <div className="study-groups">{visibleAdditionalOptionalStudyMaterials.map(renderStudyGroup)}</div>
           </div>
         ) : null}
       </section>
