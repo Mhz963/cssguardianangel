@@ -1610,16 +1610,6 @@ function HomePage() {
   const [introVideoOn, setIntroVideoOn] = useState(false)
 
   useEffect(() => {
-    // Mobile performance: don't load the heavy intro video/poster.
-    let shouldPlay = false
-    try {
-      shouldPlay = window.matchMedia('(min-width: 768px)').matches
-    } catch {
-      shouldPlay = true
-    }
-
-    if (!shouldPlay) return undefined
-
     let idleId = 0
     let timeoutId = 0
     if (typeof window !== 'undefined' && typeof window.requestIdleCallback === 'function') {

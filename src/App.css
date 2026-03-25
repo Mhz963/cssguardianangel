@@ -4526,8 +4526,8 @@ a {
     border-left: 0;
     border-right: 0;
     border-radius: 0 0 14px 14px;
-    background: rgb(5 7 13 / 82%);
-    backdrop-filter: blur(8px);
+    background: rgb(3 5 10 / 94%);
+    backdrop-filter: blur(12px);
     overflow: hidden auto;
     max-height: 0;
     opacity: 0;
@@ -4577,20 +4577,20 @@ a {
   .nav-group-trigger {
     width: 100%;
     text-align: left;
-    border: 1px solid rgb(255 255 255 / 18%);
+    border: 1px solid rgb(255 255 255 / 28%);
     border-radius: 10px;
     padding: 0.62rem 0.72rem;
-    background: rgb(255 255 255 / 5%);
+    background: rgb(8 12 22 / 92%);
   }
 
   .nav-links > a {
     display: block;
     width: 100%;
     text-align: left;
-    border: 1px solid rgb(255 255 255 / 18%);
+    border: 1px solid rgb(255 255 255 / 28%);
     border-radius: 10px;
     padding: 0.62rem 0.72rem;
-    background: rgb(255 255 255 / 5%);
+    background: rgb(8 12 22 / 92%);
   }
 
   .nav-submenu {
@@ -4601,8 +4601,8 @@ a {
     margin-left: 0.75rem;
     width: calc(100% - 0.75rem);
     box-shadow: none;
-    background: rgb(242 213 107 / 8%);
-    border: 1px dashed rgb(242 213 107 / 42%);
+    background: rgb(12 18 34 / 88%);
+    border: 1px dashed rgb(242 213 107 / 48%);
     border-radius: 10px;
     padding: 0.25rem 0.3rem;
   }
@@ -4611,13 +4611,13 @@ a {
     white-space: normal;
     border: 0;
     border-radius: 8px;
-    background: transparent;
+    background: rgb(5 9 18 / 72%);
     font-size: 0.95rem;
     padding: 0.55rem 0.62rem;
   }
 
   .nav-sub-link + .nav-sub-link {
-    border-top: 1px solid rgb(242 213 107 / 24%);
+    border-top: 1px solid rgb(242 213 107 / 34%);
   }
 
   .nav.nav-open {
