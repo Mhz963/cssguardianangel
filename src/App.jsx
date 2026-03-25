@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react'
-import { CircleMarker, MapContainer, Rectangle, TileLayer, Tooltip, useMap } from 'react-leaflet'
+import { lazy, Suspense, useEffect, useState } from 'react'
 import {
   BrowserRouter,
   Link,
@@ -11,7 +10,6 @@ import {
   useNavigate,
   useParams,
 } from 'react-router-dom'
-import 'leaflet/dist/leaflet.css'
 import './App.css'
 import logo from './assets/guardian-angel-logo.png'
 import {
@@ -20,7 +18,10 @@ import {
   optionalGroups,
   slugify,
 } from './data/syllabusData'
-import { jsPDF } from 'jspdf'
+import { formatNewsTimestamp } from './utils/formatNewsTimestamp.js'
+import { cssStudyMaterials } from './data/cssStudyMaterialsData'
+
+const GlobalConflictMapTab = lazy(() => import('./GlobalConflictMapTab.jsx'))
 
 const SITE_URL = 'https://mhzguardianangel.vercel.app'
 
@@ -746,35 +747,7 @@ const businessAdministrationSlides = businessAdministrationSlideFiles.map((fileN
   url: new URL(`../data/CSS Business Administration Lecture Slides/${fileName}`, import.meta.url).href,
 }))
 
-const cssStudyMaterials = [
-  {
-    subject: 'Criminology',
-    description: 'Foundational to advanced criminology lectures curated for CSS Jawans.',
-    slides: criminologySlides,
-  },
-  {
-    subject: 'Gender Studies',
-    description: 'Complete lecture sequence covering core concepts, theories, and case studies.',
-    slides: genderStudiesSlides,
-  },
-  {
-    subject: 'International Relations I',
-    description: 'Paper I lecture sequence covering theory, security, strategy, economy, and institutions.',
-    slides: internationalRelationsISlides,
-  },
-  {
-    subject: 'International Relations II',
-    description:
-      'Paper II lecture sequence covering interwar period, Cold War, South Asia, organizations, and contemporary issues.',
-    slides: internationalRelationsIISlides,
-  },
-  {
-    subject: 'Business Administration',
-    description:
-      'Lecture sequence covering management, HR, finance, operations, supply chain, and marketing for CSS preparation.',
-    slides: businessAdministrationSlides,
-  },
-]
+// cssStudyMaterials is now auto-loaded from `src/data/cssStudyMaterialsData.js`.
 
 const cssPastPapers2025Paths = [
   'assets/media/2025-06-05-06-24-08-Accountancy-&amp;-Auditing-I-.pdf',
@@ -1057,10 +1030,10 @@ const PRODUCTIVE_HOUR_OPTIONS = Array.from({ length: 18 }, (_, index) => {
   }
 })
 const PLANNER_CORE_COMPULSORY_SUBJECTS = compulsorySubjects.slice(0, 5)
-const COMPULSORY_ELECTIVE_OPTIONS = [
-  'Islamiat (100 Marks)',
-  'Comparative Study of Major Religions (For Non Muslims)',
-]
+const COMPULSORY_ELECTIVE_OPTIONS = compulsorySubjects.slice(5, 7)
+const LEGACY_COMPULSORY_ELECTIVE_TITLE = {
+  'Comparative Study of Major Religions (For Non Muslims)': compulsorySubjects[6],
+}
 const WATERMARK_IMAGE_URL = new URL('../data/watermark.png', import.meta.url).href
 const LOCAL_OUTLINE_IMAGE_URLS = {
   punjabi: [new URL('../data/punjabi-literature-outline-merged.png', import.meta.url).href],
@@ -1634,9 +1607,50 @@ function Header({ theme, onToggleTheme, authUser, onLogout }) {
 }
 
 function HomePage() {
+  const [introVideoOn, setIntroVideoOn] = useState(false)
+
+  useEffect(() => {
+    // Mobile performance: don't load the heavy intro video/poster.
+    let shouldPlay = false
+    try {
+      shouldPlay = window.matchMedia('(min-width: 768px)').matches
+    } catch {
+      shouldPlay = true
+    }
+
+    if (!shouldPlay) return undefined
+
+    let idleId = 0
+    let timeoutId = 0
+    if (typeof window !== 'undefined' && typeof window.requestIdleCallback === 'function') {
+      idleId = window.requestIdleCallback(() => setIntroVideoOn(true), { timeout: 2200 })
+    } else if (typeof window !== 'undefined') {
+      timeoutId = window.setTimeout(() => setIntroVideoOn(true), 600)
+    }
+
+    return () => {
+      if (idleId && typeof window !== 'undefined' && typeof window.cancelIdleCallback === 'function') {
+        window.cancelIdleCallback(idleId)
+      }
+      if (timeoutId) window.clearTimeout(timeoutId)
+    }
+  }, [])
+
   useEffect(() => {
     const revealItems = document.querySelectorAll('.reveal-on-scroll')
     if (revealItems.length === 0) return undefined
+
+    // If something is already in the viewport on load, reveal it immediately (helps FCP/LCP).
+    try {
+      const viewportH = window.innerHeight || 800
+      revealItems.forEach((el) => {
+        const rect = el.getBoundingClientRect()
+        const intersects = rect.bottom >= 0 && rect.top <= viewportH * 1.05
+        if (intersects) el.classList.add('is-visible')
+      })
+    } catch {
+      // Ignore measurement errors; IntersectionObserver will still handle the rest.
+    }
 
     const observer = new IntersectionObserver(
       (entries, currentObserver) => {
@@ -1660,9 +1674,11 @@ function HomePage() {
       <HomeFaqStructuredData />
       <section className="intro" id="home">
         <div className="intro-video" aria-hidden="true">
-          <video autoPlay loop muted playsInline preload="metadata" poster={logo}>
-            <source src="/media/guardian-intro.mp4" type="video/mp4" />
-          </video>
+          {introVideoOn ? (
+            <video autoPlay loop muted playsInline preload="none" poster={logo}>
+              <source src="/media/guardian-intro.mp4" type="video/mp4" />
+            </video>
+          ) : null}
         </div>
         <div className="intro-overlay" aria-hidden="true" />
 
@@ -1867,18 +1883,9 @@ function CssSyllabusPage() {
 }
 
 function CssRulesPage() {
-  const [openRuleIndex, setOpenRuleIndex] = useState(0)
-  const handleRuleToggle = (index, event) => {
-    const headerButton = event.currentTarget
-    const topBefore = headerButton.getBoundingClientRect().top
-
+  const [openRuleIndex, setOpenRuleIndex] = useState(-1)
+  const handleRuleToggle = (index) => {
     setOpenRuleIndex((current) => (current === index ? -1 : index))
-
-    window.requestAnimationFrame(() => {
-      const topAfter = headerButton.getBoundingClientRect().top
-      const delta = topAfter - topBefore
-      if (Math.abs(delta) > 1) window.scrollBy({ top: delta, behavior: 'auto' })
-    })
   }
 
   return (
@@ -1908,7 +1915,7 @@ function CssRulesPage() {
                 <button
                   className="rule-header"
                   type="button"
-                  onClick={(event) => handleRuleToggle(index, event)}
+                  onClick={() => handleRuleToggle(index)}
                   aria-expanded={isOpen}
                 >
                   <span>{rule.title}</span>
@@ -2083,6 +2090,97 @@ function CssStudyMaterialPage() {
     window.open(onlineViewerUrl, '_blank', 'noopener,noreferrer')
   }
 
+  const studyBySubject = new Map(cssStudyMaterials.map((item) => [item.subject, item]))
+
+  const compulsoryStudyMaterials = compulsorySubjects.map((title) => studyBySubject.get(title)).filter(Boolean)
+  const optionalSections = optionalGroups
+    .map((grp) => ({
+      group: grp.group,
+      subjects: grp.subjects.map((title) => studyBySubject.get(title)).filter(Boolean),
+    }))
+    .filter((section) => section.subjects.length > 0)
+  const optionalSubjectsInSyllabus = new Set(optionalGroups.flatMap((grp) => grp.subjects))
+  const additionalOptionalStudyMaterials = cssStudyMaterials.filter(
+    (item) => item.category === 'optional' && !optionalSubjectsInSyllabus.has(item.subject),
+  )
+
+  const renderStudyGroup = (group) => {
+    const visibleSlides = group.slides.filter((slide) => slide.title.toLowerCase().includes(normalizedQuery))
+    const isOpen = openSubject === group.subject
+
+    return (
+      <article className={`study-group-card ${isOpen ? 'open' : ''}`} key={group.subject}>
+        <button
+          className="study-group-trigger"
+          type="button"
+          onClick={() => setOpenSubject((current) => (current === group.subject ? '' : group.subject))}
+          aria-expanded={isOpen}
+        >
+          <span>{group.subject}</span>
+          <span className="rule-icon">{isOpen ? '−' : '+'}</span>
+        </button>
+
+        <div className={`study-group-body ${isOpen ? 'open' : ''}`}>
+          <header className="study-group-head">
+            <div className="study-group-topbar">
+              <div>
+                <p>{group.description}</p>
+              </div>
+              <div className="study-group-meta">
+                <span>{`${visibleSlides.length}/${group.slides.length} shown`}</span>
+                <button
+                  className="btn btn-primary"
+                  type="button"
+                  onClick={() => handleDownloadAll(group)}
+                  disabled={visibleSlides.length === 0 || downloadingSubject === group.subject}
+                >
+                  {downloadingSubject === group.subject
+                    ? 'Downloading...'
+                    : `Download All (${visibleSlides.length})`}
+                </button>
+              </div>
+            </div>
+          </header>
+
+          {visibleSlides.length === 0 ? (
+            <article className="papers-empty study-empty">
+              <h3>No matching slides in {group.subject}</h3>
+              <p>Try a different keyword to view slides for this section.</p>
+            </article>
+          ) : (
+            <div className="study-slides-grid">
+              {visibleSlides.map((slide) => (
+                <article className="study-slide-item" key={slide.url}>
+                  <div>
+                    <div className="study-slide-top">
+                      <p className="study-slide-tag">Lecture Slide</p>
+                      <span className="study-lecture-badge">
+                        {slide.lectureNumber ? `Lecture ${slide.lectureNumber}` : 'Lecture'}
+                      </span>
+                    </div>
+                    <h4>{slide.title}</h4>
+                  </div>
+                  <div className="study-slide-actions">
+                    <button
+                      className="btn btn-secondary"
+                      type="button"
+                      onClick={() => openSlideViewer(slide)}
+                    >
+                      View Slide
+                    </button>
+                    <a className="btn btn-primary" href={getPublicSlideUrl(slide)} download={slide.fileName}>
+                      Download
+                    </a>
+                  </div>
+                </article>
+              ))}
+            </div>
+          )}
+        </div>
+      </article>
+    )
+  }
+
   return (
     <main className="page-main">
       <section className="container css-rules-page">
@@ -2111,90 +2209,30 @@ function CssStudyMaterialPage() {
           </p>
         </div>
 
-        <div className="study-groups">
-          {cssStudyMaterials.map((group) => {
-            const visibleSlides = group.slides.filter((slide) =>
-              slide.title.toLowerCase().includes(normalizedQuery),
-            )
-            const isOpen = openSubject === group.subject
+        {compulsoryStudyMaterials.length > 0 ? (
+          <>
+            <h3 className="study-category-title">Compulsory Subjects</h3>
+            <div className="study-groups">{compulsoryStudyMaterials.map(renderStudyGroup)}</div>
+          </>
+        ) : null}
 
-            return (
-              <article className={`study-group-card ${isOpen ? 'open' : ''}`} key={group.subject}>
-                <button
-                  className="study-group-trigger"
-                  type="button"
-                  onClick={() => setOpenSubject((current) => (current === group.subject ? '' : group.subject))}
-                  aria-expanded={isOpen}
-                >
-                  <span>{group.subject}</span>
-                  <span className="rule-icon">{isOpen ? '−' : '+'}</span>
-                </button>
+        {optionalSections.length > 0 ? (
+          <>
+            {optionalSections.map((section) => (
+              <div key={section.group}>
+                <h3 className="study-category-title">{section.group}</h3>
+                <div className="study-groups">{section.subjects.map(renderStudyGroup)}</div>
+              </div>
+            ))}
+          </>
+        ) : null}
 
-                <div className={`study-group-body ${isOpen ? 'open' : ''}`}>
-                  <header className="study-group-head">
-                    <div className="study-group-topbar">
-                      <div>
-                        <p>{group.description}</p>
-                      </div>
-                      <div className="study-group-meta">
-                        <span>{`${visibleSlides.length}/${group.slides.length} shown`}</span>
-                        <button
-                          className="btn btn-primary"
-                          type="button"
-                          onClick={() => handleDownloadAll(group)}
-                          disabled={visibleSlides.length === 0 || downloadingSubject === group.subject}
-                        >
-                          {downloadingSubject === group.subject
-                            ? 'Downloading...'
-                            : `Download All (${visibleSlides.length})`}
-                        </button>
-                      </div>
-                    </div>
-                  </header>
-
-                  {visibleSlides.length === 0 ? (
-                    <article className="papers-empty study-empty">
-                      <h3>No matching slides in {group.subject}</h3>
-                      <p>Try a different keyword to view slides for this section.</p>
-                    </article>
-                  ) : (
-                    <div className="study-slides-grid">
-                      {visibleSlides.map((slide) => (
-                        <article className="study-slide-item" key={slide.url}>
-                          <div>
-                            <div className="study-slide-top">
-                              <p className="study-slide-tag">Lecture Slide</p>
-                              <span className="study-lecture-badge">
-                                {slide.lectureNumber ? `Lecture ${slide.lectureNumber}` : 'Lecture'}
-                              </span>
-                            </div>
-                            <h4>{slide.title}</h4>
-                          </div>
-                          <div className="study-slide-actions">
-                            <button
-                              className="btn btn-secondary"
-                              type="button"
-                              onClick={() => openSlideViewer(slide)}
-                            >
-                              View Slide
-                            </button>
-                            <a
-                              className="btn btn-primary"
-                              href={getPublicSlideUrl(slide)}
-                              download={slide.fileName}
-                            >
-                              Download
-                            </a>
-                          </div>
-                        </article>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              </article>
-            )
-          })}
-        </div>
+        {additionalOptionalStudyMaterials.length > 0 ? (
+          <div>
+            <h3 className="study-category-title">Additional Optional Subjects</h3>
+            <div className="study-groups">{additionalOptionalStudyMaterials.map(renderStudyGroup)}</div>
+          </div>
+        ) : null}
       </section>
     </main>
   )
@@ -2845,7 +2883,8 @@ function GuardianStudyPlannerPage({ authUser }) {
       const raw = localStorage.getItem(profileStorageKey)
       const profile = raw ? JSON.parse(raw) : null
       const stored = profile?.selectedCompulsoryElective
-      if (COMPULSORY_ELECTIVE_OPTIONS.includes(stored)) return stored
+      const normalizedElective = LEGACY_COMPULSORY_ELECTIVE_TITLE[stored] ?? stored
+      if (COMPULSORY_ELECTIVE_OPTIONS.includes(normalizedElective)) return normalizedElective
       return 'Islamiat (100 Marks)'
     } catch {
       return 'Islamiat (100 Marks)'
@@ -3375,6 +3414,7 @@ function GuardianStudyPlannerPage({ authUser }) {
     setError('')
     setIsGeneratingOutlinePdf(true)
     try {
+      const { jsPDF } = await import('jspdf')
       const doc = new jsPDF({ unit: 'pt', format: 'a4' })
       const pageWidth = doc.internal.pageSize.getWidth()
       const pageHeight = doc.internal.pageSize.getHeight()
@@ -3791,6 +3831,7 @@ function GuardianStudyPlannerPage({ authUser }) {
   const handleGenerateWeeklyReportPdf = async () => {
     setIsGeneratingWeeklyReportPdf(true)
     try {
+      const { jsPDF } = await import('jspdf')
       const doc = new jsPDF({ unit: 'pt', format: 'a4' })
       const pageWidth = doc.internal.pageSize.getWidth()
       const pageHeight = doc.internal.pageSize.getHeight()
@@ -4130,6 +4171,7 @@ function GuardianStudyPlannerPage({ authUser }) {
     setError('')
     setIsGeneratingPerformancePdf(true)
     try {
+      const { jsPDF } = await import('jspdf')
       const doc = new jsPDF({ unit: 'pt', format: 'a4' })
       const pageWidth = doc.internal.pageSize.getWidth()
       const pageHeight = doc.internal.pageSize.getHeight()
@@ -6683,23 +6725,6 @@ function Footer() {
   )
 }
 
-function formatNewsTimestamp(value) {
-  if (!value) return ''
-  try {
-    const date = typeof value === 'number' ? new Date(value) : new Date(value)
-    if (Number.isNaN(date.getTime())) return ''
-    return date.toLocaleString(undefined, {
-      year: 'numeric',
-      month: 'short',
-      day: '2-digit',
-      hour: '2-digit',
-      minute: '2-digit',
-    })
-  } catch {
-    return ''
-  }
-}
-
 function normalizeNewsSnippet(value) {
   if (typeof value !== 'string') return ''
   let decoded = value
@@ -7222,289 +7247,6 @@ function PakistanAffairsPage() {
   )
 }
 
-function GlobalConflictMapTab() {
-  const normalizeCountryDisplayName = (value) => {
-    const raw = String(value || '').trim()
-    if (raw.toLowerCase() === 'israel') return 'Occupied Palestine'
-    return raw
-  }
-  const [showConflicts, setShowConflicts] = useState(false)
-  const [countries, setCountries] = useState([])
-  const [isLoading, setIsLoading] = useState(false)
-  const [loadError, setLoadError] = useState('')
-  const [selectedCountry, setSelectedCountry] = useState(null)
-  const [selectedConflict, setSelectedConflict] = useState(null)
-  const loadConflicts = async () => {
-    setIsLoading(true)
-    setLoadError('')
-    try {
-      const res = await fetch('/api/global-conflicts')
-      if (!res.ok) throw new Error(`Conflict API returned ${res.status}`)
-      const data = await res.json()
-      const nextCountries = Array.isArray(data?.countries)
-        ? data.countries.map((country) => ({
-            ...country,
-            country: normalizeCountryDisplayName(country.country),
-            conflicts: Array.isArray(country.conflicts)
-              ? country.conflicts.map((conflict) => ({
-                  ...conflict,
-                  countryName: normalizeCountryDisplayName(
-                    conflict.countryName || conflict.country || country.country,
-                  ),
-                }))
-              : [],
-          }))
-        : []
-      setCountries(nextCountries)
-      if (nextCountries.length === 0) setLoadError('No conflict data returned right now. Please try again.')
-    } catch (error) {
-      if (error?.name === 'AbortError') return
-      setLoadError(error?.message || 'Unable to load conflict map data.')
-    } finally {
-      setIsLoading(false)
-    }
-  }
-
-  const allConflicts = countries.flatMap((country) =>
-    (country.conflicts || []).map((conflict) => ({
-      ...conflict,
-      countryName: country.country,
-    })),
-  )
-
-  const openCountryConflict = (country) => {
-    setSelectedCountry(country)
-    setSelectedConflict((country?.conflicts || [])[0] || null)
-  }
-
-  const OccupiedPalestineMask = () => {
-    const map = useMap()
-    const [zoomLevel, setZoomLevel] = useState(map.getZoom())
-
-    useEffect(() => {
-      const syncZoomLevel = () => setZoomLevel(map.getZoom())
-      map.on('zoomend', syncZoomLevel)
-      return () => map.off('zoomend', syncZoomLevel)
-    }, [map])
-
-    const getMaskByZoom = (zoom) => {
-      if (zoom <= 3) {
-        return {
-          bounds: [
-            [30.4, 34.0],
-            [31.75, 35.95],
-          ],
-          center: [31.03, 35.0],
-        }
-      }
-      if (zoom === 4) {
-        return {
-          bounds: [
-            [30.55, 34.25],
-            [31.55, 35.75],
-          ],
-          center: [31.06, 34.99],
-        }
-      }
-      if (zoom === 5) {
-        return {
-          bounds: [
-            [30.72, 34.48],
-            [31.42, 35.56],
-          ],
-          center: [31.09, 35.0],
-        }
-      }
-      return {
-        bounds: [
-          [30.84, 34.62],
-          [31.34, 35.4],
-        ],
-        center: [31.09, 35.0],
-      }
-    }
-
-    const mask = getMaskByZoom(zoomLevel)
-    return (
-      <>
-        <Rectangle
-          bounds={mask.bounds}
-          pathOptions={{
-            color: '#e6ddcb',
-            weight: 0,
-            fillColor: '#f1eadb',
-            fillOpacity: 0.98,
-          }}
-        />
-        <CircleMarker center={mask.center} radius={1} pathOptions={{ opacity: 0, fillOpacity: 0 }}>
-          <Tooltip permanent direction="center" className="occupied-palestine-overlay-label">
-            Occupied Palestine
-          </Tooltip>
-        </CircleMarker>
-      </>
-    )
-  }
-
-  return (
-    <section className="global-map-shell">
-      <div className="global-map-head glass-panel">
-        <div>
-          <h3>Global Map</h3>
-          <p>Track major conflict hotspots and open each marker for a concise situation brief.</p>
-        </div>
-        <button
-          className="btn btn-primary"
-          type="button"
-          onClick={() => {
-            const next = !showConflicts
-            setShowConflicts(next)
-            if (next) {
-              setSelectedCountry(null)
-              setSelectedConflict(null)
-              loadConflicts()
-            }
-          }}
-        >
-          {showConflicts ? 'Hide Global Conflicts' : 'View Global Conflicts'}
-        </button>
-      </div>
-
-      {isLoading ? <p className="global-map-note">Loading live conflict data...</p> : null}
-      {loadError ? <p className="global-map-note error">{loadError}</p> : null}
-
-      <div className="global-map-board glass-panel">
-        <MapContainer
-          center={[30.3753, 69.3451]}
-          zoom={5}
-          minZoom={2}
-          maxZoom={8}
-          worldCopyJump
-          className="global-leaflet-map"
-        >
-          <TileLayer
-            attribution='Tiles &copy; Esri &mdash; Source: Esri, Garmin, GeoTechnologies, Inc, USGS, METI/NASA'
-            url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}"
-          />
-          <CircleMarker
-            center={[30.3753, 69.3451]}
-            radius={7}
-            pathOptions={{ color: '#f2d56b', weight: 2, fillColor: '#f2d56b', fillOpacity: 0.35 }}
-          />
-          <OccupiedPalestineMask />
-          {showConflicts
-            ? countries.map((country) => (
-                <CircleMarker
-                  key={country.countryId}
-                  center={[country.lat, country.lon]}
-                  radius={8}
-                  pathOptions={{ color: '#ef4444', weight: 2, fillColor: '#ef4444', fillOpacity: 0.72 }}
-                  eventHandlers={{ click: () => openCountryConflict(country) }}
-                />
-              ))
-            : null}
-        </MapContainer>
-      </div>
-
-      {showConflicts ? (
-        <div className="global-conflict-list">
-          {allConflicts.map((conflict) => (
-            <button
-              key={`${conflict.id}_${conflict.countryName || conflict.country || ''}`}
-              type="button"
-              className="global-conflict-item"
-              onClick={() => {
-                const country = countries.find((item) => item.country === conflict.countryName)
-                if (country) setSelectedCountry(country)
-                setSelectedConflict(conflict)
-              }}
-            >
-              <strong>{conflict.title}</strong>
-              <span>{conflict.countryName}</span>
-            </button>
-          ))}
-        </div>
-      ) : null}
-
-      {selectedConflict ? (
-        <div
-          className="global-conflict-modal-overlay"
-          role="presentation"
-          onClick={() => {
-            setSelectedConflict(null)
-            setSelectedCountry(null)
-          }}
-        >
-          <article
-            className="global-conflict-modal"
-            role="dialog"
-            aria-modal="true"
-            aria-label={`${selectedConflict.title} details`}
-            onClick={(event) => event.stopPropagation()}
-          >
-            <button
-              className="global-conflict-modal-close"
-              type="button"
-              aria-label="Close conflict details"
-              onClick={() => {
-                setSelectedConflict(null)
-                setSelectedCountry(null)
-              }}
-            >
-              ×
-            </button>
-            <div className="global-conflict-modal-content">
-              <h4>{selectedConflict.title}</h4>
-              <p className="global-conflict-modal-meta">
-                <strong>{selectedConflict.countryName || selectedConflict.country || selectedCountry?.country}</strong>
-              </p>
-              <p>{selectedConflict.summary}</p>
-              <p>
-                <strong>Started:</strong> {selectedConflict.startedAt ? formatNewsTimestamp(selectedConflict.startedAt) : 'Unknown'}
-              </p>
-              {selectedConflict.articleUrl ? (
-                <a className="btn btn-secondary" href={selectedConflict.articleUrl} target="_blank" rel="noreferrer">
-                  Read source
-                </a>
-              ) : null}
-              {selectedCountry?.conflicts?.length > 1 ? (
-                <div className="global-conflict-modal-list">
-                  <p><strong>Other conflicts in this country:</strong></p>
-                  <div>
-                    {selectedCountry.conflicts.map((conflict) => (
-                      <button
-                        key={conflict.id}
-                        type="button"
-                        className="global-conflict-modal-list-btn"
-                        onClick={() =>
-                          setSelectedConflict({
-                            ...conflict,
-                            countryName: selectedCountry.country,
-                          })
-                        }
-                      >
-                        {conflict.title}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              ) : null}
-              <button
-                className="btn btn-primary"
-                type="button"
-                onClick={() => {
-                  setSelectedConflict(null)
-                  setSelectedCountry(null)
-                }}
-              >
-                Close
-              </button>
-            </div>
-          </article>
-        </div>
-      ) : null}
-    </section>
-  )
-}
 
 function GlobalAffairsPage({ defaultTab = 'global' }) {
   const location = useLocation()
@@ -7574,7 +7316,11 @@ function GlobalAffairsPage({ defaultTab = 'global' }) {
 
       {activeTab === 'global' ? <WorldAffairsPage /> : null}
       {activeTab === 'pakistan' ? <PakistanAffairsPage /> : null}
-      {activeTab === 'map' ? <GlobalConflictMapTab /> : null}
+      {activeTab === 'map' ? (
+        <Suspense fallback={<p className="global-map-note">Loading map…</p>}>
+          <GlobalConflictMapTab />
+        </Suspense>
+      ) : null}
     </main>
   )
 }

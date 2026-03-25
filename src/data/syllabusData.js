@@ -7,7 +7,7 @@ const compulsorySubjects = [
   'Current Affairs (100 Marks)',
   'Pakistan Affairs (100 Marks)',
   'Islamiat (100 Marks)',
-  'Comparative Study of Major Religions (For Non Muslims)',
+  'Comparative Study of Major Religions (100 Marks) (For Non Muslims)',
 ]
 
 const optionalGroups = [

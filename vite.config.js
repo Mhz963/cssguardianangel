@@ -13,6 +13,26 @@ export default defineConfig(({ mode }) => {
   }
 
   return {
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            if (id.includes('node_modules/react-dom') || id.includes('node_modules/react/')) {
+              return 'react-vendor'
+            }
+            if (id.includes('node_modules/react-router')) {
+              return 'router-vendor'
+            }
+            if (id.includes('node_modules/leaflet') || id.includes('node_modules/react-leaflet')) {
+              return 'leaflet-vendor'
+            }
+            if (id.includes('node_modules/jspdf')) {
+              return 'jspdf-vendor'
+            }
+          },
+        },
+      },
+    },
     plugins: [
       react(),
       {

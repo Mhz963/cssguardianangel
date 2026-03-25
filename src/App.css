@@ -109,6 +109,14 @@ a {
   object-fit: cover;
 }
 
+.intro-video-poster {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+}
+
 .intro-overlay {
   position: absolute;
   inset: 0;
@@ -523,18 +531,15 @@ a {
   --reveal-delay: 0ms;
   opacity: 0;
   transform: translateY(42px) scale(0.985);
-  filter: saturate(92%);
   transition:
     opacity 0.78s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.78s cubic-bezier(0.22, 1, 0.36, 1),
-    filter 0.7s ease;
+    transform 0.78s cubic-bezier(0.22, 1, 0.36, 1);
   transition-delay: var(--reveal-delay);
 }
 
 .reveal-on-scroll.is-visible {
   opacity: 1;
   transform: translateY(0) scale(1);
-  filter: saturate(100%);
 }
 
 .hero-copy.reveal-on-scroll {
@@ -694,12 +699,14 @@ a {
 }
 
 .home-action-btn {
+  box-sizing: border-box;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   min-width: 0;
   max-width: 100%;
+  min-height: 2.65rem;
   text-align: center;
   font-size: 0.86rem;
   padding: 0.5rem 0.72rem;
@@ -709,8 +716,35 @@ a {
 
 @media (min-width: 481px) {
   .home-action-btn {
-    width: auto;
-    min-width: min(190px, 100%);
+    width: min(240px, 100%);
+    min-width: min(240px, 100%);
+  }
+
+  .message-actions > .home-action-btn {
+    flex: 0 0 auto;
+  }
+
+  .cta > .home-action-btn {
+    flex-shrink: 0;
+  }
+}
+
+/* Wide desktop: row layout — % widths inside shrink-wrapped .message-actions resolve smaller than .cta, so pin both CTAs to the same fixed size. */
+@media (min-width: 1025px) {
+  .message-actions {
+    flex: 0 0 auto;
+  }
+
+  .home-action-btn {
+    flex: 0 0 254px;
+    width: 254px;
+    min-width: 254px;
+    max-width: 254px;
+  }
+
+  .message-actions > .home-action-btn,
+  .cta > .home-action-btn {
+    flex: 0 0 254px;
   }
 }
 
@@ -1135,6 +1169,14 @@ a {
 .study-groups {
   display: grid;
   gap: 1rem;
+}
+
+.study-category-title {
+  margin: 1.4rem 0 0.75rem;
+  font-family: 'Cinzel', serif;
+  font-size: 1.15rem;
+  letter-spacing: 0.01em;
+  color: var(--text-primary);
 }
 
 .study-toolbar {
@@ -4336,8 +4378,8 @@ a {
   }
 
   .home-action-btn {
-    width: auto;
-    min-width: min(170px, 100%);
+    width: min(240px, 100%);
+    min-width: min(240px, 100%);
   }
 
   .cta {
@@ -4954,6 +4996,20 @@ a {
     transform: translateY(-12px) scale(1);
   }
 
+  /* Mobile: avoid hiding above-the-fold content until JS/IO triggers. */
+  .reveal-on-scroll {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    filter: none;
+  }
+
+  .reveal-on-scroll.is-visible {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+
   .hero-constitutional-note {
     margin-top: 0.65rem;
     padding: 0.8rem 0.82rem;
@@ -4966,6 +5022,22 @@ a {
   .home-action-btn {
     width: 100%;
     min-width: 0;
+  }
+
+  .message.glass-panel .message-actions {
+    align-self: stretch;
+    width: 100%;
+  }
+
+  .message-actions > * {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .cta .home-action-btn {
+    width: 100%;
+    align-self: stretch;
   }
 
   .planner-card {
