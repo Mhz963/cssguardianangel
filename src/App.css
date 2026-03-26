@@ -760,7 +760,12 @@ a {
 }
 
 .home-faq {
-  padding: 0.5rem 0 2rem;
+  padding: 0.2rem 0 2rem;
+}
+
+.home-faq .section-title p {
+  font-size: clamp(1.02rem, 1.7vw, 1.22rem);
+  font-weight: 600;
 }
 
 .home-faq-accordion {
@@ -2351,7 +2356,7 @@ a {
 }
 
 .cta {
-  margin: 1rem auto 3rem;
+  margin: 1rem auto 1.6rem;
   padding: 1.3rem;
   border: 1px solid var(--border-soft);
   border-radius: 16px;

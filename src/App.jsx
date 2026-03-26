@@ -1745,10 +1745,7 @@ function HomePage() {
           <div>
             
             <h2>If you have the determination, Guardian Angel will provide the guidance</h2>
-            <p className="cta-subtext">
-              High quality study material built for Jawans who are ready to work hard and
-              serve the nation.
-        </p>
+            
       </div>
           <Link className="btn btn-primary home-action-btn" to="/css-syllabus">
             Browse CSS Syllabus
@@ -1758,7 +1755,7 @@ function HomePage() {
         <section className="home-faq container reveal-on-scroll" id="css-faq">
           <div className="section-title">
             <p>CSS Frequently Asked Questions</p>
-            <h2>Smart Preparation, Not Notes Culture</h2>
+            <br/>
           </div>
           <HomeFaqAccordion />
         </section>
