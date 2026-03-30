@@ -1780,6 +1780,36 @@ a {
   max-width: 860px;
 }
 
+.study-material-warning-mantra {
+  text-align: center;
+  font-size: clamp(1.03rem, 2vw, 1.28rem);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  margin: -0.35rem auto 1.55rem;
+  max-width: 980px;
+}
+
+.guardian-highlight-word-red {
+  font-weight: 700;
+  color: #a01212;
+  text-shadow: 0 0 14px rgb(160 18 18 / 56%);
+  animation: guardian-word-highlight-red 2.2s ease-in-out infinite;
+}
+
+@keyframes guardian-word-highlight-red {
+  0%,
+  100% {
+    color: #a01212;
+    text-shadow: 0 0 10px rgb(160 18 18 / 44%);
+    filter: brightness(1);
+  }
+  50% {
+    color: #c92a2a;
+    text-shadow: 0 0 18px rgb(201 42 42 / 70%);
+    filter: brightness(1.08);
+  }
+}
+
 .blog-write-widget-wrap {
   display: flex;
   justify-content: flex-end;

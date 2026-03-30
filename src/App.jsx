@@ -2194,16 +2194,17 @@ function CssStudyMaterialPage() {
       <section className="container css-rules-page">
         <div className="section-title">
           <p>CSS Study Material</p>
-          <h2>Comprehensive CSS Lecture Slides for Smart Preparation</h2>
+          <h2>CSS Lecture Slides for Smart Preparation</h2>
         </div>
 
-        <p className="rules-source study-material-mantra">
-          <span className="guardian-highlight-word">
-            Study smarter with organized content and instant downloads
-          </span>
-          
-        </p>
 
+        <p className="rules-source study-material-warning-mantra">
+          <span className="guardian-highlight-word-red">
+            Do not rely on these slides alone for your CSS Preperation, they are meant to give a brief
+            overview of each subject and to guide aspirants to select optionals based on their
+            interests.
+          </span>
+        </p>
         <div className="study-toolbar">
           <input
             type="search"
