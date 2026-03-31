@@ -5447,14 +5447,28 @@ a {
     width: min(1120px, 95%);
   }
 
+  .brand {
+    gap: 0.4rem;
+  }
+
+  .brand img {
+    width: 56px;
+    height: 56px;
+  }
+
+  .brand strong {
+    font-size: 0.82rem;
+    letter-spacing: 0.3px;
+  }
+
   .brand span {
     display: block;
-    font-size: 0.7rem;
+    font-size: 0.62rem;
     font-weight: 700;
-    line-height: 1.1;
-    max-width: 126px;
-    white-space: normal;
-    overflow: visible;
+    line-height: 1;
+    max-width: none;
+    white-space: nowrap;
+    overflow: hidden;
     text-overflow: clip;
   }
 
