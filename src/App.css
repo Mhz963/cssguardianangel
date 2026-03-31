@@ -5452,18 +5452,18 @@ a {
   }
 
   .brand img {
-    width: 56px;
-    height: 56px;
+    width: 48px;
+    height: 48px;
   }
 
   .brand strong {
-    font-size: 0.82rem;
+    font-size: 0.74rem;
     letter-spacing: 0.3px;
   }
 
   .brand span {
     display: block;
-    font-size: 0.62rem;
+    font-size: 0.8rem;
     font-weight: 700;
     line-height: 1;
     max-width: none;
