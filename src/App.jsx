@@ -12,6 +12,8 @@ import {
 } from 'react-router-dom'
 import './App.css'
 import logo from './assets/guardian-angel-logo.png'
+import whatsappShareIcon from './assets/whatsapp-share-icon.svg'
+import copyShareIcon from './assets/copy-share-icon.svg'
 import {
   compulsorySubjects,
   detailedSubjectPages,
@@ -78,6 +80,11 @@ const SEO_BY_PATH = {
     title: 'CSS Blog | Guardian Angel Insights',
     description:
       'Read practical CSS preparation blogs on strategy, current affairs analysis, answer writing, and exam discipline by Guardian Angel.',
+  },
+  '/about-guardian-angel': {
+    title: 'About Guardian Angel | Equal Opportunity for CSS Aspirants',
+    description:
+      'Learn how Guardian Angel stands for equal educational opportunity, ethical CSS preparation, and free top-tier guidance for every CSS Jawan.',
   },
 }
 
@@ -412,6 +419,9 @@ const FEATURED_BLOG_SLUGS = [
   'research-mindset-for-css-success',
 ]
 const USER_BLOGS_STORAGE_KEY = 'ga-user-blogs'
+const MAX_BLOG_ATTACHMENTS = 10
+const MAX_SINGLE_BLOG_ATTACHMENT_BYTES = 8 * 1024 * 1024
+const MAX_TOTAL_BLOG_ATTACHMENT_BYTES = 25 * 1024 * 1024
 const BLOG_OFFENSIVE_WORDS = [
   'abuse',
   'bastard',
@@ -1443,7 +1453,6 @@ function Header({ theme, onToggleTheme, authUser, onLogout }) {
 
   const navItems = [
     { label: 'Home', to: '/' },
-    { label: 'Global Affairs', to: '/global-affairs' },
     {
       label: 'CSS Resource Library',
       children: [
@@ -1451,10 +1460,12 @@ function Header({ theme, onToggleTheme, authUser, onLogout }) {
         { label: 'CSS Syllabus', to: '/css-syllabus' },
         { label: 'CSS Past Papers', to: '/css-past-papers' },
         { label: 'CSS Study Material', to: '/css-study-material' },
+        { label: 'Global Affairs', to: '/global-affairs' },
       ],
     },
     ...(authUser ? [{ label: 'Guardian Study Planner', to: '/guardian-study-planner' }] : []),
     { label: 'Blogs', to: '/blogs' },
+    { label: 'About Guardian Angel', to: '/about-guardian-angel' },
   ]
 
   const handleThemeToggle = () => {
@@ -1477,9 +1488,14 @@ function Header({ theme, onToggleTheme, authUser, onLogout }) {
     pathname === '/css-rules' ||
     pathname === '/css-syllabus' ||
     pathname === '/css-past-papers' ||
-    pathname === '/css-study-material'
+    pathname === '/css-study-material' ||
+    pathname === '/global-affairs'
 
-  const renderNavLabel = (label) => label
+  const renderNavLabel = (label) => {
+    const words = String(label || '').split(' ').filter(Boolean)
+    if (words.length < 3) return label
+    return <span className="nav-compact-label">{label}</span>
+  }
 
   return (
     <header className="topbar">
@@ -1527,7 +1543,7 @@ function Header({ theme, onToggleTheme, authUser, onLogout }) {
                     aria-haspopup="true"
                     onClick={handleResourceMenuToggle}
                   >
-                    {item.label}
+                    {renderNavLabel(item.label)}
                   </button>
                   <div className="nav-submenu">
                     {item.children.map((child) => (
@@ -2255,10 +2271,22 @@ function BlogPage({ authUser }) {
   const [selectedBlog, setSelectedBlog] = useState(null)
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false)
   const [publishError, setPublishError] = useState('')
+  const [attachmentError, setAttachmentError] = useState('')
+  const [editingBlogSlug, setEditingBlogSlug] = useState('')
+  const [appDialog, setAppDialog] = useState({
+    isOpen: false,
+    title: '',
+    message: '',
+    variant: 'info',
+    confirmText: 'OK',
+    showCancel: false,
+  })
+  const [pendingDeleteBlog, setPendingDeleteBlog] = useState(null)
   const [blogDraft, setBlogDraft] = useState({
     title: '',
     category: 'Motivation',
     content: '',
+    attachments: [],
   })
   const [userBlogs, setUserBlogs] = useState(() => {
     try {
@@ -2270,6 +2298,32 @@ function BlogPage({ authUser }) {
     }
   })
   const allBlogs = [...userBlogs, ...blogPosts]
+  const getAuthOwnerKey = () => {
+    if (!authUser) return ''
+    return String(authUser.username || authUser.email || authUser.fullName || '').trim().toLowerCase()
+  }
+  const getAuthOwnerCandidates = () => {
+    if (!authUser) return []
+    const candidates = [
+      authUser.username,
+      authUser.email,
+      authUser.fullName,
+      authUser.name,
+    ]
+      .map((value) => String(value || '').trim().toLowerCase())
+      .filter(Boolean)
+    return Array.from(new Set(candidates))
+  }
+  const canManageBlog = (post) => {
+    if (!post?.isUserGenerated) return false
+    const authCandidates = getAuthOwnerCandidates()
+    if (authCandidates.length === 0) return false
+    const postOwnerKey = String(post.ownerKey || '').trim().toLowerCase()
+    const postAuthor = String(post.author || '').trim().toLowerCase()
+    if (postOwnerKey && authCandidates.includes(postOwnerKey)) return true
+    if (postAuthor && authCandidates.includes(postAuthor)) return true
+    return false
+  }
   const featuredPosts = allBlogs
     .filter((post) => FEATURED_BLOG_SLUGS.includes(post.slug))
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
@@ -2304,6 +2358,104 @@ function BlogPage({ authUser }) {
   const closeCreateModal = () => {
     setIsCreateModalOpen(false)
     setPublishError('')
+    setAttachmentError('')
+    setEditingBlogSlug('')
+    setBlogDraft({ title: '', category: 'Motivation', content: '', attachments: [] })
+  }
+  const formatFileSize = (bytes) => {
+    if (!Number.isFinite(bytes) || bytes <= 0) return '0 KB'
+    if (bytes < 1024 * 1024) return `${Math.max(1, Math.round(bytes / 1024))} KB`
+    return `${(bytes / (1024 * 1024)).toFixed(2)} MB`
+  }
+  const readFileAsDataUrl = (file) =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader()
+      reader.onload = () => resolve(typeof reader.result === 'string' ? reader.result : '')
+      reader.onerror = () => reject(new Error('Failed to read file'))
+      reader.readAsDataURL(file)
+    })
+  const handleDraftAttachmentUpload = async (event) => {
+    const pickedFiles = Array.from(event.target.files || [])
+    if (pickedFiles.length === 0) return
+    setAttachmentError('')
+    let nextAttachments = [...(blogDraft.attachments || [])]
+    for (const file of pickedFiles) {
+      if (nextAttachments.length >= MAX_BLOG_ATTACHMENTS) {
+        setAttachmentError(`Maximum ${MAX_BLOG_ATTACHMENTS} files allowed per blog.`)
+        break
+      }
+      if (file.size > MAX_SINGLE_BLOG_ATTACHMENT_BYTES) {
+        setAttachmentError(`"${file.name}" exceeds 8 MB. Please upload a smaller file.`)
+        continue
+      }
+      const runningTotal = nextAttachments.reduce((sum, item) => sum + (item.size || 0), 0)
+      if (runningTotal + file.size > MAX_TOTAL_BLOG_ATTACHMENT_BYTES) {
+        setAttachmentError('Total attachment size cannot exceed 25 MB per blog.')
+        break
+      }
+      const alreadyAdded = nextAttachments.some((item) => item.name === file.name && item.size === file.size)
+      if (alreadyAdded) continue
+      try {
+        const dataUrl = await readFileAsDataUrl(file)
+        if (!dataUrl) {
+          setAttachmentError(`"${file.name}" could not be processed.`)
+          continue
+        }
+        nextAttachments.push({
+          id: `att-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+          name: file.name,
+          type: file.type || 'application/octet-stream',
+          size: file.size,
+          dataUrl,
+        })
+      } catch {
+        setAttachmentError(`"${file.name}" could not be uploaded.`)
+      }
+    }
+    setBlogDraft((current) => ({
+      ...current,
+      attachments: nextAttachments,
+    }))
+    event.target.value = ''
+  }
+  const removeDraftAttachment = (attachmentId) => {
+    setBlogDraft((current) => ({
+      ...current,
+      attachments: (current.attachments || []).filter((item) => item.id !== attachmentId),
+    }))
+  }
+  const downloadAttachment = (attachment, event) => {
+    if (event) event.stopPropagation()
+    if (!attachment?.dataUrl) return
+    const link = document.createElement('a')
+    link.href = attachment.dataUrl
+    link.download = attachment.name || 'guardian-angel-attachment'
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  }
+  const renderBlogAttachments = (post, { inModal = false } = {}) => {
+    const attachments = Array.isArray(post?.attachments) ? post.attachments : []
+    if (attachments.length === 0) return null
+    return (
+      <div className={`blog-attachments ${inModal ? 'modal' : ''}`}>
+        <p className="blog-attachments-title">Attachments ({attachments.length})</p>
+        <div className="blog-attachment-list">
+          {attachments.map((file) => (
+            <button
+              key={`${post.slug || 'post'}-${file.id || file.name}`}
+              type="button"
+              className="blog-attachment-item"
+              onClick={(event) => downloadAttachment(file, event)}
+              title={`Download ${file.name}`}
+            >
+              <span className="blog-attachment-name">{file.name}</span>
+              <span className="blog-attachment-size">{formatFileSize(file.size)}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+    )
   }
   const handlePublishBlog = (event) => {
     event.preventDefault()
@@ -2318,8 +2470,8 @@ function BlogPage({ authUser }) {
       setPublishError('Blog title should be at least 8 characters.')
       return
     }
-    if (content.split(/\s+/).filter(Boolean).length < 40) {
-      setPublishError('Blog content should be at least 40 words for publishing.')
+    if (content.split(/\s+/).filter(Boolean).length < 10) {
+      setPublishError('Blog content should be at least 10 words for publishing.')
       return
     }
     if (hasOffensiveBlogLanguage(`${title} ${content}`)) {
@@ -2329,7 +2481,7 @@ function BlogPage({ authUser }) {
     const baseSlug = slugify(title) || `blog-${Date.now()}`
     let uniqueSlug = baseSlug
     let suffix = 1
-    const existingSlugs = new Set(allBlogs.map((post) => post.slug))
+    const existingSlugs = new Set(allBlogs.filter((post) => post.slug !== editingBlogSlug).map((post) => post.slug))
     while (existingSlugs.has(uniqueSlug)) {
       uniqueSlug = `${baseSlug}-${suffix}`
       suffix += 1
@@ -2341,18 +2493,66 @@ function BlogPage({ authUser }) {
       title,
       date: new Date().toISOString(),
       author: authUser.fullName || authUser.username || 'Guardian User',
+      ownerKey: getAuthOwnerKey(),
       excerpt: excerpt.length < content.length ? `${excerpt}...` : excerpt,
       content,
       categories: [category],
       internalLinks: [],
       externalLinks: [],
+      attachments: blogDraft.attachments || [],
       isUserGenerated: true,
     }
-    setUserBlogs((current) => [nextPost, ...current])
-    setBlogDraft({ title: '', category: 'Motivation', content: '' })
+    if (editingBlogSlug) {
+      setUserBlogs((current) =>
+        current.map((post) => (post.slug === editingBlogSlug ? { ...post, ...nextPost } : post)),
+      )
+    } else {
+      setUserBlogs((current) => [nextPost, ...current])
+    }
+    setBlogDraft({ title: '', category: 'Motivation', content: '', attachments: [] })
     setPublishError('')
+    setAttachmentError('')
+    setEditingBlogSlug('')
     setIsCreateModalOpen(false)
     openBlogModal(nextPost)
+  }
+  const handleEditBlog = (post) => {
+    if (!canManageBlog(post)) return
+    setEditingBlogSlug(post.slug)
+    setBlogDraft({
+      title: post.title || '',
+      category: (Array.isArray(post.categories) && post.categories[0]) || 'Motivation',
+      content: post.content || '',
+      attachments: Array.isArray(post.attachments) ? post.attachments : [],
+    })
+    setPublishError('')
+    setAttachmentError('')
+    setIsCreateModalOpen(true)
+    setSelectedBlog(null)
+  }
+  const handleDeleteBlog = (post) => {
+    if (!canManageBlog(post)) return
+    setPendingDeleteBlog(post)
+    setAppDialog({
+      isOpen: true,
+      title: 'Delete Blog',
+      message: 'Delete this blog permanently? This action cannot be undone.',
+      variant: 'danger',
+      confirmText: 'Delete',
+      showCancel: true,
+    })
+  }
+  const closeAppDialog = () => {
+    setAppDialog((current) => ({ ...current, isOpen: false }))
+    setPendingDeleteBlog(null)
+  }
+  const handleAppDialogConfirm = () => {
+    if (pendingDeleteBlog) {
+      setUserBlogs((current) => current.filter((item) => item.slug !== pendingDeleteBlog.slug))
+      if (blogSlug === pendingDeleteBlog.slug) navigate('/blogs')
+      setSelectedBlog(null)
+    }
+    closeAppDialog()
   }
   const openBlogModal = (post) => {
     const targetPath = `/blogs/${post.slug}`
@@ -2363,6 +2563,56 @@ function BlogPage({ authUser }) {
   const closeBlogModal = () => {
     if (blogSlug) {
       navigate('/blogs')
+    }
+  }
+  const getBlogShareUrl = (post) => `${SITE_URL}/blogs/${post.slug}`
+  const shareBlogOnFacebook = (post, event) => {
+    if (event) event.stopPropagation()
+    const url = getBlogShareUrl(post)
+    const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`
+    window.open(shareUrl, '_blank', 'noopener,noreferrer')
+  }
+  const shareBlogOnWhatsApp = (post, event) => {
+    if (event) event.stopPropagation()
+    const url = getBlogShareUrl(post)
+    const text = `${post.title} - ${url}`
+    const shareUrl = `https://wa.me/?text=${encodeURIComponent(text)}`
+    window.open(shareUrl, '_blank', 'noopener,noreferrer')
+  }
+  const copyBlogLink = async (post, event) => {
+    if (event) event.stopPropagation()
+    const url = getBlogShareUrl(post)
+    try {
+      if (navigator?.clipboard?.writeText) {
+        await navigator.clipboard.writeText(url)
+      } else {
+        const textarea = document.createElement('textarea')
+        textarea.value = url
+        textarea.setAttribute('readonly', '')
+        textarea.style.position = 'fixed'
+        textarea.style.opacity = '0'
+        document.body.appendChild(textarea)
+        textarea.select()
+        document.execCommand('copy')
+        document.body.removeChild(textarea)
+      }
+      setAppDialog({
+        isOpen: true,
+        title: 'Link Copied',
+        message: 'Blog link copied to clipboard.',
+        variant: 'info',
+        confirmText: 'OK',
+        showCancel: false,
+      })
+    } catch {
+      setAppDialog({
+        isOpen: true,
+        title: 'Copy Failed',
+        message: 'Unable to copy link right now. Please copy it manually from browser URL bar.',
+        variant: 'danger',
+        confirmText: 'OK',
+        showCancel: false,
+      })
     }
   }
 
@@ -2465,6 +2715,38 @@ function BlogPage({ authUser }) {
                     </span>
                   ))}
                 </div>
+              {renderBlogAttachments(post)}
+                <div className="blog-share-row">
+                  <button
+                    type="button"
+                    className="blog-share-btn fb"
+                    onClick={(event) => shareBlogOnFacebook(post, event)}
+                    aria-label="Share blog on Facebook"
+                    title="Share on Facebook"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M13.5 22v-8h2.7l.4-3.1h-3.1V9c0-.9.3-1.6 1.6-1.6h1.7V4.6c-.3 0-1.3-.1-2.5-.1-2.5 0-4.1 1.5-4.1 4.3v2.1H8v3.1h2.7v8h2.8Z" />
+                    </svg>
+                  </button>
+                  <button
+                    type="button"
+                    className="blog-share-btn wa"
+                    onClick={(event) => shareBlogOnWhatsApp(post, event)}
+                    aria-label="Share blog on WhatsApp"
+                    title="Share on WhatsApp"
+                  >
+                    <img src={whatsappShareIcon} alt="" className="blog-share-icon-image" />
+                  </button>
+                  <button
+                    type="button"
+                    className="blog-share-btn copy"
+                    onClick={(event) => copyBlogLink(post, event)}
+                    aria-label="Copy blog link"
+                    title="Copy link"
+                  >
+                    <img src={copyShareIcon} alt="" className="blog-share-copy-image" />
+                  </button>
+                </div>
               </article>
             ))}
           </div>
@@ -2498,6 +2780,38 @@ function BlogPage({ authUser }) {
                     {tag}
                   </span>
                 ))}
+              </div>
+              {renderBlogAttachments(post)}
+              <div className="blog-share-row">
+                <button
+                  type="button"
+                  className="blog-share-btn fb"
+                  onClick={(event) => shareBlogOnFacebook(post, event)}
+                  aria-label="Share blog on Facebook"
+                  title="Share on Facebook"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M13.5 22v-8h2.7l.4-3.1h-3.1V9c0-.9.3-1.6 1.6-1.6h1.7V4.6c-.3 0-1.3-.1-2.5-.1-2.5 0-4.1 1.5-4.1 4.3v2.1H8v3.1h2.7v8h2.8Z" />
+                  </svg>
+                </button>
+                <button
+                  type="button"
+                  className="blog-share-btn wa"
+                  onClick={(event) => shareBlogOnWhatsApp(post, event)}
+                  aria-label="Share blog on WhatsApp"
+                  title="Share on WhatsApp"
+                >
+                  <img src={whatsappShareIcon} alt="" className="blog-share-icon-image" />
+                </button>
+                <button
+                  type="button"
+                  className="blog-share-btn copy"
+                  onClick={(event) => copyBlogLink(post, event)}
+                  aria-label="Copy blog link"
+                  title="Copy link"
+                >
+                  <img src={copyShareIcon} alt="" className="blog-share-copy-image" />
+                </button>
               </div>
 
               <div className="blog-links">
@@ -2545,6 +2859,48 @@ function BlogPage({ authUser }) {
                 By <strong>{selectedBlog.author}</strong> · {formatNewsTimestamp(selectedBlog.date)} ·{' '}
                 {getBlogReadTime(selectedBlog)}
               </p>
+              {canManageBlog(selectedBlog) ? (
+                <div className="blog-owner-actions">
+                  <button type="button" className="btn btn-secondary" onClick={() => handleEditBlog(selectedBlog)}>
+                    Edit Blog
+                  </button>
+                  <button type="button" className="btn btn-secondary blog-delete-btn" onClick={() => handleDeleteBlog(selectedBlog)}>
+                    Delete Blog
+                  </button>
+                </div>
+              ) : null}
+              <div className="blog-share-row modal">
+                <button
+                  type="button"
+                  className="blog-share-btn fb"
+                  onClick={(event) => shareBlogOnFacebook(selectedBlog, event)}
+                  aria-label="Share blog on Facebook"
+                  title="Share on Facebook"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M13.5 22v-8h2.7l.4-3.1h-3.1V9c0-.9.3-1.6 1.6-1.6h1.7V4.6c-.3 0-1.3-.1-2.5-.1-2.5 0-4.1 1.5-4.1 4.3v2.1H8v3.1h2.7v8h2.8Z" />
+                  </svg>
+                </button>
+                <button
+                  type="button"
+                  className="blog-share-btn wa"
+                  onClick={(event) => shareBlogOnWhatsApp(selectedBlog, event)}
+                  aria-label="Share blog on WhatsApp"
+                  title="Share on WhatsApp"
+                >
+                  <img src={whatsappShareIcon} alt="" className="blog-share-icon-image" />
+                </button>
+                <button
+                  type="button"
+                  className="blog-share-btn copy"
+                  onClick={(event) => copyBlogLink(selectedBlog, event)}
+                  aria-label="Copy blog link"
+                  title="Copy link"
+                >
+                  <img src={copyShareIcon} alt="" className="blog-share-copy-image" />
+                </button>
+              </div>
+              {renderBlogAttachments(selectedBlog, { inModal: true })}
               <p className="blog-modal-content">{selectedBlog.content || selectedBlog.excerpt}</p>
               <div className="blog-links">
                 <div className="blog-link-row">
@@ -2589,7 +2945,7 @@ function BlogPage({ authUser }) {
               >
                 ×
               </button>
-              <h3>Publish Your Blog</h3>
+              <h3>{editingBlogSlug ? 'Edit Your Blog' : 'Publish Your Blog'}</h3>
               <form className="blog-create-form" onSubmit={handlePublishBlog}>
                 <label>
                   Blog Title
@@ -2619,17 +2975,63 @@ function BlogPage({ authUser }) {
                 <label>
                   Blog Content
                   <textarea
-                    rows={10}
+                    rows={7}
                     value={blogDraft.content}
                     onChange={(event) => setBlogDraft((current) => ({ ...current, content: event.target.value }))}
                     placeholder="Write your blog here..."
                     required
                   />
                 </label>
+                <div className="blog-attachment-field">
+                  <p className="blog-attachment-field-label">Attach Files (images, PPT, Word, PDF, ZIP, etc.)</p>
+                  <div className="blog-attachment-picker">
+                    <input
+                      id="blog-attachment-input"
+                      className="blog-attachment-input"
+                      type="file"
+                      multiple
+                      onChange={handleDraftAttachmentUpload}
+                    />
+                    <label htmlFor="blog-attachment-input" className="blog-attachment-picker-btn">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 4a1 1 0 0 1 1 1v8.59l2.3-2.3a1 1 0 1 1 1.4 1.42l-4 3.99a1 1 0 0 1-1.4 0l-4-3.99a1 1 0 1 1 1.4-1.42l2.3 2.3V5a1 1 0 0 1 1-1Zm-7 13a1 1 0 0 1 1 1v1h12v-1a1 1 0 1 1 2 0v2a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1Z" />
+                      </svg>
+                      <span>Upload Files</span>
+                    </label>
+                    <span className="blog-attachment-picker-meta">
+                      {blogDraft.attachments.length > 0
+                        ? `${blogDraft.attachments.length} file(s) selected`
+                        : 'No file selected yet'}
+                    </span>
+                  </div>
+                </div>
+                {blogDraft.attachments.length > 0 ? (
+                  <div className="blog-draft-attachments">
+                    <p className="blog-attachments-title">
+                      Ready to publish ({blogDraft.attachments.length}/{MAX_BLOG_ATTACHMENTS})
+                    </p>
+                    <div className="blog-attachment-list">
+                      {blogDraft.attachments.map((file) => (
+                        <div key={file.id} className="blog-attachment-item draft">
+                          <span className="blog-attachment-name">{file.name}</span>
+                          <span className="blog-attachment-size">{formatFileSize(file.size)}</span>
+                          <button
+                            type="button"
+                            className="blog-attachment-remove"
+                            onClick={() => removeDraftAttachment(file.id)}
+                          >
+                            Remove
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ) : null}
+                {attachmentError ? <p className="planner-error">{attachmentError}</p> : null}
                 {publishError ? <p className="planner-error">{publishError}</p> : null}
                 <div className="blog-create-actions">
                   <button type="submit" className="btn btn-primary">
-                    Publish Blog
+                    {editingBlogSlug ? 'Update Blog' : 'Publish Blog'}
                   </button>
                   <button type="button" className="btn btn-secondary" onClick={closeCreateModal}>
                     Cancel
@@ -2639,6 +3041,60 @@ function BlogPage({ authUser }) {
             </article>
           </div>
         ) : null}
+        {appDialog.isOpen ? (
+          <div className="app-dialog-overlay" role="dialog" aria-modal="true" onClick={closeAppDialog}>
+            <article className={`app-dialog-card ${appDialog.variant}`} onClick={(event) => event.stopPropagation()}>
+              <h4>{appDialog.title || 'Notice'}</h4>
+              <p>{appDialog.message}</p>
+              <div className="app-dialog-actions">
+                {appDialog.showCancel ? (
+                  <button type="button" className="btn btn-secondary" onClick={closeAppDialog}>
+                    Cancel
+                  </button>
+                ) : null}
+                <button
+                  type="button"
+                  className={`btn ${appDialog.variant === 'danger' ? 'btn-secondary app-dialog-danger-btn' : 'btn-primary'}`}
+                  onClick={handleAppDialogConfirm}
+                >
+                  {appDialog.confirmText || 'OK'}
+                </button>
+              </div>
+            </article>
+          </div>
+        ) : null}
+      </section>
+    </main>
+  )
+}
+
+function AboutGuardianAngelPage() {
+  return (
+    <main className="page-main">
+      <section className="container about-guardian-page">
+        <div className="section-title about-guardian-animated">
+          <h2>About Guardian Angel</h2>
+          
+        </div>
+
+        <article className="about-guardian-card about-guardian-animated about-guardian-animated-delay">
+          <p>
+            Guardian Angel is built on the belief that education is a basic right of every citizen, as guaranteed by
+            the Constitution of Pakistan. Over time, education has been turned into a business where many academies
+            exploit students through marketing, costly notes, and by selling CSS as a brand instead of treating it as a
+            national responsibility.
+          </p>
+          <p>
+            In many cases, success stories and CSP officers are used as promotional tools to create an illusion of
+            guaranteed success, which shifts the focus from learning and service to profit and branding.
+          </p>
+          <p>
+            Guardian Angel stands as an anti system to this culture. It focuses on providing real, simple, and high
+            quality guidance to CSS aspirants so that every student has equal opportunity to compete fairly and serve
+            the nation with honesty and purpose. Any individual who donates knowledge, time, or guidance to others is
+            also a Guardian Angel and a true hero of the nation.
+          </p>
+        </article>
       </section>
     </main>
   )
@@ -6725,6 +7181,12 @@ function Footer() {
           <a href="/#why-guardian-angel">Equal Opportunity</a>
           <a href="/#mission">Knowledge is Priceless</a>
         </div>
+
+        <div className="footer-links">
+          <h4>About Guardian Angel</h4>
+          <Link to="/about-guardian-angel">Read Our Vision</Link>
+          <Link to="/blogs">Guardian Blogs</Link>
+        </div>
       </div>
 
       <div className="footer-bottom container">
@@ -7732,6 +8194,7 @@ function App() {
           <Route path="/css-rules" element={<CssRulesPage />} />
           <Route path="/css-past-papers" element={<CssPastPapersPage />} />
           <Route path="/css-study-material" element={<CssStudyMaterialPage />} />
+          <Route path="/about-guardian-angel" element={<AboutGuardianAngelPage />} />
           <Route path="/blogs" element={<BlogPage authUser={authUser} />} />
           <Route path="/blogs/:blogSlug" element={<BlogPage authUser={authUser} />} />
           <Route path="/blog" element={<Navigate to="/blogs" replace />} />
