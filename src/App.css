@@ -64,7 +64,7 @@
   position: relative;
   min-height: 100vh;
   color: var(--text-primary);
-  background: linear-gradient(180deg, #bdeaff 0%, #d6f3ff 50%, #eef9ff 100%);
+  background: linear-gradient(180deg, #cde7f3 0%, #d6f3ff 50%, #eef9ff 100%);
 }
 
 [data-theme='dark'] .site {
