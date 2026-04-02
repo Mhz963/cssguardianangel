@@ -4077,32 +4077,43 @@ a {
   font-size: 0.92rem;
 }
 
-.footer-motto {
+.footer-brand .footer-motto {
   margin: 0.18rem 0 0;
   color: #ffffff !important;
   line-height: 1.45;
   font-size: 0.92rem;
   font-weight: 700;
-  animation: footer-motto-heartbeat 3.2s ease-in-out infinite;
+  animation: footer-motto-heartbeat 3.2s ease-in-out infinite !important;
   transform-origin: left center;
+  text-shadow: 0 0 8px rgb(255 255 255 / 35%);
 }
 
 @keyframes footer-motto-heartbeat {
   0%,
   100% {
     transform: scale(1);
+    text-shadow: 0 0 8px rgb(255 255 255 / 30%);
+    filter: brightness(1);
   }
   28% {
     transform: scale(1.03);
+    text-shadow: 0 0 14px rgb(255 255 255 / 55%);
+    filter: brightness(1.08);
   }
   42% {
     transform: scale(1);
+    text-shadow: 0 0 8px rgb(255 255 255 / 30%);
+    filter: brightness(1);
   }
   58% {
     transform: scale(1.022);
+    text-shadow: 0 0 12px rgb(255 255 255 / 48%);
+    filter: brightness(1.06);
   }
   74% {
     transform: scale(1);
+    text-shadow: 0 0 8px rgb(255 255 255 / 30%);
+    filter: brightness(1);
   }
 }
 

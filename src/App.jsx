@@ -7161,7 +7161,7 @@ function Footer() {
               <span>Knowledge Is Priceless</span>
             </div>
           </Link>
-          <p className="footer-motto;" >Empowering Pakistan&apos;s Future Leaders</p>
+          <p className="footer-motto">Empowering Pakistan&apos;s Future Leaders</p>
         </div>
 
         <div className="footer-links">
