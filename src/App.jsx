@@ -91,7 +91,7 @@ const SEO_BY_PATH = {
 const pillars = [
   {
     title: 'Premium Quality Content',
-    text: 'Guardian Angel material is designed according to FPSC standards and focuses on topper level preparation.',
+    text: 'The content of Guardian Angel is designed according to FPSC standards and focuses on topper level preparation.',
   },
   {
     title: 'Completely Free',
@@ -103,7 +103,7 @@ const pillars = [
   },
   {
     title: 'Equal Opportunity',
-    text: 'Students from every city, village, and background can prepare for CSS.',
+    text: 'Students from every city, village, and background can prepare for Central Superior Services.',
   },
 ]
 
@@ -3079,7 +3079,7 @@ function AboutGuardianAngelPage() {
 
         <article className="about-guardian-card about-guardian-animated about-guardian-animated-delay">
           <p>
-            Guardian Angel is built on the belief that education is a basic right of every citizen, as guaranteed by
+            Guardian Angel believes that education is a basic right of every citizen, as guaranteed by
             the Constitution of Pakistan. Over time, education has been turned into a business where many academies
             exploit students through marketing, costly notes, and by selling CSS as a brand instead of treating it as a
             national responsibility.
@@ -7160,9 +7160,7 @@ function Footer() {
               <span>Knowledge Is Priceless</span>
             </div>
           </Link>
-          <p>
-            Empowering Pakistan&apos;s Future Leaders
-          </p>
+          <p className="footer-motto">Empowering Pakistan&apos;s Future Leaders</p>
         </div>
 
         <div className="footer-links">

@@ -1,16 +1,16 @@
 :root {
-  --bg-primary: #e6f0ff;
-  --bg-secondary: #f2f8ff;
-  --surface-gradient: linear-gradient(160deg, #f3f9ff 0%, #e4efff 92%);
-  --surface-strong: #dfeaff;
+  --bg-primary: #dff2ff;
+  --bg-secondary: #eef8ff;
+  --surface-gradient: linear-gradient(160deg, #f4fbff 0%, #e3f2ff 92%);
+  --surface-strong: #d7eaff;
   --text-primary: #101828;
   --text-secondary: #4f5d79;
   --brand-gold: #f2d56b;
   --brand-gold-dark: #c9a227;
   --brand-gold-soft: #8b6a08;
-  --border-soft: #d8e1f0;
+  --border-soft: #c8dcef;
   --input-bg: #ffffff;
-  --cta-bg: #f8faff;
+  --cta-bg: #f2f9ff;
   --footer-bg: linear-gradient(180deg, #eef3fb 0%, #e7edf8 100%);
   --footer-border: rgb(201 162 39 / 28%);
   --topbar-bg: #000000;
@@ -64,6 +64,10 @@
   position: relative;
   min-height: 100vh;
   color: var(--text-primary);
+  background: linear-gradient(180deg, #bdeaff 0%, #d6f3ff 50%, #eef9ff 100%);
+}
+
+[data-theme='dark'] .site {
   background: var(--bg-primary);
 }
 
@@ -4060,13 +4064,46 @@ a {
 
 .footer-brand .brand span {
   font-size: 0.84rem;
+  color: #f2d56b;
+  text-shadow: 0 0 12px rgb(242 213 107 / 52%);
+  animation: guardian-word-highlight 2.2s ease-in-out infinite;
+  font-weight: 700;
 }
 
 .footer-brand p {
-  margin: 0.65rem 0 0;
+  margin: 0.28rem 0 0;
   color: #b9c1d3;
   line-height: 1.5;
   font-size: 0.92rem;
+}
+
+.footer-motto {
+  margin: 0.18rem 0 0;
+  color: #ffffff !important;
+  line-height: 1.45;
+  font-size: 0.92rem;
+  font-weight: 700;
+  animation: footer-motto-heartbeat 3.2s ease-in-out infinite;
+  transform-origin: left center;
+}
+
+@keyframes footer-motto-heartbeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  28% {
+    transform: scale(1.03);
+  }
+  42% {
+    transform: scale(1);
+  }
+  58% {
+    transform: scale(1.022);
+  }
+  74% {
+    transform: scale(1);
+  }
 }
 
 .footer-links {
