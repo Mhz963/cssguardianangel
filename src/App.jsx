@@ -2178,7 +2178,12 @@ function CssStudyMaterialPage() {
                 <article className="study-slide-item" key={slide.url}>
                   <div>
                     <div className="study-slide-top">
-                      <p className="study-slide-tag">Lecture Slide</p>
+                      <div className="study-slide-meta">
+                        <p className="study-slide-tag">Lecture Slide</p>
+                        {/motivation/i.test(slide.title || slide.fileName || '') ? (
+                          <span className="study-motivation-badge">Motivation</span>
+                        ) : null}
+                      </div>
                       <span className="study-lecture-badge">
                         {slide.lectureNumber ? `Lecture ${slide.lectureNumber}` : 'Lecture'}
                       </span>
@@ -7173,13 +7178,6 @@ function Footer() {
           <Link to="/guardian-study-planner">Guardian Study Planner</Link>
         </div>
 
-        <div className="footer-links">
-          <h4>Core Values</h4>
-          <a href="/#why-guardian-angel">Premium Quality</a>
-          <a href="/#why-guardian-angel">Completely Free</a>
-          <a href="/#why-guardian-angel">Equal Opportunity</a>
-          <a href="/#mission">Knowledge is Priceless</a>
-        </div>
 
         <div className="footer-links">
           <h4>About Guardian Angel</h4>
