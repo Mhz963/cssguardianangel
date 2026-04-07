@@ -9,11 +9,13 @@ import {
   useLocation,
   useNavigate,
   useParams,
+  useSearchParams,
 } from 'react-router-dom'
 import './App.css'
 import logo from './assets/guardian-angel-logo.png'
 import whatsappShareIcon from './assets/whatsapp-share-icon.svg'
 import copyShareIcon from './assets/copy-share-icon.svg'
+import { hasSupabaseConfig, supabase } from './utils/supabaseClient.js'
 import {
   compulsorySubjects,
   detailedSubjectPages,
@@ -418,7 +420,6 @@ const FEATURED_BLOG_SLUGS = [
   'css-jawan-spirit-discipline-and-unity',
   'research-mindset-for-css-success',
 ]
-const USER_BLOGS_STORAGE_KEY = 'ga-user-blogs'
 const MAX_BLOG_ATTACHMENTS = 10
 const MAX_SINGLE_BLOG_ATTACHMENT_BYTES = 8 * 1024 * 1024
 const MAX_TOTAL_BLOG_ATTACHMENT_BYTES = 25 * 1024 * 1024
@@ -1011,13 +1012,22 @@ const cssPastPapersByYear = [
 ]
 
 const MS_PER_DAY = 24 * 60 * 60 * 1000
-const DUMMY_TEST_PROFILE = {
-  username: 'guardian.student',
-  password: 'Study@123',
-  fullName: 'Guardian Test Student',
+const SIGNIN_DRAFT_KEY = 'ga-signin-draft'
+
+const mapSupabaseUserToAuthUser = (user) => {
+  if (!user) return null
+  const meta = user.user_metadata || {}
+  const email = String(user.email || '').trim()
+  const usernameCandidate = String(meta.username || email.split('@')[0] || user.id.slice(0, 8)).trim()
+  const fullNameCandidate = String(meta.full_name || meta.name || usernameCandidate || 'Guardian User').trim()
+  return {
+    id: user.id,
+    email,
+    username: usernameCandidate || `user-${user.id.slice(0, 8)}`,
+    fullName: fullNameCandidate || 'Guardian User',
+    name: fullNameCandidate || 'Guardian User',
+  }
 }
-const TESTING_SIGNIN_DRAFT_KEY = 'ga-testing-signin-draft'
-const TESTING_PLANNER_FORM_KEY = 'ga-testing-planner-form'
 
 const DEFAULT_PLANNER_FORM = {
   examDate: '',
@@ -1456,8 +1466,8 @@ function Header({ theme, onToggleTheme, authUser, onLogout }) {
     {
       label: 'CSS Resource Library',
       children: [
-        { label: 'CSS Rules', to: '/css-rules' },
-        { label: 'CSS Syllabus', to: '/css-syllabus' },
+    { label: 'CSS Rules', to: '/css-rules' },
+    { label: 'CSS Syllabus', to: '/css-syllabus' },
         { label: 'CSS Past Papers', to: '/css-past-papers' },
         { label: 'CSS Study Material', to: '/css-study-material' },
         { label: 'Global Affairs', to: '/global-affairs' },
@@ -1523,7 +1533,7 @@ function Header({ theme, onToggleTheme, authUser, onLogout }) {
 
         <nav className={`nav ${isMobileMenuOpen ? 'nav-open' : ''}`}>
           <div className="nav-links">
-            {navItems.map((item) =>
+          {navItems.map((item) =>
               item.children ? (
                 <div
                   key={item.label}
@@ -1560,62 +1570,62 @@ function Header({ theme, onToggleTheme, authUser, onLogout }) {
                   </div>
                 </div>
               ) : item.to.startsWith('/#') ? (
-                <a key={item.label} href={item.to} onClick={closeMobileMenu}>
+              <a key={item.label} href={item.to} onClick={closeMobileMenu}>
                 {renderNavLabel(item.label)}
-                </a>
-              ) : (
-                <NavLink
-                  key={item.label}
-                  to={item.to}
-                  className={({ isActive }) => (isActive ? 'nav-active' : '')}
-                  onClick={closeMobileMenu}
-                >
+              </a>
+            ) : (
+              <NavLink
+                key={item.label}
+                to={item.to}
+                className={({ isActive }) => (isActive ? 'nav-active' : '')}
+                onClick={closeMobileMenu}
+              >
                 {renderNavLabel(item.label)}
-                </NavLink>
-              ),
-            )}
+              </NavLink>
+            ),
+          )}
           </div>
 
           <div className="nav-actions">
-            <a className="btn btn-nav" href="/#student-message" onClick={closeMobileMenu}>
-              Start Preparation
-            </a>
-            {authUser ? (
-              <button
-                className="btn btn-secondary nav-auth-btn"
-                type="button"
-                onClick={() => {
-                  closeMobileMenu()
-                  onLogout()
-                }}
-              >
-                Logout
-              </button>
-            ) : (
-              <Link className="btn btn-secondary nav-auth-btn" to="/signin" onClick={closeMobileMenu}>
-                Sign In
-              </Link>
-            )}
+          <Link className="btn btn-nav" to="/signin?mode=signup" onClick={closeMobileMenu}>
+            Start Preparation
+          </Link>
+          {authUser ? (
             <button
-              className={`btn btn-secondary theme-toggle ${animateToggle ? 'animate' : ''}`}
+                className="btn btn-secondary nav-auth-btn"
               type="button"
-              onClick={handleThemeToggle}
-              aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-              title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+              onClick={() => {
+                closeMobileMenu()
+                onLogout()
+              }}
             >
-              <span aria-hidden="true" className="theme-icon">
-                {theme === 'dark' ? (
-                  <svg viewBox="0 0 24 24" role="img">
-                    <circle cx="12" cy="12" r="4.2" />
-                    <path d="M12 2.2v3M12 18.8v3M2.2 12h3M18.8 12h3M4.8 4.8l2.1 2.1M17.1 17.1l2.1 2.1M19.2 4.8l-2.1 2.1M6.9 17.1l-2.1 2.1" />
-                  </svg>
-                ) : (
-                  <svg viewBox="0 0 24 24" role="img">
-                    <path d="M21 14.8A9.2 9.2 0 1 1 9.2 3a7.5 7.5 0 1 0 11.8 11.8Z" />
-                  </svg>
-                )}
-              </span>
+              Logout
             </button>
+          ) : (
+              <Link className="btn btn-secondary nav-auth-btn" to="/signin" onClick={closeMobileMenu}>
+              Sign In
+            </Link>
+          )}
+          <button
+            className={`btn btn-secondary theme-toggle ${animateToggle ? 'animate' : ''}`}
+            type="button"
+            onClick={handleThemeToggle}
+            aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+            title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+          >
+            <span aria-hidden="true" className="theme-icon">
+              {theme === 'dark' ? (
+                <svg viewBox="0 0 24 24" role="img">
+                  <circle cx="12" cy="12" r="4.2" />
+                  <path d="M12 2.2v3M12 18.8v3M2.2 12h3M18.8 12h3M4.8 4.8l2.1 2.1M17.1 17.1l2.1 2.1M19.2 4.8l-2.1 2.1M6.9 17.1l-2.1 2.1" />
+                </svg>
+              ) : (
+                <svg viewBox="0 0 24 24" role="img">
+                  <path d="M21 14.8A9.2 9.2 0 1 1 9.2 3a7.5 7.5 0 1 0 11.8 11.8Z" />
+                </svg>
+              )}
+            </span>
+          </button>
           </div>
         </nav>
       </div>
@@ -1683,8 +1693,8 @@ function HomePage() {
         <div className="intro-video" aria-hidden="true">
           {introVideoOn ? (
             <video autoPlay loop muted playsInline preload="none" poster={logo}>
-              <source src="/media/guardian-intro.mp4" type="video/mp4" />
-            </video>
+            <source src="/media/guardian-intro.mp4" type="video/mp4" />
+          </video>
           ) : null}
         </div>
         <div className="intro-overlay" aria-hidden="true" />
@@ -2031,16 +2041,16 @@ function CssPastPapersPage() {
               </a>
             </p>
 
-            <div className="papers-grid">
+        <div className="papers-grid">
               {visiblePapers.map((paper) => (
-                <article className="paper-item" key={paper.url}>
-                  <h3>{paper.title}</h3>
-                  <a className="btn btn-primary" href={paper.url} target="_blank" rel="noreferrer">
-                    Open PDF
-                  </a>
-                </article>
-              ))}
-            </div>
+            <article className="paper-item" key={paper.url}>
+              <h3>{paper.title}</h3>
+              <a className="btn btn-primary" href={paper.url} target="_blank" rel="noreferrer">
+                Open PDF
+              </a>
+            </article>
+          ))}
+        </div>
           </>
         )}
       </section>
@@ -2294,15 +2304,7 @@ function BlogPage({ authUser }) {
     content: '',
     attachments: [],
   })
-  const [userBlogs, setUserBlogs] = useState(() => {
-    try {
-      const raw = localStorage.getItem(USER_BLOGS_STORAGE_KEY)
-      const parsed = raw ? JSON.parse(raw) : []
-      return Array.isArray(parsed) ? parsed : []
-    } catch {
-      return []
-    }
-  })
+  const [userBlogs, setUserBlogs] = useState([])
   const allBlogs = [...userBlogs, ...blogPosts]
   const getAuthOwnerKey = () => {
     if (!authUser) return ''
@@ -2322,6 +2324,7 @@ function BlogPage({ authUser }) {
   }
   const canManageBlog = (post) => {
     if (!post?.isUserGenerated) return false
+    if (authUser?.id && post.ownerUserId && String(post.ownerUserId) === String(authUser.id)) return true
     const authCandidates = getAuthOwnerCandidates()
     if (authCandidates.length === 0) return false
     const postOwnerKey = String(post.ownerKey || '').trim().toLowerCase()
@@ -2463,7 +2466,40 @@ function BlogPage({ authUser }) {
       </div>
     )
   }
-  const handlePublishBlog = (event) => {
+  const loadUserBlogs = async () => {
+    if (!supabase) return
+    try {
+      const { data } = await supabase
+        .from('user_blogs')
+        .select('*')
+        .order('created_at', { ascending: false })
+      const mapped = (data || []).map((row) => ({
+        id: row.id,
+        slug: row.slug,
+        title: row.title,
+        date: row.created_at,
+        author: row.author_name || 'Guardian User',
+        ownerKey: row.owner_key || '',
+        ownerUserId: row.owner_user_id || '',
+        excerpt: row.excerpt || '',
+        content: row.content || '',
+        categories: Array.isArray(row.categories) ? row.categories : ['Motivation'],
+        internalLinks: [],
+        externalLinks: [],
+        attachments: Array.isArray(row.attachments) ? row.attachments : [],
+        isUserGenerated: true,
+      }))
+      setUserBlogs(mapped)
+    } catch {
+      // Ignore fetch errors and keep existing list.
+    }
+  }
+
+  useEffect(() => {
+    loadUserBlogs()
+  }, [])
+
+  const handlePublishBlog = async (event) => {
     event.preventDefault()
     if (!authUser) {
       setPublishError('Please sign in to publish a blog.')
@@ -2500,6 +2536,7 @@ function BlogPage({ authUser }) {
       date: new Date().toISOString(),
       author: authUser.fullName || authUser.username || 'Guardian User',
       ownerKey: getAuthOwnerKey(),
+      ownerUserId: authUser.id || '',
       excerpt: excerpt.length < content.length ? `${excerpt}...` : excerpt,
       content,
       categories: [category],
@@ -2508,12 +2545,56 @@ function BlogPage({ authUser }) {
       attachments: blogDraft.attachments || [],
       isUserGenerated: true,
     }
-    if (editingBlogSlug) {
-      setUserBlogs((current) =>
-        current.map((post) => (post.slug === editingBlogSlug ? { ...post, ...nextPost } : post)),
-      )
-    } else {
-      setUserBlogs((current) => [nextPost, ...current])
+    if (!supabase || !authUser?.id) {
+      setPublishError('Supabase is not configured for blog publishing.')
+      return
+    }
+    try {
+      if (editingBlogSlug) {
+        const editingPost = userBlogs.find((post) => post.slug === editingBlogSlug)
+        if (!editingPost?.id) {
+          setPublishError('Unable to update this blog right now.')
+          return
+        }
+        const { error: updateError } = await supabase
+          .from('user_blogs')
+          .update({
+            slug: nextPost.slug,
+            title: nextPost.title,
+            excerpt: nextPost.excerpt,
+            content: nextPost.content,
+            categories: nextPost.categories,
+            attachments: nextPost.attachments,
+            author_name: nextPost.author,
+            owner_key: nextPost.ownerKey,
+            updated_at: new Date().toISOString(),
+          })
+          .eq('id', editingPost.id)
+        if (updateError) throw updateError
+      } else {
+        const { data: inserted, error: insertError } = await supabase
+          .from('user_blogs')
+          .insert({
+            owner_user_id: authUser.id,
+            owner_key: nextPost.ownerKey,
+            author_name: nextPost.author,
+            slug: nextPost.slug,
+            title: nextPost.title,
+            excerpt: nextPost.excerpt,
+            content: nextPost.content,
+            categories: nextPost.categories,
+            attachments: nextPost.attachments,
+          })
+          .select('id, created_at')
+          .single()
+        if (insertError) throw insertError
+        if (inserted?.id) nextPost.id = inserted.id
+        if (inserted?.created_at) nextPost.date = inserted.created_at
+      }
+      await loadUserBlogs()
+    } catch (dbError) {
+      setPublishError(dbError?.message || 'Unable to publish blog. Please try again.')
+      return
     }
     setBlogDraft({ title: '', category: 'Motivation', content: '', attachments: [] })
     setPublishError('')
@@ -2552,11 +2633,28 @@ function BlogPage({ authUser }) {
     setAppDialog((current) => ({ ...current, isOpen: false }))
     setPendingDeleteBlog(null)
   }
-  const handleAppDialogConfirm = () => {
+  const handleAppDialogConfirm = async () => {
     if (pendingDeleteBlog) {
-      setUserBlogs((current) => current.filter((item) => item.slug !== pendingDeleteBlog.slug))
-      if (blogSlug === pendingDeleteBlog.slug) navigate('/blogs')
-      setSelectedBlog(null)
+      try {
+        if (pendingDeleteBlog?.id && supabase) {
+          const { error: deleteError } = await supabase.from('user_blogs').delete().eq('id', pendingDeleteBlog.id)
+          if (deleteError) throw deleteError
+        }
+        await loadUserBlogs()
+        if (blogSlug === pendingDeleteBlog.slug) navigate('/blogs')
+        setSelectedBlog(null)
+      } catch {
+        setAppDialog({
+          isOpen: true,
+          title: 'Delete Failed',
+          message: 'Unable to delete this blog right now. Please try again.',
+          variant: 'danger',
+          confirmText: 'OK',
+          showCancel: false,
+        })
+        setPendingDeleteBlog(null)
+        return
+      }
     }
     closeAppDialog()
   }
@@ -2644,14 +2742,6 @@ function BlogPage({ authUser }) {
       window.removeEventListener('keydown', handleEscape)
     }
   }, [selectedBlog])
-  useEffect(() => {
-    try {
-      localStorage.setItem(USER_BLOGS_STORAGE_KEY, JSON.stringify(userBlogs))
-    } catch {
-      // Ignore storage errors and continue with in-memory state.
-    }
-  }, [userBlogs])
-
   return (
     <main className="page-main">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
@@ -3203,22 +3293,31 @@ function SubjectDetailPage() {
   )
 }
 
-function SignInPage({ onSignIn, authUser }) {
+function SignInPage({ authUser }) {
   const navigate = useNavigate()
   const location = useLocation()
+  const [searchParams] = useSearchParams()
+  const initialMode = searchParams.get('mode') === 'signup' ? 'signup' : 'signin'
+  const [mode, setMode] = useState(initialMode)
   const [form, setForm] = useState(() => {
     try {
-      const raw = localStorage.getItem(TESTING_SIGNIN_DRAFT_KEY)
+      const raw = localStorage.getItem(SIGNIN_DRAFT_KEY)
       const draft = raw ? JSON.parse(raw) : null
       return {
-        username: draft?.username || '',
+        fullName: draft?.fullName || '',
+        email: draft?.email || '',
         password: draft?.password || '',
       }
     } catch {
-      return { username: '', password: '' }
+      return { fullName: '', email: '', password: '' }
     }
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState('')
+
+  useEffect(() => {
+    setMode(initialMode)
+  }, [initialMode])
 
   useEffect(() => {
     if (authUser) {
@@ -3229,58 +3328,116 @@ function SignInPage({ onSignIn, authUser }) {
 
   useEffect(() => {
     try {
-      localStorage.setItem(TESTING_SIGNIN_DRAFT_KEY, JSON.stringify(form))
+      localStorage.setItem(SIGNIN_DRAFT_KEY, JSON.stringify(form))
     } catch {
       // Ignore storage failures and continue with in-memory interactions.
     }
   }, [form])
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
     setError('')
-
-    const isValidUser =
-      form.username.trim() === DUMMY_TEST_PROFILE.username &&
-      form.password === DUMMY_TEST_PROFILE.password
-
-    if (!isValidUser) {
-      setError('Invalid credentials. Use the testing credentials shown below.')
+    if (!hasSupabaseConfig || !supabase) {
+      setError('Supabase is not configured. Please set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY.')
       return
     }
+    const email = form.email.trim()
+    const password = form.password
+    if (!email || !password) {
+      setError('Please enter email and password.')
+      return
+    }
+    setIsSubmitting(true)
+    try {
+      if (mode === 'signup') {
+        const { error: signUpError } = await supabase.auth.signUp({
+          email,
+          password,
+          options: {
+            data: {
+              full_name: form.fullName.trim() || email.split('@')[0],
+              username: email.split('@')[0],
+            },
+          },
+        })
+        if (signUpError) throw signUpError
+        setError('Signup successful. Please verify your email, then sign in.')
+        setMode('signin')
+      } else {
+        const { error: signInError } = await supabase.auth.signInWithPassword({ email, password })
+        if (signInError) throw signInError
+        const nextPath = location.state?.from || '/guardian-study-planner'
+        navigate(nextPath, { replace: true })
+      }
+    } catch (submitError) {
+      setError(submitError?.message || 'Unable to continue. Please try again.')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
 
-    onSignIn({
-      username: DUMMY_TEST_PROFILE.username,
-      fullName: DUMMY_TEST_PROFILE.fullName,
-    })
-
-    const nextPath = location.state?.from || '/guardian-study-planner'
-    navigate(nextPath, { replace: true })
+  const handleGoogleSignIn = async () => {
+    setError('')
+    if (!hasSupabaseConfig || !supabase) {
+      setError('Supabase is not configured. Please set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY.')
+      return
+    }
+    setIsSubmitting(true)
+    try {
+      const { error: oauthError } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          redirectTo: `${window.location.origin}/signin`,
+        },
+      })
+      if (oauthError) throw oauthError
+    } catch (oauthError) {
+      setError(oauthError?.message || 'Google sign-in failed.')
+      setIsSubmitting(false)
+    }
   }
 
   return (
-    <main className="page-main">
-      <section className="container auth-page">
-        <div className="section-title">
-          <p>Sign In Required</p>
-          <h2>Access Guardian Study Planner</h2>
+    <>
+      <section className="intro auth-intro">
+        <div className="intro-video auth-video" aria-hidden="true">
+          <video autoPlay loop muted playsInline preload="none" poster={logo}>
+            <source src="/media/guardian-intro.mp4" type="video/mp4" />
+          </video>
         </div>
+        <div className="intro-overlay auth-overlay" aria-hidden="true" />
+        <section className="container auth-page auth-page-overlay">
+          <div className="section-title">
+            {/* <p>{mode === 'signup' ? 'Create Account' : 'Sign In Required'}</p> */}
+            <h2 className="auth-title-pump">
+              {mode === 'signup' ? 'Join The Guardian Angel Community' : 'Access Guardian Study Planner'}
+            </h2>
+          </div>
 
-        <article className="planner-card auth-card">
-          <h3>Testing Credentials</h3>
-          <p className="auth-note">
-            Username: <strong>{DUMMY_TEST_PROFILE.username}</strong> | Password:{' '}
-            <strong>{DUMMY_TEST_PROFILE.password}</strong>
-          </p>
-
+          <article className="planner-card auth-card">
           <form className="planner-form" onSubmit={handleSubmit}>
+            {mode === 'signup' ? (
+              <label>
+                Full Name
+                <input
+                  name="fullName"
+                  type="text"
+                  value={form.fullName}
+                  onChange={(event) =>
+                    setForm((current) => ({ ...current, fullName: event.target.value }))
+                  }
+                  required
+                />
+              </label>
+            ) : null}
             <label>
-              Username
+              Email
               <input
-                name="username"
-                type="text"
-                value={form.username}
+                name="email"
+                type="email"
+                value={form.email}
                 onChange={(event) =>
-                  setForm((current) => ({ ...current, username: event.target.value }))
+                  setForm((current) => ({ ...current, email: event.target.value }))
                 }
                 required
               />
@@ -3299,29 +3456,48 @@ function SignInPage({ onSignIn, authUser }) {
               />
             </label>
 
-            <button className="btn btn-primary planner-submit" type="submit">
-              Sign In
+            <div className="blog-create-actions">
+              <button className="btn btn-primary planner-submit" type="submit" disabled={isSubmitting}>
+                {mode === 'signup' ? 'Create Account' : 'Sign In'}
+              </button>
+              <button className="btn btn-google" type="button" onClick={handleGoogleSignIn} disabled={isSubmitting}>
+                <img
+                  src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+                  alt=""
+                  aria-hidden="true"
+                />
+                <span>Continue with Google</span>
+              </button>
+            </div>
+            <button
+              className="btn btn-secondary planner-submit"
+              type="button"
+              onClick={() => {
+                setError('')
+                setMode((current) => (current === 'signin' ? 'signup' : 'signin'))
+              }}
+              disabled={isSubmitting}
+            >
+              {mode === 'signup' ? 'Have an account? Sign In' : "Don't have an account? Sign Up"}
             </button>
             {error ? <p className="planner-error">{error}</p> : null}
           </form>
-        </article>
+          </article>
+        </section>
       </section>
-    </main>
+    </>
   )
 }
 
 function GuardianStudyPlannerPage({ authUser }) {
-  const profileStorageKey = `ga-profile-${authUser.username}`
+  const profileStorageKey = `ga-profile-${authUser.id || authUser.username}`
   const [activePlannerTab, setActivePlannerTab] = useState('subjects')
   const [form, setForm] = useState(() => {
     try {
       const raw = localStorage.getItem(profileStorageKey)
       const profile = raw ? JSON.parse(raw) : null
-      const fallbackRaw = localStorage.getItem(TESTING_PLANNER_FORM_KEY)
-      const fallbackForm = fallbackRaw ? JSON.parse(fallbackRaw) : null
       return {
         ...DEFAULT_PLANNER_FORM,
-        ...(fallbackForm || {}),
         ...(profile?.plannerForm || {}),
       }
     } catch {
@@ -3590,40 +3766,102 @@ function GuardianStudyPlannerPage({ authUser }) {
   const [aiExamError, setAiExamError] = useState('')
 
   useEffect(() => {
-    try {
-      const profilePayload = {
-        username: authUser.username,
-        fullName: authUser.fullName,
-        plannerForm: form,
-        selectedCompulsoryElective,
-        selectedOptionalSubjects,
-        subjectsLocked,
-        subjectPerformanceLevels,
-        isManualDmcEnabled,
-        manualDmcScores,
-        aiExamDraft,
-        aiExamResult,
-        completedDays,
-        dayStatuses,
-        timerSessions,
-        socialTimerSessions,
-        socialDailyLimitMinutes,
-        timerState: {
-          status: timerStatus,
-          accumulatedSeconds: timerAccumulatedSeconds,
-          startedAtMs: timerStartedAtMs,
-        },
-        socialTimerState: {
-          status: socialTimerStatus,
-          accumulatedSeconds: socialTimerAccumulatedSeconds,
-          startedAtMs: socialTimerStartedAtMs,
-        },
+    let isCancelled = false
+    const loadRemoteProfile = async () => {
+      if (!supabase || !authUser?.id) return
+      try {
+        const { data } = await supabase
+          .from('user_profiles')
+          .select('payload')
+          .eq('user_id', authUser.id)
+          .maybeSingle()
+        const payload = data?.payload
+        if (!payload || isCancelled) return
+        if (payload.plannerForm) setForm((current) => ({ ...current, ...payload.plannerForm }))
+        if (payload.selectedCompulsoryElective) setSelectedCompulsoryElective(payload.selectedCompulsoryElective)
+        if (Array.isArray(payload.selectedOptionalSubjects)) setSelectedOptionalSubjects(payload.selectedOptionalSubjects)
+        if (typeof payload.subjectsLocked === 'boolean') setSubjectsLocked(payload.subjectsLocked)
+        if (payload.subjectPerformanceLevels) setSubjectPerformanceLevels(payload.subjectPerformanceLevels)
+        if (typeof payload.isManualDmcEnabled === 'boolean') setIsManualDmcEnabled(payload.isManualDmcEnabled)
+        if (payload.manualDmcScores) setManualDmcScores(payload.manualDmcScores)
+        if (payload.aiExamDraft) setAiExamDraft(payload.aiExamDraft)
+        if (payload.aiExamResult) setAiExamResult(payload.aiExamResult)
+        if (payload.completedDays) setCompletedDays(payload.completedDays)
+        if (payload.dayStatuses) setDayStatuses(payload.dayStatuses)
+        if (Array.isArray(payload.timerSessions)) setTimerSessions(payload.timerSessions)
+        if (Array.isArray(payload.socialTimerSessions)) setSocialTimerSessions(payload.socialTimerSessions)
+        if (typeof payload.socialDailyLimitMinutes === 'number') setSocialDailyLimitMinutes(payload.socialDailyLimitMinutes)
+        if (payload.timerState) {
+          setTimerStatus(payload.timerState.status || 'stopped')
+          setTimerAccumulatedSeconds(Number(payload.timerState.accumulatedSeconds || 0))
+          setTimerStartedAtMs(payload.timerState.startedAtMs || null)
+        }
+        if (payload.socialTimerState) {
+          setSocialTimerStatus(payload.socialTimerState.status || 'stopped')
+          setSocialTimerAccumulatedSeconds(Number(payload.socialTimerState.accumulatedSeconds || 0))
+          setSocialTimerStartedAtMs(payload.socialTimerState.startedAtMs || null)
+        }
+      } catch {
+        // Keep local profile if remote fetch fails.
       }
+    }
+    loadRemoteProfile()
+    return () => {
+      isCancelled = true
+    }
+  }, [authUser?.id])
+
+  useEffect(() => {
+    const profilePayload = {
+      username: authUser.username,
+      fullName: authUser.fullName,
+      plannerForm: form,
+      selectedCompulsoryElective,
+      selectedOptionalSubjects,
+      subjectsLocked,
+      subjectPerformanceLevels,
+      isManualDmcEnabled,
+      manualDmcScores,
+      aiExamDraft,
+      aiExamResult,
+      completedDays,
+      dayStatuses,
+      timerSessions,
+      socialTimerSessions,
+      socialDailyLimitMinutes,
+      timerState: {
+        status: timerStatus,
+        accumulatedSeconds: timerAccumulatedSeconds,
+        startedAtMs: timerStartedAtMs,
+      },
+      socialTimerState: {
+        status: socialTimerStatus,
+        accumulatedSeconds: socialTimerAccumulatedSeconds,
+        startedAtMs: socialTimerStartedAtMs,
+      },
+    }
+    try {
       localStorage.setItem(profileStorageKey, JSON.stringify(profilePayload))
-      localStorage.setItem(TESTING_PLANNER_FORM_KEY, JSON.stringify(form))
     } catch {
       // Ignore storage failures and continue with in-memory interactions.
     }
+
+    const syncRemoteProfile = async () => {
+      if (!supabase || !authUser?.id) return
+      try {
+        await supabase.from('user_profiles').upsert(
+          {
+            user_id: authUser.id,
+            payload: profilePayload,
+            updated_at: new Date().toISOString(),
+          },
+          { onConflict: 'user_id' },
+        )
+      } catch {
+        // Keep local profile if remote sync fails.
+      }
+    }
+    syncRemoteProfile()
   }, [
     authUser,
     profileStorageKey,
@@ -7793,7 +8031,7 @@ function GlobalAffairsPage({ defaultTab = 'global' }) {
   )
 }
 
-function StickyNotesWidget() {
+function StickyNotesWidget({ authUser }) {
   const [isOpen, setIsOpen] = useState(false)
   const [draft, setDraft] = useState('')
   const [notes, setNotes] = useState(() => {
@@ -7812,7 +8050,46 @@ function StickyNotesWidget() {
     } catch {
       // Ignore storage failures.
     }
-  }, [notes])
+
+    const syncStickyNotes = async () => {
+      if (!supabase || !authUser?.id) return
+      try {
+        await supabase.from('user_sticky_notes').upsert(
+          {
+            user_id: authUser.id,
+            notes,
+            updated_at: new Date().toISOString(),
+          },
+          { onConflict: 'user_id' },
+        )
+      } catch {
+        // Keep local notes if remote sync fails.
+      }
+    }
+    syncStickyNotes()
+  }, [notes, authUser?.id])
+
+  useEffect(() => {
+    let isCancelled = false
+    const loadStickyNotes = async () => {
+      if (!supabase || !authUser?.id) return
+      try {
+        const { data } = await supabase
+          .from('user_sticky_notes')
+          .select('notes')
+          .eq('user_id', authUser.id)
+          .maybeSingle()
+        if (isCancelled) return
+        if (Array.isArray(data?.notes)) setNotes(data.notes)
+      } catch {
+        // Keep local notes if remote fetch fails.
+      }
+    }
+    loadStickyNotes()
+    return () => {
+      isCancelled = true
+    }
+  }, [authUser?.id])
 
   const handlePaste = async () => {
     try {
@@ -8112,14 +8389,8 @@ function useRemoveVisibleWordHyphens() {
 }
 
 function App() {
-  const [authUser, setAuthUser] = useState(() => {
-    try {
-      const raw = localStorage.getItem('ga-auth-user')
-      return raw ? JSON.parse(raw) : null
-    } catch {
-      return null
-    }
-  })
+  const [authUser, setAuthUser] = useState(null)
+  const [isAuthReady, setIsAuthReady] = useState(false)
   const [theme, setTheme] = useState(() => {
     try {
       return localStorage.getItem('ga-theme') || 'dark'
@@ -8162,13 +8433,41 @@ function App() {
   }, [])
 
   useEffect(() => {
-    try {
-      if (authUser) localStorage.setItem('ga-auth-user', JSON.stringify(authUser))
-      else localStorage.removeItem('ga-auth-user')
-    } catch {
-      // Ignore storage failures and continue with in-memory auth state.
+    let isCancelled = false
+
+    const bootstrapSession = async () => {
+      if (!supabase) {
+        setIsAuthReady(true)
+        return
+      }
+      const { data } = await supabase.auth.getSession()
+      if (!isCancelled) {
+        setAuthUser(mapSupabaseUserToAuthUser(data?.session?.user || null))
+        setIsAuthReady(true)
+      }
     }
-  }, [authUser])
+
+    bootstrapSession()
+
+    const { data: subscription } = supabase
+      ? supabase.auth.onAuthStateChange((_event, session) => {
+          setAuthUser(mapSupabaseUserToAuthUser(session?.user || null))
+          setIsAuthReady(true)
+        })
+      : { data: null }
+
+    return () => {
+      isCancelled = true
+      subscription?.subscription?.unsubscribe?.()
+    }
+  }, [])
+
+  const handleLogout = async () => {
+    if (supabase) {
+      await supabase.auth.signOut()
+    }
+    setAuthUser(null)
+  }
 
   useRemoveVisibleWordHyphens()
 
@@ -8181,7 +8480,7 @@ function App() {
           theme={theme}
           onToggleTheme={() => setTheme((current) => (current === 'dark' ? 'light' : 'dark'))}
           authUser={authUser}
-          onLogout={() => setAuthUser(null)}
+          onLogout={handleLogout}
         />
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -8198,12 +8497,12 @@ function App() {
           <Route path="/blog/:blogSlug" element={<LegacyBlogSlugRedirect />} />
           <Route
             path="/signin"
-            element={<SignInPage authUser={authUser} onSignIn={(user) => setAuthUser(user)} />}
+            element={<SignInPage authUser={authUser} />}
           />
           <Route
             path="/guardian-study-planner"
             element={
-              authUser ? (
+              !isAuthReady ? null : authUser ? (
                 <GuardianStudyPlannerPage authUser={authUser} />
               ) : (
                 <Navigate to="/signin" replace state={{ from: '/guardian-study-planner' }} />
@@ -8214,7 +8513,7 @@ function App() {
           <Route path="*" element={<HomePage />} />
         </Routes>
         <Footer />
-        <StickyNotesWidget />
+        <StickyNotesWidget authUser={authUser} />
         <BackToTopButton />
       </div>
     </BrowserRouter>
