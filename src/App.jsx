@@ -5278,7 +5278,7 @@ function GuardianStudyPlannerPage({ authUser }) {
   ).getDate()
   const selectedExamDateKey = form.examDate || ''
   const todayDateKey = formatDayKey(new Date())
-  const weeklyProgressBase = weekDays.map((day) => {
+  const weeklyProgress = weekDays.map((day) => {
     const dayKey = formatDayKey(day)
     const minutesFromLogs = timerSessions
       .filter((item) => item.dayKey === dayKey)
@@ -5290,13 +5290,9 @@ function GuardianStudyPlannerPage({ authUser }) {
       label: day.toLocaleDateString('en-US', { weekday: 'short' }),
       studiedMinutes,
       requiredMinutes: requiredDailyMinutes,
+      ratio: requiredDailyMinutes > 0 ? Math.min(100, (studiedMinutes / requiredDailyMinutes) * 100) : 0,
     }
   })
-  const maxWeekStudiedMinutes = Math.max(1, ...weeklyProgressBase.map((item) => item.studiedMinutes))
-  const weeklyProgress = weeklyProgressBase.map((item) => ({
-    ...item,
-    ratio: Math.min(100, (item.studiedMinutes / maxWeekStudiedMinutes) * 100),
-  }))
   const totalWeekStudiedMinutes = weeklyProgress.reduce((sum, item) => sum + item.studiedMinutes, 0)
   const totalWeekRequiredMinutes = requiredDailyMinutes * 7
   const weeklyProgressPercent =
