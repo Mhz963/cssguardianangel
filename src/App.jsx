@@ -3320,6 +3320,7 @@ function SignInPage({ authUser }) {
           email,
           password,
           options: {
+            emailRedirectTo: `${window.location.origin}/signin`,
             data: {
               full_name: form.fullName.trim() || email.split('@')[0],
               username: email.split('@')[0],
