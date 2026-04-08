@@ -444,10 +444,6 @@ const BLOG_CATEGORY_FILTERS = [
   'Writing Skills',
   'Mindset & Faith',
 ]
-const FEATURED_BLOG_SLUGS = [
-  'css-jawan-spirit-discipline-and-unity',
-  'research-mindset-for-css-success',
-]
 const MAX_BLOG_ATTACHMENTS = 10
 const MAX_SINGLE_BLOG_ATTACHMENT_BYTES = 8 * 1024 * 1024
 const MAX_TOTAL_BLOG_ATTACHMENT_BYTES = 25 * 1024 * 1024
@@ -2334,8 +2330,9 @@ function BlogPage({ authUser }) {
   })
   const [userBlogs, setUserBlogs] = useState([])
   const allBlogs = [...userBlogs, ...blogPosts]
-  const displayBlogDateMap = buildBlogDisplayDateMap(allBlogs)
-  const getDisplayBlogDate = (post) => displayBlogDateMap[post?.slug] || post?.date
+  const displayBlogDateMap = buildBlogDisplayDateMap(blogPosts)
+  const getDisplayBlogDate = (post) =>
+    post?.isUserGenerated ? post?.date : displayBlogDateMap[post?.slug] || post?.date
   const getAuthOwnerKey = () => {
     if (!authUser) return ''
     return String(authUser.username || authUser.email || authUser.fullName || '').trim().toLowerCase()
@@ -2363,14 +2360,13 @@ function BlogPage({ authUser }) {
     if (postAuthor && authCandidates.includes(postAuthor)) return true
     return false
   }
-  const featuredPosts = allBlogs
-    .filter((post) => FEATURED_BLOG_SLUGS.includes(post.slug))
+  const featuredPosts = blogPosts
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
   const visiblePosts = allBlogs.filter((post) =>
     activeCategory === 'All' ? true : getBlogCategories(post).includes(activeCategory),
   )
-  const regularPosts = visiblePosts.filter((post) => !FEATURED_BLOG_SLUGS.includes(post.slug))
+  const regularPosts = visiblePosts.filter((post) => post?.isUserGenerated)
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'Blog',
