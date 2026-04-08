@@ -2107,7 +2107,35 @@ function CssStudyMaterialPage() {
     0,
   )
 
+  const getConfiguredPublicOrigin = () => {
+    const configured =
+      String(import.meta.env.VITE_PUBLIC_SITE_URL || import.meta.env.VITE_PUBLIC_WEB_URL || '').trim()
+    if (!configured) return ''
+    try {
+      return new URL(configured).origin
+    } catch {
+      return ''
+    }
+  }
+
   const getPublicSlideUrl = (slide) => new URL(slide.url, window.location.origin).toString()
+
+  const getViewerReachableSlideUrl = (slide) => {
+    const absoluteUrl = getPublicSlideUrl(slide)
+    try {
+      const parsed = new URL(absoluteUrl)
+      const isLocalHost =
+        parsed.hostname === 'localhost' ||
+        parsed.hostname === '127.0.0.1' ||
+        parsed.hostname.endsWith('.local')
+      if (!isLocalHost) return absoluteUrl
+      const publicOrigin = getConfiguredPublicOrigin()
+      if (!publicOrigin) return absoluteUrl
+      return new URL(`${parsed.pathname}${parsed.search}`, publicOrigin).toString()
+    } catch {
+      return absoluteUrl
+    }
+  }
 
   const triggerSlideDownload = (slide) => {
     const publicSlideUrl = getPublicSlideUrl(slide)
@@ -2133,8 +2161,8 @@ function CssStudyMaterialPage() {
   }
 
   const openSlideViewer = (slide) => {
-    const publicSlideUrl = getPublicSlideUrl(slide)
-    const onlineViewerUrl = `https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(publicSlideUrl)}`
+    const publicSlideUrl = getViewerReachableSlideUrl(slide)
+    const onlineViewerUrl = `https://view.officeapps.live.com/op/view.aspx?src=${encodeURIComponent(publicSlideUrl)}`
     window.open(onlineViewerUrl, '_blank', 'noopener,noreferrer')
   }
 
