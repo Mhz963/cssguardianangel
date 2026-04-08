@@ -120,3 +120,85 @@ on public.user_blogs
 for delete
 to authenticated
 using (auth.uid() = owner_user_id);
+
+create table if not exists public.blog_reactions (
+  blog_slug text not null,
+  user_id uuid not null references auth.users(id) on delete cascade,
+  reaction_type text not null check (reaction_type in ('like', 'dislike')),
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now(),
+  primary key (blog_slug, user_id)
+);
+
+create table if not exists public.blog_comments (
+  id uuid primary key default gen_random_uuid(),
+  blog_slug text not null,
+  user_id uuid not null references auth.users(id) on delete cascade,
+  author_name text not null default 'Guardian User',
+  content text not null check (char_length(trim(content)) > 0),
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
+alter table public.blog_reactions enable row level security;
+alter table public.blog_comments enable row level security;
+
+drop policy if exists "blog_reactions_public_read" on public.blog_reactions;
+drop policy if exists "blog_reactions_insert_own" on public.blog_reactions;
+drop policy if exists "blog_reactions_update_own" on public.blog_reactions;
+drop policy if exists "blog_reactions_delete_own" on public.blog_reactions;
+
+create policy "blog_reactions_public_read"
+on public.blog_reactions
+for select
+to anon, authenticated
+using (true);
+
+create policy "blog_reactions_insert_own"
+on public.blog_reactions
+for insert
+to authenticated
+with check (auth.uid() = user_id);
+
+create policy "blog_reactions_update_own"
+on public.blog_reactions
+for update
+to authenticated
+using (auth.uid() = user_id)
+with check (auth.uid() = user_id);
+
+create policy "blog_reactions_delete_own"
+on public.blog_reactions
+for delete
+to authenticated
+using (auth.uid() = user_id);
+
+drop policy if exists "blog_comments_public_read" on public.blog_comments;
+drop policy if exists "blog_comments_insert_own" on public.blog_comments;
+drop policy if exists "blog_comments_update_own" on public.blog_comments;
+drop policy if exists "blog_comments_delete_own" on public.blog_comments;
+
+create policy "blog_comments_public_read"
+on public.blog_comments
+for select
+to anon, authenticated
+using (true);
+
+create policy "blog_comments_insert_own"
+on public.blog_comments
+for insert
+to authenticated
+with check (auth.uid() = user_id);
+
+create policy "blog_comments_update_own"
+on public.blog_comments
+for update
+to authenticated
+using (auth.uid() = user_id)
+with check (auth.uid() = user_id);
+
+create policy "blog_comments_delete_own"
+on public.blog_comments
+for delete
+to authenticated
+using (auth.uid() = user_id);

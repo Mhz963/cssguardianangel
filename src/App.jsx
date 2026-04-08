@@ -2336,6 +2336,10 @@ function BlogPage({ authUser }) {
     attachments: [],
   })
   const [userBlogs, setUserBlogs] = useState([])
+  const [reactionsBySlug, setReactionsBySlug] = useState({})
+  const [userReactionBySlug, setUserReactionBySlug] = useState({})
+  const [commentsBySlug, setCommentsBySlug] = useState({})
+  const [commentDraftBySlug, setCommentDraftBySlug] = useState({})
   const allBlogs = [...userBlogs, ...blogPosts]
   const displayBlogDateMap = buildBlogDisplayDateMap(blogPosts)
   const getDisplayBlogDate = (post) =>
@@ -2374,6 +2378,11 @@ function BlogPage({ authUser }) {
     activeCategory === 'All' ? true : getBlogCategories(post).includes(activeCategory),
   )
   const regularPosts = visiblePosts.filter((post) => post?.isUserGenerated)
+  const blogSlugKey = allBlogs
+    .map((post) => post.slug)
+    .filter(Boolean)
+    .sort()
+    .join('|')
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'Blog',
@@ -2748,6 +2757,181 @@ function BlogPage({ authUser }) {
       })
     }
   }
+  const loadBlogEngagement = async () => {
+    if (!supabase) return
+    const slugs = allBlogs.map((item) => item.slug).filter(Boolean)
+    if (slugs.length === 0) return
+    try {
+      const { data: reactions } = await supabase
+        .from('blog_reactions')
+        .select('blog_slug, user_id, reaction_type')
+        .in('blog_slug', slugs)
+      const nextReactionCounts = {}
+      const nextUserReactions = {}
+      ;(reactions || []).forEach((item) => {
+        const slug = item.blog_slug
+        const reactionType = item.reaction_type === 'dislike' ? 'dislike' : 'like'
+        if (!nextReactionCounts[slug]) nextReactionCounts[slug] = { like: 0, dislike: 0 }
+        nextReactionCounts[slug][reactionType] += 1
+        if (authUser?.id && item.user_id === authUser.id) nextUserReactions[slug] = reactionType
+      })
+
+      const { data: comments } = await supabase
+        .from('blog_comments')
+        .select('id, blog_slug, user_id, author_name, content, created_at')
+        .in('blog_slug', slugs)
+        .order('created_at', { ascending: true })
+      const nextComments = {}
+      ;(comments || []).forEach((item) => {
+        if (!nextComments[item.blog_slug]) nextComments[item.blog_slug] = []
+        nextComments[item.blog_slug].push(item)
+      })
+      setReactionsBySlug(nextReactionCounts)
+      setUserReactionBySlug(nextUserReactions)
+      setCommentsBySlug(nextComments)
+    } catch {
+      // Keep interaction widgets silent on fetch failure.
+    }
+  }
+  const requireAuthForEngagement = () => {
+    if (authUser) return true
+    setAppDialog({
+      isOpen: true,
+      title: 'Sign In Required',
+      message: 'Please sign in to like, dislike, or comment on blogs.',
+      variant: 'info',
+      confirmText: 'OK',
+      showCancel: false,
+    })
+    return false
+  }
+  const handleReaction = async (post, reactionType, event) => {
+    if (event) event.stopPropagation()
+    if (!requireAuthForEngagement() || !supabase) return
+    const slug = post?.slug
+    if (!slug || !authUser?.id) return
+    const currentReaction = userReactionBySlug[slug] || ''
+    try {
+      if (currentReaction === reactionType) {
+        await supabase.from('blog_reactions').delete().eq('blog_slug', slug).eq('user_id', authUser.id)
+      } else {
+        await supabase.from('blog_reactions').upsert(
+          {
+            blog_slug: slug,
+            user_id: authUser.id,
+            reaction_type: reactionType,
+          },
+          { onConflict: 'blog_slug,user_id' },
+        )
+      }
+      await loadBlogEngagement()
+    } catch {
+      // Keep UI unchanged if update fails.
+    }
+  }
+  const handleCommentSubmit = async (post, event) => {
+    event.preventDefault()
+    event.stopPropagation()
+    if (!requireAuthForEngagement() || !supabase) return
+    const slug = post?.slug
+    const content = String(commentDraftBySlug[slug] || '').trim()
+    if (!slug || !content || !authUser?.id) return
+    try {
+      await supabase.from('blog_comments').insert({
+        blog_slug: slug,
+        user_id: authUser.id,
+        author_name: authUser.fullName || authUser.username || 'Guardian User',
+        content,
+      })
+      setCommentDraftBySlug((current) => ({ ...current, [slug]: '' }))
+      await loadBlogEngagement()
+    } catch {
+      // Keep UI unchanged if insert fails.
+    }
+  }
+  const handleCommentDelete = async (post, comment, event) => {
+    if (event) event.stopPropagation()
+    if (!supabase || !authUser?.id || !comment?.id) return
+    if (comment.user_id !== authUser.id) return
+    try {
+      await supabase.from('blog_comments').delete().eq('id', comment.id).eq('user_id', authUser.id)
+      await loadBlogEngagement()
+    } catch {
+      // Keep UI unchanged if delete fails.
+    }
+  }
+  const renderBlogEngagement = (post, { inModal = false } = {}) => {
+    const slug = post?.slug
+    if (!slug) return null
+    const reactionCounts = reactionsBySlug[slug] || { like: 0, dislike: 0 }
+    const currentReaction = userReactionBySlug[slug] || ''
+    const comments = commentsBySlug[slug] || []
+    return (
+      <div className={`blog-engagement ${inModal ? 'modal' : ''}`}>
+        <div className="blog-reaction-row">
+          <button
+            type="button"
+            className={`blog-reaction-btn ${currentReaction === 'like' ? 'active' : ''}`}
+            onClick={(event) => handleReaction(post, 'like', event)}
+          >
+            Like {reactionCounts.like}
+          </button>
+          <button
+            type="button"
+            className={`blog-reaction-btn ${currentReaction === 'dislike' ? 'active' : ''}`}
+            onClick={(event) => handleReaction(post, 'dislike', event)}
+          >
+            Dislike {reactionCounts.dislike}
+          </button>
+          <span className="blog-comment-count">{comments.length} comments</span>
+        </div>
+        {inModal ? (
+          <div className="blog-comments">
+            <div className="blog-comment-list">
+              {comments.map((comment) => (
+                <article key={comment.id} className="blog-comment-item">
+                  <p>
+                    <strong>{comment.author_name || 'User'}</strong> · {formatNewsTimestamp(comment.created_at)}
+                  </p>
+                  <p>{comment.content}</p>
+                  {authUser?.id && comment.user_id === authUser.id ? (
+                    <button
+                      type="button"
+                      className="btn btn-secondary blog-comment-delete"
+                      onClick={(event) => handleCommentDelete(post, comment, event)}
+                    >
+                      Delete
+                    </button>
+                  ) : null}
+                </article>
+              ))}
+            </div>
+            <form className="blog-comment-form" onSubmit={(event) => handleCommentSubmit(post, event)}>
+              <textarea
+                value={commentDraftBySlug[slug] || ''}
+                onChange={(event) =>
+                  setCommentDraftBySlug((current) => ({ ...current, [slug]: event.target.value }))
+                }
+                placeholder={authUser ? 'Write a comment...' : 'Sign in to comment'}
+                rows={3}
+                disabled={!authUser}
+              />
+              <button
+                className="btn btn-primary"
+                type="submit"
+                disabled={!authUser || !String(commentDraftBySlug[slug] || '').trim()}
+              >
+                Post Comment
+              </button>
+            </form>
+          </div>
+        ) : null}
+      </div>
+    )
+  }
+  useEffect(() => {
+    loadBlogEngagement()
+  }, [blogSlugKey, authUser?.id])
 
   useEffect(() => {
     if (!blogSlug) {
@@ -2872,6 +3056,7 @@ function BlogPage({ authUser }) {
                     <img src={copyShareIcon} alt="" className="blog-share-copy-image" />
                   </button>
                 </div>
+                {renderBlogEngagement(post)}
               </article>
             ))}
           </div>
@@ -2938,6 +3123,7 @@ function BlogPage({ authUser }) {
                   <img src={copyShareIcon} alt="" className="blog-share-copy-image" />
                 </button>
               </div>
+              {renderBlogEngagement(post)}
 
             </article>
           ))}
@@ -2994,6 +3180,7 @@ function BlogPage({ authUser }) {
                   <img src={copyShareIcon} alt="" className="blog-share-copy-image" />
                 </button>
               </div>
+              {renderBlogEngagement(selectedBlog, { inModal: true })}
               {renderBlogAttachments(selectedBlog, { inModal: true })}
               <p className="blog-modal-content">{selectedBlog.content || selectedBlog.excerpt}</p>
             </article>

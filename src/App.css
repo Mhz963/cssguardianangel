@@ -2229,6 +2229,113 @@ a {
   margin-bottom: 0.3rem;
 }
 
+.blog-engagement {
+  margin-top: 0.55rem;
+  border-top: 1px solid var(--border-soft);
+  padding-top: 0.55rem;
+}
+
+.blog-engagement.modal {
+  margin-top: 0.4rem;
+  padding-top: 0.5rem;
+}
+
+.blog-reaction-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  align-items: center;
+}
+
+.blog-reaction-btn {
+  border: 1px solid var(--border-soft);
+  border-radius: 999px;
+  padding: 0.3rem 0.65rem;
+  background: rgb(255 255 255 / 5%);
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.blog-reaction-btn:hover {
+  border-color: rgb(255 209 102 / 40%);
+}
+
+.blog-reaction-btn.active {
+  background: rgb(255 209 102 / 18%);
+  border-color: rgb(255 209 102 / 58%);
+  color: var(--text-primary);
+}
+
+.blog-comment-count {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  margin-left: 0.15rem;
+}
+
+.blog-comments {
+  margin-top: 0.55rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.blog-comment-list {
+  display: grid;
+  gap: 0.45rem;
+  max-height: 210px;
+  overflow: auto;
+  padding-right: 0.2rem;
+}
+
+.blog-comment-item {
+  border: 1px solid var(--border-soft);
+  border-radius: 10px;
+  padding: 0.55rem 0.65rem;
+  background: rgb(255 255 255 / 4%);
+}
+
+.blog-comment-item p {
+  margin: 0;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+.blog-comment-item p + p {
+  margin-top: 0.25rem;
+}
+
+.blog-comment-delete {
+  margin-top: 0.4rem;
+  padding: 0.22rem 0.55rem;
+  font-size: 0.72rem;
+}
+
+.blog-comment-form {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.blog-comment-form textarea {
+  border: 1px solid var(--border-soft);
+  border-radius: 10px;
+  background: rgb(7 13 25 / 58%);
+  color: var(--text-primary);
+  padding: 0.55rem 0.65rem;
+  resize: vertical;
+  min-height: 74px;
+}
+
+.blog-comment-form textarea:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.blog-comment-form .btn {
+  justify-self: start;
+}
+
 .blog-share-btn {
   border: 1px solid transparent;
   background: #1f2937;
