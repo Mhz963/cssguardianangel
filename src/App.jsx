@@ -184,100 +184,185 @@ const homeFaqs = [
 
 const blogPosts = [
   {
-    slug: 'how-to-start-css-preparation-smartly',
-    title: 'How to Start CSS Preparation Smartly in Pakistan',
-    date: '2026-03-17T11:18:00+05:00',
-    readTime: '5 min read',
+    slug: 'academy-dependence-cripples-css-aspirants',
+    title: 'Academy Dependence Can Cripple Your CSS Potential',
+    date: '2026-04-08T12:15:00+05:00',
+    readTime: '7 min read',
     author: 'Guardian Angel',
-    excerpt:
-      'Most Jawans fail early because they start with random notes instead of structure. Begin from the official syllabus, define weekly outputs, and align study blocks with past paper patterns.',
+    excerpt: `Many CSS aspirants think that joining an academy is the golden ticket to success. They believe that if they enroll in a famous academy, follow its instructions blindly, and consume every note and lecture it offers, they will automatically become toppers. But this is an illusion. Just like a bird cannot experience its full potential unless it spreads its wings, a person cannot discover his true abilities if he remains dependent on an academy.
+Academies often inject fear into students, making them believe they are incomplete or incapable without external guidance. They create a mindset where aspirants feel lost without constant instruction. In reality, academies are running businesses. They brand CSS as a product, sell notes, organize workshops, podcasts, and events, all in the name of success, while the true purpose of CSS, serving the nation with knowledge and integrity, is overshadowed.
+Blind dependence makes students passive. They stop thinking, analyzing, and questioning. They rely on pre-made arguments, popular opinions, and ready-made answers, instead of developing their own insight. This is the true danger: the student becomes crippled intellectually, losing creativity and independence.
+CSS is not a brand or a business; it is a national duty. Success comes from consistent effort, self-study, critical thinking, and a sincere desire to serve. Top CSS officers were not products of academies; they were individuals who questioned, explored, and learned from multiple sources, building their own understanding.  
+If you want to fly, do not depend on anyone to hold your wings. Explore, think, make mistakes, and create your own path. The academy can provide guidance, but it cannot give you your potential. That is yours to discover.`,
     internalLinks: [
-      { label: 'Explore CSS Syllabus', to: '/css-syllabus' },
-      { label: 'Build your plan in Study Planner', to: '/guardian-study-planner' },
+    { label: 'Read CSS Rules and Standards', to: '/css-rules' },
+    { label: 'Practice with CSS Past Papers', to: '/css-past-papers' }
     ],
     externalLinks: [
-      { label: 'FPSC Official Website', url: 'https://fpsc.gov.pk/' },
-      { label: 'Pakistan Bureau of Statistics', url: 'https://www.pbs.gov.pk/' },
-    ],
-  },
-  {
-    slug: 'css-essay-and-precis-writing-framework',
-    title: 'CSS Essay and Precis: A Practical Writing Framework',
-    date: '2026-03-17T12:42:00+05:00',
-    readTime: '4 min read',
-    author: 'Guardian Angel',
-    excerpt:
-      'Strong writing comes from repeatable structure: thesis clarity, argument flow, evidence placement, and conclusion discipline. Practice with time limits and weekly review loops.',
-    internalLinks: [
-      { label: 'Practice with CSS Past Papers', to: '/css-past-papers' },
-      { label: 'Use AI Examiner for feedback', to: '/guardian-study-planner' },
-    ],
-    externalLinks: [
-      { label: 'Dawn Editorials', url: 'https://www.dawn.com/' },
-      { label: 'UN Official Portal', url: 'https://www.un.org/' },
-    ],
-  },
-  {
-    slug: 'current-affairs-analysis-for-css',
-    title: 'Current Affairs Analysis for CSS: Depth Over Headlines',
-    date: '2026-03-17T14:07:00+05:00',
-    readTime: '5 min read',
-    author: 'Guardian Angel',
-    excerpt:
-      'Reading news is not enough. Convert events into causes, implications, policy options, and Pakistan centric conclusions. This turns information into examiner worthy analysis.',
-    internalLinks: [
-      { label: 'Track Global Affairs Feed', to: '/global-affairs?tab=global' },
-      { label: 'Review Pakistan Affairs Feed', to: '/global-affairs?tab=pakistan' },
-    ],
-    externalLinks: [
-      { label: 'Ministry of Foreign Affairs Pakistan', url: 'https://mofa.gov.pk/' },
-      { label: 'State Bank of Pakistan', url: 'https://www.sbp.org.pk/' },
-    ],
-  },
-  {
-    slug: 'optional-subject-selection-without-hype',
-    title: 'Choosing CSS Optional Subjects Without Hype',
-    date: '2026-03-17T15:36:00+05:00',
-    readTime: '4 min read',
-    author: 'Guardian Angel',
-    excerpt:
-      'Do not chase rumors about scoring trends in isolation. Pick optionals based on interest, overlap, writing comfort, and long term sustainability for consistent performance.',
-    internalLinks: [
-      { label: 'Check optional groups in syllabus', to: '/css-syllabus' },
-      { label: 'Use Subject Locker in planner', to: '/guardian-study-planner' },
-    ],
-    externalLinks: [
-      { label: 'HEC Pakistan', url: 'https://hec.gov.pk/' },
-      { label: 'World Bank Data', url: 'https://data.worldbank.org/' },
-    ],
-  },
-  {
-    slug: 'self-study-discipline-and-consistency',
-    title: 'Self Study Discipline: The Real CSS Advantage',
-    date: '2026-03-17T22:14:00+05:00',
-    readTime: '4 min read',
-    author: 'Guardian Angel',
-    excerpt:
-      'Academy dependence can hide weak fundamentals. Self study with measurable daily targets, revision cycles, and honest feedback creates durable performance for competitive exams.',
-    internalLinks: [
-      { label: 'Read CSS Rules and eligibility', to: '/css-rules' },
-      { label: 'Get free CSS Study Material', to: '/css-study-material' },
-    ],
-    externalLinks: [
-      { label: 'Press Information Department Pakistan', url: 'https://pid.gov.pk/' },
-      { label: 'FPSC Official Website', url: 'https://fpsc.gov.pk/' },
-    ],
-  },
+    { label: 'FPSC Official Website', url: '[https://fpsc.gov.pk/](https://fpsc.gov.pk/)' },
+    { label: 'World Bank Data', url: '[https://data.worldbank.org/](https://data.worldbank.org/)' }
+    ]
+    }, 
+    {
+      slug: 'biggest-motivation-for-css',
+      title: 'The True Motivations Behind Pursuing CSS',
+      date: '2026-04-08T12:45:00+05:00',
+      readTime: '6 min read',
+      author: 'Guardian Angel',
+      excerpt: `The biggest motivation for CSS is not just personal success. It is deeper and more meaningful than marks or ranks. The first motivation is your parents. They had dreams when they were your age, visions to achieve something great, but life circumstances did not allow them to fulfill them. Now, through you, they see their unfulfilled dreams come alive. Every effort you make honors them and their sacrifices.
+The second motivation is your nation. Pakistan needs honest and dedicated officers who can serve with integrity, improve systems, and contribute to a prosperous future. Your hard work in CSS is not just for a personal goal; it is a commitment to serve the people and bring positive change.
+The third motivation is to live a life of honor and integrity. Eat halal, work with dedication, and become a great officer whose contributions are recognized even after retirement. True greatness is not just in the rank but in the respect, trust, and legacy you leave behind. A great officer leaves behind not only a professional reputation but a life of exemplary character and service.`,
+      internalLinks: [
+      { label: 'Read CSS Rules and Standards', to: '/css-rules' },
+      { label: 'Practice with CSS Past Papers', to: '/css-past-papers' }
+      ],
+      externalLinks: [
+      { label: 'FPSC Official Website', url: '[https://fpsc.gov.pk/](https://fpsc.gov.pk/)' },
+      { label: 'World Bank Data', url: '[https://data.worldbank.org/](https://data.worldbank.org/)' }
+      ]
+      },
+      {
+        slug: 'ignore-market-noise-focus-on-css',
+        title: 'Ignore the Noise and Focus on Your CSS Journey',
+        date: '2026-04-08T13:15:00+05:00',
+        readTime: '6 min read',
+        author: 'Guardian Angel',
+        excerpt: `In the CSS world, there is too much noise. Some say CSS can be completed in three months, others in four. Some insist that buying their notes or enrolling in their courses is the only path to success. Some offer individual mentorship programs, workshops, and endless seminars. All of this noise contaminates your focus, stresses your mind, and clouds your approach to preparation.
+Remember the words of Albert Einstein: if you judge a fish by its ability to climb a tree, it will spend its entire life believing it is stupid. Comparing yourself to others, listening to every opinion, and following every trend will not make you a better aspirant. CSS is your journey, unique and personal. Your strength comes from believing in yourself and trusting Allah's plan.
+Do not be judgmental. Do not measure your progress against others. Instead, understand your abilities, set a routine, and follow it with discipline. The right preparation is consistent, thoughtful, and self-driven. Focus on learning, thinking critically, and practicing daily. Step by step, idea by idea, question by question, you will build confidence and clarity.
+Ignore the market noise. Focus on your journey. Trust your efforts, your growth, and the guidance of Allah. Success is not determined by who shouts the loudest or sells the most notes, but by who perseveres, learns, and believes in themselves.
+CSS is not a race to follow trends. It is a personal mission to unlock your potential and serve a greater purpose. Tune out the distractions, trust your path, and dedicate yourself to consistent, sincere effort. Your faith, patience, and focus will guide you to success.`,
+        internalLinks: [
+        { label: 'Read CSS Rules and Standards', to: '/css-rules' },
+        { label: 'Practice with CSS Past Papers', to: '/css-past-papers' }
+        ],
+        externalLinks: [
+        { label: 'FPSC Official Website', url: '[https://fpsc.gov.pk/](https://fpsc.gov.pk/)' },
+        { label: 'World Bank Data', url: '[https://data.worldbank.org/](https://data.worldbank.org/)' }
+        ]
+        },
+        {
+          slug: 'consistency-true-spirit-css-jawan',
+          title: 'Consistency is the true spirit of a CSS Jawan',
+          date: '2026-04-08T13:45:00+05:00',
+          readTime: '5 min read',
+          author: 'Guardian Angel',
+          excerpt: `Consistency is the path to success. In the journey of CSS, there will be days when your body feels tired, your mind feels exhausted, your eyes strain, and your soul seems weak. But the true spirit of a CSS jawan does not give up. Your spirit, your determination, and your inner fire keep you moving forward.
+Being consistent means showing up every day, even when it is hard. It means writing one more answer, reading one more page, practicing one more question. It is the small efforts, repeated daily, that build unstoppable momentum.
+The path to becoming a CSP officer is not easy. It tests your patience, endurance, and commitment. The mind may complain, the body may resist, and fatigue may try to stop you, but your spirit must stay strong. This unwavering commitment and resilience define a CSS jawan.
+member, consistency is not just about hours; it is about mindset. It is about believing in yourself, trusting Allah, and continuing the journey no matter the obstacles. Every step you take consistently brings you closer to your goal.
+Embrace consistency, nurture your spirit, and fight every day. That is how ordinary students become extraordinary officers, and how dreams turn into reality.`,
+          internalLinks: [
+          { label: 'Read CSS Rules and Standards', to: '/css-rules' },
+          { label: 'Practice with CSS Past Papers', to: '/css-past-papers' }
+          ],
+          externalLinks: [
+          { label: 'FPSC Official Website', url: '[https://fpsc.gov.pk/](https://fpsc.gov.pk/)' },
+          { label: 'World Bank Data', url: '[https://data.worldbank.org/](https://data.worldbank.org/)' }
+          ]
+          },
+          {
+            slug: 'css-hibernation-dedication',
+            title: 'Hibernate to Rise: The Path of a CSS Jawan',
+            date: '2026-04-08T14:15:00+05:00',
+            readTime: '6 min read',
+            author: 'Guardian Angel',
+            excerpt: `To become a CSS officer, you must learn the art of hibernation. Social isolation is not loneliness; it is focus. Gatherings, parties, and group discussions may seem fun and enjoyable, but for a CSS jawan, they are distractions that steal precious time and energy.
+Smile, laughter, and leisure are poisons to your mission. The world will not understand your silence, your sacrifices, or your dedication. Society may ridicule you, mock your dreams, and question your choices. But a true CSS jawan does not bend to judgment or public opinion.
+You must disappear into the world of studies and research. Immerse yourself completely, lose yourself in preparation, and let your spirit thrive in discipline and knowledge. Every hour you invest in learning, thinking, and writing builds the foundation of your future.
+This hibernation is temporary but crucial. One day, you will emerge, transformed, as a CSP officer. The same society that mocked you will respect you, honor you, and admire your dedication. Your sacrifice and focus will turn ridicule into recognition.
+Prove the doubters wrong. Embrace solitude, dedicate yourself to learning, and emerge victorious. The path of a CSS jawan is not easy, but it leads to greatness, honor, and service that inspires generations.`,
+            internalLinks: [
+            { label: 'Read CSS Rules and Standards', to: '/css-rules' },
+            { label: 'Practice with CSS Past Papers', to: '/css-past-papers' }
+            ],
+            externalLinks: [
+            { label: 'FPSC Official Website', url: '[https://fpsc.gov.pk/](https://fpsc.gov.pk/)' },
+            { label: 'World Bank Data', url: '[https://data.worldbank.org/](https://data.worldbank.org/)' }
+            ]
+            },
+            {
+              slug: 'not-all-make-it-css-truth',
+              title: 'The Bitter Truth About CSS and Finding Your Purpose',
+              date: '2026-04-08T14:45:00+05:00',
+              readTime: '6 min read',
+              author: 'Guardian Angel',
+              excerpt: `Not all people make it in CSS. This is a bitter and harsh truth. Thousands of aspirants apply every year, but only a handful qualify, and even fewer get allocated to coveted positions. The numbers are small, but the effort you put in must be immense.
+Do not be disheartened by this reality. Life has a better purpose for you, one that Allah Almighty has planned uniquely. Your mission is to give your level best, leaving no room for regrets. Every hour you dedicate, every page you read, every answer you write, shapes you into a better, stronger, and more sensible person.
+Even if you do not achieve your ultimate goal, remember that knowledge is never wasted. It is transferred, shared, and utilized across generations. The lessons, discipline, and skills you acquire through preparation remain with you forever.
+Trust in Allah's plan, focus on your efforts, and embrace the journey. Success is not only measured by passing an exam or earning a title, but by the growth, wisdom, and character you develop along the way. Keep striving, and know that every sacrifice has meaning and purpose.`,
+              internalLinks: [
+              { label: 'Read CSS Rules and Standards', to: '/css-rules' },
+              { label: 'Practice with CSS Past Papers', to: '/css-past-papers' }
+              ],
+              externalLinks: [
+              { label: 'FPSC Official Website', url: '[https://fpsc.gov.pk/](https://fpsc.gov.pk/)' },
+              { label: 'World Bank Data', url: '[https://data.worldbank.org/](https://data.worldbank.org/)' }
+              ]
+              },
+              {
+                slug: 'spread-knowledge-css',
+                title: 'The Power of Spreading Knowledge in CSS',
+                date: '2026-04-08T15:15:00+05:00',
+                readTime: '5 min read',
+                author: 'Guardian Angel',
+                excerpt: `Knowledge is a treasure that grows when shared. In the journey of CSS, your learning is not meant to be hoarded or sold for profit. True knowledge is meant to be spread, shared, and used to uplift others.
+Your pious act of helping fellow aspirants, guiding someone struggling, or sharing your insights may return to you in unexpected ways. A small act of guidance or support can create a ripple effect, benefiting many and enriching your own journey.
+Do not let greed or fear control your knowledge. Teach, mentor, and assist whenever possible. Knowledge has a sacred power; when shared with sincerity, it multiplies, coming back to bless you in ways you cannot foresee.
+Remember, the goal of learning CSS is not just personal success but creating a positive impact around you. Spread knowledge freely, help others grow, and trust that Allah will reward your efforts and good deeds many times over.`,
+                internalLinks: [
+                { label: 'Read CSS Rules and Standards', to: '/css-rules' },
+                { label: 'Practice with CSS Past Papers', to: '/css-past-papers' }
+                ],
+                externalLinks: [
+                { label: 'FPSC Official Website', url: '[https://fpsc.gov.pk/](https://fpsc.gov.pk/)' },
+                { label: 'World Bank Data', url: '[https://data.worldbank.org/](https://data.worldbank.org/)' }
+                ]
+                },
+                {
+                  slug: 'css-positive-mindset',
+                  title: 'Start Your CSS Journey with Patience and Focus',
+                  date: '2026-04-08T15:45:00+05:00',
+                  readTime: '5 min read',
+                  author: 'Guardian Angel',
+                  excerpt: `Do not begin your CSS journey with revenge, hatred, or a broken heart. Success never comes from anger or the desire to prove someone wrong. The path of a CSS jawan requires maturity, patience, and self-discipline. Sabr and focus are the true fuels of determination.
+Many aspirants start their preparation driven by hurt or resentment, thinking that success will heal their wounds or serve as payback. These are not the ingredients for becoming a CSP officer. Hatred and revenge act as poison, clouding judgment, weakening motivation, and distracting from true growth.
+Instead, concentrate on becoming a better version of yourself. Be consistent in your studies, deliberate in your actions, and steadfast in your commitment. Let every effort be directed toward knowledge, improvement, and service, not personal grudges or anger.
+Your CSS journey should be a mission of self transformation, discipline, and growth. Leave revenge and hatred behind. Focus on learning, practicing, and building the character that a CSP officer embodies. Consistency, patience, and determination will guide you to success, far more than any fleeting emotion ever can.`,
+                  internalLinks: [
+                  { label: 'Read CSS Rules and Standards', to: '/css-rules' },
+                  { label: 'Practice with CSS Past Papers', to: '/css-past-papers' }
+                  ],
+                  externalLinks: [
+                  { label: 'FPSC Official Website', url: '[https://fpsc.gov.pk/](https://fpsc.gov.pk/)' },
+                  { label: 'World Bank Data', url: '[https://data.worldbank.org/](https://data.worldbank.org/)' }
+                  ]
+                  },
+                  
+   
   {
     slug: 'research-mindset-for-css-success',
-    title: 'Research Mindset for CSS Success: Think Beyond Ready-Made Notes',
+    title: 'The Biggest Secret of CSS Success Is Not in Notes, It Is in You',
     date: '2026-03-18T23:41:00+05:00',
-    readTime: '5 min read',
+    readTime: '8 min read',
     author: 'Guardian Angel',
-    excerpt:
-      'Top CSS Jawans do not memorize copied notes. They compare sources, build arguments, test assumptions, and write original analysis. Research based preparation creates durable confidence and better marks.',
+    excerpt: `
+Every year, thousands of students start their CSS journey with one dream: to see their name in the final result.
+They buy expensive notes, join academies, watch endless videos, and keep asking one question: “What is the secret of CSS success?”
+Most people think the secret is hidden in some special notes, some famous teacher, or some magical strategy used by toppers.
+But the truth is very different. The biggest secret of CSS success is not in notes. It is in you. It is in your mindset, your hard work, your consistency, and your courage to keep going when others give up.
+Many students fail not because they are weak, but because they stop believing in themselves. They see other people studying more, writing better, or speaking more confidently, and they start thinking, “Maybe CSS is not for me.” This is the biggest mistake.
+No one is born ready for CSS. No one starts with perfect English. No one starts with complete knowledge. Every successful CSS officer was once an ordinary student who was confused, afraid, and unsure. The only difference is that they did not stop. They continued even when they felt tired, got low marks, or when people laughed at their dream.
+You must understand one thing very clearly: CSS is not a test of who is naturally intelligent. CSS is a test of who can stay in the race. The student who studies daily for six months will defeat the student who studies only when motivated. The student who practices writing every day will defeat the student who only collects notes.
+Many CSS aspirants waste months collecting material. They download PDFs, save articles, buy books, and make folder after folder. But they forget one thing: collecting notes is not preparation. Reading is not enough. Watching lectures is not enough. Real preparation starts when you sit down and think, write, make mistakes, and improve.
+Top CSS students do not simply memorize things. They ask questions. Why did this happen? What is the cause? What is the solution? What is my own opinion? That is why their answers become powerful. Your answer does not become strong because you used difficult words. Your answer becomes strong when it shows clear thinking. Even simple English can score very high if your ideas are clear.
+Never think that your background decides your future. It does not matter whether you studied in English medium or Urdu medium, whether you belong to a big city or a small village, or whether you joined a famous academy or studied alone. What matters is whether you are willing to fight for your dream every single day.
+There will be days when you feel weak, when you open your books and understand nothing, and when you compare yourself with others and feel left behind. On those days, remember this: you do not have to become perfect in one day. You only have to become a little better than yesterday. Read one more page. Write one more answer. Learn one more concept. Wake up one more day and continue. That is how CSS is cleared. Not in one big moment, but in hundreds of small efforts.
+The student who wins CSS is usually not the smartest person in the room. He or she is the one who refused to quit.
+If you have failed before, do not think your story is over. Sometimes failure is not the end. Sometimes it is the training that prepares you for your biggest victory. One day, the same person who is tired today, confused today, and struggling today will look back and smile. Because one day, your result will come. One day, your name will be there. One day, people will ask you, “What was your secret?” And your answer will be simple: “I never gave up.”
+    `,
     internalLinks: [
-      { label: 'Read CSS Rules and standards', to: '/css-rules' },
+      { label: 'Read CSS Rules and Standards', to: '/css-rules' },
       { label: 'Practice with CSS Past Papers', to: '/css-past-papers' },
     ],
     externalLinks: [
@@ -285,91 +370,7 @@ const blogPosts = [
       { label: 'World Bank Data', url: 'https://data.worldbank.org/' },
     ],
   },
-  {
-    slug: 'stop-academy-dependence-build-self-study-system',
-    title: 'Stop Academy Dependence and Build a Self Study System',
-    date: '2026-03-18T00:26:00+05:00',
-    readTime: '4 min read',
-    author: 'Guardian Angel',
-    excerpt:
-      'Academies can support, but dependency weakens initiative. Build your own weekly system with topic goals, writing drills, review checkpoints, and correction loops. Ownership of preparation drives real growth.',
-    internalLinks: [
-      { label: 'Open CSS Study Material', to: '/css-study-material' },
-      { label: 'Use Guardian Study Planner', to: '/guardian-study-planner' },
-    ],
-    externalLinks: [
-      { label: 'HEC Pakistan', url: 'https://hec.gov.pk/' },
-      { label: 'Pakistan Bureau of Statistics', url: 'https://www.pbs.gov.pk/' },
-    ],
-  },
-  {
-    slug: 'confidence-without-comparison-in-css-journey',
-    title: 'Confidence Without Comparison in Your CSS Journey',
-    date: '2026-03-18T01:12:00+05:00',
-    readTime: '4 min read',
-    author: 'Guardian Angel',
-    excerpt:
-      'Do not measure your future by someone else’s pace. Consistent personal progress, not social comparison, creates exam readiness. Compete with your previous self and improve one measurable metric each week.',
-    internalLinks: [
-      { label: 'Track your progress in planner', to: '/guardian-study-planner' },
-      { label: 'Review optional subjects strategy', to: '/css-syllabus' },
-    ],
-    externalLinks: [
-      { label: 'State Bank of Pakistan', url: 'https://www.sbp.org.pk/' },
-      { label: 'Dawn News', url: 'https://www.dawn.com/' },
-    ],
-  },
-  {
-    slug: 'healthy-competition-no-judgement-css',
-    title: 'Healthy Competition in CSS: No Judgement, No Negativity',
-    date: '2026-03-18T02:37:00+05:00',
-    readTime: '4 min read',
-    author: 'Guardian Angel',
-    excerpt:
-      'Competitive exams require discipline, not arrogance. Respect fellow Jawans, avoid judgemental thinking, and focus on your preparation ethics. A healthy mindset sustains performance under pressure.',
-    internalLinks: [
-      { label: 'Improve writing with AI Examiner', to: '/guardian-study-planner' },
-      { label: 'Read current affairs updates', to: '/global-affairs?tab=global' },
-    ],
-    externalLinks: [
-      { label: 'United Nations', url: 'https://www.un.org/' },
-      { label: 'Press Information Department Pakistan', url: 'https://pid.gov.pk/' },
-    ],
-  },
-  {
-    slug: 'faith-hardwork-and-destiny-css-success',
-    title: 'Faith, Hard Work, and Destiny: A Balanced CSS Success Mindset',
-    date: '2026-03-18T13:05:00+05:00',
-    readTime: '5 min read',
-    author: 'Guardian Angel',
-    excerpt:
-      'Work with excellence, stay patient, and keep faith in Allah Almighty. Your duty is sincere effort and disciplined consistency. Outcomes are in Allah’s wisdom, and what is written for you is always best.',
-    internalLinks: [
-      { label: 'Start your disciplined study plan', to: '/guardian-study-planner' },
-      { label: 'Review CSS Rules before exam cycle', to: '/css-rules' },
-    ],
-    externalLinks: [
-      { label: 'FPSC Official Website', url: 'https://fpsc.gov.pk/' },
-      { label: 'Ministry of Foreign Affairs Pakistan', url: 'https://mofa.gov.pk/' },
-    ],
-  },
-  {
-    slug: 'css-motivation-consistency-over-intensity',
-    title: 'CSS Motivation Strategy: Consistency Over Intensity',
-    date: '2026-03-18T11:53:00+05:00',
-    readTime: '4 min read',
-    author: 'Guardian Angel',
-    excerpt:
-      'Burnout comes from irregular high intensity bursts. Sustainable success comes from stable daily blocks, realistic revision cycles, and weekly reflection. Small consistent wins beat short lived extremes.',
-    internalLinks: [
-      { label: 'Get structured plan from Strategy Builder', to: '/guardian-study-planner' },
-      { label: 'Practice from verified past papers', to: '/css-past-papers' },
-    ],
-    externalLinks: [
-      { label: 'Pakistan Bureau of Statistics', url: 'https://www.pbs.gov.pk/' },
-      { label: 'World Bank Data', url: 'https://data.worldbank.org/' },
-    ],
-  },
+  
   {
     slug: 'css-jawan-spirit-discipline-and-unity',
     title: 'CSS Jawans: The Soldiers of Knowledge',
@@ -399,6 +400,33 @@ const getBlogReadTime = (post) => {
   const words = getBlogWordCount(post)
   const minutes = Math.max(1, Math.ceil(words / 200))
   return `${minutes} min read`
+}
+
+const buildBlogDisplayDateMap = (posts) => {
+  const year = 2026
+  const rangeStart = Date.UTC(year, 2, 20, 0, 0, 0, 0) // 20 March
+  const rangeEnd = Date.UTC(year, 3, 8, 22, 0, 0, 0) // 8 April
+  let cursor = rangeEnd
+  const entries = [...(posts || [])].sort((a, b) => {
+    const aTime = new Date(a?.date || 0).getTime()
+    const bTime = new Date(b?.date || 0).getTime()
+    return bTime - aTime
+  })
+  const dateMap = {}
+  entries.forEach((post, index) => {
+    const seed = `${post?.slug || post?.title || ''}`
+    const hash = Array.from(seed).reduce((acc, ch) => acc + ch.charCodeAt(0), 0)
+    const gapDays = index === 0 ? 0 : 1 + (hash % 3) // 1-3 day gaps
+    cursor -= gapDays * MS_PER_DAY
+    if (cursor < rangeStart) cursor = rangeStart + (hash % Math.max(1, rangeEnd - rangeStart))
+    const minuteOfDay = (hash * 41) % (14 * 60) + 8 * 60 // 08:00-21:59
+    const hours = Math.floor(minuteOfDay / 60)
+    const minutes = minuteOfDay % 60
+    const dated = new Date(cursor)
+    dated.setUTCHours(hours, minutes, 0, 0)
+    dateMap[post.slug] = dated.toISOString()
+  })
+  return dateMap
 }
 
 const hasOffensiveBlogLanguage = (text) => {
@@ -2306,6 +2334,8 @@ function BlogPage({ authUser }) {
   })
   const [userBlogs, setUserBlogs] = useState([])
   const allBlogs = [...userBlogs, ...blogPosts]
+  const displayBlogDateMap = buildBlogDisplayDateMap(allBlogs)
+  const getDisplayBlogDate = (post) => displayBlogDateMap[post?.slug] || post?.date
   const getAuthOwnerKey = () => {
     if (!authUser) return ''
     return String(authUser.username || authUser.email || authUser.fullName || '').trim().toLowerCase()
@@ -2349,8 +2379,8 @@ function BlogPage({ authUser }) {
     blogPost: allBlogs.map((post) => ({
       '@type': 'BlogPosting',
       headline: post.title,
-      datePublished: post.date,
-      dateModified: post.date,
+      datePublished: getDisplayBlogDate(post),
+      dateModified: getDisplayBlogDate(post),
       author: {
         '@type': 'Person',
         name: post.author,
@@ -2484,8 +2514,6 @@ function BlogPage({ authUser }) {
         excerpt: row.excerpt || '',
         content: row.content || '',
         categories: Array.isArray(row.categories) ? row.categories : ['Motivation'],
-        internalLinks: [],
-        externalLinks: [],
         attachments: Array.isArray(row.attachments) ? row.attachments : [],
         isUserGenerated: true,
       }))
@@ -2540,8 +2568,6 @@ function BlogPage({ authUser }) {
       excerpt: excerpt.length < content.length ? `${excerpt}...` : excerpt,
       content,
       categories: [category],
-      internalLinks: [],
-      externalLinks: [],
       attachments: blogDraft.attachments || [],
       isUserGenerated: true,
     }
@@ -2801,7 +2827,7 @@ function BlogPage({ authUser }) {
                 <p className="blog-featured-badge">Featured</p>
                 <h3>{post.title}</h3>
                 <p className="blog-meta">
-                  By <strong>{post.author}</strong> · {formatNewsTimestamp(post.date)} · {getBlogReadTime(post)}
+                  By <strong>{post.author}</strong> · {formatNewsTimestamp(getDisplayBlogDate(post))} · {getBlogReadTime(post)}
                 </p>
                 <p className="blog-excerpt">{post.excerpt}</p>
                 <div className="blog-tag-row">
@@ -2867,7 +2893,7 @@ function BlogPage({ authUser }) {
             >
               <h3>{post.title}</h3>
               <p className="blog-meta">
-                By <strong>{post.author}</strong> · {formatNewsTimestamp(post.date)} · {getBlogReadTime(post)}
+                By <strong>{post.author}</strong> · {formatNewsTimestamp(getDisplayBlogDate(post))} · {getBlogReadTime(post)}
               </p>
               <p className="blog-excerpt">{post.excerpt}</p>
               <div className="blog-tag-row">
@@ -2910,37 +2936,6 @@ function BlogPage({ authUser }) {
                 </button>
               </div>
 
-              <div className="blog-links">
-                <div className="blog-link-row">
-                  {post.internalLinks.map((item) => (
-                    <Link
-                      key={`${post.slug}-${item.to}`}
-                      to={item.to}
-                      className="home-faq-link-chip"
-                      onClick={(event) => event.stopPropagation()}
-                    >
-                      {item.label}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-
-              <div className="blog-links">
-                <div className="blog-link-row">
-                  {post.externalLinks.map((item) => (
-                    <a
-                      key={`${post.slug}-${item.url}`}
-                      href={item.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="home-faq-link-chip"
-                      onClick={(event) => event.stopPropagation()}
-                    >
-                      {item.label}
-                    </a>
-                  ))}
-                </div>
-              </div>
             </article>
           ))}
         </div>
@@ -2952,7 +2947,7 @@ function BlogPage({ authUser }) {
               </button>
               <h3>{selectedBlog.title}</h3>
               <p className="blog-meta">
-                By <strong>{selectedBlog.author}</strong> · {formatNewsTimestamp(selectedBlog.date)} ·{' '}
+                By <strong>{selectedBlog.author}</strong> · {formatNewsTimestamp(getDisplayBlogDate(selectedBlog))} ·{' '}
                 {getBlogReadTime(selectedBlog)}
               </p>
               {canManageBlog(selectedBlog) ? (
@@ -2998,35 +2993,6 @@ function BlogPage({ authUser }) {
               </div>
               {renderBlogAttachments(selectedBlog, { inModal: true })}
               <p className="blog-modal-content">{selectedBlog.content || selectedBlog.excerpt}</p>
-              <div className="blog-links">
-                <div className="blog-link-row">
-                  {selectedBlog.internalLinks.map((item) => (
-                    <Link
-                      key={`${selectedBlog.slug}-modal-${item.to}`}
-                      to={item.to}
-                      className="home-faq-link-chip"
-                      onClick={closeBlogModal}
-                    >
-                      {item.label}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-              <div className="blog-links">
-                <div className="blog-link-row">
-                  {selectedBlog.externalLinks.map((item) => (
-                    <a
-                      key={`${selectedBlog.slug}-modal-${item.url}`}
-                      href={item.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="home-faq-link-chip"
-                    >
-                      {item.label}
-                    </a>
-                  ))}
-                </div>
-              </div>
             </article>
           </div>
         ) : null}
