@@ -1383,6 +1383,13 @@ const formatStopwatch = (totalSeconds) => {
   const seconds = safe % 60
   return `${`${hours}`.padStart(2, '0')}:${`${minutes}`.padStart(2, '0')}:${`${seconds}`.padStart(2, '0')}`
 }
+const formatMinutesSmart = (minutesValue) => {
+  const totalMinutes = Math.max(0, Math.round(Number(minutesValue) || 0))
+  if (totalMinutes < 60) return `${totalMinutes} min`
+  const hours = Math.floor(totalMinutes / 60)
+  const minutes = totalMinutes % 60
+  return minutes > 0 ? `${hours}h ${minutes}m` : `${hours}h`
+}
 const resolveElapsedSeconds = (accumulatedSeconds, startedAtMs) => {
   if (!startedAtMs) return Math.max(0, Math.floor(accumulatedSeconds || 0))
   const base = Math.max(0, Math.floor(accumulatedSeconds || 0))
@@ -5271,7 +5278,7 @@ function GuardianStudyPlannerPage({ authUser }) {
   ).getDate()
   const selectedExamDateKey = form.examDate || ''
   const todayDateKey = formatDayKey(new Date())
-  const weeklyProgress = weekDays.map((day) => {
+  const weeklyProgressBase = weekDays.map((day) => {
     const dayKey = formatDayKey(day)
     const minutesFromLogs = timerSessions
       .filter((item) => item.dayKey === dayKey)
@@ -5283,9 +5290,13 @@ function GuardianStudyPlannerPage({ authUser }) {
       label: day.toLocaleDateString('en-US', { weekday: 'short' }),
       studiedMinutes,
       requiredMinutes: requiredDailyMinutes,
-      ratio: requiredDailyMinutes > 0 ? Math.min(100, (studiedMinutes / requiredDailyMinutes) * 100) : 0,
     }
   })
+  const maxWeekStudiedMinutes = Math.max(1, ...weeklyProgressBase.map((item) => item.studiedMinutes))
+  const weeklyProgress = weeklyProgressBase.map((item) => ({
+    ...item,
+    ratio: Math.min(100, (item.studiedMinutes / maxWeekStudiedMinutes) * 100),
+  }))
   const totalWeekStudiedMinutes = weeklyProgress.reduce((sum, item) => sum + item.studiedMinutes, 0)
   const totalWeekRequiredMinutes = requiredDailyMinutes * 7
   const weeklyProgressPercent =
@@ -6849,15 +6860,15 @@ function GuardianStudyPlannerPage({ authUser }) {
           <div className="study-metrics">
             <article className="metric-card">
               <p>Today Studied</p>
-              <strong>{studiedTodayMinutes} min</strong>
+              <strong>{formatMinutesSmart(studiedTodayMinutes)}</strong>
             </article>
             <article className="metric-card">
               <p>Today Required</p>
-              <strong>{requiredDailyMinutes || '--'} min</strong>
+              <strong>{requiredDailyMinutes ? formatMinutesSmart(requiredDailyMinutes) : '--'}</strong>
             </article>
             <article className="metric-card">
               <p>Still Needed Today</p>
-              <strong>{requiredDailyMinutes ? `${remainingTodayMinutes} min` : 'Generate a plan'}</strong>
+              <strong>{requiredDailyMinutes ? formatMinutesSmart(remainingTodayMinutes) : 'Generate a plan'}</strong>
             </article>
             <article className="metric-card">
               <p>Weekly Completion</p>
@@ -6914,7 +6925,7 @@ function GuardianStudyPlannerPage({ authUser }) {
                   <span className="chart-bar" style={{ height: `${item.ratio}%` }} />
                 </div>
                 <small>{item.label}</small>
-                <em>{item.studiedMinutes}m</em>
+                <em>{formatMinutesSmart(item.studiedMinutes)}</em>
               </div>
             ))}
           </div>
