@@ -88,6 +88,11 @@ const SEO_BY_PATH = {
     description:
       'Learn how Guardian Angel stands for equal educational opportunity, ethical CSS preparation, and free top-tier guidance for every CSS Jawan.',
   },
+  '/privacy-policy': {
+    title: 'Privacy Policy | Guardian Angel',
+    description:
+      'How Guardian Angel collects, uses, stores, and protects personal information when you use our CSS preparation website and related services.',
+  },
 }
 
 const pillars = [
@@ -1499,8 +1504,8 @@ function Header({ theme, onToggleTheme, authUser, onLogout }) {
       children: [
     { label: 'CSS Rules', to: '/css-rules' },
     { label: 'CSS Syllabus', to: '/css-syllabus' },
-        { label: 'CSS Past Papers', to: '/css-past-papers' },
-        { label: 'CSS Study Material', to: '/css-study-material' },
+    { label: 'CSS Past Papers', to: '/css-past-papers' },
+    { label: 'CSS Study Material', to: '/css-study-material' },
         { label: 'Global Affairs', to: '/global-affairs' },
       ],
     },
@@ -1564,7 +1569,7 @@ function Header({ theme, onToggleTheme, authUser, onLogout }) {
 
         <nav className={`nav ${isMobileMenuOpen ? 'nav-open' : ''}`}>
           <div className="nav-links">
-          {navItems.map((item) =>
+            {navItems.map((item) =>
               item.children ? (
                 <div
                   key={item.label}
@@ -1601,62 +1606,62 @@ function Header({ theme, onToggleTheme, authUser, onLogout }) {
                   </div>
                 </div>
               ) : item.to.startsWith('/#') ? (
-              <a key={item.label} href={item.to} onClick={closeMobileMenu}>
+                <a key={item.label} href={item.to} onClick={closeMobileMenu}>
                 {renderNavLabel(item.label)}
-              </a>
-            ) : (
-              <NavLink
-                key={item.label}
-                to={item.to}
-                className={({ isActive }) => (isActive ? 'nav-active' : '')}
-                onClick={closeMobileMenu}
-              >
+                </a>
+              ) : (
+                <NavLink
+                  key={item.label}
+                  to={item.to}
+                  className={({ isActive }) => (isActive ? 'nav-active' : '')}
+                  onClick={closeMobileMenu}
+                >
                 {renderNavLabel(item.label)}
-              </NavLink>
-            ),
-          )}
+                </NavLink>
+              ),
+            )}
           </div>
 
           <div className="nav-actions">
           <Link className="btn btn-nav" to="/signin?mode=signup" onClick={closeMobileMenu}>
-            Start Preparation
+              Start Preparation
           </Link>
-          {authUser ? (
-            <button
+            {authUser ? (
+              <button
                 className="btn btn-secondary nav-auth-btn"
-              type="button"
-              onClick={() => {
-                closeMobileMenu()
-                onLogout()
-              }}
-            >
-              Logout
-            </button>
-          ) : (
+                type="button"
+                onClick={() => {
+                  closeMobileMenu()
+                  onLogout()
+                }}
+              >
+                Logout
+              </button>
+            ) : (
               <Link className="btn btn-secondary nav-auth-btn" to="/signin" onClick={closeMobileMenu}>
-              Sign In
-            </Link>
-          )}
-          <button
-            className={`btn btn-secondary theme-toggle ${animateToggle ? 'animate' : ''}`}
-            type="button"
-            onClick={handleThemeToggle}
-            aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-            title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-          >
-            <span aria-hidden="true" className="theme-icon">
-              {theme === 'dark' ? (
-                <svg viewBox="0 0 24 24" role="img">
-                  <circle cx="12" cy="12" r="4.2" />
-                  <path d="M12 2.2v3M12 18.8v3M2.2 12h3M18.8 12h3M4.8 4.8l2.1 2.1M17.1 17.1l2.1 2.1M19.2 4.8l-2.1 2.1M6.9 17.1l-2.1 2.1" />
-                </svg>
-              ) : (
-                <svg viewBox="0 0 24 24" role="img">
-                  <path d="M21 14.8A9.2 9.2 0 1 1 9.2 3a7.5 7.5 0 1 0 11.8 11.8Z" />
-                </svg>
-              )}
-            </span>
-          </button>
+                Sign In
+              </Link>
+            )}
+            <button
+              className={`btn btn-secondary theme-toggle ${animateToggle ? 'animate' : ''}`}
+              type="button"
+              onClick={handleThemeToggle}
+              aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+              title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+            >
+              <span aria-hidden="true" className="theme-icon">
+                {theme === 'dark' ? (
+                  <svg viewBox="0 0 24 24" role="img">
+                    <circle cx="12" cy="12" r="4.2" />
+                    <path d="M12 2.2v3M12 18.8v3M2.2 12h3M18.8 12h3M4.8 4.8l2.1 2.1M17.1 17.1l2.1 2.1M19.2 4.8l-2.1 2.1M6.9 17.1l-2.1 2.1" />
+                  </svg>
+                ) : (
+                  <svg viewBox="0 0 24 24" role="img">
+                    <path d="M21 14.8A9.2 9.2 0 1 1 9.2 3a7.5 7.5 0 1 0 11.8 11.8Z" />
+                  </svg>
+                )}
+              </span>
+            </button>
           </div>
         </nav>
       </div>
@@ -2072,16 +2077,16 @@ function CssPastPapersPage() {
               </a>
             </p>
 
-        <div className="papers-grid">
+            <div className="papers-grid">
               {visiblePapers.map((paper) => (
-            <article className="paper-item" key={paper.url}>
-              <h3>{paper.title}</h3>
-              <a className="btn btn-primary" href={paper.url} target="_blank" rel="noreferrer">
-                Open PDF
-              </a>
-            </article>
-          ))}
-        </div>
+                <article className="paper-item" key={paper.url}>
+                  <h3>{paper.title}</h3>
+                  <a className="btn btn-primary" href={paper.url} target="_blank" rel="noreferrer">
+                    Open PDF
+                  </a>
+                </article>
+              ))}
+            </div>
           </>
         )}
       </section>
@@ -2202,82 +2207,82 @@ function CssStudyMaterialPage() {
     const visibleSlides = getVisibleSlidesForGroup(group)
     const isOpen = hasQuery ? true : openSubject === group.subject
 
-    return (
-      <article className={`study-group-card ${isOpen ? 'open' : ''}`} key={group.subject}>
-        <button
-          className="study-group-trigger"
-          type="button"
-          onClick={() => setOpenSubject((current) => (current === group.subject ? '' : group.subject))}
-          aria-expanded={isOpen}
-        >
-          <span>{group.subject}</span>
-          <span className="rule-icon">{isOpen ? '−' : '+'}</span>
-        </button>
-
-        <div className={`study-group-body ${isOpen ? 'open' : ''}`}>
-          <header className="study-group-head">
-            <div className="study-group-topbar">
-              <div>
-                <p>{group.description}</p>
-              </div>
-              <div className="study-group-meta">
-                <span>{`${visibleSlides.length}/${group.slides.length} shown`}</span>
+            return (
+              <article className={`study-group-card ${isOpen ? 'open' : ''}`} key={group.subject}>
                 <button
-                  className="btn btn-primary"
+                  className="study-group-trigger"
                   type="button"
-                  onClick={() => handleDownloadAll(group)}
-                  disabled={visibleSlides.length === 0 || downloadingSubject === group.subject}
+                  onClick={() => setOpenSubject((current) => (current === group.subject ? '' : group.subject))}
+                  aria-expanded={isOpen}
                 >
-                  {downloadingSubject === group.subject
-                    ? 'Downloading...'
-                    : `Download All (${visibleSlides.length})`}
+                  <span>{group.subject}</span>
+                  <span className="rule-icon">{isOpen ? '−' : '+'}</span>
                 </button>
-              </div>
-            </div>
-          </header>
 
-          {visibleSlides.length === 0 ? (
-            <article className="papers-empty study-empty">
-              <h3>No matching slides in {group.subject}</h3>
-              <p>Try a different keyword to view slides for this section.</p>
-            </article>
-          ) : (
-            <div className="study-slides-grid">
-              {visibleSlides.map((slide) => (
-                <article className="study-slide-item" key={slide.url}>
-                  <div>
-                    <div className="study-slide-top">
+                <div className={`study-group-body ${isOpen ? 'open' : ''}`}>
+                  <header className="study-group-head">
+                    <div className="study-group-topbar">
+                      <div>
+                        <p>{group.description}</p>
+                      </div>
+                      <div className="study-group-meta">
+                        <span>{`${visibleSlides.length}/${group.slides.length} shown`}</span>
+                        <button
+                          className="btn btn-primary"
+                          type="button"
+                          onClick={() => handleDownloadAll(group)}
+                          disabled={visibleSlides.length === 0 || downloadingSubject === group.subject}
+                        >
+                          {downloadingSubject === group.subject
+                            ? 'Downloading...'
+                            : `Download All (${visibleSlides.length})`}
+                        </button>
+                      </div>
+                    </div>
+                  </header>
+
+                  {visibleSlides.length === 0 ? (
+                    <article className="papers-empty study-empty">
+                      <h3>No matching slides in {group.subject}</h3>
+                      <p>Try a different keyword to view slides for this section.</p>
+                    </article>
+                  ) : (
+                    <div className="study-slides-grid">
+                      {visibleSlides.map((slide) => (
+                        <article className="study-slide-item" key={slide.url}>
+                          <div>
+                            <div className="study-slide-top">
                       <div className="study-slide-meta">
-                        <p className="study-slide-tag">Lecture Slide</p>
+                              <p className="study-slide-tag">Lecture Slide</p>
                         {/motivation/i.test(slide.title || slide.fileName || '') ? (
                           <span className="study-motivation-badge">Motivation</span>
                         ) : null}
                       </div>
-                      <span className="study-lecture-badge">
-                        {slide.lectureNumber ? `Lecture ${slide.lectureNumber}` : 'Lecture'}
-                      </span>
-                    </div>
-                    <h4>{slide.title}</h4>
-                  </div>
-                  <div className="study-slide-actions">
-                    <button
-                      className="btn btn-secondary"
-                      type="button"
-                      onClick={() => openSlideViewer(slide)}
-                    >
-                      View Slide
-                    </button>
+                              <span className="study-lecture-badge">
+                                {slide.lectureNumber ? `Lecture ${slide.lectureNumber}` : 'Lecture'}
+                              </span>
+                            </div>
+                            <h4>{slide.title}</h4>
+                          </div>
+                          <div className="study-slide-actions">
+                            <button
+                              className="btn btn-secondary"
+                              type="button"
+                              onClick={() => openSlideViewer(slide)}
+                            >
+                              View Slide
+                            </button>
                     <a className="btn btn-primary" href={getPublicSlideUrl(slide)} download={slide.fileName}>
-                      Download
-                    </a>
-                  </div>
-                </article>
-              ))}
-            </div>
-          )}
-        </div>
-      </article>
-    )
+                              Download
+                            </a>
+                          </div>
+                        </article>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </article>
+            )
   }
 
   return (
@@ -3380,6 +3385,167 @@ function AboutGuardianAngelPage() {
   )
 }
 
+function PrivacyPolicyPage() {
+  return (
+    <main className="page-main">
+      <section className="container privacy-policy-page">
+        <header className="privacy-policy-header">
+          <p className="kicker">Legal</p>
+          <h1>Privacy Policy</h1>
+          <p className="privacy-policy-updated">
+            <strong>Last updated:</strong> 10 April 2026
+          </p>
+          <p className="privacy-policy-intro">
+            Guardian Angel (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;) operates the Guardian Angel website and related
+            services (the &quot;Service&quot;). This Privacy Policy explains how we handle personal information when you use
+            the Service. By using the Service, you acknowledge this policy. If you do not agree, please discontinue use of
+            the Service.
+          </p>
+        </header>
+
+        <article className="privacy-policy-body">
+          <section>
+            <h2>1. Who is responsible</h2>
+            <p>
+              The operator of Guardian Angel is the data controller for personal information processed through this website,
+              subject to the role of infrastructure providers described below. For questions about this policy, use the
+              contact details or channels we publish on the Service.
+            </p>
+          </section>
+
+          <section>
+            <h2>2. Information we collect</h2>
+            <p>Depending on how you use the Service, we may process:</p>
+            <ul>
+              <li>
+                <strong>Account and authentication data</strong> — for example, identifiers and profile details you provide
+                when you sign in (such as email address or display name), and technical session tokens associated with your
+                account.
+              </li>
+              <li>
+                <strong>Service usage and content you create</strong> — for example, study planner data, preferences, notes,
+                or other content you save while signed in, and interactions with features such as blogs or reading progress
+                where those features are available.
+              </li>
+              <li>
+                <strong>Technical and log data</strong> — for example, IP address, browser type, device type, approximate
+                location derived from IP, pages viewed, referring URLs, and timestamps. Hosting and analytics providers may
+                collect similar data in their systems.
+              </li>
+              <li>
+                <strong>Cookies and similar technologies</strong> — small files or storage on your device used for sign-in
+                sessions, security, preferences (such as theme), and to understand how the Service is used where we enable
+                analytics.
+              </li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>3. How we use your information</h2>
+            <p>We use personal information to:</p>
+            <ul>
+              <li>Provide, operate, and maintain the Service (including authentication and syncing your data across sessions)</li>
+              <li>Improve reliability, security, and performance, and to prevent abuse or fraud</li>
+              <li>Communicate with you about the Service where appropriate (for example, essential account or security notices)</li>
+              <li>Comply with applicable law and respond to lawful requests from public authorities</li>
+            </ul>
+            <p>We do not sell your personal information.</p>
+          </section>
+
+          <section>
+            <h2>4. Legal bases (where applicable)</h2>
+            <p>
+              If laws such as the GDPR or UK GDPR apply to you, we rely on one or more of the following bases: performance
+              of a contract (providing the Service you request); legitimate interests (for example, securing the Service and
+              understanding aggregate usage), balanced against your rights; consent, where we ask for it (for example, for
+              non-essential cookies where required); and legal obligation.
+            </p>
+          </section>
+
+          <section>
+            <h2>5. Service providers and hosting</h2>
+            <p>
+              We use trusted third parties to host the Service, store data, and provide authentication or database services
+              (for example, cloud hosting and backend providers such as Supabase). They process information only as needed to
+              deliver their services to us and in line with our instructions and applicable law. We do not authorize them to
+              use your personal information for their own marketing.
+            </p>
+          </section>
+
+          <section>
+            <h2>6. Retention</h2>
+            <p>
+              We keep personal information only as long as necessary for the purposes above, including legal, accounting, or
+              security needs. Account-related data is generally retained while your account exists and for a reasonable
+              period afterward unless a longer period is required by law. You may request deletion of your account data where
+              applicable; some information may be retained in backups for a limited time or where we must retain it by law.
+            </p>
+          </section>
+
+          <section>
+            <h2>7. Your rights</h2>
+            <p>
+              Depending on where you live, you may have rights to access, correct, delete, or export your personal
+              information, to object to or restrict certain processing, or to withdraw consent where processing is based on
+              consent. You may also have the right to lodge a complaint with a supervisory authority. To exercise these
+              rights, contact us using the channels provided on the Service. We will respond in line with applicable law.
+            </p>
+          </section>
+
+          <section>
+            <h2>8. Security</h2>
+            <p>
+              We implement appropriate technical and organizational measures designed to protect personal information.
+              However, no method of transmission or storage is completely secure; we cannot guarantee absolute security.
+            </p>
+          </section>
+
+          <section>
+            <h2>9. Children</h2>
+            <p>
+              The Service is not directed at children under the age where parental consent is required in your jurisdiction.
+              We do not knowingly collect personal information from such children. If you believe we have done so, please
+              contact us and we will take appropriate steps.
+            </p>
+          </section>
+
+          <section>
+            <h2>10. International transfers</h2>
+            <p>
+              Our service providers may process data in countries other than your own. Where required, we use appropriate
+              safeguards (such as standard contractual clauses or equivalent mechanisms) for transfers of personal
+              information.
+            </p>
+          </section>
+
+          <section>
+            <h2>11. Changes to this policy</h2>
+            <p>
+              We may update this Privacy Policy from time to time. We will post the revised version on this page and update
+              the &quot;Last updated&quot; date. Material changes may be communicated through the Service or other reasonable
+              means where appropriate.
+            </p>
+          </section>
+
+          <section>
+            <h2>12. Contact</h2>
+            <p>
+              For privacy-related questions or requests, please contact us through the official contact or support channels
+              published on the Guardian Angel website.
+            </p>
+          </section>
+        </article>
+
+        <p className="privacy-policy-back">
+          <Link className="btn btn-primary" to="/">
+            Back to home
+          </Link>
+        </p>
+      </section>
+    </main>
+  )
+}
+
 function LegacyBlogSlugRedirect() {
   const { blogSlug } = useParams()
   return <Navigate to={`/blogs/${blogSlug || ''}`} replace />
@@ -3551,8 +3717,8 @@ function SignInPage({ authUser }) {
       } else {
         const { error: signInError } = await supabase.auth.signInWithPassword({ email, password })
         if (signInError) throw signInError
-        const nextPath = location.state?.from || '/guardian-study-planner'
-        navigate(nextPath, { replace: true })
+    const nextPath = location.state?.from || '/guardian-study-planner'
+    navigate(nextPath, { replace: true })
       }
     } catch (submitError) {
       setError(submitError?.message || 'Unable to continue. Please try again.')
@@ -3592,23 +3758,23 @@ function SignInPage({ authUser }) {
         </div>
         <div className="intro-overlay auth-overlay" aria-hidden="true" />
         <section className="container auth-page auth-page-overlay">
-          <div className="section-title">
+        <div className="section-title">
             {/* <p>{mode === 'signup' ? 'Create Account' : 'Sign In Required'}</p> */}
             <h2 className="auth-title-pump">
               {mode === 'signup' ? 'Join The Guardian Angel Community' : 'Access Guardian Study Planner'}
             </h2>
-          </div>
+        </div>
 
-          <article className="planner-card auth-card">
+        <article className="planner-card auth-card">
           <form className="planner-form" onSubmit={handleSubmit}>
             {mode === 'signup' ? (
-              <label>
+            <label>
                 Full Name
-                <input
+              <input
                   name="fullName"
-                  type="text"
+                type="text"
                   value={form.fullName}
-                  onChange={(event) =>
+                onChange={(event) =>
                     setForm((current) => ({ ...current, fullName: event.target.value }))
                   }
                   required
@@ -3667,8 +3833,8 @@ function SignInPage({ authUser }) {
             </button>
             {error ? <p className="planner-error">{error}</p> : null}
           </form>
-          </article>
-        </section>
+        </article>
+      </section>
       </section>
     </>
   )
@@ -3676,6 +3842,7 @@ function SignInPage({ authUser }) {
 
 function GuardianStudyPlannerPage({ authUser }) {
   const profileStorageKey = `ga-profile-${authUser.id || authUser.username}`
+  const [isRemoteProfileHydrated, setIsRemoteProfileHydrated] = useState(() => !(supabase && authUser?.id))
   const [activePlannerTab, setActivePlannerTab] = useState('subjects')
   const [form, setForm] = useState(() => {
     try {
@@ -3953,7 +4120,11 @@ function GuardianStudyPlannerPage({ authUser }) {
   useEffect(() => {
     let isCancelled = false
     const loadRemoteProfile = async () => {
-      if (!supabase || !authUser?.id) return
+      if (!supabase || !authUser?.id) {
+        setIsRemoteProfileHydrated(true)
+        return
+      }
+      setIsRemoteProfileHydrated(false)
       try {
         const { data } = await supabase
           .from('user_profiles')
@@ -3988,6 +4159,8 @@ function GuardianStudyPlannerPage({ authUser }) {
         }
       } catch {
         // Keep local profile if remote fetch fails.
+      } finally {
+        if (!isCancelled) setIsRemoteProfileHydrated(true)
       }
     }
     loadRemoteProfile()
@@ -3997,34 +4170,35 @@ function GuardianStudyPlannerPage({ authUser }) {
   }, [authUser?.id])
 
   useEffect(() => {
-    const profilePayload = {
-      username: authUser.username,
-      fullName: authUser.fullName,
-      plannerForm: form,
-      selectedCompulsoryElective,
-      selectedOptionalSubjects,
-      subjectsLocked,
-      subjectPerformanceLevels,
-      isManualDmcEnabled,
-      manualDmcScores,
+    if (!isRemoteProfileHydrated) return
+      const profilePayload = {
+        username: authUser.username,
+        fullName: authUser.fullName,
+        plannerForm: form,
+        selectedCompulsoryElective,
+        selectedOptionalSubjects,
+        subjectsLocked,
+        subjectPerformanceLevels,
+        isManualDmcEnabled,
+        manualDmcScores,
       aiExamDraft,
       aiExamResult,
-      completedDays,
-      dayStatuses,
-      timerSessions,
-      socialTimerSessions,
-      socialDailyLimitMinutes,
-      timerState: {
-        status: timerStatus,
-        accumulatedSeconds: timerAccumulatedSeconds,
-        startedAtMs: timerStartedAtMs,
-      },
-      socialTimerState: {
-        status: socialTimerStatus,
-        accumulatedSeconds: socialTimerAccumulatedSeconds,
-        startedAtMs: socialTimerStartedAtMs,
-      },
-    }
+        completedDays,
+        dayStatuses,
+        timerSessions,
+        socialTimerSessions,
+        socialDailyLimitMinutes,
+        timerState: {
+          status: timerStatus,
+          accumulatedSeconds: timerAccumulatedSeconds,
+          startedAtMs: timerStartedAtMs,
+        },
+        socialTimerState: {
+          status: socialTimerStatus,
+          accumulatedSeconds: socialTimerAccumulatedSeconds,
+          startedAtMs: socialTimerStartedAtMs,
+        },
+      }
     try {
       localStorage.setItem(profileStorageKey, JSON.stringify(profilePayload))
     } catch {
@@ -4050,6 +4224,7 @@ function GuardianStudyPlannerPage({ authUser }) {
   }, [
     authUser,
     profileStorageKey,
+    isRemoteProfileHydrated,
     form,
     selectedCompulsoryElective,
     selectedOptionalSubjects,
@@ -7133,7 +7308,12 @@ function GuardianStudyPlannerPage({ authUser }) {
             {weeklyProgress.map((item) => (
               <div key={item.dayKey} className="chart-col">
                 <div className="chart-bar-wrap">
-                  <span className="chart-bar" style={{ height: `${item.ratio}%` }} />
+                  <span
+                    className={`chart-bar ${
+                      item.ratio < 40 ? 'is-low' : item.ratio > 80 ? 'is-high' : 'is-medium'
+                    }`}
+                    style={{ height: `${item.ratio}%` }}
+                  />
                 </div>
                 <small>{item.label}</small>
                 <em>{formatMinutesSmart(item.studiedMinutes)}</em>
@@ -7611,6 +7791,9 @@ function Footer() {
 
       <div className="footer-bottom container">
         <p>© {new Date().getFullYear()} Guardian Angel. All rights reserved.</p>
+        <nav className="footer-legal" aria-label="Legal">
+          <Link to="/privacy-policy">Privacy Policy</Link>
+        </nav>
       </div>
     </footer>
   )
@@ -8219,9 +8402,11 @@ function GlobalAffairsPage({ defaultTab = 'global' }) {
 function StickyNotesWidget({ authUser }) {
   const [isOpen, setIsOpen] = useState(false)
   const [draft, setDraft] = useState('')
+  const [isStickyNotesHydrated, setIsStickyNotesHydrated] = useState(() => !(supabase && authUser?.id))
+  const stickyNotesStorageKey = authUser?.id ? `ga-sticky-notes-${authUser.id}` : 'ga-sticky-notes'
   const [notes, setNotes] = useState(() => {
     try {
-      const raw = localStorage.getItem('ga-sticky-notes')
+      const raw = localStorage.getItem(stickyNotesStorageKey)
       const parsed = raw ? JSON.parse(raw) : []
       return Array.isArray(parsed) ? parsed : []
     } catch {
@@ -8230,8 +8415,9 @@ function StickyNotesWidget({ authUser }) {
   })
 
   useEffect(() => {
+    if (!isStickyNotesHydrated) return
     try {
-      localStorage.setItem('ga-sticky-notes', JSON.stringify(notes))
+      localStorage.setItem(stickyNotesStorageKey, JSON.stringify(notes))
     } catch {
       // Ignore storage failures.
     }
@@ -8252,12 +8438,16 @@ function StickyNotesWidget({ authUser }) {
       }
     }
     syncStickyNotes()
-  }, [notes, authUser?.id])
+  }, [notes, authUser?.id, isStickyNotesHydrated, stickyNotesStorageKey])
 
   useEffect(() => {
     let isCancelled = false
     const loadStickyNotes = async () => {
-      if (!supabase || !authUser?.id) return
+      if (!supabase || !authUser?.id) {
+        setIsStickyNotesHydrated(true)
+        return
+      }
+      setIsStickyNotesHydrated(false)
       try {
         const { data } = await supabase
           .from('user_sticky_notes')
@@ -8268,6 +8458,8 @@ function StickyNotesWidget({ authUser }) {
         if (Array.isArray(data?.notes)) setNotes(data.notes)
       } catch {
         // Keep local notes if remote fetch fails.
+      } finally {
+        if (!isCancelled) setIsStickyNotesHydrated(true)
       }
     }
     loadStickyNotes()
@@ -8514,8 +8706,8 @@ function SeoMetaManager() {
     upsertLinkTag('canonical', canonicalUrl)
   }, [location.pathname, location.search])
 
-  return null
-}
+      return null
+    }
 
 function useRemoveVisibleWordHyphens() {
   useEffect(() => {
@@ -8676,6 +8868,7 @@ function App() {
           <Route path="/css-past-papers" element={<CssPastPapersPage />} />
           <Route path="/css-study-material" element={<CssStudyMaterialPage />} />
           <Route path="/about-guardian-angel" element={<AboutGuardianAngelPage />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
           <Route path="/blogs" element={<BlogPage authUser={authUser} />} />
           <Route path="/blogs/:blogSlug" element={<BlogPage authUser={authUser} />} />
           <Route path="/blog" element={<Navigate to="/blogs" replace />} />

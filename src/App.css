@@ -2825,6 +2825,103 @@ a {
   animation: about-guardian-fade-up 720ms ease-out forwards;
 }
 
+.privacy-policy-page {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding-bottom: 2rem;
+}
+
+.privacy-policy-header {
+  margin-bottom: 1.5rem;
+}
+
+.privacy-policy-header h1 {
+  margin: 0.25rem 0 0.5rem;
+  font-size: clamp(1.65rem, 4vw, 2.1rem);
+  line-height: 1.2;
+}
+
+.privacy-policy-updated {
+  margin: 0 0 1rem;
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+}
+
+.privacy-policy-intro {
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  font-size: 1.02rem;
+}
+
+.privacy-policy-body {
+  border: 1px solid var(--border-soft);
+  border-radius: 16px;
+  background: var(--surface-gradient);
+  padding: 1.25rem 1.35rem;
+  box-shadow: 0 12px 30px rgb(0 0 0 / 14%);
+  display: grid;
+  gap: 1.35rem;
+}
+
+.privacy-policy-body section {
+  margin: 0;
+}
+
+.privacy-policy-body h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.12rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: var(--text-primary);
+}
+
+.privacy-policy-body p {
+  margin: 0 0 0.65rem;
+  color: var(--text-secondary);
+  line-height: 1.72;
+  font-size: 0.98rem;
+}
+
+.privacy-policy-body p:last-child {
+  margin-bottom: 0;
+}
+
+.privacy-policy-body ul {
+  margin: 0.35rem 0 0;
+  padding-left: 1.25rem;
+  color: var(--text-secondary);
+  line-height: 1.72;
+  font-size: 0.98rem;
+}
+
+.privacy-policy-body li {
+  margin-bottom: 0.45rem;
+}
+
+.privacy-policy-body li:last-child {
+  margin-bottom: 0;
+}
+
+.privacy-policy-back {
+  margin: 1.5rem 0 0;
+  text-align: center;
+}
+
+.footer-legal {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+}
+
+.footer-legal a {
+  color: #b9c1d3;
+  font-size: 0.86rem;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
 @keyframes about-guardian-fade-up {
   0% {
     opacity: 0;
@@ -4060,8 +4157,20 @@ a {
 .chart-bar {
   width: 100%;
   min-height: 3px;
-  background: linear-gradient(180deg, var(--brand-gold), var(--brand-gold-dark));
+  background: linear-gradient(180deg, #f2d56b, #b9901f);
   transition: height 0.25s ease;
+}
+
+.chart-bar.is-low {
+  background: linear-gradient(180deg, #ef4444, #b91c1c);
+}
+
+.chart-bar.is-medium {
+  background: linear-gradient(180deg, #f2d56b, #b9901f);
+}
+
+.chart-bar.is-high {
+  background: linear-gradient(180deg, #22c55e, #15803d);
 }
 
 .chart-col small {
@@ -4440,7 +4549,7 @@ a {
 .scroll-top-btn {
   position: fixed;
   right: 1.1rem;
-  bottom: 1.1rem;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 4.8rem) !important;
   z-index: 70;
   width: 52px;
   height: 52px;
@@ -4474,7 +4583,7 @@ a {
 .sticky-notes-wrap {
   position: fixed;
   right: 1.1rem;
-  bottom: calc(1.1rem + 52px + 0.65rem);
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 4.8rem + 52px + 0.65rem) !important;
   z-index: 75;
   display: grid;
   justify-items: end;
@@ -5304,7 +5413,7 @@ a {
     position: fixed;
     left: 0;
     right: 0;
-    top: 78px;
+    top: calc(78px + env(safe-area-inset-top, 0px));
     width: 100%;
     display: flex;
     flex-direction: column;
