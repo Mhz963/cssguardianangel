@@ -1754,7 +1754,7 @@ function HomePage() {
           </div>
           <div className="hero-constitutional-note reveal-on-scroll">
             <p>
-              The Constitution of Pakistan <span className="guardian-highlight-word">(Article 25-A)</span>{' '}
+              The Constitution of Pakistan <span className="guardian-highlight-word">(Article 25)</span>{' '}
               guarantees free and compulsory education for
               every citizen.
             </p>
