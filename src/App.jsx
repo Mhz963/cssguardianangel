@@ -63,6 +63,11 @@ const SEO_BY_PATH = {
     description:
       'Get free CSS study material for compulsory and optional subjects with topic wise coverage for consistent and exam oriented preparation.',
   },
+  '/constitution-of-pakistan': {
+    title: 'Constitution of Pakistan | View and Download PDF',
+    description:
+      'Access the Constitution of Pakistan in PDF format with direct options to view online or download for offline reading.',
+  },
   '/global-affairs': {
     title: 'Global Affairs | Current Affairs, Pakistan Affairs, Global Conflict Map',
     description:
@@ -1506,6 +1511,7 @@ function Header({ theme, onToggleTheme, authUser, onLogout }) {
     { label: 'CSS Syllabus', to: '/css-syllabus' },
     { label: 'CSS Past Papers', to: '/css-past-papers' },
     { label: 'CSS Study Material', to: '/css-study-material' },
+    { label: 'Constitution of Pakistan', to: '/constitution-of-pakistan' },
         { label: 'Global Affairs', to: '/global-affairs' },
       ],
     },
@@ -1536,6 +1542,7 @@ function Header({ theme, onToggleTheme, authUser, onLogout }) {
     pathname === '/css-syllabus' ||
     pathname === '/css-past-papers' ||
     pathname === '/css-study-material' ||
+    pathname === '/constitution-of-pakistan' ||
     pathname === '/global-affairs'
 
   const renderNavLabel = (label) => {
@@ -2338,6 +2345,36 @@ function CssStudyMaterialPage() {
             <div className="study-groups">{visibleAdditionalOptionalStudyMaterials.map(renderStudyGroup)}</div>
           </div>
         ) : null}
+      </section>
+    </main>
+  )
+}
+
+function ConstitutionOfPakistanPage() {
+  const constitutionPdfUrl = new URL('../data/Constitution of Pakistan.pdf', import.meta.url).href
+
+  return (
+    <main className="page-main">
+      <section className="container css-rules-page constitution-page">
+        <div className="section-title">
+          <p>CSS Resource Library</p>
+          <h2>Constitution of Pakistan</h2>
+        </div>
+
+        <article className="constitution-resource-card">
+          <p>
+            Access the complete Constitution of Pakistan for exam preparation, article references, and
+            constitutional context in your written answers.
+          </p>
+          <div className="constitution-resource-actions">
+            <a className="btn btn-primary" href={constitutionPdfUrl} target="_blank" rel="noreferrer">
+              View PDF
+            </a>
+            <a className="btn btn-secondary" href={constitutionPdfUrl} download="Constitution of Pakistan.pdf">
+              Download PDF
+            </a>
+          </div>
+        </article>
       </section>
     </main>
   )
@@ -7778,6 +7815,7 @@ function Footer() {
           <Link to="/css-rules">CSS Rules</Link>
           <Link to="/css-past-papers">CSS Past Papers</Link>
           <Link to="/css-study-material">CSS Study Material</Link>
+          <Link to="/constitution-of-pakistan">Constitution of Pakistan</Link>
           <Link to="/guardian-study-planner">Guardian Study Planner</Link>
         </div>
 
@@ -8867,6 +8905,7 @@ function App() {
           <Route path="/css-rules" element={<CssRulesPage />} />
           <Route path="/css-past-papers" element={<CssPastPapersPage />} />
           <Route path="/css-study-material" element={<CssStudyMaterialPage />} />
+          <Route path="/constitution-of-pakistan" element={<ConstitutionOfPakistanPage />} />
           <Route path="/about-guardian-angel" element={<AboutGuardianAngelPage />} />
           <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
           <Route path="/blogs" element={<BlogPage authUser={authUser} />} />

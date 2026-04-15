@@ -5992,3 +5992,29 @@ a {
     filter: none;
   }
 }
+
+.constitution-page {
+  display: grid;
+  gap: 1.1rem;
+}
+
+.constitution-resource-card {
+  border: 1px solid rgba(242, 213, 107, 0.22);
+  border-radius: 1rem;
+  padding: 1.1rem;
+  background: linear-gradient(145deg, rgba(10, 16, 28, 0.84), rgba(20, 30, 48, 0.72));
+  display: grid;
+  gap: 0.9rem;
+}
+
+.constitution-resource-card p {
+  margin: 0;
+  color: #d9e2f2;
+  line-height: 1.6;
+}
+
+.constitution-resource-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
