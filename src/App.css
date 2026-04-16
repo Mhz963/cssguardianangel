@@ -30,6 +30,12 @@
   --cursor-x: 50%;
   --cursor-y: 50%;
   --cursor-glow-opacity: 0;
+  /* Green mantra pulse: readable on light backgrounds */
+  --ga-green-pulse-base: #047857;
+  --ga-green-pulse-peak: #0d9488;
+  --ga-green-shadow-base: 0 1px 2px rgb(4 120 87 / 18%), 0 0 14px rgb(5 150 105 / 22%);
+  --ga-green-shadow-peak: 0 1px 3px rgb(4 120 87 / 25%), 0 0 20px rgb(13 148 136 / 32%);
+  --ga-green-pulse-filter-mid: brightness(1.02);
 }
 
 html,
@@ -66,6 +72,12 @@ body,
   --glass-border: rgb(255 255 255 / 18%);
   --glass-shadow: 0 24px 45px rgb(2 4 10 / 48%);
   --glass-glow: rgb(242 213 107 / 18%);
+  /* Green mantra pulse: bright on dark backgrounds */
+  --ga-green-pulse-base: #22c55e;
+  --ga-green-pulse-peak: #6dff9f;
+  --ga-green-shadow-base: 0 0 12px rgb(34 197 94 / 52%);
+  --ga-green-shadow-peak: 0 0 24px rgb(109 255 159 / 78%);
+  --ga-green-pulse-filter-mid: brightness(1.16);
 }
 
 .site {
@@ -1876,8 +1888,8 @@ a {
 
 .guardian-highlight-word-green {
   font-weight: 700;
-  color: #22c55e;
-  text-shadow: 0 0 18px rgb(34 197 94 / 62%);
+  color: var(--ga-green-pulse-base);
+  text-shadow: var(--ga-green-shadow-base);
   animation: guardian-word-highlight-green 2.2s ease-in-out infinite;
 }
 
@@ -1898,14 +1910,14 @@ a {
 @keyframes guardian-word-highlight-green {
   0%,
   100% {
-    color: #22c55e;
-    text-shadow: 0 0 12px rgb(34 197 94 / 52%);
+    color: var(--ga-green-pulse-base);
+    text-shadow: var(--ga-green-shadow-base);
     filter: brightness(1);
   }
   50% {
-    color: #6dff9f;
-    text-shadow: 0 0 24px rgb(109 255 159 / 82%);
-    filter: brightness(1.18);
+    color: var(--ga-green-pulse-peak);
+    text-shadow: var(--ga-green-shadow-peak);
+    filter: var(--ga-green-pulse-filter-mid);
   }
 }
 
