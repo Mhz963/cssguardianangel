@@ -5456,6 +5456,12 @@ a {
     background: var(--topbar-bg);
   }
 
+  /* Standalone mobile browsers: keep header content below the notch. In-app WebView omits this (shell already insets). */
+  html:not(.ga-in-app-webview) .topbar {
+    padding-top: calc(0.7rem + env(safe-area-inset-top, 0px));
+    padding-bottom: 0.7rem;
+  }
+
   .topbar-inner {
     flex-direction: row;
     flex-wrap: nowrap;
@@ -5505,7 +5511,8 @@ a {
     position: fixed;
     left: 0;
     right: 0;
-    top: calc(78px + env(safe-area-inset-top, 0px));
+    /* --ga-mobile-nav-top is set from measured header bottom in App.jsx (avoids safe-area double count in WebView). */
+    top: var(--ga-mobile-nav-top, calc(78px + env(safe-area-inset-top, 0px)));
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -5612,7 +5619,7 @@ a {
   }
 
   .nav.nav-open {
-    max-height: calc(100dvh - 78px);
+    max-height: calc(100dvh - var(--ga-mobile-nav-top, calc(78px + env(safe-area-inset-top, 0px))));
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;

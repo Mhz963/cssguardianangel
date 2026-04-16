@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useState } from 'react'
+import { lazy, Suspense, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import {
   BrowserRouter,
   Link,
@@ -1497,10 +1497,60 @@ const imageUrlToPngDataUrl = async (imageUrl) => {
 }
 
 function Header({ theme, onToggleTheme, authUser, onLogout }) {
+  const topbarRef = useRef(null)
   const [animateToggle, setAnimateToggle] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isResourceMenuOpen, setIsResourceMenuOpen] = useState(false)
   const location = useLocation()
+
+  useLayoutEffect(() => {
+    const root = document.documentElement
+    const mq = window.matchMedia('(max-width: 720px)')
+    const layoutWidth = () => {
+      const vv = window.visualViewport
+      if (vv && typeof vv.width === 'number' && vv.width > 0) return vv.width
+      if (window.innerWidth > 0) return window.innerWidth
+      return 721
+    }
+    const isNarrowLayout = () => mq.matches || layoutWidth() <= 720
+
+    const updateMobileNavTop = () => {
+      if (!isNarrowLayout()) {
+        root.style.removeProperty('--ga-mobile-nav-top')
+        return
+      }
+      const el = topbarRef.current
+      if (!el) return
+      const bottom = Math.max(0, Math.round(el.getBoundingClientRect().bottom))
+      root.style.setProperty('--ga-mobile-nav-top', `${bottom}px`)
+    }
+
+    updateMobileNavTop()
+
+    mq.addEventListener('change', updateMobileNavTop)
+
+    const el = topbarRef.current
+    let ro
+    if (el && typeof ResizeObserver !== 'undefined') {
+      ro = new ResizeObserver(() => updateMobileNavTop())
+      ro.observe(el)
+    }
+
+    window.addEventListener('resize', updateMobileNavTop)
+    window.addEventListener('scroll', updateMobileNavTop, { passive: true })
+    window.visualViewport?.addEventListener('resize', updateMobileNavTop)
+    window.visualViewport?.addEventListener('scroll', updateMobileNavTop)
+
+    return () => {
+      mq.removeEventListener('change', updateMobileNavTop)
+      ro?.disconnect()
+      window.removeEventListener('resize', updateMobileNavTop)
+      window.removeEventListener('scroll', updateMobileNavTop)
+      window.visualViewport?.removeEventListener('resize', updateMobileNavTop)
+      window.visualViewport?.removeEventListener('scroll', updateMobileNavTop)
+      root.style.removeProperty('--ga-mobile-nav-top')
+    }
+  }, [location.pathname, authUser, isMobileMenuOpen, theme])
 
   const navItems = [
     { label: 'Home', to: '/' },
@@ -1552,7 +1602,7 @@ function Header({ theme, onToggleTheme, authUser, onLogout }) {
   }
 
   return (
-    <header className="topbar">
+    <header className="topbar" ref={topbarRef}>
       <div className="topbar-inner container">
         <Link className="brand" to="/" aria-label="Guardian Angel home">
           <img src={logo} alt="Guardian Angel logo" />
