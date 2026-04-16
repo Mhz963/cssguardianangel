@@ -63,10 +63,10 @@ const SEO_BY_PATH = {
     description:
       'Get free CSS study material for compulsory and optional subjects with topic wise coverage for consistent and exam oriented preparation.',
   },
-  '/constitution-of-pakistan': {
-    title: 'Constitution of Pakistan | View and Download PDF',
+  '/key-documents': {
+    title: 'Key Documents | Pakistan and International References',
     description:
-      'Access the Constitution of Pakistan in PDF format with direct options to view online or download for offline reading.',
+      'Access key Pakistan and international documents including Constitution of Pakistan, UDHR, and UN Charter with quick view and download options.',
   },
   '/global-affairs': {
     title: 'Global Affairs | Current Affairs, Pakistan Affairs, Global Conflict Map',
@@ -1511,7 +1511,7 @@ function Header({ theme, onToggleTheme, authUser, onLogout }) {
     { label: 'CSS Syllabus', to: '/css-syllabus' },
     { label: 'CSS Past Papers', to: '/css-past-papers' },
     { label: 'CSS Study Material', to: '/css-study-material' },
-    { label: 'Constitution of Pakistan', to: '/constitution-of-pakistan' },
+    { label: 'Key Documents', to: '/key-documents' },
         { label: 'Global Affairs', to: '/global-affairs' },
       ],
     },
@@ -1542,7 +1542,7 @@ function Header({ theme, onToggleTheme, authUser, onLogout }) {
     pathname === '/css-syllabus' ||
     pathname === '/css-past-papers' ||
     pathname === '/css-study-material' ||
-    pathname === '/constitution-of-pakistan' ||
+    pathname === '/key-documents' ||
     pathname === '/global-affairs'
 
   const renderNavLabel = (label) => {
@@ -2350,29 +2350,219 @@ function CssStudyMaterialPage() {
   )
 }
 
-function ConstitutionOfPakistanPage() {
+function KeyDocumentsPage() {
   const constitutionPdfUrl = new URL('../data/Constitution of Pakistan.pdf', import.meta.url).href
+  const udhrPdfUrl = new URL('../data/UDHR.pdf', import.meta.url).href
+  const unCharterPdfUrl = new URL('../data/UN Charter.pdf', import.meta.url).href
+  const pakistanDocuments = [
+    {
+      title: 'Constitution of Pakistan',
+      summary: 'Primary constitutional text for governance, rights, and state structure references.',
+      url: constitutionPdfUrl,
+      fileName: 'Constitution of Pakistan.pdf',
+    },
+  ]
+  const internationalDocuments = [
+    {
+      title: 'Universal Declaration of Human Rights (UDHR)',
+      summary: 'Foundational global human-rights framework useful for essay and international law context.',
+      url: udhrPdfUrl,
+      fileName: 'UDHR.pdf',
+    },
+    {
+      title: 'United Nations Charter',
+      summary: 'Core charter for UN principles, collective security, and state cooperation.',
+      url: unCharterPdfUrl,
+      fileName: 'UN Charter.pdf',
+    },
+  ]
+  const internationalReferenceCategories = [
+    {
+      category: 'Law, Justice, and Human Rights',
+      links: [
+        { label: 'UN Treaty Collection', url: 'https://treaties.un.org/' },
+        { label: 'UN Digital Library', url: 'https://digitallibrary.un.org/' },
+        { label: 'International Court of Justice (ICJ)', url: 'https://www.icj-cij.org/' },
+        { label: 'OHCHR (UN Human Rights)', url: 'https://www.ohchr.org/' },
+        { label: 'UNHCR', url: 'https://www.unhcr.org/' },
+      ],
+    },
+    {
+      category: 'Security, Terrorism, and Policing',
+      links: [
+        { label: 'UN Security Council Resolutions', url: 'https://www.un.org/securitycouncil/content/resolutions' },
+        { label: 'UNODC (Crime, Terrorism, Justice)', url: 'https://www.unodc.org/' },
+        { label: 'UN Counter-Terrorism Office', url: 'https://www.un.org/counterterrorism/' },
+        { label: 'FATF', url: 'https://www.fatf-gafi.org/' },
+        { label: 'Interpol', url: 'https://www.interpol.int/' },
+      ],
+    },
+    {
+      category: 'Gender and Inclusion',
+      links: [
+        { label: 'UN Women', url: 'https://www.unwomen.org/' },
+        { label: 'UN Commission on the Status of Women (CSW)', url: 'https://www.unwomen.org/en/csw' },
+        { label: 'CEDAW (OHCHR)', url: 'https://www.ohchr.org/en/treaty-bodies/cedaw' },
+        { label: 'UN SDG 5: Gender Equality', url: 'https://sdgs.un.org/goals/goal5' },
+      ],
+    },
+    {
+      category: 'Technology, Cybersecurity, and AI',
+      links: [
+        { label: 'Council of Europe Cybercrime (Budapest Convention)', url: 'https://www.coe.int/en/web/cybercrime' },
+        { label: 'NATO Cyber Defence', url: 'https://www.nato.int/cps/en/natohq/topics_78170.htm' },
+        { label: 'OECD AI Policy Observatory', url: 'https://oecd.ai/' },
+        { label: 'Global Partnership on AI (GPAI)', url: 'https://gpai.ai/' },
+      ],
+    },
+    {
+      category: 'Nuclear and Strategic',
+      links: [{ label: 'IAEA', url: 'https://www.iaea.org/' }],
+    },
+  ]
+  const pakistanReferenceCategories = [
+    {
+      category: 'Law and Justice',
+      links: [
+        { label: 'Ministry of Law and Justice', url: 'https://www.molaw.gov.pk/' },
+        { label: 'Law and Justice Commission of Pakistan', url: 'https://ljcp.gov.pk/' },
+        { label: 'Supreme Court of Pakistan', url: 'https://www.supremecourt.gov.pk/' },
+        { label: 'National Judicial (Policy Making) Committee', url: 'https://njpmc.punjab.gov.pk/' },
+      ],
+    },
+    {
+      category: 'Security, Terrorism, and Policing',
+      links: [
+        { label: 'National Counter Terrorism Authority (NACTA)', url: 'https://nacta.gov.pk/' },
+        { label: 'National Action Plan (NACTA)', url: 'https://nacta.gov.pk/nap-2014/' },
+        { label: 'Ministry of Interior', url: 'https://www.interior.gov.pk/' },
+        { label: 'National Police Bureau', url: 'https://npb.gov.pk/' },
+        { label: 'FIA', url: 'https://fia.gov.pk/' },
+        { label: 'NADRA', url: 'https://www.nadra.gov.pk/' },
+        { label: 'Ministry of Defence', url: 'https://www.mod.gov.pk/' },
+      ],
+    },
+    {
+      category: 'Gender and Human Rights',
+      links: [
+        { label: 'Ministry of Human Rights', url: 'https://mohr.gov.pk/' },
+        { label: 'National Commission on the Status of Women (NCSW)', url: 'https://www.ncsw.gov.pk/' },
+      ],
+    },
+    {
+      category: 'Technology, Cybersecurity, and AI',
+      links: [
+        { label: 'Ministry of IT and Telecom', url: 'https://moitt.gov.pk/' },
+        { label: 'National CERT (PKCERT)', url: 'https://pkcert.gov.pk/' },
+        { label: 'National Cyber Crime Investigation Agency (NCCIA)', url: 'https://nccia.gov.pk/' },
+        { label: 'Pakistan Telecommunication Authority (PTA)', url: 'https://www.pta.gov.pk/' },
+        { label: 'National Center of Artificial Intelligence (NCAI)', url: 'https://ncai.pk/' },
+      ],
+    },
+    {
+      category: 'Nuclear and Strategic',
+      links: [
+        { label: 'Strategic Plans Division (SPD) / NCA context', url: 'https://www.ispr.gov.pk/' },
+        { label: 'Pakistan Nuclear Regulatory Authority (PNRA)', url: 'https://www.pnra.org/' },
+        { label: 'Pakistan Atomic Energy Commission (PAEC)', url: 'https://www.paec.gov.pk/' },
+      ],
+    },
+    {
+      category: 'Governance, Economy, and Environment',
+      links: [
+        { label: 'Ministry of Planning, Development & Special Initiatives', url: 'https://www.pc.gov.pk/' },
+        { label: 'Economic Affairs Division', url: 'https://www.ead.gov.pk/' },
+        { label: 'Pakistan Bureau of Statistics (PBS)', url: 'https://www.pbs.gov.pk/' },
+        { label: 'State Bank of Pakistan (SBP)', url: 'https://www.sbp.org.pk/' },
+        { label: 'Ministry of Climate Change & Environmental Coordination', url: 'https://mocc.gov.pk/' },
+      ],
+    },
+  ]
 
   return (
     <main className="page-main">
       <section className="container css-rules-page constitution-page">
         <div className="section-title">
           <p>CSS Resource Library</p>
-          <h2>Constitution of Pakistan</h2>
+          <h2>Key Documents</h2>
         </div>
 
         <article className="constitution-resource-card">
+          <h3>Pakistan Key Documents</h3>
+          <p>Start with Pakistan-focused primary documents for stronger constitutional and governance arguments.</p>
+          <div className="constitution-docs-grid">
+            {pakistanDocuments.map((doc) => (
+              <article key={doc.title} className="constitution-doc-item">
+                <h4>{doc.title}</h4>
+                <p>{doc.summary}</p>
+                <div className="constitution-resource-actions">
+                  <a className="btn btn-primary" href={doc.url} target="_blank" rel="noreferrer">
+                    View PDF
+                  </a>
+                  <a className="btn btn-secondary" href={doc.url} download={doc.fileName}>
+                    Download PDF
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
+          <div className="constitution-reference-links">
+            <h4>Pakistan Government and Key Department Links</h4>
+            {pakistanReferenceCategories.map((group) => (
+              <div key={group.category} className="constitution-link-category">
+                <h5>{group.category}</h5>
+                <ul className="syllabus-list syllabus-list-links">
+                  {group.links.map((item) => (
+                    <li key={item.url}>
+                      <a href={item.url} target="_blank" rel="noreferrer">
+                        {item.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </article>
+
+        <article className="constitution-resource-card">
+          <h3>International Affairs Documents</h3>
           <p>
-            Access the complete Constitution of Pakistan for exam preparation, article references, and
-            constitutional context in your written answers.
+            Use these global documents to support arguments in current affairs, international law, and comparative
+            analysis.
           </p>
-          <div className="constitution-resource-actions">
-            <a className="btn btn-primary" href={constitutionPdfUrl} target="_blank" rel="noreferrer">
-              View PDF
-            </a>
-            <a className="btn btn-secondary" href={constitutionPdfUrl} download="Constitution of Pakistan.pdf">
-              Download PDF
-            </a>
+          <div className="constitution-docs-grid">
+            {internationalDocuments.map((doc) => (
+              <article key={doc.title} className="constitution-doc-item">
+                <h4>{doc.title}</h4>
+                <p>{doc.summary}</p>
+                <div className="constitution-resource-actions">
+                  <a className="btn btn-primary" href={doc.url} target="_blank" rel="noreferrer">
+                    View PDF
+                  </a>
+                  <a className="btn btn-secondary" href={doc.url} download={doc.fileName}>
+                    Download PDF
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
+          <div className="constitution-reference-links">
+            <h4>Important Global Reference Links</h4>
+            {internationalReferenceCategories.map((group) => (
+              <div key={group.category} className="constitution-link-category">
+                <h5>{group.category}</h5>
+                <ul className="syllabus-list syllabus-list-links">
+                  {group.links.map((item) => (
+                    <li key={item.url}>
+                      <a href={item.url} target="_blank" rel="noreferrer">
+                        {item.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         </article>
       </section>
@@ -7815,7 +8005,7 @@ function Footer() {
           <Link to="/css-rules">CSS Rules</Link>
           <Link to="/css-past-papers">CSS Past Papers</Link>
           <Link to="/css-study-material">CSS Study Material</Link>
-          <Link to="/constitution-of-pakistan">Constitution of Pakistan</Link>
+          <Link to="/key-documents">Key Documents</Link>
           <Link to="/guardian-study-planner">Guardian Study Planner</Link>
         </div>
 
@@ -8360,6 +8550,136 @@ function PakistanAffairsPage() {
 }
 
 
+const INTERNATIONAL_NEWS_REFERENCE_CATEGORIES = [
+  {
+    category: 'Global Wire Services',
+    sources: [
+      { name: 'Reuters', url: 'https://www.reuters.com/world/' },
+      { name: 'Associated Press (AP)', url: 'https://apnews.com/world-news' },
+      { name: 'Agence France-Presse (AFP)', url: 'https://www.afp.com/en/news-hub' },
+    ],
+  },
+  {
+    category: 'Major International Broadcasters',
+    sources: [
+      { name: 'BBC News (World)', url: 'https://www.bbc.com/news/world' },
+      { name: 'Al Jazeera', url: 'https://www.aljazeera.com/news/' },
+      { name: 'CNN (World)', url: 'https://edition.cnn.com/world' },
+    ],
+  },
+  {
+    category: 'Business and Geopolitics',
+    sources: [
+      { name: 'Financial Times (World)', url: 'https://www.ft.com/world' },
+      { name: 'The Economist (International)', url: 'https://www.economist.com/international' },
+      { name: 'The Guardian (World News)', url: 'https://www.theguardian.com/world' },
+      { name: 'The New York Times (World)', url: 'https://www.nytimes.com/section/world' },
+    ],
+  },
+  {
+    category: 'Wars and Armed Conflict',
+    sources: [
+      { name: 'Institute for the Study of War (ISW)', url: 'https://www.understandingwar.org/' },
+      { name: 'International Crisis Group', url: 'https://www.crisisgroup.org/' },
+      { name: 'SIPRI', url: 'https://www.sipri.org/' },
+      { name: 'ACLED', url: 'https://acleddata.com/' },
+    ],
+  },
+  {
+    category: 'Technology and Cybersecurity',
+    sources: [
+      { name: 'Wired', url: 'https://www.wired.com/' },
+      { name: 'MIT Technology Review', url: 'https://www.technologyreview.com/' },
+      { name: 'The Hacker News', url: 'https://thehackernews.com/' },
+      { name: 'BleepingComputer', url: 'https://www.bleepingcomputer.com/' },
+    ],
+  },
+  {
+    category: 'Artificial Intelligence',
+    sources: [
+      { name: 'OpenAI News', url: 'https://openai.com/news/' },
+      { name: 'Google DeepMind Blog', url: 'https://deepmind.google/discover/blog/' },
+      { name: 'OECD AI Policy Observatory', url: 'https://oecd.ai/' },
+      { name: 'Partnership on AI', url: 'https://partnershiponai.org/' },
+    ],
+  },
+  {
+    category: 'Gender and Society',
+    sources: [
+      { name: 'UN Women News', url: 'https://www.unwomen.org/en/news-stories' },
+      { name: 'UNFPA', url: 'https://www.unfpa.org/' },
+      { name: 'UN Commission on the Status of Women', url: 'https://www.unwomen.org/en/csw' },
+      { name: 'CEDAW (OHCHR)', url: 'https://www.ohchr.org/en/treaty-bodies/cedaw' },
+    ],
+  },
+  {
+    category: 'Climate, Energy, and Environment',
+    sources: [
+      { name: 'IPCC', url: 'https://www.ipcc.ch/' },
+      { name: 'UNEP', url: 'https://www.unep.org/' },
+      { name: 'IEA', url: 'https://www.iea.org/' },
+      { name: 'Carbon Brief', url: 'https://www.carbonbrief.org/' },
+    ],
+  },
+  {
+    category: 'Nuclear, Strategic, and Security',
+    sources: [
+      { name: 'IAEA News', url: 'https://www.iaea.org/newscenter' },
+      { name: 'Arms Control Association', url: 'https://www.armscontrol.org/' },
+      { name: 'Nuclear Threat Initiative (NTI)', url: 'https://www.nti.org/' },
+      { name: 'Bulletin of the Atomic Scientists', url: 'https://thebulletin.org/' },
+    ],
+  },
+]
+
+const PAKISTAN_NEWS_REFERENCE_CATEGORIES = [
+  {
+    category: 'National Newspapers',
+    sources: [
+      { name: 'Dawn', url: 'https://www.dawn.com/latest-news' },
+      { name: 'The News International', url: 'https://www.thenews.com.pk/latest' },
+      { name: 'The Express Tribune', url: 'https://tribune.com.pk/latest' },
+      { name: 'Business Recorder', url: 'https://www.brecorder.com/latest' },
+    ],
+  },
+  {
+    category: 'Television and Digital News',
+    sources: [
+      { name: 'Geo News', url: 'https://www.geo.tv/latest' },
+      { name: 'ARY News', url: 'https://arynews.tv/' },
+      { name: 'Samaa TV', url: 'https://www.samaa.tv/' },
+      { name: 'Dunya News', url: 'https://dunyanews.tv/' },
+    ],
+  },
+  {
+    category: 'Policy and Governance',
+    sources: [
+      { name: 'Radio Pakistan', url: 'https://www.radio.gov.pk/' },
+      { name: 'Associated Press of Pakistan (APP)', url: 'https://www.app.com.pk/' },
+      { name: 'Press Information Department (PID)', url: 'https://pid.gov.pk/' },
+      { name: 'Cabinet Division Notifications', url: 'https://cabinet.gov.pk/' },
+    ],
+  },
+  {
+    category: 'Economy, Finance, and Data',
+    sources: [
+      { name: 'State Bank of Pakistan (SBP)', url: 'https://www.sbp.org.pk/' },
+      { name: 'Pakistan Bureau of Statistics (PBS)', url: 'https://www.pbs.gov.pk/' },
+      { name: 'Ministry of Finance', url: 'https://www.finance.gov.pk/' },
+      { name: 'Pakistan Stock Exchange (PSX)', url: 'https://www.psx.com.pk/' },
+    ],
+  },
+  {
+    category: 'Security and Law & Order',
+    sources: [
+      { name: 'Ministry of Interior', url: 'https://www.interior.gov.pk/' },
+      { name: 'National Counter Terrorism Authority (NACTA)', url: 'https://nacta.gov.pk/' },
+      { name: 'FIA', url: 'https://fia.gov.pk/' },
+      { name: 'ISPR', url: 'https://www.ispr.gov.pk/' },
+    ],
+  },
+]
+
 function GlobalAffairsPage({ defaultTab = 'global' }) {
   const location = useLocation()
   const navigate = useNavigate()
@@ -8394,6 +8714,11 @@ function GlobalAffairsPage({ defaultTab = 'global' }) {
       { replace: true },
     )
   }
+  const referencesUpdatedLabel = new Date().toLocaleDateString('en-GB', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric',
+  })
 
   return (
     <main className="page-main container">
@@ -8425,6 +8750,56 @@ function GlobalAffairsPage({ defaultTab = 'global' }) {
           Global Map
         </button>
       </div>
+
+      {activeTab === 'global' ? (
+        <section className="global-references-panel glass-panel" aria-label="International news references">
+          <div className="global-references-head">
+            <h3>International News References</h3>
+            <p>Top authentic global sources (updated: {referencesUpdatedLabel})</p>
+          </div>
+          <div className="global-references-grid">
+            {INTERNATIONAL_NEWS_REFERENCE_CATEGORIES.map((group) => (
+              <article key={group.category} className="global-references-card">
+                <h4>{group.category}</h4>
+                <ul className="syllabus-list syllabus-list-links">
+                  {group.sources.map((source) => (
+                    <li key={source.name}>
+                      <a href={source.url} target="_blank" rel="noreferrer">
+                        {source.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </section>
+      ) : null}
+
+      {activeTab === 'pakistan' ? (
+        <section className="global-references-panel glass-panel" aria-label="Pakistan news references">
+          <div className="global-references-head">
+            <h3>Pakistan News References</h3>
+            <p>Pakistan-only authentic sources (updated: {referencesUpdatedLabel})</p>
+          </div>
+          <div className="global-references-grid">
+            {PAKISTAN_NEWS_REFERENCE_CATEGORIES.map((group) => (
+              <article key={group.category} className="global-references-card">
+                <h4>{group.category}</h4>
+                <ul className="syllabus-list syllabus-list-links">
+                  {group.sources.map((source) => (
+                    <li key={source.name}>
+                      <a href={source.url} target="_blank" rel="noreferrer">
+                        {source.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       {activeTab === 'global' ? <WorldAffairsPage /> : null}
       {activeTab === 'pakistan' ? <PakistanAffairsPage /> : null}
@@ -8905,7 +9280,8 @@ function App() {
           <Route path="/css-rules" element={<CssRulesPage />} />
           <Route path="/css-past-papers" element={<CssPastPapersPage />} />
           <Route path="/css-study-material" element={<CssStudyMaterialPage />} />
-          <Route path="/constitution-of-pakistan" element={<ConstitutionOfPakistanPage />} />
+          <Route path="/key-documents" element={<KeyDocumentsPage />} />
+          <Route path="/constitution-of-pakistan" element={<Navigate to="/key-documents" replace />} />
           <Route path="/about-guardian-angel" element={<AboutGuardianAngelPage />} />
           <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
           <Route path="/blogs" element={<BlogPage authUser={authUser} />} />

@@ -4782,6 +4782,43 @@ a {
   color: #10141f;
 }
 
+.global-references-panel {
+  margin: 1rem 0 1.2rem;
+  padding: 1rem;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.global-references-head h3 {
+  margin: 0;
+  font-size: 1.06rem;
+}
+
+.global-references-head p {
+  margin: 0.35rem 0 0;
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+}
+
+.global-references-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.8rem;
+}
+
+.global-references-card {
+  border: 1px solid var(--border-soft);
+  border-radius: 0.9rem;
+  background: var(--input-bg);
+  padding: 0.8rem;
+}
+
+.global-references-card h4 {
+  margin: 0 0 0.45rem;
+  color: var(--brand-gold-dark);
+  font-size: 0.92rem;
+}
+
 .current-affairs-search {
   margin-top: 0.9rem;
   display: grid;
@@ -5017,7 +5054,7 @@ a {
 
 .global-leaflet-map {
   width: 100%;
-  min-height: clamp(280px, 55vh, 620px);
+  min-height: clamp(420px, 78vh, 780px);
   max-width: 100%;
   border-radius: 14px;
   overflow: hidden;
@@ -5030,6 +5067,10 @@ a {
 
 .global-leaflet-map .leaflet-control-attribution a {
   color: #f2d56b;
+}
+
+.global-leaflet-map .leaflet-control-attribution {
+  display: none !important;
 }
 
 .global-leaflet-map .leaflet-pane {
@@ -5597,7 +5638,7 @@ a {
   }
 
   .global-leaflet-map {
-    min-height: clamp(240px, 48vh, 420px);
+    min-height: clamp(300px, 56vh, 560px);
   }
 
   .global-conflict-list {
@@ -5999,17 +6040,18 @@ a {
 }
 
 .constitution-resource-card {
-  border: 1px solid rgba(242, 213, 107, 0.22);
+  border: 1px solid var(--border-soft);
   border-radius: 1rem;
   padding: 1.1rem;
-  background: linear-gradient(145deg, rgba(10, 16, 28, 0.84), rgba(20, 30, 48, 0.72));
+  background: var(--surface-gradient);
+  box-shadow: 0 10px 24px rgb(16 24 40 / 10%);
   display: grid;
   gap: 0.9rem;
 }
 
 .constitution-resource-card p {
   margin: 0;
-  color: #d9e2f2;
+  color: var(--text-secondary);
   line-height: 1.6;
 }
 
@@ -6017,4 +6059,61 @@ a {
   display: flex;
   flex-wrap: wrap;
   gap: 0.65rem;
+}
+
+.constitution-docs-grid {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.constitution-doc-item {
+  border: 1px solid var(--border-soft);
+  border-radius: 0.85rem;
+  padding: 0.9rem;
+  background: var(--input-bg);
+  display: grid;
+  gap: 0.55rem;
+}
+
+.constitution-doc-item h4 {
+  margin: 0;
+  font-size: 1.02rem;
+}
+
+.constitution-doc-item p {
+  margin: 0;
+}
+
+.constitution-reference-links h4 {
+  margin: 0 0 0.55rem;
+}
+
+.constitution-link-category + .constitution-link-category {
+  margin-top: 0.7rem;
+}
+
+.constitution-link-category h5 {
+  margin: 0 0 0.45rem;
+  font-size: 0.92rem;
+  color: var(--brand-gold-dark);
+  letter-spacing: 0.02em;
+}
+
+[data-theme='dark'] .constitution-resource-card {
+  border-color: rgb(242 213 107 / 22%);
+  background: linear-gradient(145deg, rgb(10 16 28 / 84%), rgb(20 30 48 / 72%));
+  box-shadow: none;
+}
+
+[data-theme='dark'] .constitution-resource-card p {
+  color: #d9e2f2;
+}
+
+[data-theme='dark'] .constitution-doc-item {
+  border-color: rgb(151 177 220 / 24%);
+  background: rgb(6 12 24 / 60%);
+}
+
+[data-theme='dark'] .constitution-link-category h5 {
+  color: #f3d979;
 }
