@@ -2486,6 +2486,11 @@ function KeyDocumentsPage() {
           <p>CSS Resource Library</p>
           <h2>Key Documents</h2>
         </div>
+        <p className="rules-source key-documents-mantra">
+          <span className="guardian-highlight-word-green">
+            Study from authentic documents, build strong arguments, and think like a future officer
+          </span>
+        </p>
 
         <article className="constitution-resource-card">
           <h3>Pakistan Key Documents</h3>
@@ -8726,6 +8731,12 @@ function GlobalAffairsPage({ defaultTab = 'global' }) {
         <p>International & Pakistan coverage</p>
         <h2>Global Affairs</h2>
       </section>
+      <p className="rules-source global-affairs-mantra">
+        <span className="guardian-highlight-word-green">
+          Build your own notes from authentic and updated sources, and trust Allah Almighty to guide your
+          journey toward success
+        </span>
+      </p>
 
       <div className="current-affairs-feed-tabs" role="tablist" aria-label="Global vs Pakistan affairs">
         <button
