@@ -4765,7 +4765,7 @@ a {
 
 .footer-bottom {
   border-top: 1px solid rgb(255 255 255 / 10%);
-  padding: 0.8rem 0 1.1rem;
+  padding: 0.85rem 0 calc(1.25rem + max(10px, env(safe-area-inset-bottom, 0px)));
   display: flex;
   justify-content: space-between;
   gap: 1rem;
@@ -6126,6 +6126,15 @@ a {
 
   .footer-bottom {
     flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding-top: 1rem;
+    /* Clear mobile browser / in-app bottom chrome (gesture bar, nav pills, etc.) */
+    padding-bottom: calc(4.85rem + max(10px, env(safe-area-inset-bottom, 0px)));
+  }
+
+  html.ga-in-app-webview .footer-bottom {
+    padding-bottom: calc(5.35rem + max(12px, env(safe-area-inset-bottom, 0px)));
   }
 
   .calendar-header {
