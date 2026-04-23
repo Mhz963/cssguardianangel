@@ -28,6 +28,7 @@ import { cssStudyMaterials } from './data/cssStudyMaterialsData'
 const GlobalConflictMapTab = lazy(() => import('./GlobalConflictMapTab.jsx'))
 
 const SITE_URL = 'https://mhzguardianangel.vercel.app'
+const GOOGLE_PLAY_APP_URL = 'https://play.google.com/store/apps/details?id=com.cssguardianangel.app'
 
 const DEFAULT_SEO = {
   title: 'Guardian Angel | CSS Preparation Platform Pakistan',
@@ -8069,6 +8070,25 @@ function Footer() {
           <h4>About Guardian Angel</h4>
           <Link to="/about-guardian-angel">Read Our Vision</Link>
           <Link to="/blogs">Guardian Blogs</Link>
+        </div>
+
+        <div className="footer-store">
+          <h4 className="footer-store-heading">Mobile app</h4>
+          <a
+            className="footer-google-play-link"
+            href={GOOGLE_PLAY_APP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Get CSS Guardian Angel on Google Play"
+          >
+            <img
+              className="footer-google-play-img"
+              src="/google-play-badge.png"
+              alt=""
+              decoding="async"
+              loading="lazy"
+            />
+          </a>
         </div>
       </div>
 

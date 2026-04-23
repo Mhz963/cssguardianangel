@@ -4573,6 +4573,67 @@ a {
   font-size: 0.88rem;
 }
 
+.footer-store {
+  min-width: 0;
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.12rem;
+  text-align: center;
+}
+
+.footer-store-heading {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  line-height: 1.15;
+  font-family: 'Cinzel', serif;
+  color: #ffffff;
+  font-size: 1.04rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.footer-google-play-link {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.footer-google-play-link:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.footer-google-play-link:focus-visible {
+  outline: 2px solid #f2d56b;
+  outline-offset: 3px;
+}
+
+.footer-google-play-img {
+  display: block;
+  height: 76px;
+  width: auto;
+  max-width: min(280px, 100%);
+  margin: 0;
+  padding: 0;
+  vertical-align: top;
+  /* Trim typical transparent padding in official Play badge artwork */
+  clip-path: inset(5% 4% 7% 4%);
+  object-fit: contain;
+}
+
 .footer a {
   color: #f2d56b;
   text-decoration: none;
@@ -5930,6 +5991,17 @@ a {
     min-width: 0;
   }
 
+  .footer-store {
+    flex: 1 1 100%;
+    order: 3;
+  }
+
+  .footer-google-play-img {
+    height: 82px;
+    max-width: min(300px, 94vw);
+    clip-path: inset(5% 3% 7% 3%);
+  }
+
   .footer-bottom {
     flex-direction: column;
   }
@@ -5971,6 +6043,16 @@ a {
 @media (max-width: 480px) {
   .topbar .container {
     width: min(1120px, 95%);
+  }
+
+  .footer-google-play-img {
+    height: 72px;
+    max-width: min(300px, 96vw);
+    clip-path: inset(4% 2% 8% 2%);
+  }
+
+  .footer-store-heading {
+    font-size: 1rem;
   }
 
   .brand {
