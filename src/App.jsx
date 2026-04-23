@@ -3926,8 +3926,9 @@ function SubjectDetailPage() {
   )
 }
 
-/** Set to true when Google sign-in is ready (e.g. native app + OAuth flow). */
-const GOOGLE_SIGN_IN_ENABLED = false
+function isGuardianAngelNativeAppWebView() {
+  return typeof window !== 'undefined' && typeof window.ReactNativeWebView?.postMessage === 'function'
+}
 
 function SignInPage({ authUser }) {
   const navigate = useNavigate()
@@ -4019,17 +4020,39 @@ function SignInPage({ authUser }) {
       setError('Supabase is not configured. Please set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY.')
       return
     }
+    const redirectTo = `${window.location.origin}/signin`
     setIsSubmitting(true)
     try {
+      if (isGuardianAngelNativeAppWebView()) {
+        const { data, error: oauthError } = await supabase.auth.signInWithOAuth({
+          provider: 'google',
+          options: {
+            redirectTo,
+            skipBrowserRedirect: true,
+          },
+        })
+        if (oauthError) throw oauthError
+        if (!data?.url) {
+          throw new Error('Could not start Google sign-in.')
+        }
+        window.ReactNativeWebView.postMessage(
+          JSON.stringify({
+            type: 'ga_oauth_google',
+            url: data.url,
+            returnUrl: redirectTo,
+          }),
+        )
+        return
+      }
+
       const { error: oauthError } = await supabase.auth.signInWithOAuth({
         provider: 'google',
-        options: {
-          redirectTo: `${window.location.origin}/signin`,
-        },
+        options: { redirectTo },
       })
       if (oauthError) throw oauthError
     } catch (oauthError) {
       setError(oauthError?.message || 'Google sign-in failed.')
+    } finally {
       setIsSubmitting(false)
     }
   }
@@ -4097,17 +4120,7 @@ function SignInPage({ authUser }) {
               <button className="btn btn-primary planner-submit" type="submit" disabled={isSubmitting}>
                 {mode === 'signup' ? 'Create Account' : 'Sign In'}
               </button>
-              <button
-                className="btn btn-google"
-                type="button"
-                onClick={handleGoogleSignIn}
-                disabled={isSubmitting || !GOOGLE_SIGN_IN_ENABLED}
-                title={
-                  GOOGLE_SIGN_IN_ENABLED
-                    ? undefined
-                    : 'Google sign-in is temporarily unavailable. Use email and password.'
-                }
-              >
+              <button className="btn btn-google" type="button" onClick={handleGoogleSignIn} disabled={isSubmitting}>
                 <img
                   src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
                   alt=""
