@@ -3307,6 +3307,40 @@ a {
   }
 }
 
+@keyframes auth-google-desktop-msg-pump {
+  0%,
+  100% {
+    transform: scale(1);
+    text-shadow:
+      0 0 8px rgb(242 213 107 / 40%),
+      0 0 20px rgb(242 213 107 / 18%);
+  }
+  50% {
+    transform: scale(1.045);
+    text-shadow:
+      0 0 14px rgb(242 213 107 / 65%),
+      0 0 28px rgb(242 213 107 / 32%);
+  }
+}
+
+.auth-google-desktop-only-msg {
+  margin: 0.6rem auto 0;
+  max-width: 22rem;
+  padding: 0.35rem 0.65rem;
+  text-align: center;
+  font-size: 0.86rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #f2d56b;
+  line-height: 1.35;
+  border-radius: 10px;
+  border: 1px solid rgb(242 213 107 / 28%);
+  background: linear-gradient(145deg, rgb(242 213 107 / 10%), rgb(7 12 22 / 35%));
+  transform-origin: center center;
+  animation: auth-google-desktop-msg-pump 2.4s ease-in-out infinite;
+}
+
 .auth-card label {
   color: #e6ebff !important;
 }
@@ -6111,17 +6145,7 @@ a {
   }
 
   .footer-store {
-    flex: 1 1 100%;
-    order: 3;
-  }
-
-  .footer-google-play-link {
-    clip-path: inset(5% 3% 7% 3%);
-  }
-
-  .footer-google-play-img {
-    height: 82px;
-    max-width: min(300px, 94vw);
+    display: none;
   }
 
   .footer-bottom {
@@ -6174,19 +6198,6 @@ a {
 @media (max-width: 480px) {
   .topbar .container {
     width: min(1120px, 95%);
-  }
-
-  .footer-google-play-link {
-    clip-path: inset(4% 2% 8% 2%);
-  }
-
-  .footer-google-play-img {
-    height: 72px;
-    max-width: min(300px, 96vw);
-  }
-
-  .footer-store-heading {
-    font-size: 1rem;
   }
 
   .brand {
@@ -6310,6 +6321,11 @@ a {
   .footer-google-play-img,
   .footer-google-play-link::after {
     animation: none !important;
+  }
+
+  .auth-google-desktop-only-msg {
+    animation: none !important;
+    transform: none;
   }
 }
 

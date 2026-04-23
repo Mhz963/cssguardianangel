@@ -4132,6 +4132,11 @@ function SignInPage({ authUser }) {
                 <span>Continue with Google</span>
               </button>
             </div>
+            {isNarrowViewport ? (
+              <p className="auth-google-desktop-only-msg" role="status">
+                Google sign-in is available only on desktop.
+              </p>
+            ) : null}
             <button
               className="btn btn-secondary planner-submit"
               type="button"
