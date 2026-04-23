@@ -3928,8 +3928,8 @@ function SubjectDetailPage() {
   )
 }
 
-/** Set to true when Google sign-in is ready (e.g. native app + OAuth flow). */
-const GOOGLE_SIGN_IN_ENABLED = false
+/** Google OAuth is enabled above this width; disabled (greyed) at mobile widths (WebView / small screens). */
+const SIGNIN_GOOGLE_DISABLED_MEDIA = '(max-width: 720px)'
 
 function SignInPage({ authUser }) {
   const navigate = useNavigate()
@@ -3952,6 +3952,19 @@ function SignInPage({ authUser }) {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState('')
+  const [isNarrowViewport, setIsNarrowViewport] = useState(() => {
+    if (typeof window === 'undefined') return false
+    return window.matchMedia(SIGNIN_GOOGLE_DISABLED_MEDIA).matches
+  })
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return undefined
+    const mq = window.matchMedia(SIGNIN_GOOGLE_DISABLED_MEDIA)
+    const onChange = () => setIsNarrowViewport(mq.matches)
+    onChange()
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
+  }, [])
 
   useEffect(() => {
     setMode(initialMode)
@@ -4017,6 +4030,7 @@ function SignInPage({ authUser }) {
 
   const handleGoogleSignIn = async () => {
     setError('')
+    if (isNarrowViewport) return
     if (!hasSupabaseConfig || !supabase) {
       setError('Supabase is not configured. Please set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY.')
       return
@@ -4103,11 +4117,11 @@ function SignInPage({ authUser }) {
                 className="btn btn-google"
                 type="button"
                 onClick={handleGoogleSignIn}
-                disabled={isSubmitting || !GOOGLE_SIGN_IN_ENABLED}
+                disabled={isSubmitting || isNarrowViewport}
                 title={
-                  GOOGLE_SIGN_IN_ENABLED
-                    ? undefined
-                    : 'Google sign-in is temporarily unavailable. Use email and password.'
+                  isNarrowViewport
+                    ? 'Google sign-in is available on wider screens. Use email and password here.'
+                    : undefined
                 }
               >
                 <img
