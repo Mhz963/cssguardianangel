@@ -3926,6 +3926,9 @@ function SubjectDetailPage() {
   )
 }
 
+/** Set to true when Google sign-in is ready (e.g. native app + OAuth flow). */
+const GOOGLE_SIGN_IN_ENABLED = false
+
 function SignInPage({ authUser }) {
   const navigate = useNavigate()
   const location = useLocation()
@@ -4094,7 +4097,17 @@ function SignInPage({ authUser }) {
               <button className="btn btn-primary planner-submit" type="submit" disabled={isSubmitting}>
                 {mode === 'signup' ? 'Create Account' : 'Sign In'}
               </button>
-              <button className="btn btn-google" type="button" onClick={handleGoogleSignIn} disabled={isSubmitting}>
+              <button
+                className="btn btn-google"
+                type="button"
+                onClick={handleGoogleSignIn}
+                disabled={isSubmitting || !GOOGLE_SIGN_IN_ENABLED}
+                title={
+                  GOOGLE_SIGN_IN_ENABLED
+                    ? undefined
+                    : 'Google sign-in is temporarily unavailable. Use email and password.'
+                }
+              >
                 <img
                   src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
                   alt=""

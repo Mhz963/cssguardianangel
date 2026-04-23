@@ -3324,6 +3324,22 @@ a {
   height: 18px;
 }
 
+.btn-google:disabled,
+.btn-google[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: #e8eaed;
+  color: #5f6368;
+  border-color: #dadce0;
+  filter: grayscale(0.45);
+}
+
+.btn-google:disabled:hover,
+.btn-google[disabled]:hover {
+  background: #e8eaed;
+  border-color: #dadce0;
+}
+
 .auth-card .blog-create-actions {
   align-items: center;
 }
