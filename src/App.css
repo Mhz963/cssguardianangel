@@ -4329,6 +4329,9 @@ a {
   font-style: normal;
   color: var(--brand-gold-soft);
   font-size: 0.8rem;
+  line-height: 1;
+  min-height: 1em;
+  white-space: nowrap;
 }
 
 .planner-meta {

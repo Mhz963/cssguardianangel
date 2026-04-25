@@ -4157,6 +4157,21 @@ function SignInPage({ authUser }) {
   )
 }
 
+/** Restore persisted strategy plan; revives examDate after JSON round-trip. */
+function normalizePlannerPlanFromStorage(raw) {
+  if (!raw || typeof raw !== 'object') return null
+  if (!Number.isFinite(Number(raw.studyHours)) || !Array.isArray(raw.timetable) || raw.timetable.length === 0) {
+    return null
+  }
+  let examDate = raw.examDate
+  if (!(examDate instanceof Date)) {
+    const parsed = new Date(examDate)
+    if (Number.isNaN(parsed.getTime())) return null
+    examDate = parsed
+  }
+  return { ...raw, examDate }
+}
+
 function GuardianStudyPlannerPage({ authUser }) {
   const profileStorageKey = `ga-profile-${authUser.id || authUser.username}`
   const [isRemoteProfileHydrated, setIsRemoteProfileHydrated] = useState(() => !(supabase && authUser?.id))
@@ -4180,7 +4195,15 @@ function GuardianStudyPlannerPage({ authUser }) {
     const now = new Date()
     return new Date(now.getFullYear(), now.getMonth(), 1)
   })
-  const [plan, setPlan] = useState(null)
+  const [plan, setPlan] = useState(() => {
+    try {
+      const raw = localStorage.getItem(profileStorageKey)
+      const profile = raw ? JSON.parse(raw) : null
+      return normalizePlannerPlanFromStorage(profile?.plan) ?? null
+    } catch {
+      return null
+    }
+  })
   const [error, setError] = useState('')
   const [subjectLockerModalMessage, setSubjectLockerModalMessage] = useState('')
   const [selectedOptionalSubjects, setSelectedOptionalSubjects] = useState(() => {
@@ -4459,6 +4482,8 @@ function GuardianStudyPlannerPage({ authUser }) {
         if (payload.manualDmcScores) setManualDmcScores(payload.manualDmcScores)
         if (payload.aiExamDraft) setAiExamDraft(payload.aiExamDraft)
         if (payload.aiExamResult) setAiExamResult(payload.aiExamResult)
+        const remotePlan = normalizePlannerPlanFromStorage(payload.plan)
+        if (remotePlan) setPlan(remotePlan)
         if (payload.completedDays) setCompletedDays(payload.completedDays)
         if (payload.dayStatuses) setDayStatuses(payload.dayStatuses)
         if (Array.isArray(payload.timerSessions)) setTimerSessions(payload.timerSessions)
@@ -4492,6 +4517,7 @@ function GuardianStudyPlannerPage({ authUser }) {
         username: authUser.username,
         fullName: authUser.fullName,
         plannerForm: form,
+        plan,
         selectedCompulsoryElective,
         selectedOptionalSubjects,
         subjectsLocked,
@@ -4543,6 +4569,7 @@ function GuardianStudyPlannerPage({ authUser }) {
     profileStorageKey,
     isRemoteProfileHydrated,
     form,
+    plan,
     selectedCompulsoryElective,
     selectedOptionalSubjects,
     subjectsLocked,
