@@ -6148,7 +6148,17 @@ a {
   }
 
   .footer-store {
-    display: none;
+    flex: 1 1 100%;
+    order: 3;
+  }
+
+  .footer-google-play-link {
+    clip-path: inset(5% 3% 7% 3%);
+  }
+
+  .footer-google-play-img {
+    height: 82px;
+    max-width: min(300px, 94vw);
   }
 
   .footer-bottom {
@@ -6201,6 +6211,19 @@ a {
 @media (max-width: 480px) {
   .topbar .container {
     width: min(1120px, 95%);
+  }
+
+  .footer-google-play-link {
+    clip-path: inset(4% 2% 8% 2%);
+  }
+
+  .footer-google-play-img {
+    height: 72px;
+    max-width: min(300px, 96vw);
+  }
+
+  .footer-store-heading {
+    font-size: 1rem;
   }
 
   .brand {

@@ -3659,7 +3659,9 @@ function AboutGuardianAngelPage() {
             guaranteed success, which shifts the focus from learning and service to profit and branding.
           </p>
           <p>
-            Guardian Angel stands as an anti system to this culture. It focuses on providing real, simple, and high
+            Guardian Angel stands as an{' '}
+            <span className="guardian-highlight-word">anti system to this business academic culture</span>. It focuses on
+            providing real, simple, and high
             quality guidance to CSS aspirants so that every student has equal opportunity to compete fairly and serve
             the nation with honesty and purpose. Any individual who donates knowledge, time, or guidance to others is
             also a Guardian Angel and a true hero of the nation.
