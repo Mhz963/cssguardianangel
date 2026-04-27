@@ -4119,6 +4119,48 @@ a {
   font-weight: 600;
 }
 
+.planner-reminder-panel {
+  margin-top: 0.35rem;
+  padding: 0.75rem 0.85rem;
+  border-radius: 12px;
+  border: 1px solid color-mix(in srgb, var(--brand-gold) 35%, var(--border-soft));
+  background: color-mix(in srgb, var(--brand-gold) 6%, var(--bg-secondary));
+}
+
+.planner-reminder-toggle {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  cursor: pointer;
+  margin: 0;
+  font-weight: 500;
+}
+
+.planner-reminder-toggle input {
+  margin-top: 0.2rem;
+  width: 1.05rem;
+  height: 1.05rem;
+  flex-shrink: 0;
+  accent-color: var(--brand-gold-dark);
+}
+
+.planner-reminder-copy {
+  display: grid;
+  gap: 0.28rem;
+  min-width: 0;
+}
+
+.planner-reminder-copy strong {
+  font-size: 0.98rem;
+  color: var(--text-primary);
+}
+
+.planner-reminder-copy small {
+  color: var(--text-secondary);
+  line-height: 1.45;
+  font-weight: 400;
+}
+
 .planner-output {
   display: grid;
   gap: 0.7rem;

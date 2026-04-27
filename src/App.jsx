@@ -17,6 +17,13 @@ import whatsappShareIcon from './assets/whatsapp-share-icon.svg'
 import copyShareIcon from './assets/copy-share-icon.svg'
 import { hasSupabaseConfig, supabase } from './utils/supabaseClient.js'
 import {
+  GA_PLANNER_REMINDER_TOGGLE_KEY,
+  primePlannerReminderAudio,
+  requestPlannerReminderPermission,
+  syncPlannerRemindersToNativeAndWeb,
+  usePlannerReminderBootstrap,
+} from './plannerReminderClient.js'
+import {
   compulsorySubjects,
   detailedSubjectPages,
   optionalGroups,
@@ -4207,6 +4214,13 @@ function GuardianStudyPlannerPage({ authUser }) {
     }
   })
   const [error, setError] = useState('')
+  const [slotRemindersEnabled, setSlotRemindersEnabled] = useState(() => {
+    try {
+      return localStorage.getItem(GA_PLANNER_REMINDER_TOGGLE_KEY) === '1'
+    } catch {
+      return false
+    }
+  })
   const [subjectLockerModalMessage, setSubjectLockerModalMessage] = useState('')
   const [selectedOptionalSubjects, setSelectedOptionalSubjects] = useState(() => {
     try {
@@ -4592,6 +4606,18 @@ function GuardianStudyPlannerPage({ authUser }) {
     socialTimerAccumulatedSeconds,
     socialTimerStartedAtMs,
   ])
+
+  useEffect(() => {
+    if (!isRemoteProfileHydrated) return undefined
+    const timerId = window.setTimeout(() => {
+      syncPlannerRemindersToNativeAndWeb({
+        enabled: slotRemindersEnabled,
+        form,
+        plan,
+      })
+    }, 500)
+    return () => window.clearTimeout(timerId)
+  }, [isRemoteProfileHydrated, slotRemindersEnabled, form, plan])
 
   useEffect(() => {
     if (timerStatus !== 'running' || !timerStartedAtMs) {
@@ -7031,6 +7057,48 @@ function GuardianStudyPlannerPage({ authUser }) {
                       </div>
                     </label>
 
+                    <div className="planner-reminder-panel">
+                      <label className="planner-reminder-toggle">
+                        <input
+                          type="checkbox"
+                          checked={slotRemindersEnabled}
+                          onChange={async (event) => {
+                            const next = event.target.checked
+                            if (next) {
+                              primePlannerReminderAudio()
+                              const ok = await requestPlannerReminderPermission()
+                              if (!ok) {
+                                window.alert(
+                                  'Allow notifications in your browser or system settings to receive study-slot reminders with sound.',
+                                )
+                                return
+                              }
+                            }
+                            try {
+                              localStorage.setItem(GA_PLANNER_REMINDER_TOGGLE_KEY, next ? '1' : '0')
+                            } catch {
+                              // ignore
+                            }
+                            setSlotRemindersEnabled(next)
+                            syncPlannerRemindersToNativeAndWeb({
+                              enabled: next,
+                              form,
+                              plan,
+                            })
+                          }}
+                        />
+                        <span className="planner-reminder-copy">
+                          <strong>Daily study-slot reminders</strong>
+                          <small>
+                            Plays a short chime and shows a notification at the start of each productive hour you selected
+                            (using this device&apos;s local time). In a normal browser tab, reminders run while Guardian
+                            Angel stays open; in the mobile app, daily alarms can fire in the background after you allow
+                            notifications for this app.
+                          </small>
+                        </span>
+                      </label>
+                    </div>
+
                     <label>
                       What stage of preparation are you currently in?
                       <select name="stage" value={form.stage} onChange={handleChange}>
@@ -9443,6 +9511,7 @@ function App() {
   }
 
   useRemoveVisibleWordHyphens()
+  usePlannerReminderBootstrap(authUser)
 
   return (
     <BrowserRouter>
