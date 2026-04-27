@@ -9002,12 +9002,13 @@ function StickyNotesWidget({ authUser }) {
   })
 
   useEffect(() => {
-    if (!isStickyNotesHydrated) return
     try {
       localStorage.setItem(stickyNotesStorageKey, JSON.stringify(notes))
     } catch {
       // Ignore storage failures.
     }
+
+    if (!isStickyNotesHydrated) return
 
     const syncStickyNotes = async () => {
       if (!supabase || !authUser?.id) return
@@ -9042,7 +9043,13 @@ function StickyNotesWidget({ authUser }) {
           .eq('user_id', authUser.id)
           .maybeSingle()
         if (isCancelled) return
-        if (Array.isArray(data?.notes)) setNotes(data.notes)
+        // Do not replace local notes with an empty server array — the row often starts as []
+        // before the first upsert, which would wipe notes restored from localStorage.
+        if (Array.isArray(data?.notes) && data.notes.length > 0) {
+          setNotes(data.notes)
+        } else if (Array.isArray(data?.notes) && data.notes.length === 0) {
+          setNotes((prev) => (prev.length > 0 ? prev : []))
+        }
       } catch {
         // Keep local notes if remote fetch fails.
       } finally {
