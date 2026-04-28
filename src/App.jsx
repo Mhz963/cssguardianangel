@@ -4439,6 +4439,9 @@ function GuardianStudyPlannerPage({ authUser }) {
       return []
     }
   })
+  const [manualTimerMinutes, setManualTimerMinutes] = useState('')
+  const [manualTimerDayKey, setManualTimerDayKey] = useState(() => formatDayKey(new Date()))
+  const [manualTimerError, setManualTimerError] = useState('')
   const [subjectPerformanceLevels, setSubjectPerformanceLevels] = useState(() => {
     try {
       const raw = localStorage.getItem(profileStorageKey)
@@ -5933,6 +5936,38 @@ function GuardianStudyPlannerPage({ authUser }) {
     setTimerAccumulatedSeconds(0)
     setTimerStartedAtMs(null)
     setTimerStatus('idle')
+  }
+
+  const handleAddManualTimerEntry = () => {
+    const parsedMinutes = Number(manualTimerMinutes)
+    const roundedMinutes = Math.round(parsedMinutes)
+    const parsedDate = parseIsoDate(manualTimerDayKey)
+    if (!Number.isFinite(parsedMinutes) || roundedMinutes <= 0) {
+      setManualTimerError('Enter valid minutes greater than zero.')
+      return
+    }
+    if (roundedMinutes > 1440) {
+      setManualTimerError('Manual entry cannot exceed 1440 minutes for one add.')
+      return
+    }
+    if (!parsedDate) {
+      setManualTimerError('Choose a valid date for manual entry.')
+      return
+    }
+    const dayKey = formatDayKey(parsedDate)
+    const completedAt = new Date(parsedDate.getFullYear(), parsedDate.getMonth(), parsedDate.getDate(), 23, 59, 0)
+    setTimerSessions((current) => [
+      ...current,
+      {
+        id: `${Date.now()}-manual-${Math.random().toString(36).slice(2, 8)}`,
+        completedAt: completedAt.toISOString(),
+        dayKey,
+        durationSeconds: roundedMinutes * 60,
+      },
+    ])
+    setCompletedDays((current) => ({ ...current, [dayKey]: true }))
+    setManualTimerMinutes('')
+    setManualTimerError('')
   }
 
   const handleSocialTimerStart = () => {
@@ -7677,6 +7712,37 @@ function GuardianStudyPlannerPage({ authUser }) {
             <button className="btn btn-secondary" type="button" onClick={handleTimerReset}>
               Reset
             </button>
+          </div>
+
+          <div className="manual-timer-entry">
+            <strong>Manual Time Entry</strong>
+            <div className="manual-timer-fields">
+              <label>
+                Minutes
+                <input
+                  type="number"
+                  min="1"
+                  max="1440"
+                  step="1"
+                  value={manualTimerMinutes}
+                  onChange={(event) => setManualTimerMinutes(event.target.value)}
+                  placeholder="e.g. 90"
+                />
+              </label>
+              <label>
+                Date
+                <input
+                  type="date"
+                  value={manualTimerDayKey}
+                  max={todayDateKey}
+                  onChange={(event) => setManualTimerDayKey(event.target.value)}
+                />
+              </label>
+              <button className="btn btn-secondary" type="button" onClick={handleAddManualTimerEntry}>
+                Add Time
+              </button>
+            </div>
+            {manualTimerError ? <p className="planner-error">{manualTimerError}</p> : null}
           </div>
 
           <div className="study-metrics">
