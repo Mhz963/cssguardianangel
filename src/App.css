@@ -4121,44 +4121,35 @@ a {
 
 .planner-reminder-panel {
   margin-top: 0.35rem;
-  padding: 0.75rem 0.85rem;
-  border-radius: 12px;
-  border: 1px solid color-mix(in srgb, var(--brand-gold) 35%, var(--border-soft));
-  background: color-mix(in srgb, var(--brand-gold) 6%, var(--bg-secondary));
 }
 
-.planner-reminder-toggle {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.65rem;
-  cursor: pointer;
-  margin: 0;
-  font-weight: 500;
-}
-
-.planner-reminder-toggle input {
-  margin-top: 0.2rem;
-  width: 1.05rem;
-  height: 1.05rem;
-  flex-shrink: 0;
-  accent-color: var(--brand-gold-dark);
-}
-
-.planner-reminder-copy {
-  display: grid;
-  gap: 0.28rem;
-  min-width: 0;
-}
-
-.planner-reminder-copy strong {
-  font-size: 0.98rem;
+.planner-reminder-toggle-btn {
+  border: 1px solid color-mix(in srgb, var(--brand-gold) 45%, var(--border-soft));
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--bg-secondary) 90%, var(--brand-gold) 10%),
+    color-mix(in srgb, var(--bg-secondary) 96%, var(--brand-gold) 4%)
+  );
   color: var(--text-primary);
+  border-radius: 999px;
+  padding: 0.52rem 0.9rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
-.planner-reminder-copy small {
-  color: var(--text-secondary);
-  line-height: 1.45;
-  font-weight: 400;
+.planner-reminder-toggle-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 16px rgb(16 24 40 / 16%);
+}
+
+.planner-reminder-toggle-btn.active {
+  border-color: color-mix(in srgb, var(--brand-gold) 78%, var(--border-soft));
+  color: #111827;
+  background: linear-gradient(135deg, var(--brand-gold), var(--brand-gold-dark));
+  box-shadow: 0 10px 20px rgb(201 162 39 / 35%);
 }
 
 .planner-output {
