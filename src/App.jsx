@@ -8287,7 +8287,7 @@ function Footer() {
 
         <div className="footer-links">
           <h4>About Guardian Angel</h4>
-          <Link to="/about-guardian-angel">Read Our Vision</Link>
+          <Link to="/about-guardian-angel">Guardian's Vision</Link>
           <Link to="/blogs">Guardian Blogs</Link>
         </div>
 
@@ -9149,6 +9149,7 @@ function StickyNotesWidget({ authUser }) {
   const [draft, setDraft] = useState('')
   const [isStickyNotesHydrated, setIsStickyNotesHydrated] = useState(() => !(supabase && authUser?.id))
   const stickyNotesStorageKey = authUser?.id ? `ga-sticky-notes-${authUser.id}` : 'ga-sticky-notes'
+  const stickyNotesLoadedUserRef = useRef(authUser?.id || 'guest')
   const [notes, setNotes] = useState(() => {
     try {
       const raw = localStorage.getItem(stickyNotesStorageKey)
@@ -9161,35 +9162,20 @@ function StickyNotesWidget({ authUser }) {
 
   useEffect(() => {
     try {
-      localStorage.setItem(stickyNotesStorageKey, JSON.stringify(notes))
+      const raw = localStorage.getItem(stickyNotesStorageKey)
+      const parsed = raw ? JSON.parse(raw) : []
+      setNotes(Array.isArray(parsed) ? parsed : [])
     } catch {
-      // Ignore storage failures.
+      setNotes([])
     }
-
-    if (!isStickyNotesHydrated) return
-
-    const syncStickyNotes = async () => {
-      if (!supabase || !authUser?.id) return
-      try {
-        await supabase.from('user_sticky_notes').upsert(
-          {
-            user_id: authUser.id,
-            notes,
-            updated_at: new Date().toISOString(),
-          },
-          { onConflict: 'user_id' },
-        )
-      } catch {
-        // Keep local notes if remote sync fails.
-      }
-    }
-    syncStickyNotes()
-  }, [notes, authUser?.id, isStickyNotesHydrated, stickyNotesStorageKey])
+  }, [stickyNotesStorageKey])
 
   useEffect(() => {
     let isCancelled = false
+    const currentUserKey = authUser?.id || 'guest'
     const loadStickyNotes = async () => {
       if (!supabase || !authUser?.id) {
+        stickyNotesLoadedUserRef.current = currentUserKey
         setIsStickyNotesHydrated(true)
         return
       }
@@ -9211,7 +9197,10 @@ function StickyNotesWidget({ authUser }) {
       } catch {
         // Keep local notes if remote fetch fails.
       } finally {
-        if (!isCancelled) setIsStickyNotesHydrated(true)
+        if (!isCancelled) {
+          stickyNotesLoadedUserRef.current = currentUserKey
+          setIsStickyNotesHydrated(true)
+        }
       }
     }
     loadStickyNotes()
@@ -9219,6 +9208,35 @@ function StickyNotesWidget({ authUser }) {
       isCancelled = true
     }
   }, [authUser?.id])
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(stickyNotesStorageKey, JSON.stringify(notes))
+    } catch {
+      // Ignore storage failures.
+    }
+
+    if (!isStickyNotesHydrated) return
+    const currentUserKey = authUser?.id || 'guest'
+    if (stickyNotesLoadedUserRef.current !== currentUserKey) return
+
+    const syncStickyNotes = async () => {
+      if (!supabase || !authUser?.id) return
+      try {
+        await supabase.from('user_sticky_notes').upsert(
+          {
+            user_id: authUser.id,
+            notes,
+            updated_at: new Date().toISOString(),
+          },
+          { onConflict: 'user_id' },
+        )
+      } catch {
+        // Keep local notes if remote sync fails.
+      }
+    }
+    syncStickyNotes()
+  }, [notes, authUser?.id, isStickyNotesHydrated, stickyNotesStorageKey])
 
   const handlePaste = async () => {
     try {
