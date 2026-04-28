@@ -1381,6 +1381,31 @@ const formatDayKey = (date) => {
 
 const startOfDay = (date) => new Date(date.getFullYear(), date.getMonth(), date.getDate())
 
+const splitDurationByDayEndingAt = (completedAt, durationSeconds) => {
+  const totalSeconds = Math.max(0, Math.floor(Number(durationSeconds) || 0))
+  if (!totalSeconds) return []
+  let remainingSeconds = totalSeconds
+  let cursorEndMs = completedAt.getTime()
+  const chunks = []
+
+  while (remainingSeconds > 0) {
+    // If save happened exactly at 00:00:00, attribute elapsed time to the day that just ended.
+    const cursorForDay = new Date(Math.max(0, cursorEndMs - 1))
+    const dayStartMs = startOfDay(cursorForDay).getTime()
+    const secondsInCurrentDay = Math.max(1, Math.floor((cursorEndMs - dayStartMs) / 1000))
+    const chunkSeconds = Math.min(remainingSeconds, secondsInCurrentDay)
+    chunks.push({
+      dayKey: formatDayKey(cursorForDay),
+      completedAt: new Date(cursorEndMs).toISOString(),
+      durationSeconds: chunkSeconds,
+    })
+    remainingSeconds -= chunkSeconds
+    cursorEndMs -= chunkSeconds * 1000
+  }
+
+  return chunks.reverse()
+}
+
 const addDays = (date, days) => {
   const next = new Date(date)
   next.setDate(next.getDate() + days)
@@ -5879,17 +5904,23 @@ function GuardianStudyPlannerPage({ authUser }) {
         : elapsedSeconds
     if (finalElapsedSeconds > 0) {
       const completedAt = new Date()
-      const dayKey = formatDayKey(completedAt)
+      const splitChunks = splitDurationByDayEndingAt(completedAt, finalElapsedSeconds)
       setTimerSessions((current) => [
         ...current,
-        {
-          id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
-          completedAt: completedAt.toISOString(),
-          dayKey,
-          durationSeconds: finalElapsedSeconds,
-        },
+        ...splitChunks.map((chunk, index) => ({
+          id: `${Date.now()}-${index}-${Math.random().toString(36).slice(2, 8)}`,
+          completedAt: chunk.completedAt,
+          dayKey: chunk.dayKey,
+          durationSeconds: chunk.durationSeconds,
+        })),
       ])
-      setCompletedDays((current) => ({ ...current, [dayKey]: true }))
+      setCompletedDays((current) => {
+        const next = { ...current }
+        splitChunks.forEach((chunk) => {
+          next[chunk.dayKey] = true
+        })
+        return next
+      })
     }
     setElapsedSeconds(0)
     setTimerAccumulatedSeconds(0)
