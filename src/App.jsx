@@ -4168,7 +4168,7 @@ function SignInPage({ authUser }) {
             </div>
             {isNarrowViewport ? (
               <p className="auth-google-desktop-only-msg" role="status">
-                Google Signin is available on browser.
+                Google Signin is available on desktop.
               </p>
             ) : null}
             <button
