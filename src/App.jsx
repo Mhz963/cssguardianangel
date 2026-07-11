@@ -32,6 +32,7 @@ import {
 import { formatNewsTimestamp } from './utils/formatNewsTimestamp.js'
 import { fetchSubscriptionStatus, hasActiveSubscription } from './utils/paymentClient.js'
 import { cssStudyMaterials } from './data/cssStudyMaterialsData'
+import { cssPastPapersByYear, FPSC_CSS_PAST_PAPERS_SOURCE } from './data/cssPastPapersData.js'
 import PaymentPage from './PaymentPage.jsx'
 
 const GlobalConflictMapTab = lazy(() => import('./GlobalConflictMapTab.jsx'))
@@ -694,19 +695,6 @@ const cssRulesSections = [
   },
 ]
 
-const formatPastPaperTitle = (relativePath) => {
-  const fileName = relativePath.split('/').pop() || ''
-  const noTimestamp = fileName
-    .replace(/^\d{4}-\d{2}-\d{2}-\d{2}-\d{2}-\d{2}-/, '')
-    .replace(/^\d{4}-\d{2}-\d{2}-/, '')
-  const withoutExt = noTimestamp.replace(/\.pdf$/i, '')
-  return withoutExt
-    .replace(/&amp;/gi, '&')
-    .replace(/-+/g, ' ')
-    .replace(/\s+/g, ' ')
-    .trim()
-}
-
 const formatStudySlideTitle = (fileName) => {
   const withoutExt = fileName.replace(/\.(ppt|pptx|pdf)$/i, '')
   return withoutExt
@@ -810,257 +798,7 @@ const businessAdministrationSlides = businessAdministrationSlideFiles.map((fileN
 }))
 
 // cssStudyMaterials is now auto-loaded from `src/data/cssStudyMaterialsData.js`.
-
-const cssPastPapers2025Paths = [
-  'assets/media/2025-06-05-06-24-08-Accountancy-&amp;-Auditing-I-.pdf',
-  'assets/media/2025-06-05-06-24-11-Accountancy-&amp;-Auditing-II-.pdf',
-  'assets/media/2025-06-05-06-24-16-AGRICULTURE-&amp;-FORESTRY-.pdf',
-  'assets/media/2025-06-05-06-24-19-ANTHROPOLOGY--.pdf',
-  'assets/media/2025-06-05-06-24-23-APPLIED-MATHS.pdf',
-  'assets/media/2025-06-05-06-24-27-ARABIC.pdf',
-  'assets/media/2025-06-05-06-24-32-BALOCHI.pdf',
-  'assets/media/2025-06-05-06-24-36-BOTANY.pdf',
-  'assets/media/2025-06-05-06-24-40-BRITISH-HISTORY.pdf',
-  'assets/media/2025-06-05-06-24-44-BUSINESS-ADMN.pdf',
-  'assets/media/2025-06-05-06-24-48-CHEMISTRY-1.pdf',
-  'assets/media/2025-06-05-06-24-52-CHEMISTRY-2.pdf',
-  'assets/media/2025-06-05-06-24-56-COMARATIVE-ST.-NM-.pdf',
-  'assets/media/2025-06-05-06-25-04-COMPUTER-SCIENCE-PAPER-1.pdf',
-  'assets/media/2025-06-05-06-25-08-COMPUTER-SCIENCE-PAPER-2.pdf',
-  'assets/media/2025-06-05-06-25-12-CONSTITUTIONAL-LAW.pdf',
-  'assets/media/2025-06-05-06-25-16-CRIMINOLOGY.pdf',
-  'assets/media/2025-06-05-06-25-20-ECONOMICS-PAPER-1.pdf',
-  'assets/media/2025-06-05-06-25-25-ECONOMICS-PAPER-2.pdf',
-  'assets/media/2025-06-05-06-25-33-ENGLISH-(P&amp;C).pdf',
-  'assets/media/2025-06-05-06-25-37-ENGLISH-LITERATURE.pdf',
-  'assets/media/2025-06-05-06-27-15-ENVIRONMENTAL-SC..pdf',
-  'assets/media/2025-06-05-06-27-22-ESSAY-25.pdf',
-  'assets/media/2025-06-05-06-27-29-EUROPEAN-HISTORY.pdf',
-  'assets/media/2025-06-05-06-27-34-GENDER-STUDIES.pdf',
-  'assets/media/2025-06-05-06-27-42-GEOGRAPHY.pdf',
-  'assets/media/2025-06-05-06-27-45-GEOLOGY.pdf',
-  'assets/media/2025-06-05-06-29-50-GK2--(CA)-.pdf',
-  'assets/media/2025-06-05-06-29-55-GK3-PAK-AFFAIRS-.pdf',
-  'assets/media/2025-06-05-06-30-01-GK-I.pdf',
-  'assets/media/2025-06-05-06-32-49-GOVERNANCE-&amp;-P.P..pdf',
-  'assets/media/2025-06-05-06-32-52-History-of-USA.pdf',
-  'assets/media/2025-06-05-06-32-56-HISTORY-PAK-&amp;-INDIA.pdf',
-  'assets/media/2025-06-05-06-32-59-INTERNATIONAL-LAW.pdf',
-  'assets/media/2025-06-05-06-33-04-IR-1.pdf',
-  'assets/media/2025-06-05-06-33-07-IR-II.pdf',
-  'assets/media/2025-06-05-06-33-10-ISLAMIC-HISTORY.pdf',
-  'assets/media/2025-06-05-06-33-15-ISLAMIC-STUDIES.pdf',
-  'assets/media/2025-06-05-06-33-20-JOURNALISM-&amp;-Mass-communication-.pdf',
-  'assets/media/2025-06-05-06-33-25-LAW.pdf',
-  'assets/media/2025-06-05-06-33-28-MERCANTILE-LAW.pdf',
-  'assets/media/2025-06-05-06-33-33-MUSLIM-LAW-&amp;-JURIS.pdf',
-  'assets/media/2025-06-05-06-33-40-PASHTO-.pdf',
-  'assets/media/2025-06-05-06-33-44-PERSIAN.pdf',
-  'assets/media/2025-06-05-06-33-48-PHILOSOPHY.pdf',
-  'assets/media/2025-06-05-06-33-53-PHYSICS-1.pdf',
-  'assets/media/2025-06-05-06-33-56-PHYSICS-2.pdf',
-  'assets/media/2025-06-05-06-34-00-POL.SCIENCE-PAPER-1.pdf',
-  'assets/media/2025-06-05-06-34-05-POL.SCIENCE-PAPER-2.pdf',
-  'assets/media/2025-06-05-06-34-11-PSYCHOLOGY.pdf',
-  'assets/media/2025-06-05-06-34-16-PUBLIC-ADMNISTRATION.pdf',
-  'assets/media/2025-06-05-06-34-20-PUNJABI.pdf',
-  'assets/media/2025-06-05-06-34-23-PURE-MATHS.pdf',
-  'assets/media/2025-06-05-06-34-30-SINDHI.pdf',
-  'assets/media/2025-06-05-06-34-34-SOCIOLOGY-.pdf',
-  'assets/media/2025-06-05-06-34-39-STATISTICS.pdf',
-  'assets/media/2025-06-05-06-34-43-TOWN-PLANNING.pdf',
-  'assets/media/2025-06-05-06-34-49-URDU-LITERATURE.pdf',
-  'assets/media/2025-06-05-06-34-56-ZOOLOGY.pdf',
-]
-
-const cssPastPapers2025 = cssPastPapers2025Paths.map((path) => ({
-  title: formatPastPaperTitle(path),
-  url: `https://www.fpsc.gov.pk/${path.replace(/&amp;/gi, '&')}`,
-}))
-
-const cssPastPapers2024Paths = [
-  'assets/media/2024-06-27-05-06-15-PURE-MATHS.pdf',
-  'assets/media/2024-06-27-05-06-15-AGRICULTURE-&amp;-FORESTRY-.pdf',
-  'assets/media/2024-06-27-05-06-15-ARABIC.pdf',
-  'assets/media/2024-06-27-05-06-15-BALOCHI.pdf',
-  'assets/media/2024-06-27-05-06-15-CRIMINOLOGY.pdf',
-  'assets/media/2024-06-27-05-06-15-ECONOMICS-PAPER-2.pdf',
-  'assets/media/2024-06-27-05-06-15-ECONOMICS-PAPER-1.pdf',
-  'assets/media/2024-06-27-05-06-15-CONSTITUTIONAL-LAW.pdf',
-  'assets/media/2024-06-27-05-06-15-COMPUTER-SCIENCE-PAPER-1.pdf',
-  'assets/media/2024-06-27-05-06-15-COMPUTER-SCIENCE-PAPER-2.pdf',
-  'assets/media/2024-06-27-05-06-15-ENGLISH-LITERATURE.pdf',
-  'assets/media/2024-06-27-05-06-15-ENVIRONMENTAL-SC..pdf',
-  'assets/media/2024-06-27-05-06-15-ESSAY.pdf',
-  'assets/media/2024-06-27-05-06-15-GENDER-STUDIES.pdf',
-  'assets/media/2024-06-27-05-06-15-EUROPEAN-HISTORY.pdf',
-  'assets/media/2024-06-27-05-06-15-ENGLISH-(P&amp;C).pdf',
-  'assets/media/2024-06-27-05-06-15-History-of-USA.pdf',
-  'assets/media/2024-06-27-05-06-15-GOVERNANCE-&amp;-P.P..pdf',
-  'assets/media/2024-06-27-05-06-15-GK-I.pdf',
-  'assets/media/2024-06-27-05-06-15-GK2--(CA)-.pdf',
-  'assets/media/2024-06-27-05-06-15-GK3-PAK-AFFAIRS-.pdf',
-  'assets/media/2024-06-27-05-06-15-GEOGRAPHY.pdf',
-  'assets/media/2024-06-27-05-06-15-INTERNATIONAL-LAW.pdf',
-  'assets/media/2024-06-27-05-06-15-HISTORY-PAK-&amp;-INDIA.pdf',
-  'assets/media/2024-06-27-05-06-15-IR-II.pdf',
-  'assets/media/2024-06-27-05-06-15-ISLAMIC-HISTORY.pdf',
-  'assets/media/2024-06-27-05-06-15-LAW.pdf',
-  'assets/media/2024-06-27-05-06-15-JOURNALISM-&amp;-Mass-communication-.pdf',
-  'assets/media/2024-06-27-05-06-15-ISLAMIC-STUDIES.pdf',
-  'assets/media/2024-06-27-05-06-15-MUSLIM-LAW-&amp;-JURIS.pdf',
-  'assets/media/2024-06-27-05-06-15-PERSIAN.pdf',
-  'assets/media/2024-06-27-05-06-15-PHILOSOPHY.pdf',
-  'assets/media/2024-06-27-05-06-15-PASHTO-.pdf',
-  'assets/media/2024-06-27-05-06-15-PSYCHOLOGY.pdf',
-  'assets/media/2024-06-27-05-06-15-POL.SCIENCE-PAPER-2.pdf',
-]
-
-const cssPastPapers2024 = cssPastPapers2024Paths.map((path) => ({
-  title: formatPastPaperTitle(path),
-  url: `https://www.fpsc.gov.pk/${path.replace(/&amp;/gi, '&')}`,
-}))
-
-const cssPastPapers2023Paths = [
-  'assets/media/2024-06-13-Computer-Science,-Paper-2.pdf',
-  'assets/media/2024-06-13-Economics-Paper-1.pdf',
-  'assets/media/2024-06-13-English-(P&amp;C)-subjective.pdf',
-  'assets/media/2024-06-13-Economics-2.pdf',
-  'assets/media/2024-06-13-English-Literature.pdf',
-  'assets/media/2024-06-13-Criminology.pdf',
-  'assets/media/2024-06-13-Environmental-Science.pdf',
-  'assets/media/2024-06-13-Essay.pdf',
-  'assets/media/2024-06-13-European-History.pdf',
-  'assets/media/2024-06-13-Gender-Studies.pdf',
-  'assets/media/2024-06-13-Geology.pdf',
-  'assets/media/2024-06-13-Geography.pdf',
-  'assets/media/2024-06-13-GK3-(Pakistan-Affairs).pdf',
-  'assets/media/2024-06-13-Governance-&amp;-P.Policies.pdf',
-  'assets/media/2024-06-13-GK-I-(General-Science-and-Ability).pdf',
-  'assets/media/2024-06-13-History-of-Pakistan-&amp;-India.pdf',
-  'assets/media/2024-06-13-IR-II.pdf',
-  'assets/media/2024-06-13-International-Law.pdf',
-  'assets/media/2024-06-13-IR-1.pdf',
-  'assets/media/2024-06-13-History-of-USA.pdf',
-  'assets/media/2024-06-13-Islamic-History-and-Culture.pdf',
-  'assets/media/2024-06-13-Islamic-Studies.pdf',
-  'assets/media/2024-06-13-Law.pdf',
-  'assets/media/2024-06-13-Journalism-and-Mass-Communication.pdf',
-  'assets/media/2024-06-13-Persian.pdf',
-  'assets/media/2024-06-13-Philosophy.pdf',
-  'assets/media/2024-06-13-Muslim-Law-&amp;-Jurisprudence.pdf',
-  'assets/media/2024-06-13-Physics-Paper-2.pdf',
-  'assets/media/2024-06-13-Physics-Paper-1.pdf',
-  'assets/media/2024-06-13-Mercantile-Law.pdf',
-  'assets/media/2024-06-13-Pol-Science-Paper-1.pdf',
-  'assets/media/2024-06-13-Psychology.pdf',
-  'assets/media/2024-06-13-Punjabi-subjective.pdf',
-  'assets/media/2024-06-13-Pol-Science-Paper-2.pdf',
-  'assets/media/2024-06-13-Pure-Mathematics.pdf',
-  'assets/media/2024-06-13-Public-Administration.pdf',
-  'assets/media/2024-06-13-Town-Planning-and-Urban-Mgmt.pdf',
-  'assets/media/2024-06-13-Pushto.pdf',
-  'assets/media/2024-06-13-Sociology.pdf',
-  'assets/media/2024-06-13-Sindhi.pdf',
-  'assets/media/2024-06-13-Statistics.pdf',
-  'assets/media/2024-06-13-Urdu-Literature.pdf',
-  'assets/media/2024-06-13-Zoology.pdf',
-  'assets/media/2024-06-13-Accountancy-&amp;-Auditing-I.pdf',
-  'assets/media/2024-06-13-Accountancy-&amp;-Auditing-II.pdf',
-  'assets/media/2024-06-13-Agriculture-&amp;-Forestry.pdf',
-  'assets/media/2024-06-13-Applied-Mathematics.pdf',
-  'assets/media/2024-06-13-Anthropology.pdf',
-  'assets/media/2024-06-13-Arabic.pdf',
-  'assets/media/2024-06-13-Balochi.pdf',
-  'assets/media/2024-06-13-Botany.pdf',
-  'assets/media/2024-06-13-British-History.pdf',
-  'assets/media/2024-06-13-Chemistry,-Paper-I.pdf',
-  'assets/media/2024-06-13-Chemistry-II.pdf',
-  'assets/media/2024-06-13-Business-Administration.pdf',
-  'assets/media/2024-06-13-Comparitive--Studies.-NM.pdf',
-]
-
-const cssPastPapers2023 = cssPastPapers2023Paths.map((path) => ({
-  title: formatPastPaperTitle(path),
-  url: `https://www.fpsc.gov.pk/${path.replace(/&amp;/gi, '&')}`,
-}))
-
-const cssPastPapers2022Paths = [
-  'assets/media/2024-06-13-Constitutional-Law-subjective.pdf',
-  'assets/media/2024-06-13-European-History-subjective.pdf',
-  'assets/media/2024-06-13-Gender-Studies-subjective.pdf',
-  'assets/media/2024-06-13-GK3-PAK-AFFAIRS-SUBJECTIVE.pdf',
-  'assets/media/2024-06-13-GK-I--subjective.pdf',
-  'assets/media/2024-06-13-History-of-Pakistan-&amp;-India-subjective.pdf',
-  'assets/media/2024-06-13-International-Law--subjective.pdf',
-  'assets/media/2024-06-13-HISTORY-OF-THE-USA-SUBJECTIVE.pdf',
-  'assets/media/2024-06-13-IR-1-SUBJECTIVE.pdf',
-  'assets/media/2024-06-13-IR-II-Subjective-.pdf',
-  'assets/media/2024-06-13-ISLAMIC-HISTORY-AND-CULTURE-SUBJECTIVE.pdf',
-  'assets/media/2024-06-13-LAW-SUBJECTIVE.pdf',
-  'assets/media/2024-06-13-JOURNALISM-&amp;-MASS-COM-SUBJECTIVE.pdf',
-  'assets/media/2024-06-13-Islamic-Studies-subjective.pdf',
-  'assets/media/2024-06-13-PASHTO-SUBJECTIVE.pdf',
-  'assets/media/2024-06-13-MERCANTILE-LAW-SUBJECTIVE.pdf',
-  'assets/media/2024-06-13-Muslim-Law-&amp;-Jurisprudence-subjective.pdf',
-  'assets/media/2024-06-13-PHILOSOPHY-SUBJECTIVE.pdf',
-  'assets/media/2024-06-13-PHYSICS-PAPER-1-SUBJECTIVE.pdf',
-  'assets/media/2024-06-13-Persian-subjective.pdf',
-  'assets/media/2024-06-13-POL.SCIENCE-PAPER-1.-SUBJECTIVE.pdf',
-  'assets/media/2024-06-13-Physics-II-subjective.pdf',
-  'assets/media/2024-06-13-POL.SCIENCE-PAPER-2.-SUBJECTIVE.pdf',
-  'assets/media/2024-06-13-PURE-MATHEMATICS-SUBJECTIVE.pdf',
-  'assets/media/2024-06-13-Public-Administration-subjective.pdf',
-  'assets/media/2024-06-13-Psychology-subjective.pdf',
-  'assets/media/2024-06-13-SOCIOLOGY-SUBJECTIVE.pdf',
-  'assets/media/2024-06-13-Sindhi-subjective.pdf',
-  'assets/media/2024-06-13-Statistics-subjective.pdf',
-  'assets/media/2024-06-13-TOWN-PLANNING-&amp;-URBAN-MNGT-SUBJECTIVE.pdf',
-  'assets/media/2024-06-13-Urdu-Literature-subjective.pdf',
-  'assets/media/2024-06-13-Zoology-subjective.pdf',
-  'assets/media/2024-06-13-Accountancy-&amp;-Auditing-II--subjective.pdf',
-  'assets/media/2024-06-13-Accountancy-&amp;-Auditing-I--subjective.pdf',
-  'assets/media/2024-06-13-AGRICULTURE-&amp;-FORESTRY-SUBJECTIVE.pdf',
-  'assets/media/2024-06-13-ANTHROPOLOGY-SUBJECTIVE.pdf',
-  'assets/media/2024-06-13-Balochi-subjective.pdf',
-  'assets/media/2024-06-13-Botany-subjective.pdf',
-  'assets/media/2024-06-13-BUSINESS-ADMINISTRATION-SUBJECTIVE.pdf',
-  'assets/media/2024-06-13-APPLIED-MATHEMATICS-SUBJECTIVE.pdf',
-  'assets/media/2024-06-13-British-History-subjective.pdf',
-  'assets/media/2024-06-13-Chemistry,-Paper-I-subjective.pdf',
-  'assets/media/2024-06-13-Chemistry-II--subjective.pdf',
-  'assets/media/2024-06-13-COMARATIVE-ST.-NM-SUBJECTIVE-(1).pdf',
-  'assets/media/2024-06-13-Computer-Science,-Paper-2-subjective.pdf',
-  'assets/media/2024-06-13-COMPUTER-SCIENCE-PAPER-1-SUBJECTIVE.pdf',
-]
-
-const cssPastPapers2022 = cssPastPapers2022Paths.map((path) => ({
-  title: formatPastPaperTitle(path),
-  url: `https://www.fpsc.gov.pk/${path.replace(/&amp;/gi, '&')}`,
-}))
-
-const cssPastPapersByYear = [
-  {
-    year: '2025',
-    sourceUrl: 'https://www.fpsc.gov.pk/category/css-2025-descriptive-papers-1241569033-2025-06-05',
-    papers: cssPastPapers2025,
-  },
-  {
-    year: '2024',
-    sourceUrl: 'https://www.fpsc.gov.pk/category/css-2023-descriptive-papers-516644049-2024-06-27',
-    papers: cssPastPapers2024,
-  },
-  {
-    year: '2023',
-    sourceUrl: 'https://fpsc.gov.pk/category/css-2023-descriptive-papers-1663083777-2024-06-13',
-    papers: cssPastPapers2023,
-  },
-  {
-    year: '2022',
-    sourceUrl: 'https://fpsc.gov.pk/category/css-2023-descriptive-papers-815643912-2024-06-13',
-    papers: cssPastPapers2022,
-  },
-]
+// cssPastPapersByYear is loaded from `src/data/cssPastPapersData.js` (official FPSC links).
 
 const MS_PER_DAY = 24 * 60 * 60 * 1000
 const SIGNIN_DRAFT_KEY = 'ga-signin-draft'
@@ -2104,17 +1842,15 @@ function CssPastPapersPage() {
       <section className="container css-rules-page">
         <div className="section-title">
           <p>CSS Past Papers</p>
-          <h2>CSS 2025 Descriptive Papers</h2>
+          <h2>
+            CSS {selectedYearData?.year || cssPastPapersByYear[0]?.year || ''} Descriptive Papers
+          </h2>
         </div>
 
         <p className="rules-source">
-          Source format:{' '}
-          <a
-            href="https://fpsc.gov.pk/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Federal Public Service Commission (FPSC)
+          Official source:{' '}
+          <a href={FPSC_CSS_PAST_PAPERS_SOURCE} target="_blank" rel="noreferrer">
+            FPSC Previous Question Papers (CSS)
           </a>
         </p>
 
@@ -2172,7 +1908,7 @@ function CssPastPapersPage() {
             <p className="papers-year-source">
               Source:{' '}
               <a href={selectedYearData.sourceUrl} target="_blank" rel="noreferrer">
-                FPSC CSS {selectedYearData.year} Descriptive Papers
+                FPSC Question Papers CSS-{selectedYearData.year}
               </a>
             </p>
 

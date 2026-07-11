@@ -259,7 +259,14 @@ export async function handleRedeemVoucher(req, res) {
       },
       { onConflict: 'user_id' },
     )
-    if (error) throw error
+    if (error) {
+      if (String(error.message || '').includes('user_payments_status_check')) {
+        throw new Error(
+          'Voucher status is not enabled in the database yet. Run supabase/migrations/20250711_user_payments_voucher.sql in Supabase SQL Editor.',
+        )
+      }
+      throw error
+    }
 
     sendJson(res, 200, { redeemed: true, alreadyActive: false, status: 'voucher' })
   } catch (error) {
