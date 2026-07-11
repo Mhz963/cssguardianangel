@@ -211,7 +211,7 @@ create table if not exists public.user_payments (
   first_month_amount_pkr integer not null default 1000,
   monthly_amount_pkr integer not null default 500,
   status text not null default 'pending' check (
-    status in ('pending', 'active', 'past_due', 'canceled', 'incomplete', 'unpaid')
+    status in ('pending', 'active', 'past_due', 'canceled', 'incomplete', 'unpaid', 'voucher')
   ),
   current_period_end timestamptz,
   paid_at timestamptz,

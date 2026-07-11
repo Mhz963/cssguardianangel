@@ -3,7 +3,7 @@ import { hasSupabaseConfig, supabase } from './supabaseClient.js'
 export const FIRST_MONTH_PRICE_PKR = 1000
 export const MONTHLY_PRICE_PKR = 500
 
-export const ACTIVE_SUBSCRIPTION_STATUSES = new Set(['active', 'trialing'])
+export const ACTIVE_SUBSCRIPTION_STATUSES = new Set(['active', 'trialing', 'voucher'])
 
 export function hasActiveSubscription(status) {
   return ACTIVE_SUBSCRIPTION_STATUSES.has(status)
@@ -82,6 +82,28 @@ export async function verifyCheckoutSession(sessionId) {
   const payload = await response.json().catch(() => ({}))
   if (!response.ok) {
     throw new Error(payload?.error || 'Unable to verify payment.')
+  }
+  return payload
+}
+
+export async function redeemVoucherCode(code) {
+  const token = await getAccessToken()
+  if (!token) {
+    throw new Error('Please sign in to continue.')
+  }
+
+  const response = await fetch('/api/redeem-voucher', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ code }),
+  })
+
+  const payload = await response.json().catch(() => ({}))
+  if (!response.ok) {
+    throw new Error(payload?.error || 'Unable to redeem voucher.')
   }
   return payload
 }

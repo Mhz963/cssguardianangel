@@ -2,6 +2,7 @@ import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react'
 import {
   handleCreateCheckoutSession,
+  handleRedeemVoucher,
   handleStripeWebhook,
   handleVerifyCheckoutSession,
 } from './api/lib/paymentHandlers.js'
@@ -323,6 +324,9 @@ export default defineConfig(({ mode }) => {
           })
           server.middlewares.use('/api/verify-checkout-session', async (req, res) => {
             await handleVerifyCheckoutSession(req, res)
+          })
+          server.middlewares.use('/api/redeem-voucher', async (req, res) => {
+            await handleRedeemVoucher(req, res)
           })
         },
       },

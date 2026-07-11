@@ -8,7 +8,7 @@ export const ACTIVATION_FEE_PKR = 500
 export const MONTHLY_STRIPE_AMOUNT = MONTHLY_PRICE_PKR * 100
 export const ACTIVATION_FEE_STRIPE_AMOUNT = ACTIVATION_FEE_PKR * 100
 
-export const ACTIVE_SUBSCRIPTION_STATUSES = new Set(['active', 'trialing'])
+export const ACTIVE_SUBSCRIPTION_STATUSES = new Set(['active', 'trialing', 'voucher'])
 
 export const PREMIUM_FEATURES = [
   'Subject Locker — compulsory & optional subject selection',

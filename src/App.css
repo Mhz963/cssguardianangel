@@ -3447,6 +3447,42 @@ a {
   color: #9be7b4;
 }
 
+.payment-voucher {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgb(255 255 255 / 14%);
+}
+
+.payment-voucher-title {
+  margin: 0 0 0.75rem;
+  font-size: 0.95rem;
+  color: rgb(242 245 255 / 78%);
+}
+
+.payment-voucher-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.payment-voucher-form input {
+  flex: 1 1 12rem;
+  min-height: 44px;
+  padding: 0.55rem 0.75rem;
+  border-radius: 11px;
+  border: 1px solid rgb(255 255 255 / 22%);
+  background: rgb(255 255 255 / 8%);
+  color: #f2f5ff;
+}
+
+.payment-voucher-form input::placeholder {
+  color: rgb(242 245 255 / 48%);
+}
+
+.payment-voucher-form .btn {
+  flex: 0 0 auto;
+}
+
 .btn-google {
   display: inline-flex;
   align-items: center;

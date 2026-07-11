@@ -5,6 +5,7 @@ import {
   FIRST_MONTH_PRICE_PKR,
   hasActiveSubscription,
   MONTHLY_PRICE_PKR,
+  redeemVoucherCode,
   startSubscriptionCheckout,
   verifyCheckoutSession,
 } from './utils/paymentClient.js'
@@ -34,6 +35,8 @@ function PaymentPage({ authUser, subscriptionStatus, onSubscriptionRefresh }) {
   const [message, setMessage] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isVerifying, setIsVerifying] = useState(false)
+  const [isRedeemingVoucher, setIsRedeemingVoucher] = useState(false)
+  const [voucherCode, setVoucherCode] = useState('')
   const [currentPeriodEnd, setCurrentPeriodEnd] = useState(null)
 
   const isSubscribed = hasActiveSubscription(subscriptionStatus)
@@ -125,6 +128,32 @@ function PaymentPage({ authUser, subscriptionStatus, onSubscriptionRefresh }) {
     }
   }
 
+  const handleRedeemVoucher = async (event) => {
+    event.preventDefault()
+    setError('')
+    setMessage('')
+    const code = voucherCode.trim()
+    if (!code) {
+      setError('Please enter a voucher code.')
+      return
+    }
+    setIsRedeemingVoucher(true)
+    try {
+      const result = await redeemVoucherCode(code)
+      await onSubscriptionRefresh?.()
+      if (result.alreadyActive) {
+        setMessage('You already have premium access. Redirecting...')
+      } else {
+        setMessage('Voucher applied. Redirecting to Guardian Study Planner...')
+      }
+      navigate('/guardian-study-planner', { replace: true })
+    } catch (redeemError) {
+      setError(redeemError?.message || 'Unable to redeem voucher.')
+    } finally {
+      setIsRedeemingVoucher(false)
+    }
+  }
+
   if (!authUser) {
     return <Navigate to="/signin" replace state={{ from: '/payment' }} />
   }
@@ -178,13 +207,35 @@ function PaymentPage({ authUser, subscriptionStatus, onSubscriptionRefresh }) {
                 className="btn btn-primary planner-submit"
                 type="button"
                 onClick={handleSubscribe}
-                disabled={isSubmitting || isVerifying}
+                disabled={isSubmitting || isVerifying || isRedeemingVoucher}
               >
                 {isSubmitting ? 'Redirecting to Stripe...' : 'Subscribe with Stripe'}
               </button>
               <Link className="btn btn-secondary planner-submit" to="/">
                 Back to Home
               </Link>
+            </div>
+
+            <div className="payment-voucher">
+              <p className="payment-voucher-title">Have a voucher code?</p>
+              <form className="payment-voucher-form" onSubmit={handleRedeemVoucher}>
+                <input
+                  type="text"
+                  name="voucherCode"
+                  value={voucherCode}
+                  onChange={(event) => setVoucherCode(event.target.value)}
+                  placeholder="Enter voucher code"
+                  autoComplete="off"
+                  disabled={isSubmitting || isVerifying || isRedeemingVoucher}
+                />
+                <button
+                  className="btn btn-secondary planner-submit"
+                  type="submit"
+                  disabled={isSubmitting || isVerifying || isRedeemingVoucher || !voucherCode.trim()}
+                >
+                  {isRedeemingVoucher ? 'Applying...' : 'Apply Voucher'}
+                </button>
+              </form>
             </div>
 
             {message ? <p className="payment-status-msg" role="status">{message}</p> : null}

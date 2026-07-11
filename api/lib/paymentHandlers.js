@@ -206,3 +206,63 @@ export async function handleVerifyCheckoutSession(req, res) {
     sendJson(res, 500, { error: error?.message || 'Unable to verify payment.' })
   }
 }
+
+function getConfiguredVoucherCode() {
+  return String(process.env.PREMIUM_VOUCHER_CODE || 'secretperson').trim().toLowerCase()
+}
+
+export async function handleRedeemVoucher(req, res) {
+  if (req.method !== 'POST') {
+    sendJson(res, 405, { error: 'Method not allowed.' })
+    return
+  }
+
+  try {
+    const { user, error: authError } = await getAuthUserFromRequest(req)
+    if (!user) {
+      sendJson(res, 401, { error: authError || 'Unauthorized.' })
+      return
+    }
+
+    const body = parseJsonBody(req)
+    const submittedCode = String(body?.code || '').trim().toLowerCase()
+    if (!submittedCode) {
+      sendJson(res, 400, { error: 'Please enter a voucher code.' })
+      return
+    }
+
+    const validCode = getConfiguredVoucherCode()
+    if (!validCode || submittedCode !== validCode) {
+      sendJson(res, 400, { error: 'Invalid voucher code.' })
+      return
+    }
+
+    const supabaseAdmin = getSupabaseAdmin()
+    const { data: existingPayment } = await supabaseAdmin
+      .from('user_payments')
+      .select('status')
+      .eq('user_id', user.id)
+      .maybeSingle()
+
+    if (hasActiveSubscription(existingPayment?.status)) {
+      sendJson(res, 200, { redeemed: true, alreadyActive: true, status: existingPayment.status })
+      return
+    }
+
+    const now = new Date().toISOString()
+    const { error } = await supabaseAdmin.from('user_payments').upsert(
+      {
+        user_id: user.id,
+        status: 'voucher',
+        paid_at: now,
+        updated_at: now,
+      },
+      { onConflict: 'user_id' },
+    )
+    if (error) throw error
+
+    sendJson(res, 200, { redeemed: true, alreadyActive: false, status: 'voucher' })
+  } catch (error) {
+    sendJson(res, 500, { error: error?.message || 'Unable to redeem voucher.' })
+  }
+}
