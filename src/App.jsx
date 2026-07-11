@@ -30,7 +30,9 @@ import {
   slugify,
 } from './data/syllabusData'
 import { formatNewsTimestamp } from './utils/formatNewsTimestamp.js'
+import { fetchSubscriptionStatus, hasActiveSubscription } from './utils/paymentClient.js'
 import { cssStudyMaterials } from './data/cssStudyMaterialsData'
+import PaymentPage from './PaymentPage.jsx'
 
 const GlobalConflictMapTab = lazy(() => import('./GlobalConflictMapTab.jsx'))
 
@@ -87,6 +89,11 @@ const SEO_BY_PATH = {
     title: 'Sign In | Guardian Angel',
     description:
       'Sign in to Guardian Angel to access personalized CSS preparation features and your protected study planner.',
+  },
+  '/payment': {
+    title: 'Subscribe | Guardian Study Planner Premium',
+    description:
+      'Subscribe to Guardian Study Planner for PKR 1,000 first month and PKR 500/month thereafter. Unlock all premium CSS planning tools.',
   },
   '/guardian-study-planner': {
     title: 'Guardian Study Planner | CSS Planning Tool',
@@ -3965,7 +3972,15 @@ function SubjectDetailPage() {
 /** Google OAuth is enabled above this width; disabled (greyed) at mobile widths (WebView / small screens). */
 const SIGNIN_GOOGLE_DISABLED_MEDIA = '(max-width: 720px)'
 
-function SignInPage({ authUser }) {
+function resolvePostAuthPath({ from, hasPremiumAccess }) {
+  const destination = from || '/guardian-study-planner'
+  if ((destination === '/guardian-study-planner' || destination === '/payment') && !hasPremiumAccess) {
+    return '/payment'
+  }
+  return destination
+}
+
+function SignInPage({ authUser, hasPremiumAccess, isSubscriptionReady }) {
   const navigate = useNavigate()
   const location = useLocation()
   const [searchParams] = useSearchParams()
@@ -4005,11 +4020,14 @@ function SignInPage({ authUser }) {
   }, [initialMode])
 
   useEffect(() => {
-    if (authUser) {
-      const nextPath = location.state?.from || '/guardian-study-planner'
+    if (authUser && isSubscriptionReady) {
+      const nextPath = resolvePostAuthPath({
+        from: location.state?.from,
+        hasPremiumAccess,
+      })
       navigate(nextPath, { replace: true })
     }
-  }, [authUser, navigate, location.state])
+  }, [authUser, hasPremiumAccess, isSubscriptionReady, navigate, location.state])
 
   useEffect(() => {
     try {
@@ -4052,8 +4070,6 @@ function SignInPage({ authUser }) {
       } else {
         const { error: signInError } = await supabase.auth.signInWithPassword({ email, password })
         if (signInError) throw signInError
-    const nextPath = location.state?.from || '/guardian-study-planner'
-    navigate(nextPath, { replace: true })
       }
     } catch (submitError) {
       setError(submitError?.message || 'Unable to continue. Please try again.')
@@ -9538,6 +9554,9 @@ function useRemoveVisibleWordHyphens() {
 function App() {
   const [authUser, setAuthUser] = useState(null)
   const [isAuthReady, setIsAuthReady] = useState(false)
+  const [subscriptionStatus, setSubscriptionStatus] = useState(null)
+  const [isSubscriptionReady, setIsSubscriptionReady] = useState(false)
+  const hasPremiumAccess = hasActiveSubscription(subscriptionStatus)
   const [theme, setTheme] = useState(() => {
     try {
       return localStorage.getItem('ga-theme') || 'dark'
@@ -9609,11 +9628,49 @@ function App() {
     }
   }, [])
 
+  const refreshSubscriptionStatus = async (userId = authUser?.id) => {
+    if (!userId) {
+      setSubscriptionStatus(null)
+      setIsSubscriptionReady(true)
+      return
+    }
+    const { status } = await fetchSubscriptionStatus(userId)
+    setSubscriptionStatus(status)
+    setIsSubscriptionReady(true)
+  }
+
+  useEffect(() => {
+    let isCancelled = false
+    setIsSubscriptionReady(false)
+
+    const loadSubscription = async () => {
+      if (!authUser?.id) {
+        if (!isCancelled) {
+          setSubscriptionStatus(null)
+          setIsSubscriptionReady(true)
+        }
+        return
+      }
+      const { status } = await fetchSubscriptionStatus(authUser.id)
+      if (!isCancelled) {
+        setSubscriptionStatus(status)
+        setIsSubscriptionReady(true)
+      }
+    }
+
+    loadSubscription()
+    return () => {
+      isCancelled = true
+    }
+  }, [authUser?.id])
+
   const handleLogout = async () => {
     if (supabase) {
       await supabase.auth.signOut()
     }
     setAuthUser(null)
+    setSubscriptionStatus(null)
+    setIsSubscriptionReady(true)
   }
 
   useRemoveVisibleWordHyphens()
@@ -9648,13 +9705,37 @@ function App() {
           <Route path="/blog/:blogSlug" element={<LegacyBlogSlugRedirect />} />
           <Route
             path="/signin"
-            element={<SignInPage authUser={authUser} />}
+            element={
+              <SignInPage
+                authUser={authUser}
+                hasPremiumAccess={hasPremiumAccess}
+                isSubscriptionReady={isSubscriptionReady}
+              />
+            }
+          />
+          <Route
+            path="/payment"
+            element={
+              !isAuthReady || !isSubscriptionReady ? null : authUser ? (
+                <PaymentPage
+                  authUser={authUser}
+                  subscriptionStatus={subscriptionStatus}
+                  onSubscriptionRefresh={() => refreshSubscriptionStatus(authUser.id)}
+                />
+              ) : (
+                <Navigate to="/signin" replace state={{ from: '/payment' }} />
+              )
+            }
           />
           <Route
             path="/guardian-study-planner"
             element={
-              !isAuthReady ? null : authUser ? (
-                <GuardianStudyPlannerPage authUser={authUser} />
+              !isAuthReady || !isSubscriptionReady ? null : authUser ? (
+                hasPremiumAccess ? (
+                  <GuardianStudyPlannerPage authUser={authUser} />
+                ) : (
+                  <Navigate to="/payment" replace />
+                )
               ) : (
                 <Navigate to="/signin" replace state={{ from: '/guardian-study-planner' }} />
               )

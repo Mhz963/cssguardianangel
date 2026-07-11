@@ -3382,6 +3382,71 @@ a {
   color: #ffffff !important;
 }
 
+.payment-page .payment-lead {
+  margin-top: 0.65rem;
+  color: rgb(242 245 255 / 82%);
+  max-width: 42rem;
+}
+
+.payment-card {
+  max-width: 44rem;
+}
+
+.payment-pricing {
+  display: grid;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  padding: 1rem 1.1rem;
+  border-radius: 12px;
+  background: rgb(255 255 255 / 6%);
+  border: 1px solid rgb(255 255 255 / 12%);
+}
+
+.payment-price-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.payment-price-featured .payment-price-value {
+  font-size: 1.45rem;
+  color: #f6d36b;
+}
+
+.payment-price-label {
+  color: rgb(242 245 255 / 78%);
+}
+
+.payment-price-value {
+  font-size: 1.1rem;
+}
+
+.payment-note,
+.payment-footnote,
+.payment-renewal {
+  margin: 0;
+  font-size: 0.92rem;
+  color: rgb(242 245 255 / 72%);
+}
+
+.payment-features {
+  margin: 0 0 1.25rem;
+  padding-left: 1.2rem;
+  display: grid;
+  gap: 0.45rem;
+  color: rgb(242 245 255 / 88%);
+}
+
+.payment-actions {
+  margin-top: 0.5rem;
+}
+
+.payment-status-msg {
+  margin-top: 0.75rem;
+  color: #9be7b4;
+}
+
 .btn-google {
   display: inline-flex;
   align-items: center;
