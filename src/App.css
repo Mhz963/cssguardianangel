@@ -3362,6 +3362,41 @@ a {
   color: #ff9ea4;
 }
 
+.auth-mode-lead {
+  margin: 0 0 1rem;
+  color: rgb(242 245 255 / 78%);
+  font-size: 0.95rem;
+}
+
+.auth-forgot-link {
+  margin: -0.2rem 0 0.85rem;
+  text-align: right;
+}
+
+.auth-forgot-link button {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #f2d56b;
+  cursor: pointer;
+  font-size: 0.92rem;
+  text-decoration: underline;
+}
+
+.auth-forgot-link button:hover {
+  color: #fff0b0;
+}
+
+.auth-forgot-link button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.auth-success-msg {
+  margin-top: 0.75rem;
+  color: #9be7b4;
+}
+
 .auth-card .btn-primary {
   background: linear-gradient(135deg, #f2d56b, #e7c34d) !important;
   color: #10141f !important;

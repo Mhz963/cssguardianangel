@@ -3720,8 +3720,14 @@ function SignInPage({ authUser, hasPremiumAccess, isSubscriptionReady }) {
   const navigate = useNavigate()
   const location = useLocation()
   const [searchParams] = useSearchParams()
-  const initialMode = searchParams.get('mode') === 'signup' ? 'signup' : 'signin'
-  const [mode, setMode] = useState(initialMode)
+  const resolveInitialMode = () => {
+    const modeParam = searchParams.get('mode')
+    if (modeParam === 'signup') return 'signup'
+    if (modeParam === 'forgot') return 'forgot'
+    if (modeParam === 'reset') return 'reset'
+    return 'signin'
+  }
+  const [mode, setMode] = useState(resolveInitialMode)
   const [form, setForm] = useState(() => {
     try {
       const raw = localStorage.getItem(SIGNIN_DRAFT_KEY)
@@ -3735,8 +3741,10 @@ function SignInPage({ authUser, hasPremiumAccess, isSubscriptionReady }) {
       return { fullName: '', email: '', password: '' }
     }
   })
+  const [confirmPassword, setConfirmPassword] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState('')
+  const [message, setMessage] = useState('')
   const [isNarrowViewport, setIsNarrowViewport] = useState(() => {
     if (typeof window === 'undefined') return false
     return window.matchMedia(SIGNIN_GOOGLE_DISABLED_MEDIA).matches
@@ -3752,42 +3760,100 @@ function SignInPage({ authUser, hasPremiumAccess, isSubscriptionReady }) {
   }, [])
 
   useEffect(() => {
-    setMode(initialMode)
-  }, [initialMode])
+    setMode(resolveInitialMode())
+  }, [searchParams])
 
   useEffect(() => {
-    if (authUser && isSubscriptionReady) {
+    if (!supabase) return undefined
+    const hashType = typeof window !== 'undefined' ? new URLSearchParams(window.location.hash.slice(1)).get('type') : null
+    if (hashType === 'recovery') {
+      setMode('reset')
+    }
+    const { data: subscription } = supabase.auth.onAuthStateChange((event) => {
+      if (event === 'PASSWORD_RECOVERY') {
+        setMode('reset')
+        setError('')
+        setMessage('')
+      }
+    })
+    return () => subscription.subscription.unsubscribe()
+  }, [])
+
+  useEffect(() => {
+    if (authUser && isSubscriptionReady && mode !== 'reset' && mode !== 'forgot') {
       const nextPath = resolvePostAuthPath({
         from: location.state?.from,
         hasPremiumAccess,
       })
       navigate(nextPath, { replace: true })
     }
-  }, [authUser, hasPremiumAccess, isSubscriptionReady, navigate, location.state])
+  }, [authUser, hasPremiumAccess, isSubscriptionReady, mode, navigate, location.state])
 
   useEffect(() => {
+    if (mode === 'reset' || mode === 'forgot') return
     try {
       localStorage.setItem(SIGNIN_DRAFT_KEY, JSON.stringify(form))
     } catch {
       // Ignore storage failures and continue with in-memory interactions.
     }
-  }, [form])
+  }, [form, mode])
 
   const handleSubmit = async (event) => {
     event.preventDefault()
     setError('')
+    setMessage('')
     if (!hasSupabaseConfig || !supabase) {
       setError('Supabase is not configured. Please set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY.')
       return
     }
     const email = form.email.trim()
     const password = form.password
-    if (!email || !password) {
-      setError('Please enter email and password.')
-      return
-    }
     setIsSubmitting(true)
     try {
+      if (mode === 'forgot') {
+        if (!email) {
+          setError('Please enter your email address.')
+          return
+        }
+        const { error: resetError } = await supabase.auth.resetPasswordForEmail(email, {
+          redirectTo: `${window.location.origin}/signin?mode=reset`,
+        })
+        if (resetError) throw resetError
+        setMessage('Password reset link sent. Please check your email and follow the instructions.')
+        return
+      }
+
+      if (mode === 'reset') {
+        if (!password || !confirmPassword) {
+          setError('Please enter and confirm your new password.')
+          return
+        }
+        if (password !== confirmPassword) {
+          setError('Passwords do not match.')
+          return
+        }
+        if (password.length < 6) {
+          setError('Password must be at least 6 characters.')
+          return
+        }
+        const { error: updateError } = await supabase.auth.updateUser({ password })
+        if (updateError) throw updateError
+        setConfirmPassword('')
+        setForm((current) => ({ ...current, password: '' }))
+        setMessage('Password updated successfully. Redirecting...')
+        const nextPath = resolvePostAuthPath({
+          from: location.state?.from,
+          hasPremiumAccess,
+        })
+        navigate(nextPath, { replace: true })
+        return
+      }
+
+      if (!email || !password) {
+        setError('Please enter email and password.')
+        return
+      }
+
       if (mode === 'signup') {
         const { error: signUpError } = await supabase.auth.signUp({
           email,
@@ -3801,7 +3867,7 @@ function SignInPage({ authUser, hasPremiumAccess, isSubscriptionReady }) {
           },
         })
         if (signUpError) throw signUpError
-        setError('Signup successful. Please verify your email, then sign in.')
+        setMessage('Signup successful. Please verify your email, then sign in.')
         setMode('signin')
       } else {
         const { error: signInError } = await supabase.auth.signInWithPassword({ email, password })
@@ -3849,11 +3915,25 @@ function SignInPage({ authUser, hasPremiumAccess, isSubscriptionReady }) {
         <div className="section-title">
             {/* <p>{mode === 'signup' ? 'Create Account' : 'Sign In Required'}</p> */}
             <h2 className="auth-title-pump">
-              {mode === 'signup' ? 'Join The Guardian Angel Community' : 'Access Guardian Study Planner'}
+              {mode === 'signup'
+                ? 'Join The Guardian Angel Community'
+                : mode === 'forgot'
+                  ? 'Reset Your Password'
+                  : mode === 'reset'
+                    ? 'Set a New Password'
+                    : 'Access Guardian Study Planner'}
             </h2>
         </div>
 
         <article className="planner-card auth-card">
+          {mode === 'forgot' ? (
+            <p className="auth-mode-lead">
+              Enter your account email and we will send you a password reset link.
+            </p>
+          ) : null}
+          {mode === 'reset' ? (
+            <p className="auth-mode-lead">Choose a new password for your Guardian Angel account.</p>
+          ) : null}
           <form className="planner-form" onSubmit={handleSubmit}>
             {mode === 'signup' ? (
             <label>
@@ -3869,6 +3949,7 @@ function SignInPage({ authUser, hasPremiumAccess, isSubscriptionReady }) {
                 />
               </label>
             ) : null}
+            {mode !== 'reset' ? (
             <label>
               Email
               <input
@@ -3881,9 +3962,11 @@ function SignInPage({ authUser, hasPremiumAccess, isSubscriptionReady }) {
                 required
               />
             </label>
+            ) : null}
 
+            {mode === 'signin' || mode === 'signup' || mode === 'reset' ? (
             <label>
-              Password
+              {mode === 'reset' ? 'New Password' : 'Password'}
               <input
                 name="password"
                 type="password"
@@ -3892,13 +3975,56 @@ function SignInPage({ authUser, hasPremiumAccess, isSubscriptionReady }) {
                   setForm((current) => ({ ...current, password: event.target.value }))
                 }
                 required
+                minLength={mode === 'reset' ? 6 : undefined}
               />
             </label>
+            ) : null}
+
+            {mode === 'reset' ? (
+              <label>
+                Confirm New Password
+                <input
+                  name="confirmPassword"
+                  type="password"
+                  value={confirmPassword}
+                  onChange={(event) => setConfirmPassword(event.target.value)}
+                  required
+                  minLength={6}
+                />
+              </label>
+            ) : null}
+
+            {mode === 'signin' ? (
+              <p className="auth-forgot-link">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setError('')
+                    setMessage('')
+                    setMode('forgot')
+                  }}
+                  disabled={isSubmitting}
+                >
+                  Forgot password?
+                </button>
+              </p>
+            ) : null}
 
             <div className="blog-create-actions">
               <button className="btn btn-primary planner-submit" type="submit" disabled={isSubmitting}>
-                {mode === 'signup' ? 'Create Account' : 'Sign In'}
+                {mode === 'signup'
+                  ? 'Create Account'
+                  : mode === 'forgot'
+                    ? isSubmitting
+                      ? 'Sending...'
+                      : 'Send Reset Link'
+                    : mode === 'reset'
+                      ? isSubmitting
+                        ? 'Updating...'
+                        : 'Update Password'
+                      : 'Sign In'}
               </button>
+              {mode === 'signin' || mode === 'signup' ? (
               <button
                 className="btn btn-google"
                 type="button"
@@ -3917,8 +4043,9 @@ function SignInPage({ authUser, hasPremiumAccess, isSubscriptionReady }) {
                 />
                 <span>Continue with Google</span>
               </button>
+              ) : null}
             </div>
-            {isNarrowViewport ? (
+            {isNarrowViewport && (mode === 'signin' || mode === 'signup') ? (
               <p className="auth-google-desktop-only-msg" role="status">
                 Google Signin is available on desktop.
               </p>
@@ -3928,12 +4055,22 @@ function SignInPage({ authUser, hasPremiumAccess, isSubscriptionReady }) {
               type="button"
               onClick={() => {
                 setError('')
+                setMessage('')
+                if (mode === 'forgot' || mode === 'reset') {
+                  setMode('signin')
+                  return
+                }
                 setMode((current) => (current === 'signin' ? 'signup' : 'signin'))
               }}
               disabled={isSubmitting}
             >
-              {mode === 'signup' ? 'Have an account? Sign In' : "Don't have an account? Sign Up"}
+              {mode === 'forgot' || mode === 'reset'
+                ? 'Back to Sign In'
+                : mode === 'signup'
+                  ? 'Have an account? Sign In'
+                  : "Don't have an account? Sign Up"}
             </button>
+            {message ? <p className="auth-success-msg" role="status">{message}</p> : null}
             {error ? <p className="planner-error">{error}</p> : null}
           </form>
         </article>
