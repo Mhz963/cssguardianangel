@@ -9033,9 +9033,31 @@ function GlobalAffairsPage({ defaultTab = 'global' }) {
   )
 }
 
+function getStickyNoteTitle(note) {
+  if (note?.title?.trim()) return note.title.trim()
+  const text = String(note?.text || '').trim()
+  if (!text) return 'Untitled note'
+  const firstLine = text.split('\n')[0].trim()
+  if (!firstLine) return 'Untitled note'
+  return firstLine.length > 72 ? `${firstLine.slice(0, 69)}…` : firstLine
+}
+
+function getStickyNoteBody(note) {
+  if (typeof note?.body === 'string') return note.body
+  const text = String(note?.text || '').trim()
+  if (!text) return ''
+  const lines = text.split('\n')
+  if (lines.length <= 1) return text
+  const body = lines.slice(1).join('\n').trim()
+  return body || text
+}
+
 function StickyNotesWidget({ authUser }) {
   const [isOpen, setIsOpen] = useState(false)
-  const [draft, setDraft] = useState('')
+  const [draftTitle, setDraftTitle] = useState('')
+  const [draftBody, setDraftBody] = useState('')
+  const [activeNoteId, setActiveNoteId] = useState(null)
+  const [isComposeOpen, setIsComposeOpen] = useState(false)
   const [isStickyNotesHydrated, setIsStickyNotesHydrated] = useState(() => !(supabase && authUser?.id))
   const stickyNotesStorageKey = authUser?.id ? `ga-sticky-notes-${authUser.id}` : 'ga-sticky-notes'
   const stickyNotesLoadedUserRef = useRef(authUser?.id || 'guest')
@@ -9078,8 +9100,6 @@ function StickyNotesWidget({ authUser }) {
           .eq('user_id', authUser.id)
           .maybeSingle()
         if (isCancelled) return
-        // Do not replace local notes with an empty server array — the row often starts as []
-        // before the first upsert, which would wipe notes restored from localStorage.
         if (Array.isArray(data?.notes) && data.notes.length > 0) {
           setNotes(data.notes)
         } else if (Array.isArray(data?.notes) && data.notes.length === 0) {
@@ -9138,12 +9158,32 @@ function StickyNotesWidget({ authUser }) {
     stickyNotesCountRef.current = notes.length
   }, [notes.length, isOpen])
 
+  useEffect(() => {
+    if (!activeNoteId) return
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') setActiveNoteId(null)
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [activeNoteId])
+
+  const sortedNotes = useMemo(
+    () => [...notes].sort((a, b) => Number(b.createdAt || 0) - Number(a.createdAt || 0)),
+    [notes],
+  )
+
+  const activeNote = useMemo(
+    () => sortedNotes.find((note) => note.id === activeNoteId) || null,
+    [sortedNotes, activeNoteId],
+  )
+
   const handlePaste = async () => {
     try {
       if (!navigator?.clipboard?.readText) return
       const text = await navigator.clipboard.readText()
       if (typeof text === 'string' && text.trim()) {
-        setDraft((current) => (current ? `${current}\n${text}` : text))
+        setDraftBody((current) => (current ? `${current}\n${text}` : text))
+        setIsComposeOpen(true)
         setIsOpen(true)
       }
     } catch {
@@ -9152,31 +9192,43 @@ function StickyNotesWidget({ authUser }) {
   }
 
   const handleSave = () => {
-    const text = draft.trim()
-    if (!text) return
+    const body = draftBody.trim()
+    if (!body) return
+    const title = draftTitle.trim() || getStickyNoteTitle({ text: body })
     const note = {
       id: `${Date.now()}_${Math.random().toString(16).slice(2)}`,
-      text,
+      title,
+      body,
+      text: `${title}\n${body}`,
       createdAt: Date.now(),
     }
     setNotes((current) => [note, ...current].slice(0, 30))
-    setDraft('')
+    setDraftTitle('')
+    setDraftBody('')
+    setIsComposeOpen(false)
     setIsOpen(true)
   }
 
-  const handleDelete = (id) => setNotes((current) => current.filter((note) => note.id !== id))
+  const handleDelete = (id) => {
+    setNotes((current) => current.filter((note) => note.id !== id))
+    if (activeNoteId === id) setActiveNoteId(null)
+  }
 
-  const sortedNotes = useMemo(
-    () => [...notes].sort((a, b) => Number(b.createdAt || 0) - Number(a.createdAt || 0)),
-    [notes],
-  )
-
-  const handleCopy = async (text) => {
+  const handleCopy = async (note) => {
+    const title = getStickyNoteTitle(note)
+    const body = getStickyNoteBody(note)
+    const payload = body && body !== title ? `${title}\n\n${body}` : title
     try {
-      await navigator.clipboard.writeText(text)
+      await navigator.clipboard.writeText(payload)
     } catch {
       // Ignore copy failures.
     }
+  }
+
+  const resetCompose = () => {
+    setDraftTitle('')
+    setDraftBody('')
+    setIsComposeOpen(false)
   }
 
   return (
@@ -9184,7 +9236,16 @@ function StickyNotesWidget({ authUser }) {
       <button
         className="sticky-notes-fab"
         type="button"
-        onClick={() => setIsOpen((current) => !current)}
+        onClick={() => {
+          setIsOpen((current) => {
+            const next = !current
+            if (!next) {
+              setActiveNoteId(null)
+              resetCompose()
+            }
+            return next
+          })
+        }}
         aria-label={isOpen ? 'Close sticky notes' : 'Open sticky notes'}
         title="Sticky notes"
       >
@@ -9198,12 +9259,21 @@ function StickyNotesWidget({ authUser }) {
       {isOpen ? (
         <div className="sticky-notes-panel glass-panel" role="dialog" aria-label="Sticky notes panel">
           <div className="sticky-notes-head">
-            <div>
-              <h3>Sticky Notes</h3>
-              <p>Paste anything here and save it for later.</p>
+            <div className="sticky-notes-head-main">
+              <h3>Notes</h3>
+              <span className="sticky-notes-count">{sortedNotes.length}</span>
             </div>
-            <button className="btn btn-secondary" type="button" onClick={() => setIsOpen(false)}>
-              Close
+            <button
+              className="sticky-notes-close-btn"
+              type="button"
+              aria-label="Close notes"
+              onClick={() => {
+                setIsOpen(false)
+                setActiveNoteId(null)
+                resetCompose()
+              }}
+            >
+              ×
             </button>
           </div>
 
@@ -9211,41 +9281,116 @@ function StickyNotesWidget({ authUser }) {
             <div className="sticky-notes-list" ref={stickyNotesListRef}>
               {sortedNotes.length === 0 ? (
                 <div className="sticky-notes-empty">
-                  <p>No saved notes yet. New notes appear at the top.</p>
+                  <p>No notes yet. Tap “New note” to save your first one.</p>
                 </div>
               ) : (
                 sortedNotes.map((note) => (
-                  <div key={note.id} className="sticky-note">
-                    <p className="sticky-note-meta">{formatNewsTimestamp(note.createdAt)}</p>
-                    <pre className="sticky-note-text">{note.text}</pre>
-                    <div className="sticky-note-actions">
-                      <button className="btn btn-secondary" type="button" onClick={() => handleCopy(note.text)}>
-                        Copy
-                      </button>
-                      <button className="btn btn-secondary" type="button" onClick={() => handleDelete(note.id)}>
-                        Delete
-                      </button>
-                    </div>
+                  <div key={note.id} className="sticky-note-row">
+                    <button
+                      className="sticky-note-row-open"
+                      type="button"
+                      onClick={() => setActiveNoteId(note.id)}
+                    >
+                      <span className="sticky-note-row-title">{getStickyNoteTitle(note)}</span>
+                      <span className="sticky-note-row-meta">{formatNewsTimestamp(note.createdAt)}</span>
+                    </button>
+                    <button
+                      className="sticky-note-row-delete"
+                      type="button"
+                      aria-label={`Delete ${getStickyNoteTitle(note)}`}
+                      onClick={() => handleDelete(note.id)}
+                    >
+                      ×
+                    </button>
                   </div>
                 ))
               )}
             </div>
 
-            <div className="sticky-notes-compose">
-              <textarea
-                value={draft}
-                onChange={(event) => setDraft(event.target.value)}
-                placeholder="Paste or type notes…"
-                rows={3}
-              />
-              <div className="sticky-notes-actions">
-                <button className="btn btn-secondary" type="button" onClick={handlePaste}>
-                  Paste
-                </button>
-                <button className="btn btn-primary" type="button" onClick={handleSave} disabled={!draft.trim()}>
-                  Save note
+            {isComposeOpen ? (
+              <div className="sticky-notes-compose">
+                <input
+                  className="sticky-notes-title-input"
+                  type="text"
+                  value={draftTitle}
+                  onChange={(event) => setDraftTitle(event.target.value)}
+                  placeholder="Title"
+                  maxLength={120}
+                />
+                <textarea
+                  className="sticky-notes-body-input"
+                  value={draftBody}
+                  onChange={(event) => setDraftBody(event.target.value)}
+                  placeholder="Write your note…"
+                  rows={4}
+                />
+                <div className="sticky-notes-actions">
+                  <button className="btn btn-secondary" type="button" onClick={resetCompose}>
+                    Cancel
+                  </button>
+                  <button className="btn btn-secondary" type="button" onClick={handlePaste}>
+                    Paste
+                  </button>
+                  <button className="btn btn-primary" type="button" onClick={handleSave} disabled={!draftBody.trim()}>
+                    Save
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div className="sticky-notes-footer">
+                <button
+                  className="btn btn-primary sticky-notes-new-btn"
+                  type="button"
+                  onClick={() => setIsComposeOpen(true)}
+                >
+                  + New note
                 </button>
               </div>
+            )}
+          </div>
+        </div>
+      ) : null}
+
+      {activeNote ? (
+        <div
+          className="sticky-note-modal-backdrop"
+          role="presentation"
+          onClick={() => setActiveNoteId(null)}
+        >
+          <div
+            className="sticky-note-modal glass-panel"
+            role="dialog"
+            aria-label={getStickyNoteTitle(activeNote)}
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="sticky-note-modal-head">
+              <div>
+                <h4>{getStickyNoteTitle(activeNote)}</h4>
+                <p>{formatNewsTimestamp(activeNote.createdAt)}</p>
+              </div>
+              <button
+                className="sticky-note-modal-close"
+                type="button"
+                aria-label="Close note"
+                onClick={() => setActiveNoteId(null)}
+              >
+                ×
+              </button>
+            </div>
+            <div className="sticky-note-modal-body">
+              <pre>{getStickyNoteBody(activeNote)}</pre>
+            </div>
+            <div className="sticky-note-modal-actions">
+              <button className="btn btn-secondary" type="button" onClick={() => handleCopy(activeNote)}>
+                Copy
+              </button>
+              <button
+                className="btn btn-secondary"
+                type="button"
+                onClick={() => handleDelete(activeNote.id)}
+              >
+                Delete
+              </button>
             </div>
           </div>
         </div>
