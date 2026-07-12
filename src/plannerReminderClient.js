@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import {
   buildSlotReminderDescriptors,
   normalizePlannerPlanForReminders,
@@ -6,7 +6,28 @@ import {
 } from './plannerReminderEngine.js'
 
 export const GA_PLANNER_REMINDER_TOGGLE_KEY = 'ga-planner-slot-reminders'
+export const GA_PLANNER_REMINDER_FIRE_EVENT = 'ga-planner-reminder-fire'
 const FIRED_SESSION_KEY = 'ga-planner-fired-keys'
+
+export function isPlannerNativeAppView() {
+  return typeof window !== 'undefined' && Boolean(window.ReactNativeWebView?.postMessage)
+}
+
+export function dispatchPlannerReminderPopup(detail) {
+  try {
+    window.dispatchEvent(
+      new CustomEvent(GA_PLANNER_REMINDER_FIRE_EVENT, {
+        detail: {
+          title: detail?.title || 'Guardian Angel — study slot',
+          body: detail?.body || '',
+          slotLabel: detail?.slotLabel || '',
+        },
+      }),
+    )
+  } catch {
+    // ignore
+  }
+}
 
 function readReminderEnabled() {
   try {
@@ -125,11 +146,14 @@ function fireWebReminder(snap) {
   markFired(dk, h)
   const slotLabel = slots.find((s) => s.hour === h)?.label || `${String(h).padStart(2, '0')}:00`
   const studyHours = snap.plan?.studyHours ?? snap.form?.studyHours ?? ''
+  const title = 'Guardian Angel — study slot'
+  const body = `Your productive window starts (${slotLabel}). Aim for ~${studyHours}h study today.`
   playPlannerReminderChime()
+  dispatchPlannerReminderPopup({ title, body, slotLabel })
   try {
     if (typeof Notification !== 'undefined' && Notification.permission === 'granted') {
-      const n = new Notification('Guardian Angel — study slot', {
-        body: `Your productive window starts (${slotLabel}). Aim for ~${studyHours}h study today.`,
+      const n = new Notification(title, {
+        body,
         tag: `ga-planner-${dk}-${h}`,
         silent: false,
       })
@@ -188,6 +212,9 @@ export function postNativePlannerReminders({ clear, slots, studyHours }) {
 
 export async function requestPlannerReminderPermission() {
   try {
+    if (isPlannerNativeAppView()) {
+      return true
+    }
     if (typeof window === 'undefined' || typeof Notification === 'undefined') return false
     if (Notification.permission === 'granted') return true
     if (Notification.permission === 'denied') return false
@@ -196,6 +223,54 @@ export async function requestPlannerReminderPermission() {
   } catch {
     return false
   }
+}
+
+function parsePlannerReminderBridgeMessage(raw) {
+  try {
+    const parsed = typeof raw === 'string' ? JSON.parse(raw) : raw
+    if (parsed?.type !== 'ga_planner_reminder_fire') return null
+    return {
+      title: parsed.title || 'Guardian Angel — study slot',
+      body: parsed.body || '',
+      slotLabel: parsed.slotLabel || '',
+    }
+  } catch {
+    return null
+  }
+}
+
+export function usePlannerReminderPopup() {
+  const [popup, setPopup] = useState(null)
+
+  const dismissPopup = useCallback(() => {
+    setPopup(null)
+  }, [])
+
+  useEffect(() => {
+    const onFire = (event) => {
+      const detail = event?.detail
+      if (!detail?.title && !detail?.body) return
+      setPopup(detail)
+    }
+
+    const onBridgeMessage = (event) => {
+      const detail = parsePlannerReminderBridgeMessage(event?.data)
+      if (!detail) return
+      playPlannerReminderChime()
+      setPopup(detail)
+    }
+
+    window.addEventListener(GA_PLANNER_REMINDER_FIRE_EVENT, onFire)
+    window.addEventListener('message', onBridgeMessage)
+    document.addEventListener('message', onBridgeMessage)
+    return () => {
+      window.removeEventListener(GA_PLANNER_REMINDER_FIRE_EVENT, onFire)
+      window.removeEventListener('message', onBridgeMessage)
+      document.removeEventListener('message', onBridgeMessage)
+    }
+  }, [])
+
+  return { popup, dismissPopup }
 }
 
 /**
@@ -220,6 +295,16 @@ export function usePlannerReminderBootstrap(authUser) {
     }
     const userKey = authUser.id || authUser.username
     const profileStorageKey = `ga-profile-${userKey}`
+    const snap = readProfileSnapshot(profileStorageKey)
+    if (snap) {
+      syncPlannerRemindersToNativeAndWeb({
+        enabled: true,
+        form: snap.form,
+        plan: snap.plan,
+      })
+    } else {
+      postNativePlannerReminders({ clear: true, slots: [], studyHours: null })
+    }
     const stopTick = startPlannerReminderTick(() => readProfileSnapshot(profileStorageKey))
     return () => {
       stopTick()

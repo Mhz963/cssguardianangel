@@ -18,10 +18,12 @@ import copyShareIcon from './assets/copy-share-icon.svg'
 import { hasSupabaseConfig, supabase } from './utils/supabaseClient.js'
 import {
   GA_PLANNER_REMINDER_TOGGLE_KEY,
+  isPlannerNativeAppView,
   primePlannerReminderAudio,
   requestPlannerReminderPermission,
   syncPlannerRemindersToNativeAndWeb,
   usePlannerReminderBootstrap,
+  usePlannerReminderPopup,
 } from './plannerReminderClient.js'
 import {
   compulsorySubjects,
@@ -828,6 +830,15 @@ const DEFAULT_PLANNER_FORM = {
   learningPreference: 'lectures-first',
 }
 
+const formatClock = (totalMinutes) => {
+  const safeMinutes = ((totalMinutes % 1440) + 1440) % 1440
+  const hour24 = Math.floor(safeMinutes / 60)
+  const minute = safeMinutes % 60
+  const suffix = hour24 >= 12 ? 'PM' : 'AM'
+  const hour12 = hour24 % 12 || 12
+  return `${hour12}:${`${minute}`.padStart(2, '0')} ${suffix}`
+}
+
 const PRODUCTIVE_HOUR_OPTIONS = Array.from({ length: 24 }, (_, index) => {
   const startHour = index
   const endHour = (startHour + 1) % 24
@@ -835,9 +846,35 @@ const PRODUCTIVE_HOUR_OPTIONS = Array.from({ length: 24 }, (_, index) => {
   return {
     id,
     startHour,
-    label: `${`${startHour}`.padStart(2, '0')}:00 - ${`${endHour}`.padStart(2, '0')}:00`,
+    label: `${formatClock(startHour * 60)} - ${formatClock(endHour * 60)}`,
   }
 })
+const PRODUCTIVE_HOUR_BY_START = Object.fromEntries(
+  PRODUCTIVE_HOUR_OPTIONS.map((slot) => [slot.startHour, slot]),
+)
+const PRODUCTIVE_HOUR_SECTIONS = [
+  {
+    id: 'morning',
+    title: 'Morning',
+    subtitle: '3 AM to 11:59 AM',
+    hours: [3, 4, 5, 6, 7, 8, 9, 10, 11],
+  },
+  {
+    id: 'evening',
+    title: 'Evening',
+    subtitle: '12 PM to 5:59 PM',
+    hours: [12, 13, 14, 15, 16, 17],
+  },
+  {
+    id: 'night',
+    title: 'Night',
+    subtitle: '6 PM to 2:59 AM',
+    hours: [18, 19, 20, 21, 22, 23, 0, 1, 2],
+  },
+].map((section) => ({
+  ...section,
+  slots: section.hours.map((hour) => PRODUCTIVE_HOUR_BY_START[hour]).filter(Boolean),
+}))
 const PLANNER_CORE_COMPULSORY_SUBJECTS = compulsorySubjects.slice(0, 5)
 const COMPULSORY_ELECTIVE_OPTIONS = compulsorySubjects.slice(5, 7)
 const LEGACY_COMPULSORY_ELECTIVE_TITLE = {
@@ -1155,15 +1192,6 @@ const addDays = (date, days) => {
   const next = new Date(date)
   next.setDate(next.getDate() + days)
   return next
-}
-
-const formatClock = (totalMinutes) => {
-  const safeMinutes = ((totalMinutes % 1440) + 1440) % 1440
-  const hour24 = Math.floor(safeMinutes / 60)
-  const minute = safeMinutes % 60
-  const suffix = hour24 >= 12 ? 'PM' : 'AM'
-  const hour12 = hour24 % 12 || 12
-  return `${hour12}:${`${minute}`.padStart(2, '0')} ${suffix}`
 }
 
 const formatStopwatch = (totalSeconds) => {
@@ -5167,17 +5195,6 @@ function GuardianStudyPlannerPage({ authUser }) {
       weeklyConsolidation,
       phaseStrategy,
       selectedSlots: selectedSlots.map((slot) => slot.label),
-      formula: {
-        expression:
-          'effectiveHours = baseHours x urgencyFactor x attemptFactor x difficultyFactor x productivityFactor',
-        values: {
-          baseHours: studyHours,
-          urgencyFactor,
-          attemptFactor,
-          difficultyFactor,
-          productivityFactor,
-        },
-      },
       breakPlan: [
         'Take a 10-minute break after every 50 minutes of deep study.',
         'After every 3 focused blocks, take a 25-30 minute recovery break.',
@@ -5611,9 +5628,6 @@ function GuardianStudyPlannerPage({ authUser }) {
         { style: 'bold' },
       )
       drawText(
-        `Performance formula: finalScore = baseScore x socialPenaltyFactor | baseScore: ${basePerformanceScore}, socialPenaltyFactor: ${socialPerformancePenaltyFactor.toFixed(2)}, finalScore: ${performanceScore}`,
-      )
-      drawText(
         `Compulsory subtotal: ${compulsoryScoreRows.reduce((sum, item) => sum + item.score, 0)} / ${compulsoryScoreRows.length * 100}`,
       )
       drawText(
@@ -5677,97 +5691,61 @@ function GuardianStudyPlannerPage({ authUser }) {
       setIsGeneratingPerformancePdf(false)
     }
   }
-  const handleViewPerformancePdf = () => {
+  const handleViewPerformancePdf = async () => {
     if (!performancePdfUrl) return
     setError('')
+    const handledInApp = await postPdfBlobToNativeApp(performancePdfUrl, performancePdfFileName, 'view')
+    if (handledInApp) return
+    if (window.__gaPostPdfToNative?.('view', performancePdfFileName, performancePdfUrl)) return
     const opened = window.open(performancePdfUrl, '_blank', 'noopener,noreferrer')
     if (!opened) {
       setError('Popup was blocked. Please allow popups to open the PDF in a new tab.')
     }
   }
-  const handleDownloadPerformancePdf = () => {
+  const handleDownloadPerformancePdf = async () => {
     if (!performancePdfUrl) return
     setError('')
-    const opened = window.open(performancePdfUrl, '_blank', 'noopener,noreferrer')
-    if (!opened) {
-      setError('Popup was blocked. Please allow popups to open the PDF in a new tab.')
-    }
+    const handledInApp = await postPdfBlobToNativeApp(
+      performancePdfUrl,
+      performancePdfFileName,
+      'download',
+    )
+    if (handledInApp) return
+    if (window.__gaPostPdfToNative?.('download', performancePdfFileName, performancePdfUrl)) return
+    downloadPdfInBrowser(performancePdfUrl, performancePdfFileName)
+  }
+  const handleViewOutlinePdf = async () => {
+    if (!outlinePdfUrl) return
+    setError('')
+    const handledInApp = await postPdfBlobToNativeApp(outlinePdfUrl, outlinePdfFileName, 'view')
+    if (handledInApp) return
+    if (window.__gaPostPdfToNative?.('view', outlinePdfFileName, outlinePdfUrl)) return
+    openPdfInBrowser(outlinePdfUrl)
+  }
+  const handleDownloadOutlinePdf = async () => {
+    if (!outlinePdfUrl) return
+    setError('')
+    const handledInApp = await postPdfBlobToNativeApp(outlinePdfUrl, outlinePdfFileName, 'download')
+    if (handledInApp) return
+    if (window.__gaPostPdfToNative?.('download', outlinePdfFileName, outlinePdfUrl)) return
+    downloadPdfInBrowser(outlinePdfUrl, outlinePdfFileName)
   }
   const postWeeklyPdfToNativeApp = async (action) => {
-    if (!weeklyReportPdfUrl) return false
-    if (
-      typeof window === 'undefined' ||
-      !window.ReactNativeWebView ||
-      typeof window.ReactNativeWebView.postMessage !== 'function'
-    ) {
-      return false
-    }
-    try {
-      const response = await fetch(weeklyReportPdfUrl)
-      if (!response.ok) return false
-      const blob = await response.blob()
-      const dataUrl = await fileToDataUrl(blob)
-      const payloadString = String(dataUrl || '')
-      const fileName = weeklyReportPdfFileName || 'Guardian_Angel_Report.pdf'
-      const chunkSize = 24000
-      const totalChunks = Math.ceil(payloadString.length / chunkSize)
-      if (totalChunks <= 1) {
-        window.ReactNativeWebView.postMessage(
-          JSON.stringify({
-            type: 'ga_pdf_blob',
-            action,
-            fileName,
-            dataUrl: payloadString,
-          }),
-        )
-      } else {
-        const streamId = `ga_pdf_ui_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`
-        window.ReactNativeWebView.postMessage(
-          JSON.stringify({
-            type: 'ga_pdf_chunk_start',
-            id: streamId,
-            action,
-            fileName,
-            total: totalChunks,
-          }),
-        )
-        for (let index = 0; index < totalChunks; index += 1) {
-          window.ReactNativeWebView.postMessage(
-            JSON.stringify({
-              type: 'ga_pdf_chunk',
-              id: streamId,
-              index,
-              total: totalChunks,
-              chunk: payloadString.slice(index * chunkSize, (index + 1) * chunkSize),
-            }),
-          )
-        }
-        window.ReactNativeWebView.postMessage(JSON.stringify({ type: 'ga_pdf_chunk_end', id: streamId }))
-      }
-      return true
-    } catch {
-      return false
-    }
+    return postPdfBlobToNativeApp(weeklyReportPdfUrl, weeklyReportPdfFileName, action)
   }
   const handleViewWeeklyReportPdf = async () => {
     if (!weeklyReportPdfUrl) return
     const handledInApp = await postWeeklyPdfToNativeApp('view')
     if (handledInApp) return
-    const opened = window.open(weeklyReportPdfUrl, '_blank', 'noopener,noreferrer')
-    if (!opened) {
-      window.location.href = weeklyReportPdfUrl
-    }
+    if (window.__gaPostPdfToNative?.('view', weeklyReportPdfFileName, weeklyReportPdfUrl)) return
+    openPdfInBrowser(weeklyReportPdfUrl)
   }
   const handleDownloadWeeklyReportPdf = async () => {
     if (!weeklyReportPdfUrl) return
     const handledInApp = await postWeeklyPdfToNativeApp('download')
     if (handledInApp) return
-    const link = document.createElement('a')
-    link.href = weeklyReportPdfUrl
-    link.download = weeklyReportPdfFileName || 'Guardian_Angel_Report.pdf'
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
+    if (window.__gaPostPdfToNative?.('download', weeklyReportPdfFileName, weeklyReportPdfUrl)) return
+    downloadPdfInBrowser(weeklyReportPdfUrl, weeklyReportPdfFileName)
   }
 
   const handleTimerStart = () => {
@@ -6855,12 +6833,16 @@ function GuardianStudyPlannerPage({ authUser }) {
                     </button>
                     {outlinePdfUrl ? (
                       <>
-                        <a className="btn btn-secondary" href={outlinePdfUrl} target="_blank" rel="noreferrer">
+                        <button className="btn btn-secondary" type="button" onClick={handleViewOutlinePdf}>
                           View PDF
-                        </a>
-                        <a className="btn btn-secondary" href={outlinePdfUrl} download={outlinePdfFileName}>
+                        </button>
+                        <button
+                          className="btn btn-secondary"
+                          type="button"
+                          onClick={handleDownloadOutlinePdf}
+                        >
                           Download PDF
-                        </a>
+                        </button>
                       </>
                     ) : null}
                   </div>
@@ -6998,16 +6980,26 @@ function GuardianStudyPlannerPage({ authUser }) {
 
                     <label>
                       During which hours are you most productive?
-                      <div className="productive-hours-grid">
-                        {PRODUCTIVE_HOUR_OPTIONS.map((slot) => (
-                          <label key={slot.id} className="productive-hour-option">
-                            <input
-                              type="checkbox"
-                              checked={form.productiveHours.includes(slot.id)}
-                              onChange={() => handleProductiveHourToggle(slot.id)}
-                            />
-                            <span>{slot.label}</span>
-                          </label>
+                      <div className="productive-hours-sections">
+                        {PRODUCTIVE_HOUR_SECTIONS.map((section) => (
+                          <div key={section.id} className="productive-hours-section">
+                            <div className="productive-hours-section-head">
+                              <h4>{section.title}</h4>
+                              <span>{section.subtitle}</span>
+                            </div>
+                            <div className="productive-hours-grid">
+                              {section.slots.map((slot) => (
+                                <label key={slot.id} className="productive-hour-option">
+                                  <span>{slot.label}</span>
+                                  <input
+                                    type="checkbox"
+                                    checked={form.productiveHours.includes(slot.id)}
+                                    onChange={() => handleProductiveHourToggle(slot.id)}
+                                  />
+                                </label>
+                              ))}
+                            </div>
+                          </div>
                         ))}
                       </div>
                     </label>
@@ -7023,7 +7015,9 @@ function GuardianStudyPlannerPage({ authUser }) {
                             const ok = await requestPlannerReminderPermission()
                             if (!ok) {
                               window.alert(
-                                'Allow notifications in your browser or system settings to receive reminders.',
+                                isPlannerNativeAppView()
+                                  ? 'Allow notifications in your device settings to receive study slot reminders in the app.'
+                                  : 'Allow notifications in your browser or system settings to receive reminders.',
                               )
                               return
                             }
@@ -7109,18 +7103,6 @@ function GuardianStudyPlannerPage({ authUser }) {
                     <p className="planner-meta">
                       Productive slots: <strong>{plan.selectedSlots.join(', ')}</strong>
                     </p>
-
-                    <div className="planner-formula">
-                      <h4>Testing Formula (Visible for QA)</h4>
-                      <p>{plan.formula.expression}</p>
-                      <ul className="planner-list">
-                        <li>baseHours: {plan.formula.values.baseHours}</li>
-                        <li>urgencyFactor: {plan.formula.values.urgencyFactor.toFixed(2)}</li>
-                        <li>attemptFactor: {plan.formula.values.attemptFactor.toFixed(2)}</li>
-                        <li>difficultyFactor: {plan.formula.values.difficultyFactor.toFixed(2)}</li>
-                        <li>productivityFactor: {plan.formula.values.productivityFactor.toFixed(2)}</li>
-                      </ul>
-                    </div>
 
                     <div className="planner-grid">
                       <div>
@@ -7351,16 +7333,6 @@ function GuardianStudyPlannerPage({ authUser }) {
                           {projectedScoreTotal}
                         </span>{' '}
                         / {projectedMaxTotal}
-                      </p>
-                      <p className="planner-meta">
-                        Performance formula: <strong>finalScore = baseScore x socialPenaltyFactor</strong> |
-                        baseScore:{' '}
-                        <strong className={resolveScoreToneClass(basePerformanceScore)}>
-                          {basePerformanceScore}
-                        </strong>
-                        , socialPenaltyFactor:{' '}
-                        <strong>{socialPerformancePenaltyFactor.toFixed(2)}</strong>, finalScore:{' '}
-                        <strong className={resolveScoreToneClass(performanceScore)}>{performanceScore}</strong>
                       </p>
                       <div className="report-pdf-actions">
                         <button
@@ -9587,6 +9559,22 @@ function useRemoveVisibleWordHyphens() {
   }, [])
 }
 
+function PlannerReminderPopup({ popup, onDismiss }) {
+  if (!popup) return null
+  return (
+    <div className="planner-reminder-popup-overlay" role="dialog" aria-modal="true" onClick={onDismiss}>
+      <article className="planner-reminder-popup-card" onClick={(event) => event.stopPropagation()}>
+        <p className="planner-reminder-popup-kicker">Study slot reminder</p>
+        <h4>{popup.title || 'Guardian Angel — study slot'}</h4>
+        <p>{popup.body}</p>
+        <button type="button" className="btn btn-primary" onClick={onDismiss}>
+          Got it
+        </button>
+      </article>
+    </div>
+  )
+}
+
 function App() {
   const [authUser, setAuthUser] = useState(null)
   const [isAuthReady, setIsAuthReady] = useState(false)
@@ -9711,6 +9699,7 @@ function App() {
 
   useRemoveVisibleWordHyphens()
   usePlannerReminderBootstrap(authUser)
+  const { popup: plannerReminderPopup, dismissPopup: dismissPlannerReminderPopup } = usePlannerReminderPopup()
 
   return (
     <BrowserRouter>
@@ -9783,6 +9772,7 @@ function App() {
         <Footer />
         <StickyNotesWidget authUser={authUser} />
         <BackToTopButton />
+        <PlannerReminderPopup popup={plannerReminderPopup} onDismiss={dismissPlannerReminderPopup} />
       </div>
     </BrowserRouter>
   )
