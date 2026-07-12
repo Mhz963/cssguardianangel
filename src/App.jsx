@@ -9133,7 +9133,7 @@ function StickyNotesWidget({ authUser }) {
     const listEl = stickyNotesListRef.current
     if (!listEl || !isOpen) return
     if (notes.length > stickyNotesCountRef.current) {
-      listEl.scrollTop = listEl.scrollHeight
+      listEl.scrollTop = 0
     }
     stickyNotesCountRef.current = notes.length
   }, [notes.length, isOpen])
@@ -9159,7 +9159,7 @@ function StickyNotesWidget({ authUser }) {
       text,
       createdAt: Date.now(),
     }
-    setNotes((current) => [...current, note].slice(-30))
+    setNotes((current) => [note, ...current].slice(0, 30))
     setDraft('')
     setIsOpen(true)
   }
@@ -9167,7 +9167,7 @@ function StickyNotesWidget({ authUser }) {
   const handleDelete = (id) => setNotes((current) => current.filter((note) => note.id !== id))
 
   const sortedNotes = useMemo(
-    () => [...notes].sort((a, b) => Number(a.createdAt || 0) - Number(b.createdAt || 0)),
+    () => [...notes].sort((a, b) => Number(b.createdAt || 0) - Number(a.createdAt || 0)),
     [notes],
   )
 
@@ -9197,15 +9197,38 @@ function StickyNotesWidget({ authUser }) {
 
       {isOpen ? (
         <div className="sticky-notes-panel glass-panel" role="dialog" aria-label="Sticky notes panel">
-          <div className="sticky-notes-panel-top">
-            <div className="sticky-notes-head">
-              <div>
-                <h3>Sticky Notes</h3>
-                <p>Paste anything here and save it for later.</p>
-              </div>
-              <button className="btn btn-secondary" type="button" onClick={() => setIsOpen(false)}>
-                Close
-              </button>
+          <div className="sticky-notes-head">
+            <div>
+              <h3>Sticky Notes</h3>
+              <p>Paste anything here and save it for later.</p>
+            </div>
+            <button className="btn btn-secondary" type="button" onClick={() => setIsOpen(false)}>
+              Close
+            </button>
+          </div>
+
+          <div className="sticky-notes-body">
+            <div className="sticky-notes-list" ref={stickyNotesListRef}>
+              {sortedNotes.length === 0 ? (
+                <div className="sticky-notes-empty">
+                  <p>No saved notes yet. New notes appear at the top.</p>
+                </div>
+              ) : (
+                sortedNotes.map((note) => (
+                  <div key={note.id} className="sticky-note">
+                    <p className="sticky-note-meta">{formatNewsTimestamp(note.createdAt)}</p>
+                    <pre className="sticky-note-text">{note.text}</pre>
+                    <div className="sticky-note-actions">
+                      <button className="btn btn-secondary" type="button" onClick={() => handleCopy(note.text)}>
+                        Copy
+                      </button>
+                      <button className="btn btn-secondary" type="button" onClick={() => handleDelete(note.id)}>
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+                ))
+              )}
             </div>
 
             <div className="sticky-notes-compose">
@@ -9213,7 +9236,7 @@ function StickyNotesWidget({ authUser }) {
                 value={draft}
                 onChange={(event) => setDraft(event.target.value)}
                 placeholder="Paste or type notes…"
-                rows={4}
+                rows={3}
               />
               <div className="sticky-notes-actions">
                 <button className="btn btn-secondary" type="button" onClick={handlePaste}>
@@ -9224,29 +9247,6 @@ function StickyNotesWidget({ authUser }) {
                 </button>
               </div>
             </div>
-          </div>
-
-          <div className="sticky-notes-list" ref={stickyNotesListRef}>
-            {sortedNotes.length === 0 ? (
-              <div className="sticky-notes-empty">
-                <p>No saved notes yet. New notes appear below.</p>
-              </div>
-            ) : (
-              sortedNotes.map((note) => (
-                <div key={note.id} className="sticky-note">
-                  <p className="sticky-note-meta">{formatNewsTimestamp(note.createdAt)}</p>
-                  <pre className="sticky-note-text">{note.text}</pre>
-                  <div className="sticky-note-actions">
-                    <button className="btn btn-secondary" type="button" onClick={() => handleCopy(note.text)}>
-                      Copy
-                    </button>
-                    <button className="btn btn-secondary" type="button" onClick={() => handleDelete(note.id)}>
-                      Delete
-                    </button>
-                  </div>
-                </div>
-              ))
-            )}
           </div>
         </div>
       ) : null}
