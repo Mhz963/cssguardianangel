@@ -29,6 +29,22 @@ export function dispatchPlannerReminderPopup(detail) {
   }
 }
 
+export function postNativePlannerReminderFire(detail) {
+  try {
+    if (!isPlannerNativeAppView()) return
+    window.ReactNativeWebView.postMessage(
+      JSON.stringify({
+        type: 'ga_planner_reminder_fire',
+        title: detail?.title || 'Guardian Angel — study slot',
+        body: detail?.body || '',
+        slotLabel: detail?.slotLabel || '',
+      }),
+    )
+  } catch {
+    // ignore
+  }
+}
+
 function readReminderEnabled() {
   try {
     return localStorage.getItem(GA_PLANNER_REMINDER_TOGGLE_KEY) === '1'
@@ -72,29 +88,41 @@ export function primePlannerReminderAudio() {
 
 export function playPlannerReminderChime() {
   try {
+    if (typeof navigator !== 'undefined' && typeof navigator.vibrate === 'function') {
+      navigator.vibrate([0, 220, 100, 220, 100, 280])
+    }
+  } catch {
+    // ignore
+  }
+
+  try {
     const Ctx = window.AudioContext || window.webkitAudioContext
     if (!Ctx) return
     const ctx = new Ctx()
-    const osc = ctx.createOscillator()
-    const gain = ctx.createGain()
-    osc.type = 'sine'
-    osc.connect(gain)
-    gain.connect(ctx.destination)
+    const playTone = (frequency, startAt, duration, volume) => {
+      const osc = ctx.createOscillator()
+      const gain = ctx.createGain()
+      osc.type = 'square'
+      osc.frequency.setValueAtTime(frequency, startAt)
+      osc.connect(gain)
+      gain.connect(ctx.destination)
+      gain.gain.setValueAtTime(0.0001, startAt)
+      gain.gain.exponentialRampToValueAtTime(volume, startAt + 0.02)
+      gain.gain.exponentialRampToValueAtTime(0.0001, startAt + duration)
+      osc.start(startAt)
+      osc.stop(startAt + duration + 0.02)
+    }
     const t0 = ctx.currentTime
-    gain.gain.setValueAtTime(0.0001, t0)
-    gain.gain.exponentialRampToValueAtTime(0.09, t0 + 0.02)
-    gain.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.32)
-    osc.frequency.setValueAtTime(784, t0)
-    osc.frequency.setValueAtTime(523, t0 + 0.12)
-    osc.start(t0)
-    osc.stop(t0 + 0.34)
-    osc.onended = () => {
+    playTone(880, t0, 0.18, 0.22)
+    playTone(660, t0 + 0.2, 0.18, 0.2)
+    playTone(880, t0 + 0.42, 0.24, 0.24)
+    window.setTimeout(() => {
       try {
         ctx.close()
       } catch {
         // ignore
       }
-    }
+    }, 900)
   } catch {
     // ignore
   }
@@ -148,10 +176,14 @@ function fireWebReminder(snap) {
   const studyHours = snap.plan?.studyHours ?? snap.form?.studyHours ?? ''
   const title = 'Guardian Angel — study slot'
   const body = `Your productive window starts (${slotLabel}). Aim for ~${studyHours}h study today.`
-  playPlannerReminderChime()
-  dispatchPlannerReminderPopup({ title, body, slotLabel })
+  if (isPlannerNativeAppView()) {
+    postNativePlannerReminderFire({ title, body, slotLabel })
+  } else {
+    playPlannerReminderChime()
+    dispatchPlannerReminderPopup({ title, body, slotLabel })
+  }
   try {
-    if (typeof Notification !== 'undefined' && Notification.permission === 'granted') {
+    if (!isPlannerNativeAppView() && typeof Notification !== 'undefined' && Notification.permission === 'granted') {
       const n = new Notification(title, {
         body,
         tag: `ga-planner-${dk}-${h}`,
@@ -250,6 +282,7 @@ export function usePlannerReminderPopup() {
     const onFire = (event) => {
       const detail = event?.detail
       if (!detail?.title && !detail?.body) return
+      playPlannerReminderChime()
       setPopup(detail)
     }
 

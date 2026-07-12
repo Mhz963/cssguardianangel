@@ -36,6 +36,12 @@ import { fetchSubscriptionStatus, hasActiveSubscription } from './utils/paymentC
 import { cssStudyMaterials } from './data/cssStudyMaterialsData'
 import { cssPastPapersByYear, FPSC_CSS_PAST_PAPERS_SOURCE } from './data/cssPastPapersData.js'
 import PaymentPage from './PaymentPage.jsx'
+import {
+  downloadPdfInBrowser,
+  isNativeAppView,
+  openPdfInBrowser,
+  sendPdfToNativeApp,
+} from './pdfNativeBridge.js'
 
 const GlobalConflictMapTab = lazy(() => import('./GlobalConflictMapTab.jsx'))
 
@@ -2210,6 +2216,21 @@ function KeyDocumentsPage() {
   const constitutionPdfUrl = new URL('../data/Constitution of Pakistan.pdf', import.meta.url).href
   const udhrPdfUrl = new URL('../data/UDHR.pdf', import.meta.url).href
   const unCharterPdfUrl = new URL('../data/UN Charter.pdf', import.meta.url).href
+  const handleDocumentPdfAction = async (event, doc, action) => {
+    if (!isNativeAppView()) return
+    event.preventDefault()
+    const handled = await sendPdfToNativeApp({
+      pdfUrl: doc.url,
+      fileName: doc.fileName,
+      action,
+    })
+    if (handled) return
+    if (action === 'download') {
+      downloadPdfInBrowser(doc.url, doc.fileName)
+      return
+    }
+    openPdfInBrowser(doc.url)
+  }
   const pakistanDocuments = [
     {
       title: 'Constitution of Pakistan',
@@ -2357,10 +2378,25 @@ function KeyDocumentsPage() {
                 <h4>{doc.title}</h4>
                 <p>{doc.summary}</p>
                 <div className="constitution-resource-actions">
-                  <a className="btn btn-primary" href={doc.url} target="_blank" rel="noreferrer">
+                  <a
+                    className="btn btn-primary"
+                    href={doc.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    data-ga-pdf-url={doc.url}
+                    data-ga-pdf-name={doc.fileName}
+                    onClick={(event) => handleDocumentPdfAction(event, doc, 'view')}
+                  >
                     View PDF
                   </a>
-                  <a className="btn btn-secondary" href={doc.url} download={doc.fileName}>
+                  <a
+                    className="btn btn-secondary"
+                    href={doc.url}
+                    download={doc.fileName}
+                    data-ga-pdf-url={doc.url}
+                    data-ga-pdf-name={doc.fileName}
+                    onClick={(event) => handleDocumentPdfAction(event, doc, 'download')}
+                  >
                     Download PDF
                   </a>
                 </div>
@@ -2398,10 +2434,25 @@ function KeyDocumentsPage() {
                 <h4>{doc.title}</h4>
                 <p>{doc.summary}</p>
                 <div className="constitution-resource-actions">
-                  <a className="btn btn-primary" href={doc.url} target="_blank" rel="noreferrer">
+                  <a
+                    className="btn btn-primary"
+                    href={doc.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    data-ga-pdf-url={doc.url}
+                    data-ga-pdf-name={doc.fileName}
+                    onClick={(event) => handleDocumentPdfAction(event, doc, 'view')}
+                  >
                     View PDF
                   </a>
-                  <a className="btn btn-secondary" href={doc.url} download={doc.fileName}>
+                  <a
+                    className="btn btn-secondary"
+                    href={doc.url}
+                    download={doc.fileName}
+                    data-ga-pdf-url={doc.url}
+                    data-ga-pdf-name={doc.fileName}
+                    onClick={(event) => handleDocumentPdfAction(event, doc, 'download')}
+                  >
                     Download PDF
                   </a>
                 </div>
@@ -4198,14 +4249,17 @@ function GuardianStudyPlannerPage({ authUser }) {
   })
   const [draggingSubject, setDraggingSubject] = useState('')
   const [outlinePdfUrl, setOutlinePdfUrl] = useState('')
+  const [outlinePdfDataUrl, setOutlinePdfDataUrl] = useState('')
   const [outlinePdfFileName, setOutlinePdfFileName] = useState('Guardian_Angel_CSS_Course_Outline.pdf')
   const [isGeneratingOutlinePdf, setIsGeneratingOutlinePdf] = useState(false)
   const [weeklyReportPdfUrl, setWeeklyReportPdfUrl] = useState('')
+  const [weeklyReportPdfDataUrl, setWeeklyReportPdfDataUrl] = useState('')
   const [weeklyReportPdfFileName, setWeeklyReportPdfFileName] = useState(
     'Guardian_Angel_Report.pdf',
   )
   const [isGeneratingWeeklyReportPdf, setIsGeneratingWeeklyReportPdf] = useState(false)
   const [performancePdfUrl, setPerformancePdfUrl] = useState('')
+  const [performancePdfDataUrl, setPerformancePdfDataUrl] = useState('')
   const [performancePdfFileName, setPerformancePdfFileName] = useState(
     'Guardian_Angel_Performance_Analysis.pdf',
   )
@@ -5034,7 +5088,9 @@ function GuardianStudyPlannerPage({ authUser }) {
       }
 
       const blob = doc.output('blob')
+      const nextPdfDataUrl = doc.output('datauristring')
       const nextPdfUrl = URL.createObjectURL(blob)
+      setOutlinePdfDataUrl(nextPdfDataUrl)
       setOutlinePdfUrl((current) => {
         if (current) URL.revokeObjectURL(current)
         return nextPdfUrl
@@ -5524,7 +5580,9 @@ function GuardianStudyPlannerPage({ authUser }) {
       }
 
       const blob = doc.output('blob')
+      const nextPdfDataUrl = doc.output('datauristring')
       const nextPdfUrl = URL.createObjectURL(blob)
+      setWeeklyReportPdfDataUrl(nextPdfDataUrl)
       setWeeklyReportPdfUrl((current) => {
         if (current) URL.revokeObjectURL(current)
         return nextPdfUrl
@@ -5678,7 +5736,9 @@ function GuardianStudyPlannerPage({ authUser }) {
       }
 
       const blob = doc.output('blob')
+      const nextPdfDataUrl = doc.output('datauristring')
       const nextPdfUrl = URL.createObjectURL(blob)
+      setPerformancePdfDataUrl(nextPdfDataUrl)
       setPerformancePdfUrl((current) => {
         if (current) URL.revokeObjectURL(current)
         return nextPdfUrl
@@ -5692,59 +5752,99 @@ function GuardianStudyPlannerPage({ authUser }) {
     }
   }
   const handleViewPerformancePdf = async () => {
-    if (!performancePdfUrl) return
+    if (!performancePdfUrl && !performancePdfDataUrl) return
     setError('')
-    const handledInApp = await postPdfBlobToNativeApp(performancePdfUrl, performancePdfFileName, 'view')
+    const handledInApp = await sendPdfToNativeApp({
+      dataUrl: performancePdfDataUrl,
+      blobUrl: performancePdfUrl,
+      fileName: performancePdfFileName,
+      action: 'view',
+    })
     if (handledInApp) return
-    if (window.__gaPostPdfToNative?.('view', performancePdfFileName, performancePdfUrl)) return
+    if (isNativeAppView()) {
+      setError('Could not open this PDF in app mode. Generate it again and retry.')
+      return
+    }
     const opened = window.open(performancePdfUrl, '_blank', 'noopener,noreferrer')
     if (!opened) {
       setError('Popup was blocked. Please allow popups to open the PDF in a new tab.')
     }
   }
   const handleDownloadPerformancePdf = async () => {
-    if (!performancePdfUrl) return
+    if (!performancePdfUrl && !performancePdfDataUrl) return
     setError('')
-    const handledInApp = await postPdfBlobToNativeApp(
-      performancePdfUrl,
-      performancePdfFileName,
-      'download',
-    )
+    const handledInApp = await sendPdfToNativeApp({
+      dataUrl: performancePdfDataUrl,
+      blobUrl: performancePdfUrl,
+      fileName: performancePdfFileName,
+      action: 'download',
+    })
     if (handledInApp) return
-    if (window.__gaPostPdfToNative?.('download', performancePdfFileName, performancePdfUrl)) return
+    if (isNativeAppView()) {
+      setError('Could not download this PDF in app mode. Generate it again and retry.')
+      return
+    }
     downloadPdfInBrowser(performancePdfUrl, performancePdfFileName)
   }
   const handleViewOutlinePdf = async () => {
-    if (!outlinePdfUrl) return
+    if (!outlinePdfUrl && !outlinePdfDataUrl) return
     setError('')
-    const handledInApp = await postPdfBlobToNativeApp(outlinePdfUrl, outlinePdfFileName, 'view')
+    const handledInApp = await sendPdfToNativeApp({
+      dataUrl: outlinePdfDataUrl,
+      blobUrl: outlinePdfUrl,
+      fileName: outlinePdfFileName,
+      action: 'view',
+    })
     if (handledInApp) return
-    if (window.__gaPostPdfToNative?.('view', outlinePdfFileName, outlinePdfUrl)) return
+    if (isNativeAppView()) {
+      setError('Could not open this PDF in app mode. Generate it again and retry.')
+      return
+    }
     openPdfInBrowser(outlinePdfUrl)
   }
   const handleDownloadOutlinePdf = async () => {
-    if (!outlinePdfUrl) return
+    if (!outlinePdfUrl && !outlinePdfDataUrl) return
     setError('')
-    const handledInApp = await postPdfBlobToNativeApp(outlinePdfUrl, outlinePdfFileName, 'download')
+    const handledInApp = await sendPdfToNativeApp({
+      dataUrl: outlinePdfDataUrl,
+      blobUrl: outlinePdfUrl,
+      fileName: outlinePdfFileName,
+      action: 'download',
+    })
     if (handledInApp) return
-    if (window.__gaPostPdfToNative?.('download', outlinePdfFileName, outlinePdfUrl)) return
+    if (isNativeAppView()) {
+      setError('Could not download this PDF in app mode. Generate it again and retry.')
+      return
+    }
     downloadPdfInBrowser(outlinePdfUrl, outlinePdfFileName)
   }
-  const postWeeklyPdfToNativeApp = async (action) => {
-    return postPdfBlobToNativeApp(weeklyReportPdfUrl, weeklyReportPdfFileName, action)
-  }
+  const postWeeklyPdfToNativeApp = async (action) =>
+    sendPdfToNativeApp({
+      dataUrl: weeklyReportPdfDataUrl,
+      blobUrl: weeklyReportPdfUrl,
+      fileName: weeklyReportPdfFileName,
+      action,
+    })
   const handleViewWeeklyReportPdf = async () => {
-    if (!weeklyReportPdfUrl) return
+    if (!weeklyReportPdfUrl && !weeklyReportPdfDataUrl) return
+    setError('')
     const handledInApp = await postWeeklyPdfToNativeApp('view')
     if (handledInApp) return
-    if (window.__gaPostPdfToNative?.('view', weeklyReportPdfFileName, weeklyReportPdfUrl)) return
+    if (isNativeAppView()) {
+      setError('Could not open this PDF in app mode. Generate it again and retry.')
+      return
+    }
     openPdfInBrowser(weeklyReportPdfUrl)
   }
   const handleDownloadWeeklyReportPdf = async () => {
-    if (!weeklyReportPdfUrl) return
+    if (!weeklyReportPdfUrl && !weeklyReportPdfDataUrl) return
+    setError('')
     const handledInApp = await postWeeklyPdfToNativeApp('download')
     if (handledInApp) return
-    if (window.__gaPostPdfToNative?.('download', weeklyReportPdfFileName, weeklyReportPdfUrl)) return
+    if (isNativeAppView()) {
+      setError('Could not download this PDF in app mode. Generate it again and retry.')
+      return
+    }
     downloadPdfInBrowser(weeklyReportPdfUrl, weeklyReportPdfFileName)
   }
 
@@ -6833,12 +6933,20 @@ function GuardianStudyPlannerPage({ authUser }) {
                     </button>
                     {outlinePdfUrl ? (
                       <>
-                        <button className="btn btn-secondary" type="button" onClick={handleViewOutlinePdf}>
+                        <button
+                          className="btn btn-secondary"
+                          type="button"
+                          data-ga-pdf-url={outlinePdfUrl}
+                          data-ga-pdf-name={outlinePdfFileName}
+                          onClick={handleViewOutlinePdf}
+                        >
                           View PDF
                         </button>
                         <button
                           className="btn btn-secondary"
                           type="button"
+                          data-ga-pdf-url={outlinePdfUrl}
+                          data-ga-pdf-name={outlinePdfFileName}
                           onClick={handleDownloadOutlinePdf}
                         >
                           Download PDF
@@ -7350,6 +7458,8 @@ function GuardianStudyPlannerPage({ authUser }) {
                             <button
                               type="button"
                               className="btn btn-secondary"
+                              data-ga-pdf-url={performancePdfUrl}
+                              data-ga-pdf-name={performancePdfFileName}
                               onClick={handleViewPerformancePdf}
                             >
                               View PDF
@@ -7357,6 +7467,8 @@ function GuardianStudyPlannerPage({ authUser }) {
                             <button
                               type="button"
                               className="btn btn-secondary"
+                              data-ga-pdf-url={performancePdfUrl}
+                              data-ga-pdf-name={performancePdfFileName}
                               onClick={handleDownloadPerformancePdf}
                             >
                               Download PDF
@@ -8068,6 +8180,8 @@ function GuardianStudyPlannerPage({ authUser }) {
                       <button
                         className="btn btn-secondary"
                         type="button"
+                        data-ga-pdf-url={weeklyReportPdfUrl}
+                        data-ga-pdf-name={weeklyReportPdfFileName}
                         onClick={handleViewWeeklyReportPdf}
                       >
                         View Report PDF
@@ -8075,6 +8189,8 @@ function GuardianStudyPlannerPage({ authUser }) {
                       <button
                         className="btn btn-secondary"
                         type="button"
+                        data-ga-pdf-url={weeklyReportPdfUrl}
+                        data-ga-pdf-name={weeklyReportPdfFileName}
                         onClick={handleDownloadWeeklyReportPdf}
                       >
                         Download Report PDF
