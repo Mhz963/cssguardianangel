@@ -9273,7 +9273,7 @@ function StickyNotesWidget({ authUser }) {
                 resetCompose()
               }}
             >
-              ×
+              Close
             </button>
           </div>
 
