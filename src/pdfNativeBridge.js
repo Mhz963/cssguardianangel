@@ -342,7 +342,7 @@ export async function handlePdfUserAction({ dataUrl, blobUrl, pdfUrl, fileName, 
     return downloadPdfDirect({ dataUrl, blobUrl, pdfUrl, fileName })
   }
 
-  // View in the Expo shell → native PDF modal / system viewer (not the site overlay).
+  // View in the Expo shell → native PDF viewer only (never the site overlay).
   if (isNativeAppView()) {
     const ok = await sendViaNativeBridge({
       dataUrl,
@@ -351,10 +351,10 @@ export async function handlePdfUserAction({ dataUrl, blobUrl, pdfUrl, fileName, 
       fileName,
       action: 'view',
     })
-    if (ok) return true
+    return Boolean(ok)
   }
 
-  if (isNativeAppView() || isMobileWebView()) {
+  if (isMobileWebView()) {
     return openPdfAppViewer({ pdfUrl, blobUrl, dataUrl, fileName })
   }
 
