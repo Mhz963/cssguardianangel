@@ -4357,6 +4357,18 @@ a {
   border-bottom: 1px solid var(--border-soft);
 }
 
+.pdf-app-viewer-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex-shrink: 0;
+}
+
+.pdf-app-viewer-actions .btn {
+  padding: 0.45rem 0.75rem;
+  font-size: 0.82rem;
+}
+
 .pdf-app-viewer-header h3 {
   margin: 0;
   font-size: 0.95rem;

@@ -1,4 +1,4 @@
-import { openPdfAppViewer, triggerPdfAppDownload } from './PdfAppExperience.jsx'
+import { openPdfAppViewer, showPdfAppToast } from './PdfAppExperience.jsx'
 
 const PDF_CHUNK_SIZE = 6000
 
@@ -33,91 +33,18 @@ function extractBase64(dataUrl) {
   return raw.slice(comma + 1)
 }
 
-async function resolveBlobFromSources({ dataUrl, blobUrl, pdfUrl }) {
-  if (dataUrl) {
-    const response = await fetch(dataUrl)
-    if (!response.ok) throw new Error('Could not read PDF data')
-    return response.blob()
-  }
-  if (blobUrl) {
-    const response = await fetch(blobUrl)
-    if (!response.ok) throw new Error('Could not read PDF blob')
-    return response.blob()
-  }
-  if (pdfUrl && /^https?:\/\//i.test(String(pdfUrl))) {
-    const response = await fetch(String(pdfUrl), { credentials: 'include' })
-    if (!response.ok) throw new Error(`Could not fetch PDF (${response.status})`)
-    return response.blob()
-  }
-  throw new Error('No PDF source available')
-}
-
-function asPdfBlob(blob) {
-  if (blob && typeof blob.type === 'string' && blob.type.includes('pdf')) return blob
-  return new Blob([blob], { type: 'application/pdf' })
-}
-
 function clickDownloadAnchor(href, fileName) {
   const anchor = document.createElement('a')
   anchor.href = href
   anchor.setAttribute('download', fileName || 'Guardian_Angel_Report.pdf')
   anchor.rel = 'noopener noreferrer'
-  anchor.target = '_self'
   anchor.style.display = 'none'
   document.body.appendChild(anchor)
   anchor.click()
   anchor.remove()
 }
 
-/**
- * Website-side download for app WebView (works after Vercel deploy, no Play Store update).
- */
-export async function downloadPdfForAppWebView({ dataUrl, blobUrl, pdfUrl, fileName } = {}) {
-  const safeName = fileName || 'Guardian_Angel_Report.pdf'
-
-  try {
-    const rawBlob = await resolveBlobFromSources({ dataUrl, blobUrl, pdfUrl })
-    const blob = asPdfBlob(rawBlob)
-    const file = new File([blob], safeName, { type: 'application/pdf' })
-
-    // Best on Android Chrome WebView: system sheet → user picks "Save to Files" / Drive.
-    if (typeof navigator !== 'undefined' && typeof navigator.canShare === 'function') {
-      try {
-        if (navigator.canShare({ files: [file] })) {
-          await navigator.share({
-            files: [file],
-            title: safeName,
-            text: 'Guardian Angel PDF',
-          })
-          triggerPdfAppDownload({ message: 'Choose Save / Files to keep the PDF' })
-          return true
-        }
-      } catch (shareError) {
-        // User cancel should not count as failure.
-        if (shareError?.name === 'AbortError') return true
-      }
-    }
-
-    const objectUrl = URL.createObjectURL(blob)
-    clickDownloadAnchor(objectUrl, safeName)
-    window.setTimeout(() => URL.revokeObjectURL(objectUrl), 20000)
-    triggerPdfAppDownload({ message: `${safeName} download started` })
-    return true
-  } catch (error) {
-    // Last resort: open in viewer so user can still access the file.
-    const opened = openPdfAppViewer({ pdfUrl, blobUrl, dataUrl, fileName: safeName })
-    if (opened) {
-      triggerPdfAppDownload({
-        message: 'Download blocked by WebView — opened viewer instead',
-      })
-      return true
-    }
-    console.warn('[pdf download]', error)
-    return false
-  }
-}
-
-/** Hosted PDFs for optional native shells (kept for newer app builds). */
+/** Optional native shell hooks (newer apps). */
 export async function postPdfUrlToNativeApp(pdfUrl, fileName, action = 'view') {
   if (!pdfUrl || !isNativeAppView()) return false
   if (typeof window.__gaPostPdfFromUrl === 'function') {
@@ -194,17 +121,26 @@ export async function postPdfBlobToNativeApp(blobUrl, fileName, action = 'view')
 }
 
 /**
- * Primary entry used by the website.
- * In the app WebView: View = in-page modal; Download = Web Share / blob save.
+ * In the app WebView:
+ * - View → in-page mobile PDF viewer
+ * - Download → same viewer + Save PDF (system save sheet), matching working app behavior
  */
 export async function sendPdfToNativeApp({ dataUrl, blobUrl, pdfUrl, fileName, action = 'view' }) {
   if (!isNativeAppView()) return false
 
-  if (action === 'view') {
-    return openPdfAppViewer({ pdfUrl, blobUrl, dataUrl, fileName })
+  const opened = openPdfAppViewer({
+    pdfUrl,
+    blobUrl,
+    dataUrl,
+    fileName,
+    mode: action === 'download' ? 'download' : 'view',
+  })
+
+  if (opened && action === 'download') {
+    showPdfAppToast('Tap Save PDF to download on your phone')
   }
 
-  return downloadPdfForAppWebView({ dataUrl, blobUrl, pdfUrl, fileName })
+  return opened
 }
 
 export function openPdfInBrowser(url) {
