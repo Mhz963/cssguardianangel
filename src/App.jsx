@@ -36,11 +36,7 @@ import { fetchSubscriptionStatus, hasActiveSubscription } from './utils/paymentC
 import { cssStudyMaterials } from './data/cssStudyMaterialsData'
 import { cssPastPapersByYear, FPSC_CSS_PAST_PAPERS_SOURCE } from './data/cssPastPapersData.js'
 import PaymentPage from './PaymentPage.jsx'
-import {
-  downloadPdfInBrowser,
-  handlePdfUserAction,
-  openPdfInBrowser,
-} from './pdfNativeBridge.js'
+import { handlePdfAction } from './pdfNativeBridge.js'
 import { PdfAppExperienceHost } from './PdfAppExperience.jsx'
 
 const GlobalConflictMapTab = lazy(() => import('./GlobalConflictMapTab.jsx'))
@@ -2219,17 +2215,11 @@ function KeyDocumentsPage() {
   const handleDocumentPdfAction = async (event, doc, action) => {
     event.preventDefault()
     event.stopPropagation()
-    const handled = await handlePdfUserAction({
+    await handlePdfAction({
       pdfUrl: doc.url,
       fileName: doc.fileName,
       action,
     })
-    if (handled) return
-    if (action === 'download') {
-      downloadPdfInBrowser(doc.url, doc.fileName)
-      return
-    }
-    openPdfInBrowser(doc.url)
   }
   const pakistanDocuments = [
     {
@@ -2378,26 +2368,27 @@ function KeyDocumentsPage() {
                 <h4>{doc.title}</h4>
                 <p>{doc.summary}</p>
                 <div className="constitution-resource-actions">
-                  <button
-                    type="button"
+                  <a
                     className="btn btn-primary"
+                    href={doc.url}
+                    target="_blank"
+                    rel="noreferrer"
                     data-ga-pdf-url={doc.url}
                     data-ga-pdf-name={doc.fileName}
-                    data-ga-pdf-action="view"
                     onClick={(event) => handleDocumentPdfAction(event, doc, 'view')}
                   >
                     View PDF
-                  </button>
-                  <button
-                    type="button"
+                  </a>
+                  <a
                     className="btn btn-secondary"
+                    href={doc.url}
+                    download={doc.fileName}
                     data-ga-pdf-url={doc.url}
                     data-ga-pdf-name={doc.fileName}
-                    data-ga-pdf-action="download"
                     onClick={(event) => handleDocumentPdfAction(event, doc, 'download')}
                   >
                     Download PDF
-                  </button>
+                  </a>
                 </div>
               </article>
             ))}
@@ -2433,26 +2424,27 @@ function KeyDocumentsPage() {
                 <h4>{doc.title}</h4>
                 <p>{doc.summary}</p>
                 <div className="constitution-resource-actions">
-                  <button
-                    type="button"
+                  <a
                     className="btn btn-primary"
+                    href={doc.url}
+                    target="_blank"
+                    rel="noreferrer"
                     data-ga-pdf-url={doc.url}
                     data-ga-pdf-name={doc.fileName}
-                    data-ga-pdf-action="view"
                     onClick={(event) => handleDocumentPdfAction(event, doc, 'view')}
                   >
                     View PDF
-                  </button>
-                  <button
-                    type="button"
+                  </a>
+                  <a
                     className="btn btn-secondary"
+                    href={doc.url}
+                    download={doc.fileName}
                     data-ga-pdf-url={doc.url}
                     data-ga-pdf-name={doc.fileName}
-                    data-ga-pdf-action="download"
                     onClick={(event) => handleDocumentPdfAction(event, doc, 'download')}
                   >
                     Download PDF
-                  </button>
+                  </a>
                 </div>
               </article>
             ))}
@@ -5752,7 +5744,7 @@ function GuardianStudyPlannerPage({ authUser }) {
   const handleViewPerformancePdf = async () => {
     if (!performancePdfUrl && !performancePdfDataUrlRef.current) return
     setError('')
-    const handled = await handlePdfUserAction({
+    const handled = await handlePdfAction({
       dataUrl: performancePdfDataUrlRef.current,
       blobUrl: performancePdfUrl,
       fileName: performancePdfFileName,
@@ -5767,62 +5759,52 @@ function GuardianStudyPlannerPage({ authUser }) {
   const handleDownloadPerformancePdf = async () => {
     if (!performancePdfUrl && !performancePdfDataUrlRef.current) return
     setError('')
-    const handled = await handlePdfUserAction({
+    await handlePdfAction({
       dataUrl: performancePdfDataUrlRef.current,
       blobUrl: performancePdfUrl,
       fileName: performancePdfFileName,
       action: 'download',
     })
-    if (handled) return
-    setError('Could not download this PDF. Please try again.')
   }
   const handleViewOutlinePdf = async () => {
     if (!outlinePdfUrl && !outlinePdfDataUrlRef.current) return
     setError('')
-    const handled = await handlePdfUserAction({
+    await handlePdfAction({
       dataUrl: outlinePdfDataUrlRef.current,
       blobUrl: outlinePdfUrl,
       fileName: outlinePdfFileName,
       action: 'view',
     })
-    if (handled) return
-    openPdfInBrowser(outlinePdfUrl)
   }
   const handleDownloadOutlinePdf = async () => {
     if (!outlinePdfUrl && !outlinePdfDataUrlRef.current) return
     setError('')
-    const handled = await handlePdfUserAction({
+    await handlePdfAction({
       dataUrl: outlinePdfDataUrlRef.current,
       blobUrl: outlinePdfUrl,
       fileName: outlinePdfFileName,
       action: 'download',
     })
-    if (handled) return
-    setError('Could not download this PDF. Please try again.')
   }
   const handleViewWeeklyReportPdf = async () => {
     if (!weeklyReportPdfUrl && !weeklyReportPdfDataUrlRef.current) return
     setError('')
-    const handled = await handlePdfUserAction({
+    await handlePdfAction({
       dataUrl: weeklyReportPdfDataUrlRef.current,
       blobUrl: weeklyReportPdfUrl,
       fileName: weeklyReportPdfFileName,
       action: 'view',
     })
-    if (handled) return
-    openPdfInBrowser(weeklyReportPdfUrl)
   }
   const handleDownloadWeeklyReportPdf = async () => {
     if (!weeklyReportPdfUrl && !weeklyReportPdfDataUrlRef.current) return
     setError('')
-    const handled = await handlePdfUserAction({
+    await handlePdfAction({
       dataUrl: weeklyReportPdfDataUrlRef.current,
       blobUrl: weeklyReportPdfUrl,
       fileName: weeklyReportPdfFileName,
       action: 'download',
     })
-    if (handled) return
-    setError('Could not download this PDF. Please try again.')
   }
 
   const handleTimerStart = () => {
@@ -6915,7 +6897,6 @@ function GuardianStudyPlannerPage({ authUser }) {
                           type="button"
                           data-ga-pdf-url={outlinePdfUrl}
                           data-ga-pdf-name={outlinePdfFileName}
-                          data-ga-pdf-action="view"
                           onClick={handleViewOutlinePdf}
                         >
                           View PDF
@@ -6925,7 +6906,6 @@ function GuardianStudyPlannerPage({ authUser }) {
                           type="button"
                           data-ga-pdf-url={outlinePdfUrl}
                           data-ga-pdf-name={outlinePdfFileName}
-                          data-ga-pdf-action="download"
                           onClick={handleDownloadOutlinePdf}
                         >
                           Download PDF
@@ -7439,7 +7419,6 @@ function GuardianStudyPlannerPage({ authUser }) {
                               className="btn btn-secondary"
                               data-ga-pdf-url={performancePdfUrl}
                               data-ga-pdf-name={performancePdfFileName}
-                              data-ga-pdf-action="view"
                               onClick={handleViewPerformancePdf}
                             >
                               View PDF
@@ -7449,7 +7428,6 @@ function GuardianStudyPlannerPage({ authUser }) {
                               className="btn btn-secondary"
                               data-ga-pdf-url={performancePdfUrl}
                               data-ga-pdf-name={performancePdfFileName}
-                              data-ga-pdf-action="download"
                               onClick={handleDownloadPerformancePdf}
                             >
                               Download PDF
@@ -8163,7 +8141,6 @@ function GuardianStudyPlannerPage({ authUser }) {
                         type="button"
                         data-ga-pdf-url={weeklyReportPdfUrl}
                         data-ga-pdf-name={weeklyReportPdfFileName}
-                        data-ga-pdf-action="view"
                         onClick={handleViewWeeklyReportPdf}
                       >
                         View Report PDF
@@ -8173,7 +8150,6 @@ function GuardianStudyPlannerPage({ authUser }) {
                         type="button"
                         data-ga-pdf-url={weeklyReportPdfUrl}
                         data-ga-pdf-name={weeklyReportPdfFileName}
-                        data-ga-pdf-action="download"
                         onClick={handleDownloadWeeklyReportPdf}
                       >
                         Download Report PDF

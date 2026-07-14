@@ -4405,22 +4405,17 @@ a {
 .pdf-app-toast {
   position: fixed;
   left: 50%;
-  top: max(0.85rem, env(safe-area-inset-top, 0px));
-  bottom: auto;
+  bottom: max(1.2rem, env(safe-area-inset-bottom, 0px));
   z-index: 13100;
   transform: translateX(-50%);
-  max-width: min(94vw, 420px);
-  width: max-content;
-  padding: 0.75rem 1.15rem;
-  border-radius: 12px;
-  background: #111827;
-  color: #f8fafc;
-  font-size: 0.9rem;
-  font-weight: 650;
-  letter-spacing: 0.01em;
-  box-shadow: 0 12px 28px rgb(0 0 0 / 40%);
-  border: 1px solid color-mix(in srgb, var(--brand-gold) 55%, transparent);
-  text-align: center;
+  max-width: min(92vw, 360px);
+  padding: 0.7rem 1rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--brand-gold) 88%, #111);
+  color: #111827;
+  font-size: 0.88rem;
+  font-weight: 700;
+  box-shadow: 0 10px 24px rgb(0 0 0 / 35%);
 }
 
 .planner-reminder-popup-card {

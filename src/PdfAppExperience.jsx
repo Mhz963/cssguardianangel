@@ -1,78 +1,27 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 export const GA_PDF_APP_VIEW_EVENT = 'ga-pdf-app-view'
 export const GA_PDF_APP_TOAST_EVENT = 'ga-pdf-app-toast'
 
-function toAbsoluteUrl(url) {
-  const href = String(url || '')
-  if (!href) return ''
-  if (/^https?:\/\//i.test(href) || href.startsWith('blob:') || href.startsWith('data:')) {
-    return href
-  }
-  if (typeof window === 'undefined') return href
-  try {
-    return new URL(href, window.location.href).href
-  } catch {
-    return href
-  }
-}
-
-function isPrivateHost(url) {
-  try {
-    const { hostname, protocol } = new URL(url)
-    if (protocol !== 'http:' && protocol !== 'https:') return false
-    const host = hostname.toLowerCase()
-    if (host === 'localhost' || host.endsWith('.local')) return true
-    if (/^(\d{1,3}\.){3}\d{1,3}$/.test(host)) return true
-    return false
-  } catch {
-    return false
-  }
-}
-
-/**
- * Build a viewable src. Mobile browsers rarely render raw PDFs in iframes,
- * so public https PDFs go through Google Docs viewer.
- */
 function resolveViewerSrc({ pdfUrl, blobUrl, dataUrl }) {
+  if (pdfUrl && /^https?:\/\//i.test(String(pdfUrl))) return String(pdfUrl)
   if (blobUrl) return String(blobUrl)
   if (dataUrl) return String(dataUrl)
-
-  const absolute = toAbsoluteUrl(pdfUrl)
-  if (!absolute) return ''
-
-  if (/^https:\/\//i.test(absolute) && !isPrivateHost(absolute)) {
-    return `https://docs.google.com/gview?embedded=true&url=${encodeURIComponent(absolute)}`
-  }
-
-  return absolute
+  return ''
 }
 
-/** View-only in-app / mobile PDF viewer. */
-export function openPdfAppViewer({ pdfUrl, blobUrl, dataUrl, fileName } = {}) {
-  const absolutePdf = toAbsoluteUrl(pdfUrl)
-
-  // Local / LAN files: open directly (Google Docs cannot reach private hosts).
-  if (absolutePdf && isPrivateHost(absolutePdf) && !blobUrl && !dataUrl) {
-    const opened = window.open(absolutePdf, '_blank', 'noopener,noreferrer')
-    if (opened) return true
-  }
-
-  const src = resolveViewerSrc({ pdfUrl: absolutePdf || pdfUrl, blobUrl, dataUrl })
-  if (!src) {
-    if (absolutePdf) {
-      window.open(absolutePdf, '_blank', 'noopener,noreferrer')
-      return true
-    }
-    return false
-  }
-
+export function openPdfAppViewer({ pdfUrl, blobUrl, dataUrl, fileName, mode = 'view' } = {}) {
+  const src = resolveViewerSrc({ pdfUrl, blobUrl, dataUrl })
+  if (!src) return false
   window.dispatchEvent(
     new CustomEvent(GA_PDF_APP_VIEW_EVENT, {
       detail: {
         src,
+        pdfUrl: pdfUrl || '',
+        blobUrl: blobUrl || '',
+        dataUrl: dataUrl || '',
         fileName: fileName || 'Guardian Angel PDF',
-        originalUrl: absolutePdf || '',
+        mode: mode === 'download' ? 'download' : 'view',
       },
     }),
   )
@@ -87,12 +36,108 @@ export function showPdfAppToast(message) {
   )
 }
 
+async function blobFromViewerDetail(detail) {
+  if (detail?.dataUrl) {
+    const response = await fetch(detail.dataUrl)
+    if (!response.ok) throw new Error('Could not read PDF data')
+    return response.blob()
+  }
+  if (detail?.blobUrl) {
+    const response = await fetch(detail.blobUrl)
+    if (!response.ok) throw new Error('Could not read PDF blob')
+    return response.blob()
+  }
+  if (detail?.pdfUrl && /^https?:\/\//i.test(detail.pdfUrl)) {
+    const response = await fetch(detail.pdfUrl, { credentials: 'include' })
+    if (!response.ok) throw new Error('Could not fetch PDF')
+    return response.blob()
+  }
+  if (detail?.src) {
+    const response = await fetch(detail.src, { credentials: 'include' })
+    if (!response.ok) throw new Error('Could not load PDF')
+    return response.blob()
+  }
+  throw new Error('No PDF source')
+}
+
+function asPdfBlob(blob) {
+  if (blob && typeof blob.type === 'string' && blob.type.includes('pdf')) return blob
+  return new Blob([blob], { type: 'application/pdf' })
+}
+
+function clickDownloadAnchor(href, fileName) {
+  const anchor = document.createElement('a')
+  anchor.href = href
+  anchor.download = fileName || 'Guardian_Angel_Report.pdf'
+  anchor.rel = 'noopener noreferrer'
+  document.body.appendChild(anchor)
+  anchor.click()
+  anchor.remove()
+}
+
+/**
+ * Mobile save: prefer File share (user gesture), then URL share, then blob download link.
+ */
+export async function savePdfWithMobileSheet(detail, cachedFile) {
+  const safeName = detail?.fileName || 'Guardian_Angel_Report.pdf'
+
+  let file = cachedFile
+  if (!(file instanceof File)) {
+    const raw = await blobFromViewerDetail(detail)
+    const blob = asPdfBlob(raw)
+    file = new File([blob], safeName, { type: 'application/pdf' })
+  }
+
+  if (typeof navigator !== 'undefined' && typeof navigator.canShare === 'function') {
+    try {
+      if (navigator.canShare({ files: [file] })) {
+        await navigator.share({
+          files: [file],
+          title: safeName,
+          text: 'Guardian Angel PDF',
+        })
+        return true
+      }
+    } catch (error) {
+      if (error?.name === 'AbortError') throw error
+    }
+  }
+
+  const httpsUrl =
+    (detail?.pdfUrl && /^https?:\/\//i.test(detail.pdfUrl) && detail.pdfUrl) ||
+    (detail?.src && /^https?:\/\//i.test(detail.src) && detail.src) ||
+    ''
+
+  if (httpsUrl && typeof navigator?.share === 'function') {
+    try {
+      await navigator.share({
+        url: httpsUrl,
+        title: safeName,
+        text: 'Guardian Angel PDF',
+      })
+      return true
+    } catch (error) {
+      if (error?.name === 'AbortError') throw error
+    }
+  }
+
+  const objectUrl = URL.createObjectURL(file)
+  clickDownloadAnchor(objectUrl, safeName)
+  window.setTimeout(() => URL.revokeObjectURL(objectUrl), 20000)
+  return true
+}
+
 export function PdfAppExperienceHost() {
   const [viewer, setViewer] = useState(null)
   const [toast, setToast] = useState('')
+  const [isSaving, setIsSaving] = useState(false)
+  const [saveReady, setSaveReady] = useState(false)
+  const cachedFileRef = useRef(null)
 
   const closeViewer = useCallback(() => {
     setViewer(null)
+    setSaveReady(false)
+    cachedFileRef.current = null
     try {
       if (window.history.state?.gaPdfAppViewer) {
         window.history.back()
@@ -102,27 +147,54 @@ export function PdfAppExperienceHost() {
     }
   }, [])
 
+  const handleSavePdf = useCallback(async () => {
+    if (!viewer || isSaving) return
+    setIsSaving(true)
+    try {
+      await savePdfWithMobileSheet(viewer, cachedFileRef.current)
+      setToast('Choose Save / Files to keep the PDF')
+      window.setTimeout(() => setToast(''), 2800)
+    } catch (error) {
+      if (error?.name === 'AbortError') {
+        // user cancelled share sheet — not an error
+      } else {
+        setToast(error?.message || 'Could not save PDF')
+        window.setTimeout(() => setToast(''), 3200)
+      }
+    } finally {
+      setIsSaving(false)
+    }
+  }, [viewer, isSaving])
+
   useEffect(() => {
     const onView = (event) => {
       const detail = event?.detail
       if (!detail?.src) return
+      cachedFileRef.current = null
+      setSaveReady(false)
       setViewer(detail)
       try {
         window.history.pushState({ gaPdfAppViewer: true }, '', window.location.href)
       } catch {
         // ignore
       }
+      if (detail.mode === 'download') {
+        setToast('Tap Save PDF below to download')
+        window.setTimeout(() => setToast(''), 2800)
+      }
     }
 
     const onPopState = () => {
       setViewer((current) => (current ? null : current))
+      cachedFileRef.current = null
+      setSaveReady(false)
     }
 
     const onToast = (event) => {
       const message = event?.detail?.message
       if (!message) return
       setToast(message)
-      window.setTimeout(() => setToast(''), 3600)
+      window.setTimeout(() => setToast(''), 2800)
     }
 
     window.addEventListener(GA_PDF_APP_VIEW_EVENT, onView)
@@ -134,6 +206,27 @@ export function PdfAppExperienceHost() {
       window.removeEventListener(GA_PDF_APP_TOAST_EVENT, onToast)
     }
   }, [])
+
+  // Prefetch File so Save PDF can share immediately from the tap.
+  useEffect(() => {
+    if (!viewer) return undefined
+    let cancelled = false
+    const safeName = viewer.fileName || 'Guardian_Angel_Report.pdf'
+    ;(async () => {
+      try {
+        const raw = await blobFromViewerDetail(viewer)
+        if (cancelled) return
+        const blob = asPdfBlob(raw)
+        cachedFileRef.current = new File([blob], safeName, { type: 'application/pdf' })
+        setSaveReady(true)
+      } catch {
+        if (!cancelled) setSaveReady(false)
+      }
+    })()
+    return () => {
+      cancelled = true
+    }
+  }, [viewer])
 
   useEffect(() => {
     if (!viewer) return undefined
@@ -152,28 +245,32 @@ export function PdfAppExperienceHost() {
             <div className="pdf-app-viewer-header">
               <h3>{viewer.fileName || 'PDF Viewer'}</h3>
               <div className="pdf-app-viewer-actions">
-                {viewer.originalUrl ? (
-                  <a
-                    className="btn btn-secondary pdf-app-viewer-close"
-                    href={viewer.originalUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Open tab
-                  </a>
-                ) : null}
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  onClick={handleSavePdf}
+                  disabled={isSaving || !saveReady}
+                >
+                  {isSaving ? 'Saving…' : saveReady ? 'Save PDF' : 'Preparing…'}
+                </button>
                 <button type="button" className="btn btn-primary pdf-app-viewer-close" onClick={closeViewer}>
                   Close
                 </button>
               </div>
             </div>
-            <iframe
+            <object
               className="pdf-app-viewer-frame"
-              title={viewer.fileName || 'PDF Viewer'}
-              src={viewer.src}
-              allow="fullscreen"
-            />
-            <p className="pdf-app-viewer-hint">Close returns to the previous screen.</p>
+              data={viewer.src}
+              type="application/pdf"
+              aria-label={viewer.fileName || 'PDF'}
+            >
+              <iframe className="pdf-app-viewer-frame" title={viewer.fileName || 'PDF Viewer'} src={viewer.src} />
+            </object>
+            <p className="pdf-app-viewer-hint">
+              {viewer.mode === 'download'
+                ? 'Tap Save PDF to download on your phone.'
+                : 'Tap Save PDF to download, or Close to go back one step.'}
+            </p>
           </div>
         </div>
       ) : null}
