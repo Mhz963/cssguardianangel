@@ -332,7 +332,8 @@ export default defineConfig(({ mode }) => {
       },
     ],
     server: {
-      // handled by middleware above
+      host: true,
+      port: 5173,
     },
   }
 })
