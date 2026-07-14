@@ -38,9 +38,8 @@ import { cssPastPapersByYear, FPSC_CSS_PAST_PAPERS_SOURCE } from './data/cssPast
 import PaymentPage from './PaymentPage.jsx'
 import {
   downloadPdfInBrowser,
-  isNativeAppView,
+  handlePdfUserAction,
   openPdfInBrowser,
-  sendPdfToNativeApp,
 } from './pdfNativeBridge.js'
 import { PdfAppExperienceHost } from './PdfAppExperience.jsx'
 
@@ -2218,10 +2217,9 @@ function KeyDocumentsPage() {
   const udhrPdfUrl = new URL('../data/UDHR.pdf', import.meta.url).href
   const unCharterPdfUrl = new URL('../data/UN Charter.pdf', import.meta.url).href
   const handleDocumentPdfAction = async (event, doc, action) => {
-    if (!isNativeAppView()) return
     event.preventDefault()
     event.stopPropagation()
-    const handled = await sendPdfToNativeApp({
+    const handled = await handlePdfUserAction({
       pdfUrl: doc.url,
       fileName: doc.fileName,
       action,
@@ -2380,27 +2378,24 @@ function KeyDocumentsPage() {
                 <h4>{doc.title}</h4>
                 <p>{doc.summary}</p>
                 <div className="constitution-resource-actions">
-                  <a
+                  <button
+                    type="button"
                     className="btn btn-primary"
-                    href={doc.url}
-                    target="_blank"
-                    rel="noreferrer"
                     data-ga-pdf-url={doc.url}
                     data-ga-pdf-name={doc.fileName}
                     onClick={(event) => handleDocumentPdfAction(event, doc, 'view')}
                   >
                     View PDF
-                  </a>
-                  <a
+                  </button>
+                  <button
+                    type="button"
                     className="btn btn-secondary"
-                    href={doc.url}
-                    download={doc.fileName}
                     data-ga-pdf-url={doc.url}
                     data-ga-pdf-name={doc.fileName}
                     onClick={(event) => handleDocumentPdfAction(event, doc, 'download')}
                   >
                     Download PDF
-                  </a>
+                  </button>
                 </div>
               </article>
             ))}
@@ -2436,27 +2431,24 @@ function KeyDocumentsPage() {
                 <h4>{doc.title}</h4>
                 <p>{doc.summary}</p>
                 <div className="constitution-resource-actions">
-                  <a
+                  <button
+                    type="button"
                     className="btn btn-primary"
-                    href={doc.url}
-                    target="_blank"
-                    rel="noreferrer"
                     data-ga-pdf-url={doc.url}
                     data-ga-pdf-name={doc.fileName}
                     onClick={(event) => handleDocumentPdfAction(event, doc, 'view')}
                   >
                     View PDF
-                  </a>
-                  <a
+                  </button>
+                  <button
+                    type="button"
                     className="btn btn-secondary"
-                    href={doc.url}
-                    download={doc.fileName}
                     data-ga-pdf-url={doc.url}
                     data-ga-pdf-name={doc.fileName}
                     onClick={(event) => handleDocumentPdfAction(event, doc, 'download')}
                   >
                     Download PDF
-                  </a>
+                  </button>
                 </div>
               </article>
             ))}
@@ -5756,17 +5748,13 @@ function GuardianStudyPlannerPage({ authUser }) {
   const handleViewPerformancePdf = async () => {
     if (!performancePdfUrl && !performancePdfDataUrlRef.current) return
     setError('')
-    const handledInApp = await sendPdfToNativeApp({
+    const handled = await handlePdfUserAction({
       dataUrl: performancePdfDataUrlRef.current,
       blobUrl: performancePdfUrl,
       fileName: performancePdfFileName,
       action: 'view',
     })
-    if (handledInApp) return
-    if (isNativeAppView()) {
-      setError('Could not open this PDF in app mode. Generate it again and retry.')
-      return
-    }
+    if (handled) return
     const opened = window.open(performancePdfUrl, '_blank', 'noopener,noreferrer')
     if (!opened) {
       setError('Popup was blocked. Please allow popups to open the PDF in a new tab.')
@@ -5775,79 +5763,62 @@ function GuardianStudyPlannerPage({ authUser }) {
   const handleDownloadPerformancePdf = async () => {
     if (!performancePdfUrl && !performancePdfDataUrlRef.current) return
     setError('')
-    const handledInApp = await sendPdfToNativeApp({
+    const handled = await handlePdfUserAction({
       dataUrl: performancePdfDataUrlRef.current,
       blobUrl: performancePdfUrl,
       fileName: performancePdfFileName,
       action: 'download',
     })
-    if (handledInApp) return
-    if (isNativeAppView()) {
-      setError('Could not download this PDF in app mode. Generate it again and retry.')
-      return
-    }
-    downloadPdfInBrowser(performancePdfUrl, performancePdfFileName)
+    if (handled) return
+    setError('Could not download this PDF. Please try again.')
   }
   const handleViewOutlinePdf = async () => {
     if (!outlinePdfUrl && !outlinePdfDataUrlRef.current) return
     setError('')
-    const handledInApp = await sendPdfToNativeApp({
+    const handled = await handlePdfUserAction({
       dataUrl: outlinePdfDataUrlRef.current,
       blobUrl: outlinePdfUrl,
       fileName: outlinePdfFileName,
       action: 'view',
     })
-    if (handledInApp) return
-    if (isNativeAppView()) {
-      setError('Could not open this PDF in app mode. Generate it again and retry.')
-      return
-    }
+    if (handled) return
     openPdfInBrowser(outlinePdfUrl)
   }
   const handleDownloadOutlinePdf = async () => {
     if (!outlinePdfUrl && !outlinePdfDataUrlRef.current) return
     setError('')
-    const handledInApp = await sendPdfToNativeApp({
+    const handled = await handlePdfUserAction({
       dataUrl: outlinePdfDataUrlRef.current,
       blobUrl: outlinePdfUrl,
       fileName: outlinePdfFileName,
       action: 'download',
     })
-    if (handledInApp) return
-    if (isNativeAppView()) {
-      setError('Could not download this PDF in app mode. Generate it again and retry.')
-      return
-    }
-    downloadPdfInBrowser(outlinePdfUrl, outlinePdfFileName)
+    if (handled) return
+    setError('Could not download this PDF. Please try again.')
   }
-  const postWeeklyPdfToNativeApp = async (action) =>
-    sendPdfToNativeApp({
-      dataUrl: weeklyReportPdfDataUrlRef.current,
-      blobUrl: weeklyReportPdfUrl,
-      fileName: weeklyReportPdfFileName,
-      action,
-    })
   const handleViewWeeklyReportPdf = async () => {
     if (!weeklyReportPdfUrl && !weeklyReportPdfDataUrlRef.current) return
     setError('')
-    const handledInApp = await postWeeklyPdfToNativeApp('view')
-    if (handledInApp) return
-    if (isNativeAppView()) {
-      setError('Could not open this PDF in app mode. Generate it again and retry.')
-      return
-    }
+    const handled = await handlePdfUserAction({
+      dataUrl: weeklyReportPdfDataUrlRef.current,
+      blobUrl: weeklyReportPdfUrl,
+      fileName: weeklyReportPdfFileName,
+      action: 'view',
+    })
+    if (handled) return
     openPdfInBrowser(weeklyReportPdfUrl)
   }
   const handleDownloadWeeklyReportPdf = async () => {
     if (!weeklyReportPdfUrl && !weeklyReportPdfDataUrlRef.current) return
     setError('')
-    const handledInApp = await postWeeklyPdfToNativeApp('download')
-    if (handledInApp) return
-    if (isNativeAppView()) {
-      setError('Could not download this PDF in app mode. Generate it again and retry.')
-      return
-    }
-    downloadPdfInBrowser(weeklyReportPdfUrl, weeklyReportPdfFileName)
+    const handled = await handlePdfUserAction({
+      dataUrl: weeklyReportPdfDataUrlRef.current,
+      blobUrl: weeklyReportPdfUrl,
+      fileName: weeklyReportPdfFileName,
+      action: 'download',
+    })
+    if (handled) return
+    setError('Could not download this PDF. Please try again.')
   }
 
   const handleTimerStart = () => {
