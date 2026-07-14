@@ -2383,6 +2383,7 @@ function KeyDocumentsPage() {
                     className="btn btn-primary"
                     data-ga-pdf-url={doc.url}
                     data-ga-pdf-name={doc.fileName}
+                    data-ga-pdf-action="view"
                     onClick={(event) => handleDocumentPdfAction(event, doc, 'view')}
                   >
                     View PDF
@@ -2392,6 +2393,7 @@ function KeyDocumentsPage() {
                     className="btn btn-secondary"
                     data-ga-pdf-url={doc.url}
                     data-ga-pdf-name={doc.fileName}
+                    data-ga-pdf-action="download"
                     onClick={(event) => handleDocumentPdfAction(event, doc, 'download')}
                   >
                     Download PDF
@@ -2436,6 +2438,7 @@ function KeyDocumentsPage() {
                     className="btn btn-primary"
                     data-ga-pdf-url={doc.url}
                     data-ga-pdf-name={doc.fileName}
+                    data-ga-pdf-action="view"
                     onClick={(event) => handleDocumentPdfAction(event, doc, 'view')}
                   >
                     View PDF
@@ -2445,6 +2448,7 @@ function KeyDocumentsPage() {
                     className="btn btn-secondary"
                     data-ga-pdf-url={doc.url}
                     data-ga-pdf-name={doc.fileName}
+                    data-ga-pdf-action="download"
                     onClick={(event) => handleDocumentPdfAction(event, doc, 'download')}
                   >
                     Download PDF
@@ -6911,6 +6915,7 @@ function GuardianStudyPlannerPage({ authUser }) {
                           type="button"
                           data-ga-pdf-url={outlinePdfUrl}
                           data-ga-pdf-name={outlinePdfFileName}
+                          data-ga-pdf-action="view"
                           onClick={handleViewOutlinePdf}
                         >
                           View PDF
@@ -6920,6 +6925,7 @@ function GuardianStudyPlannerPage({ authUser }) {
                           type="button"
                           data-ga-pdf-url={outlinePdfUrl}
                           data-ga-pdf-name={outlinePdfFileName}
+                          data-ga-pdf-action="download"
                           onClick={handleDownloadOutlinePdf}
                         >
                           Download PDF
@@ -7433,6 +7439,7 @@ function GuardianStudyPlannerPage({ authUser }) {
                               className="btn btn-secondary"
                               data-ga-pdf-url={performancePdfUrl}
                               data-ga-pdf-name={performancePdfFileName}
+                              data-ga-pdf-action="view"
                               onClick={handleViewPerformancePdf}
                             >
                               View PDF
@@ -7442,6 +7449,7 @@ function GuardianStudyPlannerPage({ authUser }) {
                               className="btn btn-secondary"
                               data-ga-pdf-url={performancePdfUrl}
                               data-ga-pdf-name={performancePdfFileName}
+                              data-ga-pdf-action="download"
                               onClick={handleDownloadPerformancePdf}
                             >
                               Download PDF
@@ -8155,6 +8163,7 @@ function GuardianStudyPlannerPage({ authUser }) {
                         type="button"
                         data-ga-pdf-url={weeklyReportPdfUrl}
                         data-ga-pdf-name={weeklyReportPdfFileName}
+                        data-ga-pdf-action="view"
                         onClick={handleViewWeeklyReportPdf}
                       >
                         View Report PDF
@@ -8164,6 +8173,7 @@ function GuardianStudyPlannerPage({ authUser }) {
                         type="button"
                         data-ga-pdf-url={weeklyReportPdfUrl}
                         data-ga-pdf-name={weeklyReportPdfFileName}
+                        data-ga-pdf-action="download"
                         onClick={handleDownloadWeeklyReportPdf}
                       >
                         Download Report PDF

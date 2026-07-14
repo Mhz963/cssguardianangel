@@ -68,7 +68,7 @@ export function PdfAppExperienceHost() {
       const message = event?.detail?.message
       if (!message) return
       setToast(message)
-      window.setTimeout(() => setToast(''), 2800)
+      window.setTimeout(() => setToast(''), 3600)
     }
 
     window.addEventListener(GA_PDF_APP_VIEW_EVENT, onView)

@@ -95,64 +95,86 @@ function clickDownloadAnchor(href, fileName) {
   anchor.remove()
 }
 
+/** In-page toast + system notification bar (mobile browser). */
+async function notifyDownloadComplete(fileName) {
+  const safeName = fileName || 'Guardian_Angel_Report.pdf'
+  showPdfAppToast(`Downloaded: ${safeName}`)
+
+  if (typeof window === 'undefined' || typeof Notification === 'undefined') return
+
+  try {
+    let permission = Notification.permission
+    if (permission === 'default') {
+      permission = await Notification.requestPermission()
+    }
+    if (permission !== 'granted') return
+
+    const registration =
+      typeof navigator !== 'undefined' && navigator.serviceWorker
+        ? await navigator.serviceWorker.getRegistration().catch(() => null)
+        : null
+
+    if (registration?.showNotification) {
+      await registration.showNotification('PDF downloaded', {
+        body: `${safeName} saved to your device`,
+        tag: `ga-pdf-${safeName}`,
+        renotify: true,
+      })
+      return
+    }
+
+    // Fallback when no service worker — still appears in the notification shade on supported browsers.
+    // eslint-disable-next-line no-new
+    new Notification('PDF downloaded', {
+      body: `${safeName} saved to your device`,
+      tag: `ga-pdf-${safeName}`,
+    })
+  } catch (error) {
+    console.warn('[pdf notify]', error)
+  }
+}
+
 /**
- * Native Expo download path. Returns true only when a native post actually started.
+ * Native Expo path for view OR download. Returns true when post started.
  */
-async function downloadViaNativeBridge({ dataUrl, blobUrl, pdfUrl, fileName }) {
+async function sendViaNativeBridge({ dataUrl, blobUrl, pdfUrl, fileName, action }) {
   if (!isNativeAppView()) return false
   const safeName = fileName || 'Guardian_Angel_Report.pdf'
+  const safeAction = action === 'download' ? 'download' : 'view'
 
   if (pdfUrl && typeof window.__gaPostPdfFromUrl === 'function') {
     const absolute = toAbsoluteUrl(pdfUrl)
-    if (/^https?:\/\//i.test(absolute)) {
-      const ok = window.__gaPostPdfFromUrl('download', safeName, absolute)
-      if (ok !== false) {
-        showPdfAppToast('Saving PDF…')
-        return true
-      }
+    if (/^https?:\/\//i.test(absolute) || absolute.startsWith('blob:')) {
+      const ok = window.__gaPostPdfFromUrl(safeAction, safeName, absolute)
+      if (ok !== false) return true
     }
   }
 
   if (dataUrl && typeof window.__gaPostPdfPayload === 'function') {
-    const ok = window.__gaPostPdfPayload('download', safeName, dataUrl)
-    if (ok !== false) {
-      showPdfAppToast('Saving PDF…')
-      return true
-    }
+    const ok = window.__gaPostPdfPayload(safeAction, safeName, dataUrl)
+    if (ok !== false) return true
   }
 
   if (blobUrl && typeof window.__gaPostPdfFromBlobUrl === 'function') {
-    const ok = window.__gaPostPdfFromBlobUrl('download', safeName, blobUrl)
-    if (ok !== false) {
-      showPdfAppToast('Saving PDF…')
-      return true
-    }
+    const ok = window.__gaPostPdfFromBlobUrl(safeAction, safeName, blobUrl)
+    if (ok !== false) return true
   }
 
   if (dataUrl) {
-    const ok = await postPdfDataUrlToNative('download', safeName, dataUrl)
-    if (ok) {
-      showPdfAppToast('Saving PDF…')
-      return true
-    }
+    const ok = await postPdfDataUrlToNative(safeAction, safeName, dataUrl)
+    if (ok) return true
   }
 
   if (blobUrl) {
-    const ok = await postPdfBlobToNativeApp(blobUrl, safeName, 'download')
-    if (ok) {
-      showPdfAppToast('Saving PDF…')
-      return true
-    }
+    const ok = await postPdfBlobToNativeApp(blobUrl, safeName, safeAction)
+    if (ok) return true
   }
 
   if (pdfUrl) {
     const absolute = toAbsoluteUrl(pdfUrl)
     if (/^https?:\/\//i.test(absolute)) {
-      const ok = await postPdfUrlToNativeApp(absolute, safeName, 'download')
-      if (ok) {
-        showPdfAppToast('Saving PDF…')
-        return true
-      }
+      const ok = await postPdfUrlToNativeApp(absolute, safeName, safeAction)
+      if (ok) return true
     }
   }
 
@@ -160,24 +182,46 @@ async function downloadViaNativeBridge({ dataUrl, blobUrl, pdfUrl, fileName }) {
 }
 
 /**
- * Browser / WebView download — no PDF viewer screen.
- * Prefer real file download; use share only as an iOS assist.
+ * Browser download — no PDF viewer screen.
  */
 export async function downloadPdfDirect({ dataUrl, blobUrl, pdfUrl, fileName } = {}) {
   const safeName = fileName || 'Guardian_Angel_Report.pdf'
 
-  const nativeOk = await downloadViaNativeBridge({ dataUrl, blobUrl, pdfUrl, fileName: safeName })
-  if (nativeOk) return true
+  // Request notification permission early (still near the user tap) so the
+  // system tray notice can show after the file save.
+  if (
+    !isNativeAppView() &&
+    typeof Notification !== 'undefined' &&
+    Notification.permission === 'default'
+  ) {
+    try {
+      void Notification.requestPermission()
+    } catch {
+      // ignore
+    }
+  }
+
+  const nativeOk = await sendViaNativeBridge({
+    dataUrl,
+    blobUrl,
+    pdfUrl,
+    fileName: safeName,
+    action: 'download',
+  })
+  if (nativeOk) {
+    showPdfAppToast('Saving PDF…')
+    return true
+  }
 
   try {
     const rawBlob = await resolveBlobFromSources({ dataUrl, blobUrl, pdfUrl })
     const blob = asPdfBlob(rawBlob)
     const objectUrl = URL.createObjectURL(blob)
 
-    // Primary: blob download (works on Android Chrome / desktop / many WebViews).
+    // Primary: blob download (Android Chrome registers this in the download / notification tray).
     clickDownloadAnchor(objectUrl, safeName)
 
-    // iOS Safari often ignores download= — offer the share sheet as a save path.
+    // iOS Safari often ignores download= — offer Share → Save to Files.
     if (isIosBrowser() && typeof navigator !== 'undefined' && typeof navigator.canShare === 'function') {
       try {
         const file = new File([blob], safeName, { type: 'application/pdf' })
@@ -188,7 +232,7 @@ export async function downloadPdfDirect({ dataUrl, blobUrl, pdfUrl, fileName } =
             text: 'Guardian Angel PDF',
           })
           window.setTimeout(() => URL.revokeObjectURL(objectUrl), 30000)
-          showPdfAppToast('Choose Save to Files to keep the PDF')
+          await notifyDownloadComplete(safeName)
           return true
         }
       } catch (shareError) {
@@ -200,12 +244,12 @@ export async function downloadPdfDirect({ dataUrl, blobUrl, pdfUrl, fileName } =
     }
 
     window.setTimeout(() => URL.revokeObjectURL(objectUrl), 30000)
-    showPdfAppToast(`${safeName} download started`)
+    await notifyDownloadComplete(safeName)
     return true
   } catch (error) {
     if (pdfUrl) {
       clickDownloadAnchor(toAbsoluteUrl(pdfUrl), safeName)
-      showPdfAppToast('Opening PDF download…')
+      await notifyDownloadComplete(safeName)
       return true
     }
     console.warn('[pdf download]', error)
@@ -290,11 +334,24 @@ export async function postPdfBlobToNativeApp(blobUrl, fileName, action = 'view')
 
 /**
  * Unified PDF action for app WebView + mobile/desktop browser.
- * Download never opens the PDF viewer overlay.
+ * App: always native viewer (view) / native save (download).
+ * Mobile web: in-page viewer / blob download + notification.
  */
 export async function handlePdfUserAction({ dataUrl, blobUrl, pdfUrl, fileName, action = 'view' }) {
   if (action === 'download') {
     return downloadPdfDirect({ dataUrl, blobUrl, pdfUrl, fileName })
+  }
+
+  // View in the Expo shell → native PDF modal / system viewer (not the site overlay).
+  if (isNativeAppView()) {
+    const ok = await sendViaNativeBridge({
+      dataUrl,
+      blobUrl,
+      pdfUrl,
+      fileName,
+      action: 'view',
+    })
+    if (ok) return true
   }
 
   if (isNativeAppView() || isMobileWebView()) {
