@@ -1,3 +1,5 @@
+import { openPdfAppViewer, triggerPdfAppDownload } from './PdfAppExperience.jsx'
+
 const PDF_CHUNK_SIZE = 6000
 
 export function isNativeAppView() {
@@ -31,7 +33,79 @@ function extractBase64(dataUrl) {
   return raw.slice(comma + 1)
 }
 
-/** Hosted PDFs: send URL only; native downloads the file. */
+async function resolveBlobFromSources({ dataUrl, blobUrl, pdfUrl }) {
+  if (blobUrl) {
+    const response = await fetch(blobUrl)
+    if (!response.ok) throw new Error('Could not read PDF blob')
+    return response.blob()
+  }
+  if (pdfUrl && /^https?:\/\//i.test(String(pdfUrl))) {
+    const response = await fetch(pdfUrl)
+    if (!response.ok) throw new Error('Could not download PDF')
+    return response.blob()
+  }
+  if (dataUrl) {
+    const response = await fetch(dataUrl)
+    if (!response.ok) throw new Error('Could not read PDF data')
+    return response.blob()
+  }
+  throw new Error('No PDF source available')
+}
+
+function clickDownloadAnchor(href, fileName) {
+  const anchor = document.createElement('a')
+  anchor.href = href
+  anchor.download = fileName || 'Guardian_Angel_Report.pdf'
+  anchor.rel = 'noopener noreferrer'
+  anchor.style.display = 'none'
+  document.body.appendChild(anchor)
+  anchor.click()
+  anchor.remove()
+}
+
+/**
+ * Website-side download that works inside the app WebView after Vercel deploy.
+ * Prefer blob+anchor; fall back to optional native handlers if present.
+ */
+export async function downloadPdfForAppWebView({ dataUrl, blobUrl, pdfUrl, fileName } = {}) {
+  const safeName = fileName || 'Guardian_Angel_Report.pdf'
+  try {
+    const blob = await resolveBlobFromSources({ dataUrl, blobUrl, pdfUrl })
+    const objectUrl = URL.createObjectURL(blob)
+    clickDownloadAnchor(objectUrl, safeName)
+    window.setTimeout(() => URL.revokeObjectURL(objectUrl), 15000)
+    triggerPdfAppDownload({ message: `Saving ${safeName}…` })
+    return true
+  } catch {
+    // Fall through
+  }
+
+  // Optional: newer app shells can still handle native save.
+  if (pdfUrl && /^https?:\/\//i.test(String(pdfUrl)) && typeof window.__gaPostPdfFromUrl === 'function') {
+    window.__gaPostPdfFromUrl('download', safeName, pdfUrl)
+    triggerPdfAppDownload({ message: `Saving ${safeName}…` })
+    return true
+  }
+  if (dataUrl && typeof window.__gaPostPdfPayload === 'function') {
+    window.__gaPostPdfPayload('download', safeName, dataUrl)
+    triggerPdfAppDownload({ message: `Saving ${safeName}…` })
+    return true
+  }
+  if (blobUrl && typeof window.__gaPostPdfFromBlobUrl === 'function') {
+    window.__gaPostPdfFromBlobUrl('download', safeName, blobUrl)
+    triggerPdfAppDownload({ message: `Saving ${safeName}…` })
+    return true
+  }
+
+  if (pdfUrl) {
+    clickDownloadAnchor(pdfUrl, safeName)
+    triggerPdfAppDownload({ message: `Opening ${safeName}…` })
+    return true
+  }
+  return false
+}
+
+/** Hosted PDFs for optional native shells (kept for newer app builds). */
 export async function postPdfUrlToNativeApp(pdfUrl, fileName, action = 'view') {
   if (!pdfUrl || !isNativeAppView()) return false
   if (typeof window.__gaPostPdfFromUrl === 'function') {
@@ -48,10 +122,8 @@ export async function postPdfUrlToNativeApp(pdfUrl, fileName, action = 'view') {
   })
 }
 
-/** Generated jsPDF blobs as data URLs. */
 export async function postPdfDataUrlToNative(action, fileName, dataUrl) {
   if (!isNativeAppView() || !dataUrl) return false
-
   if (typeof window.__gaPostPdfPayload === 'function') {
     window.__gaPostPdfPayload(action, fileName, dataUrl)
     return true
@@ -62,24 +134,28 @@ export async function postPdfDataUrlToNative(action, fileName, dataUrl) {
   const total = Math.ceil(base64.length / PDF_CHUNK_SIZE) || 1
   const streamId = `ga_pdf_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`
 
-  if (!postNativeJson({
-    type: 'ga_pdf_v2_start',
-    id: streamId,
-    action: action || 'view',
-    fileName: fileName || 'Guardian_Angel_Report.pdf',
-    total,
-  })) {
+  if (
+    !postNativeJson({
+      type: 'ga_pdf_v2_start',
+      id: streamId,
+      action: action || 'view',
+      fileName: fileName || 'Guardian_Angel_Report.pdf',
+      total,
+    })
+  ) {
     return false
   }
 
   for (let index = 0; index < total; index += 1) {
-    if (!postNativeJson({
-      type: 'ga_pdf_v2_part',
-      id: streamId,
-      index,
-      total,
-      part: base64.slice(index * PDF_CHUNK_SIZE, (index + 1) * PDF_CHUNK_SIZE),
-    })) {
+    if (
+      !postNativeJson({
+        type: 'ga_pdf_v2_part',
+        id: streamId,
+        index,
+        total,
+        part: base64.slice(index * PDF_CHUNK_SIZE, (index + 1) * PDF_CHUNK_SIZE),
+      })
+    ) {
       return false
     }
     await sleep(55)
@@ -98,25 +174,25 @@ export async function postPdfBlobToNativeApp(blobUrl, fileName, action = 'view')
     const response = await fetch(blobUrl)
     if (!response.ok) return false
     const blob = await response.blob()
-    const dataUrl = await fileToDataUrl(blob)
-    return postPdfDataUrlToNative(action, fileName, dataUrl)
+    const nextDataUrl = await fileToDataUrl(blob)
+    return postPdfDataUrlToNative(action, fileName, nextDataUrl)
   } catch {
     return false
   }
 }
 
+/**
+ * Primary entry used by the website.
+ * In the app WebView: View opens in-page modal; Download saves via blob (Vercel deploy is enough).
+ */
 export async function sendPdfToNativeApp({ dataUrl, blobUrl, pdfUrl, fileName, action = 'view' }) {
   if (!isNativeAppView()) return false
-  if (pdfUrl && /^https?:\/\//i.test(String(pdfUrl))) {
-    return postPdfUrlToNativeApp(pdfUrl, fileName, action)
+
+  if (action === 'view') {
+    return openPdfAppViewer({ pdfUrl, blobUrl, dataUrl, fileName })
   }
-  if (dataUrl) {
-    return postPdfDataUrlToNative(action, fileName, dataUrl)
-  }
-  if (blobUrl) {
-    return postPdfBlobToNativeApp(blobUrl, fileName, action)
-  }
-  return false
+
+  return downloadPdfForAppWebView({ dataUrl, blobUrl, pdfUrl, fileName })
 }
 
 export function openPdfInBrowser(url) {
@@ -127,11 +203,5 @@ export function openPdfInBrowser(url) {
 
 export function downloadPdfInBrowser(url, fileName) {
   if (!url) return
-  const anchor = document.createElement('a')
-  anchor.href = url
-  anchor.download = fileName || 'Guardian_Angel_Report.pdf'
-  anchor.rel = 'noopener noreferrer'
-  document.body.appendChild(anchor)
-  anchor.click()
-  anchor.remove()
+  clickDownloadAnchor(url, fileName || 'Guardian_Angel_Report.pdf')
 }

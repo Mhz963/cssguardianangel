@@ -42,6 +42,7 @@ import {
   openPdfInBrowser,
   sendPdfToNativeApp,
 } from './pdfNativeBridge.js'
+import { PdfAppExperienceHost } from './PdfAppExperience.jsx'
 
 const GlobalConflictMapTab = lazy(() => import('./GlobalConflictMapTab.jsx'))
 
@@ -2219,6 +2220,7 @@ function KeyDocumentsPage() {
   const handleDocumentPdfAction = async (event, doc, action) => {
     if (!isNativeAppView()) return
     event.preventDefault()
+    event.stopPropagation()
     const handled = await sendPdfToNativeApp({
       pdfUrl: doc.url,
       fileName: doc.fileName,
@@ -9889,6 +9891,7 @@ function App() {
         <StickyNotesWidget authUser={authUser} />
         <BackToTopButton />
         <PlannerReminderPopup popup={plannerReminderPopup} onDismiss={dismissPlannerReminderPopup} />
+        <PdfAppExperienceHost />
       </div>
     </BrowserRouter>
   )
