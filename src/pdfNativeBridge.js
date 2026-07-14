@@ -34,29 +34,35 @@ function extractBase64(dataUrl) {
 }
 
 async function resolveBlobFromSources({ dataUrl, blobUrl, pdfUrl }) {
+  if (dataUrl) {
+    const response = await fetch(dataUrl)
+    if (!response.ok) throw new Error('Could not read PDF data')
+    return response.blob()
+  }
   if (blobUrl) {
     const response = await fetch(blobUrl)
     if (!response.ok) throw new Error('Could not read PDF blob')
     return response.blob()
   }
   if (pdfUrl && /^https?:\/\//i.test(String(pdfUrl))) {
-    const response = await fetch(pdfUrl)
-    if (!response.ok) throw new Error('Could not download PDF')
-    return response.blob()
-  }
-  if (dataUrl) {
-    const response = await fetch(dataUrl)
-    if (!response.ok) throw new Error('Could not read PDF data')
+    const response = await fetch(String(pdfUrl), { credentials: 'include' })
+    if (!response.ok) throw new Error(`Could not fetch PDF (${response.status})`)
     return response.blob()
   }
   throw new Error('No PDF source available')
 }
 
+function asPdfBlob(blob) {
+  if (blob && typeof blob.type === 'string' && blob.type.includes('pdf')) return blob
+  return new Blob([blob], { type: 'application/pdf' })
+}
+
 function clickDownloadAnchor(href, fileName) {
   const anchor = document.createElement('a')
   anchor.href = href
-  anchor.download = fileName || 'Guardian_Angel_Report.pdf'
+  anchor.setAttribute('download', fileName || 'Guardian_Angel_Report.pdf')
   anchor.rel = 'noopener noreferrer'
+  anchor.target = '_self'
   anchor.style.display = 'none'
   document.body.appendChild(anchor)
   anchor.click()
@@ -64,45 +70,51 @@ function clickDownloadAnchor(href, fileName) {
 }
 
 /**
- * Website-side download that works inside the app WebView after Vercel deploy.
- * Prefer blob+anchor; fall back to optional native handlers if present.
+ * Website-side download for app WebView (works after Vercel deploy, no Play Store update).
  */
 export async function downloadPdfForAppWebView({ dataUrl, blobUrl, pdfUrl, fileName } = {}) {
   const safeName = fileName || 'Guardian_Angel_Report.pdf'
+
   try {
-    const blob = await resolveBlobFromSources({ dataUrl, blobUrl, pdfUrl })
+    const rawBlob = await resolveBlobFromSources({ dataUrl, blobUrl, pdfUrl })
+    const blob = asPdfBlob(rawBlob)
+    const file = new File([blob], safeName, { type: 'application/pdf' })
+
+    // Best on Android Chrome WebView: system sheet → user picks "Save to Files" / Drive.
+    if (typeof navigator !== 'undefined' && typeof navigator.canShare === 'function') {
+      try {
+        if (navigator.canShare({ files: [file] })) {
+          await navigator.share({
+            files: [file],
+            title: safeName,
+            text: 'Guardian Angel PDF',
+          })
+          triggerPdfAppDownload({ message: 'Choose Save / Files to keep the PDF' })
+          return true
+        }
+      } catch (shareError) {
+        // User cancel should not count as failure.
+        if (shareError?.name === 'AbortError') return true
+      }
+    }
+
     const objectUrl = URL.createObjectURL(blob)
     clickDownloadAnchor(objectUrl, safeName)
-    window.setTimeout(() => URL.revokeObjectURL(objectUrl), 15000)
-    triggerPdfAppDownload({ message: `Saving ${safeName}…` })
+    window.setTimeout(() => URL.revokeObjectURL(objectUrl), 20000)
+    triggerPdfAppDownload({ message: `${safeName} download started` })
     return true
-  } catch {
-    // Fall through
+  } catch (error) {
+    // Last resort: open in viewer so user can still access the file.
+    const opened = openPdfAppViewer({ pdfUrl, blobUrl, dataUrl, fileName: safeName })
+    if (opened) {
+      triggerPdfAppDownload({
+        message: 'Download blocked by WebView — opened viewer instead',
+      })
+      return true
+    }
+    console.warn('[pdf download]', error)
+    return false
   }
-
-  // Optional: newer app shells can still handle native save.
-  if (pdfUrl && /^https?:\/\//i.test(String(pdfUrl)) && typeof window.__gaPostPdfFromUrl === 'function') {
-    window.__gaPostPdfFromUrl('download', safeName, pdfUrl)
-    triggerPdfAppDownload({ message: `Saving ${safeName}…` })
-    return true
-  }
-  if (dataUrl && typeof window.__gaPostPdfPayload === 'function') {
-    window.__gaPostPdfPayload('download', safeName, dataUrl)
-    triggerPdfAppDownload({ message: `Saving ${safeName}…` })
-    return true
-  }
-  if (blobUrl && typeof window.__gaPostPdfFromBlobUrl === 'function') {
-    window.__gaPostPdfFromBlobUrl('download', safeName, blobUrl)
-    triggerPdfAppDownload({ message: `Saving ${safeName}…` })
-    return true
-  }
-
-  if (pdfUrl) {
-    clickDownloadAnchor(pdfUrl, safeName)
-    triggerPdfAppDownload({ message: `Opening ${safeName}…` })
-    return true
-  }
-  return false
 }
 
 /** Hosted PDFs for optional native shells (kept for newer app builds). */
@@ -183,7 +195,7 @@ export async function postPdfBlobToNativeApp(blobUrl, fileName, action = 'view')
 
 /**
  * Primary entry used by the website.
- * In the app WebView: View opens in-page modal; Download saves via blob (Vercel deploy is enough).
+ * In the app WebView: View = in-page modal; Download = Web Share / blob save.
  */
 export async function sendPdfToNativeApp({ dataUrl, blobUrl, pdfUrl, fileName, action = 'view' }) {
   if (!isNativeAppView()) return false

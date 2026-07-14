@@ -4378,6 +4378,10 @@ a {
   background: #111827;
 }
 
+.pdf-app-viewer-shell object.pdf-app-viewer-frame {
+  display: block;
+}
+
 .pdf-app-viewer-hint {
   margin: 0;
   padding: 0.55rem 0.85rem;

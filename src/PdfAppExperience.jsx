@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 export const GA_PDF_APP_VIEW_EVENT = 'ga-pdf-app-view'
 export const GA_PDF_APP_DOWNLOAD_EVENT = 'ga-pdf-app-download'
@@ -8,10 +8,6 @@ function resolveViewerSrc({ pdfUrl, blobUrl, dataUrl }) {
   if (blobUrl) return String(blobUrl)
   if (dataUrl) return String(dataUrl)
   return ''
-}
-
-function buildGoogleDocsViewerUrl(httpsUrl) {
-  return `https://docs.google.com/gview?embedded=true&url=${encodeURIComponent(httpsUrl)}`
 }
 
 /**
@@ -25,7 +21,6 @@ export function openPdfAppViewer({ pdfUrl, blobUrl, dataUrl, fileName } = {}) {
       detail: {
         src,
         fileName: fileName || 'Guardian Angel PDF',
-        isHttps: /^https?:\/\//i.test(src),
       },
     }),
   )
@@ -43,31 +38,47 @@ export function PdfAppExperienceHost() {
   const [viewer, setViewer] = useState(null)
   const [toast, setToast] = useState('')
 
-  const closeViewer = useCallback(() => setViewer(null), [])
-
-  const iframeSrc = useMemo(() => {
-    if (!viewer?.src) return ''
-    if (viewer.isHttps) return buildGoogleDocsViewerUrl(viewer.src)
-    return viewer.src
-  }, [viewer])
+  const closeViewer = useCallback(() => {
+    setViewer(null)
+    // Unwind only the history entry we added for this viewer (one step, not to Home).
+    try {
+      if (window.history.state?.gaPdfAppViewer) {
+        window.history.back()
+      }
+    } catch {
+      // ignore
+    }
+  }, [])
 
   useEffect(() => {
     const onView = (event) => {
       const detail = event?.detail
       if (!detail?.src) return
       setViewer(detail)
+      try {
+        window.history.pushState({ gaPdfAppViewer: true }, '', window.location.href)
+      } catch {
+        // ignore
+      }
+    }
+
+    const onPopState = () => {
+      // Hardware/WebView back should close viewer only, not keep walking history.
+      setViewer((current) => (current ? null : current))
     }
 
     const onDownloadToast = (event) => {
       const message = event?.detail?.message || 'PDF download started'
       setToast(message)
-      window.setTimeout(() => setToast(''), 2600)
+      window.setTimeout(() => setToast(''), 2800)
     }
 
     window.addEventListener(GA_PDF_APP_VIEW_EVENT, onView)
+    window.addEventListener('popstate', onPopState)
     window.addEventListener(GA_PDF_APP_DOWNLOAD_EVENT, onDownloadToast)
     return () => {
       window.removeEventListener(GA_PDF_APP_VIEW_EVENT, onView)
+      window.removeEventListener('popstate', onPopState)
       window.removeEventListener(GA_PDF_APP_DOWNLOAD_EVENT, onDownloadToast)
     }
   }, [])
@@ -92,17 +103,11 @@ export function PdfAppExperienceHost() {
                 Close
               </button>
             </div>
-            <iframe
-              className="pdf-app-viewer-frame"
-              title={viewer.fileName || 'PDF Viewer'}
-              src={iframeSrc}
-              allow="fullscreen"
-            />
-            {!viewer.isHttps ? (
-              <p className="pdf-app-viewer-hint">
-                Tip: pinch to zoom. Use Download PDF if you want to save this file.
-              </p>
-            ) : null}
+            {/* Direct PDF URL — avoid Google Docs viewer (it pollutes history and jumps Home). */}
+            <object className="pdf-app-viewer-frame" data={viewer.src} type="application/pdf" aria-label={viewer.fileName || 'PDF'}>
+              <iframe className="pdf-app-viewer-frame" title={viewer.fileName || 'PDF Viewer'} src={viewer.src} />
+            </object>
+            <p className="pdf-app-viewer-hint">Close returns to the previous screen. Use Download PDF to save the file.</p>
           </div>
         </div>
       ) : null}
