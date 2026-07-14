@@ -11,6 +11,11 @@ export function isMobileWebView() {
   return /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent || '')
 }
 
+function isIosBrowser() {
+  if (typeof navigator === 'undefined') return false
+  return /iPhone|iPad|iPod/i.test(navigator.userAgent || '')
+}
+
 const fileToDataUrl = (blob) =>
   new Promise((resolve, reject) => {
     const reader = new FileReader()
@@ -38,6 +43,22 @@ function extractBase64(dataUrl) {
   return raw.slice(comma + 1)
 }
 
+function toAbsoluteUrl(url) {
+  const href = String(url || '')
+  if (!href) return ''
+  if (/^https?:\/\//i.test(href) || href.startsWith('blob:') || href.startsWith('data:')) {
+    return href
+  }
+  if (href.startsWith('/') && typeof window !== 'undefined') {
+    return `${window.location.origin}${href}`
+  }
+  try {
+    return new URL(href, window.location.href).href
+  } catch {
+    return href
+  }
+}
+
 async function resolveBlobFromSources({ dataUrl, blobUrl, pdfUrl }) {
   if (dataUrl) {
     const response = await fetch(dataUrl)
@@ -50,20 +71,10 @@ async function resolveBlobFromSources({ dataUrl, blobUrl, pdfUrl }) {
     return response.blob()
   }
   if (pdfUrl) {
-    const href = String(pdfUrl)
-    // Same-origin assets, absolute http(s), or relative /assets/… paths
-    if (
-      /^https?:\/\//i.test(href) ||
-      href.startsWith('/') ||
-      href.startsWith('./') ||
-      href.startsWith('../') ||
-      href.startsWith('blob:') ||
-      href.startsWith('data:')
-    ) {
-      const response = await fetch(href, { credentials: 'include' })
-      if (!response.ok) throw new Error(`Could not fetch PDF (${response.status})`)
-      return response.blob()
-    }
+    const href = toAbsoluteUrl(pdfUrl)
+    const response = await fetch(href, { credentials: 'include' })
+    if (!response.ok) throw new Error(`Could not fetch PDF (${response.status})`)
+    return response.blob()
   }
   throw new Error('No PDF source available')
 }
@@ -78,10 +89,6 @@ function clickDownloadAnchor(href, fileName) {
   anchor.href = href
   anchor.setAttribute('download', fileName || 'Guardian_Angel_Report.pdf')
   anchor.rel = 'noopener noreferrer'
-  // iOS Safari often ignores download= and navigates; prefer same-tab only for blob:
-  if (!String(href).startsWith('blob:')) {
-    anchor.target = '_blank'
-  }
   anchor.style.display = 'none'
   document.body.appendChild(anchor)
   anchor.click()
@@ -89,52 +96,59 @@ function clickDownloadAnchor(href, fileName) {
 }
 
 /**
- * Direct download / save sheet — never opens the in-page PDF viewer.
+ * Native Expo download path. Returns true only when a native post actually started.
  */
-export async function downloadPdfDirect({ dataUrl, blobUrl, pdfUrl, fileName } = {}) {
+async function downloadViaNativeBridge({ dataUrl, blobUrl, pdfUrl, fileName }) {
+  if (!isNativeAppView()) return false
   const safeName = fileName || 'Guardian_Angel_Report.pdf'
 
-  // Native Expo shell: post to RN and let share sheet handle save (no in-web overlay).
-  if (isNativeAppView()) {
-    if (pdfUrl && typeof window.__gaPostPdfFromUrl === 'function') {
-      const href = String(pdfUrl)
-      if (/^https?:\/\//i.test(href) || href.startsWith('/') || looksLikePdfPath(href)) {
-        const absolute =
-          href.startsWith('/') && typeof window !== 'undefined'
-            ? `${window.location.origin}${href}`
-            : href
-        window.__gaPostPdfFromUrl('download', safeName, absolute)
+  if (pdfUrl && typeof window.__gaPostPdfFromUrl === 'function') {
+    const absolute = toAbsoluteUrl(pdfUrl)
+    if (/^https?:\/\//i.test(absolute)) {
+      const ok = window.__gaPostPdfFromUrl('download', safeName, absolute)
+      if (ok !== false) {
         showPdfAppToast('Saving PDF…')
         return true
       }
     }
-    if (dataUrl && typeof window.__gaPostPdfPayload === 'function') {
-      window.__gaPostPdfPayload('download', safeName, dataUrl)
+  }
+
+  if (dataUrl && typeof window.__gaPostPdfPayload === 'function') {
+    const ok = window.__gaPostPdfPayload('download', safeName, dataUrl)
+    if (ok !== false) {
       showPdfAppToast('Saving PDF…')
       return true
     }
-    if (blobUrl && typeof window.__gaPostPdfFromBlobUrl === 'function') {
-      window.__gaPostPdfFromBlobUrl('download', safeName, blobUrl)
+  }
+
+  if (blobUrl && typeof window.__gaPostPdfFromBlobUrl === 'function') {
+    const ok = window.__gaPostPdfFromBlobUrl('download', safeName, blobUrl)
+    if (ok !== false) {
       showPdfAppToast('Saving PDF…')
       return true
     }
-    // Fallback: chunked postMessage without injected helpers (older shells).
-    if (dataUrl) {
-      const ok = await postPdfDataUrlToNative('download', safeName, dataUrl)
-      if (ok) {
-        showPdfAppToast('Saving PDF…')
-        return true
-      }
+  }
+
+  if (dataUrl) {
+    const ok = await postPdfDataUrlToNative('download', safeName, dataUrl)
+    if (ok) {
+      showPdfAppToast('Saving PDF…')
+      return true
     }
-    if (blobUrl) {
-      const ok = await postPdfBlobToNativeApp(blobUrl, safeName, 'download')
-      if (ok) {
-        showPdfAppToast('Saving PDF…')
-        return true
-      }
+  }
+
+  if (blobUrl) {
+    const ok = await postPdfBlobToNativeApp(blobUrl, safeName, 'download')
+    if (ok) {
+      showPdfAppToast('Saving PDF…')
+      return true
     }
-    if (pdfUrl && /^https?:\/\//i.test(String(pdfUrl))) {
-      const ok = await postPdfUrlToNativeApp(pdfUrl, safeName, 'download')
+  }
+
+  if (pdfUrl) {
+    const absolute = toAbsoluteUrl(pdfUrl)
+    if (/^https?:\/\//i.test(absolute)) {
+      const ok = await postPdfUrlToNativeApp(absolute, safeName, 'download')
       if (ok) {
         showPdfAppToast('Saving PDF…')
         return true
@@ -142,52 +156,61 @@ export async function downloadPdfDirect({ dataUrl, blobUrl, pdfUrl, fileName } =
     }
   }
 
+  return false
+}
+
+/**
+ * Browser / WebView download — no PDF viewer screen.
+ * Prefer real file download; use share only as an iOS assist.
+ */
+export async function downloadPdfDirect({ dataUrl, blobUrl, pdfUrl, fileName } = {}) {
+  const safeName = fileName || 'Guardian_Angel_Report.pdf'
+
+  const nativeOk = await downloadViaNativeBridge({ dataUrl, blobUrl, pdfUrl, fileName: safeName })
+  if (nativeOk) return true
+
   try {
     const rawBlob = await resolveBlobFromSources({ dataUrl, blobUrl, pdfUrl })
     const blob = asPdfBlob(rawBlob)
-    const file = new File([blob], safeName, { type: 'application/pdf' })
     const objectUrl = URL.createObjectURL(blob)
 
-    // Prefer Web Share (files) on phones — works for Chrome/Safari save flows.
-    if (typeof navigator !== 'undefined' && typeof navigator.canShare === 'function') {
+    // Primary: blob download (works on Android Chrome / desktop / many WebViews).
+    clickDownloadAnchor(objectUrl, safeName)
+
+    // iOS Safari often ignores download= — offer the share sheet as a save path.
+    if (isIosBrowser() && typeof navigator !== 'undefined' && typeof navigator.canShare === 'function') {
       try {
+        const file = new File([blob], safeName, { type: 'application/pdf' })
         if (navigator.canShare({ files: [file] })) {
           await navigator.share({
             files: [file],
             title: safeName,
             text: 'Guardian Angel PDF',
           })
-          window.setTimeout(() => URL.revokeObjectURL(objectUrl), 20000)
-          showPdfAppToast('Choose Save / Files to keep the PDF')
+          window.setTimeout(() => URL.revokeObjectURL(objectUrl), 30000)
+          showPdfAppToast('Choose Save to Files to keep the PDF')
           return true
         }
       } catch (shareError) {
         if (shareError?.name === 'AbortError') {
-          window.setTimeout(() => URL.revokeObjectURL(objectUrl), 20000)
+          window.setTimeout(() => URL.revokeObjectURL(objectUrl), 30000)
           return true
         }
       }
     }
 
-    // Blob + download attribute (best on Android Chrome / desktop).
-    clickDownloadAnchor(objectUrl, safeName)
-    window.setTimeout(() => URL.revokeObjectURL(objectUrl), 20000)
+    window.setTimeout(() => URL.revokeObjectURL(objectUrl), 30000)
     showPdfAppToast(`${safeName} download started`)
     return true
   } catch (error) {
-    // Last resort: original URL with download attribute
     if (pdfUrl) {
-      clickDownloadAnchor(String(pdfUrl), safeName)
+      clickDownloadAnchor(toAbsoluteUrl(pdfUrl), safeName)
       showPdfAppToast('Opening PDF download…')
       return true
     }
     console.warn('[pdf download]', error)
     return false
   }
-}
-
-function looksLikePdfPath(url) {
-  return /\.pdf($|\?|#)/i.test(String(url || ''))
 }
 
 export async function postPdfUrlToNativeApp(pdfUrl, fileName, action = 'view') {
@@ -274,7 +297,6 @@ export async function handlePdfUserAction({ dataUrl, blobUrl, pdfUrl, fileName, 
     return downloadPdfDirect({ dataUrl, blobUrl, pdfUrl, fileName })
   }
 
-  // View
   if (isNativeAppView() || isMobileWebView()) {
     return openPdfAppViewer({ pdfUrl, blobUrl, dataUrl, fileName })
   }
