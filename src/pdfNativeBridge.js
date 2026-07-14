@@ -20,7 +20,7 @@ export function isMobileBrowser() {
   return false
 }
 
-/** App WebView or mobile browser — use mobile PDF UX. */
+/** App WebView or mobile browser. */
 export function isMobilePdfClient() {
   return isNativeAppView() || isMobileBrowser()
 }
@@ -62,6 +62,8 @@ function clickDownloadAnchor(href, fileName) {
   anchor.href = href
   anchor.setAttribute('download', fileName || 'Guardian_Angel_Report.pdf')
   anchor.rel = 'noopener noreferrer'
+  // Mark so the native WebView bridge must not treat this as a "share" / view intercept.
+  anchor.setAttribute('data-ga-pdf-download', '1')
   anchor.style.display = 'none'
   document.body.appendChild(anchor)
   anchor.click()
@@ -87,7 +89,38 @@ async function resolveBlob({ dataUrl, blobUrl, pdfUrl, url }) {
   return asPdfBlob(await response.blob())
 }
 
-/** Optional native shell hooks (newer apps). */
+/** Force a real file download. Never uses share — Save File picker when available, else &lt;a download&gt;. */
+export async function downloadPdfBlobSources({ dataUrl, blobUrl, pdfUrl, url, fileName } = {}) {
+  const safeName = fileName || 'Guardian_Angel_Report.pdf'
+  const blob = await resolveBlob({ dataUrl, blobUrl, pdfUrl, url })
+
+  if (typeof window !== 'undefined' && typeof window.showSaveFilePicker === 'function') {
+    try {
+      const handle = await window.showSaveFilePicker({
+        suggestedName: safeName,
+        types: [
+          {
+            description: 'PDF',
+            accept: { 'application/pdf': ['.pdf'] },
+          },
+        ],
+      })
+      const writable = await handle.createWritable()
+      await writable.write(blob)
+      await writable.close()
+      return true
+    } catch (error) {
+      if (error?.name === 'AbortError') return true
+      // Fall through to anchor download
+    }
+  }
+
+  const objectUrl = URL.createObjectURL(blob)
+  clickDownloadAnchor(objectUrl, safeName)
+  window.setTimeout(() => URL.revokeObjectURL(objectUrl), 20000)
+  return true
+}
+
 export async function postPdfUrlToNativeApp(pdfUrl, fileName, action = 'view') {
   if (!pdfUrl || !isNativeAppView()) return false
   if (typeof window.__gaPostPdfFromUrl === 'function') {
@@ -163,7 +196,7 @@ export async function postPdfBlobToNativeApp(blobUrl, fileName, action = 'view')
   }
 }
 
-/** App download only: native share/save — no intermediate web screen. */
+/** App download: native file save (folder / Documents) — never share. */
 async function downloadPdfInNativeApp({ dataUrl, blobUrl, pdfUrl, fileName }) {
   const safeName = fileName || 'Guardian_Angel_Report.pdf'
   const absolutePdf = pdfUrl ? toAbsoluteUrl(pdfUrl) : ''
@@ -176,47 +209,28 @@ async function downloadPdfInNativeApp({ dataUrl, blobUrl, pdfUrl, fileName }) {
   return false
 }
 
-/**
- * Mobile browser download:
- * - https PDFs: system share sheet from the tap (no middle screen)
- * - generated blobs: in-page viewer + Save PDF (needs a fresh tap after fetch)
- */
+/** Mobile browser download: blob + &lt;a download&gt; only — never share / never open viewer. */
 async function downloadPdfInMobileBrowser({ dataUrl, blobUrl, pdfUrl, fileName }) {
   const safeName = fileName || 'Guardian_Angel_Report.pdf'
-  const absolutePdf = pdfUrl ? toAbsoluteUrl(pdfUrl) : ''
-
-  if (absolutePdf && /^https?:\/\//i.test(absolutePdf) && typeof navigator?.share === 'function') {
-    try {
-      await navigator.share({
-        url: absolutePdf,
-        title: safeName,
-        text: 'Guardian Angel PDF',
-      })
-      return true
-    } catch (error) {
-      if (error?.name === 'AbortError') return true
-      // Fall through to viewer + Save PDF
-    }
+  try {
+    await downloadPdfBlobSources({
+      dataUrl,
+      blobUrl,
+      pdfUrl: pdfUrl ? toAbsoluteUrl(pdfUrl) : pdfUrl,
+      fileName: safeName,
+    })
+    showPdfAppToast('PDF download started')
+    return true
+  } catch (error) {
+    showPdfAppToast(error?.message || 'Could not download PDF')
+    return false
   }
-
-  const opened = openPdfAppViewer({
-    pdfUrl: absolutePdf || pdfUrl,
-    blobUrl,
-    dataUrl,
-    fileName: safeName,
-    mode: 'download',
-  })
-  if (opened) {
-    showPdfAppToast('Tap Save PDF to download on your phone')
-  }
-  return opened
 }
 
 /**
- * App WebView + mobile browser routing.
- * View → in-page viewer
- * Download (app) → native save only
- * Download (mobile web) → share sheet or viewer Save PDF
+ * View → open document in viewer
+ * Download (app) → native save
+ * Download (mobile web) → browser file download
  */
 export async function sendPdfToNativeApp({ dataUrl, blobUrl, pdfUrl, fileName, action = 'view' } = {}) {
   if (!isMobilePdfClient()) return false
@@ -228,12 +242,12 @@ export async function sendPdfToNativeApp({ dataUrl, blobUrl, pdfUrl, fileName, a
     return downloadPdfInMobileBrowser({ dataUrl, blobUrl, pdfUrl, fileName })
   }
 
+  // View only — open the document
   return openPdfAppViewer({
     pdfUrl,
     blobUrl,
     dataUrl,
     fileName,
-    mode: 'view',
   })
 }
 
@@ -258,31 +272,13 @@ export function openPdfInBrowser(url) {
   return Boolean(opened)
 }
 
-/**
- * Desktop: blob download. Mobile fallback when viewer isn't used: Web Share → blob link.
- */
+/** Desktop (and non-mobile) download: blob + download attribute only — no share. */
 export async function downloadPdfInBrowser(url, fileName) {
   if (!url) return
   const safeName = fileName || 'Guardian_Angel_Report.pdf'
 
   try {
-    const blob = await resolveBlob({ url })
-    const file = new File([blob], safeName, { type: 'application/pdf' })
-
-    if (typeof navigator !== 'undefined' && typeof navigator.canShare === 'function') {
-      try {
-        if (navigator.canShare({ files: [file] })) {
-          await navigator.share({ files: [file], title: safeName, text: 'Guardian Angel PDF' })
-          return
-        }
-      } catch (error) {
-        if (error?.name === 'AbortError') return
-      }
-    }
-
-    const objectUrl = URL.createObjectURL(blob)
-    clickDownloadAnchor(objectUrl, safeName)
-    window.setTimeout(() => URL.revokeObjectURL(objectUrl), 20000)
+    await downloadPdfBlobSources({ url, fileName: safeName })
     return
   } catch {
     // Fall through to plain anchor (desktop / same-origin).
