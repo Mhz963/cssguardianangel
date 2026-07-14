@@ -4249,17 +4249,17 @@ function GuardianStudyPlannerPage({ authUser }) {
   })
   const [draggingSubject, setDraggingSubject] = useState('')
   const [outlinePdfUrl, setOutlinePdfUrl] = useState('')
-  const [outlinePdfDataUrl, setOutlinePdfDataUrl] = useState('')
+  const outlinePdfDataUrlRef = useRef('')
   const [outlinePdfFileName, setOutlinePdfFileName] = useState('Guardian_Angel_CSS_Course_Outline.pdf')
   const [isGeneratingOutlinePdf, setIsGeneratingOutlinePdf] = useState(false)
   const [weeklyReportPdfUrl, setWeeklyReportPdfUrl] = useState('')
-  const [weeklyReportPdfDataUrl, setWeeklyReportPdfDataUrl] = useState('')
+  const weeklyReportPdfDataUrlRef = useRef('')
   const [weeklyReportPdfFileName, setWeeklyReportPdfFileName] = useState(
     'Guardian_Angel_Report.pdf',
   )
   const [isGeneratingWeeklyReportPdf, setIsGeneratingWeeklyReportPdf] = useState(false)
   const [performancePdfUrl, setPerformancePdfUrl] = useState('')
-  const [performancePdfDataUrl, setPerformancePdfDataUrl] = useState('')
+  const performancePdfDataUrlRef = useRef('')
   const [performancePdfFileName, setPerformancePdfFileName] = useState(
     'Guardian_Angel_Performance_Analysis.pdf',
   )
@@ -5090,7 +5090,7 @@ function GuardianStudyPlannerPage({ authUser }) {
       const blob = doc.output('blob')
       const nextPdfDataUrl = doc.output('datauristring')
       const nextPdfUrl = URL.createObjectURL(blob)
-      setOutlinePdfDataUrl(nextPdfDataUrl)
+      outlinePdfDataUrlRef.current = nextPdfDataUrl
       setOutlinePdfUrl((current) => {
         if (current) URL.revokeObjectURL(current)
         return nextPdfUrl
@@ -5582,7 +5582,7 @@ function GuardianStudyPlannerPage({ authUser }) {
       const blob = doc.output('blob')
       const nextPdfDataUrl = doc.output('datauristring')
       const nextPdfUrl = URL.createObjectURL(blob)
-      setWeeklyReportPdfDataUrl(nextPdfDataUrl)
+      weeklyReportPdfDataUrlRef.current = nextPdfDataUrl
       setWeeklyReportPdfUrl((current) => {
         if (current) URL.revokeObjectURL(current)
         return nextPdfUrl
@@ -5738,7 +5738,7 @@ function GuardianStudyPlannerPage({ authUser }) {
       const blob = doc.output('blob')
       const nextPdfDataUrl = doc.output('datauristring')
       const nextPdfUrl = URL.createObjectURL(blob)
-      setPerformancePdfDataUrl(nextPdfDataUrl)
+      performancePdfDataUrlRef.current = nextPdfDataUrl
       setPerformancePdfUrl((current) => {
         if (current) URL.revokeObjectURL(current)
         return nextPdfUrl
@@ -5752,10 +5752,10 @@ function GuardianStudyPlannerPage({ authUser }) {
     }
   }
   const handleViewPerformancePdf = async () => {
-    if (!performancePdfUrl && !performancePdfDataUrl) return
+    if (!performancePdfUrl && !performancePdfDataUrlRef.current) return
     setError('')
     const handledInApp = await sendPdfToNativeApp({
-      dataUrl: performancePdfDataUrl,
+      dataUrl: performancePdfDataUrlRef.current,
       blobUrl: performancePdfUrl,
       fileName: performancePdfFileName,
       action: 'view',
@@ -5771,10 +5771,10 @@ function GuardianStudyPlannerPage({ authUser }) {
     }
   }
   const handleDownloadPerformancePdf = async () => {
-    if (!performancePdfUrl && !performancePdfDataUrl) return
+    if (!performancePdfUrl && !performancePdfDataUrlRef.current) return
     setError('')
     const handledInApp = await sendPdfToNativeApp({
-      dataUrl: performancePdfDataUrl,
+      dataUrl: performancePdfDataUrlRef.current,
       blobUrl: performancePdfUrl,
       fileName: performancePdfFileName,
       action: 'download',
@@ -5787,10 +5787,10 @@ function GuardianStudyPlannerPage({ authUser }) {
     downloadPdfInBrowser(performancePdfUrl, performancePdfFileName)
   }
   const handleViewOutlinePdf = async () => {
-    if (!outlinePdfUrl && !outlinePdfDataUrl) return
+    if (!outlinePdfUrl && !outlinePdfDataUrlRef.current) return
     setError('')
     const handledInApp = await sendPdfToNativeApp({
-      dataUrl: outlinePdfDataUrl,
+      dataUrl: outlinePdfDataUrlRef.current,
       blobUrl: outlinePdfUrl,
       fileName: outlinePdfFileName,
       action: 'view',
@@ -5803,10 +5803,10 @@ function GuardianStudyPlannerPage({ authUser }) {
     openPdfInBrowser(outlinePdfUrl)
   }
   const handleDownloadOutlinePdf = async () => {
-    if (!outlinePdfUrl && !outlinePdfDataUrl) return
+    if (!outlinePdfUrl && !outlinePdfDataUrlRef.current) return
     setError('')
     const handledInApp = await sendPdfToNativeApp({
-      dataUrl: outlinePdfDataUrl,
+      dataUrl: outlinePdfDataUrlRef.current,
       blobUrl: outlinePdfUrl,
       fileName: outlinePdfFileName,
       action: 'download',
@@ -5820,13 +5820,13 @@ function GuardianStudyPlannerPage({ authUser }) {
   }
   const postWeeklyPdfToNativeApp = async (action) =>
     sendPdfToNativeApp({
-      dataUrl: weeklyReportPdfDataUrl,
+      dataUrl: weeklyReportPdfDataUrlRef.current,
       blobUrl: weeklyReportPdfUrl,
       fileName: weeklyReportPdfFileName,
       action,
     })
   const handleViewWeeklyReportPdf = async () => {
-    if (!weeklyReportPdfUrl && !weeklyReportPdfDataUrl) return
+    if (!weeklyReportPdfUrl && !weeklyReportPdfDataUrlRef.current) return
     setError('')
     const handledInApp = await postWeeklyPdfToNativeApp('view')
     if (handledInApp) return
@@ -5837,7 +5837,7 @@ function GuardianStudyPlannerPage({ authUser }) {
     openPdfInBrowser(weeklyReportPdfUrl)
   }
   const handleDownloadWeeklyReportPdf = async () => {
-    if (!weeklyReportPdfUrl && !weeklyReportPdfDataUrl) return
+    if (!weeklyReportPdfUrl && !weeklyReportPdfDataUrlRef.current) return
     setError('')
     const handledInApp = await postWeeklyPdfToNativeApp('download')
     if (handledInApp) return
