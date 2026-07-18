@@ -1375,7 +1375,7 @@ function Header({ theme, onToggleTheme, authUser, onLogout }) {
         { label: 'Global Affairs', to: '/global-affairs' },
       ],
     },
-    ...(authUser ? [{ label: 'Guardian Study Planner', to: '/guardian-study-planner' }] : []),
+    { label: 'Guardian Study Planner', to: '/guardian-study-planner' },
     { label: 'Blogs', to: '/blogs' },
     { label: 'About Guardian Angel', to: '/about-guardian-angel' },
   ]
