@@ -36,6 +36,7 @@ import { fetchSubscriptionStatus, hasActiveSubscription } from './utils/paymentC
 import { cssStudyMaterials } from './data/cssStudyMaterialsData'
 import { cssPastPapersByYear, FPSC_CSS_PAST_PAPERS_SOURCE } from './data/cssPastPapersData.js'
 import PaymentPage from './PaymentPage.jsx'
+import GuardianStudyPlannerLandingPage from './GuardianStudyPlannerLanding.jsx'
 import { handlePdfAction } from './pdfNativeBridge.js'
 import { PdfAppExperienceHost } from './PdfAppExperience.jsx'
 
@@ -103,7 +104,7 @@ const SEO_BY_PATH = {
   '/guardian-study-planner': {
     title: 'Guardian Study Planner | CSS Planning Tool',
     description:
-      'Create a disciplined CSS study routine with a practical planner built for consistency, revision cycles, and answer writing goals.',
+      'Unlock Subject Locker, Strategy Builder, Performance Analysis, Timer, Calendar, PDF reports, and AI Examiner — the premium CSS workspace for every CSS Jawan.',
   },
   '/blogs': {
     title: 'CSS Blog | Guardian Angel Insights',
@@ -9830,14 +9831,10 @@ function App() {
           <Route
             path="/guardian-study-planner"
             element={
-              !isAuthReady || !isSubscriptionReady ? null : authUser ? (
-                hasPremiumAccess ? (
-                  <GuardianStudyPlannerPage authUser={authUser} />
-                ) : (
-                  <Navigate to="/payment" replace />
-                )
+              !isAuthReady || !isSubscriptionReady ? null : hasPremiumAccess ? (
+                <GuardianStudyPlannerPage authUser={authUser} />
               ) : (
-                <Navigate to="/signin" replace state={{ from: '/guardian-study-planner' }} />
+                <GuardianStudyPlannerLandingPage authUser={authUser} />
               )
             }
           />

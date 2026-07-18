@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
+import reminderToneUrl from './assets/gentle_spring_rain.mp3'
 import {
   buildSlotReminderDescriptors,
   normalizePlannerPlanForReminders,
@@ -8,6 +9,18 @@ import {
 export const GA_PLANNER_REMINDER_TOGGLE_KEY = 'ga-planner-slot-reminders'
 export const GA_PLANNER_REMINDER_FIRE_EVENT = 'ga-planner-reminder-fire'
 const FIRED_SESSION_KEY = 'ga-planner-fired-keys'
+
+let reminderAudioEl = null
+
+function getReminderAudio() {
+  if (typeof window === 'undefined' || typeof Audio === 'undefined') return null
+  if (!reminderAudioEl) {
+    reminderAudioEl = new Audio(reminderToneUrl)
+    reminderAudioEl.preload = 'auto'
+    reminderAudioEl.playsInline = true
+  }
+  return reminderAudioEl
+}
 
 export function isPlannerNativeAppView() {
   return typeof window !== 'undefined' && Boolean(window.ReactNativeWebView?.postMessage)
@@ -68,19 +81,27 @@ function readProfileSnapshot(profileStorageKey) {
   }
 }
 
-/** Call after a user gesture so the first chime is less likely to be blocked. */
+/** Call after a user gesture so the first reminder tone is less likely to be blocked. */
 export function primePlannerReminderAudio() {
   try {
-    const Ctx = window.AudioContext || window.webkitAudioContext
-    if (!Ctx) return
-    const ctx = new Ctx()
-    ctx.resume().then(() => {
-      try {
-        ctx.close()
-      } catch {
-        // ignore
-      }
-    })
+    const audio = getReminderAudio()
+    if (!audio) return
+    audio.muted = true
+    audio.currentTime = 0
+    const playPromise = audio.play()
+    if (playPromise && typeof playPromise.then === 'function') {
+      playPromise
+        .then(() => {
+          audio.pause()
+          audio.muted = false
+          audio.currentTime = 0
+        })
+        .catch(() => {
+          audio.muted = false
+        })
+    } else {
+      audio.muted = false
+    }
   } catch {
     // ignore
   }
@@ -96,33 +117,17 @@ export function playPlannerReminderChime() {
   }
 
   try {
-    const Ctx = window.AudioContext || window.webkitAudioContext
-    if (!Ctx) return
-    const ctx = new Ctx()
-    const playTone = (frequency, startAt, duration, volume) => {
-      const osc = ctx.createOscillator()
-      const gain = ctx.createGain()
-      osc.type = 'square'
-      osc.frequency.setValueAtTime(frequency, startAt)
-      osc.connect(gain)
-      gain.connect(ctx.destination)
-      gain.gain.setValueAtTime(0.0001, startAt)
-      gain.gain.exponentialRampToValueAtTime(volume, startAt + 0.02)
-      gain.gain.exponentialRampToValueAtTime(0.0001, startAt + duration)
-      osc.start(startAt)
-      osc.stop(startAt + duration + 0.02)
+    const audio = getReminderAudio()
+    if (!audio) return
+    audio.muted = false
+    audio.volume = 1
+    audio.currentTime = 0
+    const playPromise = audio.play()
+    if (playPromise && typeof playPromise.catch === 'function') {
+      playPromise.catch(() => {
+        // Autoplay may still be blocked until the user enables reminders once.
+      })
     }
-    const t0 = ctx.currentTime
-    playTone(880, t0, 0.18, 0.22)
-    playTone(660, t0 + 0.2, 0.18, 0.2)
-    playTone(880, t0 + 0.42, 0.24, 0.24)
-    window.setTimeout(() => {
-      try {
-        ctx.close()
-      } catch {
-        // ignore
-      }
-    }, 900)
   } catch {
     // ignore
   }
