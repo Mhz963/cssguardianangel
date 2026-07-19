@@ -79,14 +79,36 @@ function toAbsoluteUrl(url) {
   }
 }
 
+function dataUrlToBlob(dataUrl) {
+  // Decode manually — jsPDF data URIs carry a non-standard `;filename=` param that breaks fetch().
+  const raw = String(dataUrl || '')
+  const comma = raw.indexOf(',')
+  if (comma === -1) throw new Error('Invalid PDF data URL')
+  const base64 = raw.slice(comma + 1)
+  const binary = atob(base64)
+  const bytes = new Uint8Array(binary.length)
+  for (let i = 0; i < binary.length; i += 1) {
+    bytes[i] = binary.charCodeAt(i)
+  }
+  return new Blob([bytes], { type: 'application/pdf' })
+}
+
 async function resolveBlob({ dataUrl, blobUrl, pdfUrl, url }) {
-  const source = dataUrl || blobUrl || pdfUrl || url
-  if (!source) throw new Error('No PDF source')
-  const response = await fetch(source, {
-    credentials: /^https?:\/\//i.test(String(source)) ? 'include' : 'same-origin',
-  })
-  if (!response.ok) throw new Error(`Could not fetch PDF (${response.status})`)
-  return asPdfBlob(await response.blob())
+  // Prefer the blob object URL (same-document, always fetchable), then https, then data URL.
+  const fetchSource = blobUrl || pdfUrl || url
+  if (fetchSource) {
+    try {
+      const response = await fetch(fetchSource, {
+        credentials: /^https?:\/\//i.test(String(fetchSource)) ? 'include' : 'same-origin',
+      })
+      if (response.ok) return asPdfBlob(await response.blob())
+    } catch {
+      // Fall through to data URL decoding.
+    }
+  }
+  if (dataUrl) return dataUrlToBlob(dataUrl)
+  if (!fetchSource) throw new Error('No PDF source')
+  throw new Error('Could not fetch PDF')
 }
 
 /** Force a real file download. Never uses share — Save File picker when available, else &lt;a download&gt;. */
