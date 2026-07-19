@@ -197,6 +197,91 @@ export async function postPdfBlobToNativeApp(blobUrl, fileName, action = 'view')
 }
 
 /**
+ * View PDF in a new tab only — never download.
+ * https PDFs use Google Docs viewer (renders as a page, avoids Android WebView auto-download).
+ * blob/dataUrl PDFs open in a blank tab with an embed (no download attribute).
+ */
+async function openPdfViewInNewTab({ dataUrl, blobUrl, pdfUrl, fileName } = {}) {
+  const title = fileName || 'Guardian Angel PDF'
+  const absolutePdf = pdfUrl ? toAbsoluteUrl(pdfUrl) : ''
+
+  // Hosted https PDFs — open viewer page (not the raw .pdf URL).
+  if (absolutePdf && /^https?:\/\//i.test(absolutePdf)) {
+    const viewerUrl = `https://docs.google.com/gview?embedded=true&url=${encodeURIComponent(absolutePdf)}`
+    const opened = window.open(viewerUrl, '_blank', 'noopener,noreferrer')
+    if (opened) return true
+    try {
+      // App WebView fallback when popups are blocked / no multi-window.
+      window.location.assign(viewerUrl)
+      return true
+    } catch {
+      showPdfAppToast('Could not open PDF viewer')
+      return false
+    }
+  }
+
+  // Generated PDFs (planner): open blank tab, then embed source (no <a download>).
+  let embedSrc = dataUrl || blobUrl || ''
+  if (!embedSrc && absolutePdf) embedSrc = absolutePdf
+  if (!embedSrc) {
+    showPdfAppToast('No PDF available to view')
+    return false
+  }
+
+  // Prefer a stable data URL in the child window (blob: can be blocked across tabs).
+  if (blobUrl && !dataUrl) {
+    try {
+      const blob = await resolveBlob({ blobUrl })
+      embedSrc = await fileToDataUrl(blob)
+    } catch {
+      embedSrc = blobUrl
+    }
+  }
+
+  const win = window.open('about:blank', '_blank')
+  if (!win) {
+    showPdfAppToast('Allow popups to view the PDF')
+    return false
+  }
+
+  const safeTitle = String(title)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/"/g, '&quot;')
+
+  try {
+    win.document.open()
+    win.document.write(`<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>${safeTitle}</title>
+  <style>
+    html, body { margin: 0; height: 100%; background: #0b1020; }
+    embed { border: 0; width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+  <embed id="ga-pdf-embed" type="application/pdf" title="${safeTitle}" />
+</body>
+</html>`)
+    win.document.close()
+    const embed = win.document.getElementById('ga-pdf-embed')
+    if (embed) embed.setAttribute('src', embedSrc)
+    return true
+  } catch {
+    try {
+      win.close()
+    } catch {
+      // ignore
+    }
+    showPdfAppToast('Could not open PDF viewer')
+    return false
+  }
+}
+
+/**
  * Vercel-only app WebView download (no Play Store / native rebuild).
  * Uses the same PDF-load path that previously made "View" save the file in the app WebView.
  * Does NOT call native postMessage download (that path needs a new app build).
@@ -265,38 +350,21 @@ async function downloadPdfInMobileBrowser({ dataUrl, blobUrl, pdfUrl, fileName }
 }
 
 /**
- * App WebView (Vercel site only — no new Play Store build) + mobile browser.
- *
- * App:
- * - Download → previous View behavior (WebView loads PDF → device saves/opens it)
- * - View → paused for now (viewer will be rebuilt next on the website)
- *
- * Mobile browser:
- * - View → in-page viewer
- * - Download → browser file download
+ * App WebView (Vercel) + mobile browser.
+ * Download paths are unchanged. View opens PDF in a new tab (no download).
  */
 export async function sendPdfToNativeApp({ dataUrl, blobUrl, pdfUrl, fileName, action = 'view' } = {}) {
   if (!isMobilePdfClient()) return false
 
-  if (isNativeAppView()) {
-    if (action === 'download') {
+  if (action === 'download') {
+    if (isNativeAppView()) {
       return downloadPdfInAppWebView({ dataUrl, blobUrl, pdfUrl, fileName })
     }
-    // View PDF — do not download; proper in-app viewer comes next (Vercel-only).
-    showPdfAppToast('PDF view coming soon — use Download PDF for now')
-    return true
-  }
-
-  if (action === 'download') {
     return downloadPdfInMobileBrowser({ dataUrl, blobUrl, pdfUrl, fileName })
   }
 
-  return openPdfAppViewer({
-    pdfUrl,
-    blobUrl,
-    dataUrl,
-    fileName,
-  })
+  // View PDF — new tab only, never download.
+  return openPdfViewInNewTab({ dataUrl, blobUrl, pdfUrl, fileName })
 }
 
 /** Unified PDF action for Key Documents / Planner (app + mobile web + desktop). */
