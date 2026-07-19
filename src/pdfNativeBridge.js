@@ -196,17 +196,54 @@ export async function postPdfBlobToNativeApp(blobUrl, fileName, action = 'view')
   }
 }
 
-/** App download: native file save (folder / Documents) — never share. */
-async function downloadPdfInNativeApp({ dataUrl, blobUrl, pdfUrl, fileName }) {
+/**
+ * Vercel-only app WebView download (no Play Store / native rebuild).
+ * Uses the same PDF-load path that previously made "View" save the file in the app WebView.
+ * Does NOT call native postMessage download (that path needs a new app build).
+ */
+function downloadPdfInAppWebView({ dataUrl, blobUrl, pdfUrl, fileName }) {
   const safeName = fileName || 'Guardian_Angel_Report.pdf'
   const absolutePdf = pdfUrl ? toAbsoluteUrl(pdfUrl) : ''
 
-  if (absolutePdf && /^https?:\/\//i.test(absolutePdf)) {
-    if (await postPdfUrlToNativeApp(absolutePdf, safeName, 'download')) return true
+  const loadPdfForWebViewSave = (src) => {
+    if (!src) return false
+    // Hidden frame: Android WebView typically downloads/opens PDFs when loaded this way
+    // (same effect as the old in-page View path, without relying on native Intent/SAF).
+    const iframe = document.createElement('iframe')
+    iframe.setAttribute('title', safeName)
+    iframe.setAttribute('aria-hidden', 'true')
+    iframe.style.cssText =
+      'position:fixed;width:1px;height:1px;opacity:0;pointer-events:none;border:0;left:-9999px;top:-9999px'
+    iframe.src = src
+    document.body.appendChild(iframe)
+    window.setTimeout(() => {
+      try {
+        iframe.remove()
+      } catch {
+        // ignore
+      }
+    }, 120000)
+    return true
   }
-  if (blobUrl && (await postPdfBlobToNativeApp(blobUrl, safeName, 'download'))) return true
-  if (dataUrl && (await postPdfDataUrlToNative('download', safeName, dataUrl))) return true
-  return false
+
+  if (absolutePdf && /^https?:\/\//i.test(absolutePdf)) {
+    if (loadPdfForWebViewSave(absolutePdf)) {
+      showPdfAppToast('PDF download started')
+      return true
+    }
+  }
+
+  // Generated planner PDFs (blob / data URL): reuse the previous View open path.
+  const opened = openPdfAppViewer({
+    pdfUrl: absolutePdf || pdfUrl,
+    blobUrl,
+    dataUrl,
+    fileName: safeName,
+  })
+  if (opened) {
+    showPdfAppToast('PDF download started')
+  }
+  return opened
 }
 
 /** Mobile browser download: blob + &lt;a download&gt; only — never share / never open viewer. */
@@ -228,21 +265,32 @@ async function downloadPdfInMobileBrowser({ dataUrl, blobUrl, pdfUrl, fileName }
 }
 
 /**
- * View → open document in viewer
- * Download (app) → native save
- * Download (mobile web) → browser file download
+ * App WebView (Vercel site only — no new Play Store build) + mobile browser.
+ *
+ * App:
+ * - Download → previous View behavior (WebView loads PDF → device saves/opens it)
+ * - View → paused for now (viewer will be rebuilt next on the website)
+ *
+ * Mobile browser:
+ * - View → in-page viewer
+ * - Download → browser file download
  */
 export async function sendPdfToNativeApp({ dataUrl, blobUrl, pdfUrl, fileName, action = 'view' } = {}) {
   if (!isMobilePdfClient()) return false
 
-  if (action === 'download') {
-    if (isNativeAppView()) {
-      return downloadPdfInNativeApp({ dataUrl, blobUrl, pdfUrl, fileName })
+  if (isNativeAppView()) {
+    if (action === 'download') {
+      return downloadPdfInAppWebView({ dataUrl, blobUrl, pdfUrl, fileName })
     }
+    // View PDF — do not download; proper in-app viewer comes next (Vercel-only).
+    showPdfAppToast('PDF view coming soon — use Download PDF for now')
+    return true
+  }
+
+  if (action === 'download') {
     return downloadPdfInMobileBrowser({ dataUrl, blobUrl, pdfUrl, fileName })
   }
 
-  // View only — open the document
   return openPdfAppViewer({
     pdfUrl,
     blobUrl,
