@@ -281,24 +281,16 @@ function downloadPdfInAppWebView({ dataUrl, blobUrl, pdfUrl, fileName }) {
     return true
   }
 
-  if (absolutePdf && /^https?:\/\//i.test(absolutePdf)) {
-    if (loadPdfForWebViewSave(absolutePdf)) {
-      showPdfAppToast('PDF download started')
-      return true
-    }
+  // Same hidden-frame trigger for every source, exactly like Key Documents:
+  // https URL first, else the generated blob / data URL from the planner.
+  const src = (absolutePdf && /^https?:\/\//i.test(absolutePdf) ? absolutePdf : '') || blobUrl || dataUrl
+  if (loadPdfForWebViewSave(src)) {
+    showPdfAppToast('PDF download started')
+    return true
   }
 
-  // Generated planner PDFs (blob / data URL): same blob-download mechanics as mobile web.
-  // In the app WebView the injected bridge intercepts the download anchor and saves natively.
-  return downloadPdfBlobSources({ dataUrl, blobUrl, fileName: safeName })
-    .then(() => {
-      showPdfAppToast('PDF download started')
-      return true
-    })
-    .catch((error) => {
-      showPdfAppToast(error?.message || 'Could not download PDF')
-      return false
-    })
+  showPdfAppToast('Could not download PDF')
+  return false
 }
 
 /** Mobile browser download: blob + &lt;a download&gt; only — never share / never open viewer. */
