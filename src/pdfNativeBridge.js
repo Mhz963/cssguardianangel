@@ -1,4 +1,7 @@
 import { openPdfAppViewer, showPdfAppToast } from './PdfAppExperience.jsx'
+import { hasSupabaseConfig, supabase } from './utils/supabaseClient.js'
+
+const APP_DOWNLOAD_BUCKET = 'ga-pdf-downloads'
 
 const PDF_CHUNK_SIZE = 6000
 
@@ -252,18 +255,42 @@ async function openPdfViewInNewTab({ dataUrl, blobUrl, pdfUrl, fileName } = {}) 
 }
 
 /**
- * Vercel-only app WebView download (no Play Store / native rebuild).
- * Uses the same PDF-load path that previously made "View" save the file in the app WebView.
- * Does NOT call native postMessage download (that path needs a new app build).
+ * Upload a generated PDF so it gets a real https URL — the app WebView's download
+ * manager only reacts to http(s) sources (blob:/data: never trigger a save).
  */
-function downloadPdfInAppWebView({ dataUrl, blobUrl, pdfUrl, fileName }) {
+async function uploadPdfForAppDownload(blob, fileName) {
+  if (!hasSupabaseConfig || !supabase) return ''
+  try {
+    const stamp = Date.now()
+    const rand = Math.random().toString(36).slice(2, 10)
+    const path = `${stamp}-${rand}/${fileName}`
+    const { error } = await supabase.storage.from(APP_DOWNLOAD_BUCKET).upload(path, blob, {
+      contentType: 'application/pdf',
+      cacheControl: '3600',
+      upsert: true,
+    })
+    if (error) return ''
+    const { data } = supabase.storage.from(APP_DOWNLOAD_BUCKET).getPublicUrl(path, {
+      download: fileName,
+    })
+    return data?.publicUrl || ''
+  } catch {
+    return ''
+  }
+}
+
+/**
+ * Vercel-only app WebView download (no Play Store / native rebuild).
+ * Exact Key Documents mechanism: hidden frame + https URL → WebView download manager.
+ * Generated planner PDFs are first uploaded to get an https URL, then use the same frame.
+ */
+async function downloadPdfInAppWebView({ dataUrl, blobUrl, pdfUrl, fileName }) {
   const safeName = fileName || 'Guardian_Angel_Report.pdf'
   const absolutePdf = pdfUrl ? toAbsoluteUrl(pdfUrl) : ''
 
   const loadPdfForWebViewSave = (src) => {
     if (!src) return false
-    // Hidden frame: Android WebView typically downloads/opens PDFs when loaded this way
-    // (same effect as the old in-page View path, without relying on native Intent/SAF).
+    // Hidden frame: the WebView download manager takes over the PDF response.
     const iframe = document.createElement('iframe')
     iframe.setAttribute('title', safeName)
     iframe.setAttribute('aria-hidden', 'true')
@@ -281,12 +308,36 @@ function downloadPdfInAppWebView({ dataUrl, blobUrl, pdfUrl, fileName }) {
     return true
   }
 
-  // Same hidden-frame trigger for every source, exactly like Key Documents:
-  // https URL first, else the generated blob / data URL from the planner.
-  const src = (absolutePdf && /^https?:\/\//i.test(absolutePdf) ? absolutePdf : '') || blobUrl || dataUrl
-  if (loadPdfForWebViewSave(src)) {
-    showPdfAppToast('PDF download started')
-    return true
+  // Hosted PDFs (Key Documents) — already https.
+  if (absolutePdf && /^https?:\/\//i.test(absolutePdf)) {
+    if (loadPdfForWebViewSave(absolutePdf)) {
+      showPdfAppToast('PDF download started')
+      return true
+    }
+  }
+
+  // Generated planner PDFs — upload, then run the identical https hidden-frame path.
+  if (dataUrl || blobUrl) {
+    showPdfAppToast('Preparing PDF download…')
+    try {
+      const blob = await resolveBlob({ dataUrl, blobUrl })
+      const httpsUrl = await uploadPdfForAppDownload(blob, safeName)
+      if (httpsUrl && loadPdfForWebViewSave(httpsUrl)) {
+        showPdfAppToast('PDF download started')
+        return true
+      }
+    } catch {
+      // Fall through to anchor fallback below.
+    }
+
+    // Last resort: blob anchor (works if the installed shell intercepts it).
+    try {
+      await downloadPdfBlobSources({ dataUrl, blobUrl, fileName: safeName })
+      showPdfAppToast('PDF download started')
+      return true
+    } catch {
+      // ignore
+    }
   }
 
   showPdfAppToast('Could not download PDF')
