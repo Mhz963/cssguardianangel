@@ -197,9 +197,10 @@ export async function postPdfBlobToNativeApp(blobUrl, fileName, action = 'view')
 }
 
 /**
- * View PDF in a new tab only — never download.
- * https PDFs use Google Docs viewer (renders as a page, avoids Android WebView auto-download).
- * blob/dataUrl PDFs open in a blank tab with an embed (no download attribute).
+ * View PDF only — never download.
+ * https PDFs (Key Documents) → Google Docs viewer in a new tab (unchanged, works in app + web).
+ * Generated planner PDFs (blob/dataUrl) → in-page pdf.js viewer (renders on canvas, works in
+ * app WebView and mobile browsers where PDF embedding is unsupported).
  */
 async function openPdfViewInNewTab({ dataUrl, blobUrl, pdfUrl, fileName } = {}) {
   const title = fileName || 'Guardian Angel PDF'
@@ -220,65 +221,12 @@ async function openPdfViewInNewTab({ dataUrl, blobUrl, pdfUrl, fileName } = {}) 
     }
   }
 
-  // Generated PDFs (planner): open blank tab, then embed source (no <a download>).
-  let embedSrc = dataUrl || blobUrl || ''
-  if (!embedSrc && absolutePdf) embedSrc = absolutePdf
-  if (!embedSrc) {
+  // Generated PDFs (planner): render in-page with pdf.js.
+  if (!dataUrl && !blobUrl) {
     showPdfAppToast('No PDF available to view')
     return false
   }
-
-  // Prefer a stable data URL in the child window (blob: can be blocked across tabs).
-  if (blobUrl && !dataUrl) {
-    try {
-      const blob = await resolveBlob({ blobUrl })
-      embedSrc = await fileToDataUrl(blob)
-    } catch {
-      embedSrc = blobUrl
-    }
-  }
-
-  const win = window.open('about:blank', '_blank')
-  if (!win) {
-    showPdfAppToast('Allow popups to view the PDF')
-    return false
-  }
-
-  const safeTitle = String(title)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/"/g, '&quot;')
-
-  try {
-    win.document.open()
-    win.document.write(`<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>${safeTitle}</title>
-  <style>
-    html, body { margin: 0; height: 100%; background: #0b1020; }
-    embed { border: 0; width: 100%; height: 100%; }
-  </style>
-</head>
-<body>
-  <embed id="ga-pdf-embed" type="application/pdf" title="${safeTitle}" />
-</body>
-</html>`)
-    win.document.close()
-    const embed = win.document.getElementById('ga-pdf-embed')
-    if (embed) embed.setAttribute('src', embedSrc)
-    return true
-  } catch {
-    try {
-      win.close()
-    } catch {
-      // ignore
-    }
-    showPdfAppToast('Could not open PDF viewer')
-    return false
-  }
+  return openPdfAppViewer({ dataUrl, blobUrl, fileName: title })
 }
 
 /**
@@ -318,17 +266,17 @@ function downloadPdfInAppWebView({ dataUrl, blobUrl, pdfUrl, fileName }) {
     }
   }
 
-  // Generated planner PDFs (blob / data URL): reuse the previous View open path.
-  const opened = openPdfAppViewer({
-    pdfUrl: absolutePdf || pdfUrl,
-    blobUrl,
-    dataUrl,
-    fileName: safeName,
-  })
-  if (opened) {
-    showPdfAppToast('PDF download started')
-  }
-  return opened
+  // Generated planner PDFs (blob / data URL): same blob-download mechanics as mobile web.
+  // In the app WebView the injected bridge intercepts the download anchor and saves natively.
+  return downloadPdfBlobSources({ dataUrl, blobUrl, fileName: safeName })
+    .then(() => {
+      showPdfAppToast('PDF download started')
+      return true
+    })
+    .catch((error) => {
+      showPdfAppToast(error?.message || 'Could not download PDF')
+      return false
+    })
 }
 
 /** Mobile browser download: blob + &lt;a download&gt; only — never share / never open viewer. */

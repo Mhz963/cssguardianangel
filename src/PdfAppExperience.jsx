@@ -1,4 +1,8 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import * as pdfjsLib from 'pdfjs-dist'
+import pdfWorkerUrl from 'pdfjs-dist/build/pdf.worker.min.mjs?url'
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = pdfWorkerUrl
 
 export const GA_PDF_APP_VIEW_EVENT = 'ga-pdf-app-view'
 export const GA_PDF_APP_TOAST_EVENT = 'ga-pdf-app-toast'
@@ -36,13 +40,32 @@ export function showPdfAppToast(message) {
   )
 }
 
-/** View-only PDF overlay — Close returns one history step. */
+function dataUrlToBytes(dataUrl) {
+  const raw = String(dataUrl || '')
+  const comma = raw.indexOf(',')
+  const base64 = comma >= 0 ? raw.slice(comma + 1) : raw
+  const binary = atob(base64)
+  const bytes = new Uint8Array(binary.length)
+  for (let i = 0; i < binary.length; i += 1) {
+    bytes[i] = binary.charCodeAt(i)
+  }
+  return bytes
+}
+
+/**
+ * View-only PDF overlay rendered with pdf.js (canvas pages).
+ * Works for generated blob/data PDFs inside app WebViews and mobile browsers
+ * where native <object>/<iframe> PDF embedding is unavailable.
+ */
 export function PdfAppExperienceHost() {
   const [viewer, setViewer] = useState(null)
   const [toast, setToast] = useState('')
+  const [viewerStatus, setViewerStatus] = useState('idle') // idle | loading | ready | error
+  const pagesRef = useRef(null)
 
   const closeViewer = useCallback(() => {
     setViewer(null)
+    setViewerStatus('idle')
     try {
       if (window.history.state?.gaPdfAppViewer) {
         window.history.back()
@@ -85,6 +108,66 @@ export function PdfAppExperienceHost() {
     }
   }, [])
 
+  // Render PDF pages to canvases whenever a document opens.
+  useEffect(() => {
+    if (!viewer) return undefined
+    let cancelled = false
+    let pdfDoc = null
+
+    const renderDocument = async () => {
+      const container = pagesRef.current
+      if (!container) return
+      setViewerStatus('loading')
+      try {
+        const source = viewer.dataUrl || viewer.blobUrl || viewer.src
+        let loadingTask
+        if (String(source).startsWith('data:')) {
+          loadingTask = pdfjsLib.getDocument({ data: dataUrlToBytes(source) })
+        } else {
+          loadingTask = pdfjsLib.getDocument({ url: source })
+        }
+        pdfDoc = await loadingTask.promise
+        if (cancelled) return
+
+        container.innerHTML = ''
+        const containerWidth = container.clientWidth || window.innerWidth || 360
+        const pixelRatio = Math.min(window.devicePixelRatio || 1, 2.5)
+
+        for (let pageNumber = 1; pageNumber <= pdfDoc.numPages; pageNumber += 1) {
+          if (cancelled) return
+          const page = await pdfDoc.getPage(pageNumber)
+          const baseViewport = page.getViewport({ scale: 1 })
+          const cssScale = Math.max((containerWidth - 12) / baseViewport.width, 0.2)
+          const renderViewport = page.getViewport({ scale: cssScale * pixelRatio })
+
+          const canvas = document.createElement('canvas')
+          canvas.width = Math.floor(renderViewport.width)
+          canvas.height = Math.floor(renderViewport.height)
+          canvas.className = 'pdf-app-viewer-page'
+          const context = canvas.getContext('2d')
+          container.appendChild(canvas)
+
+          await page.render({ canvasContext: context, viewport: renderViewport }).promise
+        }
+
+        if (!cancelled) setViewerStatus('ready')
+      } catch {
+        if (!cancelled) setViewerStatus('error')
+      }
+    }
+
+    renderDocument()
+
+    return () => {
+      cancelled = true
+      try {
+        pdfDoc?.destroy?.()
+      } catch {
+        // ignore
+      }
+    }
+  }, [viewer])
+
   useEffect(() => {
     if (!viewer) return undefined
     const previous = document.body.style.overflow
@@ -107,15 +190,14 @@ export function PdfAppExperienceHost() {
                 </button>
               </div>
             </div>
-            <object
-              className="pdf-app-viewer-frame"
-              data={viewer.src}
-              type="application/pdf"
-              aria-label={viewer.fileName || 'PDF'}
-            >
-              <iframe className="pdf-app-viewer-frame" title={viewer.fileName || 'PDF Viewer'} src={viewer.src} />
-            </object>
-            <p className="pdf-app-viewer-hint">Swipe or scroll to read. Close goes back one step.</p>
+            <div className="pdf-app-viewer-pages" ref={pagesRef} aria-label={viewer.fileName || 'PDF'} />
+            {viewerStatus === 'loading' ? (
+              <p className="pdf-app-viewer-hint">Loading PDF…</p>
+            ) : viewerStatus === 'error' ? (
+              <p className="pdf-app-viewer-hint">Could not display this PDF. Try Download instead.</p>
+            ) : (
+              <p className="pdf-app-viewer-hint">Scroll to read. Close goes back one step.</p>
+            )}
           </div>
         </div>
       ) : null}
