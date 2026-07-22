@@ -33,7 +33,6 @@ import {
 } from './data/syllabusData'
 import { formatNewsTimestamp } from './utils/formatNewsTimestamp.js'
 import { fetchSubscriptionStatus, hasActiveSubscription } from './utils/paymentClient.js'
-import { isSuperAdminUser } from './utils/adminConfig.js'
 import { cssStudyMaterials } from './data/cssStudyMaterialsData'
 import { cssPastPapersByYear, FPSC_CSS_PAST_PAPERS_SOURCE } from './data/cssPastPapersData.js'
 import PaymentPage from './PaymentPage.jsx'
@@ -1535,7 +1534,7 @@ function Header({ theme, onToggleTheme, authUser, onLogout }) {
                     className={({ isActive }) => `nav-sub-link ${isActive ? 'nav-active' : ''}`}
                     onClick={closeMobileMenu}
                   >
-                    {isSuperAdminUser(authUser) ? 'Admin Dashboard' : 'My Profile'}
+                    My Profile
                   </NavLink>
                 </div>
               </div>
@@ -9910,6 +9909,7 @@ function App() {
                   authUser={authUser}
                   subscriptionStatus={subscriptionStatus}
                   onSubscriptionRefresh={() => refreshSubscriptionStatus(authUser.id)}
+                  onLogout={handleLogout}
                 />
               ) : (
                 <Navigate to="/signin" replace state={{ from: '/profile' }} />

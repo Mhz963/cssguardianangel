@@ -129,22 +129,23 @@ export async function openBillingPortal() {
   return payload
 }
 
-export async function fetchAdminDashboardStats() {
+export async function deleteAccount() {
   const token = await getAccessToken()
   if (!token) {
     throw new Error('Please sign in to continue.')
   }
 
-  const response = await fetch('/api/admin-dashboard-stats', {
-    method: 'GET',
+  const response = await fetch('/api/delete-account', {
+    method: 'POST',
     headers: {
       Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
     },
   })
 
   const payload = await response.json().catch(() => ({}))
   if (!response.ok) {
-    throw new Error(payload?.error || 'Unable to load admin dashboard.')
+    throw new Error(payload?.error || 'Unable to delete account.')
   }
   return payload
 }
