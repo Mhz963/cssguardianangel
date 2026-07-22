@@ -144,6 +144,72 @@ export async function syncSubscriptionFromStripe(subscription, extras = {}) {
   return userId
 }
 
+export async function recordPaymentOrder({
+  userId,
+  stripeInvoiceId,
+  stripePaymentIntentId,
+  stripeSubscriptionId,
+  stripeCustomerId,
+  amountPkr,
+  orderType,
+  paidAt,
+}) {
+  if (!stripeInvoiceId && !stripePaymentIntentId) return
+
+  const supabaseAdmin = getSupabaseAdmin()
+  const payload = {
+    user_id: userId || null,
+    stripe_invoice_id: stripeInvoiceId || null,
+    stripe_payment_intent_id: stripePaymentIntentId || null,
+    stripe_subscription_id: stripeSubscriptionId || null,
+    stripe_customer_id: stripeCustomerId || null,
+    amount_pkr: Math.max(0, Math.round(Number(amountPkr || 0))),
+    order_type: orderType || 'subscription',
+    status: 'paid',
+    paid_at: paidAt || new Date().toISOString(),
+  }
+
+  const conflictColumn = stripeInvoiceId ? 'stripe_invoice_id' : undefined
+  if (!conflictColumn) return
+
+  const { error } = await supabaseAdmin.from('payment_orders').upsert(payload, {
+    onConflict: conflictColumn,
+    ignoreDuplicates: true,
+  })
+
+  if (error && !String(error.message || '').includes('payment_orders')) {
+    throw error
+  }
+}
+
+export async function recordPaymentOrderFromInvoice(invoice) {
+  const subscriptionId = invoice.subscription ? String(invoice.subscription) : null
+  const userId = invoice.subscription_details?.metadata?.user_id || invoice.metadata?.user_id || null
+  const amountPkr = Math.round(Number(invoice.amount_paid || 0) / 100)
+  if (!amountPkr) return
+
+  const billingReason = String(invoice.billing_reason || '')
+  let orderType = 'subscription'
+  if (billingReason === 'subscription_create') {
+    orderType = 'checkout'
+  } else if (billingReason === 'subscription_cycle') {
+    orderType = 'renewal'
+  }
+
+  await recordPaymentOrder({
+    userId,
+    stripeInvoiceId: invoice.id,
+    stripePaymentIntentId: invoice.payment_intent ? String(invoice.payment_intent) : null,
+    stripeSubscriptionId: subscriptionId,
+    stripeCustomerId: invoice.customer ? String(invoice.customer) : null,
+    amountPkr,
+    orderType,
+    paidAt: invoice.status_transitions?.paid_at
+      ? new Date(invoice.status_transitions.paid_at * 1000).toISOString()
+      : new Date().toISOString(),
+  })
+}
+
 export function sendJson(res, statusCode, payload) {
   res.statusCode = statusCode
   res.setHeader('Content-Type', 'application/json')

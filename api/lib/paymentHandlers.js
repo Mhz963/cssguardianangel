@@ -8,6 +8,7 @@ import {
   MONTHLY_STRIPE_AMOUNT,
   parseJsonBody,
   readRawBody,
+  recordPaymentOrderFromInvoice,
   sendJson,
   syncSubscriptionFromStripe,
   upsertSubscriptionRecord,
@@ -134,6 +135,7 @@ export async function handleStripeWebhook(req, res) {
       }
       case 'invoice.paid': {
         const invoice = event.data.object
+        await recordPaymentOrderFromInvoice(invoice)
         if (invoice.subscription) {
           const subscription = await stripe.subscriptions.retrieve(String(invoice.subscription))
           await syncSubscriptionFromStripe(subscription)

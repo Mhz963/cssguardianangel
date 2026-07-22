@@ -33,9 +33,11 @@ import {
 } from './data/syllabusData'
 import { formatNewsTimestamp } from './utils/formatNewsTimestamp.js'
 import { fetchSubscriptionStatus, hasActiveSubscription } from './utils/paymentClient.js'
+import { isSuperAdminUser } from './utils/adminConfig.js'
 import { cssStudyMaterials } from './data/cssStudyMaterialsData'
 import { cssPastPapersByYear, FPSC_CSS_PAST_PAPERS_SOURCE } from './data/cssPastPapersData.js'
 import PaymentPage from './PaymentPage.jsx'
+import ProfilePage from './ProfilePage.jsx'
 import GuardianStudyPlannerLandingPage from './GuardianStudyPlannerLanding.jsx'
 import { handlePdfAction } from './pdfNativeBridge.js'
 import { PdfAppExperienceHost } from './PdfAppExperience.jsx'
@@ -1312,6 +1314,7 @@ function Header({ theme, onToggleTheme, authUser, onLogout }) {
   const [animateToggle, setAnimateToggle] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isResourceMenuOpen, setIsResourceMenuOpen] = useState(false)
+  const [isDashboardMenuOpen, setIsDashboardMenuOpen] = useState(false)
   const location = useLocation()
 
   useLayoutEffect(() => {
@@ -1391,7 +1394,14 @@ function Header({ theme, onToggleTheme, authUser, onLogout }) {
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false)
     setIsResourceMenuOpen(false)
+    setIsDashboardMenuOpen(false)
   }
+  const handleDashboardMenuToggle = (event) => {
+    event.preventDefault()
+    event.stopPropagation()
+    setIsDashboardMenuOpen((current) => !current)
+  }
+  const isDashboardRoute = (pathname) => pathname === '/dashboard' || pathname === '/guardian-study-planner'
   const handleResourceMenuToggle = (event) => {
     event.preventDefault()
     event.stopPropagation()
@@ -1491,9 +1501,49 @@ function Header({ theme, onToggleTheme, authUser, onLogout }) {
           </div>
 
           <div className="nav-actions">
-          <Link className="btn btn-nav" to="/signin?mode=signup" onClick={closeMobileMenu}>
-              Start Preparation
-          </Link>
+            {authUser ? (
+              <div
+                className={`nav-item-group nav-dashboard-group ${isDashboardRoute(location.pathname) ? 'nav-active' : ''} ${
+                  isDashboardMenuOpen ? 'open' : ''
+                }`}
+                onMouseEnter={() => {
+                  if (!isMobileMenuOpen) setIsDashboardMenuOpen(true)
+                }}
+                onMouseLeave={() => {
+                  if (!isMobileMenuOpen) setIsDashboardMenuOpen(false)
+                }}
+              >
+                <button
+                  type="button"
+                  className="btn btn-nav nav-dashboard-trigger"
+                  aria-expanded={isDashboardMenuOpen}
+                  aria-haspopup="true"
+                  onClick={handleDashboardMenuToggle}
+                >
+                  Dashboard
+                </button>
+                <div className="nav-submenu nav-dashboard-submenu">
+                  <NavLink
+                    to="/dashboard"
+                    className={({ isActive }) => `nav-sub-link ${isActive ? 'nav-active' : ''}`}
+                    onClick={closeMobileMenu}
+                  >
+                    Dashboard
+                  </NavLink>
+                  <NavLink
+                    to="/profile"
+                    className={({ isActive }) => `nav-sub-link ${isActive ? 'nav-active' : ''}`}
+                    onClick={closeMobileMenu}
+                  >
+                    {isSuperAdminUser(authUser) ? 'Admin Dashboard' : 'My Profile'}
+                  </NavLink>
+                </div>
+              </div>
+            ) : (
+              <Link className="btn btn-nav" to="/signin?mode=signup" onClick={closeMobileMenu}>
+                Start Preparation
+              </Link>
+            )}
             {authUser ? (
               <button
                 className="btn btn-secondary nav-auth-btn"
@@ -9829,12 +9879,41 @@ function App() {
             }
           />
           <Route
+            path="/dashboard"
+            element={
+              !isAuthReady || !isSubscriptionReady ? null : authUser ? (
+                hasPremiumAccess ? (
+                  <GuardianStudyPlannerPage authUser={authUser} />
+                ) : (
+                  <GuardianStudyPlannerLandingPage authUser={authUser} />
+                )
+              ) : (
+                <Navigate to="/signin" replace state={{ from: '/dashboard' }} />
+              )
+            }
+          />
+          <Route
             path="/guardian-study-planner"
             element={
               !isAuthReady || !isSubscriptionReady ? null : hasPremiumAccess ? (
                 <GuardianStudyPlannerPage authUser={authUser} />
               ) : (
                 <GuardianStudyPlannerLandingPage authUser={authUser} />
+              )
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              !isAuthReady || !isSubscriptionReady ? null : authUser ? (
+                <ProfilePage
+                  authUser={authUser}
+                  subscriptionStatus={subscriptionStatus}
+                  onSubscriptionRefresh={() => refreshSubscriptionStatus(authUser.id)}
+                  onLogout={handleLogout}
+                />
+              ) : (
+                <Navigate to="/signin" replace state={{ from: '/profile' }} />
               )
             }
           />

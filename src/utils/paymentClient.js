@@ -107,3 +107,65 @@ export async function redeemVoucherCode(code) {
   }
   return payload
 }
+
+export async function openBillingPortal() {
+  const token = await getAccessToken()
+  if (!token) {
+    throw new Error('Please sign in to continue.')
+  }
+
+  const response = await fetch('/api/create-billing-portal-session', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+  })
+
+  const payload = await response.json().catch(() => ({}))
+  if (!response.ok) {
+    throw new Error(payload?.error || 'Unable to open billing portal.')
+  }
+  return payload
+}
+
+export async function deleteAccount() {
+  const token = await getAccessToken()
+  if (!token) {
+    throw new Error('Please sign in to continue.')
+  }
+
+  const response = await fetch('/api/delete-account', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+  })
+
+  const payload = await response.json().catch(() => ({}))
+  if (!response.ok) {
+    throw new Error(payload?.error || 'Unable to delete account.')
+  }
+  return payload
+}
+
+export async function fetchAdminDashboardStats() {
+  const token = await getAccessToken()
+  if (!token) {
+    throw new Error('Please sign in to continue.')
+  }
+
+  const response = await fetch('/api/admin-dashboard-stats', {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+
+  const payload = await response.json().catch(() => ({}))
+  if (!response.ok) {
+    throw new Error(payload?.error || 'Unable to load admin dashboard.')
+  }
+  return payload
+}
