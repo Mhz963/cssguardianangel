@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react'
-import { Link, Navigate, useNavigate } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import { hasSupabaseConfig, supabase } from './utils/supabaseClient.js'
 import { isSuperAdminUser } from './utils/adminConfig.js'
 import AdminProfilePage from './AdminProfilePage.jsx'
 import {
-  deleteAccount,
   fetchSubscriptionStatus,
   hasActiveSubscription,
   openBillingPortal,
@@ -33,18 +32,15 @@ function formatSubscriptionStatus(status) {
   return labels[status] || status
 }
 
-function ProfilePage({ authUser, subscriptionStatus, onSubscriptionRefresh, onLogout }) {
-  const navigate = useNavigate()
+function ProfilePage({ authUser, subscriptionStatus, onSubscriptionRefresh }) {
   const [authDetails, setAuthDetails] = useState(null)
   const [currentPeriodEnd, setCurrentPeriodEnd] = useState(null)
   const [passwordForm, setPasswordForm] = useState({ newPassword: '', confirmPassword: '' })
-  const [deleteConfirm, setDeleteConfirm] = useState('')
   const [error, setError] = useState('')
   const [message, setMessage] = useState('')
   const [isChangingPassword, setIsChangingPassword] = useState(false)
   const [isOpeningPortal, setIsOpeningPortal] = useState(false)
   const [isStartingCheckout, setIsStartingCheckout] = useState(false)
-  const [isDeletingAccount, setIsDeletingAccount] = useState(false)
 
   const isSubscribed = hasActiveSubscription(subscriptionStatus)
 
@@ -151,33 +147,6 @@ function ProfilePage({ authUser, subscriptionStatus, onSubscriptionRefresh, onLo
     } catch (checkoutError) {
       setError(checkoutError?.message || 'Unable to start checkout.')
       setIsStartingCheckout(false)
-    }
-  }
-
-  const handleDeleteAccount = async (event) => {
-    event.preventDefault()
-    setError('')
-    setMessage('')
-
-    const email = String(authUser?.email || '').trim()
-    if (!email || deleteConfirm.trim().toLowerCase() !== email.toLowerCase()) {
-      setError('Please type your email address exactly to confirm account deletion.')
-      return
-    }
-
-    const confirmed = window.confirm(
-      'This will permanently delete your account, planner data, and subscription. This cannot be undone. Continue?',
-    )
-    if (!confirmed) return
-
-    setIsDeletingAccount(true)
-    try {
-      await deleteAccount()
-      await onLogout?.()
-      navigate('/', { replace: true })
-    } catch (deleteError) {
-      setError(deleteError?.message || 'Unable to delete account.')
-      setIsDeletingAccount(false)
     }
   }
 
@@ -330,29 +299,6 @@ function ProfilePage({ authUser, subscriptionStatus, onSubscriptionRefresh, onLo
                   </div>
                 </>
               )}
-            </article>
-
-            <article className="planner-card auth-card profile-card profile-card-danger">
-              <h3>Delete Account</h3>
-              <p className="profile-section-note">
-                Permanently delete your account, planner data, blogs, and subscription. This action cannot be undone.
-              </p>
-              <form className="profile-form" onSubmit={handleDeleteAccount}>
-                <label>
-                  Type your email to confirm
-                  <input
-                    type="email"
-                    value={deleteConfirm}
-                    onChange={(event) => setDeleteConfirm(event.target.value)}
-                    placeholder={authUser.email || 'your@email.com'}
-                    autoComplete="off"
-                    disabled={isDeletingAccount}
-                  />
-                </label>
-                <button className="btn btn-danger" type="submit" disabled={isDeletingAccount}>
-                  {isDeletingAccount ? 'Deleting account...' : 'Delete My Account'}
-                </button>
-              </form>
             </article>
           </div>
 

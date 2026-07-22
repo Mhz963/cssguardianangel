@@ -9910,7 +9910,6 @@ function App() {
                   authUser={authUser}
                   subscriptionStatus={subscriptionStatus}
                   onSubscriptionRefresh={() => refreshSubscriptionStatus(authUser.id)}
-                  onLogout={handleLogout}
                 />
               ) : (
                 <Navigate to="/signin" replace state={{ from: '/profile' }} />

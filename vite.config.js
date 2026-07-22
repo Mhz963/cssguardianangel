@@ -11,12 +11,6 @@ import {
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
   const apiKey = env.WORLDNEWSAPI_KEY || ''
-  let countryCoordCache = null
-  const normalizeCountryLabel = (code, fallbackLabel) => {
-    const normalizedCode = (code || '').toLowerCase()
-    if (normalizedCode === 'il' || normalizedCode === 'ps') return 'Occupied Palestine'
-    return fallbackLabel
-  }
 
   return {
     build: {
@@ -197,113 +191,6 @@ export default defineConfig(({ mode }) => {
 
               res.statusCode = 200
               res.end(JSON.stringify({ totalResults, articles: news.map(normalize) }))
-            } catch (error) {
-              res.statusCode = 500
-              res.setHeader('Content-Type', 'application/json')
-              res.end(JSON.stringify({ error: error?.message || 'Dev server error' }))
-            }
-          })
-        },
-      },
-      {
-        name: 'global-conflicts-worldnewsapi-middleware',
-        configureServer(server) {
-          server.middlewares.use('/api/global-conflicts', async (req, res) => {
-            try {
-              if (!apiKey) {
-                res.statusCode = 500
-                res.setHeader('Content-Type', 'application/json')
-                res.end(JSON.stringify({ error: 'Missing WORLDNEWSAPI_KEY in .env.local' }))
-                return
-              }
-
-              const ensureCoordMap = async () => {
-                if (countryCoordCache) return countryCoordCache
-                const countryRes = await fetch('https://restcountries.com/v3.1/all?fields=name,cca2,latlng', {
-                  headers: { Accept: 'application/json' },
-                })
-                if (!countryRes.ok) throw new Error(`Country endpoint returned ${countryRes.status}`)
-                const rows = await countryRes.json()
-                const map = new Map()
-                ;(Array.isArray(rows) ? rows : []).forEach((row) => {
-                  const code = typeof row?.cca2 === 'string' ? row.cca2.toLowerCase() : ''
-                  const lat = Array.isArray(row?.latlng) ? Number(row.latlng[0]) : NaN
-                  const lon = Array.isArray(row?.latlng) ? Number(row.latlng[1]) : NaN
-                  const countryName = normalizeCountryLabel(code, row?.name?.common || code.toUpperCase())
-                  if (!code || !Number.isFinite(lat) || !Number.isFinite(lon)) return
-                  map.set(code, { lat, lon, countryName })
-                })
-                countryCoordCache = map
-                return map
-              }
-
-              const upstreamUrl =
-                'https://api.worldnewsapi.com/search-news?' +
-                new URLSearchParams({
-                  text: 'war',
-                  language: 'en',
-                  sort: 'publish-time',
-                  number: '100',
-                  'earliest-publish-date': new Date(Date.now() - 21 * 24 * 60 * 60 * 1000)
-                    .toISOString()
-                    .slice(0, 19)
-                    .replace('T', ' '),
-                }).toString()
-
-              const upstream = await fetch(upstreamUrl, {
-                headers: { 'x-api-key': apiKey, Accept: 'application/json' },
-              })
-              const text = await upstream.text()
-              res.setHeader('Content-Type', 'application/json')
-              if (!upstream.ok) {
-                res.statusCode = upstream.status
-                res.end(text || JSON.stringify({ error: `Upstream error ${upstream.status}` }))
-                return
-              }
-              const parsed = text ? JSON.parse(text) : {}
-              const articles = Array.isArray(parsed?.news) ? parsed.news : []
-              const coordMap = await ensureCoordMap()
-              const countries = new Map()
-
-              articles.forEach((article) => {
-                const code = typeof article?.source_country === 'string' ? article.source_country.toLowerCase() : ''
-                if (!code) return
-                const coord = coordMap.get(code)
-                if (!coord) return
-
-                const countryId = `country_${code}`
-                const current =
-                  countries.get(countryId) ||
-                  {
-                    countryId,
-                    country: coord.countryName || code.toUpperCase(),
-                    lat: coord.lat,
-                    lon: coord.lon,
-                    conflicts: [],
-                  }
-
-                const conflictId = article?.url || `${countryId}_${current.conflicts.length + 1}`
-                if (!current.conflicts.some((item) => item.id === conflictId)) {
-                  current.conflicts.push({
-                    id: conflictId,
-                    title: article?.title || 'Conflict update',
-                    summary: article?.summary || article?.text || 'No summary available yet.',
-                    startedAt: article?.publish_date || '',
-                    country: current.country,
-                    articleUrl: article?.url || '',
-                  })
-                }
-
-                countries.set(countryId, current)
-              })
-
-              const result = Array.from(countries.values())
-                .filter((country) => Number.isFinite(country.lat) && Number.isFinite(country.lon) && country.conflicts.length > 0)
-                .sort((a, b) => b.conflicts.length - a.conflicts.length)
-                .slice(0, 80)
-
-              res.statusCode = 200
-              res.end(JSON.stringify({ countries: result }))
             } catch (error) {
               res.statusCode = 500
               res.setHeader('Content-Type', 'application/json')

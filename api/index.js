@@ -1,5 +1,5 @@
 import { handleAdminDashboardStats } from '../server/adminHandlers.js'
-import { handleCreateBillingPortalSession, handleDeleteAccount } from '../server/accountHandlers.js'
+import { handleCreateBillingPortalSession } from '../server/accountHandlers.js'
 import {
   handleCreateCheckoutSession,
   handleRedeemVoucher,
@@ -8,7 +8,6 @@ import {
 } from '../server/paymentHandlers.js'
 import { handleCurrentAffairs } from '../server/currentAffairsHandler.js'
 import { handleGlobalAffairs } from '../server/globalAffairsHandler.js'
-import { handleGlobalConflicts } from '../server/globalConflictsHandler.js'
 import { readRawBody, sendJson } from '../server/payment.js'
 
 const ROUTES = {
@@ -17,11 +16,9 @@ const ROUTES = {
   'verify-checkout-session': handleVerifyCheckoutSession,
   'redeem-voucher': handleRedeemVoucher,
   'create-billing-portal-session': handleCreateBillingPortalSession,
-  'delete-account': handleDeleteAccount,
   'admin-dashboard-stats': handleAdminDashboardStats,
   'global-affairs': handleGlobalAffairs,
   'current-affairs': handleCurrentAffairs,
-  'global-conflicts': handleGlobalConflicts,
 }
 
 function resolveRoutePath(req) {
