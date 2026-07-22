@@ -8334,97 +8334,16 @@ function WorldAffairsPage() {
   const effectiveTotal = Math.min(totalResults || 0, maxResultsCap)
   const totalPages = Math.max(1, Math.ceil(effectiveTotal / pageSize) || 1)
 
-  const fetchNews = async ({ signal } = {}) => {
-    setStatus('loading')
-    setError('')
-    try {
-      const effectiveQuery = appliedQuery
-      const cacheKey = `ga-global-affairs-cache::${effectiveQuery.toLowerCase()}::p${page}::s${pageSize}`
-      const cacheTtlMs = 8 * 60 * 1000
-
-      try {
-        const raw = localStorage.getItem(cacheKey)
-        if (raw) {
-          const cached = JSON.parse(raw)
-          if (
-            cached?.ts &&
-            Array.isArray(cached?.items) &&
-            typeof cached?.totalResults === 'number' &&
-            Date.now() - cached.ts < cacheTtlMs
-          ) {
-            setItems(cached.items)
-            setTotalResults(cached.totalResults)
-            setLastUpdatedAt(cached.ts)
-            setStatus('success')
-            return
-          }
-        }
-      } catch {
-        // Ignore cache failures.
-      }
-
-      const url =
-        '/api/global-affairs?' +
-        new URLSearchParams({
-          q: effectiveQuery,
-          pageSize: String(pageSize),
-          page: String(page),
-        }).toString()
-
-      const res = await fetch(url, { signal, headers: { Accept: 'application/json' } })
-      if (!res.ok) throw new Error(`News service returned ${res.status}`)
-      const data = await res.json()
-      const articles = Array.isArray(data?.articles) ? data.articles : []
-      const nextTotalResults = typeof data?.totalResults === 'number' ? data.totalResults : 0
-      const normalized = articles
-        .map((article) => ({
-          id: article?.url || article?.title || String(Math.random()),
-          title: article?.title || 'Untitled',
-          url: article?.url || '',
-          source: article?.source?.name || '',
-          domain: (() => {
-            try {
-              return article?.url ? new URL(article.url).hostname.replace(/^www\./, '') : ''
-            } catch {
-              return ''
-            }
-          })(),
-          date: article?.publishedAt || '',
-          image: article?.urlToImage || '',
-          snippet: normalizeNewsSnippet(article?.description || ''),
-        }))
-        .filter((article) => article.url && article.title)
-
-      setItems(normalized)
-      setTotalResults(nextTotalResults)
-      setLastUpdatedAt(Date.now())
-      try {
-        localStorage.setItem(
-          cacheKey,
-          JSON.stringify({ ts: Date.now(), items: normalized, totalResults: nextTotalResults }),
-        )
-      } catch {
-        // Ignore cache failures.
-      }
-      setStatus('success')
-    } catch (err) {
-      if (err?.name === 'AbortError') return
-      setItems([])
-      setTotalResults(0)
-      const message = err?.message || 'Unable to load news right now.'
-      setError(
-        message.includes('429')
-          ? 'News provider is rate limiting requests (429). Please wait a minute and try Refresh again.'
-          : message,
-      )
-      setStatus('error')
-    }
+  const fetchNews = async () => {
+    setItems([])
+    setTotalResults(0)
+    setLastUpdatedAt(null)
+    setError('Live Global Affairs news feed has been disabled.')
+    setStatus('error')
   }
 
   useEffect(() => {
-    const controller = new AbortController()
-    fetchNews({ signal: controller.signal })
-    return () => controller.abort()
+    fetchNews()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [appliedQuery, page, refreshSeed])
 
@@ -8444,10 +8363,7 @@ function WorldAffairsPage() {
       <div className="current-affairs-toolbar glass-panel">
         <div className="current-affairs-toolbar-head">
           <h3>Global headlines</h3>
-          <p>
-            Powered by World News API. Last updated{' '}
-            {lastUpdatedAt ? <strong>{formatNewsTimestamp(lastUpdatedAt)}</strong> : '—'}.
-          </p>
+          <p>Live news feed is currently disabled.</p>
         </div>
 
         <form className="current-affairs-search" onSubmit={handleSubmit}>
@@ -8561,98 +8477,16 @@ function PakistanAffairsPage() {
   const effectiveTotal = Math.min(totalResults || 0, maxResultsCap)
   const totalPages = Math.max(1, Math.ceil(effectiveTotal / pageSize) || 1)
 
-  const fetchNews = async ({ signal } = {}) => {
-    setStatus('loading')
-    setError('')
-    try {
-      const effectiveQuery = appliedQuery
-      const cacheKey = `ga-pakistan-affairs-cache::${feed}::${effectiveQuery.toLowerCase()}::p${page}::s${pageSize}`
-      const cacheTtlMs = 8 * 60 * 1000
-
-      try {
-        const raw = localStorage.getItem(cacheKey)
-        if (raw) {
-          const cached = JSON.parse(raw)
-          if (
-            cached?.ts &&
-            Array.isArray(cached?.items) &&
-            typeof cached?.totalResults === 'number' &&
-            Date.now() - cached.ts < cacheTtlMs
-          ) {
-            setItems(cached.items)
-            setTotalResults(cached.totalResults)
-            setLastUpdatedAt(cached.ts)
-            setStatus('success')
-            return
-          }
-        }
-      } catch {
-        // Ignore cache failures.
-      }
-
-      const url =
-        '/api/current-affairs?' +
-        new URLSearchParams({
-          q: effectiveQuery,
-          pageSize: String(pageSize),
-          page: String(page),
-          feed,
-        }).toString()
-
-      const res = await fetch(url, { signal, headers: { Accept: 'application/json' } })
-      if (!res.ok) throw new Error(`News service returned ${res.status}`)
-      const data = await res.json()
-      const articles = Array.isArray(data?.articles) ? data.articles : []
-      const nextTotalResults = typeof data?.totalResults === 'number' ? data.totalResults : 0
-      const normalized = articles
-        .map((article) => ({
-          id: article?.url || article?.title || String(Math.random()),
-          title: article?.title || 'Untitled',
-          url: article?.url || '',
-          source: article?.source?.name || '',
-          domain: (() => {
-            try {
-              return article?.url ? new URL(article.url).hostname.replace(/^www\./, '') : ''
-            } catch {
-              return ''
-            }
-          })(),
-          date: article?.publishedAt || '',
-          image: article?.urlToImage || '',
-          snippet: normalizeNewsSnippet(article?.description || ''),
-        }))
-        .filter((article) => article.url && article.title)
-
-      setItems(normalized)
-      setTotalResults(nextTotalResults)
-      setLastUpdatedAt(Date.now())
-      try {
-        localStorage.setItem(
-          cacheKey,
-          JSON.stringify({ ts: Date.now(), items: normalized, totalResults: nextTotalResults }),
-        )
-      } catch {
-        // Ignore cache failures.
-      }
-      setStatus('success')
-    } catch (err) {
-      if (err?.name === 'AbortError') return
-      setItems([])
-      setTotalResults(0)
-      const message = err?.message || 'Unable to load news right now.'
-      setError(
-        message.includes('429')
-          ? 'News provider is rate limiting requests (429). Please wait a minute and try Refresh again.'
-          : message,
-      )
-      setStatus('error')
-    }
+  const fetchNews = async () => {
+    setItems([])
+    setTotalResults(0)
+    setLastUpdatedAt(null)
+    setError('Live Pakistan Affairs news feed has been disabled.')
+    setStatus('error')
   }
 
   useEffect(() => {
-    const controller = new AbortController()
-    fetchNews({ signal: controller.signal })
-    return () => controller.abort()
+    fetchNews()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [appliedQuery, page, feed, refreshSeed])
 
@@ -8678,10 +8512,7 @@ function PakistanAffairsPage() {
         <div className="current-affairs-toolbar glass-panel">
           <div className="current-affairs-toolbar-head">
             <h3>Pakistan headlines</h3>
-            <p>
-              Powered by World News API. Last updated{' '}
-              {lastUpdatedAt ? <strong>{formatNewsTimestamp(lastUpdatedAt)}</strong> : '—'}.
-            </p>
+            <p>Live news feed is currently disabled.</p>
           </div>
 
           <div className="current-affairs-feed-tabs" role="tablist" aria-label="Pakistan affairs feed">
