@@ -5,7 +5,7 @@ import {
   handleRedeemVoucher,
   handleStripeWebhook,
   handleVerifyCheckoutSession,
-} from './api/lib/paymentHandlers.js'
+} from './server/paymentHandlers.js'
 
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
