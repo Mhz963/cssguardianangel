@@ -5,8 +5,9 @@ export const MONTHLY_PRICE_PKR = 500
 
 export const ACTIVE_SUBSCRIPTION_STATUSES = new Set(['active', 'trialing', 'voucher'])
 
-export function hasActiveSubscription(status) {
-  return ACTIVE_SUBSCRIPTION_STATUSES.has(status)
+export function hasActiveSubscription(_status) {
+  // Guardian Study Planner is free for all signed-in users.
+  return true
 }
 
 export async function fetchSubscriptionStatus(userId) {
@@ -104,6 +105,48 @@ export async function redeemVoucherCode(code) {
   const payload = await response.json().catch(() => ({}))
   if (!response.ok) {
     throw new Error(payload?.error || 'Unable to redeem voucher.')
+  }
+  return payload
+}
+
+export async function releaseRecurringSubscriptionIfAny() {
+  const token = await getAccessToken()
+  if (!token) {
+    return { released: false }
+  }
+
+  const response = await fetch('/api/release-recurring-subscription', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+  })
+
+  const payload = await response.json().catch(() => ({}))
+  if (!response.ok) {
+    throw new Error(payload?.error || 'Unable to release recurring subscription.')
+  }
+  return payload
+}
+
+export async function openBillingPortal() {
+  const token = await getAccessToken()
+  if (!token) {
+    throw new Error('Please sign in to continue.')
+  }
+
+  const response = await fetch('/api/create-billing-portal-session', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+  })
+
+  const payload = await response.json().catch(() => ({}))
+  if (!response.ok) {
+    throw new Error(payload?.error || 'Unable to open billing portal.')
   }
   return payload
 }

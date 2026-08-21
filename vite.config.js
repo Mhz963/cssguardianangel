@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react'
 import {
   handleCreateCheckoutSession,
   handleRedeemVoucher,
+  handleReleaseRecurringSubscription,
   handleStripeWebhook,
   handleVerifyCheckoutSession,
 } from './server/paymentHandlers.js'
@@ -214,6 +215,9 @@ export default defineConfig(({ mode }) => {
           })
           server.middlewares.use('/api/redeem-voucher', async (req, res) => {
             await handleRedeemVoucher(req, res)
+          })
+          server.middlewares.use('/api/release-recurring-subscription', async (req, res) => {
+            await handleReleaseRecurringSubscription(req, res)
           })
         },
       },

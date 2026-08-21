@@ -27,77 +27,10 @@ export async function handleCreateCheckoutSession(req, res) {
       return
     }
 
-    const supabaseAdmin = getSupabaseAdmin()
-    const { data: existingPayment } = await supabaseAdmin
-      .from('user_payments')
-      .select('status')
-      .eq('user_id', user.id)
-      .maybeSingle()
-
-    if (hasActiveSubscription(existingPayment?.status)) {
-      sendJson(res, 200, { alreadySubscribed: true, url: null })
-      return
-    }
-
-    const stripe = getStripeClient()
-    const origin = getSiteOrigin()
-    const email = String(user.email || '').trim()
-    const monthlyPriceId = process.env.STRIPE_PRICE_ID_MONTHLY
-
-    const recurringLineItem = monthlyPriceId
-      ? { price: monthlyPriceId, quantity: 1 }
-      : {
-          price_data: {
-            currency: 'pkr',
-            unit_amount: MONTHLY_STRIPE_AMOUNT,
-            recurring: { interval: 'month' },
-            product_data: {
-              name: 'Guardian Study Planner Premium',
-              description: 'Monthly access to Guardian Study Planner (PKR 500/month after first month).',
-            },
-          },
-          quantity: 1,
-        }
-
-    const session = await stripe.checkout.sessions.create({
-      mode: 'subscription',
-      customer_email: email || undefined,
-      client_reference_id: user.id,
-      metadata: {
-        user_id: user.id,
-        product: 'guardian_study_planner_premium',
-      },
-      subscription_data: {
-        metadata: {
-          user_id: user.id,
-          product: 'guardian_study_planner_premium',
-        },
-      },
-      line_items: [
-        recurringLineItem,
-        {
-          price_data: {
-            currency: 'pkr',
-            unit_amount: ACTIVATION_FEE_STRIPE_AMOUNT,
-            product_data: {
-              name: 'First Month Activation',
-              description: 'One-time fee on your first payment (first month total: PKR 1,000).',
-            },
-          },
-          quantity: 1,
-        },
-      ],
-      success_url: `${origin}/payment?success=1&session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${origin}/payment?canceled=1`,
+    sendJson(res, 403, {
+      error: 'Guardian Study Planner is now free. Sign in to access it — no payment is required.',
+      freeAccess: true,
     })
-
-    await upsertSubscriptionRecord({
-      userId: user.id,
-      stripeSessionId: session.id,
-      status: 'pending',
-    })
-
-    sendJson(res, 200, { url: session.url, alreadySubscribed: false })
   } catch (error) {
     sendJson(res, 500, { error: error?.message || 'Unable to start checkout.' })
   }
@@ -273,5 +206,69 @@ export async function handleRedeemVoucher(req, res) {
     sendJson(res, 200, { redeemed: true, alreadyActive: false, status: 'voucher' })
   } catch (error) {
     sendJson(res, 500, { error: error?.message || 'Unable to redeem voucher.' })
+  }
+}
+
+const RECURRING_SUBSCRIPTION_STATUSES = new Set(['active', 'trialing', 'past_due', 'unpaid'])
+
+async function cancelStripeSubscriptionIfAny(stripeSubscriptionId) {
+  if (!stripeSubscriptionId) return { canceled: false }
+  const stripe = getStripeClient()
+  const subscription = await stripe.subscriptions.retrieve(String(stripeSubscriptionId))
+  if (subscription.status !== 'canceled') {
+    await stripe.subscriptions.cancel(String(stripeSubscriptionId))
+  }
+  return { canceled: true, status: 'canceled' }
+}
+
+export async function handleReleaseRecurringSubscription(req, res) {
+  if (req.method !== 'POST') {
+    sendJson(res, 405, { error: 'Method not allowed.' })
+    return
+  }
+
+  try {
+    const { user, error: authError } = await getAuthUserFromRequest(req)
+    if (!user) {
+      sendJson(res, 401, { error: authError || 'Unauthorized.' })
+      return
+    }
+
+    const supabaseAdmin = getSupabaseAdmin()
+    const { data: paymentRecord, error: paymentError } = await supabaseAdmin
+      .from('user_payments')
+      .select('status, stripe_subscription_id')
+      .eq('user_id', user.id)
+      .maybeSingle()
+
+    if (paymentError) {
+      throw paymentError
+    }
+
+    const stripeSubscriptionId = paymentRecord?.stripe_subscription_id || null
+    if (!stripeSubscriptionId || !RECURRING_SUBSCRIPTION_STATUSES.has(paymentRecord?.status)) {
+      sendJson(res, 200, { released: false, reason: 'no_recurring_subscription' })
+      return
+    }
+
+    const cancelResult = await cancelStripeSubscriptionIfAny(stripeSubscriptionId)
+    const now = new Date().toISOString()
+    await supabaseAdmin.from('user_payments').upsert(
+      {
+        user_id: user.id,
+        stripe_subscription_id: stripeSubscriptionId,
+        status: 'canceled',
+        updated_at: now,
+      },
+      { onConflict: 'user_id' },
+    )
+
+    sendJson(res, 200, {
+      released: true,
+      canceled: cancelResult.canceled,
+      status: 'canceled',
+    })
+  } catch (error) {
+    sendJson(res, 500, { error: error?.message || 'Unable to release recurring subscription.' })
   }
 }

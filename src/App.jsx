@@ -32,13 +32,20 @@ import {
   slugify,
 } from './data/syllabusData'
 import { formatNewsTimestamp } from './utils/formatNewsTimestamp.js'
-import { fetchSubscriptionStatus, hasActiveSubscription } from './utils/paymentClient.js'
+import { releaseRecurringSubscriptionIfAny } from './utils/paymentClient.js'
+import {
+  clearPasswordRecovery,
+  detectPasswordRecoveryFromUrl,
+  isPasswordRecoveryPending,
+  markPasswordRecovery,
+} from './utils/authRecovery.js'
 import { cssStudyMaterials } from './data/cssStudyMaterialsData'
 import { cssPastPapersByYear, FPSC_CSS_PAST_PAPERS_SOURCE } from './data/cssPastPapersData.js'
-import PaymentPage from './PaymentPage.jsx'
-import GuardianStudyPlannerLandingPage from './GuardianStudyPlannerLanding.jsx'
+import ProfilePage from './ProfilePage.jsx'
+import AdminDashboardPage from './AdminDashboardPage.jsx'
 import { handlePdfAction } from './pdfNativeBridge.js'
 import { PdfAppExperienceHost } from './PdfAppExperience.jsx'
+import { isSuperAdminEmail } from './utils/adminClient.js'
 
 const GlobalConflictMapTab = lazy(() => import('./GlobalConflictMapTab.jsx'))
 
@@ -46,6 +53,8 @@ const SITE_URL = 'https://mhzguardianangel.vercel.app'
 const GOOGLE_PLAY_APP_URL = 'https://play.google.com/store/apps/details?id=com.cssguardianangel.app'
 const FACEBOOK_PAGE_URL = 'https://www.facebook.com/profile.php?id=61572039072912'
 const INSTAGRAM_PAGE_URL = 'https://www.instagram.com/cssguardianangel/'
+const LINKEDIN_PAGE_URL = 'https://www.linkedin.com/company/135217403/'
+const YOUTUBE_PAGE_URL = 'https://www.youtube.com/@CSSGuardianAngel'
 
 const DEFAULT_SEO = {
   title: 'Guardian Angel | CSS Preparation Platform Pakistan',
@@ -97,14 +106,14 @@ const SEO_BY_PATH = {
       'Sign in to Guardian Angel to access personalized CSS preparation features and your protected study planner.',
   },
   '/payment': {
-    title: 'Subscribe | Guardian Study Planner Premium',
+    title: 'Guardian Study Planner | Free Access',
     description:
-      'Subscribe to Guardian Study Planner for PKR 1,000 first month and PKR 500/month thereafter. Unlock all premium CSS planning tools.',
+      'Guardian Study Planner is now free for all signed-in users. Sign in to access Subject Locker, Strategy Builder, and your full CSS study workspace.',
   },
   '/guardian-study-planner': {
-    title: 'Guardian Study Planner | CSS Planning Tool',
+    title: 'Guardian Study Planner | Free CSS Planning Tool',
     description:
-      'Unlock Subject Locker, Strategy Builder, Performance Analysis, Timer, Calendar, PDF reports, and AI Examiner — the premium CSS workspace for every CSS Jawan.',
+      'Sign in to access Subject Locker, Strategy Builder, Performance Analysis, Timer, Calendar, PDF reports, and AI Examiner — free for every CSS Jawan.',
   },
   '/blogs': {
     title: 'CSS Blog | Guardian Angel Insights',
@@ -1312,6 +1321,7 @@ function Header({ theme, onToggleTheme, authUser, onLogout }) {
   const [animateToggle, setAnimateToggle] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isResourceMenuOpen, setIsResourceMenuOpen] = useState(false)
+  const [isDashboardMenuOpen, setIsDashboardMenuOpen] = useState(false)
   const location = useLocation()
 
   useLayoutEffect(() => {
@@ -1391,7 +1401,19 @@ function Header({ theme, onToggleTheme, authUser, onLogout }) {
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false)
     setIsResourceMenuOpen(false)
+    setIsDashboardMenuOpen(false)
   }
+  const handleDashboardMenuToggle = (event) => {
+    event.preventDefault()
+    event.stopPropagation()
+    setIsDashboardMenuOpen((current) => !current)
+  }
+  const isDashboardRoute = (pathname) =>
+    pathname === '/dashboard' ||
+    pathname === '/guardian-study-planner' ||
+    pathname === '/profile' ||
+    pathname === '/admin'
+  const isSuperAdmin = isSuperAdminEmail(authUser?.email)
   const handleResourceMenuToggle = (event) => {
     event.preventDefault()
     event.stopPropagation()
@@ -1491,9 +1513,59 @@ function Header({ theme, onToggleTheme, authUser, onLogout }) {
           </div>
 
           <div className="nav-actions">
-          <Link className="btn btn-nav" to="/signin?mode=signup" onClick={closeMobileMenu}>
-              Start Preparation
-          </Link>
+            {authUser ? (
+              <div
+                className={`nav-item-group nav-dashboard-group ${isDashboardRoute(location.pathname) ? 'nav-active' : ''} ${
+                  isDashboardMenuOpen ? 'open' : ''
+                }`}
+                onMouseEnter={() => {
+                  if (!isMobileMenuOpen) setIsDashboardMenuOpen(true)
+                }}
+                onMouseLeave={() => {
+                  if (!isMobileMenuOpen) setIsDashboardMenuOpen(false)
+                }}
+              >
+                <button
+                  type="button"
+                  className="btn btn-nav nav-dashboard-trigger"
+                  aria-expanded={isDashboardMenuOpen}
+                  aria-haspopup="true"
+                  onClick={handleDashboardMenuToggle}
+                >
+                  Dashboard
+                </button>
+                <div className="nav-submenu nav-dashboard-submenu">
+                  <NavLink
+                    to="/dashboard"
+                    className={({ isActive }) => `nav-sub-link ${isActive ? 'nav-active' : ''}`}
+                    onClick={closeMobileMenu}
+                  >
+                    Dashboard
+                  </NavLink>
+                  {isSuperAdmin ? (
+                    <NavLink
+                      to="/admin"
+                      className={({ isActive }) => `nav-sub-link ${isActive ? 'nav-active' : ''}`}
+                      onClick={closeMobileMenu}
+                    >
+                      Admin Dashboard
+                    </NavLink>
+                  ) : (
+                    <NavLink
+                      to="/profile"
+                      className={({ isActive }) => `nav-sub-link ${isActive ? 'nav-active' : ''}`}
+                      onClick={closeMobileMenu}
+                    >
+                      My Profile
+                    </NavLink>
+                  )}
+                </div>
+              </div>
+            ) : (
+              <Link className="btn btn-nav" to="/guardian-study-planner" onClick={closeMobileMenu}>
+                Start Preparation
+              </Link>
+            )}
             {authUser ? (
               <button
                 className="btn btn-secondary nav-auth-btn"
@@ -3778,19 +3850,17 @@ function SubjectDetailPage() {
 /** Google OAuth is enabled above this width; disabled (greyed) at mobile widths (WebView / small screens). */
 const SIGNIN_GOOGLE_DISABLED_MEDIA = '(max-width: 720px)'
 
-function resolvePostAuthPath({ from, hasPremiumAccess }) {
-  const destination = from || '/guardian-study-planner'
-  if ((destination === '/guardian-study-planner' || destination === '/payment') && !hasPremiumAccess) {
-    return '/payment'
-  }
-  return destination
+function resolvePostAuthPath({ from }) {
+  if (from === '/payment') return '/guardian-study-planner'
+  return from || '/guardian-study-planner'
 }
 
-function SignInPage({ authUser, hasPremiumAccess, isSubscriptionReady }) {
+function SignInPage({ authUser, isAuthReady }) {
   const navigate = useNavigate()
   const location = useLocation()
   const [searchParams] = useSearchParams()
   const resolveInitialMode = () => {
+    if (isPasswordRecoveryPending() || detectPasswordRecoveryFromUrl()) return 'reset'
     const modeParam = searchParams.get('mode')
     if (modeParam === 'signup') return 'signup'
     if (modeParam === 'forgot') return 'forgot'
@@ -3830,34 +3900,43 @@ function SignInPage({ authUser, hasPremiumAccess, isSubscriptionReady }) {
   }, [])
 
   useEffect(() => {
+    if (isPasswordRecoveryPending() || detectPasswordRecoveryFromUrl()) {
+      markPasswordRecovery()
+      setMode('reset')
+      return
+    }
     setMode(resolveInitialMode())
   }, [searchParams])
 
   useEffect(() => {
     if (!supabase) return undefined
-    const hashType = typeof window !== 'undefined' ? new URLSearchParams(window.location.hash.slice(1)).get('type') : null
-    if (hashType === 'recovery') {
+    if (detectPasswordRecoveryFromUrl() || isPasswordRecoveryPending()) {
+      markPasswordRecovery()
       setMode('reset')
     }
     const { data: subscription } = supabase.auth.onAuthStateChange((event) => {
       if (event === 'PASSWORD_RECOVERY') {
+        markPasswordRecovery()
         setMode('reset')
         setError('')
-        setMessage('')
+        setMessage('Choose a new password for your account.')
       }
     })
     return () => subscription.subscription.unsubscribe()
   }, [])
 
   useEffect(() => {
-    if (authUser && isSubscriptionReady && mode !== 'reset' && mode !== 'forgot') {
-      const nextPath = resolvePostAuthPath({
-        from: location.state?.from,
-        hasPremiumAccess,
-      })
+    if (location.state?.message) {
+      setMessage(location.state.message)
+    }
+  }, [location.state])
+
+  useEffect(() => {
+    if (authUser && isAuthReady && mode !== 'reset' && mode !== 'forgot') {
+      const nextPath = resolvePostAuthPath({ from: location.state?.from })
       navigate(nextPath, { replace: true })
     }
-  }, [authUser, hasPremiumAccess, isSubscriptionReady, mode, navigate, location.state])
+  }, [authUser, isAuthReady, mode, navigate, location.state])
 
   useEffect(() => {
     if (mode === 'reset' || mode === 'forgot') return
@@ -3908,13 +3987,11 @@ function SignInPage({ authUser, hasPremiumAccess, isSubscriptionReady }) {
         }
         const { error: updateError } = await supabase.auth.updateUser({ password })
         if (updateError) throw updateError
+        clearPasswordRecovery()
         setConfirmPassword('')
         setForm((current) => ({ ...current, password: '' }))
         setMessage('Password updated successfully. Redirecting...')
-        const nextPath = resolvePostAuthPath({
-          from: location.state?.from,
-          hasPremiumAccess,
-        })
+        const nextPath = resolvePostAuthPath({ from: location.state?.from })
         navigate(nextPath, { replace: true })
         return
       }
@@ -8262,7 +8339,7 @@ function Footer() {
               <svg className="footer-social-icon" viewBox="0 0 24 24" aria-hidden="true">
                 <path
                   fill="currentColor"
-                  d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+                  d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
                 />
               </svg>
             </a>
@@ -8277,6 +8354,34 @@ function Footer() {
                 <path
                   fill="currentColor"
                   d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.204-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 11-2.881 0 1.44 1.44 0 012.881 0z"
+                />
+              </svg>
+            </a>
+            <a
+              href={LINKEDIN_PAGE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-social-link"
+              aria-label="CSS Guardian Angel on LinkedIn"
+            >
+              <svg className="footer-social-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  fill="currentColor"
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                />
+              </svg>
+            </a>
+            <a
+              href={YOUTUBE_PAGE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-social-link"
+              aria-label="CSS Guardian Angel on YouTube"
+            >
+              <svg className="footer-social-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  fill="currentColor"
+                  d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"
                 />
               </svg>
             </a>
@@ -9482,12 +9587,71 @@ function PlannerReminderPopup({ popup, onDismiss }) {
   )
 }
 
+function PasswordRecoveryRedirect() {
+  const navigate = useNavigate()
+  const location = useLocation()
+
+  useLayoutEffect(() => {
+    if (detectPasswordRecoveryFromUrl()) {
+      markPasswordRecovery()
+    }
+  }, [])
+
+  useEffect(() => {
+    if (!supabase) return undefined
+
+    const goToResetPage = () => {
+      markPasswordRecovery()
+      const hash = window.location.hash || ''
+      const currentSearch = new URLSearchParams(window.location.search)
+      const nextSearch = new URLSearchParams()
+      nextSearch.set('mode', 'reset')
+      const code = currentSearch.get('code')
+      if (code) nextSearch.set('code', code)
+
+      if (location.pathname === '/signin' && currentSearch.get('mode') === 'reset') {
+        return
+      }
+
+      navigate(
+        {
+          pathname: '/signin',
+          search: `?${nextSearch.toString()}`,
+          hash,
+        },
+        { replace: true },
+      )
+    }
+
+    if (detectPasswordRecoveryFromUrl() || isPasswordRecoveryPending()) {
+      if (location.pathname !== '/signin' || new URLSearchParams(location.search).get('mode') !== 'reset') {
+        goToResetPage()
+      }
+    }
+
+    const { data: subscription } = supabase.auth.onAuthStateChange((event) => {
+      if (event === 'PASSWORD_RECOVERY') {
+        goToResetPage()
+      }
+    })
+
+    return () => subscription.subscription.unsubscribe()
+  }, [location.pathname, location.search, navigate])
+
+  return null
+}
+
+function AuthGuardedStudyPlanner({ authUser, isAuthReady, fromPath }) {
+  if (!isAuthReady) return null
+  if (!authUser) {
+    return <Navigate to="/signin" replace state={{ from: fromPath }} />
+  }
+  return <GuardianStudyPlannerPage authUser={authUser} />
+}
+
 function App() {
   const [authUser, setAuthUser] = useState(null)
   const [isAuthReady, setIsAuthReady] = useState(false)
-  const [subscriptionStatus, setSubscriptionStatus] = useState(null)
-  const [isSubscriptionReady, setIsSubscriptionReady] = useState(false)
-  const hasPremiumAccess = hasActiveSubscription(subscriptionStatus)
   const [theme, setTheme] = useState(() => {
     try {
       return localStorage.getItem('ga-theme') || 'dark'
@@ -9559,40 +9723,12 @@ function App() {
     }
   }, [])
 
-  const refreshSubscriptionStatus = async (userId = authUser?.id) => {
-    if (!userId) {
-      setSubscriptionStatus(null)
-      setIsSubscriptionReady(true)
-      return
-    }
-    const { status } = await fetchSubscriptionStatus(userId)
-    setSubscriptionStatus(status)
-    setIsSubscriptionReady(true)
-  }
-
   useEffect(() => {
-    let isCancelled = false
-    setIsSubscriptionReady(false)
+    if (!authUser?.id) return undefined
 
-    const loadSubscription = async () => {
-      if (!authUser?.id) {
-        if (!isCancelled) {
-          setSubscriptionStatus(null)
-          setIsSubscriptionReady(true)
-        }
-        return
-      }
-      const { status } = await fetchSubscriptionStatus(authUser.id)
-      if (!isCancelled) {
-        setSubscriptionStatus(status)
-        setIsSubscriptionReady(true)
-      }
-    }
-
-    loadSubscription()
-    return () => {
-      isCancelled = true
-    }
+    releaseRecurringSubscriptionIfAny().catch(() => {
+      // Non-blocking: planner access is free even if Stripe cleanup fails.
+    })
   }, [authUser?.id])
 
   const handleLogout = async () => {
@@ -9600,8 +9736,6 @@ function App() {
       await supabase.auth.signOut()
     }
     setAuthUser(null)
-    setSubscriptionStatus(null)
-    setIsSubscriptionReady(true)
   }
 
   useRemoveVisibleWordHyphens()
@@ -9612,6 +9746,7 @@ function App() {
     <BrowserRouter>
       <ScrollToTopOnRouteChange />
       <SeoMetaManager />
+      <PasswordRecoveryRedirect />
       <div className="site">
         <Header
           theme={theme}
@@ -9637,35 +9772,46 @@ function App() {
           <Route path="/blog/:blogSlug" element={<LegacyBlogSlugRedirect />} />
           <Route
             path="/signin"
-            element={
-              <SignInPage
-                authUser={authUser}
-                hasPremiumAccess={hasPremiumAccess}
-                isSubscriptionReady={isSubscriptionReady}
-              />
-            }
+            element={<SignInPage authUser={authUser} isAuthReady={isAuthReady} />}
           />
+          <Route path="/payment" element={<Navigate to="/guardian-study-planner" replace />} />
           <Route
-            path="/payment"
+            path="/dashboard"
             element={
-              !isAuthReady || !isSubscriptionReady ? null : authUser ? (
-                <PaymentPage
-                  authUser={authUser}
-                  subscriptionStatus={subscriptionStatus}
-                  onSubscriptionRefresh={() => refreshSubscriptionStatus(authUser.id)}
-                />
-              ) : (
-                <Navigate to="/signin" replace state={{ from: '/payment' }} />
-              )
+              <AuthGuardedStudyPlanner
+                authUser={authUser}
+                isAuthReady={isAuthReady}
+                fromPath="/dashboard"
+              />
             }
           />
           <Route
             path="/guardian-study-planner"
             element={
-              !isAuthReady || !isSubscriptionReady ? null : hasPremiumAccess ? (
-                <GuardianStudyPlannerPage authUser={authUser} />
+              <AuthGuardedStudyPlanner
+                authUser={authUser}
+                isAuthReady={isAuthReady}
+                fromPath="/guardian-study-planner"
+              />
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              !isAuthReady ? null : authUser ? (
+                <ProfilePage authUser={authUser} />
               ) : (
-                <GuardianStudyPlannerLandingPage authUser={authUser} />
+                <Navigate to="/signin" replace state={{ from: '/profile' }} />
+              )
+            }
+          />
+          <Route
+            path="/admin"
+            element={
+              !isAuthReady ? null : authUser ? (
+                <AdminDashboardPage authUser={authUser} />
+              ) : (
+                <Navigate to="/signin" replace state={{ from: '/admin' }} />
               )
             }
           />
