@@ -15,6 +15,7 @@ export default defineConfig(({ mode }) => {
 
   return {
     build: {
+      chunkSizeWarningLimit: 1500,
       rollupOptions: {
         output: {
           manualChunks(id) {
@@ -27,8 +28,17 @@ export default defineConfig(({ mode }) => {
             if (id.includes('node_modules/leaflet') || id.includes('node_modules/react-leaflet')) {
               return 'leaflet-vendor'
             }
-            if (id.includes('node_modules/jspdf')) {
+            if (id.includes('node_modules/jspdf') || id.includes('node_modules/html2canvas')) {
               return 'jspdf-vendor'
+            }
+            if (id.includes('node_modules/pdfjs-dist')) {
+              return 'pdfjs-vendor'
+            }
+            if (id.includes('node_modules/@supabase')) {
+              return 'supabase-vendor'
+            }
+            if (id.includes('node_modules/pptx2html')) {
+              return 'pptx-vendor'
             }
           },
         },
