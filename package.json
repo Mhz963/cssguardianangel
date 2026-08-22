@@ -9,7 +9,7 @@
   },
   "scripts": {
     "dev": "vite --host",
-    "build": "vite build",
+    "build": "node scripts/vercel-prepare.mjs && vite build",
     "refresh-fpsc-papers": "node scripts/extract-fpsc-papers.mjs",
     "lint": "eslint .",
     "preview": "vite preview"

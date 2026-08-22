@@ -1,0 +1,17 @@
+# Block all serverless API routes (Vercel Hobby limit + billing disabled)
+api/
+api/**
+
+# Archived handlers — must never be treated as /api routes
+api-disabled/
+server/
+
+# Not part of the Vite website deployment
+Application/
+appGit/
+tmp/
+supabase/
+
+# Local env
+.env.local
+*.local
