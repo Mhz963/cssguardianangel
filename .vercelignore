@@ -1,10 +1,6 @@
-# Block all serverless API routes (Vercel Hobby limit + billing disabled)
-api/
-api/**
-
-# Archived handlers — must never be treated as /api routes
+# Archived payment handlers — must never be treated as /api routes.
+# Keep /api/admin-*.js and /server so the super-admin dashboard can deploy.
 api-disabled/
-server/
 
 # Not part of the Vite website deployment
 Application/

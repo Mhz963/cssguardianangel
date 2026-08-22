@@ -1,15 +1,27 @@
+import { existsSync } from 'node:fs'
+import { join } from 'node:path'
+import { pathToFileURL } from 'node:url'
 import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react'
-import { handleAdminDashboardStats, handleAdminUserAction } from './server/adminHandlers.js'
-import { readRawBody } from './server/payment.js'
 // Stripe / payment serverless routes disabled for Vercel Hobby (see api-disabled/).
-// import {
-//   handleCreateCheckoutSession,
-//   handleRedeemVoucher,
-//   handleReleaseRecurringSubscription,
-//   handleStripeWebhook,
-//   handleVerifyCheckoutSession,
-// } from './server/paymentHandlers.js'
+// Local admin middleware is loaded only when server/ is present (Vercel may omit it).
+
+async function loadLocalAdminHandlers() {
+  const adminPath = join(process.cwd(), 'server', 'adminHandlers.js')
+  const paymentPath = join(process.cwd(), 'server', 'payment.js')
+  if (!existsSync(adminPath) || !existsSync(paymentPath)) return null
+
+  const [admin, payment] = await Promise.all([
+    import(pathToFileURL(adminPath).href),
+    import(pathToFileURL(paymentPath).href),
+  ])
+
+  return {
+    handleAdminDashboardStats: admin.handleAdminDashboardStats,
+    handleAdminUserAction: admin.handleAdminUserAction,
+    readRawBody: payment.readRawBody,
+  }
+}
 
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
@@ -218,12 +230,14 @@ export default defineConfig(({ mode }) => {
       },
       {
         name: 'admin-dashboard-middleware',
-        configureServer(server) {
+        async configureServer(server) {
           Object.assign(process.env, env)
+          const handlers = await loadLocalAdminHandlers()
+          if (!handlers) return
 
           const attachJsonBody = async (req) => {
             if (req.body !== undefined) return
-            const raw = await readRawBody(req)
+            const raw = await handlers.readRawBody(req)
             try {
               req.body = JSON.parse(raw || '{}')
             } catch {
@@ -233,7 +247,7 @@ export default defineConfig(({ mode }) => {
 
           server.middlewares.use('/api/admin-dashboard', async (req, res) => {
             try {
-              await handleAdminDashboardStats(req, res)
+              await handlers.handleAdminDashboardStats(req, res)
             } catch (error) {
               if (res.writableEnded) return
               res.statusCode = 500
@@ -245,7 +259,7 @@ export default defineConfig(({ mode }) => {
           server.middlewares.use('/api/admin-user-action', async (req, res) => {
             try {
               await attachJsonBody(req)
-              await handleAdminUserAction(req, res)
+              await handlers.handleAdminUserAction(req, res)
             } catch (error) {
               if (res.writableEnded) return
               res.statusCode = 500
