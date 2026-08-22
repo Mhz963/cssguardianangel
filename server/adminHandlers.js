@@ -17,6 +17,18 @@ export function isSuperAdminEmail(email) {
   return String(email || '').trim().toLowerCase() === SUPER_ADMIN_EMAIL
 }
 
+function isMissingTable(error, tableName) {
+  const message = String(error?.message || error?.details || '')
+  const code = String(error?.code || '')
+  return (
+    code === '42P01' ||
+    code === 'PGRST205' ||
+    message.toLowerCase().includes(String(tableName || '').toLowerCase()) ||
+    message.toLowerCase().includes('does not exist') ||
+    message.toLowerCase().includes('schema cache')
+  )
+}
+
 export async function assertSuperAdmin(req) {
   const { user, error: authError } = await getAuthUserFromRequest(req)
   if (!user) {
@@ -61,6 +73,9 @@ function formatPkr(amount) {
 }
 
 async function fetchStripeRevenueSummary() {
+  if (!process.env.STRIPE_SECRET_KEY) {
+    return { totalEarnedPkr: 0, stripeOrderCount: 0, source: 'database' }
+  }
   try {
     const stripe = getStripeClient()
     let totalEarnedPkr = 0
@@ -115,14 +130,19 @@ export async function handleAdminDashboardStats(req, res) {
       fetchStripeRevenueSummary(),
     ])
 
-    if (paymentsResult.error) throw paymentsResult.error
-    if (ordersResult.error && !String(ordersResult.error.message || '').includes('payment_orders')) {
+    if (paymentsResult.error && !isMissingTable(paymentsResult.error, 'user_payments')) {
+      throw paymentsResult.error
+    }
+    if (ordersResult.error && !isMissingTable(ordersResult.error, 'payment_orders')) {
       throw ordersResult.error
     }
-    if (blogsResult.error) throw blogsResult.error
+    if (blogsResult.error && !isMissingTable(blogsResult.error, 'user_blogs')) {
+      throw blogsResult.error
+    }
 
-    const payments = paymentsResult.data || []
+    const payments = paymentsResult.error ? [] : paymentsResult.data || []
     const orders = ordersResult.error ? [] : ordersResult.data || []
+    const blogRows = blogsResult.error ? [] : blogsResult.data || []
     const userMap = new Map(authUsers.map((user) => [user.id, mapUserProfile(user)]))
 
     const ordersByUser = new Map()
@@ -246,7 +266,7 @@ export async function handleAdminDashboardStats(req, res) {
       }
     })
 
-    const blogs = (blogsResult.data || []).map((blog) => {
+    const blogs = blogRows.map((blog) => {
       const profile = userMap.get(blog.owner_user_id) || {}
       const categories = Array.isArray(blog.categories) ? blog.categories : []
       return {
@@ -288,7 +308,7 @@ export async function handleAdminDashboardStats(req, res) {
 }
 
 async function cancelStripeSubscriptionIfAny(stripeSubscriptionId) {
-  if (!stripeSubscriptionId) return { canceled: false }
+  if (!stripeSubscriptionId || !process.env.STRIPE_SECRET_KEY) return { canceled: false }
   try {
     const stripe = getStripeClient()
     const subscription = await stripe.subscriptions.retrieve(stripeSubscriptionId)

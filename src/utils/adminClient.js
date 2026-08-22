@@ -6,9 +6,6 @@ export const SUPER_ADMIN_EMAIL = String(
   .trim()
   .toLowerCase()
 
-const ADMIN_API_DISABLED_MESSAGE =
-  'Admin serverless API is disabled on this deployment (Vercel Hobby plan). Use the Supabase dashboard for admin tasks, or restore api/admin-*.js on Vercel Pro.'
-
 export function isSuperAdminEmail(email) {
   return String(email || '').trim().toLowerCase() === SUPER_ADMIN_EMAIL
 }
@@ -19,12 +16,45 @@ async function getAccessToken() {
   return data?.session?.access_token || null
 }
 
-export async function fetchAdminDashboard() {
-  await getAccessToken()
-  throw new Error(ADMIN_API_DISABLED_MESSAGE)
+async function readJson(response) {
+  const text = await response.text()
+  if (!text) return {}
+  try {
+    return JSON.parse(text)
+  } catch {
+    return { error: text }
+  }
 }
 
-export async function adminUserAction(_payload) {
-  await getAccessToken()
-  throw new Error(ADMIN_API_DISABLED_MESSAGE)
+export async function fetchAdminDashboard() {
+  const token = await getAccessToken()
+  if (!token) throw new Error('Sign in with the super admin account to open this dashboard.')
+
+  const response = await fetch('/api/admin-dashboard', {
+    headers: { Authorization: `Bearer ${token}` },
+  })
+  const payload = await readJson(response)
+  if (!response.ok) {
+    throw new Error(payload.error || 'Unable to load admin dashboard.')
+  }
+  return payload
+}
+
+export async function adminUserAction(payload) {
+  const token = await getAccessToken()
+  if (!token) throw new Error('Sign in with the super admin account to continue.')
+
+  const response = await fetch('/api/admin-user-action', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload || {}),
+  })
+  const result = await readJson(response)
+  if (!response.ok) {
+    throw new Error(result.error || 'Unable to complete admin action.')
+  }
+  return result
 }

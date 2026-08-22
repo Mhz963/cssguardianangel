@@ -47,6 +47,7 @@ import { PdfAppExperienceHost } from './PdfAppExperience.jsx'
 import { isSuperAdminEmail } from './utils/adminClient.js'
 
 const GlobalConflictMapTab = lazy(() => import('./GlobalConflictMapTab.jsx'))
+const GuardianResumeBuilderPage = lazy(() => import('./GuardianResumeBuilderPage.jsx'))
 
 const SITE_URL = 'https://mhzguardianangel.vercel.app'
 const GOOGLE_PLAY_APP_URL = 'https://play.google.com/store/apps/details?id=com.cssguardianangel.app'
@@ -114,6 +115,11 @@ const SEO_BY_PATH = {
     title: 'Guardian Study Planner | Free CSS Planning Tool',
     description:
       'Sign in to access Subject Locker, Strategy Builder, Performance Analysis, Timer, Calendar, PDF reports, and AI Examiner — free for every CSS Jawan.',
+  },
+  '/guardian-resume-builder': {
+    title: 'Guardian Resume Builder | Free ATS Resume PDF',
+    description:
+      'Create a free ATS-friendly resume with Guardian Angel. Enter your details, polish wording on your device, and download a clean single-column PDF.',
   },
   '/blogs': {
     title: 'CSS Blog | Guardian Angel Insights',
@@ -1320,7 +1326,7 @@ function Header({ theme, onToggleTheme, authUser, onLogout }) {
   const topbarRef = useRef(null)
   const [animateToggle, setAnimateToggle] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [isResourceMenuOpen, setIsResourceMenuOpen] = useState(false)
+  const [openNavGroup, setOpenNavGroup] = useState('')
   const [isDashboardMenuOpen, setIsDashboardMenuOpen] = useState(false)
   const location = useLocation()
 
@@ -1373,20 +1379,46 @@ function Header({ theme, onToggleTheme, authUser, onLogout }) {
     }
   }, [location.pathname, authUser, isMobileMenuOpen, theme])
 
+  const isDashboardRoute = (pathname) =>
+    pathname === '/dashboard' ||
+    pathname === '/guardian-study-planner' ||
+    pathname === '/profile' ||
+    pathname === '/admin'
+  const isSuperAdmin = isSuperAdminEmail(authUser?.email)
+  const isResourceRoute = (pathname) =>
+    pathname === '/css-rules' ||
+    pathname === '/css-syllabus' ||
+    pathname === '/css-past-papers' ||
+    pathname === '/css-study-material' ||
+    pathname === '/key-documents' ||
+    pathname === '/global-affairs'
+  const isAngelResourcesRoute = (pathname) =>
+    pathname === '/guardian-study-planner' || pathname === '/guardian-resume-builder'
+
   const navItems = [
     { label: 'Home', to: '/' },
     {
+      id: 'css-library',
       label: 'CSS Resource Library',
+      isActive: isResourceRoute(location.pathname),
       children: [
-    { label: 'CSS Rules', to: '/css-rules' },
-    { label: 'CSS Syllabus', to: '/css-syllabus' },
-    { label: 'CSS Past Papers', to: '/css-past-papers' },
-    { label: 'CSS Study Material', to: '/css-study-material' },
-    { label: 'Key Documents', to: '/key-documents' },
+        { label: 'CSS Rules', to: '/css-rules' },
+        { label: 'CSS Syllabus', to: '/css-syllabus' },
+        { label: 'CSS Past Papers', to: '/css-past-papers' },
+        { label: 'CSS Study Material', to: '/css-study-material' },
+        { label: 'Key Documents', to: '/key-documents' },
         { label: 'Global Affairs', to: '/global-affairs' },
       ],
     },
-    { label: 'Guardian Study Planner', to: '/guardian-study-planner' },
+    {
+      id: 'angel-resources',
+      label: 'Guardian Angel Resources',
+      isActive: isAngelResourcesRoute(location.pathname),
+      children: [
+        { label: 'Guardian Study Planner', to: '/guardian-study-planner' },
+        { label: 'Guardian Resume Builder', to: '/guardian-resume-builder' },
+      ],
+    },
     { label: 'Blogs', to: '/blogs' },
     { label: 'About Guardian Angel', to: '/about-guardian-angel' },
   ]
@@ -1400,7 +1432,7 @@ function Header({ theme, onToggleTheme, authUser, onLogout }) {
 
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false)
-    setIsResourceMenuOpen(false)
+    setOpenNavGroup('')
     setIsDashboardMenuOpen(false)
   }
   const handleDashboardMenuToggle = (event) => {
@@ -1408,25 +1440,11 @@ function Header({ theme, onToggleTheme, authUser, onLogout }) {
     event.stopPropagation()
     setIsDashboardMenuOpen((current) => !current)
   }
-  const isDashboardRoute = (pathname) =>
-    pathname === '/dashboard' ||
-    pathname === '/guardian-study-planner' ||
-    pathname === '/profile' ||
-    pathname === '/admin'
-  const isSuperAdmin = isSuperAdminEmail(authUser?.email)
-  const handleResourceMenuToggle = (event) => {
+  const handleNavGroupToggle = (event, groupId) => {
     event.preventDefault()
     event.stopPropagation()
-    setIsResourceMenuOpen((current) => !current)
+    setOpenNavGroup((current) => (current === groupId ? '' : groupId))
   }
-
-  const isResourceRoute = (pathname) =>
-    pathname === '/css-rules' ||
-    pathname === '/css-syllabus' ||
-    pathname === '/css-past-papers' ||
-    pathname === '/css-study-material' ||
-    pathname === '/key-documents' ||
-    pathname === '/global-affairs'
 
   const renderNavLabel = (label) => {
     const words = String(label || '').split(' ').filter(Boolean)
@@ -1463,22 +1481,22 @@ function Header({ theme, onToggleTheme, authUser, onLogout }) {
               item.children ? (
                 <div
                   key={item.label}
-                  className={`nav-item-group ${isResourceRoute(location.pathname) ? 'nav-active' : ''} ${
-                    isResourceMenuOpen ? 'open' : ''
+                  className={`nav-item-group ${item.isActive ? 'nav-active' : ''} ${
+                    openNavGroup === item.id ? 'open' : ''
                   }`}
                   onMouseEnter={() => {
-                    if (!isMobileMenuOpen) setIsResourceMenuOpen(true)
+                    if (!isMobileMenuOpen) setOpenNavGroup(item.id)
                   }}
                   onMouseLeave={() => {
-                    if (!isMobileMenuOpen) setIsResourceMenuOpen(false)
+                    if (!isMobileMenuOpen) setOpenNavGroup('')
                   }}
                 >
                   <button
                     type="button"
                     className="nav-group-trigger"
-                    aria-expanded={isResourceMenuOpen}
+                    aria-expanded={openNavGroup === item.id}
                     aria-haspopup="true"
-                    onClick={handleResourceMenuToggle}
+                    onClick={(event) => handleNavGroupToggle(event, item.id)}
                   >
                     {renderNavLabel(item.label)}
                   </button>
@@ -8328,6 +8346,7 @@ function Footer() {
           <Link to="/css-study-material">CSS Study Material</Link>
           <Link to="/key-documents">Key Documents</Link>
           <Link to="/guardian-study-planner">Guardian Study Planner</Link>
+          <Link to="/guardian-resume-builder">Guardian Resume Builder</Link>
         </div>
 
 
@@ -9817,6 +9836,22 @@ function App() {
                 isAuthReady={isAuthReady}
                 fromPath="/guardian-study-planner"
               />
+            }
+          />
+          <Route
+            path="/guardian-resume-builder"
+            element={
+              <Suspense
+                fallback={
+                  <main className="page-main">
+                    <section className="container">
+                      <p>Loading Guardian Resume Builder…</p>
+                    </section>
+                  </main>
+                }
+              >
+                <GuardianResumeBuilderPage />
+              </Suspense>
             }
           />
           <Route

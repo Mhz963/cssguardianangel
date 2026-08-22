@@ -15,6 +15,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@huggingface/transformers": "^4.2.0",
     "@supabase/supabase-js": "^2.57.4",
     "jspdf": "^4.2.0",
     "leaflet": "^1.9.4",

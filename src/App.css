@@ -329,7 +329,7 @@ a {
   top: 100%;
   left: 50%;
   transform: translateX(-50%);
-  min-width: min(220px, calc(100vw - 2rem));
+  min-width: min(260px, calc(100vw - 2rem));
   max-width: calc(100vw - 2rem);
   border: 1px solid rgb(255 255 255 / 14%);
   border-radius: 12px;
@@ -7972,6 +7972,230 @@ a {
 @media (max-height: 620px) {
   .gsp-landing-feature p {
     display: none;
+  }
+}
+
+/* Guardian Resume Builder */
+.grb-page {
+  padding-bottom: 2rem;
+}
+
+.grb-hero {
+  margin-bottom: 1.4rem;
+  max-width: 720px;
+}
+
+.grb-hero h1 {
+  margin: 0.2rem 0 0.7rem;
+  font-family: 'Cinzel', 'Playfair Display', serif;
+  font-size: clamp(1.7rem, 3vw, 2.3rem);
+  color: var(--text-primary);
+}
+
+.grb-hero p {
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.grb-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+  gap: 1.1rem;
+  align-items: start;
+}
+
+.grb-form h3,
+.grb-preview h3 {
+  margin-top: 0;
+}
+
+.grb-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.grb-block {
+  display: grid;
+  gap: 0.75rem;
+  padding-top: 0.4rem;
+}
+
+.grb-block-head,
+.grb-entry-top,
+.grb-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.grb-block-head h4,
+.grb-entry-top strong {
+  margin: 0;
+}
+
+.grb-entry {
+  display: grid;
+  gap: 0.7rem;
+  border: 1px solid var(--border-soft);
+  border-radius: 14px;
+  padding: 0.85rem;
+  background: color-mix(in srgb, var(--brand-gold) 6%, var(--bg-secondary));
+}
+
+.grb-check {
+  display: flex !important;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.55rem;
+}
+
+.grb-form textarea {
+  min-height: 0;
+}
+
+.grb-actions {
+  justify-content: flex-start;
+  padding-top: 0.3rem;
+}
+
+.grb-preview {
+  position: sticky;
+  top: 92px;
+}
+
+.grb-paper {
+  display: grid;
+  gap: 0.85rem;
+  padding: 1rem 1.05rem;
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+  background: #fff;
+  color: #141820;
+}
+
+.grb-paper h2,
+.grb-paper h4 {
+  margin: 0 0 0.35rem;
+  color: #141820;
+}
+
+.grb-paper h2 {
+  font-size: 1.7rem;
+  letter-spacing: 0.01em;
+  text-align: center;
+  color: #006fc0;
+  text-transform: none;
+}
+
+.grb-paper h4 {
+  color: #006fc0;
+  border-bottom-color: #006fc0;
+}
+
+.grb-plain-list,
+.grb-job-block {
+  margin: 0.35rem 0 0;
+  padding: 0;
+}
+
+.grb-plain-list {
+  list-style: none;
+}
+
+.grb-job-line {
+  margin: 0.35rem 0 0.15rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.grb-job-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  align-items: baseline;
+}
+
+.grb-job-head h4 {
+  border-bottom: 0;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 0.98rem;
+}
+
+.grb-job-head span {
+  font-size: 0.85rem;
+  color: #4b5568;
+  white-space: nowrap;
+}
+
+.grb-paper h4 {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-bottom: 1px solid #222;
+  padding-bottom: 0.2rem;
+}
+
+.grb-role,
+.grb-contact,
+.grb-muted {
+  margin: 0;
+  color: #4b5568;
+  font-size: 0.88rem;
+}
+
+.grb-role,
+.grb-contact {
+  text-align: center;
+}
+
+.grb-role {
+  font-weight: 700;
+  color: #1f2937;
+  letter-spacing: 0.02em;
+}
+
+.grb-paper textarea,
+.grb-paper input {
+  width: 100%;
+  border: 1px dashed #cbd5e1;
+  border-radius: 8px;
+  background: #f8fafc;
+  color: #141820;
+  padding: 0.45rem 0.5rem;
+  font: inherit;
+}
+
+.grb-paper ul {
+  margin: 0.35rem 0 0;
+  padding-left: 1.1rem;
+}
+
+.grb-paper li + li {
+  margin-top: 0.35rem;
+}
+
+[data-theme='dark'] .grb-paper {
+  background: #f7f8fb;
+}
+
+@media (max-width: 980px) {
+  .grb-layout,
+  .grb-grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .grb-preview {
+    position: static;
+  }
+
+  .grb-check {
+    margin-top: 0;
   }
 }
 

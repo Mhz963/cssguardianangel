@@ -10,7 +10,7 @@ These files were moved out of `/api` so Vercel Hobby deployments do not count th
 | `create-billing-portal-session.js` | POST `/api/create-billing-portal-session` | Stripe billing portal |
 | `redeem-voucher.js` | POST `/api/redeem-voucher` | Voucher redemption |
 | `release-recurring-subscription.js` | POST `/api/release-recurring-subscription` | Cancel recurring billing |
-| `admin-dashboard.js` | GET `/api/admin-dashboard` | Super admin dashboard |
-| `admin-user-action.js` | POST `/api/admin-user-action` | Admin user actions |
+| `admin-dashboard.js` | GET `/api/admin-dashboard` | Super admin dashboard — **restored in `/api`** |
+| `admin-user-action.js` | POST `/api/admin-user-action` | Admin user actions — **restored in `/api`** |
 
-To re-enable on Vercel Pro, move needed files back into `/api`.
+Stripe/payment files stay disabled. Super admin routes live in `/api` so the dashboard works on Vercel Hobby.

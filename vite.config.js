@@ -1,5 +1,7 @@
 import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react'
+import { handleAdminDashboardStats, handleAdminUserAction } from './server/adminHandlers.js'
+import { readRawBody } from './server/payment.js'
 // Stripe / payment serverless routes disabled for Vercel Hobby (see api-disabled/).
 // import {
 //   handleCreateCheckoutSession,
@@ -40,6 +42,9 @@ export default defineConfig(({ mode }) => {
             }
             if (id.includes('node_modules/pptx2html')) {
               return 'pptx-vendor'
+            }
+            if (id.includes('node_modules/@huggingface') || id.includes('onnxruntime')) {
+              return 'transformers-vendor'
             }
           },
         },
@@ -211,7 +216,45 @@ export default defineConfig(({ mode }) => {
           })
         },
       },
-      // Stripe payment dev middleware disabled (serverless APIs moved to api-disabled/).
+      {
+        name: 'admin-dashboard-middleware',
+        configureServer(server) {
+          Object.assign(process.env, env)
+
+          const attachJsonBody = async (req) => {
+            if (req.body !== undefined) return
+            const raw = await readRawBody(req)
+            try {
+              req.body = JSON.parse(raw || '{}')
+            } catch {
+              req.body = {}
+            }
+          }
+
+          server.middlewares.use('/api/admin-dashboard', async (req, res) => {
+            try {
+              await handleAdminDashboardStats(req, res)
+            } catch (error) {
+              if (res.writableEnded) return
+              res.statusCode = 500
+              res.setHeader('Content-Type', 'application/json')
+              res.end(JSON.stringify({ error: error?.message || 'Unable to load admin dashboard.' }))
+            }
+          })
+
+          server.middlewares.use('/api/admin-user-action', async (req, res) => {
+            try {
+              await attachJsonBody(req)
+              await handleAdminUserAction(req, res)
+            } catch (error) {
+              if (res.writableEnded) return
+              res.statusCode = 500
+              res.setHeader('Content-Type', 'application/json')
+              res.end(JSON.stringify({ error: error?.message || 'Unable to complete admin action.' }))
+            }
+          })
+        },
+      },
       // {
       //   name: 'stripe-payment-middleware',
       //   configureServer(server) {
@@ -234,6 +277,12 @@ export default defineConfig(({ mode }) => {
       //   },
       // },
     ],
+    optimizeDeps: {
+      exclude: ['@huggingface/transformers', 'onnxruntime-web'],
+    },
+    worker: {
+      format: 'es',
+    },
     server: {
       host: true,
       port: 5173,
