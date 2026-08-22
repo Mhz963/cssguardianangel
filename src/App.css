@@ -536,7 +536,7 @@ a {
 }
 
 .hero {
-  padding: 4.6rem 0 4rem;
+  padding: 4.6rem 0 2rem;
 }
 
 .hero-copy {
@@ -641,6 +641,66 @@ a {
 
 .hero-constitutional-note p + p {
   margin-top: 0.38rem;
+}
+
+.intro .hero-youtube-section {
+  position: relative;
+  z-index: 2;
+  padding: 0 0 3.2rem;
+  text-align: center;
+}
+
+.hero-youtube-block {
+  display: grid;
+  gap: 0.85rem;
+  justify-items: center;
+  width: min(940px, 100%);
+  margin: 0.35rem auto 0;
+}
+
+.hero-youtube-embed {
+  width: min(860px, 100%);
+  aspect-ratio: 16 / 9;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgb(242 213 107 / 28%);
+  box-shadow: 0 16px 32px rgb(6 10 20 / 34%);
+  background: rgb(5 7 13 / 80%);
+}
+
+.hero-youtube-embed iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.hero-youtube-channel-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.62rem 1.05rem;
+  border-radius: 999px;
+  border: 1px solid rgb(242 213 107 / 42%);
+  background: linear-gradient(135deg, rgb(242 213 107 / 18%), rgb(5 7 13 / 72%));
+  color: #f2d56b;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.hero-youtube-channel-link:hover {
+  transform: translateY(-1px);
+  border-color: rgb(242 213 107 / 62%);
+  box-shadow: 0 10px 22px rgb(242 213 107 / 16%);
+}
+
+.hero-youtube-icon {
+  width: 1.15rem;
+  height: 1.15rem;
+  flex-shrink: 0;
 }
 
 .guardian-highlight-word {
@@ -6747,6 +6807,10 @@ a {
     padding: 0.85rem 0.95rem;
   }
 
+  .intro .hero-youtube-section {
+    padding-bottom: 2.4rem;
+  }
+
   .highlights,
   .optional-groups,
   .subject-meta-grid,
@@ -7480,6 +7544,10 @@ a {
   .hero-constitutional-note {
     margin-top: 0.65rem;
     padding: 0.8rem 0.82rem;
+  }
+
+  .intro .hero-youtube-section {
+    padding-bottom: 2rem;
   }
 
   .btn {

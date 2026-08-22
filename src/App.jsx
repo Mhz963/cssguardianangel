@@ -54,6 +54,7 @@ const FACEBOOK_PAGE_URL = 'https://www.facebook.com/profile.php?id=6157203907291
 const INSTAGRAM_PAGE_URL = 'https://www.instagram.com/cssguardianangel/'
 const LINKEDIN_PAGE_URL = 'https://www.linkedin.com/company/135217403/'
 const YOUTUBE_PAGE_URL = 'https://www.youtube.com/@CSSGuardianAngel'
+const YOUTUBE_FEATURED_VIDEO_EMBED = 'https://www.youtube.com/embed/cCdBjxylTZY'
 
 const DEFAULT_SEO = {
   title: 'Guardian Angel | CSS Preparation Platform Pakistan',
@@ -1694,6 +1695,38 @@ function HomePage() {
               <span className="guardian-highlight-word">Guardian Angel</span> is committed to upholding
               this right by making quality knowledge accessible to all.
             </p>
+          </div>
+        </section>
+
+        <section
+          className="hero-youtube-section container reveal-on-scroll"
+          aria-label="Guardian Angel on YouTube"
+        >
+          <div className="hero-youtube-block">
+            <div className="hero-youtube-embed">
+              <iframe
+                src={YOUTUBE_FEATURED_VIDEO_EMBED}
+                title="Guardian Angel — free CSS education for every citizen"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              />
+            </div>
+            <a
+              className="hero-youtube-channel-link"
+              href={YOUTUBE_PAGE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg className="hero-youtube-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  fill="currentColor"
+                  d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"
+                />
+              </svg>
+              Watch on YouTube — @CSSGuardianAngel
+            </a>
           </div>
         </section>
       </section>
