@@ -5,6 +5,9 @@ export const MONTHLY_PRICE_PKR = 500
 
 export const ACTIVE_SUBSCRIPTION_STATUSES = new Set(['active', 'trialing', 'voucher'])
 
+const PAYMENTS_DISABLED_MESSAGE =
+  'Stripe billing is disabled. Guardian Study Planner is free — sign in to use it.'
+
 export function hasActiveSubscription(_status) {
   // Guardian Study Planner is free for all signed-in users.
   return true
@@ -39,114 +42,23 @@ async function getAccessToken() {
 }
 
 export async function startSubscriptionCheckout() {
-  const token = await getAccessToken()
-  if (!token) {
-    throw new Error('Please sign in to continue.')
-  }
-
-  const response = await fetch('/api/create-checkout-session', {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',
-    },
-  })
-
-  const payload = await response.json().catch(() => ({}))
-  if (!response.ok) {
-    throw new Error(payload?.error || 'Unable to start checkout.')
-  }
-  if (payload.alreadySubscribed) {
-    return { alreadySubscribed: true, url: null }
-  }
-  if (!payload.url) {
-    throw new Error('Checkout URL was not returned.')
-  }
-  return { alreadySubscribed: false, url: payload.url }
+  await getAccessToken()
+  throw new Error(PAYMENTS_DISABLED_MESSAGE)
 }
 
-export async function verifyCheckoutSession(sessionId) {
-  const token = await getAccessToken()
-  if (!token || !sessionId) {
-    return { active: false, status: null }
-  }
-
-  const response = await fetch('/api/verify-checkout-session', {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ sessionId }),
-  })
-
-  const payload = await response.json().catch(() => ({}))
-  if (!response.ok) {
-    throw new Error(payload?.error || 'Unable to verify payment.')
-  }
-  return payload
+export async function verifyCheckoutSession(_sessionId) {
+  return { active: true, status: 'free' }
 }
 
-export async function redeemVoucherCode(code) {
-  const token = await getAccessToken()
-  if (!token) {
-    throw new Error('Please sign in to continue.')
-  }
-
-  const response = await fetch('/api/redeem-voucher', {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ code }),
-  })
-
-  const payload = await response.json().catch(() => ({}))
-  if (!response.ok) {
-    throw new Error(payload?.error || 'Unable to redeem voucher.')
-  }
-  return payload
+export async function redeemVoucherCode(_code) {
+  throw new Error(PAYMENTS_DISABLED_MESSAGE)
 }
 
 export async function releaseRecurringSubscriptionIfAny() {
-  const token = await getAccessToken()
-  if (!token) {
-    return { released: false }
-  }
-
-  const response = await fetch('/api/release-recurring-subscription', {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',
-    },
-  })
-
-  const payload = await response.json().catch(() => ({}))
-  if (!response.ok) {
-    throw new Error(payload?.error || 'Unable to release recurring subscription.')
-  }
-  return payload
+  // Serverless Stripe API disabled on Vercel Hobby; nothing to release.
+  return { released: false, reason: 'payments_disabled' }
 }
 
 export async function openBillingPortal() {
-  const token = await getAccessToken()
-  if (!token) {
-    throw new Error('Please sign in to continue.')
-  }
-
-  const response = await fetch('/api/create-billing-portal-session', {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',
-    },
-  })
-
-  const payload = await response.json().catch(() => ({}))
-  if (!response.ok) {
-    throw new Error(payload?.error || 'Unable to open billing portal.')
-  }
-  return payload
+  throw new Error(PAYMENTS_DISABLED_MESSAGE)
 }

@@ -32,7 +32,6 @@ import {
   slugify,
 } from './data/syllabusData'
 import { formatNewsTimestamp } from './utils/formatNewsTimestamp.js'
-import { releaseRecurringSubscriptionIfAny } from './utils/paymentClient.js'
 import {
   clearPasswordRecovery,
   detectPasswordRecoveryFromUrl,
@@ -9722,14 +9721,6 @@ function App() {
       subscription?.subscription?.unsubscribe?.()
     }
   }, [])
-
-  useEffect(() => {
-    if (!authUser?.id) return undefined
-
-    releaseRecurringSubscriptionIfAny().catch(() => {
-      // Non-blocking: planner access is free even if Stripe cleanup fails.
-    })
-  }, [authUser?.id])
 
   const handleLogout = async () => {
     if (supabase) {

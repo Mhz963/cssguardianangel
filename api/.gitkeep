@@ -1,0 +1,7 @@
+# Vercel Serverless Functions disabled
+#
+# All former /api routes were moved to ../api-disabled/ to stay under the
+# Vercel Hobby plan limit (12 serverless functions) and because Stripe billing
+# is no longer used (Guardian Study Planner is free).
+#
+# Restore a handler by moving its file back into this folder when upgrading to Pro.
