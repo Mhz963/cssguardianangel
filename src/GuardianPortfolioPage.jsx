@@ -49,6 +49,7 @@ export default function GuardianPortfolioPage({ authUser }) {
   const [isGigBusy, setIsGigBusy] = useState(false)
   const [pendingDeleteId, setPendingDeleteId] = useState('')
   const [pendingGigId, setPendingGigId] = useState('')
+  const [editingGigId, setEditingGigId] = useState('')
   const [error, setError] = useState('')
   const [message, setMessage] = useState('')
 
@@ -189,12 +190,38 @@ export default function GuardianPortfolioPage({ authUser }) {
     }
   }
 
-  const handleAddGig = async (event) => {
+  const resetGigForm = () => {
+    setEditingGigId('')
+    setGigDraft(createEmptyGigDraft())
+    setGigFileKey((current) => current + 1)
+  }
+
+  const handleEditGig = (gig) => {
+    setError('')
+    setMessage('')
+    setPendingGigId('')
+    setEditingGigId(gig.id)
+    setGigDraft({
+      title: gig.title || '',
+      description: gig.description || '',
+      category: gig.category || 'Writing',
+      currency: gig.currency || 'PKR',
+      price: gig.price || '',
+      delivery: gig.delivery || '',
+      file: null,
+      coverUrl: gig.coverUrl || '',
+    })
+    setGigFileKey((current) => current + 1)
+    window.document.getElementById('gp-gig-form')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+
+  const handleSaveGig = async (event) => {
     event.preventDefault()
     setError('')
     setMessage('')
     const gigs = Array.isArray(draft.gigs) ? draft.gigs : []
-    if (gigs.length >= MAX_GIGS) {
+    const isEditing = Boolean(editingGigId)
+    if (!isEditing && gigs.length >= MAX_GIGS) {
       setError(`You can publish up to ${MAX_GIGS} gigs.`)
       return
     }
@@ -209,10 +236,14 @@ export default function GuardianPortfolioPage({ authUser }) {
 
     setIsGigBusy(true)
     try {
-      const gigId = crypto.randomUUID()
-      let cover = { cover_path: '', coverUrl: '' }
+      const currentGig = isEditing ? gigs.find((gig) => gig.id === editingGigId) : null
+      const gigId = currentGig?.id || crypto.randomUUID()
+      let cover = {
+        cover_path: currentGig?.cover_path || '',
+        coverUrl: currentGig?.coverUrl || '',
+      }
       if (gigDraft.file) {
-        cover = await uploadGigCover(authUser.id, gigId, gigDraft.file)
+        cover = await uploadGigCover(authUser.id, gigId, gigDraft.file, currentGig?.cover_path || '')
       }
       const nextGig = {
         id: gigId,
@@ -225,14 +256,15 @@ export default function GuardianPortfolioPage({ authUser }) {
         cover_path: cover.cover_path,
         coverUrl: cover.coverUrl,
       }
-      const nextDraft = { ...draft, gigs: [...gigs, nextGig] }
-      const saved = await persistDraft(nextDraft)
+      const nextGigs = isEditing
+        ? gigs.map((gig) => (gig.id === gigId ? nextGig : gig))
+        : [...gigs, nextGig]
+      const saved = await persistDraft({ ...draft, gigs: nextGigs })
       setDraft(saved)
-      setGigDraft(createEmptyGigDraft())
-      setGigFileKey((current) => current + 1)
-      setMessage('Gig added to your profile.')
+      resetGigForm()
+      setMessage(isEditing ? 'Gig updated.' : 'Gig added to your profile.')
     } catch (gigError) {
-      setError(gigError?.message || 'Unable to add that gig.')
+      setError(gigError?.message || 'Unable to save that gig.')
     } finally {
       setIsGigBusy(false)
     }
@@ -257,6 +289,7 @@ export default function GuardianPortfolioPage({ authUser }) {
       const saved = await persistDraft(nextDraft)
       setDraft(saved)
       setPendingGigId('')
+      if (editingGigId === gig.id) resetGigForm()
       setMessage('Gig removed.')
     } catch (gigError) {
       setError(gigError?.message || 'Unable to remove that gig.')
@@ -534,11 +567,11 @@ export default function GuardianPortfolioPage({ authUser }) {
 
         </div>
 
-        <form className="planner-card planner-form gp-form gp-gig-form" onSubmit={handleAddGig}>
-          <h3>Your gigs</h3>
+        <form id="gp-gig-form" className="planner-card planner-form gp-form gp-gig-form" onSubmit={handleSaveGig}>
+          <h3>{editingGigId ? 'Edit gig' : 'Your gigs'}</h3>
           <p className="gp-note">
-            Publish up to {MAX_GIGS} services, Fiverr-style. Each gig appears on your public profile with an Order
-            button. {(draft.gigs || []).length}/{MAX_GIGS} used.
+            Publish up to {MAX_GIGS} services, Fiverr-style. Use Edit or Remove on a saved gig to update it.
+            {' '}{(draft.gigs || []).length}/{MAX_GIGS} used.
           </p>
           <div className="gp-grid-2">
             <Field label="Gig title">
@@ -627,9 +660,18 @@ export default function GuardianPortfolioPage({ authUser }) {
             </div>
           </Field>
           <div className="gp-actions">
-            <button className="btn btn-primary" type="submit" disabled={isGigBusy || (draft.gigs || []).length >= MAX_GIGS}>
-              {isGigBusy ? 'Saving gig…' : 'Add gig'}
+            <button
+              className="btn btn-primary"
+              type="submit"
+              disabled={isGigBusy || (!editingGigId && (draft.gigs || []).length >= MAX_GIGS)}
+            >
+              {isGigBusy ? 'Saving gig…' : editingGigId ? 'Save changes' : 'Add gig'}
             </button>
+            {editingGigId ? (
+              <button className="btn btn-secondary" type="button" onClick={resetGigForm} disabled={isGigBusy}>
+                Cancel edit
+              </button>
+            ) : null}
           </div>
           {(draft.gigs || []).length ? (
             <ul className="gp-manage-list">
@@ -639,9 +681,14 @@ export default function GuardianPortfolioPage({ authUser }) {
                     <strong>{gig.title}</strong>
                     <span>{[gig.category, formatGigPrice(gig), gig.delivery].filter(Boolean).join(' · ')}</span>
                   </div>
-                  <button className="btn btn-secondary" type="button" onClick={() => handleDeleteGig(gig)} disabled={isGigBusy}>
-                    {pendingGigId === gig.id ? 'Confirm remove' : 'Remove'}
-                  </button>
+                  <div className="gp-manage-actions">
+                    <button className="btn btn-secondary" type="button" onClick={() => handleEditGig(gig)} disabled={isGigBusy}>
+                      Edit
+                    </button>
+                    <button className="btn btn-secondary" type="button" onClick={() => handleDeleteGig(gig)} disabled={isGigBusy}>
+                      {pendingGigId === gig.id ? 'Confirm remove' : 'Remove'}
+                    </button>
+                  </div>
                 </li>
               ))}
             </ul>

@@ -214,6 +214,10 @@ export function isImageMime(mime, fileName = '') {
   return /\.(png|jpe?g|webp)$/i.test(fileName)
 }
 
+export function isPdfFile(mime, fileName = '') {
+  return String(mime || '').includes('pdf') || /\.pdf$/i.test(fileName)
+}
+
 export function getPortfolioFileUrl(filePath) {
   if (!supabase || !filePath) return ''
   const { data } = supabase.storage.from(PORTFOLIO_BUCKET).getPublicUrl(filePath)

@@ -1,13 +1,58 @@
+import { useEffect, useState } from 'react'
+import PortfolioSampleCover from './PortfolioSampleCover.jsx'
 import {
   formatFileSize,
   formatGigPrice,
   getGigWhatsAppUrl,
   getInitials,
   getPortfolioWhatsAppUrl,
-  isImageMime,
   parseSkills,
   visibleLinkEntries,
 } from './utils/portfolioClient.js'
+
+const LONG_GIG_DESCRIPTION = 90
+
+function isLongGigDescription(text) {
+  return String(text || '').trim().length > LONG_GIG_DESCRIPTION
+}
+
+function GigDetailsModal({ gig, orderHref, onClose }) {
+  return (
+    <div
+      className="gp-gig-modal-overlay"
+      role="dialog"
+      aria-modal="true"
+      aria-label={gig.title || 'Gig details'}
+      onClick={onClose}
+    >
+      <article className="gp-gig-modal" onClick={(event) => event.stopPropagation()}>
+        <header className="gp-gig-modal-head">
+          <div>
+            {gig.category ? <p className="gp-kicker">{gig.category}</p> : null}
+            <h3>{gig.title}</h3>
+          </div>
+          <button className="gp-gig-modal-close" type="button" onClick={onClose}>
+            Close
+          </button>
+        </header>
+        {gig.coverUrl ? <img className="gp-gig-modal-cover" src={gig.coverUrl} alt="" /> : null}
+        {gig.description ? <p className="gp-gig-modal-copy">{gig.description}</p> : null}
+        <div className="gp-gig-meta">
+          {gig.price ? <strong>{formatGigPrice(gig)}</strong> : null}
+          {gig.delivery ? <span>{gig.delivery} delivery</span> : null}
+        </div>
+        <a
+          className="gp-gig-order"
+          href={orderHref || '#gp-contact'}
+          {...(orderHref ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+          onClick={onClose}
+        >
+          Get in touch
+        </a>
+      </article>
+    </div>
+  )
+}
 
 export default function GuardianPortfolioShowcase({
   portfolio,
@@ -15,6 +60,7 @@ export default function GuardianPortfolioShowcase({
   emptyLabel = 'Nothing added yet.',
   compact = false,
 }) {
+  const [openGig, setOpenGig] = useState(null)
   const skills = parseSkills(portfolio?.skillsText)
   const name = String(portfolio?.display_name || '').trim()
   const whatsappHref = getPortfolioWhatsAppUrl(portfolio?.links, name)
@@ -33,6 +79,20 @@ export default function GuardianPortfolioShowcase({
     links.length > 0 ||
     work.length > 0 ||
     gigs.length > 0
+
+  useEffect(() => {
+    if (!openGig) return undefined
+    const onKeyDown = (event) => {
+      if (event.key === 'Escape') setOpenGig(null)
+    }
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    window.addEventListener('keydown', onKeyDown)
+    return () => {
+      document.body.style.overflow = previousOverflow
+      window.removeEventListener('keydown', onKeyDown)
+    }
+  }, [openGig])
 
   if (!hasProfile) {
     return <p className="gp-empty">{emptyLabel}</p>
@@ -148,7 +208,18 @@ export default function GuardianPortfolioShowcase({
                     </div>
                     <div className="gp-gig-body">
                       <h3>{gig.title}</h3>
-                      {gig.description ? <p>{gig.description}</p> : null}
+                      {gig.description ? (
+                        <p>
+                          {isLongGigDescription(gig.description)
+                            ? `${gig.description.trim().slice(0, LONG_GIG_DESCRIPTION).trim()}…`
+                            : gig.description}
+                          {isLongGigDescription(gig.description) ? (
+                            <button className="gp-gig-more" type="button" onClick={() => setOpenGig(gig)}>
+                              Read more
+                            </button>
+                          ) : null}
+                        </p>
+                      ) : null}
                       <div className="gp-gig-meta">
                         {gig.price ? <strong>{formatGigPrice(gig)}</strong> : null}
                         {gig.delivery ? <span>{gig.delivery} delivery</span> : null}
@@ -167,6 +238,14 @@ export default function GuardianPortfolioShowcase({
             </ul>
           </div>
         </section>
+      ) : null}
+
+      {openGig ? (
+        <GigDetailsModal
+          gig={openGig}
+          orderHref={getGigWhatsAppUrl(portfolio.links, name, openGig)}
+          onClose={() => setOpenGig(null)}
+        />
       ) : null}
 
       {showAbout ? (
@@ -195,17 +274,21 @@ export default function GuardianPortfolioShowcase({
           <p className="gp-kicker">Featured work</p>
           <h2>A showcase of recent samples</h2>
           <ul className="gp-project-grid">
-            {work.map((item) => {
-              const isImage = item.fileUrl && isImageMime(item.fileMime, item.fileName)
+            {work.map((item, index) => {
+              const openUrl = item.fileUrl || item.externalUrl
               return (
-                <li key={item.id} className="gp-project-card">
-                  {isImage ? (
-                    <a className="gp-project-media" href={item.fileUrl} target="_blank" rel="noopener noreferrer">
-                      <img src={item.fileUrl} alt={item.title || item.fileName} />
+                <li
+                  key={item.id}
+                  className="gp-project-card"
+                  style={{ '--gp-work-delay': `${index * 140}ms` }}
+                >
+                  {openUrl ? (
+                    <a className="gp-project-media" href={openUrl} target="_blank" rel="noopener noreferrer">
+                      <PortfolioSampleCover item={item} />
                     </a>
                   ) : (
                     <div className="gp-project-media is-file">
-                      <strong>{item.fileName || 'Work sample'}</strong>
+                      <PortfolioSampleCover item={item} />
                       {item.fileSize ? <span>{formatFileSize(item.fileSize)}</span> : null}
                     </div>
                   )}
