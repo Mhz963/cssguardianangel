@@ -1,6 +1,6 @@
-import whatsappShareIcon from './assets/whatsapp-share-icon.svg'
 import {
   formatFileSize,
+  formatGigPrice,
   getGigWhatsAppUrl,
   getInitials,
   getPortfolioWhatsAppUrl,
@@ -8,22 +8,6 @@ import {
   parseSkills,
   visibleLinkEntries,
 } from './utils/portfolioClient.js'
-
-function WhatsAppIconButton({ href, label = 'Chat on WhatsApp', className = '' }) {
-  if (!href) return null
-  return (
-    <a
-      className={`gp-wa-btn ${className}`.trim()}
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={label}
-    >
-      <img src={whatsappShareIcon} alt="" />
-      <span>WhatsApp</span>
-    </a>
-  )
-}
 
 export default function GuardianPortfolioShowcase({
   portfolio,
@@ -108,10 +92,12 @@ export default function GuardianPortfolioShowcase({
                   View my work
                 </a>
               ) : null}
-              {whatsappHref ? (
-                <WhatsAppIconButton href={whatsappHref} />
-              ) : showContact ? (
-                <a className="btn btn-secondary" href="#gp-contact">
+              {showContact || whatsappHref ? (
+                <a
+                  className="btn btn-secondary"
+                  href={whatsappHref || '#gp-contact'}
+                  {...(whatsappHref ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                >
                   Get in touch
                 </a>
               ) : null}
@@ -163,16 +149,17 @@ export default function GuardianPortfolioShowcase({
                     <h3>{gig.title}</h3>
                     {gig.description ? <p>{gig.description}</p> : null}
                     <div className="gp-gig-meta">
-                      {gig.price ? <strong>{gig.price}</strong> : null}
+                      {gig.price ? <strong>{formatGigPrice(gig)}</strong> : null}
                       {gig.delivery ? <span>{gig.delivery} delivery</span> : null}
                     </div>
                     {orderHref ? (
-                      <a className="gp-gig-order" href={orderHref} target="_blank" rel="noopener noreferrer">
-                        <img src={whatsappShareIcon} alt="" />
-                        Order on WhatsApp
+                      <a className="btn btn-secondary gp-gig-order" href={orderHref} target="_blank" rel="noopener noreferrer">
+                        Get in touch
                       </a>
                     ) : (
-                      <p className="gp-gig-note">Add a WhatsApp number to take orders.</p>
+                      <a className="btn btn-secondary gp-gig-order" href="#gp-contact">
+                        Get in touch
+                      </a>
                     )}
                   </div>
                 </li>
@@ -255,12 +242,9 @@ export default function GuardianPortfolioShowcase({
               {[portfolio.city, portfolio.rate_text].filter(Boolean).join(' · ')}
             </p>
           ) : null}
-          {whatsappHref ? <WhatsAppIconButton href={whatsappHref} /> : null}
-          {links.filter((link) => link.label !== 'WhatsApp').length ? (
+          {links.length ? (
             <ul className="gp-contact-list">
-              {links
-                .filter((link) => link.label !== 'WhatsApp')
-                .map((link) => (
+              {links.map((link) => (
                   <li key={link.label}>
                     <a href={link.href} target="_blank" rel="noopener noreferrer">
                       {link.label}
@@ -271,8 +255,6 @@ export default function GuardianPortfolioShowcase({
           ) : null}
         </section>
       ) : null}
-
-      <WhatsAppIconButton className="gp-wa-float" href={whatsappHref} label="Open WhatsApp chat" />
     </article>
   )
 }

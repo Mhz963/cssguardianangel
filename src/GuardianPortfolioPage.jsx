@@ -5,6 +5,8 @@ import {
   ALLOWED_PHOTO_EXTENSIONS,
   ALLOWED_PORTFOLIO_EXTENSIONS,
   GIG_CATEGORIES,
+  GIG_CURRENCIES,
+  formatGigPrice,
   MAX_GIGS,
   MAX_PORTFOLIO_ITEMS,
   addPortfolioItem,
@@ -217,6 +219,7 @@ export default function GuardianPortfolioPage({ authUser }) {
         title: gigDraft.title.trim(),
         description: String(gigDraft.description || '').trim(),
         category: gigDraft.category,
+        currency: gigDraft.currency,
         price: gigDraft.price.trim(),
         delivery: String(gigDraft.delivery || '').trim(),
         cover_path: cover.cover_path,
@@ -567,21 +570,33 @@ export default function GuardianPortfolioPage({ authUser }) {
             />
           </Field>
           <div className="gp-grid-2">
+            <Field label="Currency">
+              <select
+                value={gigDraft.currency}
+                onChange={(event) => setGigDraft((current) => ({ ...current, currency: event.target.value }))}
+              >
+                {GIG_CURRENCIES.map((item) => (
+                  <option key={item.code} value={item.code}>
+                    {item.code} ({item.symbol})
+                  </option>
+                ))}
+              </select>
+            </Field>
             <Field label="Starting price">
               <input
                 value={gigDraft.price}
                 onChange={(event) => setGigDraft((current) => ({ ...current, price: event.target.value }))}
-                placeholder="Rs 3,000"
-              />
-            </Field>
-            <Field label="Delivery time" hint="Optional">
-              <input
-                value={gigDraft.delivery}
-                onChange={(event) => setGigDraft((current) => ({ ...current, delivery: event.target.value }))}
-                placeholder="3 days"
+                placeholder="3000"
               />
             </Field>
           </div>
+          <Field label="Delivery time" hint="Optional">
+            <input
+              value={gigDraft.delivery}
+              onChange={(event) => setGigDraft((current) => ({ ...current, delivery: event.target.value }))}
+              placeholder="3 days"
+            />
+          </Field>
           <Field label="Cover image" hint="Optional. PNG, JPG, or WEBP up to 4 MB.">
             <div className="gp-upload">
               <span className={`gp-upload-btn ${gigDraft.file ? 'has-file' : ''}`}>
@@ -622,7 +637,7 @@ export default function GuardianPortfolioPage({ authUser }) {
                 <li key={gig.id}>
                   <div>
                     <strong>{gig.title}</strong>
-                    <span>{[gig.category, gig.price, gig.delivery].filter(Boolean).join(' · ')}</span>
+                    <span>{[gig.category, formatGigPrice(gig), gig.delivery].filter(Boolean).join(' · ')}</span>
                   </div>
                   <button className="btn btn-secondary" type="button" onClick={() => handleDeleteGig(gig)} disabled={isGigBusy}>
                     {pendingGigId === gig.id ? 'Confirm remove' : 'Remove'}

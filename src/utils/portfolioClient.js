@@ -17,15 +17,30 @@ export const GIG_CATEGORIES = [
   'Other',
 ]
 
+export const GIG_CURRENCIES = [
+  { code: 'PKR', symbol: 'Rs' },
+  { code: 'USD', symbol: '$' },
+  { code: 'EUR', symbol: '€' },
+  { code: 'GBP', symbol: '£' },
+]
+
 export function createEmptyGigDraft() {
   return {
     title: '',
     description: '',
     category: 'Writing',
+    currency: 'PKR',
     price: '',
     delivery: '',
     file: null,
   }
+}
+
+export function formatGigPrice(gig) {
+  const amount = String(gig?.price || '').trim()
+  if (!amount) return ''
+  const match = GIG_CURRENCIES.find((item) => item.code === gig?.currency) || GIG_CURRENCIES[0]
+  return `From ${match.code} ${amount}`
 }
 
 const RESERVED_SLUGS = new Set([
@@ -130,6 +145,7 @@ export function serializeGigs(raw) {
       title: String(gig?.title || '').trim(),
       description: String(gig?.description || '').trim(),
       category: String(gig?.category || '').trim(),
+      currency: GIG_CURRENCIES.some((item) => item.code === gig?.currency) ? gig.currency : 'PKR',
       price: String(gig?.price || '').trim(),
       delivery: String(gig?.delivery || '').trim(),
       cover_path: String(gig?.cover_path || '').trim(),
@@ -182,7 +198,7 @@ export function getPortfolioWhatsAppUrl(links, displayName = '') {
 export function getGigWhatsAppUrl(links, displayName, gig) {
   const number = normalizeLinks(links).whatsapp
   const title = String(gig?.title || 'your gig').trim()
-  const price = String(gig?.price || '').trim()
+  const price = formatGigPrice(gig)
   const greeting = `Hi${displayName ? ` ${displayName}` : ''}, I want to order your gig: "${title}"${price ? ` (${price})` : ''}.`
   return toWhatsAppUrl(number, greeting)
 }
