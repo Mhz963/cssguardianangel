@@ -129,43 +129,43 @@ export default function GuardianPortfolioShowcase({
       </section>
 
       {showGigs ? (
-        <section className="gp-site-section" id="gp-gigs">
+        <section className="gp-site-section gp-gigs-section" id="gp-gigs">
           <p className="gp-kicker">Gigs</p>
           <h2>Services you can order</h2>
-          <ul className="gp-gig-grid">
-            {gigs.map((gig) => {
-              const orderHref = getGigWhatsAppUrl(portfolio.links, name, gig)
-              return (
-                <li key={gig.id} className="gp-gig-card">
-                  <div className="gp-gig-cover">
-                    {gig.coverUrl ? (
-                      <img src={gig.coverUrl} alt={gig.title} />
-                    ) : (
-                      <span>{gig.category || 'Gig'}</span>
-                    )}
-                    {gig.category ? <em>{gig.category}</em> : null}
-                  </div>
-                  <div className="gp-gig-body">
-                    <h3>{gig.title}</h3>
-                    {gig.description ? <p>{gig.description}</p> : null}
-                    <div className="gp-gig-meta">
-                      {gig.price ? <strong>{formatGigPrice(gig)}</strong> : null}
-                      {gig.delivery ? <span>{gig.delivery} delivery</span> : null}
+          <div className="gp-gig-stage">
+            <ul className="gp-gig-grid" data-count={gigs.length}>
+              {gigs.map((gig, index) => {
+                const orderHref = getGigWhatsAppUrl(portfolio.links, name, gig)
+                return (
+                  <li key={gig.id} className="gp-gig-card" style={{ '--gp-gig-delay': `${index * 90}ms` }}>
+                    <div className="gp-gig-cover">
+                      {gig.coverUrl ? (
+                        <img src={gig.coverUrl} alt={gig.title} />
+                      ) : (
+                        <span>{gig.category || 'Gig'}</span>
+                      )}
+                      {gig.category ? <em>{gig.category}</em> : null}
                     </div>
-                    {orderHref ? (
-                      <a className="btn btn-secondary gp-gig-order" href={orderHref} target="_blank" rel="noopener noreferrer">
+                    <div className="gp-gig-body">
+                      <h3>{gig.title}</h3>
+                      {gig.description ? <p>{gig.description}</p> : null}
+                      <div className="gp-gig-meta">
+                        {gig.price ? <strong>{formatGigPrice(gig)}</strong> : null}
+                        {gig.delivery ? <span>{gig.delivery} delivery</span> : null}
+                      </div>
+                      <a
+                        className="gp-gig-order"
+                        href={orderHref || '#gp-contact'}
+                        {...(orderHref ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                      >
                         Get in touch
                       </a>
-                    ) : (
-                      <a className="btn btn-secondary gp-gig-order" href="#gp-contact">
-                        Get in touch
-                      </a>
-                    )}
-                  </div>
-                </li>
-              )
-            })}
-          </ul>
+                    </div>
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
         </section>
       ) : null}
 
