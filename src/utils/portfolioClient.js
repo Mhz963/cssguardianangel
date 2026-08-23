@@ -1,4 +1,4 @@
-import { hasSupabaseConfig, supabase } from './supabaseClient.js'
+import { ensureFreshSession, hasSupabaseConfig, isJwtExpiredError, recoverFromExpiredJwt, supabase } from './supabaseClient.js'
 
 export const PORTFOLIO_BUCKET = 'ga-portfolio'
 export const MAX_PORTFOLIO_ITEMS = 12
@@ -269,6 +269,9 @@ function mapItemRow(row) {
 function explainSupabaseError(error) {
   const message = String(error?.message || '')
   const code = String(error?.code || '')
+  if (isJwtExpiredError(error)) {
+    return 'Your session expired. Sign in again, then reload your portfolio.'
+  }
   if (
     code === '42P01' ||
     code === 'PGRST205' ||
@@ -286,6 +289,25 @@ function explainSupabaseError(error) {
   return message || 'Unable to save your portfolio.'
 }
 
+async function withFreshAuth(run, { allowAnonymousRetry = false } = {}) {
+  await ensureFreshSession()
+  try {
+    return await run()
+  } catch (error) {
+    if (isJwtExpiredError(error)) {
+      const session = await recoverFromExpiredJwt()
+      if (session || allowAnonymousRetry) {
+        try {
+          return await run()
+        } catch (retryError) {
+          throw new Error(explainSupabaseError(retryError))
+        }
+      }
+    }
+    throw new Error(explainSupabaseError(error))
+  }
+}
+
 export function requireSupabase() {
   if (!hasSupabaseConfig || !supabase) {
     throw new Error('Sign-in is not configured, so portfolios cannot be saved yet.')
@@ -294,54 +316,59 @@ export function requireSupabase() {
 }
 
 export async function fetchMyPortfolio(authUser) {
-  const client = requireSupabase()
-  const { data, error } = await client.from('user_portfolios').select('*').eq('user_id', authUser.id).maybeSingle()
-  if (error) throw new Error(explainSupabaseError(error))
-  return mapPortfolioRow(data, authUser)
+  return withFreshAuth(async () => {
+    const client = requireSupabase()
+    const { data, error } = await client.from('user_portfolios').select('*').eq('user_id', authUser.id).maybeSingle()
+    if (error) throw error
+    return mapPortfolioRow(data, authUser)
+  })
 }
 
 export async function fetchMyPortfolioItems(userId) {
-  const client = requireSupabase()
-  const { data, error } = await client
-    .from('user_portfolio_items')
-    .select('*')
-    .eq('user_id', userId)
-    .order('sort_order', { ascending: true })
-    .order('created_at', { ascending: true })
-  if (error) throw new Error(explainSupabaseError(error))
-  return (data || []).map(mapItemRow)
+  return withFreshAuth(async () => {
+    const client = requireSupabase()
+    const { data, error } = await client
+      .from('user_portfolio_items')
+      .select('*')
+      .eq('user_id', userId)
+      .order('sort_order', { ascending: true })
+      .order('created_at', { ascending: true })
+    if (error) throw error
+    return (data || []).map(mapItemRow)
+  })
 }
 
 export async function fetchPublicPortfolio(slug) {
-  const client = requireSupabase()
-  const cleanSlug = slugifyPortfolio(slug)
-  if (!cleanSlug) return { portfolio: null, items: [] }
+  return withFreshAuth(async () => {
+    const client = requireSupabase()
+    const cleanSlug = slugifyPortfolio(slug)
+    if (!cleanSlug) return { portfolio: null, items: [] }
 
-  const { data: portfolio, error } = await client
-    .from('user_portfolios')
-    .select('*')
-    .eq('slug', cleanSlug)
-    .eq('is_public', true)
-    .maybeSingle()
-  if (error) throw new Error(explainSupabaseError(error))
-  if (!portfolio) return { portfolio: null, items: [] }
+    const { data: portfolio, error } = await client
+      .from('user_portfolios')
+      .select('*')
+      .eq('slug', cleanSlug)
+      .eq('is_public', true)
+      .maybeSingle()
+    if (error) throw error
+    if (!portfolio) return { portfolio: null, items: [] }
 
-  const { data: items, error: itemsError } = await client
-    .from('user_portfolio_items')
-    .select('*')
-    .eq('user_id', portfolio.user_id)
-    .order('sort_order', { ascending: true })
-    .order('created_at', { ascending: true })
-  if (itemsError) throw new Error(explainSupabaseError(itemsError))
+    const { data: items, error: itemsError } = await client
+      .from('user_portfolio_items')
+      .select('*')
+      .eq('user_id', portfolio.user_id)
+      .order('sort_order', { ascending: true })
+      .order('created_at', { ascending: true })
+    if (itemsError) throw itemsError
 
-  return {
-    portfolio: mapPortfolioRow(portfolio),
-    items: (items || []).map(mapItemRow),
-  }
+    return {
+      portfolio: mapPortfolioRow(portfolio),
+      items: (items || []).map(mapItemRow),
+    }
+  }, { allowAnonymousRetry: true })
 }
 
 export async function saveMyPortfolio(authUser, draft) {
-  const client = requireSupabase()
   const slug = slugifyPortfolio(draft.slug, `user-${String(authUser.id).slice(0, 8)}`)
   if (!slug) throw new Error('Choose a public link made of letters, numbers, and hyphens.')
 
@@ -366,17 +393,20 @@ export async function saveMyPortfolio(authUser, draft) {
 
   if (!payload.display_name) throw new Error('Add your display name before saving.')
 
-  const { error } = await client.from('user_portfolios').upsert(payload, { onConflict: 'user_id' })
-  if (error) throw new Error(explainSupabaseError(error))
-  return {
-    ...draft,
-    slug,
-    skillsText: payload.skills.join(', '),
-    photo_path: payload.links.photo_path,
-    photoUrl: getPortfolioFileUrl(payload.links.photo_path),
-    links: formLinksFromPayload(payload.links),
-    gigs: mapGigs(payload.links.gigs),
-  }
+  return withFreshAuth(async () => {
+    const client = requireSupabase()
+    const { error } = await client.from('user_portfolios').upsert(payload, { onConflict: 'user_id' })
+    if (error) throw error
+    return {
+      ...draft,
+      slug,
+      skillsText: payload.skills.join(', '),
+      photo_path: payload.links.photo_path,
+      photoUrl: getPortfolioFileUrl(payload.links.photo_path),
+      links: formLinksFromPayload(payload.links),
+      gigs: mapGigs(payload.links.gigs),
+    }
+  })
 }
 
 function formLinksFromPayload(links) {
@@ -423,65 +453,72 @@ export function validatePortfolioPhoto(file) {
 }
 
 export async function uploadPortfolioPhoto(userId, file, previousPath = '') {
-  const client = requireSupabase()
   const fileError = validatePortfolioPhoto(file)
   if (fileError) throw new Error(fileError)
 
-  const photoPath = `${userId}/avatar/${Date.now()}-${safeFileName(file.name)}`
-  const { error: uploadError } = await client.storage.from(PORTFOLIO_BUCKET).upload(photoPath, file, {
-    contentType: file.type || 'image/jpeg',
-    upsert: true,
+  return withFreshAuth(async () => {
+    const client = requireSupabase()
+    const photoPath = `${userId}/avatar/${Date.now()}-${safeFileName(file.name)}`
+    const { error: uploadError } = await client.storage.from(PORTFOLIO_BUCKET).upload(photoPath, file, {
+      contentType: file.type || 'image/jpeg',
+      upsert: true,
+    })
+    if (uploadError) throw uploadError
+
+    if (previousPath && previousPath !== photoPath) {
+      await client.storage.from(PORTFOLIO_BUCKET).remove([previousPath])
+    }
+
+    return {
+      photo_path: photoPath,
+      photoUrl: getPortfolioFileUrl(photoPath),
+    }
   })
-  if (uploadError) throw new Error(explainSupabaseError(uploadError))
-
-  if (previousPath && previousPath !== photoPath) {
-    await client.storage.from(PORTFOLIO_BUCKET).remove([previousPath])
-  }
-
-  return {
-    photo_path: photoPath,
-    photoUrl: getPortfolioFileUrl(photoPath),
-  }
 }
 
 export async function removePortfolioPhoto(previousPath = '') {
-  const client = requireSupabase()
-  if (previousPath) {
-    await client.storage.from(PORTFOLIO_BUCKET).remove([previousPath])
-  }
+  return withFreshAuth(async () => {
+    const client = requireSupabase()
+    if (previousPath) {
+      await client.storage.from(PORTFOLIO_BUCKET).remove([previousPath])
+    }
+  })
 }
 
 export async function uploadGigCover(userId, gigId, file, previousPath = '') {
-  const client = requireSupabase()
   const fileError = validatePortfolioPhoto(file)
   if (fileError) throw new Error(fileError)
 
-  const coverPath = `${userId}/gigs/${gigId}/${Date.now()}-${safeFileName(file.name)}`
-  const { error: uploadError } = await client.storage.from(PORTFOLIO_BUCKET).upload(coverPath, file, {
-    contentType: file.type || 'image/jpeg',
-    upsert: true,
+  return withFreshAuth(async () => {
+    const client = requireSupabase()
+    const coverPath = `${userId}/gigs/${gigId}/${Date.now()}-${safeFileName(file.name)}`
+    const { error: uploadError } = await client.storage.from(PORTFOLIO_BUCKET).upload(coverPath, file, {
+      contentType: file.type || 'image/jpeg',
+      upsert: true,
+    })
+    if (uploadError) throw uploadError
+
+    if (previousPath && previousPath !== coverPath) {
+      await client.storage.from(PORTFOLIO_BUCKET).remove([previousPath])
+    }
+
+    return {
+      cover_path: coverPath,
+      coverUrl: getPortfolioFileUrl(coverPath),
+    }
   })
-  if (uploadError) throw new Error(explainSupabaseError(uploadError))
-
-  if (previousPath && previousPath !== coverPath) {
-    await client.storage.from(PORTFOLIO_BUCKET).remove([previousPath])
-  }
-
-  return {
-    cover_path: coverPath,
-    coverUrl: getPortfolioFileUrl(coverPath),
-  }
 }
 
 export async function removeGigCover(previousPath = '') {
-  const client = requireSupabase()
-  if (previousPath) {
-    await client.storage.from(PORTFOLIO_BUCKET).remove([previousPath])
-  }
+  return withFreshAuth(async () => {
+    const client = requireSupabase()
+    if (previousPath) {
+      await client.storage.from(PORTFOLIO_BUCKET).remove([previousPath])
+    }
+  })
 }
 
 export async function addPortfolioItem({ userId, title, description, file, externalUrl, currentCount }) {
-  const client = requireSupabase()
   if (currentCount >= MAX_PORTFOLIO_ITEMS) {
     throw new Error(`You can showcase up to ${MAX_PORTFOLIO_ITEMS} items.`)
   }
@@ -497,54 +534,57 @@ export async function addPortfolioItem({ userId, title, description, file, exter
     if (fileError) throw new Error(fileError)
   }
 
-  const itemId = crypto.randomUUID()
-  let filePath = ''
-  if (file) {
-    filePath = `${userId}/${itemId}/${safeFileName(file.name)}`
-    const { error: uploadError } = await client.storage.from(PORTFOLIO_BUCKET).upload(filePath, file, {
-      contentType: file.type || 'application/octet-stream',
-      upsert: false,
-    })
-    if (uploadError) {
-      throw new Error(explainSupabaseError(uploadError))
+  return withFreshAuth(async () => {
+    const client = requireSupabase()
+    const itemId = crypto.randomUUID()
+    let filePath = ''
+    if (file) {
+      filePath = `${userId}/${itemId}/${safeFileName(file.name)}`
+      const { error: uploadError } = await client.storage.from(PORTFOLIO_BUCKET).upload(filePath, file, {
+        contentType: file.type || 'application/octet-stream',
+        upsert: false,
+      })
+      if (uploadError) throw uploadError
     }
-  }
 
-  const { data, error } = await client
-    .from('user_portfolio_items')
-    .insert({
-      id: itemId,
-      user_id: userId,
-      title: cleanTitle,
-      description: cleanDescription,
-      item_type: file ? 'document' : 'link',
-      file_path: filePath || null,
-      file_name: file?.name || null,
-      file_mime: file?.type || null,
-      file_size: file?.size || null,
-      external_url: cleanUrl || null,
-      sort_order: currentCount,
-    })
-    .select('*')
-    .single()
+    const { data, error } = await client
+      .from('user_portfolio_items')
+      .insert({
+        id: itemId,
+        user_id: userId,
+        title: cleanTitle,
+        description: cleanDescription,
+        item_type: file ? 'document' : 'link',
+        file_path: filePath || null,
+        file_name: file?.name || null,
+        file_mime: file?.type || null,
+        file_size: file?.size || null,
+        external_url: cleanUrl || null,
+        sort_order: currentCount,
+      })
+      .select('*')
+      .single()
 
-  if (error) {
-    if (filePath) {
-      await client.storage.from(PORTFOLIO_BUCKET).remove([filePath])
+    if (error) {
+      if (filePath) {
+        await client.storage.from(PORTFOLIO_BUCKET).remove([filePath])
+      }
+      throw error
     }
-    throw new Error(explainSupabaseError(error))
-  }
 
-  return mapItemRow(data)
+    return mapItemRow(data)
+  })
 }
 
 export async function deletePortfolioItem(userId, item) {
-  const client = requireSupabase()
-  if (item?.filePath) {
-    await client.storage.from(PORTFOLIO_BUCKET).remove([item.filePath])
-  }
-  const { error } = await client.from('user_portfolio_items').delete().eq('id', item.id).eq('user_id', userId)
-  if (error) throw new Error(explainSupabaseError(error))
+  return withFreshAuth(async () => {
+    const client = requireSupabase()
+    if (item?.filePath) {
+      await client.storage.from(PORTFOLIO_BUCKET).remove([item.filePath])
+    }
+    const { error } = await client.from('user_portfolio_items').delete().eq('id', item.id).eq('user_id', userId)
+    if (error) throw error
+  })
 }
 
 export function visibleLinkEntries(links, displayName = '') {

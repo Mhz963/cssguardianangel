@@ -15,7 +15,7 @@ import './App.css'
 import logo from './assets/guardian-angel-logo.png'
 import whatsappShareIcon from './assets/whatsapp-share-icon.svg'
 import copyShareIcon from './assets/copy-share-icon.svg'
-import { hasSupabaseConfig, supabase } from './utils/supabaseClient.js'
+import { ensureFreshSession, hasSupabaseConfig, supabase } from './utils/supabaseClient.js'
 import {
   GA_PLANNER_REMINDER_TOGGLE_KEY,
   isPlannerNativeAppView,
@@ -9763,14 +9763,20 @@ function App() {
         setIsAuthReady(true)
         return
       }
-      const { data } = await supabase.auth.getSession()
+      const session = await ensureFreshSession()
       if (!isCancelled) {
-        setAuthUser(mapSupabaseUserToAuthUser(data?.session?.user || null))
+        setAuthUser(mapSupabaseUserToAuthUser(session?.user || null))
         setIsAuthReady(true)
       }
     }
 
     bootstrapSession()
+
+    const refreshWhenVisible = () => {
+      if (document.visibilityState === 'visible') {
+        ensureFreshSession()
+      }
+    }
 
     const { data: subscription } = supabase
       ? supabase.auth.onAuthStateChange((_event, session) => {
@@ -9779,8 +9785,11 @@ function App() {
         })
       : { data: null }
 
+    document.addEventListener('visibilitychange', refreshWhenVisible)
+
     return () => {
       isCancelled = true
+      document.removeEventListener('visibilitychange', refreshWhenVisible)
       subscription?.subscription?.unsubscribe?.()
     }
   }, [])
