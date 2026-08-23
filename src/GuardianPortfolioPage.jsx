@@ -4,16 +4,21 @@ import GuardianPortfolioShowcase from './GuardianPortfolioShowcase.jsx'
 import {
   ALLOWED_PHOTO_EXTENSIONS,
   ALLOWED_PORTFOLIO_EXTENSIONS,
+  GIG_CATEGORIES,
+  MAX_GIGS,
   MAX_PORTFOLIO_ITEMS,
   addPortfolioItem,
+  createEmptyGigDraft,
   createEmptyPortfolio,
   deletePortfolioItem,
   fetchMyPortfolio,
   fetchMyPortfolioItems,
   formatFileSize,
   getInitials,
+  removeGigCover,
   removePortfolioPhoto,
   saveMyPortfolio,
+  uploadGigCover,
   uploadPortfolioPhoto,
 } from './utils/portfolioClient.js'
 
@@ -31,13 +36,17 @@ export default function GuardianPortfolioPage({ authUser }) {
   const [draft, setDraft] = useState(() => createEmptyPortfolio(authUser))
   const [items, setItems] = useState([])
   const [itemDraft, setItemDraft] = useState({ title: '', description: '', url: '', file: null })
+  const [gigDraft, setGigDraft] = useState(createEmptyGigDraft)
   const [fileInputKey, setFileInputKey] = useState(0)
   const [photoInputKey, setPhotoInputKey] = useState(0)
+  const [gigFileKey, setGigFileKey] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
   const [isSaving, setIsSaving] = useState(false)
   const [isUploading, setIsUploading] = useState(false)
   const [isPhotoBusy, setIsPhotoBusy] = useState(false)
+  const [isGigBusy, setIsGigBusy] = useState(false)
   const [pendingDeleteId, setPendingDeleteId] = useState('')
+  const [pendingGigId, setPendingGigId] = useState('')
   const [error, setError] = useState('')
   const [message, setMessage] = useState('')
 
@@ -175,6 +184,81 @@ export default function GuardianPortfolioPage({ authUser }) {
       setError(uploadError?.message || 'Unable to add that work sample.')
     } finally {
       setIsUploading(false)
+    }
+  }
+
+  const handleAddGig = async (event) => {
+    event.preventDefault()
+    setError('')
+    setMessage('')
+    const gigs = Array.isArray(draft.gigs) ? draft.gigs : []
+    if (gigs.length >= MAX_GIGS) {
+      setError(`You can publish up to ${MAX_GIGS} gigs.`)
+      return
+    }
+    if (!String(gigDraft.title || '').trim()) {
+      setError('Give this gig a title.')
+      return
+    }
+    if (!String(gigDraft.price || '').trim()) {
+      setError('Add a starting price for this gig.')
+      return
+    }
+
+    setIsGigBusy(true)
+    try {
+      const gigId = crypto.randomUUID()
+      let cover = { cover_path: '', coverUrl: '' }
+      if (gigDraft.file) {
+        cover = await uploadGigCover(authUser.id, gigId, gigDraft.file)
+      }
+      const nextGig = {
+        id: gigId,
+        title: gigDraft.title.trim(),
+        description: String(gigDraft.description || '').trim(),
+        category: gigDraft.category,
+        price: gigDraft.price.trim(),
+        delivery: String(gigDraft.delivery || '').trim(),
+        cover_path: cover.cover_path,
+        coverUrl: cover.coverUrl,
+      }
+      const nextDraft = { ...draft, gigs: [...gigs, nextGig] }
+      const saved = await persistDraft(nextDraft)
+      setDraft(saved)
+      setGigDraft(createEmptyGigDraft())
+      setGigFileKey((current) => current + 1)
+      setMessage('Gig added to your profile.')
+    } catch (gigError) {
+      setError(gigError?.message || 'Unable to add that gig.')
+    } finally {
+      setIsGigBusy(false)
+    }
+  }
+
+  const handleDeleteGig = async (gig) => {
+    if (pendingGigId !== gig.id) {
+      setPendingGigId(gig.id)
+      window.setTimeout(() => {
+        setPendingGigId((current) => (current === gig.id ? '' : current))
+      }, 4000)
+      return
+    }
+    setError('')
+    setIsGigBusy(true)
+    try {
+      await removeGigCover(gig.cover_path)
+      const nextDraft = {
+        ...draft,
+        gigs: (draft.gigs || []).filter((entry) => entry.id !== gig.id),
+      }
+      const saved = await persistDraft(nextDraft)
+      setDraft(saved)
+      setPendingGigId('')
+      setMessage('Gig removed.')
+    } catch (gigError) {
+      setError(gigError?.message || 'Unable to remove that gig.')
+    } finally {
+      setIsGigBusy(false)
     }
   }
 
@@ -446,6 +530,110 @@ export default function GuardianPortfolioPage({ authUser }) {
           </div>
 
         </div>
+
+        <form className="planner-card planner-form gp-form gp-gig-form" onSubmit={handleAddGig}>
+          <h3>Your gigs</h3>
+          <p className="gp-note">
+            Publish up to {MAX_GIGS} services, Fiverr-style. Each gig appears on your public profile with an Order
+            button. {(draft.gigs || []).length}/{MAX_GIGS} used.
+          </p>
+          <div className="gp-grid-2">
+            <Field label="Gig title">
+              <input
+                value={gigDraft.title}
+                onChange={(event) => setGigDraft((current) => ({ ...current, title: event.target.value }))}
+                placeholder="I will write 5 CSS current affairs notes"
+              />
+            </Field>
+            <Field label="Category">
+              <select
+                value={gigDraft.category}
+                onChange={(event) => setGigDraft((current) => ({ ...current, category: event.target.value }))}
+              >
+                {GIG_CATEGORIES.map((category) => (
+                  <option key={category} value={category}>
+                    {category}
+                  </option>
+                ))}
+              </select>
+            </Field>
+          </div>
+          <Field label="What the client gets" hint="Optional">
+            <textarea
+              value={gigDraft.description}
+              onChange={(event) => setGigDraft((current) => ({ ...current, description: event.target.value }))}
+              rows={3}
+              placeholder="5 typed notes, sources listed, delivered as a PDF."
+            />
+          </Field>
+          <div className="gp-grid-2">
+            <Field label="Starting price">
+              <input
+                value={gigDraft.price}
+                onChange={(event) => setGigDraft((current) => ({ ...current, price: event.target.value }))}
+                placeholder="Rs 3,000"
+              />
+            </Field>
+            <Field label="Delivery time" hint="Optional">
+              <input
+                value={gigDraft.delivery}
+                onChange={(event) => setGigDraft((current) => ({ ...current, delivery: event.target.value }))}
+                placeholder="3 days"
+              />
+            </Field>
+          </div>
+          <Field label="Cover image" hint="Optional. PNG, JPG, or WEBP up to 4 MB.">
+            <div className="gp-upload">
+              <span className={`gp-upload-btn ${gigDraft.file ? 'has-file' : ''}`}>
+                <span className="gp-upload-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+                    <path d="M12 16V7" strokeLinecap="round" />
+                    <path d="M8.5 10.5 12 7l3.5 3.5" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M6 17.5v1.2A1.3 1.3 0 0 0 7.3 20h9.4a1.3 1.3 0 0 0 1.3-1.3v-1.2" strokeLinecap="round" />
+                  </svg>
+                </span>
+                <span className="gp-upload-copy">
+                  <strong>{gigDraft.file ? 'Cover selected' : 'Upload a cover'}</strong>
+                  <em>
+                    {gigDraft.file
+                      ? `${gigDraft.file.name} · ${formatFileSize(gigDraft.file.size)}`
+                      : 'Makes the gig card look like Fiverr'}
+                  </em>
+                </span>
+                <input
+                  key={gigFileKey}
+                  type="file"
+                  accept={ALLOWED_PHOTO_EXTENSIONS.join(',')}
+                  onChange={(event) =>
+                    setGigDraft((current) => ({ ...current, file: event.target.files?.[0] || null }))
+                  }
+                />
+              </span>
+            </div>
+          </Field>
+          <div className="gp-actions">
+            <button className="btn btn-primary" type="submit" disabled={isGigBusy || (draft.gigs || []).length >= MAX_GIGS}>
+              {isGigBusy ? 'Saving gig…' : 'Add gig'}
+            </button>
+          </div>
+          {(draft.gigs || []).length ? (
+            <ul className="gp-manage-list">
+              {draft.gigs.map((gig) => (
+                <li key={gig.id}>
+                  <div>
+                    <strong>{gig.title}</strong>
+                    <span>{[gig.category, gig.price, gig.delivery].filter(Boolean).join(' · ')}</span>
+                  </div>
+                  <button className="btn btn-secondary" type="button" onClick={() => handleDeleteGig(gig)} disabled={isGigBusy}>
+                    {pendingGigId === gig.id ? 'Confirm remove' : 'Remove'}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="gp-empty">No gigs yet.</p>
+          )}
+        </form>
 
         <aside className="gp-preview-wide">
           <h3>Live site preview</h3>

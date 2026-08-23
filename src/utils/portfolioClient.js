@@ -6,6 +6,27 @@ export const MAX_PORTFOLIO_FILE_BYTES = 8 * 1024 * 1024
 export const MAX_PORTFOLIO_PHOTO_BYTES = 4 * 1024 * 1024
 export const ALLOWED_PORTFOLIO_EXTENSIONS = ['.pdf', '.png', '.jpg', '.jpeg', '.webp', '.doc', '.docx']
 export const ALLOWED_PHOTO_EXTENSIONS = ['.png', '.jpg', '.jpeg', '.webp']
+export const MAX_GIGS = 3
+export const GIG_CATEGORIES = [
+  'Writing',
+  'Design',
+  'Virtual assistant',
+  'Tutoring',
+  'Web',
+  'Video',
+  'Other',
+]
+
+export function createEmptyGigDraft() {
+  return {
+    title: '',
+    description: '',
+    category: 'Writing',
+    price: '',
+    delivery: '',
+    file: null,
+  }
+}
 
 const RESERVED_SLUGS = new Set([
   'admin',
@@ -66,6 +87,7 @@ export function createEmptyPortfolio(authUser) {
     is_public: true,
     photo_path: '',
     photoUrl: '',
+    gigs: [],
   }
 }
 
@@ -96,7 +118,30 @@ function normalizeLinks(links) {
     linkedin: String(source.linkedin || '').trim(),
     website: String(source.website || '').trim(),
     photo_path: String(source.photo_path || '').trim(),
+    gigs: serializeGigs(source.gigs),
   }
+}
+
+export function serializeGigs(raw) {
+  return (Array.isArray(raw) ? raw : [])
+    .slice(0, MAX_GIGS)
+    .map((gig) => ({
+      id: String(gig?.id || crypto.randomUUID()),
+      title: String(gig?.title || '').trim(),
+      description: String(gig?.description || '').trim(),
+      category: String(gig?.category || '').trim(),
+      price: String(gig?.price || '').trim(),
+      delivery: String(gig?.delivery || '').trim(),
+      cover_path: String(gig?.cover_path || '').trim(),
+    }))
+    .filter((gig) => gig.title)
+}
+
+export function mapGigs(raw) {
+  return serializeGigs(raw).map((gig) => ({
+    ...gig,
+    coverUrl: getPortfolioFileUrl(gig.cover_path),
+  }))
 }
 
 export function toHttpUrl(raw) {
@@ -106,14 +151,40 @@ export function toHttpUrl(raw) {
   return `https://${trimmed}`
 }
 
-export function toWhatsAppUrl(raw) {
+export function toWhatsAppUrl(raw, message = '') {
   const trimmed = String(raw || '').trim()
-  if (!trimmed) return ''
-  if (/^https?:\/\//i.test(trimmed)) return trimmed
+  if (!trimmed || /^(none|n\/a|na|-)$/i.test(trimmed)) return ''
+
   let digits = trimmed.replace(/\D/g, '')
   if (!digits) return ''
-  if (digits.startsWith('0') && digits.length === 11) digits = `92${digits.slice(1)}`
-  return `https://wa.me/${digits}`
+  if (digits.startsWith('00')) digits = digits.slice(2)
+  if (digits.startsWith('0') && digits.length === 11) {
+    digits = `92${digits.slice(1)}`
+  } else if (digits.length === 10 && digits.startsWith('3')) {
+    digits = `92${digits}`
+  }
+
+  if (digits.length < 10 || digits.length > 15) return ''
+
+  const url = new URL(`https://wa.me/${digits}`)
+  if (message) url.searchParams.set('text', message)
+  return url.toString()
+}
+
+export function getPortfolioWhatsAppUrl(links, displayName = '') {
+  const number = normalizeLinks(links).whatsapp
+  const greeting = displayName
+    ? `Hi ${displayName}, I found your profile on Guardian Angel and would like to work with you.`
+    : 'Hi, I found your profile on Guardian Angel and would like to work with you.'
+  return toWhatsAppUrl(number, greeting)
+}
+
+export function getGigWhatsAppUrl(links, displayName, gig) {
+  const number = normalizeLinks(links).whatsapp
+  const title = String(gig?.title || 'your gig').trim()
+  const price = String(gig?.price || '').trim()
+  const greeting = `Hi${displayName ? ` ${displayName}` : ''}, I want to order your gig: "${title}"${price ? ` (${price})` : ''}.`
+  return toWhatsAppUrl(number, greeting)
 }
 
 export function formatFileSize(bytes) {
@@ -139,6 +210,9 @@ function mapPortfolioRow(row, authUser) {
   const skills = Array.isArray(row.skills) ? row.skills.filter(Boolean) : []
   const links = normalizeLinks(row.links)
   const photoPath = String(row.photo_path || links.photo_path || '')
+  const gigs = mapGigs(links.gigs)
+  const formLinks = { ...links }
+  delete formLinks.gigs
   return {
     display_name: String(row.display_name || empty.display_name),
     headline: String(row.headline || ''),
@@ -147,11 +221,12 @@ function mapPortfolioRow(row, authUser) {
     city: String(row.city || ''),
     rate_text: String(row.rate_text || ''),
     skillsText: skills.join(', '),
-    links,
+    links: formLinks,
     slug: String(row.slug || empty.slug),
     is_public: row.is_public !== false,
     photo_path: photoPath,
     photoUrl: getPortfolioFileUrl(photoPath),
+    gigs,
   }
 }
 
@@ -263,6 +338,7 @@ export async function saveMyPortfolio(authUser, draft) {
     links: normalizeLinks({
       ...draft.links,
       photo_path: draft.photo_path || draft.links?.photo_path || '',
+      gigs: draft.gigs,
     }),
     is_public: Boolean(draft.is_public),
     updated_at: new Date().toISOString(),
@@ -278,8 +354,15 @@ export async function saveMyPortfolio(authUser, draft) {
     skillsText: payload.skills.join(', '),
     photo_path: payload.links.photo_path,
     photoUrl: getPortfolioFileUrl(payload.links.photo_path),
-    links: payload.links,
+    links: formLinksFromPayload(payload.links),
+    gigs: mapGigs(payload.links.gigs),
   }
+}
+
+function formLinksFromPayload(links) {
+  const next = normalizeLinks(links)
+  delete next.gigs
+  return next
 }
 
 function extensionOf(fileName) {
@@ -342,6 +425,35 @@ export async function uploadPortfolioPhoto(userId, file, previousPath = '') {
 }
 
 export async function removePortfolioPhoto(previousPath = '') {
+  const client = requireSupabase()
+  if (previousPath) {
+    await client.storage.from(PORTFOLIO_BUCKET).remove([previousPath])
+  }
+}
+
+export async function uploadGigCover(userId, gigId, file, previousPath = '') {
+  const client = requireSupabase()
+  const fileError = validatePortfolioPhoto(file)
+  if (fileError) throw new Error(fileError)
+
+  const coverPath = `${userId}/gigs/${gigId}/${Date.now()}-${safeFileName(file.name)}`
+  const { error: uploadError } = await client.storage.from(PORTFOLIO_BUCKET).upload(coverPath, file, {
+    contentType: file.type || 'image/jpeg',
+    upsert: true,
+  })
+  if (uploadError) throw new Error(explainSupabaseError(uploadError))
+
+  if (previousPath && previousPath !== coverPath) {
+    await client.storage.from(PORTFOLIO_BUCKET).remove([previousPath])
+  }
+
+  return {
+    cover_path: coverPath,
+    coverUrl: getPortfolioFileUrl(coverPath),
+  }
+}
+
+export async function removeGigCover(previousPath = '') {
   const client = requireSupabase()
   if (previousPath) {
     await client.storage.from(PORTFOLIO_BUCKET).remove([previousPath])
@@ -415,10 +527,10 @@ export async function deletePortfolioItem(userId, item) {
   if (error) throw new Error(explainSupabaseError(error))
 }
 
-export function visibleLinkEntries(links) {
+export function visibleLinkEntries(links, displayName = '') {
   const normalized = normalizeLinks(links)
   const entries = []
-  const whatsapp = toWhatsAppUrl(normalized.whatsapp)
+  const whatsapp = getPortfolioWhatsAppUrl(normalized, displayName)
   if (whatsapp) entries.push({ label: 'WhatsApp', href: whatsapp })
   if (normalized.upwork) entries.push({ label: 'Upwork', href: toHttpUrl(normalized.upwork) })
   if (normalized.fiverr) entries.push({ label: 'Fiverr', href: toHttpUrl(normalized.fiverr) })

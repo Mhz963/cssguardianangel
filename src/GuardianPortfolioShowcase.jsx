@@ -1,10 +1,29 @@
+import whatsappShareIcon from './assets/whatsapp-share-icon.svg'
 import {
   formatFileSize,
+  getGigWhatsAppUrl,
   getInitials,
+  getPortfolioWhatsAppUrl,
   isImageMime,
   parseSkills,
   visibleLinkEntries,
 } from './utils/portfolioClient.js'
+
+function WhatsAppIconButton({ href, label = 'Chat on WhatsApp', className = '' }) {
+  if (!href) return null
+  return (
+    <a
+      className={`gp-wa-btn ${className}`.trim()}
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={label}
+    >
+      <img src={whatsappShareIcon} alt="" />
+      <span>WhatsApp</span>
+    </a>
+  )
+}
 
 export default function GuardianPortfolioShowcase({
   portfolio,
@@ -13,9 +32,11 @@ export default function GuardianPortfolioShowcase({
   compact = false,
 }) {
   const skills = parseSkills(portfolio?.skillsText)
-  const links = visibleLinkEntries(portfolio?.links)
-  const work = Array.isArray(items) ? items : []
   const name = String(portfolio?.display_name || '').trim()
+  const whatsappHref = getPortfolioWhatsAppUrl(portfolio?.links, name)
+  const links = visibleLinkEntries(portfolio?.links, name)
+  const work = Array.isArray(items) ? items : []
+  const gigs = Array.isArray(portfolio?.gigs) ? portfolio.gigs : []
   const hasProfile =
     Boolean(name) ||
     Boolean(portfolio?.headline) ||
@@ -26,18 +47,20 @@ export default function GuardianPortfolioShowcase({
     Boolean(portfolio?.photoUrl) ||
     skills.length > 0 ||
     links.length > 0 ||
-    work.length > 0
+    work.length > 0 ||
+    gigs.length > 0
 
   if (!hasProfile) {
     return <p className="gp-empty">{emptyLabel}</p>
   }
 
-  const contactHref = links[0]?.href || '#gp-contact'
+  const showGigs = gigs.length > 0
   const showAbout = Boolean(portfolio.bio || portfolio.offer)
   const showSkills = skills.length > 0
   const showWork = work.length > 0
   const showContact = links.length > 0 || Boolean(portfolio.city || portfolio.rate_text)
   const navItems = [
+    showGigs ? { id: 'gp-gigs', label: 'Gigs' } : null,
     showAbout ? { id: 'gp-about', label: 'About' } : null,
     showSkills ? { id: 'gp-skills', label: 'Skills' } : null,
     showWork ? { id: 'gp-work', label: 'Work' } : null,
@@ -62,34 +85,49 @@ export default function GuardianPortfolioShowcase({
           {name ? <h1>{name}</h1> : null}
           {portfolio.headline ? <p className="gp-role">{portfolio.headline}</p> : null}
           {portfolio.offer ? <p className="gp-lead">{portfolio.offer}</p> : null}
-          {portfolio.city || portfolio.rate_text ? (
+          {portfolio.city || portfolio.rate_text || showGigs ? (
             <p className="gp-meta-line">
-              {[portfolio.city, portfolio.rate_text].filter(Boolean).join(' · ')}
+              {[
+                portfolio.city,
+                portfolio.rate_text,
+                showGigs ? `${gigs.length} gig${gigs.length === 1 ? '' : 's'} available` : '',
+              ]
+                .filter(Boolean)
+                .join(' · ')}
             </p>
           ) : null}
-          {showWork || showContact ? (
+          {showGigs || showWork || whatsappHref || showContact ? (
             <div className="gp-hero-actions">
+              {showGigs ? (
+                <a className="btn btn-primary" href="#gp-gigs">
+                  View gigs
+                </a>
+              ) : null}
               {showWork ? (
-                <a className="btn btn-primary" href="#gp-work">
+                <a className="btn btn-secondary" href="#gp-work">
                   View my work
                 </a>
               ) : null}
-              {showContact ? (
-                <a className="btn btn-secondary" href={contactHref}>
+              {whatsappHref ? (
+                <WhatsAppIconButton href={whatsappHref} />
+              ) : showContact ? (
+                <a className="btn btn-secondary" href="#gp-contact">
                   Get in touch
                 </a>
               ) : null}
             </div>
           ) : null}
-          {links.length ? (
+          {links.filter((link) => link.label !== 'WhatsApp').length ? (
             <ul className="gp-socials">
-              {links.map((link) => (
-                <li key={link.label}>
-                  <a href={link.href} target="_blank" rel="noopener noreferrer">
-                    {link.label}
-                  </a>
-                </li>
-              ))}
+              {links
+                .filter((link) => link.label !== 'WhatsApp')
+                .map((link) => (
+                  <li key={link.label}>
+                    <a href={link.href} target="_blank" rel="noopener noreferrer">
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
             </ul>
           ) : null}
         </div>
@@ -103,6 +141,46 @@ export default function GuardianPortfolioShowcase({
           </div>
         </div>
       </section>
+
+      {showGigs ? (
+        <section className="gp-site-section" id="gp-gigs">
+          <p className="gp-kicker">Gigs</p>
+          <h2>Services you can order</h2>
+          <ul className="gp-gig-grid">
+            {gigs.map((gig) => {
+              const orderHref = getGigWhatsAppUrl(portfolio.links, name, gig)
+              return (
+                <li key={gig.id} className="gp-gig-card">
+                  <div className="gp-gig-cover">
+                    {gig.coverUrl ? (
+                      <img src={gig.coverUrl} alt={gig.title} />
+                    ) : (
+                      <span>{gig.category || 'Gig'}</span>
+                    )}
+                    {gig.category ? <em>{gig.category}</em> : null}
+                  </div>
+                  <div className="gp-gig-body">
+                    <h3>{gig.title}</h3>
+                    {gig.description ? <p>{gig.description}</p> : null}
+                    <div className="gp-gig-meta">
+                      {gig.price ? <strong>{gig.price}</strong> : null}
+                      {gig.delivery ? <span>{gig.delivery} delivery</span> : null}
+                    </div>
+                    {orderHref ? (
+                      <a className="gp-gig-order" href={orderHref} target="_blank" rel="noopener noreferrer">
+                        <img src={whatsappShareIcon} alt="" />
+                        Order on WhatsApp
+                      </a>
+                    ) : (
+                      <p className="gp-gig-note">Add a WhatsApp number to take orders.</p>
+                    )}
+                  </div>
+                </li>
+              )
+            })}
+          </ul>
+        </section>
+      ) : null}
 
       {showAbout ? (
         <section className="gp-site-section" id="gp-about">
@@ -177,19 +255,24 @@ export default function GuardianPortfolioShowcase({
               {[portfolio.city, portfolio.rate_text].filter(Boolean).join(' · ')}
             </p>
           ) : null}
-          {links.length ? (
+          {whatsappHref ? <WhatsAppIconButton href={whatsappHref} /> : null}
+          {links.filter((link) => link.label !== 'WhatsApp').length ? (
             <ul className="gp-contact-list">
-              {links.map((link) => (
-                <li key={link.label}>
-                  <a href={link.href} target="_blank" rel="noopener noreferrer">
-                    {link.label}
-                  </a>
-                </li>
-              ))}
+              {links
+                .filter((link) => link.label !== 'WhatsApp')
+                .map((link) => (
+                  <li key={link.label}>
+                    <a href={link.href} target="_blank" rel="noopener noreferrer">
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
             </ul>
           ) : null}
         </section>
       ) : null}
+
+      <WhatsAppIconButton className="gp-wa-float" href={whatsappHref} label="Open WhatsApp chat" />
     </article>
   )
 }
