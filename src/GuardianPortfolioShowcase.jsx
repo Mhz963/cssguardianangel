@@ -16,6 +16,17 @@ function isLongGigDescription(text) {
   return String(text || '').trim().length > LONG_GIG_DESCRIPTION
 }
 
+function GetInTouchIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        fill="currentColor"
+        d="M4.5 5.25h15a1.5 1.5 0 0 1 1.5 1.5v10.5a1.5 1.5 0 0 1-1.5 1.5h-15a1.5 1.5 0 0 1-1.5-1.5V6.75a1.5 1.5 0 0 1 1.5-1.5Zm.75 2.12v8.88h13.5V7.37l-6.38 4.15a.75.75 0 0 1-.8 0Zm12.5-.87H6.25l5.75 3.74Z"
+      />
+    </svg>
+  )
+}
+
 function GigDetailsModal({ gig, orderHref, onClose }) {
   return (
     <div
@@ -35,7 +46,9 @@ function GigDetailsModal({ gig, orderHref, onClose }) {
             Close
           </button>
         </header>
-        {gig.coverUrl ? <img className="gp-gig-modal-cover" src={gig.coverUrl} alt="" /> : null}
+        {gig.coverUrl ? (
+          <img className="gp-gig-modal-cover" src={gig.coverUrl} alt={gig.title || 'Gig cover'} />
+        ) : null}
         {gig.description ? <p className="gp-gig-modal-copy">{gig.description}</p> : null}
         <div className="gp-gig-meta">
           {gig.price ? <strong>{formatGigPrice(gig)}</strong> : null}
@@ -47,6 +60,7 @@ function GigDetailsModal({ gig, orderHref, onClose }) {
           {...(orderHref ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
           onClick={onClose}
         >
+          <GetInTouchIcon />
           Get in touch
         </a>
       </article>
@@ -65,6 +79,7 @@ export default function GuardianPortfolioShowcase({
   const name = String(portfolio?.display_name || '').trim()
   const whatsappHref = getPortfolioWhatsAppUrl(portfolio?.links, name)
   const links = visibleLinkEntries(portfolio?.links, name)
+  const publicLinks = links.filter((link) => link.label !== 'WhatsApp')
   const work = Array.isArray(items) ? items : []
   const gigs = Array.isArray(portfolio?.gigs) ? portfolio.gigs : []
   const hasProfile =
@@ -76,7 +91,7 @@ export default function GuardianPortfolioShowcase({
     Boolean(portfolio?.rate_text) ||
     Boolean(portfolio?.photoUrl) ||
     skills.length > 0 ||
-    links.length > 0 ||
+    publicLinks.length > 0 ||
     work.length > 0 ||
     gigs.length > 0
 
@@ -102,7 +117,7 @@ export default function GuardianPortfolioShowcase({
   const showAbout = Boolean(portfolio.bio || portfolio.offer)
   const showSkills = skills.length > 0
   const showWork = work.length > 0
-  const showContact = links.length > 0 || Boolean(portfolio.city || portfolio.rate_text)
+  const showContact = publicLinks.length > 0 || Boolean(portfolio.city || portfolio.rate_text)
   const navItems = [
     showGigs ? { id: 'gp-gigs', label: 'Gigs' } : null,
     showAbout ? { id: 'gp-about', label: 'About' } : null,
@@ -163,17 +178,15 @@ export default function GuardianPortfolioShowcase({
               ) : null}
             </div>
           ) : null}
-          {links.filter((link) => link.label !== 'WhatsApp').length ? (
+          {publicLinks.length ? (
             <ul className="gp-socials">
-              {links
-                .filter((link) => link.label !== 'WhatsApp')
-                .map((link) => (
-                  <li key={link.label}>
-                    <a href={link.href} target="_blank" rel="noopener noreferrer">
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
+              {publicLinks.map((link) => (
+                <li key={link.label}>
+                  <a href={link.href} target="_blank" rel="noopener noreferrer">
+                    {link.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           ) : null}
         </div>
@@ -195,43 +208,33 @@ export default function GuardianPortfolioShowcase({
           <div className="gp-gig-stage">
             <ul className="gp-gig-grid" data-count={gigs.length}>
               {gigs.map((gig, index) => {
-                const orderHref = getGigWhatsAppUrl(portfolio.links, name, gig)
+                const openDetails = () => setOpenGig(gig)
                 return (
                   <li key={gig.id} className="gp-gig-card" style={{ '--gp-gig-delay': `${index * 90}ms` }}>
-                    <div className="gp-gig-cover">
-                      {gig.coverUrl ? (
-                        <img src={gig.coverUrl} alt={gig.title} />
-                      ) : (
-                        <span>{gig.category || 'Gig'}</span>
-                      )}
-                      {gig.category ? <em>{gig.category}</em> : null}
-                    </div>
-                    <div className="gp-gig-body">
-                      <h3>{gig.title}</h3>
-                      {gig.description ? (
-                        <p>
-                          {isLongGigDescription(gig.description)
-                            ? `${gig.description.trim().slice(0, LONG_GIG_DESCRIPTION).trim()}…`
-                            : gig.description}
-                          {isLongGigDescription(gig.description) ? (
-                            <button className="gp-gig-more" type="button" onClick={() => setOpenGig(gig)}>
-                              Read more
-                            </button>
-                          ) : null}
-                        </p>
-                      ) : null}
-                      <div className="gp-gig-meta">
-                        {gig.price ? <strong>{formatGigPrice(gig)}</strong> : null}
-                        {gig.delivery ? <span>{gig.delivery} delivery</span> : null}
+                    <button className="gp-gig-open" type="button" onClick={openDetails}>
+                      <div className="gp-gig-cover">
+                        {gig.coverUrl ? (
+                          <img src={gig.coverUrl} alt="" />
+                        ) : (
+                          <span>{gig.category || 'Gig'}</span>
+                        )}
+                        {gig.category ? <em>{gig.category}</em> : null}
                       </div>
-                      <a
-                        className="gp-gig-order"
-                        href={orderHref || '#gp-contact'}
-                        {...(orderHref ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                      >
-                        Get in touch
-                      </a>
-                    </div>
+                      <div className="gp-gig-body">
+                        <h3>{gig.title}</h3>
+                        {gig.description ? (
+                          <p>
+                            {isLongGigDescription(gig.description)
+                              ? `${gig.description.trim().slice(0, LONG_GIG_DESCRIPTION).trim()}…`
+                              : gig.description}
+                          </p>
+                        ) : null}
+                        <div className="gp-gig-meta">
+                          {gig.price ? <strong>{formatGigPrice(gig)}</strong> : null}
+                          {gig.delivery ? <span>{gig.delivery} delivery</span> : null}
+                        </div>
+                      </div>
+                    </button>
                   </li>
                 )
               })}
@@ -325,15 +328,15 @@ export default function GuardianPortfolioShowcase({
               {[portfolio.city, portfolio.rate_text].filter(Boolean).join(' · ')}
             </p>
           ) : null}
-          {links.length ? (
+          {publicLinks.length ? (
             <ul className="gp-contact-list">
-              {links.map((link) => (
-                  <li key={link.label}>
-                    <a href={link.href} target="_blank" rel="noopener noreferrer">
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
+              {publicLinks.map((link) => (
+                <li key={link.label}>
+                  <a href={link.href} target="_blank" rel="noopener noreferrer">
+                    {link.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           ) : null}
         </section>
