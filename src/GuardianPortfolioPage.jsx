@@ -19,10 +19,10 @@ import {
 
 function Field({ label, hint, children }) {
   return (
-    <label>
-      {label}
+    <label className="gp-field">
+      <span className="gp-field-label">{label}</span>
       {children}
-      {hint ? <small>{hint}</small> : null}
+      <small className="gp-field-hint">{hint || '\u00a0'}</small>
     </label>
   )
 }
@@ -381,20 +381,34 @@ export default function GuardianPortfolioPage({ authUser }) {
                 />
               </Field>
               <div className="gp-grid-2">
-                <Field label="File" hint={ALLOWED_PORTFOLIO_EXTENSIONS.join(', ')}>
-                  <input
-                    key={fileInputKey}
-                    type="file"
-                    accept={ALLOWED_PORTFOLIO_EXTENSIONS.join(',')}
-                    onChange={(event) =>
-                      setItemDraft((current) => ({ ...current, file: event.target.files?.[0] || null }))
-                    }
-                  />
-                  {itemDraft.file ? (
-                    <small>
-                      {itemDraft.file.name} · {formatFileSize(itemDraft.file.size)}
-                    </small>
-                  ) : null}
+                <Field label="File" hint="PDF, images, or Word · up to 8 MB">
+                  <div className="gp-upload">
+                    <span className={`gp-upload-btn ${itemDraft.file ? 'has-file' : ''}`}>
+                      <span className="gp-upload-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+                          <path d="M12 16V7" strokeLinecap="round" />
+                          <path d="M8.5 10.5 12 7l3.5 3.5" strokeLinecap="round" strokeLinejoin="round" />
+                          <path d="M6 17.5v1.2A1.3 1.3 0 0 0 7.3 20h9.4a1.3 1.3 0 0 0 1.3-1.3v-1.2" strokeLinecap="round" />
+                        </svg>
+                      </span>
+                      <span className="gp-upload-copy">
+                        <strong>{itemDraft.file ? 'File selected' : 'Upload a file'}</strong>
+                        <em>
+                          {itemDraft.file
+                            ? `${itemDraft.file.name} · ${formatFileSize(itemDraft.file.size)}`
+                            : 'Click to browse'}
+                        </em>
+                      </span>
+                      <input
+                        key={fileInputKey}
+                        type="file"
+                        accept={ALLOWED_PORTFOLIO_EXTENSIONS.join(',')}
+                        onChange={(event) =>
+                          setItemDraft((current) => ({ ...current, file: event.target.files?.[0] || null }))
+                        }
+                      />
+                    </span>
+                  </div>
                 </Field>
                 <Field label="Or a link" hint="Optional. Behance, Google Drive, GitHub…">
                   <input
