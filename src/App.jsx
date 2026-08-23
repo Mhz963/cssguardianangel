@@ -47,7 +47,8 @@ import { PdfAppExperienceHost } from './PdfAppExperience.jsx'
 import { isSuperAdminEmail } from './utils/adminClient.js'
 
 const GlobalConflictMapTab = lazy(() => import('./GlobalConflictMapTab.jsx'))
-const GuardianResumeBuilderPage = lazy(() => import('./GuardianResumeBuilderPage.jsx'))
+const GuardianPortfolioPage = lazy(() => import('./GuardianPortfolioPage.jsx'))
+const GuardianPortfolioPublicPage = lazy(() => import('./GuardianPortfolioPublicPage.jsx'))
 
 const SITE_URL = 'https://mhzguardianangel.vercel.app'
 const GOOGLE_PLAY_APP_URL = 'https://play.google.com/store/apps/details?id=com.cssguardianangel.app'
@@ -116,10 +117,10 @@ const SEO_BY_PATH = {
     description:
       'Sign in to access Subject Locker, Strategy Builder, Performance Analysis, Timer, Calendar, PDF reports, and AI Examiner — free for every CSS Jawan.',
   },
-  '/guardian-resume-builder': {
-    title: 'Guardian Resume Builder | Free ATS Resume PDF',
+  '/guardian-portfolio': {
+    title: 'Guardian Portfolio | Showcase Your Work',
     description:
-      'Create a free ATS-friendly resume with Guardian Angel. Enter your details, polish wording on your device, and download a clean single-column PDF.',
+      'Create a public Guardian Angel portfolio, upload work samples, and share one link with clients. Empty fields stay empty.',
   },
   '/blogs': {
     title: 'CSS Blog | Guardian Angel Insights',
@@ -1393,7 +1394,9 @@ function Header({ theme, onToggleTheme, authUser, onLogout }) {
     pathname === '/key-documents' ||
     pathname === '/global-affairs'
   const isAngelResourcesRoute = (pathname) =>
-    pathname === '/guardian-study-planner' || pathname === '/guardian-resume-builder'
+    pathname === '/guardian-study-planner' ||
+    pathname === '/guardian-portfolio' ||
+    pathname.startsWith('/p/')
 
   const navItems = [
     { label: 'Home', to: '/' },
@@ -1416,7 +1419,7 @@ function Header({ theme, onToggleTheme, authUser, onLogout }) {
       isActive: isAngelResourcesRoute(location.pathname),
       children: [
         { label: 'Guardian Study Planner', to: '/guardian-study-planner' },
-        { label: 'Guardian Resume Builder', to: '/guardian-resume-builder' },
+        { label: 'Guardian Portfolio', to: '/guardian-portfolio' },
       ],
     },
     { label: 'Blogs', to: '/blogs' },
@@ -8346,7 +8349,7 @@ function Footer() {
           <Link to="/css-study-material">CSS Study Material</Link>
           <Link to="/key-documents">Key Documents</Link>
           <Link to="/guardian-study-planner">Guardian Study Planner</Link>
-          <Link to="/guardian-resume-builder">Guardian Resume Builder</Link>
+          <Link to="/guardian-portfolio">Guardian Portfolio</Link>
         </div>
 
 
@@ -9513,6 +9516,14 @@ const resolveRouteSeo = (pathname, search) => {
     }
   }
 
+  if (pathname.startsWith('/p/')) {
+    return {
+      title: 'Guardian Portfolio | Guardian Angel',
+      description:
+        'View a public Guardian Angel portfolio with work samples, skills, and contact links shared by a signed-in member.',
+    }
+  }
+
   if (pathname === '/global-affairs') {
     const tab = new URLSearchParams(search).get('tab')
     if (tab === 'pakistan') {
@@ -9839,21 +9850,42 @@ function App() {
             }
           />
           <Route
-            path="/guardian-resume-builder"
+            path="/guardian-portfolio"
+            element={
+              !isAuthReady ? null : authUser ? (
+                <Suspense
+                  fallback={
+                    <main className="page-main">
+                      <section className="container">
+                        <p>Loading Guardian Portfolio…</p>
+                      </section>
+                    </main>
+                  }
+                >
+                  <GuardianPortfolioPage authUser={authUser} />
+                </Suspense>
+              ) : (
+                <Navigate to="/signin" replace state={{ from: '/guardian-portfolio' }} />
+              )
+            }
+          />
+          <Route
+            path="/p/:slug"
             element={
               <Suspense
                 fallback={
                   <main className="page-main">
                     <section className="container">
-                      <p>Loading Guardian Resume Builder…</p>
+                      <p>Loading portfolio…</p>
                     </section>
                   </main>
                 }
               >
-                <GuardianResumeBuilderPage />
+                <GuardianPortfolioPublicPage />
               </Suspense>
             }
           />
+          <Route path="/guardian-resume-builder" element={<Navigate to="/guardian-portfolio" replace />} />
           <Route
             path="/profile"
             element={

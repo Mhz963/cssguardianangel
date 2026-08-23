@@ -231,3 +231,6 @@ on public.user_payments
 for select
 to authenticated
 using (auth.uid() = user_id);
+
+-- Guardian Portfolio tables, RLS, and storage live in
+-- supabase/migrations/20260823_user_portfolios.sql

@@ -127,6 +127,9 @@ function ProfilePage({ authUser }) {
                 <Link className="btn btn-secondary" to="/guardian-study-planner">
                   Open Study Planner
                 </Link>
+                <Link className="btn btn-secondary" to="/guardian-portfolio">
+                  Guardian Portfolio
+                </Link>
                 {isSuperAdminEmail(authUser.email) ? (
                   <Link className="btn btn-primary" to="/admin">
                     Admin Panel
