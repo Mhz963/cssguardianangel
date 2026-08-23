@@ -36,28 +36,27 @@ export default function GuardianPortfolioPublicPage() {
   }, [slug])
 
   return (
-    <main className="page-main gp-page">
-      <section className="container gp-public">
-        <header className="gp-hero">
-          <p className="kicker">Guardian Angel Resources</p>
-          <h1>Guardian Portfolio</h1>
-        </header>
-
-        {isLoading ? <p className="gp-status">Loading portfolio…</p> : null}
-        {error ? <p className="planner-error gp-error">{error}</p> : null}
-        {!isLoading && !error && !portfolio ? (
+    <main className="gp-public-page">
+      {isLoading ? (
+        <section className="container gp-public-state">
+          <p className="gp-status">Loading portfolio…</p>
+        </section>
+      ) : null}
+      {error ? (
+        <section className="container gp-public-state">
+          <p className="planner-error gp-error">{error}</p>
+        </section>
+      ) : null}
+      {!isLoading && !error && !portfolio ? (
+        <section className="container gp-public-state">
           <p className="gp-empty">This portfolio is private or does not exist.</p>
-        ) : null}
-        {!isLoading && portfolio ? (
-          <div className="planner-card gp-public-card">
-            <GuardianPortfolioShowcase portfolio={portfolio} items={items} />
-          </div>
-        ) : null}
+        </section>
+      ) : null}
+      {!isLoading && portfolio ? <GuardianPortfolioShowcase portfolio={portfolio} items={items} /> : null}
 
-        <p className="gp-public-foot">
-          <Link to="/guardian-portfolio">Create your own Guardian Portfolio</Link>
-        </p>
-      </section>
+      <p className="gp-public-foot">
+        <Link to="/guardian-portfolio">Create your own Guardian Portfolio</Link>
+      </p>
     </main>
   )
 }

@@ -3,7 +3,9 @@ import { hasSupabaseConfig, supabase } from './supabaseClient.js'
 export const PORTFOLIO_BUCKET = 'ga-portfolio'
 export const MAX_PORTFOLIO_ITEMS = 12
 export const MAX_PORTFOLIO_FILE_BYTES = 8 * 1024 * 1024
+export const MAX_PORTFOLIO_PHOTO_BYTES = 4 * 1024 * 1024
 export const ALLOWED_PORTFOLIO_EXTENSIONS = ['.pdf', '.png', '.jpg', '.jpeg', '.webp', '.doc', '.docx']
+export const ALLOWED_PHOTO_EXTENSIONS = ['.png', '.jpg', '.jpeg', '.webp']
 
 const RESERVED_SLUGS = new Set([
   'admin',
@@ -62,7 +64,19 @@ export function createEmptyPortfolio(authUser) {
     },
     slug: slugifyPortfolio(username, userId ? `user-${userId.slice(0, 8)}` : ''),
     is_public: true,
+    photo_path: '',
+    photoUrl: '',
   }
+}
+
+export function getInitials(name) {
+  const parts = String(name || '')
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean)
+  if (!parts.length) return 'GA'
+  if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase()
+  return `${parts[0][0]}${parts[parts.length - 1][0]}`.toUpperCase()
 }
 
 export function parseSkills(text) {
@@ -81,6 +95,7 @@ function normalizeLinks(links) {
     fiverr: String(source.fiverr || '').trim(),
     linkedin: String(source.linkedin || '').trim(),
     website: String(source.website || '').trim(),
+    photo_path: String(source.photo_path || '').trim(),
   }
 }
 
@@ -122,6 +137,8 @@ function mapPortfolioRow(row, authUser) {
   const empty = createEmptyPortfolio(authUser)
   if (!row) return empty
   const skills = Array.isArray(row.skills) ? row.skills.filter(Boolean) : []
+  const links = normalizeLinks(row.links)
+  const photoPath = String(row.photo_path || links.photo_path || '')
   return {
     display_name: String(row.display_name || empty.display_name),
     headline: String(row.headline || ''),
@@ -130,9 +147,11 @@ function mapPortfolioRow(row, authUser) {
     city: String(row.city || ''),
     rate_text: String(row.rate_text || ''),
     skillsText: skills.join(', '),
-    links: normalizeLinks(row.links),
+    links,
     slug: String(row.slug || empty.slug),
     is_public: row.is_public !== false,
+    photo_path: photoPath,
+    photoUrl: getPortfolioFileUrl(photoPath),
   }
 }
 
@@ -241,7 +260,10 @@ export async function saveMyPortfolio(authUser, draft) {
     city: String(draft.city || '').trim(),
     rate_text: String(draft.rate_text || '').trim(),
     skills: parseSkills(draft.skillsText),
-    links: normalizeLinks(draft.links),
+    links: normalizeLinks({
+      ...draft.links,
+      photo_path: draft.photo_path || draft.links?.photo_path || '',
+    }),
     is_public: Boolean(draft.is_public),
     updated_at: new Date().toISOString(),
   }
@@ -250,7 +272,14 @@ export async function saveMyPortfolio(authUser, draft) {
 
   const { error } = await client.from('user_portfolios').upsert(payload, { onConflict: 'user_id' })
   if (error) throw new Error(explainSupabaseError(error))
-  return { ...draft, slug, skillsText: payload.skills.join(', ') }
+  return {
+    ...draft,
+    slug,
+    skillsText: payload.skills.join(', '),
+    photo_path: payload.links.photo_path,
+    photoUrl: getPortfolioFileUrl(payload.links.photo_path),
+    links: payload.links,
+  }
 }
 
 function extensionOf(fileName) {
@@ -276,6 +305,47 @@ export function validatePortfolioFile(file) {
     return 'Upload a PDF, Word file, or image (PNG, JPG, WEBP).'
   }
   return ''
+}
+
+export function validatePortfolioPhoto(file) {
+  if (!file) return 'Choose a profile photo.'
+  if (file.size > MAX_PORTFOLIO_PHOTO_BYTES) {
+    return `"${file.name}" is over 4 MB. Please upload a smaller photo.`
+  }
+  const ext = extensionOf(file.name)
+  if (!ALLOWED_PHOTO_EXTENSIONS.includes(ext) && !String(file.type || '').startsWith('image/')) {
+    return 'Upload a PNG, JPG, or WEBP photo.'
+  }
+  return ''
+}
+
+export async function uploadPortfolioPhoto(userId, file, previousPath = '') {
+  const client = requireSupabase()
+  const fileError = validatePortfolioPhoto(file)
+  if (fileError) throw new Error(fileError)
+
+  const photoPath = `${userId}/avatar/${Date.now()}-${safeFileName(file.name)}`
+  const { error: uploadError } = await client.storage.from(PORTFOLIO_BUCKET).upload(photoPath, file, {
+    contentType: file.type || 'image/jpeg',
+    upsert: true,
+  })
+  if (uploadError) throw new Error(explainSupabaseError(uploadError))
+
+  if (previousPath && previousPath !== photoPath) {
+    await client.storage.from(PORTFOLIO_BUCKET).remove([previousPath])
+  }
+
+  return {
+    photo_path: photoPath,
+    photoUrl: getPortfolioFileUrl(photoPath),
+  }
+}
+
+export async function removePortfolioPhoto(previousPath = '') {
+  const client = requireSupabase()
+  if (previousPath) {
+    await client.storage.from(PORTFOLIO_BUCKET).remove([previousPath])
+  }
 }
 
 export async function addPortfolioItem({ userId, title, description, file, externalUrl, currentCount }) {

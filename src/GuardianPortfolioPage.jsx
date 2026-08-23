@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import GuardianPortfolioShowcase from './GuardianPortfolioShowcase.jsx'
 import {
+  ALLOWED_PHOTO_EXTENSIONS,
   ALLOWED_PORTFOLIO_EXTENSIONS,
   MAX_PORTFOLIO_ITEMS,
   addPortfolioItem,
@@ -10,7 +11,10 @@ import {
   fetchMyPortfolio,
   fetchMyPortfolioItems,
   formatFileSize,
+  getInitials,
+  removePortfolioPhoto,
   saveMyPortfolio,
+  uploadPortfolioPhoto,
 } from './utils/portfolioClient.js'
 
 function Field({ label, hint, children }) {
@@ -28,9 +32,11 @@ export default function GuardianPortfolioPage({ authUser }) {
   const [items, setItems] = useState([])
   const [itemDraft, setItemDraft] = useState({ title: '', description: '', url: '', file: null })
   const [fileInputKey, setFileInputKey] = useState(0)
+  const [photoInputKey, setPhotoInputKey] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
   const [isSaving, setIsSaving] = useState(false)
   const [isUploading, setIsUploading] = useState(false)
+  const [isPhotoBusy, setIsPhotoBusy] = useState(false)
   const [pendingDeleteId, setPendingDeleteId] = useState('')
   const [error, setError] = useState('')
   const [message, setMessage] = useState('')
@@ -104,6 +110,49 @@ export default function GuardianPortfolioPage({ authUser }) {
     }
   }
 
+  const persistDraft = async (nextDraft) => {
+    if (!String(nextDraft.display_name || '').trim()) return nextDraft
+    return saveMyPortfolio(authUser, nextDraft)
+  }
+
+  const handlePhotoChange = async (event) => {
+    const file = event.target.files?.[0]
+    if (!file) return
+    setError('')
+    setMessage('')
+    setIsPhotoBusy(true)
+    try {
+      const uploaded = await uploadPortfolioPhoto(authUser.id, file, draft.photo_path)
+      const nextDraft = { ...draft, ...uploaded }
+      const saved = await persistDraft(nextDraft)
+      setDraft(saved)
+      setPhotoInputKey((current) => current + 1)
+      setMessage('Profile photo updated.')
+    } catch (photoError) {
+      setError(photoError?.message || 'Unable to upload that photo.')
+    } finally {
+      setIsPhotoBusy(false)
+    }
+  }
+
+  const handleRemovePhoto = async () => {
+    if (!draft.photo_path && !draft.photoUrl) return
+    setError('')
+    setIsPhotoBusy(true)
+    try {
+      await removePortfolioPhoto(draft.photo_path)
+      const nextDraft = { ...draft, photo_path: '', photoUrl: '', links: { ...draft.links, photo_path: '' } }
+      const saved = await persistDraft(nextDraft)
+      setDraft(saved)
+      setPhotoInputKey((current) => current + 1)
+      setMessage('Profile photo removed.')
+    } catch (photoError) {
+      setError(photoError?.message || 'Unable to remove that photo.')
+    } finally {
+      setIsPhotoBusy(false)
+    }
+  }
+
   const handleAddItem = async (event) => {
     event.preventDefault()
     setError('')
@@ -166,6 +215,35 @@ export default function GuardianPortfolioPage({ authUser }) {
           <div className="gp-editor">
             <form className="planner-card planner-form gp-form" onSubmit={handleSave}>
               <h3>Your public profile</h3>
+              <div className="gp-photo-editor">
+                <div className="gp-portrait is-edit">
+                  {draft.photoUrl ? (
+                    <img src={draft.photoUrl} alt={draft.display_name || 'Profile photo'} />
+                  ) : (
+                    <span>{getInitials(draft.display_name)}</span>
+                  )}
+                </div>
+                <div>
+                  <p className="gp-note">Profile photo. Optional. PNG, JPG, or WEBP up to 4 MB.</p>
+                  <div className="gp-actions">
+                    <label className="btn btn-secondary gp-file-btn">
+                      {isPhotoBusy ? 'Uploading…' : draft.photoUrl ? 'Change photo' : 'Upload photo'}
+                      <input
+                        key={photoInputKey}
+                        type="file"
+                        accept={ALLOWED_PHOTO_EXTENSIONS.join(',')}
+                        onChange={handlePhotoChange}
+                        disabled={isPhotoBusy}
+                      />
+                    </label>
+                    {draft.photoUrl ? (
+                      <button className="btn btn-secondary" type="button" onClick={handleRemovePhoto} disabled={isPhotoBusy}>
+                        Remove photo
+                      </button>
+                    ) : null}
+                  </div>
+                </div>
+              </div>
               <div className="gp-grid-2">
                 <Field label="Display name">
                   <input
@@ -353,15 +431,17 @@ export default function GuardianPortfolioPage({ authUser }) {
             </form>
           </div>
 
-          <aside className="planner-card gp-preview">
-            <h3>Preview</h3>
-            <GuardianPortfolioShowcase
-              portfolio={draft}
-              items={items}
-              emptyLabel="Your public page will show only the fields you fill in."
-            />
-          </aside>
         </div>
+
+        <aside className="gp-preview-wide">
+          <h3>Live site preview</h3>
+          <GuardianPortfolioShowcase
+            portfolio={draft}
+            items={items}
+            compact
+            emptyLabel="Your public page will show only the fields you fill in."
+          />
+        </aside>
 
         {message ? <p className="gp-status is-ok">{message}</p> : null}
         {error ? <p className="planner-error gp-error">{error}</p> : null}
