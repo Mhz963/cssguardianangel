@@ -18,7 +18,6 @@ import {
 } from 'react-router-dom'
 import './App.css'
 import logo from './assets/guardian-angel-logo-192.webp'
-import logoLarge from './assets/guardian-angel-logo-720.webp'
 import { ensureFreshSession, supabase } from './utils/supabaseClient.js'
 import { usePlannerReminderBootstrap, usePlannerReminderPopup } from './plannerReminderClient.js'
 import { detectPasswordRecoveryFromUrl, isPasswordRecoveryPending, markPasswordRecovery } from './utils/authRecovery.js'
@@ -658,9 +657,10 @@ function HomePage() {
       <section className="intro" id="home">
         <div className="intro-video" aria-hidden="true">
           {introVideoOn ? (
-            <video autoPlay loop muted playsInline preload="none" poster={logoLarge}>
-            <source src="/media/guardian-intro.mp4" type="video/mp4" />
-          </video>
+            <video autoPlay loop muted playsInline preload="none" poster="/media/guardian-angel-intro-poster.webp">
+              <source src="/media/guardian-angel-intro-720p.mp4" type="video/mp4" media="(max-width: 900px)" />
+              <source src="/media/guardian-angel-intro-1080p.mp4" type="video/mp4" />
+            </video>
           ) : null}
         </div>
         <div className="intro-overlay" aria-hidden="true" />
