@@ -1,10 +1,10 @@
 // Writes public/robots.txt and public/sitemap.xml for the canonical site origin.
-// Runs before every build (see package.json "build"). Origin: VITE_PUBLIC_SITE_URL or https://cssguardianangel.com.
+// Runs before every build (see package.json "build"). Origin: VITE_PUBLIC_SITE_URL or https://www.cssguardianangel.com.
 import { writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { compulsorySubjects, optionalGroups, slugify } from '../src/data/syllabusData.js'
 
-const origin = String(process.env.VITE_PUBLIC_SITE_URL || 'https://cssguardianangel.com').replace(/\/+$/, '')
+const origin = String(process.env.VITE_PUBLIC_SITE_URL || 'https://www.cssguardianangel.com').replace(/\/+$/, '')
 const today = new Date().toISOString().slice(0, 10)
 
 const pages = [

@@ -4,6 +4,11 @@
   "installCommand": "npm ci && node scripts/vercel-prepare.mjs",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
+  "git": {
+    "deploymentEnabled": {
+      "dependabot/**": false
+    }
+  },
   "rewrites": [
     {
       "source": "/((?!api/).*)",

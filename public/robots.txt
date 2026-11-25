@@ -4,4 +4,4 @@ Disallow: /admin
 Disallow: /profile
 Disallow: /api/
 
-Sitemap: https://cssguardianangel.com/sitemap.xml
+Sitemap: https://www.cssguardianangel.com/sitemap.xml

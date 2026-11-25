@@ -4,7 +4,7 @@ Free CSS (Central Superior Services, Pakistan) preparation platform: syllabus an
 425 lecture slide decks, key documents, Pakistan and global affairs, a study planner with reminders,
 blogs and a portfolio builder.
 
-- Website: https://cssguardianangel.com
+- Website: https://www.cssguardianangel.com
 - Android app: [CSS Guardian Angel on Google Play](https://play.google.com/store/apps/details?id=com.cssguardianangel.app)
   (a React Native WebView shell around the website; its source lives in a separate repository)
 
@@ -38,7 +38,7 @@ npm run dev                  # http://localhost:5173
 | Variable | Where | Purpose |
 |---|---|---|
 | `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY` | client | Supabase project |
-| `VITE_PUBLIC_SITE_URL` | client + build | Canonical origin (defaults to `https://cssguardianangel.com`) |
+| `VITE_PUBLIC_SITE_URL` | client + build | Canonical origin (defaults to `https://www.cssguardianangel.com`) |
 | `VITE_SUPPORT_EMAIL` | client | Contact address on the privacy, terms and delete-account pages |
 | `SUPABASE_SERVICE_ROLE_KEY` | server only | Admin dashboard and account deletion |
 | `SUPER_ADMIN_EMAIL` | server only | Account allowed to use the admin APIs |

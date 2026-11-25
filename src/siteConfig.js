@@ -1,7 +1,7 @@
 // Site-wide constants shared by the shell (App.jsx) and the lazily loaded pages.
 
 /** Canonical origin used for canonical links, Open Graph tags and JSON-LD. */
-export const SITE_URL = String(import.meta.env.VITE_PUBLIC_SITE_URL || 'https://cssguardianangel.com').replace(/\/+$/, '')
+export const SITE_URL = String(import.meta.env.VITE_PUBLIC_SITE_URL || 'https://www.cssguardianangel.com').replace(/\/+$/, '')
 
 export const MS_PER_DAY = 24 * 60 * 60 * 1000
 
