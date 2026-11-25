@@ -1,0 +1,924 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;600&display=swap');
+
+/* Guardian English Lab. Uses the site tokens from refresh.css (cards, accent, radius). */
+
+.ge-page {
+  padding-bottom: clamp(2.4rem, 5vw, 4rem);
+}
+
+.ge-lead {
+  max-width: 68ch;
+  margin: 0 0 1.4rem;
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+.ge-muted {
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+}
+
+.ge-loading {
+  padding: 2rem 0;
+}
+
+.ge-error {
+  padding: 1rem 1.2rem;
+  border-radius: 14px;
+  border: 1px solid rgb(239 108 98 / 45%);
+  background: rgb(239 108 98 / 10%);
+}
+
+.ge-sync {
+  margin: 0.4rem 0 1.4rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.ge-sync a {
+  color: var(--ga-accent-text);
+  font-weight: 600;
+}
+
+/* Breadcrumbs */
+.ge-crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin: -0.4rem 0 1.4rem;
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+}
+
+.ge-crumbs a {
+  color: var(--ga-accent-text);
+  font-weight: 600;
+}
+
+.ge-crumb-section {
+  margin-left: auto;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid var(--ga-card-border);
+  font-size: 0.8rem;
+}
+
+/* Stats */
+.ge-stat-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.8rem;
+  margin-bottom: 0.6rem;
+}
+
+.ge-stat {
+  padding: 1rem 1.1rem;
+  border-radius: var(--ga-radius);
+  border: 1px solid var(--ga-card-border);
+  background: var(--ga-card-bg);
+  box-shadow: var(--ga-card-shadow);
+  display: grid;
+  gap: 0.2rem;
+}
+
+.ge-stat strong {
+  font-family: 'Cinzel', serif;
+  font-size: 1.7rem;
+  color: var(--ga-accent-text);
+  line-height: 1.1;
+}
+
+.ge-stat span {
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+}
+
+/* Cards and grids */
+.ge-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.ge-grid-compact {
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+}
+
+.ge-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding: 1.3rem 1.25rem;
+  border-radius: var(--ga-radius);
+  border: 1px solid var(--ga-card-border);
+  background: var(--ga-card-bg);
+  box-shadow: var(--ga-card-shadow);
+  color: var(--text-primary);
+  text-align: left;
+  font: inherit;
+}
+
+.ge-card h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+}
+
+.ge-card p {
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+.ge-card-button,
+.ge-module-card {
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ge-card-button:hover,
+.ge-module-card:hover {
+  transform: translateY(-3px);
+  border-color: rgb(242 213 107 / 55%);
+  box-shadow: var(--ga-card-shadow-hover);
+}
+
+.ge-card-foot {
+  margin-top: auto;
+  padding-top: 0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+}
+
+.ge-module-grid {
+  margin-top: 0.4rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 1024px) {
+  .ge-module-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .ge-module-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ge-module-section {
+  margin: 0;
+  font-size: 0.74rem !important;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ga-accent-text) !important;
+}
+
+.ge-arrow {
+  color: var(--ga-accent-text);
+  font-weight: 700;
+  transition: transform 0.2s ease;
+}
+
+.ge-module-card:hover .ge-arrow {
+  transform: translateX(4px);
+}
+
+.ge-pill {
+  padding: 0.22rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  border: 1px solid var(--ga-card-border);
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.ge-pill-good {
+  border-color: rgb(34 197 94 / 45%);
+  color: #22c55e;
+}
+
+.ge-pill-mid {
+  border-color: rgb(242 213 107 / 50%);
+  color: var(--ga-accent-text);
+}
+
+.ge-pill-low {
+  border-color: rgb(239 108 98 / 45%);
+  color: #ef6c62;
+}
+
+/* Paper map */
+.ge-paper {
+  margin-top: clamp(2rem, 4vw, 3rem);
+}
+
+.ge-table-wrap {
+  overflow-x: auto;
+  border-radius: var(--ga-radius);
+  border: 1px solid var(--ga-card-border);
+  background: var(--ga-card-bg);
+  margin-bottom: 0.8rem;
+}
+
+.ge-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.ge-table th,
+.ge-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--ga-card-border);
+}
+
+.ge-table tr:last-child td {
+  border-bottom: 0;
+}
+
+.ge-table th {
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.ge-table td:nth-child(2) {
+  font-variant-numeric: tabular-nums;
+}
+
+.ge-table a {
+  color: var(--ga-accent-text);
+  font-weight: 600;
+}
+
+/* Topic / rules */
+.ge-topic {
+  display: grid;
+  gap: 1.2rem;
+}
+
+.ge-topic-head {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.ge-back {
+  justify-self: start;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--ga-accent-text);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ge-topic-title {
+  margin: 0;
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.1rem, 1.6vw, 1.3rem);
+  color: var(--ga-accent-text);
+}
+
+.ge-group-block {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.ge-rules {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 0.9rem;
+}
+
+.ge-rule {
+  padding: 1.1rem 1.15rem;
+  border-radius: 16px;
+  border: 1px solid var(--ga-card-border);
+  border-left: 3px solid #f2d56b;
+  background: var(--ga-card-bg);
+}
+
+.ge-rule h4 {
+  margin: 0 0 0.35rem;
+  color: var(--ga-accent-text);
+}
+
+.ge-rule p {
+  margin: 0;
+  line-height: 1.55;
+}
+
+.ge-rule ul {
+  margin: 0.55rem 0 0;
+  padding-left: 1.1rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+/* Quiz */
+.ge-quiz {
+  display: grid;
+  gap: 1rem;
+  max-width: 820px;
+  padding: clamp(1.2rem, 3vw, 2rem);
+  border-radius: 22px;
+  border: 1px solid var(--ga-card-border);
+  background: var(--ga-card-bg);
+  box-shadow: var(--ga-card-shadow);
+}
+
+.ge-quiz-head {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.ge-quiz-title {
+  margin: 0;
+  font-weight: 700;
+  color: var(--ga-accent-text);
+}
+
+.ge-quiz-count {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.ge-progress {
+  height: 6px;
+  border-radius: 6px;
+  background: rgb(127 127 127 / 18%);
+  overflow: hidden;
+}
+
+.ge-progress span {
+  display: block;
+  height: 100%;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #f2d56b, #c9a227);
+  transition: width 0.3s ease;
+}
+
+.ge-quiz-prompt {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--text-primary);
+}
+
+.ge-options {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.ge-option {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border-radius: 14px;
+  border: 1px solid var(--ga-card-border);
+  background: transparent;
+  color: var(--text-primary);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.ge-option:hover:not(:disabled) {
+  border-color: rgb(242 213 107 / 55%);
+}
+
+.ge-option-key {
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  border: 1px solid var(--ga-card-border);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.ge-option.is-selected {
+  border-color: #f2d56b;
+  background: rgb(242 213 107 / 10%);
+}
+
+.ge-option.is-correct {
+  border-color: #22c55e;
+  background: rgb(34 197 94 / 12%);
+}
+
+.ge-option.is-wrong {
+  border-color: #ef6c62;
+  background: rgb(239 108 98 / 12%);
+}
+
+.ge-option.is-dim {
+  opacity: 0.6;
+}
+
+.ge-option:disabled {
+  cursor: default;
+}
+
+.ge-rewrite {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.ge-rewrite-original {
+  margin: 0;
+  padding: 0.8rem 1rem;
+  border-radius: 12px;
+  border-left: 3px solid #f2d56b;
+  background: rgb(242 213 107 / 8%);
+  font-size: 1.05rem;
+}
+
+.ge-label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.ge-textarea,
+.ge-search {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.8rem 1rem;
+  border-radius: 12px;
+  border: 1px solid var(--ga-card-border);
+  background: var(--input-bg);
+  color: var(--text-primary);
+  font: inherit;
+  font-size: 1.02rem;
+  resize: vertical;
+}
+
+.ge-search {
+  max-width: 420px;
+}
+
+.ge-feedback {
+  display: grid;
+  gap: 0.4rem;
+  padding: 1rem 1.1rem;
+  border-radius: 14px;
+  border: 1px solid;
+}
+
+.ge-feedback p {
+  margin: 0;
+}
+
+.ge-feedback.is-correct {
+  border-color: rgb(34 197 94 / 50%);
+  background: rgb(34 197 94 / 9%);
+}
+
+.ge-feedback.is-wrong {
+  border-color: rgb(239 108 98 / 50%);
+  background: rgb(239 108 98 / 8%);
+}
+
+.ge-feedback-title {
+  font-weight: 700;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.ge-feedback.is-correct .ge-feedback-title {
+  color: #22c55e;
+}
+
+.ge-feedback.is-wrong .ge-feedback-title {
+  color: #ef6c62;
+}
+
+.ge-explain {
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+.ge-diff {
+  margin: 0;
+  line-height: 1.9;
+}
+
+.ge-diff-added {
+  padding: 0.05rem 0.25rem;
+  border-radius: 4px;
+  background: rgb(34 197 94 / 22%);
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.ge-diff-removed {
+  padding: 0.05rem 0.25rem;
+  border-radius: 4px;
+  background: rgb(239 108 98 / 20%);
+  text-decoration: line-through;
+}
+
+.ge-tag {
+  display: inline-block;
+  padding: 0.18rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid var(--ga-card-border);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.ge-tag-good {
+  border-color: rgb(34 197 94 / 50%);
+  color: #22c55e;
+}
+
+.ge-tag-bad {
+  border-color: rgb(239 108 98 / 50%);
+  color: #ef6c62;
+}
+
+.ge-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+/* Summary */
+.ge-summary {
+  display: grid;
+  gap: 1rem;
+  max-width: 820px;
+  padding: clamp(1.2rem, 3vw, 2rem);
+  border-radius: 22px;
+  border: 1px solid var(--ga-card-border);
+  background: var(--ga-card-bg);
+  box-shadow: var(--ga-card-shadow);
+}
+
+.ge-summary-score {
+  display: flex;
+  align-items: baseline;
+  gap: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.ge-summary-pct {
+  margin: 0;
+  font-family: 'Cinzel', serif;
+  font-size: clamp(2.4rem, 6vw, 3.4rem);
+  font-weight: 700;
+  color: var(--ga-accent-text);
+  line-height: 1;
+}
+
+.ge-summary-message {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.ge-review {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.ge-review h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.ge-review-item {
+  padding: 0.9rem 1rem;
+  border-radius: 14px;
+  border: 1px solid var(--ga-card-border);
+}
+
+.ge-review-item p {
+  margin: 0.25rem 0;
+}
+
+.ge-review-prompt {
+  font-weight: 600;
+}
+
+/* Tabs */
+.ge-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ge-tabs button {
+  padding: 0.55rem 1.1rem;
+  border-radius: 999px;
+  border: 1px solid var(--ga-card-border);
+  background: transparent;
+  color: var(--text-primary);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ge-tabs button.is-active {
+  border-color: #f2d56b;
+  background: rgb(242 213 107 / 14%);
+  color: var(--ga-accent-text);
+}
+
+/* Pairs of words */
+.ge-pair {
+  gap: 0.9rem;
+}
+
+.ge-pair-word + .ge-pair-word {
+  padding-top: 0.9rem;
+  border-top: 1px dashed var(--ga-card-border);
+}
+
+.ge-pos {
+  font-size: 0.78rem;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--text-secondary);
+}
+
+.ge-example {
+  font-style: italic;
+  color: var(--text-secondary);
+}
+
+/* Grouping game */
+.ge-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.ge-chip {
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  border: 1px solid var(--ga-card-border);
+  background: var(--ga-card-bg);
+  color: var(--text-primary);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.15s ease, opacity 0.15s ease, transform 0.15s ease;
+}
+
+.ge-chip:hover:not(:disabled) {
+  border-color: rgb(242 213 107 / 60%);
+  transform: translateY(-1px);
+}
+
+.ge-chip.is-pending {
+  border-color: #f2d56b;
+  background: rgb(242 213 107 / 18%);
+}
+
+.ge-chip.is-used {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.ge-pairs-made {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.6rem;
+}
+
+.ge-made {
+  padding: 0.65rem 0.9rem;
+  border-radius: 12px;
+  border: 1px solid rgb(242 213 107 / 45%);
+  background: rgb(242 213 107 / 8%);
+  color: var(--text-primary);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ge-made.is-correct {
+  border-color: #22c55e;
+  background: rgb(34 197 94 / 12%);
+}
+
+.ge-made.is-wrong {
+  border-color: #ef6c62;
+  background: rgb(239 108 98 / 12%);
+}
+
+.ge-key {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+/* Vocabulary */
+.ge-flash {
+  display: grid;
+  gap: 0.5rem;
+  justify-items: center;
+  text-align: center;
+  padding: clamp(1.4rem, 4vw, 2.4rem) 1rem;
+  border-radius: 18px;
+  border: 1px dashed rgb(242 213 107 / 45%);
+}
+
+.ge-flash p {
+  margin: 0;
+}
+
+.ge-flash-word {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.ge-flash-back {
+  display: grid;
+  gap: 0.45rem;
+  max-width: 560px;
+}
+
+.ge-flash-meaning {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.ge-urdu {
+  font-family: 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', serif;
+  font-size: 1.15rem;
+  line-height: 2;
+  color: var(--ga-accent-text);
+}
+
+.ge-wordlist {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 0.8rem;
+}
+
+.ge-word {
+  padding: 1rem 1.1rem;
+  border-radius: 16px;
+  border: 1px solid var(--ga-card-border);
+  background: var(--ga-card-bg);
+}
+
+.ge-word h3 {
+  margin: 0 0 0.3rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 1.05rem;
+}
+
+.ge-word p {
+  margin: 0.2rem 0;
+  line-height: 1.5;
+}
+
+@media (max-width: 720px) {
+  .ge-crumb-section {
+    margin-left: 0;
+  }
+
+  .ge-quiz,
+  .ge-summary {
+    padding: 1.1rem;
+    border-radius: 18px;
+  }
+
+  .ge-actions .btn {
+    flex: 1 1 auto;
+  }
+}
+
+/* Pairs of words: A-Z list, past-paper badges, unlimited quiz */
+.ge-filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.8rem 1.4rem;
+}
+
+.ge-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.ge-toggle input {
+  width: 18px;
+  height: 18px;
+  accent-color: #c9a227;
+}
+
+.ge-az {
+  position: sticky;
+  top: 86px;
+  z-index: 5;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  padding: 0.5rem;
+  border-radius: 14px;
+  border: 1px solid var(--ga-card-border);
+  background: var(--bg-secondary);
+  box-shadow: var(--ga-card-shadow);
+}
+
+.ge-az a,
+.ge-az span {
+  min-width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.ge-az a {
+  color: var(--ga-accent-text);
+}
+
+.ge-az a:hover {
+  background: rgb(242 213 107 / 16%);
+}
+
+.ge-az span {
+  color: var(--text-secondary);
+  opacity: 0.35;
+}
+
+.ge-letter-block {
+  display: grid;
+  gap: 0.8rem;
+  scroll-margin-top: 150px;
+}
+
+.ge-letter {
+  margin: 0.6rem 0 0;
+  font-family: 'Cinzel', serif;
+  font-size: 1.6rem;
+  color: var(--ga-accent-text);
+  border-bottom: 1px solid var(--ga-card-border);
+  padding-bottom: 0.3rem;
+}
+
+.ge-pair-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
+  margin: 0 0 -0.2rem !important;
+  font-weight: 700;
+  color: var(--text-primary) !important;
+}
+
+.ge-year-badge {
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #f2d56b, #c9a227);
+  color: #10141f;
+  font-size: 0.72rem;
+  font-weight: 700;
+  white-space: normal;
+}
+
+@media (max-width: 720px) {
+  .ge-az {
+    top: 74px;
+  }
+}

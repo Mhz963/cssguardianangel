@@ -1,0 +1,3113 @@
+{
+  "words": [
+    {
+      "id": "abate",
+      "word": "abate",
+      "pos": "verb",
+      "meaning": "to become less intense or widespread",
+      "synonyms": [
+        "subside",
+        "lessen"
+      ],
+      "antonyms": [
+        "intensify"
+      ],
+      "example": "The flood waters in lower Sindh began to abate only after the monsoon rains stopped.",
+      "urdu": "کم ہونا"
+    },
+    {
+      "id": "aberration",
+      "word": "aberration",
+      "pos": "noun",
+      "meaning": "a departure from what is normal or expected",
+      "synonyms": [
+        "anomaly",
+        "deviation"
+      ],
+      "antonyms": [
+        "norm"
+      ],
+      "example": "Analysts described the sudden fall in exports as an aberration rather than a lasting trend.",
+      "urdu": "انحراف"
+    },
+    {
+      "id": "abhor",
+      "word": "abhor",
+      "pos": "verb",
+      "meaning": "to regard with deep disgust or hatred",
+      "synonyms": [
+        "detest",
+        "loathe"
+      ],
+      "antonyms": [
+        "admire",
+        "cherish"
+      ],
+      "example": "Most citizens abhor the practice of buying votes during elections.",
+      "urdu": "نفرت کرنا"
+    },
+    {
+      "id": "abridge",
+      "word": "abridge",
+      "pos": "verb",
+      "meaning": "to shorten a text without losing its sense",
+      "synonyms": [
+        "condense",
+        "shorten"
+      ],
+      "antonyms": [
+        "expand",
+        "lengthen"
+      ],
+      "example": "The commission abridged its report so that ordinary readers could follow it.",
+      "urdu": "مختصر کرنا"
+    },
+    {
+      "id": "abstain",
+      "word": "abstain",
+      "pos": "verb",
+      "meaning": "to choose not to do something, especially not to vote",
+      "synonyms": [
+        "refrain",
+        "desist"
+      ],
+      "antonyms": [
+        "indulge",
+        "participate"
+      ],
+      "example": "Several members abstained when the resolution was put to the vote in the Senate.",
+      "urdu": "پرہیز کرنا"
+    },
+    {
+      "id": "acquiesce",
+      "word": "acquiesce",
+      "pos": "verb",
+      "meaning": "to accept something reluctantly without protest",
+      "synonyms": [
+        "comply",
+        "consent"
+      ],
+      "antonyms": [
+        "resist",
+        "protest"
+      ],
+      "example": "The traders acquiesced in the new tax regime after weeks of negotiation.",
+      "urdu": ""
+    },
+    {
+      "id": "acrimonious",
+      "word": "acrimonious",
+      "pos": "adjective",
+      "meaning": "angry and bitter in tone",
+      "synonyms": [
+        "bitter",
+        "rancorous"
+      ],
+      "antonyms": [
+        "amicable",
+        "cordial"
+      ],
+      "example": "The acrimonious debate in the National Assembly ended in an opposition walkout.",
+      "urdu": "تلخ"
+    },
+    {
+      "id": "adamant",
+      "word": "adamant",
+      "pos": "adjective",
+      "meaning": "refusing to be persuaded or to change one's mind",
+      "synonyms": [
+        "unyielding",
+        "resolute"
+      ],
+      "antonyms": [
+        "flexible",
+        "yielding"
+      ],
+      "example": "The minister remained adamant that the dam would be completed on schedule.",
+      "urdu": "اٹل"
+    },
+    {
+      "id": "admonish",
+      "word": "admonish",
+      "pos": "verb",
+      "meaning": "to warn or reprimand someone firmly",
+      "synonyms": [
+        "reprimand",
+        "rebuke"
+      ],
+      "antonyms": [
+        "praise",
+        "commend"
+      ],
+      "example": "The court admonished the police for delaying the investigation.",
+      "urdu": "سرزنش کرنا"
+    },
+    {
+      "id": "adversity",
+      "word": "adversity",
+      "pos": "noun",
+      "meaning": "a difficult or unpleasant situation",
+      "synonyms": [
+        "hardship",
+        "misfortune"
+      ],
+      "antonyms": [
+        "prosperity"
+      ],
+      "example": "The people of Gilgit-Baltistan have shown great courage in the face of adversity.",
+      "urdu": "مصیبت"
+    },
+    {
+      "id": "advocate",
+      "word": "advocate",
+      "pos": "verb",
+      "meaning": "to publicly support or recommend",
+      "synonyms": [
+        "champion",
+        "endorse"
+      ],
+      "antonyms": [
+        "oppose"
+      ],
+      "example": "Economists advocate a broader tax base rather than higher rates on existing taxpayers.",
+      "urdu": "حمایت کرنا"
+    },
+    {
+      "id": "affluent",
+      "word": "affluent",
+      "pos": "adjective",
+      "meaning": "having a great deal of money; wealthy",
+      "synonyms": [
+        "wealthy",
+        "prosperous"
+      ],
+      "antonyms": [
+        "impoverished",
+        "needy"
+      ],
+      "example": "Affluent neighbourhoods often receive better municipal services than poorer ones.",
+      "urdu": "خوشحال"
+    },
+    {
+      "id": "aggravate",
+      "word": "aggravate",
+      "pos": "verb",
+      "meaning": "to make a problem or situation worse",
+      "synonyms": [
+        "worsen",
+        "exacerbate"
+      ],
+      "antonyms": [
+        "alleviate",
+        "ease"
+      ],
+      "example": "Unplanned construction has aggravated urban flooding in Karachi.",
+      "urdu": "بگاڑنا"
+    },
+    {
+      "id": "alleviate",
+      "word": "alleviate",
+      "pos": "verb",
+      "meaning": "to make suffering or a problem less severe",
+      "synonyms": [
+        "ease",
+        "relieve"
+      ],
+      "antonyms": [
+        "aggravate",
+        "worsen"
+      ],
+      "example": "The cash-transfer scheme was designed to alleviate the hardship of poor households.",
+      "urdu": ""
+    },
+    {
+      "id": "altruistic",
+      "word": "altruistic",
+      "pos": "adjective",
+      "meaning": "showing selfless concern for the well-being of others",
+      "synonyms": [
+        "selfless",
+        "unselfish"
+      ],
+      "antonyms": [
+        "selfish"
+      ],
+      "example": "Abdul Sattar Edhi's altruistic work made him a national hero.",
+      "urdu": "بے غرض"
+    },
+    {
+      "id": "ambiguous",
+      "word": "ambiguous",
+      "pos": "adjective",
+      "meaning": "open to more than one interpretation",
+      "synonyms": [
+        "equivocal",
+        "vague"
+      ],
+      "antonyms": [
+        "clear",
+        "unequivocal"
+      ],
+      "example": "The ambiguous wording of the clause led to years of litigation.",
+      "urdu": "مبہم"
+    },
+    {
+      "id": "ambivalent",
+      "word": "ambivalent",
+      "pos": "adjective",
+      "meaning": "having mixed or contradictory feelings about something",
+      "synonyms": [
+        "uncertain",
+        "conflicted"
+      ],
+      "antonyms": [
+        "decided",
+        "certain"
+      ],
+      "example": "Public opinion remains ambivalent about privatising state-owned enterprises.",
+      "urdu": ""
+    },
+    {
+      "id": "ameliorate",
+      "word": "ameliorate",
+      "pos": "verb",
+      "meaning": "to make something bad or unsatisfactory better",
+      "synonyms": [
+        "improve",
+        "enhance"
+      ],
+      "antonyms": [
+        "worsen"
+      ],
+      "example": "Better drainage would ameliorate living conditions in katchi abadis.",
+      "urdu": "بہتر بنانا"
+    },
+    {
+      "id": "amicable",
+      "word": "amicable",
+      "pos": "adjective",
+      "meaning": "friendly and without serious disagreement",
+      "synonyms": [
+        "cordial",
+        "friendly"
+      ],
+      "antonyms": [
+        "hostile",
+        "acrimonious"
+      ],
+      "example": "The two provinces reached an amicable settlement on water sharing.",
+      "urdu": "دوستانہ"
+    },
+    {
+      "id": "anarchy",
+      "word": "anarchy",
+      "pos": "noun",
+      "meaning": "a state of disorder caused by the absence of authority",
+      "synonyms": [
+        "lawlessness",
+        "chaos"
+      ],
+      "antonyms": [
+        "order"
+      ],
+      "example": "Without functioning courts, the region could slide into anarchy.",
+      "urdu": "لاقانونیت"
+    },
+    {
+      "id": "animosity",
+      "word": "animosity",
+      "pos": "noun",
+      "meaning": "strong hostility or dislike",
+      "synonyms": [
+        "hostility",
+        "enmity"
+      ],
+      "antonyms": [
+        "friendship",
+        "goodwill"
+      ],
+      "example": "Decades of animosity have hampered trade between the two neighbours.",
+      "urdu": "دشمنی"
+    },
+    {
+      "id": "anomaly",
+      "word": "anomaly",
+      "pos": "noun",
+      "meaning": "something that deviates from what is standard or expected",
+      "synonyms": [
+        "irregularity",
+        "aberration"
+      ],
+      "antonyms": [
+        "norm"
+      ],
+      "example": "The auditors flagged several anomalies in the procurement accounts.",
+      "urdu": "بے قاعدگی"
+    },
+    {
+      "id": "apathy",
+      "word": "apathy",
+      "pos": "noun",
+      "meaning": "lack of interest, enthusiasm or concern",
+      "synonyms": [
+        "indifference",
+        "unconcern"
+      ],
+      "antonyms": [
+        "enthusiasm",
+        "zeal"
+      ],
+      "example": "Voter apathy was blamed for the low turnout in the by-election.",
+      "urdu": "بے حسی"
+    },
+    {
+      "id": "appease",
+      "word": "appease",
+      "pos": "verb",
+      "meaning": "to pacify someone by giving in to their demands",
+      "synonyms": [
+        "placate",
+        "pacify"
+      ],
+      "antonyms": [
+        "provoke",
+        "antagonise"
+      ],
+      "example": "The government tried to appease protesting farmers with a higher support price for wheat.",
+      "urdu": "راضی کرنا"
+    },
+    {
+      "id": "arbitrary",
+      "word": "arbitrary",
+      "pos": "adjective",
+      "meaning": "based on personal whim rather than reason or rules",
+      "synonyms": [
+        "capricious",
+        "random"
+      ],
+      "antonyms": [
+        "rational",
+        "reasoned"
+      ],
+      "example": "The court struck down the arbitrary transfer of civil servants.",
+      "urdu": "من مانا"
+    },
+    {
+      "id": "arduous",
+      "word": "arduous",
+      "pos": "adjective",
+      "meaning": "involving great effort; difficult and tiring",
+      "synonyms": [
+        "laborious",
+        "strenuous"
+      ],
+      "antonyms": [
+        "easy",
+        "effortless"
+      ],
+      "example": "Preparing for the CSS examination is an arduous journey.",
+      "urdu": "دشوار"
+    },
+    {
+      "id": "articulate",
+      "word": "articulate",
+      "pos": "adjective",
+      "meaning": "able to express ideas clearly and effectively",
+      "synonyms": [
+        "eloquent",
+        "fluent"
+      ],
+      "antonyms": [
+        "inarticulate"
+      ],
+      "example": "An articulate candidate impresses the interview panel.",
+      "urdu": ""
+    },
+    {
+      "id": "ascertain",
+      "word": "ascertain",
+      "pos": "verb",
+      "meaning": "to find out something for certain",
+      "synonyms": [
+        "determine",
+        "establish"
+      ],
+      "antonyms": [],
+      "example": "The inquiry committee was asked to ascertain the cause of the train accident.",
+      "urdu": "معلوم کرنا"
+    },
+    {
+      "id": "astute",
+      "word": "astute",
+      "pos": "adjective",
+      "meaning": "clever at assessing situations and turning them to advantage",
+      "synonyms": [
+        "shrewd",
+        "perceptive"
+      ],
+      "antonyms": [
+        "naive"
+      ],
+      "example": "An astute diplomat can turn a crisis into an opportunity.",
+      "urdu": "ہوشیار"
+    },
+    {
+      "id": "audacious",
+      "word": "audacious",
+      "pos": "adjective",
+      "meaning": "showing a willingness to take bold risks",
+      "synonyms": [
+        "bold",
+        "daring"
+      ],
+      "antonyms": [
+        "timid",
+        "cautious"
+      ],
+      "example": "The audacious plan aimed to plant a billion trees in a few years.",
+      "urdu": ""
+    },
+    {
+      "id": "austere",
+      "word": "austere",
+      "pos": "adjective",
+      "meaning": "severe or strict; plain and without luxury",
+      "synonyms": [
+        "severe",
+        "spartan"
+      ],
+      "antonyms": [
+        "lavish",
+        "luxurious"
+      ],
+      "example": "The former governor was known for his austere lifestyle.",
+      "urdu": ""
+    },
+    {
+      "id": "autonomy",
+      "word": "autonomy",
+      "pos": "noun",
+      "meaning": "the right or condition of self-government",
+      "synonyms": [
+        "independence",
+        "self-rule"
+      ],
+      "antonyms": [
+        "dependence"
+      ],
+      "example": "The Eighteenth Amendment gave the provinces greater autonomy.",
+      "urdu": "خود مختاری"
+    },
+    {
+      "id": "belligerent",
+      "word": "belligerent",
+      "pos": "adjective",
+      "meaning": "hostile and aggressive",
+      "synonyms": [
+        "aggressive",
+        "hostile"
+      ],
+      "antonyms": [
+        "peaceable",
+        "conciliatory"
+      ],
+      "example": "Belligerent statements from both sides alarmed the international community.",
+      "urdu": "جارحانہ"
+    },
+    {
+      "id": "benevolent",
+      "word": "benevolent",
+      "pos": "adjective",
+      "meaning": "well-meaning and kindly",
+      "synonyms": [
+        "kind",
+        "charitable"
+      ],
+      "antonyms": [
+        "malevolent"
+      ],
+      "example": "A benevolent landlord waived the rent of flood-affected tenants.",
+      "urdu": "مہربان"
+    },
+    {
+      "id": "benign",
+      "word": "benign",
+      "pos": "adjective",
+      "meaning": "gentle and kindly; (of a disease) not harmful",
+      "synonyms": [
+        "harmless",
+        "kindly"
+      ],
+      "antonyms": [
+        "malignant",
+        "harmful"
+      ],
+      "example": "Fortunately, the tumour turned out to be benign.",
+      "urdu": ""
+    },
+    {
+      "id": "bigotry",
+      "word": "bigotry",
+      "pos": "noun",
+      "meaning": "intolerance towards those who hold different opinions or beliefs",
+      "synonyms": [
+        "intolerance",
+        "prejudice"
+      ],
+      "antonyms": [
+        "tolerance"
+      ],
+      "example": "Education is the most effective weapon against bigotry.",
+      "urdu": "تعصب"
+    },
+    {
+      "id": "bolster",
+      "word": "bolster",
+      "pos": "verb",
+      "meaning": "to support or strengthen",
+      "synonyms": [
+        "reinforce",
+        "strengthen"
+      ],
+      "antonyms": [
+        "undermine",
+        "weaken"
+      ],
+      "example": "Remittances from overseas Pakistanis helped bolster foreign-exchange reserves.",
+      "urdu": "تقویت دینا"
+    },
+    {
+      "id": "brevity",
+      "word": "brevity",
+      "pos": "noun",
+      "meaning": "concise and exact use of words",
+      "synonyms": [
+        "conciseness",
+        "succinctness"
+      ],
+      "antonyms": [
+        "verbosity",
+        "wordiness"
+      ],
+      "example": "Brevity is the hallmark of a good précis.",
+      "urdu": "اختصار"
+    },
+    {
+      "id": "bureaucracy",
+      "word": "bureaucracy",
+      "pos": "noun",
+      "meaning": "a system of government run by appointed officials following fixed rules",
+      "synonyms": [
+        "officialdom",
+        "administration"
+      ],
+      "antonyms": [],
+      "example": "Reformers argue that the bureaucracy needs merit-based promotions.",
+      "urdu": "نوکر شاہی"
+    },
+    {
+      "id": "candid",
+      "word": "candid",
+      "pos": "adjective",
+      "meaning": "truthful and straightforward; frank",
+      "synonyms": [
+        "frank",
+        "forthright"
+      ],
+      "antonyms": [
+        "evasive",
+        "guarded"
+      ],
+      "example": "In a candid interview, the chief minister admitted that targets had been missed.",
+      "urdu": "صاف گو"
+    },
+    {
+      "id": "capricious",
+      "word": "capricious",
+      "pos": "adjective",
+      "meaning": "given to sudden and unaccountable changes of mood or behaviour",
+      "synonyms": [
+        "fickle",
+        "erratic"
+      ],
+      "antonyms": [
+        "steady",
+        "consistent"
+      ],
+      "example": "Farmers in barani areas depend on a capricious monsoon.",
+      "urdu": "متلون مزاج"
+    },
+    {
+      "id": "catalyst",
+      "word": "catalyst",
+      "pos": "noun",
+      "meaning": "a person or thing that brings about an important change",
+      "synonyms": [
+        "stimulus",
+        "spur"
+      ],
+      "antonyms": [
+        "hindrance"
+      ],
+      "example": "The motorway acted as a catalyst for new businesses along its route.",
+      "urdu": "محرک"
+    },
+    {
+      "id": "censure",
+      "word": "censure",
+      "pos": "verb",
+      "meaning": "to express strong formal disapproval of",
+      "synonyms": [
+        "condemn",
+        "criticise"
+      ],
+      "antonyms": [
+        "commend",
+        "praise"
+      ],
+      "example": "Parliament censured the minister for misleading the House.",
+      "urdu": "مذمت کرنا"
+    },
+    {
+      "id": "circumspect",
+      "word": "circumspect",
+      "pos": "adjective",
+      "meaning": "cautious and unwilling to take risks",
+      "synonyms": [
+        "cautious",
+        "wary"
+      ],
+      "antonyms": [
+        "rash",
+        "reckless"
+      ],
+      "example": "Diplomats tend to be circumspect in their public remarks.",
+      "urdu": "محتاط"
+    },
+    {
+      "id": "coerce",
+      "word": "coerce",
+      "pos": "verb",
+      "meaning": "to force someone to act by using threats",
+      "synonyms": [
+        "compel",
+        "pressurise"
+      ],
+      "antonyms": [
+        "coax"
+      ],
+      "example": "No voter should be coerced into supporting a candidate.",
+      "urdu": "مجبور کرنا"
+    },
+    {
+      "id": "cogent",
+      "word": "cogent",
+      "pos": "adjective",
+      "meaning": "clear, logical and convincing",
+      "synonyms": [
+        "convincing",
+        "compelling"
+      ],
+      "antonyms": [
+        "weak",
+        "unconvincing"
+      ],
+      "example": "The petitioner presented cogent arguments before the bench.",
+      "urdu": "مدلل"
+    },
+    {
+      "id": "coherent",
+      "word": "coherent",
+      "pos": "adjective",
+      "meaning": "logical and consistent",
+      "synonyms": [
+        "logical",
+        "consistent"
+      ],
+      "antonyms": [
+        "incoherent",
+        "muddled"
+      ],
+      "example": "A coherent essay develops one idea in each paragraph.",
+      "urdu": "مربوط"
+    },
+    {
+      "id": "complacent",
+      "word": "complacent",
+      "pos": "adjective",
+      "meaning": "uncritically satisfied with oneself or one's achievements",
+      "synonyms": [
+        "smug",
+        "self-satisfied"
+      ],
+      "antonyms": [
+        "vigilant"
+      ],
+      "example": "Officials cannot afford to be complacent after one good harvest.",
+      "urdu": ""
+    },
+    {
+      "id": "comprehensive",
+      "word": "comprehensive",
+      "pos": "adjective",
+      "meaning": "including all or nearly all elements or aspects",
+      "synonyms": [
+        "thorough",
+        "exhaustive"
+      ],
+      "antonyms": [
+        "partial",
+        "limited"
+      ],
+      "example": "The government launched a comprehensive plan to reform school education.",
+      "urdu": "جامع"
+    },
+    {
+      "id": "concede",
+      "word": "concede",
+      "pos": "verb",
+      "meaning": "to admit that something is true, often reluctantly",
+      "synonyms": [
+        "admit",
+        "acknowledge"
+      ],
+      "antonyms": [
+        "deny"
+      ],
+      "example": "The losing candidate conceded defeat gracefully.",
+      "urdu": "تسلیم کرنا"
+    },
+    {
+      "id": "conciliatory",
+      "word": "conciliatory",
+      "pos": "adjective",
+      "meaning": "intended to placate or reconcile",
+      "synonyms": [
+        "placatory",
+        "appeasing"
+      ],
+      "antonyms": [
+        "belligerent",
+        "confrontational"
+      ],
+      "example": "The prime minister struck a conciliatory tone towards the opposition.",
+      "urdu": "مفاہمانہ"
+    },
+    {
+      "id": "condone",
+      "word": "condone",
+      "pos": "verb",
+      "meaning": "to accept or overlook behaviour that is morally wrong",
+      "synonyms": [
+        "overlook",
+        "excuse"
+      ],
+      "antonyms": [
+        "condemn",
+        "censure"
+      ],
+      "example": "A civilised society cannot condone violence against women.",
+      "urdu": "چشم پوشی کرنا"
+    },
+    {
+      "id": "conspicuous",
+      "word": "conspicuous",
+      "pos": "adjective",
+      "meaning": "clearly visible; attracting notice",
+      "synonyms": [
+        "noticeable",
+        "prominent"
+      ],
+      "antonyms": [
+        "inconspicuous",
+        "unobtrusive"
+      ],
+      "example": "Women were conspicuous by their absence on the panel.",
+      "urdu": "نمایاں"
+    },
+    {
+      "id": "contemplate",
+      "word": "contemplate",
+      "pos": "verb",
+      "meaning": "to think deeply about; consider as a possibility",
+      "synonyms": [
+        "ponder",
+        "consider"
+      ],
+      "antonyms": [
+        "disregard"
+      ],
+      "example": "The provincial government is contemplating a ban on plastic bags.",
+      "urdu": "غور کرنا"
+    },
+    {
+      "id": "contentious",
+      "word": "contentious",
+      "pos": "adjective",
+      "meaning": "likely to cause disagreement or argument",
+      "synonyms": [
+        "controversial",
+        "disputed"
+      ],
+      "antonyms": [
+        "uncontroversial"
+      ],
+      "example": "The Kalabagh Dam remains a contentious issue among the provinces.",
+      "urdu": "متنازع"
+    },
+    {
+      "id": "corroborate",
+      "word": "corroborate",
+      "pos": "verb",
+      "meaning": "to confirm or give support to a statement or theory",
+      "synonyms": [
+        "confirm",
+        "substantiate"
+      ],
+      "antonyms": [
+        "contradict",
+        "refute"
+      ],
+      "example": "Forensic evidence corroborated the witness's account.",
+      "urdu": "تصدیق کرنا"
+    },
+    {
+      "id": "credible",
+      "word": "credible",
+      "pos": "adjective",
+      "meaning": "able to be believed; convincing",
+      "synonyms": [
+        "believable",
+        "plausible"
+      ],
+      "antonyms": [
+        "implausible",
+        "unbelievable"
+      ],
+      "example": "Elections must be credible if the result is to be accepted.",
+      "urdu": "معتبر"
+    },
+    {
+      "id": "credulous",
+      "word": "credulous",
+      "pos": "adjective",
+      "meaning": "too ready to believe things",
+      "synonyms": [
+        "gullible",
+        "naive"
+      ],
+      "antonyms": [
+        "sceptical"
+      ],
+      "example": "Credulous users often share fake news without checking its source.",
+      "urdu": "زود اعتقاد"
+    },
+    {
+      "id": "culpable",
+      "word": "culpable",
+      "pos": "adjective",
+      "meaning": "deserving blame",
+      "synonyms": [
+        "blameworthy",
+        "guilty"
+      ],
+      "antonyms": [
+        "innocent",
+        "blameless"
+      ],
+      "example": "The inquiry found three officers culpable of negligence.",
+      "urdu": "قصوروار"
+    },
+    {
+      "id": "curtail",
+      "word": "curtail",
+      "pos": "verb",
+      "meaning": "to reduce or restrict",
+      "synonyms": [
+        "restrict",
+        "reduce"
+      ],
+      "antonyms": [
+        "expand",
+        "extend"
+      ],
+      "example": "The State Bank raised interest rates to curtail inflation.",
+      "urdu": ""
+    },
+    {
+      "id": "dearth",
+      "word": "dearth",
+      "pos": "noun",
+      "meaning": "a scarcity or lack of something",
+      "synonyms": [
+        "scarcity",
+        "shortage"
+      ],
+      "antonyms": [
+        "abundance",
+        "plenty"
+      ],
+      "example": "There is a dearth of qualified teachers in rural schools.",
+      "urdu": "قلت"
+    },
+    {
+      "id": "debilitate",
+      "word": "debilitate",
+      "pos": "verb",
+      "meaning": "to make someone or something very weak",
+      "synonyms": [
+        "weaken",
+        "enfeeble"
+      ],
+      "antonyms": [
+        "strengthen",
+        "invigorate"
+      ],
+      "example": "Years of circular debt have debilitated the power sector.",
+      "urdu": "کمزور کرنا"
+    },
+    {
+      "id": "decorum",
+      "word": "decorum",
+      "pos": "noun",
+      "meaning": "behaviour in keeping with good taste and propriety",
+      "synonyms": [
+        "propriety",
+        "etiquette"
+      ],
+      "antonyms": [
+        "impropriety"
+      ],
+      "example": "The Speaker urged members to maintain the decorum of the House.",
+      "urdu": "شائستگی"
+    },
+    {
+      "id": "deference",
+      "word": "deference",
+      "pos": "noun",
+      "meaning": "polite submission and respect",
+      "synonyms": [
+        "respect",
+        "regard"
+      ],
+      "antonyms": [
+        "disrespect",
+        "contempt"
+      ],
+      "example": "In deference to the mourners, the ceremony was postponed.",
+      "urdu": "احترام"
+    },
+    {
+      "id": "deleterious",
+      "word": "deleterious",
+      "pos": "adjective",
+      "meaning": "causing harm or damage",
+      "synonyms": [
+        "harmful",
+        "detrimental"
+      ],
+      "antonyms": [
+        "beneficial",
+        "salutary"
+      ],
+      "example": "Smog has a deleterious effect on the health of Lahore's residents.",
+      "urdu": "نقصان دہ"
+    },
+    {
+      "id": "denounce",
+      "word": "denounce",
+      "pos": "verb",
+      "meaning": "to publicly declare to be wrong or evil",
+      "synonyms": [
+        "condemn",
+        "decry"
+      ],
+      "antonyms": [
+        "praise",
+        "extol"
+      ],
+      "example": "Religious scholars denounced the attack on the school.",
+      "urdu": ""
+    },
+    {
+      "id": "deplore",
+      "word": "deplore",
+      "pos": "verb",
+      "meaning": "to feel or express strong disapproval of",
+      "synonyms": [
+        "condemn",
+        "lament"
+      ],
+      "antonyms": [
+        "approve"
+      ],
+      "example": "Human-rights groups deplored the use of force against peaceful protesters.",
+      "urdu": ""
+    },
+    {
+      "id": "despondent",
+      "word": "despondent",
+      "pos": "adjective",
+      "meaning": "in low spirits from loss of hope or courage",
+      "synonyms": [
+        "dejected",
+        "disheartened"
+      ],
+      "antonyms": [
+        "hopeful",
+        "cheerful"
+      ],
+      "example": "Despondent growers watched their cotton crop wither in the heat.",
+      "urdu": "مایوس"
+    },
+    {
+      "id": "deter",
+      "word": "deter",
+      "pos": "verb",
+      "meaning": "to discourage someone from doing something",
+      "synonyms": [
+        "discourage",
+        "dissuade"
+      ],
+      "antonyms": [
+        "encourage"
+      ],
+      "example": "Heavy fines are meant to deter traffic violations.",
+      "urdu": "باز رکھنا"
+    },
+    {
+      "id": "deteriorate",
+      "word": "deteriorate",
+      "pos": "verb",
+      "meaning": "to become progressively worse",
+      "synonyms": [
+        "decline",
+        "worsen"
+      ],
+      "antonyms": [
+        "improve"
+      ],
+      "example": "Air quality deteriorates sharply in Punjab every winter.",
+      "urdu": "بگڑنا"
+    },
+    {
+      "id": "diligent",
+      "word": "diligent",
+      "pos": "adjective",
+      "meaning": "showing care and conscientiousness in one's work",
+      "synonyms": [
+        "industrious",
+        "assiduous"
+      ],
+      "antonyms": [
+        "lazy",
+        "indolent"
+      ],
+      "example": "Diligent candidates revise their notes every week.",
+      "urdu": "محنتی"
+    },
+    {
+      "id": "disparity",
+      "word": "disparity",
+      "pos": "noun",
+      "meaning": "a great difference",
+      "synonyms": [
+        "inequality",
+        "gap"
+      ],
+      "antonyms": [
+        "parity",
+        "equality"
+      ],
+      "example": "The disparity between urban and rural incomes keeps widening.",
+      "urdu": "تفاوت"
+    },
+    {
+      "id": "dissent",
+      "word": "dissent",
+      "pos": "noun",
+      "meaning": "the expression of disagreement with official or prevailing views",
+      "synonyms": [
+        "disagreement",
+        "opposition"
+      ],
+      "antonyms": [
+        "assent",
+        "agreement"
+      ],
+      "example": "Healthy democracies tolerate dissent.",
+      "urdu": "اختلاف رائے"
+    },
+    {
+      "id": "diverse",
+      "word": "diverse",
+      "pos": "adjective",
+      "meaning": "showing a great deal of variety",
+      "synonyms": [
+        "varied",
+        "assorted"
+      ],
+      "antonyms": [
+        "uniform",
+        "homogeneous"
+      ],
+      "example": "Pakistan is a diverse country of many languages and cultures.",
+      "urdu": "متنوع"
+    },
+    {
+      "id": "dogmatic",
+      "word": "dogmatic",
+      "pos": "adjective",
+      "meaning": "inclined to lay down principles as undeniably true",
+      "synonyms": [
+        "doctrinaire",
+        "opinionated"
+      ],
+      "antonyms": [
+        "open-minded",
+        "flexible"
+      ],
+      "example": "A dogmatic approach to economic policy ignores changing conditions.",
+      "urdu": ""
+    },
+    {
+      "id": "efficacy",
+      "word": "efficacy",
+      "pos": "noun",
+      "meaning": "the ability to produce the intended result",
+      "synonyms": [
+        "effectiveness",
+        "potency"
+      ],
+      "antonyms": [
+        "ineffectiveness"
+      ],
+      "example": "Trials confirmed the efficacy of the new polio vaccine.",
+      "urdu": "افادیت"
+    },
+    {
+      "id": "elicit",
+      "word": "elicit",
+      "pos": "verb",
+      "meaning": "to draw out a response or information from someone",
+      "synonyms": [
+        "evoke",
+        "extract"
+      ],
+      "antonyms": [],
+      "example": "The survey elicited thousands of responses from young voters.",
+      "urdu": ""
+    },
+    {
+      "id": "eloquent",
+      "word": "eloquent",
+      "pos": "adjective",
+      "meaning": "fluent and persuasive in speaking or writing",
+      "synonyms": [
+        "articulate",
+        "expressive"
+      ],
+      "antonyms": [
+        "inarticulate"
+      ],
+      "example": "The Quaid's eloquent speeches stirred the nation.",
+      "urdu": "فصیح"
+    },
+    {
+      "id": "embezzle",
+      "word": "embezzle",
+      "pos": "verb",
+      "meaning": "to steal money that one has been trusted to look after",
+      "synonyms": [
+        "misappropriate",
+        "peculate"
+      ],
+      "antonyms": [],
+      "example": "The cashier was arrested for embezzling pension funds.",
+      "urdu": "خرد برد کرنا"
+    },
+    {
+      "id": "emulate",
+      "word": "emulate",
+      "pos": "verb",
+      "meaning": "to try to equal or excel someone, usually by imitation",
+      "synonyms": [
+        "imitate",
+        "copy"
+      ],
+      "antonyms": [],
+      "example": "Young civil servants should emulate officers known for their integrity.",
+      "urdu": "تقلید کرنا"
+    },
+    {
+      "id": "enhance",
+      "word": "enhance",
+      "pos": "verb",
+      "meaning": "to improve the quality, value or extent of",
+      "synonyms": [
+        "improve",
+        "augment"
+      ],
+      "antonyms": [
+        "diminish",
+        "reduce"
+      ],
+      "example": "Digitisation has enhanced transparency in land records.",
+      "urdu": "بڑھانا"
+    },
+    {
+      "id": "enigma",
+      "word": "enigma",
+      "pos": "noun",
+      "meaning": "a person or thing that is mysterious or difficult to understand",
+      "synonyms": [
+        "mystery",
+        "puzzle"
+      ],
+      "antonyms": [],
+      "example": "The cause of the grid failure remained an enigma for weeks.",
+      "urdu": "معمہ"
+    },
+    {
+      "id": "ephemeral",
+      "word": "ephemeral",
+      "pos": "adjective",
+      "meaning": "lasting for a very short time",
+      "synonyms": [
+        "transient",
+        "fleeting"
+      ],
+      "antonyms": [
+        "permanent",
+        "enduring"
+      ],
+      "example": "The gains of the stock-market rally proved ephemeral.",
+      "urdu": "عارضی"
+    },
+    {
+      "id": "equitable",
+      "word": "equitable",
+      "pos": "adjective",
+      "meaning": "fair and impartial",
+      "synonyms": [
+        "fair",
+        "just"
+      ],
+      "antonyms": [
+        "unfair",
+        "inequitable"
+      ],
+      "example": "The NFC Award seeks an equitable distribution of resources among the provinces.",
+      "urdu": "منصفانہ"
+    },
+    {
+      "id": "eradicate",
+      "word": "eradicate",
+      "pos": "verb",
+      "meaning": "to destroy completely; put an end to",
+      "synonyms": [
+        "eliminate",
+        "abolish"
+      ],
+      "antonyms": [
+        "establish"
+      ],
+      "example": "Pakistan is determined to eradicate polio.",
+      "urdu": "جڑ سے ختم کرنا"
+    },
+    {
+      "id": "erroneous",
+      "word": "erroneous",
+      "pos": "adjective",
+      "meaning": "wrong; incorrect",
+      "synonyms": [
+        "incorrect",
+        "mistaken"
+      ],
+      "antonyms": [
+        "correct",
+        "accurate"
+      ],
+      "example": "The report was withdrawn because it contained erroneous figures.",
+      "urdu": "غلط"
+    },
+    {
+      "id": "erudite",
+      "word": "erudite",
+      "pos": "adjective",
+      "meaning": "having or showing great knowledge or learning",
+      "synonyms": [
+        "learned",
+        "scholarly"
+      ],
+      "antonyms": [
+        "ignorant"
+      ],
+      "example": "The erudite professor could quote Iqbal and Rumi at length.",
+      "urdu": ""
+    },
+    {
+      "id": "exacerbate",
+      "word": "exacerbate",
+      "pos": "verb",
+      "meaning": "to make a problem or bad situation worse",
+      "synonyms": [
+        "aggravate",
+        "worsen"
+      ],
+      "antonyms": [
+        "alleviate",
+        "mitigate"
+      ],
+      "example": "Deforestation exacerbates the risk of floods in the north.",
+      "urdu": ""
+    },
+    {
+      "id": "exemplary",
+      "word": "exemplary",
+      "pos": "adjective",
+      "meaning": "serving as a desirable model; outstandingly good",
+      "synonyms": [
+        "model",
+        "commendable"
+      ],
+      "antonyms": [
+        "deplorable"
+      ],
+      "example": "The rescue workers were honoured for their exemplary courage.",
+      "urdu": "مثالی"
+    },
+    {
+      "id": "exonerate",
+      "word": "exonerate",
+      "pos": "verb",
+      "meaning": "to declare someone free from blame",
+      "synonyms": [
+        "acquit",
+        "absolve"
+      ],
+      "antonyms": [
+        "incriminate",
+        "convict"
+      ],
+      "example": "The tribunal exonerated the engineer of all charges.",
+      "urdu": "بری کرنا"
+    },
+    {
+      "id": "explicit",
+      "word": "explicit",
+      "pos": "adjective",
+      "meaning": "stated clearly and in detail",
+      "synonyms": [
+        "unambiguous",
+        "express"
+      ],
+      "antonyms": [
+        "implicit",
+        "vague"
+      ],
+      "example": "The Constitution gives explicit protection to fundamental rights.",
+      "urdu": "واضح"
+    },
+    {
+      "id": "extravagant",
+      "word": "extravagant",
+      "pos": "adjective",
+      "meaning": "spending or using more than is necessary or affordable",
+      "synonyms": [
+        "lavish",
+        "wasteful"
+      ],
+      "antonyms": [
+        "frugal",
+        "thrifty"
+      ],
+      "example": "Extravagant wedding expenses push many families into debt.",
+      "urdu": "فضول خرچ"
+    },
+    {
+      "id": "fallacy",
+      "word": "fallacy",
+      "pos": "noun",
+      "meaning": "a mistaken belief, especially one based on unsound argument",
+      "synonyms": [
+        "misconception",
+        "error"
+      ],
+      "antonyms": [
+        "truth"
+      ],
+      "example": "It is a fallacy that economic growth automatically reduces poverty.",
+      "urdu": "مغالطہ"
+    },
+    {
+      "id": "feasible",
+      "word": "feasible",
+      "pos": "adjective",
+      "meaning": "possible to do easily or conveniently",
+      "synonyms": [
+        "viable",
+        "practicable"
+      ],
+      "antonyms": [
+        "impracticable",
+        "unworkable"
+      ],
+      "example": "Engineers are studying whether a metro line is feasible in Peshawar.",
+      "urdu": "قابل عمل"
+    },
+    {
+      "id": "fervent",
+      "word": "fervent",
+      "pos": "adjective",
+      "meaning": "having or showing passionate intensity",
+      "synonyms": [
+        "ardent",
+        "passionate"
+      ],
+      "antonyms": [
+        "apathetic",
+        "indifferent"
+      ],
+      "example": "The crowd offered fervent prayers for rain.",
+      "urdu": "پرجوش"
+    },
+    {
+      "id": "fortify",
+      "word": "fortify",
+      "pos": "verb",
+      "meaning": "to strengthen, especially against attack",
+      "synonyms": [
+        "strengthen",
+        "reinforce"
+      ],
+      "antonyms": [
+        "weaken"
+      ],
+      "example": "The embankments were fortified before the monsoon.",
+      "urdu": "مضبوط کرنا"
+    },
+    {
+      "id": "frivolous",
+      "word": "frivolous",
+      "pos": "adjective",
+      "meaning": "not having any serious purpose or value",
+      "synonyms": [
+        "trivial",
+        "flippant"
+      ],
+      "antonyms": [
+        "serious",
+        "earnest"
+      ],
+      "example": "Frivolous petitions waste the courts' valuable time.",
+      "urdu": "غیر سنجیدہ"
+    },
+    {
+      "id": "frugal",
+      "word": "frugal",
+      "pos": "adjective",
+      "meaning": "sparing or economical with money or food",
+      "synonyms": [
+        "thrifty",
+        "economical"
+      ],
+      "antonyms": [
+        "extravagant",
+        "wasteful"
+      ],
+      "example": "A frugal household budget can survive high inflation.",
+      "urdu": "کفایت شعار"
+    },
+    {
+      "id": "futile",
+      "word": "futile",
+      "pos": "adjective",
+      "meaning": "incapable of producing any useful result",
+      "synonyms": [
+        "fruitless",
+        "pointless"
+      ],
+      "antonyms": [
+        "fruitful",
+        "productive"
+      ],
+      "example": "Attempts to negotiate without a ceasefire proved futile.",
+      "urdu": "بے سود"
+    },
+    {
+      "id": "garrulous",
+      "word": "garrulous",
+      "pos": "adjective",
+      "meaning": "excessively talkative",
+      "synonyms": [
+        "talkative",
+        "loquacious"
+      ],
+      "antonyms": [
+        "taciturn",
+        "reticent"
+      ],
+      "example": "The garrulous passenger talked all the way from Lahore to Islamabad.",
+      "urdu": "باتونی"
+    },
+    {
+      "id": "gregarious",
+      "word": "gregarious",
+      "pos": "adjective",
+      "meaning": "fond of company; sociable",
+      "synonyms": [
+        "sociable",
+        "outgoing"
+      ],
+      "antonyms": [
+        "reclusive",
+        "unsociable"
+      ],
+      "example": "Gregarious students often do well in group discussions.",
+      "urdu": "ملنسار"
+    },
+    {
+      "id": "hamper",
+      "word": "hamper",
+      "pos": "verb",
+      "meaning": "to hinder or impede the progress of",
+      "synonyms": [
+        "hinder",
+        "obstruct"
+      ],
+      "antonyms": [
+        "facilitate"
+      ],
+      "example": "Load-shedding hampers industrial production.",
+      "urdu": "رکاوٹ ڈالنا"
+    },
+    {
+      "id": "haughty",
+      "word": "haughty",
+      "pos": "adjective",
+      "meaning": "arrogantly superior and disdainful",
+      "synonyms": [
+        "arrogant",
+        "disdainful"
+      ],
+      "antonyms": [
+        "humble",
+        "modest"
+      ],
+      "example": "The haughty attitude of some officials alienates the public.",
+      "urdu": "مغرور"
+    },
+    {
+      "id": "hegemony",
+      "word": "hegemony",
+      "pos": "noun",
+      "meaning": "dominance of one group or state over others",
+      "synonyms": [
+        "dominance",
+        "supremacy"
+      ],
+      "antonyms": [],
+      "example": "Smaller states resist the hegemony of regional powers.",
+      "urdu": "بالادستی"
+    },
+    {
+      "id": "hostile",
+      "word": "hostile",
+      "pos": "adjective",
+      "meaning": "unfriendly; antagonistic",
+      "synonyms": [
+        "antagonistic",
+        "unfriendly"
+      ],
+      "antonyms": [
+        "friendly",
+        "amicable"
+      ],
+      "example": "Journalists sometimes face a hostile environment in conflict zones.",
+      "urdu": "معاندانہ"
+    },
+    {
+      "id": "hypocrisy",
+      "word": "hypocrisy",
+      "pos": "noun",
+      "meaning": "the practice of claiming moral standards one does not live by",
+      "synonyms": [
+        "insincerity",
+        "duplicity"
+      ],
+      "antonyms": [
+        "sincerity"
+      ],
+      "example": "Preaching austerity while living in luxury is sheer hypocrisy.",
+      "urdu": "منافقت"
+    },
+    {
+      "id": "impartial",
+      "word": "impartial",
+      "pos": "adjective",
+      "meaning": "treating all rivals or sides equally",
+      "synonyms": [
+        "unbiased",
+        "neutral"
+      ],
+      "antonyms": [
+        "biased",
+        "partisan"
+      ],
+      "example": "An impartial Election Commission is vital for democracy.",
+      "urdu": "غیر جانبدار"
+    },
+    {
+      "id": "impeccable",
+      "word": "impeccable",
+      "pos": "adjective",
+      "meaning": "in accordance with the highest standards; faultless",
+      "synonyms": [
+        "flawless",
+        "faultless"
+      ],
+      "antonyms": [
+        "flawed",
+        "defective"
+      ],
+      "example": "The officer had an impeccable service record.",
+      "urdu": "بے داغ"
+    },
+    {
+      "id": "impede",
+      "word": "impede",
+      "pos": "verb",
+      "meaning": "to delay or prevent by obstructing",
+      "synonyms": [
+        "hinder",
+        "obstruct"
+      ],
+      "antonyms": [
+        "facilitate",
+        "expedite"
+      ],
+      "example": "Red tape impedes foreign investment.",
+      "urdu": "رکاوٹ ڈالنا"
+    },
+    {
+      "id": "imperative",
+      "word": "imperative",
+      "pos": "adjective",
+      "meaning": "of vital importance; essential",
+      "synonyms": [
+        "essential",
+        "crucial"
+      ],
+      "antonyms": [
+        "unimportant",
+        "optional"
+      ],
+      "example": "It is imperative that the country widens its tax net.",
+      "urdu": "لازمی"
+    },
+    {
+      "id": "impetus",
+      "word": "impetus",
+      "pos": "noun",
+      "meaning": "a force that makes something happen or happen more quickly",
+      "synonyms": [
+        "stimulus",
+        "momentum"
+      ],
+      "antonyms": [
+        "hindrance"
+      ],
+      "example": "The new policy gave fresh impetus to the IT industry.",
+      "urdu": "تحریک"
+    },
+    {
+      "id": "implicit",
+      "word": "implicit",
+      "pos": "adjective",
+      "meaning": "implied though not plainly expressed",
+      "synonyms": [
+        "implied",
+        "tacit"
+      ],
+      "antonyms": [
+        "explicit"
+      ],
+      "example": "There was an implicit threat in the spokesman's statement.",
+      "urdu": "ضمنی"
+    },
+    {
+      "id": "incessant",
+      "word": "incessant",
+      "pos": "adjective",
+      "meaning": "continuing without pause or interruption",
+      "synonyms": [
+        "ceaseless",
+        "unremitting"
+      ],
+      "antonyms": [
+        "intermittent",
+        "occasional"
+      ],
+      "example": "Incessant rain brought life in the city to a standstill.",
+      "urdu": "مسلسل"
+    },
+    {
+      "id": "incumbent",
+      "word": "incumbent",
+      "pos": "adjective",
+      "meaning": "necessary for someone as a duty or responsibility",
+      "synonyms": [
+        "obligatory",
+        "binding"
+      ],
+      "antonyms": [
+        "optional"
+      ],
+      "example": "It is incumbent upon every citizen to pay taxes honestly.",
+      "urdu": "لازم"
+    },
+    {
+      "id": "indolent",
+      "word": "indolent",
+      "pos": "adjective",
+      "meaning": "wanting to avoid activity or exertion; lazy",
+      "synonyms": [
+        "lazy",
+        "slothful"
+      ],
+      "antonyms": [
+        "diligent",
+        "industrious"
+      ],
+      "example": "An indolent administration lets files gather dust.",
+      "urdu": "کاہل"
+    },
+    {
+      "id": "inept",
+      "word": "inept",
+      "pos": "adjective",
+      "meaning": "lacking skill or ability; incompetent",
+      "synonyms": [
+        "incompetent",
+        "bungling"
+      ],
+      "antonyms": [
+        "competent",
+        "skilful"
+      ],
+      "example": "Inept handling of the crisis cost the government dearly.",
+      "urdu": "نااہل"
+    },
+    {
+      "id": "inevitable",
+      "word": "inevitable",
+      "pos": "adjective",
+      "meaning": "certain to happen; unavoidable",
+      "synonyms": [
+        "unavoidable",
+        "certain"
+      ],
+      "antonyms": [
+        "avoidable"
+      ],
+      "example": "With falling reserves, a devaluation seemed inevitable.",
+      "urdu": "ناگزیر"
+    },
+    {
+      "id": "inexorable",
+      "word": "inexorable",
+      "pos": "adjective",
+      "meaning": "impossible to stop or prevent",
+      "synonyms": [
+        "relentless",
+        "unstoppable"
+      ],
+      "antonyms": [
+        "yielding"
+      ],
+      "example": "The inexorable rise in population puts pressure on water resources.",
+      "urdu": ""
+    },
+    {
+      "id": "ingenious",
+      "word": "ingenious",
+      "pos": "adjective",
+      "meaning": "clever, original and inventive",
+      "synonyms": [
+        "inventive",
+        "resourceful"
+      ],
+      "antonyms": [
+        "unimaginative"
+      ],
+      "example": "Students designed an ingenious solar-powered water pump.",
+      "urdu": ""
+    },
+    {
+      "id": "inherent",
+      "word": "inherent",
+      "pos": "adjective",
+      "meaning": "existing as a permanent, essential quality",
+      "synonyms": [
+        "intrinsic",
+        "innate"
+      ],
+      "antonyms": [
+        "extrinsic"
+      ],
+      "example": "There are risks inherent in every large infrastructure project.",
+      "urdu": ""
+    },
+    {
+      "id": "innocuous",
+      "word": "innocuous",
+      "pos": "adjective",
+      "meaning": "not harmful or offensive",
+      "synonyms": [
+        "harmless",
+        "inoffensive"
+      ],
+      "antonyms": [
+        "harmful",
+        "offensive"
+      ],
+      "example": "What seemed an innocuous remark sparked a storm on social media.",
+      "urdu": "بے ضرر"
+    },
+    {
+      "id": "insipid",
+      "word": "insipid",
+      "pos": "adjective",
+      "meaning": "lacking flavour, interest or vigour",
+      "synonyms": [
+        "bland",
+        "dull"
+      ],
+      "antonyms": [
+        "lively",
+        "flavourful"
+      ],
+      "example": "The debate was insipid, with neither side offering new ideas.",
+      "urdu": "بے مزہ"
+    },
+    {
+      "id": "integrity",
+      "word": "integrity",
+      "pos": "noun",
+      "meaning": "the quality of being honest and having strong moral principles",
+      "synonyms": [
+        "honesty",
+        "probity"
+      ],
+      "antonyms": [
+        "dishonesty",
+        "corruption"
+      ],
+      "example": "A civil servant's integrity matters more than his cleverness.",
+      "urdu": "دیانت داری"
+    },
+    {
+      "id": "intrepid",
+      "word": "intrepid",
+      "pos": "adjective",
+      "meaning": "fearless; adventurous",
+      "synonyms": [
+        "fearless",
+        "valiant"
+      ],
+      "antonyms": [
+        "timid",
+        "cowardly"
+      ],
+      "example": "Intrepid climbers have scaled K2 in winter.",
+      "urdu": "بے خوف"
+    },
+    {
+      "id": "jeopardise",
+      "word": "jeopardise",
+      "pos": "verb",
+      "meaning": "to put someone or something in danger",
+      "synonyms": [
+        "endanger",
+        "imperil"
+      ],
+      "antonyms": [
+        "protect",
+        "safeguard"
+      ],
+      "example": "Political instability could jeopardise the IMF programme.",
+      "urdu": "خطرے میں ڈالنا"
+    },
+    {
+      "id": "judicious",
+      "word": "judicious",
+      "pos": "adjective",
+      "meaning": "having or showing good judgement",
+      "synonyms": [
+        "prudent",
+        "sensible"
+      ],
+      "antonyms": [
+        "injudicious",
+        "reckless"
+      ],
+      "example": "Judicious use of groundwater is essential in Balochistan.",
+      "urdu": "دانشمندانہ"
+    },
+    {
+      "id": "laconic",
+      "word": "laconic",
+      "pos": "adjective",
+      "meaning": "using very few words",
+      "synonyms": [
+        "terse",
+        "succinct"
+      ],
+      "antonyms": [
+        "verbose",
+        "garrulous"
+      ],
+      "example": "The spokesman's laconic reply left reporters guessing.",
+      "urdu": ""
+    },
+    {
+      "id": "lethargic",
+      "word": "lethargic",
+      "pos": "adjective",
+      "meaning": "sluggish and lacking energy",
+      "synonyms": [
+        "sluggish",
+        "listless"
+      ],
+      "antonyms": [
+        "energetic",
+        "vigorous"
+      ],
+      "example": "The heatwave left everyone feeling lethargic.",
+      "urdu": "سست"
+    },
+    {
+      "id": "lucid",
+      "word": "lucid",
+      "pos": "adjective",
+      "meaning": "expressed clearly; easy to understand",
+      "synonyms": [
+        "clear",
+        "intelligible"
+      ],
+      "antonyms": [
+        "obscure",
+        "confusing"
+      ],
+      "example": "A lucid précis conveys the main idea in plain words.",
+      "urdu": "واضح"
+    },
+    {
+      "id": "lucrative",
+      "word": "lucrative",
+      "pos": "adjective",
+      "meaning": "producing a great deal of profit",
+      "synonyms": [
+        "profitable",
+        "remunerative"
+      ],
+      "antonyms": [
+        "unprofitable"
+      ],
+      "example": "Fruit exports to the Gulf have become a lucrative business.",
+      "urdu": "منافع بخش"
+    },
+    {
+      "id": "magnanimous",
+      "word": "magnanimous",
+      "pos": "adjective",
+      "meaning": "generous or forgiving, especially towards a rival",
+      "synonyms": [
+        "generous",
+        "big-hearted"
+      ],
+      "antonyms": [
+        "petty",
+        "vindictive"
+      ],
+      "example": "The victorious party was magnanimous in its treatment of the opposition.",
+      "urdu": "عالی ظرف"
+    },
+    {
+      "id": "malevolent",
+      "word": "malevolent",
+      "pos": "adjective",
+      "meaning": "wishing to do evil or harm to others",
+      "synonyms": [
+        "malicious",
+        "spiteful"
+      ],
+      "antonyms": [
+        "benevolent"
+      ],
+      "example": "Malevolent rumours were spread to incite sectarian hatred.",
+      "urdu": "بد خواہ"
+    },
+    {
+      "id": "mediocre",
+      "word": "mediocre",
+      "pos": "adjective",
+      "meaning": "of only average or ordinary quality",
+      "synonyms": [
+        "ordinary",
+        "undistinguished"
+      ],
+      "antonyms": [
+        "excellent",
+        "outstanding"
+      ],
+      "example": "Mediocre results in mathematics worry educationists.",
+      "urdu": "اوسط درجے کا"
+    },
+    {
+      "id": "meticulous",
+      "word": "meticulous",
+      "pos": "adjective",
+      "meaning": "showing great attention to detail",
+      "synonyms": [
+        "scrupulous",
+        "thorough"
+      ],
+      "antonyms": [
+        "careless",
+        "sloppy"
+      ],
+      "example": "The meticulous audit uncovered hidden losses.",
+      "urdu": ""
+    },
+    {
+      "id": "mitigate",
+      "word": "mitigate",
+      "pos": "verb",
+      "meaning": "to make something less severe or painful",
+      "synonyms": [
+        "alleviate",
+        "lessen"
+      ],
+      "antonyms": [
+        "aggravate",
+        "exacerbate"
+      ],
+      "example": "Planting mangroves can mitigate the impact of cyclones on the coast.",
+      "urdu": "تخفیف کرنا"
+    },
+    {
+      "id": "negligent",
+      "word": "negligent",
+      "pos": "adjective",
+      "meaning": "failing to take proper care",
+      "synonyms": [
+        "careless",
+        "remiss"
+      ],
+      "antonyms": [
+        "careful",
+        "diligent"
+      ],
+      "example": "The hospital was found negligent in the death of the patient.",
+      "urdu": "لاپرواہ"
+    },
+    {
+      "id": "nepotism",
+      "word": "nepotism",
+      "pos": "noun",
+      "meaning": "the practice of favouring relatives or friends, especially in giving jobs",
+      "synonyms": [
+        "favouritism",
+        "cronyism"
+      ],
+      "antonyms": [
+        "impartiality"
+      ],
+      "example": "Nepotism in recruitment erodes public trust in institutions.",
+      "urdu": "اقربا پروری"
+    },
+    {
+      "id": "obsolete",
+      "word": "obsolete",
+      "pos": "adjective",
+      "meaning": "no longer produced or used; out of date",
+      "synonyms": [
+        "outdated",
+        "antiquated"
+      ],
+      "antonyms": [
+        "modern",
+        "current"
+      ],
+      "example": "The railways still use some obsolete signalling equipment.",
+      "urdu": "متروک"
+    },
+    {
+      "id": "obstinate",
+      "word": "obstinate",
+      "pos": "adjective",
+      "meaning": "stubbornly refusing to change one's opinion or course",
+      "synonyms": [
+        "stubborn",
+        "obdurate"
+      ],
+      "antonyms": [
+        "compliant",
+        "flexible"
+      ],
+      "example": "An obstinate refusal to negotiate prolonged the strike.",
+      "urdu": "ضدی"
+    },
+    {
+      "id": "opulent",
+      "word": "opulent",
+      "pos": "adjective",
+      "meaning": "ostentatiously rich and luxurious",
+      "synonyms": [
+        "luxurious",
+        "lavish"
+      ],
+      "antonyms": [
+        "austere",
+        "squalid"
+      ],
+      "example": "The opulent mansions of the elite contrast sharply with nearby slums.",
+      "urdu": "شاہانہ"
+    },
+    {
+      "id": "ostensible",
+      "word": "ostensible",
+      "pos": "adjective",
+      "meaning": "stated or appearing to be true, but not necessarily so",
+      "synonyms": [
+        "apparent",
+        "seeming"
+      ],
+      "antonyms": [
+        "actual",
+        "real"
+      ],
+      "example": "The ostensible reason for the visit was trade, but security was the real agenda.",
+      "urdu": "ظاہری"
+    },
+    {
+      "id": "paradox",
+      "word": "paradox",
+      "pos": "noun",
+      "meaning": "a seemingly absurd or contradictory statement that may be true",
+      "synonyms": [
+        "contradiction",
+        "inconsistency"
+      ],
+      "antonyms": [],
+      "example": "It is a paradox that a country with mighty rivers suffers from water scarcity.",
+      "urdu": "تضاد"
+    },
+    {
+      "id": "partisan",
+      "word": "partisan",
+      "pos": "adjective",
+      "meaning": "prejudiced in favour of a particular cause or party",
+      "synonyms": [
+        "biased",
+        "one-sided"
+      ],
+      "antonyms": [
+        "impartial",
+        "neutral"
+      ],
+      "example": "Partisan media coverage deepens political polarisation.",
+      "urdu": "جانبدار"
+    },
+    {
+      "id": "paucity",
+      "word": "paucity",
+      "pos": "noun",
+      "meaning": "the presence of something in small or insufficient quantities",
+      "synonyms": [
+        "scarcity",
+        "dearth"
+      ],
+      "antonyms": [
+        "abundance",
+        "plenty"
+      ],
+      "example": "A paucity of reliable data hampers policymaking.",
+      "urdu": "قلت"
+    },
+    {
+      "id": "perennial",
+      "word": "perennial",
+      "pos": "adjective",
+      "meaning": "lasting a long time or recurring again and again",
+      "synonyms": [
+        "enduring",
+        "recurrent"
+      ],
+      "antonyms": [
+        "ephemeral"
+      ],
+      "example": "Water shortage is a perennial problem in Thar.",
+      "urdu": "دائمی"
+    },
+    {
+      "id": "pernicious",
+      "word": "pernicious",
+      "pos": "adjective",
+      "meaning": "having a harmful effect, especially in a gradual or subtle way",
+      "synonyms": [
+        "harmful",
+        "insidious"
+      ],
+      "antonyms": [
+        "beneficial",
+        "benign"
+      ],
+      "example": "Corruption has a pernicious effect on governance.",
+      "urdu": ""
+    },
+    {
+      "id": "pertinent",
+      "word": "pertinent",
+      "pos": "adjective",
+      "meaning": "relevant or applicable to a particular matter",
+      "synonyms": [
+        "relevant",
+        "apposite"
+      ],
+      "antonyms": [
+        "irrelevant"
+      ],
+      "example": "Quote only facts pertinent to the question.",
+      "urdu": "متعلقہ"
+    },
+    {
+      "id": "plausible",
+      "word": "plausible",
+      "pos": "adjective",
+      "meaning": "seeming reasonable or probable",
+      "synonyms": [
+        "credible",
+        "believable"
+      ],
+      "antonyms": [
+        "implausible",
+        "unlikely"
+      ],
+      "example": "The minister offered a plausible explanation for the delay.",
+      "urdu": "قرین قیاس"
+    },
+    {
+      "id": "pragmatic",
+      "word": "pragmatic",
+      "pos": "adjective",
+      "meaning": "dealing with things sensibly and realistically",
+      "synonyms": [
+        "practical",
+        "realistic"
+      ],
+      "antonyms": [
+        "idealistic",
+        "impractical"
+      ],
+      "example": "A pragmatic foreign policy balances principles with national interest.",
+      "urdu": "عملی"
+    },
+    {
+      "id": "precarious",
+      "word": "precarious",
+      "pos": "adjective",
+      "meaning": "not securely held; dangerously uncertain",
+      "synonyms": [
+        "uncertain",
+        "perilous"
+      ],
+      "antonyms": [
+        "secure",
+        "stable"
+      ],
+      "example": "The economy remained in a precarious state despite the bailout.",
+      "urdu": "غیر یقینی"
+    },
+    {
+      "id": "predicament",
+      "word": "predicament",
+      "pos": "noun",
+      "meaning": "a difficult, unpleasant or embarrassing situation",
+      "synonyms": [
+        "dilemma",
+        "plight"
+      ],
+      "antonyms": [],
+      "example": "Rising fuel prices have put low-income commuters in a predicament.",
+      "urdu": "مشکل صورت حال"
+    },
+    {
+      "id": "prejudice",
+      "word": "prejudice",
+      "pos": "noun",
+      "meaning": "a preconceived opinion not based on reason or experience",
+      "synonyms": [
+        "bias",
+        "partiality"
+      ],
+      "antonyms": [
+        "impartiality",
+        "open-mindedness"
+      ],
+      "example": "Prejudice against girls' education persists in some areas.",
+      "urdu": "تعصب"
+    },
+    {
+      "id": "prerogative",
+      "word": "prerogative",
+      "pos": "noun",
+      "meaning": "an exclusive right or privilege",
+      "synonyms": [
+        "right",
+        "privilege"
+      ],
+      "antonyms": [],
+      "example": "Granting pardons is the President's prerogative.",
+      "urdu": "استحقاق"
+    },
+    {
+      "id": "prodigal",
+      "word": "prodigal",
+      "pos": "adjective",
+      "meaning": "spending money or resources recklessly",
+      "synonyms": [
+        "wasteful",
+        "extravagant"
+      ],
+      "antonyms": [
+        "frugal",
+        "thrifty"
+      ],
+      "example": "Prodigal spending by state enterprises adds to the fiscal deficit.",
+      "urdu": "فضول خرچ"
+    },
+    {
+      "id": "proficient",
+      "word": "proficient",
+      "pos": "adjective",
+      "meaning": "competent or skilled in doing something",
+      "synonyms": [
+        "skilled",
+        "adept"
+      ],
+      "antonyms": [
+        "incompetent",
+        "inept"
+      ],
+      "example": "Officers posted abroad must be proficient in at least one foreign language.",
+      "urdu": "ماہر"
+    },
+    {
+      "id": "prolific",
+      "word": "prolific",
+      "pos": "adjective",
+      "meaning": "producing much fruit, work or results",
+      "synonyms": [
+        "productive",
+        "fertile"
+      ],
+      "antonyms": [
+        "unproductive",
+        "barren"
+      ],
+      "example": "Intizar Hussain was a prolific writer of Urdu fiction.",
+      "urdu": ""
+    },
+    {
+      "id": "propagate",
+      "word": "propagate",
+      "pos": "verb",
+      "meaning": "to spread and promote an idea or belief widely",
+      "synonyms": [
+        "spread",
+        "disseminate"
+      ],
+      "antonyms": [
+        "suppress"
+      ],
+      "example": "Extremist groups use social media to propagate hatred.",
+      "urdu": "پھیلانا"
+    },
+    {
+      "id": "prudent",
+      "word": "prudent",
+      "pos": "adjective",
+      "meaning": "acting with care and thought for the future",
+      "synonyms": [
+        "wise",
+        "judicious"
+      ],
+      "antonyms": [
+        "reckless",
+        "imprudent"
+      ],
+      "example": "A prudent government saves during good years.",
+      "urdu": "دور اندیش"
+    },
+    {
+      "id": "rampant",
+      "word": "rampant",
+      "pos": "adjective",
+      "meaning": "spreading or flourishing unchecked",
+      "synonyms": [
+        "unchecked",
+        "widespread"
+      ],
+      "antonyms": [
+        "controlled"
+      ],
+      "example": "Rampant smuggling deprives the exchequer of revenue.",
+      "urdu": "بے قابو"
+    },
+    {
+      "id": "rationale",
+      "word": "rationale",
+      "pos": "noun",
+      "meaning": "the set of reasons behind a course of action",
+      "synonyms": [
+        "reasoning",
+        "justification"
+      ],
+      "antonyms": [],
+      "example": "The rationale for the new tax was explained in the budget speech.",
+      "urdu": "جواز"
+    },
+    {
+      "id": "rectify",
+      "word": "rectify",
+      "pos": "verb",
+      "meaning": "to put something right; correct",
+      "synonyms": [
+        "correct",
+        "remedy"
+      ],
+      "antonyms": [],
+      "example": "The authority promised to rectify errors in the electoral rolls.",
+      "urdu": "درست کرنا"
+    },
+    {
+      "id": "redundant",
+      "word": "redundant",
+      "pos": "adjective",
+      "meaning": "no longer needed or useful; superfluous",
+      "synonyms": [
+        "superfluous",
+        "unnecessary"
+      ],
+      "antonyms": [
+        "necessary",
+        "essential"
+      ],
+      "example": "Several redundant posts were abolished in the restructuring.",
+      "urdu": "فالتو"
+    },
+    {
+      "id": "reiterate",
+      "word": "reiterate",
+      "pos": "verb",
+      "meaning": "to say something again, usually for emphasis",
+      "synonyms": [
+        "repeat",
+        "restate"
+      ],
+      "antonyms": [],
+      "example": "The Foreign Office reiterated its call for a peaceful resolution of the dispute.",
+      "urdu": "دہرانا"
+    },
+    {
+      "id": "relinquish",
+      "word": "relinquish",
+      "pos": "verb",
+      "meaning": "to give up something voluntarily",
+      "synonyms": [
+        "surrender",
+        "renounce"
+      ],
+      "antonyms": [
+        "retain",
+        "seize"
+      ],
+      "example": "The founder agreed to relinquish control of the company.",
+      "urdu": "دستبردار ہونا"
+    },
+    {
+      "id": "resilient",
+      "word": "resilient",
+      "pos": "adjective",
+      "meaning": "able to recover quickly from difficulties",
+      "synonyms": [
+        "robust",
+        "hardy"
+      ],
+      "antonyms": [
+        "fragile",
+        "vulnerable"
+      ],
+      "example": "Flood-resilient houses are being built in the affected districts.",
+      "urdu": "لچکدار"
+    },
+    {
+      "id": "reticent",
+      "word": "reticent",
+      "pos": "adjective",
+      "meaning": "not revealing one's thoughts or feelings readily",
+      "synonyms": [
+        "reserved",
+        "taciturn"
+      ],
+      "antonyms": [
+        "forthcoming",
+        "outspoken"
+      ],
+      "example": "Officials were reticent about the terms of the loan.",
+      "urdu": ""
+    },
+    {
+      "id": "rhetoric",
+      "word": "rhetoric",
+      "pos": "noun",
+      "meaning": "language designed to persuade or impress, often lacking sincerity",
+      "synonyms": [
+        "oratory",
+        "bombast"
+      ],
+      "antonyms": [],
+      "example": "Voters are tired of rhetoric and want results.",
+      "urdu": "لفاظی"
+    },
+    {
+      "id": "rudimentary",
+      "word": "rudimentary",
+      "pos": "adjective",
+      "meaning": "involving only basic principles; undeveloped",
+      "synonyms": [
+        "basic",
+        "elementary"
+      ],
+      "antonyms": [
+        "advanced",
+        "sophisticated"
+      ],
+      "example": "Many rural clinics have only rudimentary equipment.",
+      "urdu": "ابتدائی"
+    },
+    {
+      "id": "sagacious",
+      "word": "sagacious",
+      "pos": "adjective",
+      "meaning": "having keen mental discernment and good judgement",
+      "synonyms": [
+        "wise",
+        "shrewd"
+      ],
+      "antonyms": [
+        "foolish"
+      ],
+      "example": "The sagacious elder settled the dispute between the two tribes.",
+      "urdu": "دانشمند"
+    },
+    {
+      "id": "sanguine",
+      "word": "sanguine",
+      "pos": "adjective",
+      "meaning": "optimistic, especially in a difficult situation",
+      "synonyms": [
+        "optimistic",
+        "hopeful"
+      ],
+      "antonyms": [
+        "pessimistic",
+        "gloomy"
+      ],
+      "example": "The finance minister was sanguine about meeting the revenue target.",
+      "urdu": "پرامید"
+    },
+    {
+      "id": "sceptical",
+      "word": "sceptical",
+      "pos": "adjective",
+      "meaning": "not easily convinced; having doubts",
+      "synonyms": [
+        "doubtful",
+        "dubious"
+      ],
+      "antonyms": [
+        "credulous",
+        "trusting"
+      ],
+      "example": "Economists are sceptical about the projected growth rate.",
+      "urdu": ""
+    },
+    {
+      "id": "scrupulous",
+      "word": "scrupulous",
+      "pos": "adjective",
+      "meaning": "diligent, thorough and careful to do what is right",
+      "synonyms": [
+        "conscientious",
+        "meticulous"
+      ],
+      "antonyms": [
+        "unscrupulous",
+        "careless"
+      ],
+      "example": "Scrupulous honesty earned him the trust of his colleagues.",
+      "urdu": ""
+    },
+    {
+      "id": "scrutinise",
+      "word": "scrutinise",
+      "pos": "verb",
+      "meaning": "to examine closely and thoroughly",
+      "synonyms": [
+        "examine",
+        "inspect"
+      ],
+      "antonyms": [
+        "overlook",
+        "skim"
+      ],
+      "example": "Nomination papers are scrutinised by the returning officer.",
+      "urdu": "جانچ پڑتال کرنا"
+    },
+    {
+      "id": "sovereignty",
+      "word": "sovereignty",
+      "pos": "noun",
+      "meaning": "supreme power or authority, especially of a state",
+      "synonyms": [
+        "independence",
+        "autonomy"
+      ],
+      "antonyms": [
+        "subjugation"
+      ],
+      "example": "Pakistan will not compromise on its sovereignty.",
+      "urdu": "اقتدار اعلیٰ"
+    },
+    {
+      "id": "sporadic",
+      "word": "sporadic",
+      "pos": "adjective",
+      "meaning": "occurring at irregular intervals or only in a few places",
+      "synonyms": [
+        "intermittent",
+        "occasional"
+      ],
+      "antonyms": [
+        "constant",
+        "continuous"
+      ],
+      "example": "Sporadic firing was reported along the border.",
+      "urdu": "اکا دکا"
+    },
+    {
+      "id": "stagnant",
+      "word": "stagnant",
+      "pos": "adjective",
+      "meaning": "showing no activity, growth or development",
+      "synonyms": [
+        "static",
+        "sluggish"
+      ],
+      "antonyms": [
+        "dynamic",
+        "thriving"
+      ],
+      "example": "Stagnant exports have widened the trade deficit.",
+      "urdu": "جمود کا شکار"
+    },
+    {
+      "id": "stringent",
+      "word": "stringent",
+      "pos": "adjective",
+      "meaning": "strict, precise and exacting",
+      "synonyms": [
+        "strict",
+        "rigorous"
+      ],
+      "antonyms": [
+        "lenient",
+        "lax"
+      ],
+      "example": "Stringent rules govern the import of medicines.",
+      "urdu": "سخت"
+    },
+    {
+      "id": "substantiate",
+      "word": "substantiate",
+      "pos": "verb",
+      "meaning": "to provide evidence to support or prove the truth of",
+      "synonyms": [
+        "corroborate",
+        "verify"
+      ],
+      "antonyms": [
+        "refute",
+        "disprove"
+      ],
+      "example": "The prosecution failed to substantiate the allegations.",
+      "urdu": "ثابت کرنا"
+    },
+    {
+      "id": "superfluous",
+      "word": "superfluous",
+      "pos": "adjective",
+      "meaning": "unnecessary, especially through being more than enough",
+      "synonyms": [
+        "redundant",
+        "surplus"
+      ],
+      "antonyms": [
+        "essential",
+        "necessary"
+      ],
+      "example": "Remove superfluous words when writing a précis.",
+      "urdu": "غیر ضروری"
+    },
+    {
+      "id": "tacit",
+      "word": "tacit",
+      "pos": "adjective",
+      "meaning": "understood or implied without being stated",
+      "synonyms": [
+        "implicit",
+        "unspoken"
+      ],
+      "antonyms": [
+        "explicit",
+        "stated"
+      ],
+      "example": "There was a tacit understanding between the parties to avoid the issue.",
+      "urdu": ""
+    },
+    {
+      "id": "tangible",
+      "word": "tangible",
+      "pos": "adjective",
+      "meaning": "perceptible by touch; clear and definite",
+      "synonyms": [
+        "concrete",
+        "palpable"
+      ],
+      "antonyms": [
+        "intangible",
+        "abstract"
+      ],
+      "example": "The reforms have yet to produce tangible benefits for ordinary people.",
+      "urdu": "ٹھوس"
+    },
+    {
+      "id": "tenacious",
+      "word": "tenacious",
+      "pos": "adjective",
+      "meaning": "holding firmly to a purpose; persistent",
+      "synonyms": [
+        "persistent",
+        "determined"
+      ],
+      "antonyms": [
+        "irresolute",
+        "wavering"
+      ],
+      "example": "Tenacious lawyers kept the case alive for a decade.",
+      "urdu": "ثابت قدم"
+    },
+    {
+      "id": "tenuous",
+      "word": "tenuous",
+      "pos": "adjective",
+      "meaning": "very weak or slight",
+      "synonyms": [
+        "flimsy",
+        "slender"
+      ],
+      "antonyms": [
+        "solid",
+        "substantial"
+      ],
+      "example": "The link between the two incidents seemed tenuous.",
+      "urdu": "کمزور"
+    },
+    {
+      "id": "transient",
+      "word": "transient",
+      "pos": "adjective",
+      "meaning": "lasting only for a short time",
+      "synonyms": [
+        "temporary",
+        "fleeting"
+      ],
+      "antonyms": [
+        "permanent",
+        "lasting"
+      ],
+      "example": "The relief from inflation proved transient.",
+      "urdu": "عارضی"
+    },
+    {
+      "id": "transparent",
+      "word": "transparent",
+      "pos": "adjective",
+      "meaning": "open to public scrutiny; easy to perceive or detect",
+      "synonyms": [
+        "open",
+        "clear"
+      ],
+      "antonyms": [
+        "opaque",
+        "secretive"
+      ],
+      "example": "Transparent procurement reduces opportunities for corruption.",
+      "urdu": "شفاف"
+    },
+    {
+      "id": "trivial",
+      "word": "trivial",
+      "pos": "adjective",
+      "meaning": "of little value or importance",
+      "synonyms": [
+        "insignificant",
+        "trifling"
+      ],
+      "antonyms": [
+        "significant",
+        "important"
+      ],
+      "example": "Do not waste time on trivial details in your essay.",
+      "urdu": "معمولی"
+    },
+    {
+      "id": "turbulent",
+      "word": "turbulent",
+      "pos": "adjective",
+      "meaning": "characterised by conflict, disorder or confusion",
+      "synonyms": [
+        "tumultuous",
+        "unstable"
+      ],
+      "antonyms": [
+        "calm",
+        "tranquil"
+      ],
+      "example": "The 1970s were a turbulent decade in Pakistan's history.",
+      "urdu": "ہنگامہ خیز"
+    },
+    {
+      "id": "ubiquitous",
+      "word": "ubiquitous",
+      "pos": "adjective",
+      "meaning": "present, appearing or found everywhere",
+      "synonyms": [
+        "omnipresent",
+        "pervasive"
+      ],
+      "antonyms": [
+        "rare",
+        "scarce"
+      ],
+      "example": "Smartphones have become ubiquitous even in remote villages.",
+      "urdu": "ہر جگہ موجود"
+    },
+    {
+      "id": "unanimous",
+      "word": "unanimous",
+      "pos": "adjective",
+      "meaning": "fully in agreement",
+      "synonyms": [
+        "undivided",
+        "united"
+      ],
+      "antonyms": [
+        "divided",
+        "split"
+      ],
+      "example": "The resolution was passed by a unanimous vote.",
+      "urdu": "متفقہ"
+    },
+    {
+      "id": "unprecedented",
+      "word": "unprecedented",
+      "pos": "adjective",
+      "meaning": "never done or known before",
+      "synonyms": [
+        "unparalleled",
+        "unheard-of"
+      ],
+      "antonyms": [
+        "commonplace",
+        "usual"
+      ],
+      "example": "The 2022 floods caused unprecedented destruction.",
+      "urdu": "بے مثال"
+    },
+    {
+      "id": "vehement",
+      "word": "vehement",
+      "pos": "adjective",
+      "meaning": "showing strong feeling; forceful or intense",
+      "synonyms": [
+        "passionate",
+        "forceful"
+      ],
+      "antonyms": [
+        "mild",
+        "half-hearted"
+      ],
+      "example": "The proposal met vehement opposition from traders.",
+      "urdu": "شدید"
+    },
+    {
+      "id": "venerate",
+      "word": "venerate",
+      "pos": "verb",
+      "meaning": "to regard with great respect",
+      "synonyms": [
+        "revere",
+        "honour"
+      ],
+      "antonyms": [
+        "despise",
+        "scorn"
+      ],
+      "example": "Sufi saints are venerated across the country.",
+      "urdu": "تعظیم کرنا"
+    },
+    {
+      "id": "verbose",
+      "word": "verbose",
+      "pos": "adjective",
+      "meaning": "using more words than are needed",
+      "synonyms": [
+        "wordy",
+        "long-winded"
+      ],
+      "antonyms": [
+        "concise",
+        "succinct"
+      ],
+      "example": "Examiners penalise verbose answers.",
+      "urdu": ""
+    },
+    {
+      "id": "viable",
+      "word": "viable",
+      "pos": "adjective",
+      "meaning": "capable of working successfully; feasible",
+      "synonyms": [
+        "feasible",
+        "workable"
+      ],
+      "antonyms": [
+        "unworkable",
+        "impracticable"
+      ],
+      "example": "Solar power is now a viable alternative to imported fuel.",
+      "urdu": "قابل عمل"
+    },
+    {
+      "id": "vigilant",
+      "word": "vigilant",
+      "pos": "adjective",
+      "meaning": "keeping careful watch for possible danger or difficulty",
+      "synonyms": [
+        "watchful",
+        "alert"
+      ],
+      "antonyms": [
+        "negligent",
+        "inattentive"
+      ],
+      "example": "Citizens must remain vigilant against online fraud.",
+      "urdu": "چوکس"
+    },
+    {
+      "id": "vindicate",
+      "word": "vindicate",
+      "pos": "verb",
+      "meaning": "to clear of blame or suspicion; show to be right or justified",
+      "synonyms": [
+        "exonerate",
+        "justify"
+      ],
+      "antonyms": [
+        "incriminate",
+        "discredit"
+      ],
+      "example": "Later events vindicated the economist's warnings.",
+      "urdu": "حق بجانب ثابت کرنا"
+    },
+    {
+      "id": "volatile",
+      "word": "volatile",
+      "pos": "adjective",
+      "meaning": "liable to change rapidly and unpredictably",
+      "synonyms": [
+        "unstable",
+        "erratic"
+      ],
+      "antonyms": [
+        "stable",
+        "steady"
+      ],
+      "example": "Oil prices remain volatile in global markets.",
+      "urdu": "غیر مستحکم"
+    },
+    {
+      "id": "vulnerable",
+      "word": "vulnerable",
+      "pos": "adjective",
+      "meaning": "exposed to the possibility of being harmed",
+      "synonyms": [
+        "exposed",
+        "susceptible"
+      ],
+      "antonyms": [
+        "secure",
+        "protected"
+      ],
+      "example": "Coastal communities are vulnerable to rising sea levels.",
+      "urdu": "غیر محفوظ"
+    },
+    {
+      "id": "wane",
+      "word": "wane",
+      "pos": "verb",
+      "meaning": "to decrease in strength, extent or vigour",
+      "synonyms": [
+        "decline",
+        "diminish"
+      ],
+      "antonyms": [
+        "wax",
+        "increase"
+      ],
+      "example": "Public interest in the scandal began to wane within a week.",
+      "urdu": "گھٹنا"
+    },
+    {
+      "id": "zealous",
+      "word": "zealous",
+      "pos": "adjective",
+      "meaning": "having or showing great energy or enthusiasm for a cause",
+      "synonyms": [
+        "ardent",
+        "fervent"
+      ],
+      "antonyms": [
+        "apathetic",
+        "indifferent"
+      ],
+      "example": "Zealous volunteers distributed food in the flood-relief camps.",
+      "urdu": "پرجوش"
+    }
+  ]
+}

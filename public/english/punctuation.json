@@ -1,0 +1,514 @@
+{
+  "rules": [
+    {
+      "mark": "Full stop and question mark",
+      "rule": "End a statement or polite command with a full stop and a direct question with a question mark. An indirect (reported) question ends with a full stop. In British usage, abbreviations such as Mr, Mrs and Dr usually take no full stop.",
+      "examples": ["The session begins at ten.", "Where is the library?", "She asked where the library was.", "Dr Rehman chaired the panel."]
+    },
+    {
+      "mark": "Comma (lists and introductions)",
+      "rule": "Separate items in a list with commas; in British English the comma before the final 'and' (the Oxford comma) is optional. Put a comma after a long introductory clause or phrase.",
+      "examples": ["We packed rice, lentils and flour.", "Although the roads were flooded, the relief convoy reached the village."]
+    },
+    {
+      "mark": "Comma (clauses and address)",
+      "rule": "Enclose a non-defining clause (extra information) in a pair of commas, but use no commas with a defining clause. Use commas to set off a person being spoken to. Never join two complete sentences with a comma alone.",
+      "examples": ["Murree, which lies north of Islamabad, is cooler in summer.", "The book that you lent me is excellent.", "Sara, please read the next paragraph."]
+    },
+    {
+      "mark": "Semicolon",
+      "rule": "Use a semicolon to join two closely related complete sentences without a conjunction, before linking adverbs such as however and therefore, and between list items that already contain commas.",
+      "examples": ["The hall was full; many people stood outside.", "The fee is low; however, seats are limited.", "We visited Hunza, in the north; Thar, in the south; and Swat, in between."]
+    },
+    {
+      "mark": "Colon",
+      "rule": "Use a colon after a complete clause to introduce a list, an explanation or an example. Do not put a colon directly after a verb or preposition.",
+      "examples": ["Bring three things: a pen, a ruler and your admit card.", "The reason was simple: the bridge had collapsed."]
+    },
+    {
+      "mark": "Apostrophe",
+      "rule": "Use an apostrophe for possession (the clerk's desk, the clerks' desks, the women's room) and for contractions (don't, it's). It's means 'it is' or 'it has'; its (no apostrophe) means 'belonging to it'. Never use an apostrophe to make a plain plural.",
+      "examples": ["It's clear that the party has lost its majority.", "The children's playground is closed for two weeks."]
+    },
+    {
+      "mark": "Quotation marks",
+      "rule": "Put the exact words of a speaker inside quotation marks. British writing often uses single quotation marks, though double marks are also acceptable. A comma usually separates the reporting verb from the quotation, and the closing mark of a quoted sentence goes inside.",
+      "examples": ["He said, 'The results will be out on Friday.'", "'Are you ready?' asked the examiner."]
+    },
+    {
+      "mark": "Hyphen and dash",
+      "rule": "A hyphen (-) joins words into a single unit, such as a compound adjective before a noun or a compound number. A dash (–), usually spaced in British English, marks a break or an added comment in a sentence.",
+      "examples": ["She is a well-known poet with twenty-two collections.", "The plan – if it was ever a plan – collapsed within a week."]
+    },
+    {
+      "mark": "Capital letters",
+      "rule": "Use capitals to begin a sentence and for proper nouns: names, places, nationalities, languages, days, months and titles used before a name. Seasons and general nouns take no capital.",
+      "examples": ["We met Professor Hashmi in Karachi on a Friday in April.", "She teaches Urdu literature in the autumn term."]
+    },
+    {
+      "mark": "Commas to avoid",
+      "rule": "Do not put a single comma between a subject and its verb, or between a verb and its object, even when the subject is long.",
+      "examples": ["The officers who completed the training will be promoted.", "Everyone who attended the seminar received a certificate."]
+    }
+  ],
+  "questions": [
+    {
+      "id": "punc-01",
+      "type": "mcq",
+      "prompt": "Which sentence is punctuated correctly?",
+      "options": [
+        "We need pens, paper, glue and scissors.",
+        "We need pens paper, glue and scissors.",
+        "We need, pens, paper, glue and scissors.",
+        "We need pens; paper; glue and scissors."
+      ],
+      "answer": 0,
+      "explanation": "Items in a simple list are separated by commas; there is no comma between a verb and its object, and semicolons are not used for a simple list."
+    },
+    {
+      "id": "punc-02",
+      "type": "mcq",
+      "prompt": "Which sentence is punctuated correctly?",
+      "options": [
+        "When the results were announced, the hall, erupted with applause.",
+        "When the results were announced, the hall erupted with applause.",
+        "When, the results were announced the hall erupted with applause.",
+        "When the results, were announced the hall erupted with applause."
+      ],
+      "answer": 1,
+      "explanation": "The comma belongs after the introductory clause; a comma must not separate a subject from its verb or split the clause itself."
+    },
+    {
+      "id": "punc-03",
+      "type": "mcq",
+      "prompt": "Which sentence is punctuated correctly?",
+      "options": [
+        "My brother who lives in Quetta, is a doctor.",
+        "My brother, who lives in Quetta is a doctor.",
+        "My brother, who lives in Quetta, is a doctor.",
+        "My brother who, lives in Quetta, is a doctor."
+      ],
+      "answer": 2,
+      "explanation": "A non-defining clause must be enclosed by a pair of commas; a single comma wrongly separates the subject from its verb."
+    },
+    {
+      "id": "punc-04",
+      "type": "mcq",
+      "prompt": "Which sentence is punctuated correctly?",
+      "options": [
+        "Ali please, come here.",
+        "Ali come here, please.",
+        "Come here Ali, please.",
+        "Ali, please come here."
+      ],
+      "answer": 3,
+      "explanation": "The name of a person being spoken to (direct address) must be set off by a comma."
+    },
+    {
+      "id": "punc-05",
+      "type": "mcq",
+      "prompt": "Which sentence is punctuated correctly?",
+      "options": [
+        "The train was late; we missed the opening session.",
+        "The train was late, we missed the opening session.",
+        "The train was late, and, we missed the opening session.",
+        "The train was late we missed the opening session."
+      ],
+      "answer": 0,
+      "explanation": "Two complete sentences without a conjunction can be joined by a semicolon; a comma alone creates a comma splice, and no comma follows the conjunction 'and'."
+    },
+    {
+      "id": "punc-06",
+      "type": "mcq",
+      "prompt": "Which sentence is punctuated correctly?",
+      "options": [
+        "The plan is sound, however, it is expensive.",
+        "The plan is sound; however, it is expensive.",
+        "The plan is sound, however; it is expensive.",
+        "The plan is sound however; it is expensive."
+      ],
+      "answer": 1,
+      "explanation": "'However' joining two complete sentences needs a semicolon before it and a comma after it."
+    },
+    {
+      "id": "punc-07",
+      "type": "mcq",
+      "prompt": "Which sentence is punctuated correctly?",
+      "options": [
+        "The kit contains three items, a torch: a map and a compass.",
+        "The kit contains; three items: a torch, a map and a compass.",
+        "The kit contains three items: a torch, a map and a compass.",
+        "The kit contains: three items, a torch, a map and a compass."
+      ],
+      "answer": 2,
+      "explanation": "A colon introduces a list after a complete clause ('The kit contains three items'); it should not follow a verb directly."
+    },
+    {
+      "id": "punc-08",
+      "type": "mcq",
+      "prompt": "Which sentence is punctuated correctly?",
+      "options": [
+        "The company announced it's results yesterday.",
+        "The company announced its' results yesterday.",
+        "The company's announced it's results yesterday.",
+        "The company announced its results yesterday."
+      ],
+      "answer": 3,
+      "explanation": "The possessive 'its' has no apostrophe; 'it's' means 'it is' or 'it has', and 'its'' does not exist."
+    },
+    {
+      "id": "punc-09",
+      "type": "mcq",
+      "prompt": "Which sentence is punctuated correctly?",
+      "options": [
+        "The children's books are on the top shelf.",
+        "The childrens' books are on the top shelf.",
+        "The childrens books are on the top shelf.",
+        "The children's book's are on the top shelf."
+      ],
+      "answer": 0,
+      "explanation": "'Children' is already plural, so its possessive is 'children's'; the plain plural 'books' takes no apostrophe."
+    },
+    {
+      "id": "punc-10",
+      "type": "mcq",
+      "prompt": "Which sentence is punctuated correctly?",
+      "options": [
+        "Fresh mango's are sold here every summer.",
+        "Fresh mangoes are sold here every summer.",
+        "Fresh mangoe's are sold here every summer.",
+        "Fresh mangoes' are sold here every summer."
+      ],
+      "answer": 1,
+      "explanation": "A plain plural never takes an apostrophe."
+    },
+    {
+      "id": "punc-11",
+      "type": "mcq",
+      "prompt": "Which sentence is punctuated correctly?",
+      "options": [
+        "He said, \"I will be late?\"",
+        "He said, I will be late.\"",
+        "He said, \"I will be late.\"",
+        "He said, \"i will be late.\""
+      ],
+      "answer": 2,
+      "explanation": "The quoted statement needs opening and closing quotation marks, a capital letter at the start, and a full stop (not a question mark) inside the closing mark."
+    },
+    {
+      "id": "punc-12",
+      "type": "mcq",
+      "prompt": "Which sentence is punctuated correctly?",
+      "options": [
+        "She asked me where I was going?",
+        "She asked me, where was I going.",
+        "She asked me where was I going?",
+        "She asked me where I was going."
+      ],
+      "answer": 3,
+      "explanation": "An indirect question uses statement word order and ends with a full stop, not a question mark."
+    },
+    {
+      "id": "punc-13",
+      "type": "mcq",
+      "prompt": "Which sentence is punctuated correctly?",
+      "options": [
+        "\"Where are you going?\" asked the officer.",
+        "\"Where are you going\" asked the officer.",
+        "\"Where are you going?,\" asked the officer.",
+        "\"Where are you going.\" asked the officer."
+      ],
+      "answer": 0,
+      "explanation": "A quoted direct question ends with a question mark inside the quotation marks, and no extra comma is added after it."
+    },
+    {
+      "id": "punc-14",
+      "type": "mcq",
+      "prompt": "Which sentence is punctuated correctly?",
+      "options": [
+        "She is a well known author.",
+        "She is a well-known author.",
+        "She is a well – known author.",
+        "She is a well-known-author."
+      ],
+      "answer": 1,
+      "explanation": "A compound adjective before a noun is joined with a hyphen; a dash is not used inside a word, and the noun is not hyphenated to the adjective."
+    },
+    {
+      "id": "punc-15",
+      "type": "mcq",
+      "prompt": "Which sentence is punctuated correctly?",
+      "options": [
+        "There are twenty five students in the class.",
+        "There are twenty – five students in the class.",
+        "There are twenty-five students in the class.",
+        "There are twenty-five-students in the class."
+      ],
+      "answer": 2,
+      "explanation": "Compound numbers from twenty-one to ninety-nine are written with a hyphen."
+    },
+    {
+      "id": "punc-16",
+      "type": "mcq",
+      "prompt": "Which sentence is punctuated correctly?",
+      "options": [
+        "We met on monday in june.",
+        "We met on Monday in june.",
+        "We met on monday in June.",
+        "We met on Monday in June."
+      ],
+      "answer": 3,
+      "explanation": "Days of the week and months of the year always begin with a capital letter."
+    },
+    {
+      "id": "punc-17",
+      "type": "mcq",
+      "prompt": "Which sentence is punctuated correctly?",
+      "options": [
+        "She teaches English in the winter term.",
+        "She teaches english in the Winter term.",
+        "She teaches english in the winter term.",
+        "She Teaches English in the winter term."
+      ],
+      "answer": 0,
+      "explanation": "Names of languages take a capital letter; seasons and ordinary verbs do not."
+    },
+    {
+      "id": "punc-18",
+      "type": "mcq",
+      "prompt": "Which sentence is punctuated correctly?",
+      "options": [
+        "The case was heard by justice Ahmed.",
+        "The case was heard by Justice Ahmed.",
+        "The case was heard by Justice ahmed.",
+        "The Case was heard by Justice Ahmed."
+      ],
+      "answer": 1,
+      "explanation": "A title used before a name and the name itself both take capitals; a common noun such as 'case' does not."
+    },
+    {
+      "id": "punc-19",
+      "type": "mcq",
+      "prompt": "Which sentence is punctuated correctly?",
+      "options": [
+        "It was raining heavily, the match was cancelled.",
+        "It was raining heavily the match was cancelled.",
+        "It was raining heavily, so the match was cancelled.",
+        "It was raining heavily, so, the match was cancelled."
+      ],
+      "answer": 2,
+      "explanation": "Two complete sentences may be joined by a comma plus a conjunction such as 'so'; a comma alone is a comma splice, and no comma follows the conjunction."
+    },
+    {
+      "id": "punc-20",
+      "type": "mcq",
+      "prompt": "Which sentence is punctuated correctly?",
+      "options": [
+        "The candidates who passed the written test, will be interviewed next week.",
+        "The candidates, who passed the written test will be interviewed next week.",
+        "The candidates who passed, the written test will be interviewed next week.",
+        "The candidates who passed the written test will be interviewed next week."
+      ],
+      "answer": 3,
+      "explanation": "A defining clause takes no commas, and a single comma must never separate a subject from its verb."
+    },
+    {
+      "id": "punc-21",
+      "type": "mcq",
+      "prompt": "Which sentence is punctuated correctly?",
+      "options": [
+        "The delegates came from Lahore, Punjab; Quetta, Balochistan; and Gilgit, Gilgit-Baltistan.",
+        "The delegates came from Lahore, Punjab, Quetta, Balochistan, and Gilgit, Gilgit-Baltistan.",
+        "The delegates came from Lahore; Punjab, Quetta; Balochistan, and Gilgit; Gilgit-Baltistan.",
+        "The delegates came from Lahore: Punjab; Quetta: Balochistan; and Gilgit: Gilgit-Baltistan."
+      ],
+      "answer": 0,
+      "explanation": "When list items already contain commas, semicolons separate the items so that the reader can tell where each one ends."
+    },
+    {
+      "id": "punc-22",
+      "type": "mcq",
+      "prompt": "Which sentence is punctuated correctly?",
+      "options": [
+        "He had one ambition; to join the civil service.",
+        "He had one ambition: to join the civil service.",
+        "He had: one ambition to join the civil service.",
+        "He had one: ambition to join the civil service."
+      ],
+      "answer": 1,
+      "explanation": "A colon after a complete clause introduces an explanation; a semicolon must be followed by a complete sentence."
+    },
+    {
+      "id": "punc-23",
+      "type": "mcq",
+      "prompt": "Which sentence is punctuated correctly?",
+      "options": [
+        "Its been a long day, and the team has lost it's way.",
+        "It's been a long day, and the team has lost it's way.",
+        "It's been a long day, and the team has lost its way.",
+        "Its' been a long day, and the team has lost its way."
+      ],
+      "answer": 2,
+      "explanation": "'It's' is the contraction of 'it has'; 'its' without an apostrophe is the possessive."
+    },
+    {
+      "id": "punc-24",
+      "type": "mcq",
+      "prompt": "Which sentence is punctuated correctly?",
+      "options": [
+        "You must give a weeks notice before resigning.",
+        "You must give a weeks' notice before resigning.",
+        "You must give a weeks notice' before resigning.",
+        "You must give a week's notice before resigning."
+      ],
+      "answer": 3,
+      "explanation": "Expressions of time take a possessive apostrophe: one week's notice (singular), two weeks' notice (plural)."
+    },
+    {
+      "id": "punc-25",
+      "type": "rewrite",
+      "prompt": "Punctuate the sentence correctly.",
+      "sentence": "the meeting has been postponed until thursday",
+      "answers": ["The meeting has been postponed until Thursday."],
+      "explanation": "A sentence begins with a capital letter and ends with a full stop; days of the week are capitalised."
+    },
+    {
+      "id": "punc-26",
+      "type": "rewrite",
+      "prompt": "Punctuate the sentence correctly.",
+      "sentence": "dr khan who chairs the committee will speak first",
+      "answers": [
+        "Dr Khan, who chairs the committee, will speak first.",
+        "Dr. Khan, who chairs the committee, will speak first."
+      ],
+      "explanation": "'Who chairs the committee' adds extra information about a named person, so it is a non-defining clause enclosed in commas. British usage normally writes 'Dr' without a full stop."
+    },
+    {
+      "id": "punc-27",
+      "type": "rewrite",
+      "prompt": "Punctuate the sentence correctly.",
+      "sentence": "we visited lahore multan and peshawar",
+      "answers": [
+        "We visited Lahore, Multan and Peshawar.",
+        "We visited Lahore, Multan, and Peshawar."
+      ],
+      "explanation": "List items are separated by commas (the comma before 'and' is optional in British English), and place names are capitalised."
+    },
+    {
+      "id": "punc-28",
+      "type": "rewrite",
+      "prompt": "Punctuate the sentence correctly.",
+      "sentence": "its a pity that the college lost it's funding",
+      "answers": ["It's a pity that the college lost its funding."],
+      "explanation": "'It's' (it is) needs an apostrophe; the possessive 'its' does not."
+    },
+    {
+      "id": "punc-29",
+      "type": "rewrite",
+      "prompt": "Punctuate the sentence correctly.",
+      "sentence": "where is the examination hall asked the candidate",
+      "answers": [
+        "\"Where is the examination hall?\" asked the candidate.",
+        "'Where is the examination hall?' asked the candidate."
+      ],
+      "explanation": "The spoken question goes inside quotation marks with its question mark inside the closing mark; the sentence ends with a full stop."
+    },
+    {
+      "id": "punc-30",
+      "type": "rewrite",
+      "prompt": "Punctuate the sentence correctly.",
+      "sentence": "although she had prepared for months she failed the interview",
+      "answers": ["Although she had prepared for months, she failed the interview."],
+      "explanation": "An introductory subordinate clause is followed by a comma before the main clause."
+    },
+    {
+      "id": "punc-31",
+      "type": "rewrite",
+      "prompt": "Punctuate the sentence correctly.",
+      "sentence": "ahmed please close the window",
+      "answers": ["Ahmed, please close the window."],
+      "explanation": "The name of the person being addressed is separated from the rest of the sentence by a comma."
+    },
+    {
+      "id": "punc-32",
+      "type": "rewrite",
+      "prompt": "Punctuate the sentence correctly.",
+      "sentence": "the childrens toys were scattered across the floor",
+      "answers": ["The children's toys were scattered across the floor."],
+      "explanation": "'Children' is an irregular plural, so its possessive is formed with 's: children's."
+    },
+    {
+      "id": "punc-33",
+      "type": "rewrite",
+      "prompt": "Punctuate the sentence correctly.",
+      "sentence": "i have one request dont be late",
+      "answers": ["I have one request: don't be late."],
+      "explanation": "A colon after a complete clause introduces the explanation (the request); 'don't' needs an apostrophe and 'I' is always capitalised."
+    },
+    {
+      "id": "punc-34",
+      "type": "rewrite",
+      "prompt": "Punctuate the sentence correctly.",
+      "sentence": "the lecture was cancelled however the students stayed",
+      "answers": [
+        "The lecture was cancelled; however, the students stayed.",
+        "The lecture was cancelled. However, the students stayed."
+      ],
+      "explanation": "'However' between two complete sentences needs a semicolon (or full stop) before it and a comma after it."
+    },
+    {
+      "id": "punc-35",
+      "type": "rewrite",
+      "prompt": "Punctuate the sentence correctly.",
+      "sentence": "she bought three things a pen a notebook and a ruler",
+      "answers": [
+        "She bought three things: a pen, a notebook and a ruler.",
+        "She bought three things: a pen, a notebook, and a ruler."
+      ],
+      "explanation": "A colon after the complete clause introduces the list, and commas separate the items (the comma before 'and' is optional)."
+    },
+    {
+      "id": "punc-36",
+      "type": "rewrite",
+      "prompt": "Punctuate the sentence correctly.",
+      "sentence": "pakistan whose capital is islamabad gained independence in 1947",
+      "answers": ["Pakistan, whose capital is Islamabad, gained independence in 1947."],
+      "explanation": "The clause adds extra information about a unique, named country, so it is non-defining and enclosed in commas."
+    },
+    {
+      "id": "punc-37",
+      "type": "rewrite",
+      "prompt": "Punctuate the sentence correctly.",
+      "sentence": "he is a well known writer",
+      "answers": ["He is a well-known writer."],
+      "explanation": "A compound adjective placed before a noun is hyphenated."
+    },
+    {
+      "id": "punc-38",
+      "type": "rewrite",
+      "prompt": "Punctuate the sentence correctly.",
+      "sentence": "my fathers car has broken down again",
+      "answers": ["My father's car has broken down again."],
+      "explanation": "A singular noun shows possession with 's: my father's car."
+    },
+    {
+      "id": "punc-39",
+      "type": "rewrite",
+      "prompt": "Punctuate the sentence correctly.",
+      "sentence": "can you tell me where the library is",
+      "answers": ["Can you tell me where the library is?"],
+      "explanation": "The sentence as a whole is a direct question ('Can you tell me ...'), so it ends with a question mark, while the embedded question keeps statement word order."
+    },
+    {
+      "id": "punc-40",
+      "type": "rewrite",
+      "prompt": "Punctuate the sentence correctly.",
+      "sentence": "the officer said please show me your identity card",
+      "answers": [
+        "The officer said, \"Please show me your identity card.\"",
+        "The officer said, 'Please show me your identity card.'"
+      ],
+      "explanation": "A comma follows the reporting verb, the quoted words begin with a capital letter, and the full stop goes inside the closing quotation mark."
+    }
+  ]
+}

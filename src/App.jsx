@@ -27,6 +27,7 @@ import { isSuperAdminEmail } from './utils/adminClient.js'
 import { SITE_URL, YOUTUBE_PAGE_URL } from './siteConfig.js'
 
 // Route pages load on demand so the home page ships only what it needs.
+const GuardianEnglishPage = lazy(() => import('./pages/GuardianEnglishPage.jsx'))
 const GuardianStudyPlannerPage = lazy(() => import('./pages/GuardianStudyPlannerPage.jsx'))
 const BlogPage = lazy(() => import('./pages/BlogPage.jsx'))
 const LegacyBlogSlugRedirect = lazy(() => import('./pages/BlogPage.jsx').then((m) => ({ default: m.LegacyBlogSlugRedirect })))
@@ -179,6 +180,12 @@ const HOME_RESOURCES = [
     to: '/css-syllabus',
   },
   {
+    icon: 'target',
+    title: 'CSS Rules',
+    text: 'Age limit, eligibility, attempts and the official FPSC rules, explained.',
+    to: '/css-rules',
+  },
+  {
     icon: 'papers',
     title: 'FPSC Past Papers',
     text: 'Official question papers organised by year, ready to practise.',
@@ -201,6 +208,12 @@ const HOME_RESOURCES = [
     title: 'Current Affairs',
     text: 'Pakistan and global affairs with an interactive world conflict map.',
     to: '/global-affairs',
+  },
+  {
+    icon: 'pen',
+    title: 'Guardian English Lab',
+    text: 'Grammar, sentence correction, pairs of words and vocabulary with instant feedback.',
+    to: '/guardian-english',
   },
   {
     icon: 'calendar',
@@ -237,6 +250,7 @@ const HOME_ICON_PATHS = {
   slides: 'M3 4.5h18v11H3zM12 15.5V20M8 20h8M10 7.8v4.4l3.8-2.2z',
   scroll: 'M7 3h10a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Zm2.5 5h5M9.5 11.5h5M9.5 15h3',
   globe: 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm-9-9h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3Z',
+  pen: 'M4 20h4L19.5 8.5a2.1 2.1 0 0 0-3-3L5 17v3ZM14.5 7.5l3 3M12 20h8',
   calendar: 'M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm-1 5h16M8.5 3v4M15.5 3v4M9 15l2 2 4-4',
   award: 'M12 14a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm-3.4 2.6L7.5 21l4.5-2.2 4.5 2.2-1.1-4.4',
   heart: 'M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.4a4.3 4.3 0 0 1 7.5 2.4C19.5 15.4 12 20 12 20Z',
@@ -456,6 +470,7 @@ function Header({ theme, onToggleTheme, authUser, onLogout }) {
   const isAngelResourcesRoute = (pathname) =>
     pathname === '/guardian-study-planner' ||
     pathname === '/guardian-portfolio' ||
+    pathname.startsWith('/guardian-english') ||
     pathname.startsWith('/p/')
 
   const navItems = [
@@ -478,6 +493,7 @@ function Header({ theme, onToggleTheme, authUser, onLogout }) {
       label: 'Guardian Angel Resources',
       isActive: isAngelResourcesRoute(location.pathname),
       children: [
+        { label: 'Guardian English Lab', to: '/guardian-english' },
         { label: 'Guardian Study Planner', to: '/guardian-study-planner' },
         { label: 'Guardian Portfolio', to: '/guardian-portfolio' },
       ],
@@ -1020,6 +1036,7 @@ function Footer() {
           <Link to="/css-past-papers">CSS Past Papers</Link>
           <Link to="/css-study-material">CSS Study Material</Link>
           <Link to="/key-documents">Key Documents</Link>
+          <Link to="/guardian-english">Guardian English Lab</Link>
           <Link to="/guardian-study-planner">Guardian Study Planner</Link>
           <Link to="/guardian-portfolio">Guardian Portfolio</Link>
         </div>
@@ -1201,6 +1218,25 @@ const resolveRouteSeo = (pathname, search) => {
     }
   }
 
+  if (pathname.startsWith('/guardian-english')) {
+    const moduleTitles = {
+      grammar: 'Grammar Practice',
+      punctuation: 'Punctuation Practice',
+      'sentence-correction': 'Sentence Correction Practice',
+      'pairs-of-words': 'Pairs of Words Practice',
+      'grouping-of-words': 'Grouping of Words Practice',
+      vocabulary: 'CSS Vocabulary Builder',
+    }
+    const slug = pathname.split('/')[2] || ''
+    return {
+      title: moduleTitles[slug]
+        ? `${moduleTitles[slug]} | Guardian English Lab`
+        : 'Guardian English Lab | Free CSS English Practice',
+      description:
+        'Free practice for the CSS English (Precis & Composition) paper: grammar, punctuation, sentence correction, pairs of words, grouping of words and vocabulary with instant feedback.',
+    }
+  }
+
   if (pathname.startsWith('/p/')) {
     return {
       title: 'Guardian Portfolio | Guardian Angel',
@@ -1235,7 +1271,7 @@ const KNOWN_ROUTES = new Set([
   '/key-documents', '/constitution-of-pakistan', '/about-guardian-angel', '/privacy-policy', '/terms', '/delete-account', '/blogs', '/blog', '/signin',
   '/payment', '/dashboard', '/guardian-study-planner', '/guardian-portfolio', '/guardian-resume-builder', '/profile', '/admin',
 ])
-const KNOWN_ROUTE_PREFIXES = ['/blogs/', '/blog/', '/css-syllabus/', '/p/']
+const KNOWN_ROUTE_PREFIXES = ['/blogs/', '/blog/', '/css-syllabus/', '/p/', '/guardian-english']
 
 function isKnownRoute(pathname) {
   const path = pathname.length > 1 ? pathname.replace(/\/+$/, '') : pathname
@@ -1663,6 +1699,8 @@ function App() {
             }
           />
           <Route path="/css-syllabus/:subjectSlug" element={<SubjectDetailPage />} />
+          <Route path="/guardian-english" element={<GuardianEnglishPage authUser={authUser} />} />
+          <Route path="/guardian-english/:module" element={<GuardianEnglishPage authUser={authUser} />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
         </Suspense>

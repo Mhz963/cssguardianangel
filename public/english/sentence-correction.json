@@ -1,0 +1,424 @@
+{
+  "items": [
+    {
+      "id": "sc-01",
+      "sentence": "He is senior than me in the department.",
+      "answers": ["He is senior to me in the department."],
+      "focus": "Latin comparatives",
+      "explanation": "Comparatives borrowed from Latin (senior, junior, superior, inferior, prior) take 'to', not 'than'."
+    },
+    {
+      "id": "sc-02",
+      "sentence": "We will discuss about the proposal at tomorrow's meeting.",
+      "answers": ["We will discuss the proposal at tomorrow's meeting."],
+      "focus": "Needless preposition",
+      "explanation": "'Discuss' is a transitive verb and takes a direct object; 'about' is not used after it (compare 'a discussion about')."
+    },
+    {
+      "id": "sc-03",
+      "sentence": "Please return back the library books by Friday.",
+      "answers": ["Please return the library books by Friday."],
+      "focus": "Redundancy",
+      "explanation": "'Return' already means 'give or come back', so 'back' is redundant."
+    },
+    {
+      "id": "sc-04",
+      "sentence": "One of my friend has joined the Foreign Service.",
+      "answers": ["One of my friends has joined the Foreign Service."],
+      "focus": "'One of' + plural noun",
+      "explanation": "'One of' picks one member from a group, so the noun after it must be plural; the verb stays singular to agree with 'one'."
+    },
+    {
+      "id": "sc-05",
+      "sentence": "She has been teaching at this college since two years.",
+      "answers": ["She has been teaching at this college for two years."],
+      "focus": "Since / for",
+      "explanation": "'For' is used with a period of time (two years); 'since' is used with a point in time (since 2023)."
+    },
+    {
+      "id": "sc-06",
+      "sentence": "The childrens toys were scattered across the floor.",
+      "answers": ["The children's toys were scattered across the floor."],
+      "focus": "Apostrophe (possessive)",
+      "explanation": "A plural noun that does not end in -s forms its possessive with apostrophe + s: children's."
+    },
+    {
+      "id": "sc-07",
+      "sentence": "Each of the candidates have submitted an application.",
+      "answers": ["Each of the candidates has submitted an application."],
+      "focus": "Subject–verb agreement (each)",
+      "explanation": "'Each' is singular, so it takes a singular verb even when followed by 'of' + plural noun."
+    },
+    {
+      "id": "sc-08",
+      "sentence": "Neither the minister nor his advisers was available for comment.",
+      "answers": ["Neither the minister nor his advisers were available for comment."],
+      "focus": "Neither ... nor agreement",
+      "explanation": "With 'neither ... nor', the verb agrees with the nearer subject; 'advisers' is plural, so 'were'."
+    },
+    {
+      "id": "sc-09",
+      "sentence": "If it will rain tomorrow, the match will be postponed.",
+      "answers": ["If it rains tomorrow, the match will be postponed."],
+      "focus": "First conditional",
+      "explanation": "In a first conditional the if-clause takes the present simple, not 'will', even when it refers to the future."
+    },
+    {
+      "id": "sc-10",
+      "sentence": "If the guard had been alert, the robbery would not take place.",
+      "answers": ["If the guard had been alert, the robbery would not have taken place."],
+      "focus": "Third conditional",
+      "explanation": "An unreal past condition (had + past participle) needs 'would have' + past participle in the main clause."
+    },
+    {
+      "id": "sc-11",
+      "sentence": "The company has raised it's prices again.",
+      "answers": ["The company has raised its prices again."],
+      "focus": "Its / it's",
+      "explanation": "'Its' is the possessive pronoun and has no apostrophe; 'it's' means 'it is' or 'it has'."
+    },
+    {
+      "id": "sc-12",
+      "sentence": "The witness did not say nothing to the police.",
+      "answers": ["The witness did not say anything to the police.", "The witness said nothing to the police."],
+      "focus": "Double negative",
+      "explanation": "Two negatives ('not' and 'nothing') should not be combined in standard English; use 'not ... anything' or 'nothing' alone."
+    },
+    {
+      "id": "sc-13",
+      "sentence": "She can speak Pashto fluently, isn't it?",
+      "answers": ["She can speak Pashto fluently, can't she?"],
+      "focus": "Question tag",
+      "explanation": "A question tag repeats the auxiliary and subject of the statement in the opposite polarity: 'She can ..., can't she?' ('isn't it' is not a universal tag)."
+    },
+    {
+      "id": "sc-14",
+      "sentence": "I look forward to meet you at the seminar.",
+      "answers": ["I look forward to meeting you at the seminar."],
+      "focus": "Preposition + gerund",
+      "explanation": "In 'look forward to', 'to' is a preposition, so it is followed by the -ing form, not the base verb."
+    },
+    {
+      "id": "sc-15",
+      "sentence": "My teacher gave me an advice that changed my career.",
+      "answers": ["My teacher gave me advice that changed my career.", "My teacher gave me a piece of advice that changed my career.", "My teacher gave me some advice that changed my career."],
+      "focus": "Uncountable nouns",
+      "explanation": "'Advice' is uncountable and cannot take 'a/an'; use it alone or say 'a piece of advice'."
+    },
+    {
+      "id": "sc-16",
+      "sentence": "The bus was late, we missed the first lecture.",
+      "answers": ["The bus was late; we missed the first lecture.", "The bus was late. We missed the first lecture.", "The bus was late, so we missed the first lecture."],
+      "focus": "Comma splice",
+      "explanation": "Two independent clauses cannot be joined by a comma alone; use a semicolon, a full stop, or a comma with a conjunction."
+    },
+    {
+      "id": "sc-17",
+      "sentence": "She is an university lecturer in Hyderabad.",
+      "answers": ["She is a university lecturer in Hyderabad."],
+      "focus": "Indefinite article (a/an)",
+      "explanation": "The choice of 'a' or 'an' depends on sound: 'university' begins with a 'yoo' (consonant) sound, so it takes 'a'."
+    },
+    {
+      "id": "sc-18",
+      "sentence": "The Indus is longest river in Pakistan.",
+      "answers": ["The Indus is the longest river in Pakistan."],
+      "focus": "Article with superlatives",
+      "explanation": "A superlative adjective before a noun normally takes the definite article: 'the longest'."
+    },
+    {
+      "id": "sc-19",
+      "sentence": "Between you and I, the scheme will not succeed.",
+      "answers": ["Between you and me, the scheme will not succeed."],
+      "focus": "Pronoun case after preposition",
+      "explanation": "A pronoun that is the object of a preposition ('between') must be in the object form: 'me', not 'I'."
+    },
+    {
+      "id": "sc-20",
+      "sentence": "Whom do you think will win the election?",
+      "answers": ["Who do you think will win the election?"],
+      "focus": "Who / whom",
+      "explanation": "The pronoun is the subject of 'will win' ('do you think' is only inserted), so the subject form 'who' is required."
+    },
+    {
+      "id": "sc-21",
+      "sentence": "She teaches english at a college in Multan.",
+      "answers": ["She teaches English at a college in Multan."],
+      "focus": "Capital letters",
+      "explanation": "Names of languages are proper nouns and always begin with a capital letter."
+    },
+    {
+      "id": "sc-22",
+      "sentence": "He is enough old to vote in the general election.",
+      "answers": ["He is old enough to vote in the general election."],
+      "focus": "Word order (enough)",
+      "explanation": "'Enough' comes after an adjective or adverb ('old enough') but before a noun ('enough money')."
+    },
+    {
+      "id": "sc-23",
+      "sentence": "He enjoys reading, travelling and to write poetry.",
+      "answers": ["He enjoys reading, travelling and writing poetry."],
+      "focus": "Parallelism",
+      "explanation": "Items in a list should share the same grammatical form; the other items are gerunds, so 'writing'."
+    },
+    {
+      "id": "sc-24",
+      "sentence": "Our teacher told us that the earth moved round the sun.",
+      "answers": ["Our teacher told us that the earth moves round the sun."],
+      "focus": "Sequence of tenses (universal truth)",
+      "explanation": "A universal or permanent truth stays in the present tense even after a past reporting verb."
+    },
+    {
+      "id": "sc-25",
+      "sentence": "When we reached the station, the train already left.",
+      "answers": ["When we reached the station, the train had already left."],
+      "focus": "Past perfect",
+      "explanation": "Of two past actions, the one completed earlier takes the past perfect: the train 'had already left' before we reached."
+    },
+    {
+      "id": "sc-26",
+      "sentence": "The plan was sound, however, it was never implemented.",
+      "answers": ["The plan was sound; however, it was never implemented.", "The plan was sound. However, it was never implemented."],
+      "focus": "Semicolon with conjunctive adverb",
+      "explanation": "'However' joining two independent clauses is not a conjunction; it needs a semicolon (or full stop) before it and a comma after it."
+    },
+    {
+      "id": "sc-27",
+      "sentence": "I have met him at the conference yesterday.",
+      "answers": ["I met him at the conference yesterday."],
+      "focus": "Present perfect vs past simple",
+      "explanation": "The present perfect is not used with a finished past time such as 'yesterday'; use the past simple."
+    },
+    {
+      "id": "sc-28",
+      "sentence": "Unless you do not work hard, you will fail.",
+      "answers": ["Unless you work hard, you will fail."],
+      "focus": "Unless",
+      "explanation": "'Unless' already means 'if not', so it should not be followed by another 'not'."
+    },
+    {
+      "id": "sc-29",
+      "sentence": "No sooner had the minister arrived when the protest began.",
+      "answers": ["No sooner had the minister arrived than the protest began."],
+      "focus": "Correlative (no sooner ... than)",
+      "explanation": "'No sooner' is a comparative form and pairs with 'than', not 'when'."
+    },
+    {
+      "id": "sc-30",
+      "sentence": "The furniture in these offices are imported.",
+      "answers": ["The furniture in these offices is imported."],
+      "focus": "Uncountable noun agreement",
+      "explanation": "'Furniture' is uncountable and takes a singular verb; the plural 'offices' in the phrase does not change the subject."
+    },
+    {
+      "id": "sc-31",
+      "sentence": "He asked me why I was late?",
+      "answers": ["He asked me why I was late."],
+      "focus": "Question mark in reported speech",
+      "explanation": "An indirect (reported) question is a statement and ends with a full stop, not a question mark."
+    },
+    {
+      "id": "sc-32",
+      "sentence": "My cousin sister is getting married next month.",
+      "answers": ["My cousin is getting married next month."],
+      "focus": "Redundancy (Pakistani English)",
+      "explanation": "'Cousin' already covers both sexes; 'cousin sister' is not standard English."
+    },
+    {
+      "id": "sc-33",
+      "sentence": "She is married with a civil servant.",
+      "answers": ["She is married to a civil servant."],
+      "focus": "Preposition (married to)",
+      "explanation": "One is 'married to' a person in standard English, not 'married with'."
+    },
+    {
+      "id": "sc-34",
+      "sentence": "Most people prefer tea than coffee in winter.",
+      "answers": ["Most people prefer tea to coffee in winter."],
+      "focus": "Preposition (prefer ... to)",
+      "explanation": "'Prefer' one thing 'to' another; 'than' is wrong here because 'prefer' is not a comparative."
+    },
+    {
+      "id": "sc-35",
+      "sentence": "We congratulated him for his success in the exam.",
+      "answers": ["We congratulated him on his success in the exam."],
+      "focus": "Preposition (congratulate on)",
+      "explanation": "In standard British English one congratulates someone 'on' an achievement."
+    },
+    {
+      "id": "sc-36",
+      "sentence": "My father who is a retired judge lives in Peshawar.",
+      "answers": ["My father, who is a retired judge, lives in Peshawar."],
+      "focus": "Commas with non-defining clauses",
+      "explanation": "A person has only one father, so the clause adds extra information (non-defining) and must be enclosed in commas."
+    },
+    {
+      "id": "sc-37",
+      "sentence": "The police has arrested three suspects.",
+      "answers": ["The police have arrested three suspects."],
+      "focus": "Plural collective noun (police)",
+      "explanation": "'Police' is always treated as plural in English and takes a plural verb."
+    },
+    {
+      "id": "sc-38",
+      "sentence": "The number of road accidents have increased this year.",
+      "answers": ["The number of road accidents has increased this year."],
+      "focus": "'The number of' agreement",
+      "explanation": "The subject is 'the number', which is singular; contrast 'a number of', which means 'several' and takes a plural verb."
+    },
+    {
+      "id": "sc-39",
+      "sentence": "She sang the national anthem very sweet.",
+      "answers": ["She sang the national anthem very sweetly."],
+      "focus": "Adjective vs adverb",
+      "explanation": "A word describing how an action is done must be an adverb: 'sang sweetly'."
+    },
+    {
+      "id": "sc-40",
+      "sentence": "This road is more wider than the old one.",
+      "answers": ["This road is wider than the old one."],
+      "focus": "Double comparative",
+      "explanation": "'Wider' is already comparative; adding 'more' doubles the comparison."
+    },
+    {
+      "id": "sc-41",
+      "sentence": "Bring the following items, a pen, a calculator and your admit card.",
+      "answers": ["Bring the following items: a pen, a calculator and your admit card."],
+      "focus": "Colon before a list",
+      "explanation": "A colon, not a comma, introduces a list after a complete clause such as 'Bring the following items'."
+    },
+    {
+      "id": "sc-42",
+      "sentence": "Karachi is larger than any city in Pakistan.",
+      "answers": ["Karachi is larger than any other city in Pakistan."],
+      "focus": "Comparison within a group",
+      "explanation": "When comparing something with the group it belongs to, add 'other'; otherwise Karachi is compared with itself."
+    },
+    {
+      "id": "sc-43",
+      "sentence": "Although he was unwell, but he attended the meeting.",
+      "answers": ["Although he was unwell, he attended the meeting."],
+      "focus": "Double conjunction",
+      "explanation": "'Although' already links the clauses; adding 'but' uses two conjunctions for one link."
+    },
+    {
+      "id": "sc-44",
+      "sentence": "Despite of the heavy rain, the match continued.",
+      "answers": ["Despite the heavy rain, the match continued.", "In spite of the heavy rain, the match continued."],
+      "focus": "Despite / in spite of",
+      "explanation": "'Despite' is never followed by 'of'; the alternative form is 'in spite of'."
+    },
+    {
+      "id": "sc-45",
+      "sentence": "There were less candidates this year than last year.",
+      "answers": ["There were fewer candidates this year than last year."],
+      "focus": "Fewer / less",
+      "explanation": "'Fewer' is used with plural countable nouns (candidates); 'less' is used with uncountable nouns (less water)."
+    },
+    {
+      "id": "sc-46",
+      "sentence": "The final decision is your's to make.",
+      "answers": ["The final decision is yours to make."],
+      "focus": "Possessive pronouns (no apostrophe)",
+      "explanation": "Possessive pronouns such as yours, hers, ours and theirs never take an apostrophe."
+    },
+    {
+      "id": "sc-47",
+      "sentence": "The suspect avoided to answer the question.",
+      "answers": ["The suspect avoided answering the question."],
+      "focus": "Verb + gerund",
+      "explanation": "'Avoid' is followed by the -ing form, not the to-infinitive (like 'deny', 'enjoy', 'finish')."
+    },
+    {
+      "id": "sc-48",
+      "sentence": "The teacher made him to apologise.",
+      "answers": ["The teacher made him apologise."],
+      "focus": "Bare infinitive (make/let)",
+      "explanation": "In the active voice, 'make' and 'let' are followed by object + infinitive without 'to'."
+    },
+    {
+      "id": "sc-49",
+      "sentence": "Can you tell me where does he live?",
+      "answers": ["Can you tell me where he lives?"],
+      "focus": "Embedded question word order",
+      "explanation": "An indirect question inside a sentence uses statement word order (subject + verb), without 'do/does'."
+    },
+    {
+      "id": "sc-50",
+      "sentence": "I didn't went to the office yesterday.",
+      "answers": ["I didn't go to the office yesterday."],
+      "focus": "Auxiliary + base form",
+      "explanation": "After 'did/didn't' the main verb takes its base form; the past is shown by 'did' alone."
+    },
+    {
+      "id": "sc-51",
+      "sentence": "The students who passed the written test, will be called for interview.",
+      "answers": ["The students who passed the written test will be called for interview."],
+      "focus": "Comma between subject and verb",
+      "explanation": "A defining clause is part of the subject; no comma should separate the subject from its verb."
+    },
+    {
+      "id": "sc-52",
+      "sentence": "Ali, as well as his brothers, are coming to dinner.",
+      "answers": ["Ali, as well as his brothers, is coming to dinner."],
+      "focus": "Agreement with 'as well as'",
+      "explanation": "Phrases introduced by 'as well as' or 'along with' do not change the subject; the verb agrees with 'Ali'."
+    },
+    {
+      "id": "sc-53",
+      "sentence": "She is elder than her brother.",
+      "answers": ["She is older than her brother."],
+      "focus": "Elder / older",
+      "explanation": "'Elder' is used only before a noun or as 'the elder'; it is not followed by 'than', which requires 'older'."
+    },
+    {
+      "id": "sc-54",
+      "sentence": "The criteria for selection was announced last week.",
+      "answers": ["The criteria for selection were announced last week."],
+      "focus": "Foreign plurals",
+      "explanation": "'Criteria' is the plural of 'criterion' and takes a plural verb."
+    },
+    {
+      "id": "sc-55",
+      "sentence": "It is high time we leave for the airport.",
+      "answers": ["It is high time we left for the airport."],
+      "focus": "'It is high time' + past",
+      "explanation": "'It is (high) time' + subject is followed by the past simple, though the meaning is present."
+    },
+    {
+      "id": "sc-56",
+      "sentence": "The patient was died before the ambulance arrived.",
+      "answers": ["The patient had died before the ambulance arrived.", "The patient died before the ambulance arrived."],
+      "focus": "Intransitive verbs (no passive)",
+      "explanation": "'Die' is intransitive and cannot be used in the passive; use 'died' or, for the earlier action, 'had died'."
+    },
+    {
+      "id": "sc-57",
+      "sentence": "Prices have raised sharply this year.",
+      "answers": ["Prices have risen sharply this year."],
+      "focus": "Rise / raise",
+      "explanation": "'Rise' (rose, risen) is intransitive; 'raise' needs an object (raise prices)."
+    },
+    {
+      "id": "sc-58",
+      "sentence": "The book which I bought it yesterday is missing.",
+      "answers": ["The book which I bought yesterday is missing."],
+      "focus": "Relative clause (extra pronoun)",
+      "explanation": "The relative pronoun 'which' is already the object of 'bought', so the extra 'it' must be removed."
+    },
+    {
+      "id": "sc-59",
+      "sentence": "He went to the market for buying vegetables.",
+      "answers": ["He went to the market to buy vegetables."],
+      "focus": "Infinitive of purpose",
+      "explanation": "Purpose after a verb of motion is expressed by the to-infinitive, not 'for' + -ing."
+    },
+    {
+      "id": "sc-60",
+      "sentence": "I am agree with your proposal.",
+      "answers": ["I agree with your proposal."],
+      "focus": "Verb misused as adjective",
+      "explanation": "'Agree' is a verb, not an adjective, so it does not take 'am'."
+    }
+  ]
+}

@@ -84,6 +84,11 @@ export default function SubjectDetailPage() {
         </article>
 
         <div className="subject-actions">
+          {/^english/.test(subject.slug) ? (
+            <Link className="btn btn-primary" to="/guardian-english">
+              Practise in Guardian English Lab
+            </Link>
+          ) : null}
           <Link className="btn btn-secondary" to="/css-syllabus">
             Back to CSS Syllabus
           </Link>

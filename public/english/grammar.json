@@ -1,0 +1,1191 @@
+{
+  "topics": [
+    {
+      "id": "tenses",
+      "title": "Tenses",
+      "summary": "How to choose the right present, past and future forms to show when an action happens and how it relates to other actions.",
+      "rules": [
+        {
+          "rule": "Use the simple present for habits, general truths and fixed timetables.",
+          "examples": ["The cabinet meets every Tuesday.", "Ice floats on water."]
+        },
+        {
+          "rule": "Use the present continuous for actions in progress now or for temporary situations. Stative verbs such as know, believe, own and prefer do not normally take the continuous form.",
+          "examples": ["The students are revising for their finals this week.", "I believe him. (not: I am believing him.)"]
+        },
+        {
+          "rule": "Use the present perfect to link a past action to the present. Do not use it with a finished time expression such as yesterday, last year, in 2019 or ago.",
+          "examples": ["The Senate has passed the bill.", "The Senate passed the bill last week."]
+        },
+        {
+          "rule": "Use the present perfect continuous with for or since to show an activity that began in the past and is still continuing.",
+          "examples": ["She has been teaching at the college since 2016.", "We have been waiting for forty minutes."]
+        },
+        {
+          "rule": "Use the past perfect for the earlier of two past actions.",
+          "examples": ["The guests had left before the power returned.", "He realised that he had forgotten his admit card."]
+        },
+        {
+          "rule": "In time and condition clauses introduced by when, if, until, before, after or as soon as, use a present tense for future meaning, not will.",
+          "examples": ["I will call you when I reach Multan.", "If the weather clears, the flight will depart on time."]
+        },
+        {
+          "rule": "Use the future continuous for an action that will be in progress at a particular future time.",
+          "examples": ["At this time tomorrow, we will be sitting the essay paper.", "She will be travelling to Gilgit next weekend."]
+        }
+      ],
+      "questions": [
+        {
+          "id": "tenses-01",
+          "type": "mcq",
+          "prompt": "Water ___ at 100 degrees Celsius at sea level.",
+          "options": ["is boiling", "boils", "boiled", "has boiled"],
+          "answer": 1,
+          "explanation": "This is a general scientific truth, so the simple present (boils) is required."
+        },
+        {
+          "id": "tenses-02",
+          "type": "mcq",
+          "prompt": "I ___ this novel since Monday, and I am only halfway through.",
+          "options": ["read", "am reading", "was reading", "have been reading"],
+          "answer": 3,
+          "explanation": "An activity that started in the past (since Monday) and is still continuing takes the present perfect continuous; 'am reading since' is incorrect."
+        },
+        {
+          "id": "tenses-03",
+          "type": "mcq",
+          "prompt": "By the time the inspector arrived, the clerks ___ the files.",
+          "options": ["had already shredded", "have already shredded", "already shred", "are already shredding"],
+          "answer": 0,
+          "explanation": "The shredding happened before another past action (the inspector arrived), so the past perfect is needed."
+        },
+        {
+          "id": "tenses-04",
+          "type": "mcq",
+          "prompt": "The minister ___ the province last year.",
+          "options": ["has visited", "has been visiting", "visited", "is visiting"],
+          "answer": 2,
+          "explanation": "'Last year' is a finished time expression, so the simple past is required; the present perfect cannot be used with it."
+        },
+        {
+          "id": "tenses-05",
+          "type": "mcq",
+          "prompt": "Please wait here until the director ___.",
+          "options": ["will return", "would return", "returns", "is going to return"],
+          "answer": 2,
+          "explanation": "In a time clause beginning with 'until', a present tense is used for future meaning, not will or going to."
+        },
+        {
+          "id": "tenses-06",
+          "type": "mcq",
+          "prompt": "She ___ the answer, but she will not tell us.",
+          "options": ["knows", "is knowing", "has been knowing", "was knowing"],
+          "answer": 0,
+          "explanation": "'Know' is a stative verb and is not normally used in continuous forms, so the simple present 'knows' is correct."
+        },
+        {
+          "id": "tenses-07",
+          "type": "mcq",
+          "prompt": "When we reached the hall, the lecture ___, so we missed the opening remarks.",
+          "options": ["already begins", "has already begun", "is already beginning", "had already begun"],
+          "answer": 3,
+          "explanation": "The lecture began before we reached the hall (both in the past), so the earlier action takes the past perfect."
+        },
+        {
+          "id": "tenses-08",
+          "type": "mcq",
+          "prompt": "Listen! Someone ___ at the door.",
+          "options": ["knocks", "is knocking", "had knocked", "knock"],
+          "answer": 1,
+          "explanation": "'Listen!' shows the action is happening at this moment, so the present continuous is needed."
+        },
+        {
+          "id": "tenses-09",
+          "type": "mcq",
+          "prompt": "If it ___ tomorrow, the match will be postponed.",
+          "options": ["rains", "will rain", "rained", "would rain"],
+          "answer": 0,
+          "explanation": "In a first conditional, the if-clause takes the simple present even though it refers to the future."
+        },
+        {
+          "id": "tenses-10",
+          "type": "mcq",
+          "prompt": "He ___ in Lahore for ten years before he moved to Karachi in 2015.",
+          "options": ["has lived", "had lived", "lives", "has been living"],
+          "answer": 1,
+          "explanation": "The period in Lahore came before another past event (moving in 2015), so the past perfect is correct; present perfect forms cannot refer to a finished past period."
+        },
+        {
+          "id": "tenses-11",
+          "type": "mcq",
+          "prompt": "This time next year, I ___ for my CSS interview.",
+          "options": ["prepare", "had prepared", "will be preparing", "have prepared"],
+          "answer": 2,
+          "explanation": "An action that will be in progress at a specific future time ('this time next year') takes the future continuous."
+        },
+        {
+          "id": "tenses-12",
+          "type": "mcq",
+          "prompt": "It is the first time I ___ such a well-argued essay.",
+          "options": ["read", "was reading", "had read", "have read"],
+          "answer": 3,
+          "explanation": "After 'It is the first time', standard English uses the present perfect (have read)."
+        }
+      ]
+    },
+    {
+      "id": "articles",
+      "title": "Articles",
+      "summary": "When to use a, an, the or no article at all before a noun.",
+      "rules": [
+        {
+          "rule": "Use 'a' before a consonant sound and 'an' before a vowel sound. The sound matters, not the spelling.",
+          "examples": ["She waited for an hour at the bus stop.", "He studies at a university in Faisalabad."]
+        },
+        {
+          "rule": "Use 'the' when the noun is specific, has already been mentioned, or is the only one of its kind.",
+          "examples": ["I bought a pen and a notebook. The pen has already run dry.", "The moon was full last night."]
+        },
+        {
+          "rule": "Use no article with uncountable or plural nouns used in a general sense.",
+          "examples": ["Patience is a rare virtue.", "Libraries play a vital role in education."]
+        },
+        {
+          "rule": "Use 'the' with rivers, seas, oceans, mountain ranges, deserts and plural country names, but not with most single countries, cities, lakes or individual mountains.",
+          "examples": ["The Ravi flows past Lahore.", "K2 is in the Karakoram range."]
+        },
+        {
+          "rule": "Use 'the' with superlatives and ordinal numbers.",
+          "examples": ["It was the coldest night of the year.", "She was the third speaker in the debate."]
+        },
+        {
+          "rule": "Many fixed expressions take no article: by train, by bus, at night, go to bed, go to school (as a pupil). Sports and meals in general also take no article.",
+          "examples": ["They travelled to Quetta by train.", "We play hockey after lunch."]
+        },
+        {
+          "rule": "'The' plus an adjective can refer to a whole group of people, and takes a plural verb.",
+          "examples": ["The elderly need better healthcare.", "The rich should pay their fair share of tax."]
+        }
+      ],
+      "questions": [
+        {
+          "id": "articles-01",
+          "type": "mcq",
+          "prompt": "It took us ___ hour to reach the venue.",
+          "options": ["a", "an", "the", "no article"],
+          "answer": 1,
+          "explanation": "'Hour' begins with a vowel sound because the h is silent, so 'an' is required."
+        },
+        {
+          "id": "articles-02",
+          "type": "mcq",
+          "prompt": "Ali is ___ university lecturer in Peshawar.",
+          "options": ["an", "the", "a", "no article"],
+          "answer": 2,
+          "explanation": "'University' begins with a 'yoo' (consonant) sound, so 'a' is used; a singular countable noun naming a profession needs an indefinite article."
+        },
+        {
+          "id": "articles-03",
+          "type": "mcq",
+          "prompt": "___ Indus is the longest river in Pakistan.",
+          "options": ["The", "A", "An", "No article"],
+          "answer": 0,
+          "explanation": "Names of rivers take the definite article: the Indus."
+        },
+        {
+          "id": "articles-04",
+          "type": "mcq",
+          "prompt": "___ honesty is the best policy.",
+          "options": ["The", "An", "A", "No article"],
+          "answer": 3,
+          "explanation": "'Honesty' is an abstract, uncountable noun used in a general sense, so it takes no article."
+        },
+        {
+          "id": "articles-05",
+          "type": "mcq",
+          "prompt": "This is ___ tallest building in the city.",
+          "options": ["the", "a", "an", "no article"],
+          "answer": 0,
+          "explanation": "Superlatives such as 'tallest' take the definite article."
+        },
+        {
+          "id": "articles-06",
+          "type": "mcq",
+          "prompt": "The government has announced new schemes to help ___ poor.",
+          "options": ["a", "the", "an", "no article"],
+          "answer": 1,
+          "explanation": "'The' plus an adjective (the poor) refers to a whole group of people."
+        },
+        {
+          "id": "articles-07",
+          "type": "mcq",
+          "prompt": "He travelled to Islamabad by ___ train.",
+          "options": ["a", "the", "an", "no article"],
+          "answer": 3,
+          "explanation": "The fixed expression 'by + means of transport' (by train, by car, by air) takes no article."
+        },
+        {
+          "id": "articles-08",
+          "type": "mcq",
+          "prompt": "We went trekking in ___ Himalayas last summer.",
+          "options": ["a", "an", "no article", "the"],
+          "answer": 3,
+          "explanation": "Mountain ranges take the definite article: the Himalayas."
+        },
+        {
+          "id": "articles-09",
+          "type": "mcq",
+          "prompt": "There was ___ one-sided debate in the Assembly yesterday.",
+          "options": ["an", "the", "a", "no article"],
+          "answer": 2,
+          "explanation": "'One' begins with a 'w' (consonant) sound, so 'a' is used; a newly introduced singular countable noun after 'There was' takes the indefinite article."
+        },
+        {
+          "id": "articles-10",
+          "type": "mcq",
+          "prompt": "Ahmed plays ___ cricket every Sunday.",
+          "options": ["the", "a", "no article", "an"],
+          "answer": 2,
+          "explanation": "Names of sports and games take no article."
+        },
+        {
+          "id": "articles-11",
+          "type": "mcq",
+          "prompt": "Sana plays ___ violin beautifully.",
+          "options": ["a", "the", "an", "no article"],
+          "answer": 1,
+          "explanation": "In British English, musical instruments played by someone take the definite article: play the violin, play the sitar."
+        },
+        {
+          "id": "articles-12",
+          "type": "mcq",
+          "prompt": "He was ___ first candidate to finish the paper.",
+          "options": ["the", "a", "an", "no article"],
+          "answer": 0,
+          "explanation": "Ordinal numbers such as 'first' take the definite article."
+        }
+      ]
+    },
+    {
+      "id": "prepositions",
+      "title": "Prepositions",
+      "summary": "Choosing the correct preposition for time, place and movement, and the fixed prepositions that follow certain verbs, nouns and adjectives.",
+      "rules": [
+        {
+          "rule": "For time, use 'at' with clock times, 'on' with days and dates, and 'in' with months, years, seasons and parts of the day.",
+          "examples": ["The flight lands at 6.30 p.m.", "Results are announced on 1 March, in the spring."]
+        },
+        {
+          "rule": "Use 'since' with a point in time and 'for' with a length of time, usually with perfect tenses.",
+          "examples": ["She has lived here since 2010.", "She has lived here for fifteen years."]
+        },
+        {
+          "rule": "Many words take a fixed (dependent) preposition: accused of, comply with, prefer X to Y, based on, married to, interested in.",
+          "examples": ["He was accused of fraud.", "I prefer walking to driving."]
+        },
+        {
+          "rule": "Use 'between' for two people or things and 'among' for more than two.",
+          "examples": ["The prize was shared between the two finalists.", "There was disagreement among the committee members."]
+        },
+        {
+          "rule": "'Beside' means next to; 'besides' means in addition to.",
+          "examples": ["She sat beside her mother.", "Besides Urdu, he speaks Pashto and Punjabi."]
+        },
+        {
+          "rule": "Some verbs take a direct object with no preposition: discuss, emphasise, enter, reach, resemble, request.",
+          "examples": ["We discussed the matter.", "The train reached Rawalpindi at noon."]
+        },
+        {
+          "rule": "'By' marks a deadline; 'until' (or 'till') marks a state that continues up to a point. 'Into' shows movement inwards; 'in' shows position.",
+          "examples": ["Submit the form by Monday. The office stays open until five.", "He jumped into the river and stayed in the water for an hour."]
+        }
+      ],
+      "questions": [
+        {
+          "id": "prepositions-01",
+          "type": "mcq",
+          "prompt": "The exam will begin ___ 9 a.m.",
+          "options": ["at", "on", "in", "since"],
+          "answer": 0,
+          "explanation": "Clock times take the preposition 'at'."
+        },
+        {
+          "id": "prepositions-02",
+          "type": "mcq",
+          "prompt": "She was born ___ 14 August.",
+          "options": ["in", "on", "at", "by"],
+          "answer": 1,
+          "explanation": "Specific dates and days take the preposition 'on'."
+        },
+        {
+          "id": "prepositions-03",
+          "type": "mcq",
+          "prompt": "He has been working here ___ 2018.",
+          "options": ["for", "from", "since", "in"],
+          "answer": 2,
+          "explanation": "A starting point in time with a perfect tense takes 'since'; 'for' is used with a length of time."
+        },
+        {
+          "id": "prepositions-04",
+          "type": "mcq",
+          "prompt": "The official was accused ___ embezzlement.",
+          "options": ["for", "with", "about", "of"],
+          "answer": 3,
+          "explanation": "'Accuse' takes the fixed preposition 'of': accused of a crime."
+        },
+        {
+          "id": "prepositions-05",
+          "type": "mcq",
+          "prompt": "The property was divided ___ the two brothers.",
+          "options": ["between", "among", "with", "in"],
+          "answer": 0,
+          "explanation": "'Between' is used when two people or things are involved; 'among' is for more than two."
+        },
+        {
+          "id": "prepositions-06",
+          "type": "mcq",
+          "prompt": "Which sentence is correct?",
+          "options": [
+            "The committee discussed about the proposal.",
+            "The committee discussed the proposal.",
+            "The committee discussed on the proposal.",
+            "The committee discussed over the proposal."
+          ],
+          "answer": 1,
+          "explanation": "'Discuss' takes a direct object with no preposition; 'a discussion about' is correct, but 'discuss about' is not."
+        },
+        {
+          "id": "prepositions-07",
+          "type": "mcq",
+          "prompt": "___ English, she speaks French and Arabic.",
+          "options": ["Beside", "Except", "Besides", "Without"],
+          "answer": 2,
+          "explanation": "'Besides' means 'in addition to'; 'beside' means 'next to'."
+        },
+        {
+          "id": "prepositions-08",
+          "type": "mcq",
+          "prompt": "Please submit the form ___ Friday; late applications will not be accepted.",
+          "options": ["until", "till", "since", "by"],
+          "answer": 3,
+          "explanation": "A deadline (no later than) is expressed with 'by'; 'until' and 'till' describe something continuing up to a point."
+        },
+        {
+          "id": "prepositions-09",
+          "type": "mcq",
+          "prompt": "I prefer tea ___ coffee.",
+          "options": ["to", "than", "against", "from"],
+          "answer": 0,
+          "explanation": "The pattern is 'prefer X to Y'; 'prefer than' is incorrect."
+        },
+        {
+          "id": "prepositions-10",
+          "type": "mcq",
+          "prompt": "He walked from the corridor ___ the room and closed the door behind him.",
+          "options": ["in", "into", "at", "on"],
+          "answer": 1,
+          "explanation": "Movement from outside to inside a place is shown by 'into'; 'in' shows position, not movement."
+        },
+        {
+          "id": "prepositions-11",
+          "type": "mcq",
+          "prompt": "The new rules must comply ___ the Constitution.",
+          "options": ["to", "by", "with", "for"],
+          "answer": 2,
+          "explanation": "'Comply' takes the fixed preposition 'with'."
+        },
+        {
+          "id": "prepositions-12",
+          "type": "mcq",
+          "prompt": "The film is based ___ a true story.",
+          "options": ["in", "from", "at", "on"],
+          "answer": 3,
+          "explanation": "The fixed expression is 'based on'."
+        }
+      ]
+    },
+    {
+      "id": "conjunctions",
+      "title": "Conjunctions",
+      "summary": "Using joining words correctly, including correlative pairs, subordinating conjunctions and fixed patterns such as no sooner ... than.",
+      "rules": [
+        {
+          "rule": "Coordinating conjunctions (for, and, nor, but, or, yet, so) join words or clauses of equal grammatical rank.",
+          "examples": ["The road was narrow but well maintained.", "She applied early, so she got a seat."]
+        },
+        {
+          "rule": "Correlative pairs must be used as complete pairs: either ... or, neither ... nor, both ... and, not only ... but also, whether ... or.",
+          "examples": ["Neither the driver nor the conductor was injured.", "The scheme is not only costly but also impractical."]
+        },
+        {
+          "rule": "Do not pair 'although' with 'but', or 'because' with 'so'. One conjunction is enough to join two clauses.",
+          "examples": ["Although the hall was full, the speaker remained calm.", "Because it was late, we took a taxi."]
+        },
+        {
+          "rule": "'Unless' already means 'if not', so it is not followed by another negative. 'Until' refers to time.",
+          "examples": ["You cannot enter unless you show your card.", "Stay inside until the storm passes."]
+        },
+        {
+          "rule": "Fixed patterns: no sooner ... than; hardly / scarcely ... when; so + adjective ... that; such + noun phrase ... that.",
+          "examples": ["No sooner had the train stopped than the passengers poured out.", "It was such a long speech that people began to leave."]
+        },
+        {
+          "rule": "'Lest' means 'for fear that' and is followed by 'should' or the base form of the verb.",
+          "examples": ["Speak softly lest you wake the baby.", "He kept a copy lest the original should be lost."]
+        },
+        {
+          "rule": "Linking adverbs such as however, therefore and moreover connect ideas between clauses but are not conjunctions; use a semicolon or full stop before them.",
+          "examples": ["The plan was bold; however, it lacked funding.", "Prices rose sharply. Therefore, demand fell."]
+        }
+      ],
+      "questions": [
+        {
+          "id": "conjunctions-01",
+          "type": "mcq",
+          "prompt": "___ he was exhausted, he continued working late into the night.",
+          "options": ["Although", "But", "Because", "Unless"],
+          "answer": 0,
+          "explanation": "'Although' introduces a contrast between being exhausted and continuing to work; 'But' cannot begin a subordinate clause like this."
+        },
+        {
+          "id": "conjunctions-02",
+          "type": "mcq",
+          "prompt": "Neither the manager ___ his deputy attended the meeting.",
+          "options": ["or", "and", "nor", "but"],
+          "answer": 2,
+          "explanation": "'Neither' must be paired with 'nor'."
+        },
+        {
+          "id": "conjunctions-03",
+          "type": "mcq",
+          "prompt": "No sooner had the bell rung ___ the students rushed out.",
+          "options": ["when", "then", "that", "than"],
+          "answer": 3,
+          "explanation": "The fixed pattern is 'no sooner ... than'."
+        },
+        {
+          "id": "conjunctions-04",
+          "type": "mcq",
+          "prompt": "Hardly had she sat down ___ the phone rang.",
+          "options": ["than", "when", "then", "that"],
+          "answer": 1,
+          "explanation": "The fixed pattern is 'hardly ... when'; 'than' belongs with 'no sooner'."
+        },
+        {
+          "id": "conjunctions-05",
+          "type": "mcq",
+          "prompt": "You will fail the test ___ you work harder.",
+          "options": ["if", "unless", "whereas", "because"],
+          "answer": 1,
+          "explanation": "'Unless' means 'if not': you will fail if you do not work harder."
+        },
+        {
+          "id": "conjunctions-06",
+          "type": "mcq",
+          "prompt": "Which sentence is correct?",
+          "options": [
+            "Although he is rich, he is unhappy.",
+            "Although he is rich, but he is unhappy.",
+            "Although rich, but he is unhappy.",
+            "He is rich, although but he is unhappy."
+          ],
+          "answer": 0,
+          "explanation": "'Although' and 'but' must not be used together; one conjunction is enough to join the two clauses."
+        },
+        {
+          "id": "conjunctions-07",
+          "type": "mcq",
+          "prompt": "She is not only intelligent ___ hard-working.",
+          "options": ["and also", "as well", "but also", "or"],
+          "answer": 2,
+          "explanation": "The correlative pair is 'not only ... but also'."
+        },
+        {
+          "id": "conjunctions-08",
+          "type": "mcq",
+          "prompt": "Walk carefully on the icy path ___ you should slip.",
+          "options": ["unless", "until", "so that", "lest"],
+          "answer": 3,
+          "explanation": "'Lest' means 'for fear that' and is followed by 'should' plus the base verb."
+        },
+        {
+          "id": "conjunctions-09",
+          "type": "mcq",
+          "prompt": "The lecture was ___ dull that half the audience fell asleep.",
+          "options": ["such", "very", "so", "too"],
+          "answer": 2,
+          "explanation": "An adjective on its own (dull) takes 'so ... that'; 'such ... that' needs a noun phrase."
+        },
+        {
+          "id": "conjunctions-10",
+          "type": "mcq",
+          "prompt": "Wait here ___ I come back.",
+          "options": ["until", "unless", "lest", "whether"],
+          "answer": 0,
+          "explanation": "'Until' marks the point in time up to which the waiting continues."
+        },
+        {
+          "id": "conjunctions-11",
+          "type": "mcq",
+          "prompt": "You can ___ pay online or deposit the fee at the bank.",
+          "options": ["neither", "either", "both", "whether"],
+          "answer": 1,
+          "explanation": "'Or' pairs with 'either' to offer a choice between two alternatives."
+        },
+        {
+          "id": "conjunctions-12",
+          "type": "mcq",
+          "prompt": "He is honest; ___, he is not very efficient.",
+          "options": ["therefore", "moreover", "because", "however"],
+          "answer": 3,
+          "explanation": "The second clause contrasts with the first, so the linking adverb 'however' is needed."
+        }
+      ]
+    },
+    {
+      "id": "phrasal-verbs",
+      "title": "Phrasal Verbs",
+      "summary": "Common verb-plus-particle combinations, what they mean and where the object goes.",
+      "rules": [
+        {
+          "rule": "A phrasal verb is a verb plus a particle (such as up, off, out) whose meaning often differs from the verb alone.",
+          "examples": ["She gave up smoking. (stopped)", "The plane took off at dawn. (left the ground)"]
+        },
+        {
+          "rule": "With separable phrasal verbs, a noun object can go before or after the particle, but a pronoun object must go between the verb and the particle.",
+          "examples": ["Switch off the fan. / Switch the fan off.", "Switch it off. (not: Switch off it.)"]
+        },
+        {
+          "rule": "With inseparable phrasal verbs, the object always comes after the whole verb.",
+          "examples": ["Who will look after the children?", "The police are looking into the theft."]
+        },
+        {
+          "rule": "Some phrasal verbs take no object at all.",
+          "examples": ["The bus broke down near Sukkur.", "We set off before sunrise."]
+        },
+        {
+          "rule": "Three-part phrasal verbs are never separated: put up with, look forward to, come up with, run out of.",
+          "examples": ["We have run out of paper.", "I look forward to hearing from you."]
+        },
+        {
+          "rule": "In 'look forward to' and 'object to', 'to' is a preposition, so it is followed by a noun or an -ing form, not the base verb.",
+          "examples": ["She is looking forward to joining the service.", "They objected to paying the fine."]
+        }
+      ],
+      "questions": [
+        {
+          "id": "phrasal-verbs-01",
+          "type": "mcq",
+          "prompt": "The meeting has been ___ until next week because the chairman is ill.",
+          "options": ["put off", "put out", "put on", "put up"],
+          "answer": 0,
+          "explanation": "'Put off' means to postpone."
+        },
+        {
+          "id": "phrasal-verbs-02",
+          "type": "mcq",
+          "prompt": "The firefighters took two hours to ___ the blaze.",
+          "options": ["put off", "put out", "put up", "put down"],
+          "answer": 1,
+          "explanation": "'Put out' means to extinguish a fire."
+        },
+        {
+          "id": "phrasal-verbs-03",
+          "type": "mcq",
+          "prompt": "I cannot ___ his rude behaviour any longer.",
+          "options": ["put up", "put down", "put up with", "put off"],
+          "answer": 2,
+          "explanation": "'Put up with' means to tolerate."
+        },
+        {
+          "id": "phrasal-verbs-04",
+          "type": "mcq",
+          "prompt": "Her car ___ on the motorway, so she was late.",
+          "options": ["broke up", "broke out", "broke in", "broke down"],
+          "answer": 3,
+          "explanation": "'Break down' means to stop working, as a machine or vehicle does."
+        },
+        {
+          "id": "phrasal-verbs-05",
+          "type": "mcq",
+          "prompt": "Cholera ___ in several flood-affected villages.",
+          "options": ["broke out", "broke down", "broke up", "broke off"],
+          "answer": 0,
+          "explanation": "'Break out' means to start suddenly, used of diseases, fires and wars."
+        },
+        {
+          "id": "phrasal-verbs-06",
+          "type": "mcq",
+          "prompt": "We are looking forward to ___ you at the ceremony.",
+          "options": ["see", "seeing", "have seen", "be seeing"],
+          "answer": 1,
+          "explanation": "In 'look forward to', 'to' is a preposition, so it is followed by an -ing form."
+        },
+        {
+          "id": "phrasal-verbs-07",
+          "type": "mcq",
+          "prompt": "Which sentence is correct?",
+          "options": [
+            "Please turn off it.",
+            "Please it turn off.",
+            "Please turn it off.",
+            "Please turn of it."
+          ],
+          "answer": 2,
+          "explanation": "'Turn off' is separable, and a pronoun object must go between the verb and the particle."
+        },
+        {
+          "id": "phrasal-verbs-08",
+          "type": "mcq",
+          "prompt": "The committee will ___ the complaint and report back within a week.",
+          "options": ["look into", "look after", "look up to", "look down on"],
+          "answer": 0,
+          "explanation": "'Look into' means to investigate."
+        },
+        {
+          "id": "phrasal-verbs-09",
+          "type": "mcq",
+          "prompt": "Children who ___ their teachers usually try to copy their good habits.",
+          "options": ["look down on", "look up to", "look into", "look after"],
+          "answer": 1,
+          "explanation": "'Look up to' means to admire or respect, which explains why the children copy their teachers."
+        },
+        {
+          "id": "phrasal-verbs-10",
+          "type": "mcq",
+          "prompt": "The strike was ___ after the government agreed to the union's demands.",
+          "options": ["called on", "called for", "called up", "called off"],
+          "answer": 3,
+          "explanation": "'Call off' means to cancel."
+        },
+        {
+          "id": "phrasal-verbs-11",
+          "type": "mcq",
+          "prompt": "After months of experiments, the researchers ___ an ingenious method of purifying water.",
+          "options": ["came about", "came down with", "came up with", "came round"],
+          "answer": 2,
+          "explanation": "'Come up with' means to think of or produce an idea or plan."
+        },
+        {
+          "id": "phrasal-verbs-12",
+          "type": "mcq",
+          "prompt": "He ___ his father in both looks and temperament.",
+          "options": ["takes over", "takes in", "takes up", "takes after"],
+          "answer": 3,
+          "explanation": "'Take after' means to resemble an older family member."
+        }
+      ]
+    },
+    {
+      "id": "subject-verb-agreement",
+      "title": "Subject–Verb Agreement",
+      "summary": "Making the verb agree in number with its true subject, including tricky cases such as either/or, each and a number of.",
+      "rules": [
+        {
+          "rule": "The verb agrees with the head of the subject, not with a noun inside a phrase that comes between them.",
+          "examples": ["The cost of the new buses is very high.", "A bundle of old letters was found in the attic."]
+        },
+        {
+          "rule": "Phrases such as as well as, along with and together with do not change the number of the subject; the verb agrees with the first noun.",
+          "examples": ["The captain, along with his players, was cheered.", "The students, as well as their teacher, were late."]
+        },
+        {
+          "rule": "With either ... or and neither ... nor, the verb agrees with the subject closer to it.",
+          "examples": ["Either the clerks or the officer is responsible.", "Neither the officer nor the clerks are responsible."]
+        },
+        {
+          "rule": "Each, every, everyone, everybody, no one and either or neither used alone take a singular verb.",
+          "examples": ["Each of the houses has a garden.", "Everyone was invited."]
+        },
+        {
+          "rule": "'A number of' means 'many' and takes a plural verb; 'the number of' refers to a single figure and takes a singular verb.",
+          "examples": ["A number of complaints have been received.", "The number of complaints has doubled."]
+        },
+        {
+          "rule": "Nouns ending in -s such as news, economics and mathematics are singular, and an amount of money, time or distance seen as one unit takes a singular verb.",
+          "examples": ["Mathematics was his weakest subject.", "Five kilometres is a long way to walk in this heat."]
+        }
+      ],
+      "questions": [
+        {
+          "id": "subject-verb-agreement-01",
+          "type": "mcq",
+          "prompt": "The list of successful candidates ___ been posted on the notice board.",
+          "options": ["have", "has", "are", "were"],
+          "answer": 1,
+          "explanation": "The subject is 'list' (singular), not 'candidates', so the singular 'has' is required."
+        },
+        {
+          "id": "subject-verb-agreement-02",
+          "type": "mcq",
+          "prompt": "The principal, as well as the teachers, ___ present at the ceremony.",
+          "options": ["were", "are", "was", "have been"],
+          "answer": 2,
+          "explanation": "'As well as' does not make the subject plural; the verb agrees with 'the principal'."
+        },
+        {
+          "id": "subject-verb-agreement-03",
+          "type": "mcq",
+          "prompt": "Neither the students nor the teacher ___ aware of the change.",
+          "options": ["were", "are", "have been", "was"],
+          "answer": 3,
+          "explanation": "With 'neither ... nor', the verb agrees with the nearer subject, 'the teacher' (singular)."
+        },
+        {
+          "id": "subject-verb-agreement-04",
+          "type": "mcq",
+          "prompt": "Each of the candidates ___ given a roll number.",
+          "options": ["was", "were", "are", "have been"],
+          "answer": 0,
+          "explanation": "'Each' is singular and takes a singular verb, even when followed by 'of' plus a plural noun."
+        },
+        {
+          "id": "subject-verb-agreement-05",
+          "type": "mcq",
+          "prompt": "A number of applicants ___ been shortlisted.",
+          "options": ["has", "have", "is", "was"],
+          "answer": 1,
+          "explanation": "'A number of' means 'many' and takes a plural verb."
+        },
+        {
+          "id": "subject-verb-agreement-06",
+          "type": "mcq",
+          "prompt": "The number of road accidents ___ risen sharply this year.",
+          "options": ["have", "are", "has", "were"],
+          "answer": 2,
+          "explanation": "'The number of' refers to a single figure and takes a singular verb."
+        },
+        {
+          "id": "subject-verb-agreement-07",
+          "type": "mcq",
+          "prompt": "Economics ___ my favourite subject.",
+          "options": ["are", "were", "have been", "is"],
+          "answer": 3,
+          "explanation": "Names of subjects ending in -s, such as economics, are singular."
+        },
+        {
+          "id": "subject-verb-agreement-08",
+          "type": "mcq",
+          "prompt": "Ten thousand rupees ___ too much for a single textbook.",
+          "options": ["is", "are", "were", "have been"],
+          "answer": 0,
+          "explanation": "An amount of money regarded as one sum takes a singular verb."
+        },
+        {
+          "id": "subject-verb-agreement-09",
+          "type": "mcq",
+          "prompt": "Either my brothers or my sister ___ going to collect the parcel.",
+          "options": ["are", "is", "were", "have"],
+          "answer": 1,
+          "explanation": "With 'either ... or', the verb agrees with the nearer subject, 'my sister' (singular)."
+        },
+        {
+          "id": "subject-verb-agreement-10",
+          "type": "mcq",
+          "prompt": "Everyone in the hostel ___ to switch off the lights by eleven.",
+          "options": ["are expected", "have been expected", "is expected", "were expected"],
+          "answer": 2,
+          "explanation": "'Everyone' is singular and takes a singular verb."
+        },
+        {
+          "id": "subject-verb-agreement-11",
+          "type": "mcq",
+          "prompt": "The news from the flood-hit areas ___ distressing.",
+          "options": ["are", "were", "have been", "is"],
+          "answer": 3,
+          "explanation": "'News' is an uncountable noun and is always singular."
+        },
+        {
+          "id": "subject-verb-agreement-12",
+          "type": "mcq",
+          "prompt": "The quality of the roads in these districts ___ poor.",
+          "options": ["is", "are", "were", "have been"],
+          "answer": 0,
+          "explanation": "The subject is 'quality' (singular); 'roads' and 'districts' are inside the prepositional phrase."
+        }
+      ]
+    },
+    {
+      "id": "active-passive-voice",
+      "title": "Active and Passive Voice",
+      "summary": "Changing sentences between the active and passive voice while keeping the tense and meaning unchanged.",
+      "rules": [
+        {
+          "rule": "The object of the active sentence becomes the subject of the passive. The passive is formed with a form of 'be' plus the past participle.",
+          "examples": ["Active: The council built the bridge.", "Passive: The bridge was built by the council."]
+        },
+        {
+          "rule": "Keep the original tense by changing only the form of 'be': is made, is being made, has been made, was made, had been made, will be made.",
+          "examples": ["They are repairing the road. → The road is being repaired.", "They have repaired the road. → The road has been repaired."]
+        },
+        {
+          "rule": "With modal verbs, use modal + be + past participle.",
+          "examples": ["You should check the figures. → The figures should be checked.", "We can solve the problem. → The problem can be solved."]
+        },
+        {
+          "rule": "Only transitive verbs (verbs with an object) can be made passive. Verbs such as arrive, sleep and happen have no passive form.",
+          "examples": ["The guests arrived late. (no passive form)", "The judge dismissed the case. → The case was dismissed by the judge."]
+        },
+        {
+          "rule": "The agent ('by ...') can be left out when it is unknown, obvious or unimportant.",
+          "examples": ["Someone has broken the window. → The window has been broken.", "The thief was arrested (by the police)."]
+        },
+        {
+          "rule": "Imperatives become passive with 'Let ... be + past participle'; questions keep question order with the auxiliary before the subject.",
+          "examples": ["Shut the gate. → Let the gate be shut.", "Did they sign the treaty? → Was the treaty signed by them?"]
+        }
+      ],
+      "questions": [
+        {
+          "id": "active-passive-voice-01",
+          "type": "mcq",
+          "prompt": "Choose the correct passive form: The clerk types the letters.",
+          "options": [
+            "The letters are typed by the clerk.",
+            "The letters were typed by the clerk.",
+            "The letters are being typed by the clerk.",
+            "The letters have typed by the clerk."
+          ],
+          "answer": 0,
+          "explanation": "The simple present active becomes 'am/is/are + past participle' in the passive; the tense must not change."
+        },
+        {
+          "id": "active-passive-voice-02",
+          "type": "mcq",
+          "prompt": "Choose the correct passive form: The police are investigating the case.",
+          "options": [
+            "The case is investigated by the police.",
+            "The case is being investigated by the police.",
+            "The case has been investigated by the police.",
+            "The case was being investigated by the police."
+          ],
+          "answer": 1,
+          "explanation": "The present continuous becomes 'is/are being + past participle' in the passive."
+        },
+        {
+          "id": "active-passive-voice-03",
+          "type": "mcq",
+          "prompt": "Choose the correct passive form: The board has approved the budget.",
+          "options": [
+            "The budget was approved by the board.",
+            "The budget is approved by the board.",
+            "The budget has been approved by the board.",
+            "The budget had approved by the board."
+          ],
+          "answer": 2,
+          "explanation": "The present perfect becomes 'has/have been + past participle' in the passive."
+        },
+        {
+          "id": "active-passive-voice-04",
+          "type": "mcq",
+          "prompt": "Choose the correct passive form: Someone stole my wallet.",
+          "options": [
+            "My wallet has been stolen.",
+            "My wallet is stolen.",
+            "My wallet was being stolen.",
+            "My wallet was stolen."
+          ],
+          "answer": 3,
+          "explanation": "The simple past becomes 'was/were + past participle'; the unknown agent 'someone' is dropped."
+        },
+        {
+          "id": "active-passive-voice-05",
+          "type": "mcq",
+          "prompt": "Choose the correct passive form: They will announce the results tomorrow.",
+          "options": [
+            "The results will be announced tomorrow.",
+            "The results will announced tomorrow.",
+            "The results would be announced tomorrow.",
+            "The results will have been announced tomorrow."
+          ],
+          "answer": 0,
+          "explanation": "The simple future becomes 'will be + past participle' in the passive."
+        },
+        {
+          "id": "active-passive-voice-06",
+          "type": "mcq",
+          "prompt": "Choose the correct passive form: You must submit the application before Friday.",
+          "options": [
+            "The application must submit before Friday.",
+            "The application must be submitted before Friday.",
+            "The application must have been submitted before Friday.",
+            "The application must be submit before Friday."
+          ],
+          "answer": 1,
+          "explanation": "With a modal verb, the passive is 'modal + be + past participle'."
+        },
+        {
+          "id": "active-passive-voice-07",
+          "type": "mcq",
+          "prompt": "Choose the correct passive form: Who wrote this report?",
+          "options": [
+            "Who was this report written?",
+            "By whom this report was written?",
+            "By whom was this report written?",
+            "By whom has this report been written?"
+          ],
+          "answer": 2,
+          "explanation": "'Who' as subject becomes 'By whom', and the question keeps the auxiliary before the subject; the simple past must not change."
+        },
+        {
+          "id": "active-passive-voice-08",
+          "type": "mcq",
+          "prompt": "Choose the correct passive form: Close the door.",
+          "options": [
+            "The door is closed.",
+            "Let the door closed.",
+            "The door was closed.",
+            "Let the door be closed."
+          ],
+          "answer": 3,
+          "explanation": "An imperative becomes passive with 'Let + object + be + past participle'."
+        },
+        {
+          "id": "active-passive-voice-09",
+          "type": "mcq",
+          "prompt": "Choose the correct passive form: The engineers had completed the bridge before the monsoon.",
+          "options": [
+            "The bridge had been completed by the engineers before the monsoon.",
+            "The bridge was completed by the engineers before the monsoon.",
+            "The bridge has been completed by the engineers before the monsoon.",
+            "The bridge had completed by the engineers before the monsoon."
+          ],
+          "answer": 0,
+          "explanation": "The past perfect becomes 'had been + past participle' in the passive."
+        },
+        {
+          "id": "active-passive-voice-10",
+          "type": "mcq",
+          "prompt": "Which sentence CANNOT be changed into the passive voice?",
+          "options": [
+            "The chef cooked the meal.",
+            "The guests arrived late.",
+            "The court rejected the appeal.",
+            "The storm damaged the crops."
+          ],
+          "answer": 1,
+          "explanation": "'Arrive' is intransitive (it has no object), so it has no passive form."
+        },
+        {
+          "id": "active-passive-voice-11",
+          "type": "mcq",
+          "prompt": "Choose the correct passive form: Did the minister inaugurate the hospital?",
+          "options": [
+            "Did the hospital inaugurated by the minister?",
+            "Has the hospital been inaugurated by the minister?",
+            "Was the hospital inaugurated by the minister?",
+            "Was the hospital being inaugurated by the minister?"
+          ],
+          "answer": 2,
+          "explanation": "A simple past question with 'did' becomes 'Was/Were + subject + past participle' in the passive."
+        },
+        {
+          "id": "active-passive-voice-12",
+          "type": "mcq",
+          "prompt": "Choose the correct active form: The suspect was being questioned by the officers.",
+          "options": [
+            "The officers questioned the suspect.",
+            "The officers had questioned the suspect.",
+            "The officers are questioning the suspect.",
+            "The officers were questioning the suspect."
+          ],
+          "answer": 3,
+          "explanation": "'Was being + past participle' is the past continuous passive, so the active form is the past continuous: were questioning."
+        }
+      ]
+    },
+    {
+      "id": "direct-indirect-speech",
+      "title": "Direct and Indirect Speech",
+      "summary": "Reporting what someone said, asked or ordered, with the correct changes to tense, pronouns, word order and time words.",
+      "rules": [
+        {
+          "rule": "When the reporting verb is in the past, move the tenses one step back: am/is → was, have → had, past → past perfect, will → would, can → could.",
+          "examples": ["He said, \"I am busy.\" → He said that he was busy.", "She said, \"I will come.\" → She said that she would come."]
+        },
+        {
+          "rule": "Do not change the tense if the reporting verb is in the present, or if the statement is a universal truth.",
+          "examples": ["He says, \"I am busy.\" → He says that he is busy.", "The teacher said that light travels faster than sound."]
+        },
+        {
+          "rule": "Change pronouns to fit the new speaker, and change words of time and place: now → then, today → that day, tomorrow → the next day, yesterday → the previous day, here → there, this → that.",
+          "examples": ["She said, \"I met him yesterday.\" → She said that she had met him the previous day.", "He said, \"I live here.\" → He said that he lived there."]
+        },
+        {
+          "rule": "Report yes/no questions with if or whether, and wh-questions with the question word. Use statement word order and no question mark.",
+          "examples": ["He asked, \"Are you ready?\" → He asked whether I was ready.", "She asked, \"Why are you late?\" → She asked why I was late."]
+        },
+        {
+          "rule": "Report commands and requests with told, ordered, requested or advised + object + to-infinitive; for negatives, use 'not to'.",
+          "examples": ["He said to me, \"Sit down.\" → He told me to sit down.", "She said to them, \"Don't shout.\" → She told them not to shout."]
+        },
+        {
+          "rule": "'Said to + person' becomes 'told + person'; 'said' is not followed directly by a person as object.",
+          "examples": ["He told me that he was leaving.", "He said that he was leaving."]
+        },
+        {
+          "rule": "Exclamations are reported with verbs such as exclaimed, and are turned into statements.",
+          "examples": ["She said, \"How lovely the view is!\" → She exclaimed that the view was very lovely.", "He said, \"Alas! I have lost.\" → He exclaimed sadly that he had lost."]
+        }
+      ],
+      "questions": [
+        {
+          "id": "direct-indirect-speech-01",
+          "type": "mcq",
+          "prompt": "Choose the correct indirect speech: She said, \"I am waiting for the bus.\"",
+          "options": [
+            "She said that she was waiting for the bus.",
+            "She said that I was waiting for the bus.",
+            "She told that she was waiting for the bus.",
+            "She said that she had been waited for the bus."
+          ],
+          "answer": 0,
+          "explanation": "After a past reporting verb, 'am waiting' becomes 'was waiting' and 'I' becomes 'she'; 'told' needs a person as object."
+        },
+        {
+          "id": "direct-indirect-speech-02",
+          "type": "mcq",
+          "prompt": "Choose the correct indirect speech: He said to me, \"I will help you tomorrow.\"",
+          "options": [
+            "He said me that he would help me the next day.",
+            "He told me that he would help me the next day.",
+            "He told me that I would help him the next day.",
+            "He told me that he will help you tomorrow."
+          ],
+          "answer": 1,
+          "explanation": "'Said to me' becomes 'told me', 'will' becomes 'would', pronouns change, and 'tomorrow' becomes 'the next day'."
+        },
+        {
+          "id": "direct-indirect-speech-03",
+          "type": "mcq",
+          "prompt": "Choose the correct indirect speech: The teacher said, \"The earth revolves around the sun.\"",
+          "options": [
+            "The teacher said that the earth had revolved around the sun.",
+            "The teacher told that the earth revolves around the sun.",
+            "The teacher said that the earth revolves around the sun.",
+            "The teacher said that the earth will revolve around the sun."
+          ],
+          "answer": 2,
+          "explanation": "A universal truth keeps its present tense in indirect speech; 'told' would need a person as object."
+        },
+        {
+          "id": "direct-indirect-speech-04",
+          "type": "mcq",
+          "prompt": "Choose the correct indirect speech: She asked me, \"Where do you live?\"",
+          "options": [
+            "She asked me where did I live.",
+            "She asked me where do you live.",
+            "She asked me that where I lived.",
+            "She asked me where I lived."
+          ],
+          "answer": 3,
+          "explanation": "A reported wh-question uses statement word order (I lived), drops 'do/did', and does not add 'that'."
+        },
+        {
+          "id": "direct-indirect-speech-05",
+          "type": "mcq",
+          "prompt": "Choose the correct indirect speech: He asked, \"Have you finished the report?\"",
+          "options": [
+            "He asked whether I had finished the report.",
+            "He asked that had I finished the report.",
+            "He asked whether had I finished the report.",
+            "He asked me have you finished the report?"
+          ],
+          "answer": 0,
+          "explanation": "A yes/no question is reported with 'whether' or 'if', in statement word order, with the tense moved back (have → had)."
+        },
+        {
+          "id": "direct-indirect-speech-06",
+          "type": "mcq",
+          "prompt": "Choose the correct indirect speech: The officer said to the guard, \"Open the gate.\"",
+          "options": [
+            "The officer told the guard that open the gate.",
+            "The officer ordered the guard to open the gate.",
+            "The officer ordered the guard opening the gate.",
+            "The officer said the guard to open the gate."
+          ],
+          "answer": 1,
+          "explanation": "A command is reported with a verb such as 'ordered' + object + to-infinitive."
+        },
+        {
+          "id": "direct-indirect-speech-07",
+          "type": "mcq",
+          "prompt": "Choose the correct indirect speech: Mother said to me, \"Do not play in the sun.\"",
+          "options": [
+            "Mother told me to not playing in the sun.",
+            "Mother told me don't play in the sun.",
+            "Mother told me not to play in the sun.",
+            "Mother told me that do not play in the sun."
+          ],
+          "answer": 2,
+          "explanation": "A negative command is reported with 'told + object + not to + base verb'."
+        },
+        {
+          "id": "direct-indirect-speech-08",
+          "type": "mcq",
+          "prompt": "Choose the correct indirect speech: He said, \"I met her yesterday.\"",
+          "options": [
+            "He said that he had meet her the previous day.",
+            "He said that he has met her the day before.",
+            "He said that I had met her the previous day.",
+            "He said that he had met her the previous day."
+          ],
+          "answer": 3,
+          "explanation": "The simple past becomes the past perfect (had met) and 'yesterday' becomes 'the previous day'."
+        },
+        {
+          "id": "direct-indirect-speech-09",
+          "type": "mcq",
+          "prompt": "Choose the correct indirect speech: She said, \"What a beautiful garden this is!\"",
+          "options": [
+            "She exclaimed that it was a very beautiful garden.",
+            "She exclaimed what a beautiful garden is this.",
+            "She said that what a beautiful garden this was!",
+            "She exclaimed that what a beautiful garden it is."
+          ],
+          "answer": 0,
+          "explanation": "An exclamation is reported with 'exclaimed' and turned into an ordinary statement with the tense moved back and no exclamation mark."
+        },
+        {
+          "id": "direct-indirect-speech-10",
+          "type": "mcq",
+          "prompt": "Choose the correct indirect speech: He said, \"I can solve this problem.\"",
+          "options": [
+            "He said that he can solved this problem.",
+            "He said that he could solve that problem.",
+            "He said that I could solve that problem.",
+            "He said that he could solved that problem."
+          ],
+          "answer": 1,
+          "explanation": "'Can' becomes 'could' (followed by the base verb), 'I' becomes 'he', and 'this' becomes 'that'."
+        },
+        {
+          "id": "direct-indirect-speech-11",
+          "type": "mcq",
+          "prompt": "Choose the correct indirect speech: Ayesha said, \"I have been working here for five years.\"",
+          "options": [
+            "Ayesha said that she was been working there for five years.",
+            "Ayesha said that I had been working there for five years.",
+            "Ayesha said that she had been working there for five years.",
+            "Ayesha said that she had been worked there for five years."
+          ],
+          "answer": 2,
+          "explanation": "The present perfect continuous becomes the past perfect continuous (had been working), and 'here' becomes 'there'."
+        },
+        {
+          "id": "direct-indirect-speech-12",
+          "type": "mcq",
+          "prompt": "Choose the correct indirect speech: Bilal said to the principal, \"Sir, please grant me leave.\"",
+          "options": [
+            "Bilal said the principal please grant me leave.",
+            "Bilal respectfully told the principal that grant him leave.",
+            "Bilal requested the principal grant me leave.",
+            "Bilal respectfully requested the principal to grant him leave."
+          ],
+          "answer": 3,
+          "explanation": "A polite request is reported with 'requested + object + to-infinitive'; 'Sir' is replaced by 'respectfully', and 'me' becomes 'him'."
+        }
+      ]
+    }
+  ]
+}
