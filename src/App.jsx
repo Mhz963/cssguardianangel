@@ -17,6 +17,7 @@ import {
   useNavigate,
 } from 'react-router-dom'
 import './App.css'
+import './styles/refresh.css'
 import logo from './assets/guardian-angel-logo-192.webp'
 import { ensureFreshSession, supabase } from './utils/supabaseClient.js'
 import { usePlannerReminderBootstrap, usePlannerReminderPopup } from './plannerReminderClient.js'
@@ -52,7 +53,6 @@ const FACEBOOK_PAGE_URL = 'https://www.facebook.com/profile.php?id=6157203907291
 const INSTAGRAM_PAGE_URL = 'https://www.instagram.com/cssguardianangel/'
 const LINKEDIN_PAGE_URL = 'https://www.linkedin.com/company/135217403/'
 
-const YOUTUBE_FEATURED_VIDEO_EMBED = 'https://www.youtube.com/embed/cCdBjxylTZY'
 
 const DEFAULT_SEO = {
   title: 'Guardian Angel | CSS Preparation Platform Pakistan',
@@ -161,6 +161,98 @@ const pillars = [
     text: 'Students from every city, village, and background can prepare for Central Superior Services.',
   },
 ]
+
+const PILLAR_ICONS = ['award', 'heart', 'target', 'users']
+
+const HOME_STATS = [
+  { value: '425+', label: 'Lecture slide decks' },
+  { value: '50+', label: 'Subjects covered' },
+  { value: 'FPSC', label: 'Past papers by year' },
+  { value: '100%', label: 'Free, always' },
+]
+
+const HOME_RESOURCES = [
+  {
+    icon: 'book',
+    title: 'CSS Syllabus',
+    text: 'Every compulsory and optional subject with detailed course outlines.',
+    to: '/css-syllabus',
+  },
+  {
+    icon: 'papers',
+    title: 'FPSC Past Papers',
+    text: 'Official question papers organised by year, ready to practise.',
+    to: '/css-past-papers',
+  },
+  {
+    icon: 'slides',
+    title: 'Lecture Slides',
+    text: '425+ slide decks to understand subjects and choose your optionals.',
+    to: '/css-study-material',
+  },
+  {
+    icon: 'scroll',
+    title: 'Key Documents',
+    text: 'The Constitution of Pakistan, UN Charter, UDHR and official sources.',
+    to: '/key-documents',
+  },
+  {
+    icon: 'globe',
+    title: 'Current Affairs',
+    text: 'Pakistan and global affairs with an interactive world conflict map.',
+    to: '/global-affairs',
+  },
+  {
+    icon: 'calendar',
+    title: 'Study Planner',
+    text: 'A personal timetable, reminders and a progress report to stay on track.',
+    to: '/guardian-study-planner',
+  },
+]
+
+const HOME_STEPS = [
+  {
+    title: 'Understand the exam',
+    text: 'Read the rules and eligibility, then go through the full syllabus subject by subject.',
+    to: '/css-rules',
+    cta: 'CSS rules',
+  },
+  {
+    title: 'Learn from authentic sources',
+    text: 'Study with lecture slides, key documents and FPSC past papers instead of ready-made notes.',
+    to: '/css-study-material',
+    cta: 'Study material',
+  },
+  {
+    title: 'Plan, practise and track',
+    text: 'Build your timetable in the Study Planner, set reminders and measure your progress.',
+    to: '/guardian-study-planner',
+    cta: 'Study Planner',
+  },
+]
+
+const HOME_ICON_PATHS = {
+  book: 'M12 6.5C10.2 5.2 7.6 4.5 4 4.5v13c3.6 0 6.2.7 8 2m0-13c1.8-1.3 4.4-2 8-2v13c-3.6 0-6.2.7-8 2m0-13v13',
+  papers: 'M8 3h8l4 4v12a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Zm8 0v4h4M9.5 12h7M9.5 15.5h7M4 7v12a3 3 0 0 0 3 3h9',
+  slides: 'M3 4.5h18v11H3zM12 15.5V20M8 20h8M10 7.8v4.4l3.8-2.2z',
+  scroll: 'M7 3h10a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Zm2.5 5h5M9.5 11.5h5M9.5 15h3',
+  globe: 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm-9-9h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3Z',
+  calendar: 'M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm-1 5h16M8.5 3v4M15.5 3v4M9 15l2 2 4-4',
+  award: 'M12 14a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm-3.4 2.6L7.5 21l4.5-2.2 4.5 2.2-1.1-4.4',
+  heart: 'M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.4a4.3 4.3 0 0 1 7.5 2.4C19.5 15.4 12 20 12 20Z',
+  target: 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0-4.5a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm0-3.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z',
+  users: 'M9 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm-6 9a6 6 0 0 1 12 0M16 4.3a3.5 3.5 0 0 1 0 6.4M18 14.4A6 6 0 0 1 21 20',
+}
+
+function HomeIcon({ name }) {
+  return (
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+      <path d={HOME_ICON_PATHS[name] || HOME_ICON_PATHS.book} />
+    </svg>
+  )
+}
+
+const HOME_FAQ_INITIAL = 6
 
 const homeFaqs = [
   {
@@ -667,121 +759,167 @@ function HomePage() {
 
         <section className="hero container">
           <div className="hero-copy reveal-on-scroll">
-            
+            <p className="hero-eyebrow">
+              <span className="hero-eyebrow-dot" aria-hidden="true" />
+              Free · Independent · For every CSS Jawan
+            </p>
             <h1>Empowering Pakistan’s Future Leaders</h1>
             <p className="subtext">
               Guardian Angel is an independent platform dedicated to helping CSS Jawans across
               Pakistan access premium quality education completely free of cost.
             </p>
-            
-          </div>
-          <div className="hero-constitutional-note reveal-on-scroll">
-            <p>
-              The Constitution of Pakistan <span className="guardian-highlight-word">(Article 25)</span>{' '}
-              guarantees free and compulsory education for
-              every citizen.
-            </p>
-            <p>
-              <span className="guardian-highlight-word">Guardian Angel</span> is committed to upholding
-              this right by making quality knowledge accessible to all.
-            </p>
-          </div>
-        </section>
-
-        <section
-          className="hero-youtube-section container reveal-on-scroll"
-          aria-label="Guardian Angel on YouTube"
-        >
-          <div className="hero-youtube-block">
-            <div className="hero-youtube-embed">
-              <iframe
-                src={YOUTUBE_FEATURED_VIDEO_EMBED}
-                title="Guardian Angel — free CSS education for every citizen"
-                loading="lazy"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                allowFullScreen
-              />
+            <div className="hero-actions">
+              <Link className="btn btn-primary hero-btn" to="/css-syllabus">
+                Start with the syllabus
+              </Link>
+              <Link className="btn btn-secondary hero-btn hero-btn-ghost" to="/guardian-study-planner">
+                Open Study Planner
+              </Link>
             </div>
-            <a
-              className="hero-youtube-channel-link"
-              href={YOUTUBE_PAGE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <svg className="hero-youtube-icon" viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  fill="currentColor"
-                  d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"
-                />
-              </svg>
-              Watch on YouTube — @CSSGuardianAngel
-            </a>
           </div>
+
+          <dl className="hero-stats reveal-on-scroll">
+            {HOME_STATS.map((stat) => (
+              <div className="hero-stat" key={stat.label}>
+                <dt>{stat.value}</dt>
+                <dd>{stat.label}</dd>
+              </div>
+            ))}
+          </dl>
+
+          <p className="hero-constitutional-note reveal-on-scroll">
+            <span className="guardian-highlight-word">Article 25-A</span> of the Constitution of Pakistan promises free
+            education. <span className="guardian-highlight-word">Guardian Angel</span> carries that promise to every
+            CSS aspirant.
+          </p>
         </section>
       </section>
 
-      <main>
-        <section className="mission container glass-panel reveal-on-scroll" id="mission">
-          <div className="section-title">
-            <h2>Knowledge is Priceless</h2>
-          </div>
-          <p className="mission-body">
-            Talent should never be limited by money. In Pakistan, thousands of brilliant students
-            cannot afford expensive academies. Guardian Angel exists to bridge that gap. Guardian Angel&apos;s mission is to democratize CSS education in Pakistan by providing
-            world class preparation resources free of cost, ensuring that every talented student,
-            regardless of financial background, has the opportunity to compete.
-          </p>
-          
-        </section>
-
-        <section className="highlights container" id="why-guardian-angel">
-          {pillars.map((item, index) => (
-            <article
-              className="card reveal-on-scroll"
-              key={item.title}
-              style={{ '--reveal-delay': `${index * 100}ms` }}
-            >
-              <h3>{item.title}</h3>
-              <p>{item.text}</p>
-            </article>
-          ))}
-        </section>
-
-        <section className="message container glass-panel reveal-on-scroll" id="student-message">
-          <div className="message-content">
-            <div className="section-title">
-              <h2>CSS is not just an examination.</h2>
-            </div>
-            <p className="message-body">
-              It is a gateway to leadership, service, and national impact. Guardian Angel stands
-              with every hardworking aspirant who dreams of wearing the badge of Pakistan&apos;s
-              civil service.
+      <main id="main-content">
+        <section className="home-section container" id="resources">
+          <header className="home-section-head reveal-on-scroll">
+            <p className="home-eyebrow">Everything in one place</p>
+            <h2>Your complete CSS toolkit</h2>
+            <p className="home-section-lead">
+              Authentic, organised and free. Pick up where you are and go further.
             </p>
+          </header>
+          <div className="home-resource-grid">
+            {HOME_RESOURCES.map((item, index) => (
+              <Link
+                className="home-resource-card reveal-on-scroll"
+                to={item.to}
+                key={item.title}
+                style={{ '--reveal-delay': `${index * 70}ms` }}
+              >
+                <span className="home-resource-icon" aria-hidden="true">
+                  <HomeIcon name={item.icon} />
+                </span>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+                <span className="home-resource-more" aria-hidden="true">
+                  Explore <span className="home-arrow">→</span>
+                </span>
+              </Link>
+            ))}
           </div>
-          <div className="message-actions">
-            <Link className="btn btn-primary home-action-btn" to="/css-rules">
-              Browse CSS Rules
+        </section>
+
+        <section className="home-section container home-mission" id="mission">
+          <div className="home-mission-copy reveal-on-scroll">
+            <p className="home-eyebrow">Our mission</p>
+            <h2>Knowledge is Priceless</h2>
+            <p>
+              Talent should never be limited by money. In Pakistan, thousands of brilliant students cannot afford
+              expensive academies. Guardian Angel exists to bridge that gap.
+            </p>
+            <p>
+              Our mission is to democratise CSS education by providing world class preparation resources free of cost,
+              so every talented student, whatever their background, has the opportunity to compete.
+            </p>
+            <Link className="btn btn-secondary home-mission-link" to="/about-guardian-angel">
+              Read Guardian&apos;s vision
             </Link>
-      </div>
-        </section>
-
-        <section className="cta container reveal-on-scroll" id="join">
-          <div>
-            
-            <h2>If you have the determination, Guardian Angel will provide the guidance</h2>
-            
-      </div>
-          <Link className="btn btn-primary home-action-btn" to="/css-syllabus">
-            Browse CSS Syllabus
-          </Link>
-        </section>
-
-        <section className="home-faq container reveal-on-scroll" id="css-faq">
-          <div className="section-title">
-            <p>CSS Frequently Asked Questions</p>
-            <br/>
           </div>
+          <div className="home-pillars" id="why-guardian-angel">
+            {pillars.map((item, index) => (
+              <article
+                className="home-pillar reveal-on-scroll"
+                key={item.title}
+                style={{ '--reveal-delay': `${index * 90}ms` }}
+              >
+                <span className="home-pillar-icon" aria-hidden="true">
+                  <HomeIcon name={PILLAR_ICONS[index % PILLAR_ICONS.length]} />
+                </span>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="home-section container" id="how-to-prepare">
+          <header className="home-section-head reveal-on-scroll">
+            <p className="home-eyebrow">How to prepare</p>
+            <h2>Three steps, one clear path</h2>
+          </header>
+          <ol className="home-steps">
+            {HOME_STEPS.map((step, index) => (
+              <li className="home-step reveal-on-scroll" key={step.title} style={{ '--reveal-delay': `${index * 100}ms` }}>
+                <span className="home-step-number" aria-hidden="true">
+                  {index + 1}
+                </span>
+                <h3>{step.title}</h3>
+                <p>{step.text}</p>
+                <Link className="home-step-link" to={step.to}>
+                  {step.cta} <span className="home-arrow">→</span>
+                </Link>
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        <section className="home-section container" id="join">
+          <div className="home-cta-band reveal-on-scroll">
+            <div className="home-cta-copy">
+              <p className="home-eyebrow">CSS is not just an examination</p>
+              <h2>If you have the determination, Guardian Angel will provide the guidance.</h2>
+              <p>
+                It is a gateway to leadership, service and national impact. Start today on the web, or take Guardian
+                Angel with you on Android.
+              </p>
+            </div>
+            <div className="home-cta-actions">
+              <Link className="btn btn-primary hero-btn" to="/css-syllabus">
+                Browse the syllabus
+              </Link>
+              <Link className="btn btn-secondary hero-btn hero-btn-ghost" to="/css-rules">
+                Read the CSS rules
+              </Link>
+              <a
+                className="home-cta-play"
+                href={GOOGLE_PLAY_APP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Get CSS Guardian Angel on Google Play"
+              >
+                <img src="/google-play-badge.png" alt="" width="180" height="70" loading="lazy" />
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section className="home-section container home-faq" id="css-faq">
+          <header className="home-faq-head reveal-on-scroll">
+            <p className="home-eyebrow">FAQ</p>
+            <h2>CSS questions, answered</h2>
+            <p className="home-section-lead">
+              Straight answers on eligibility, planning, optional subjects and the right mindset.
+            </p>
+            <Link className="home-step-link" to="/blogs">
+              More in the Guardian blogs <span className="home-arrow">→</span>
+            </Link>
+          </header>
           <HomeFaqAccordion />
         </section>
       </main>
@@ -791,10 +929,12 @@ function HomePage() {
 
 function HomeFaqAccordion() {
   const [openFaqIndex, setOpenFaqIndex] = useState(0)
+  const [showAll, setShowAll] = useState(false)
+  const visibleFaqs = showAll ? homeFaqs : homeFaqs.slice(0, HOME_FAQ_INITIAL)
 
   return (
     <div className="home-faq-accordion">
-      {homeFaqs.map((faq, index) => {
+      {visibleFaqs.map((faq, index) => {
         const isOpen = openFaqIndex === index
         return (
           <article key={faq.question} className={`home-faq-item ${isOpen ? 'open' : ''}`}>
@@ -832,6 +972,11 @@ function HomeFaqAccordion() {
           </article>
         )
       })}
+      {homeFaqs.length > HOME_FAQ_INITIAL ? (
+        <button className="home-faq-more" type="button" onClick={() => setShowAll((current) => !current)}>
+          {showAll ? 'Show fewer questions' : `Show all ${homeFaqs.length} questions`}
+        </button>
+      ) : null}
     </div>
   )
 }

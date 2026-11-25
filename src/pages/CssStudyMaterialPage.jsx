@@ -204,7 +204,7 @@ export default function CssStudyMaterialPage() {
 
         <p className="rules-source study-material-warning-mantra">
           <span className="guardian-highlight-word-red">
-            Do not rely on these slides alone for your CSS Preperation, they are meant to give a brief
+            Do not rely on these slides alone for your CSS preparation, they are meant to give a brief
             overview of each subject and to guide aspirants to select optionals based on their
             interests.
           </span>
