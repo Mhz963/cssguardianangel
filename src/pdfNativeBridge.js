@@ -257,23 +257,33 @@ async function openPdfViewInNewTab({ dataUrl, blobUrl, pdfUrl, fileName } = {}) 
 /**
  * Upload a generated PDF so it gets a real https URL — the app WebView's download
  * manager only reacts to http(s) sources (blob:/data: never trigger a save).
+ * Files go to the signed-in user's own folder in a private bucket and are shared
+ * through a short-lived signed URL; the user's previous hand-off files are removed first.
  */
 async function uploadPdfForAppDownload(blob, fileName) {
   if (!hasSupabaseConfig || !supabase) return ''
   try {
-    const stamp = Date.now()
-    const rand = Math.random().toString(36).slice(2, 10)
-    const path = `${stamp}-${rand}/${fileName}`
-    const { error } = await supabase.storage.from(APP_DOWNLOAD_BUCKET).upload(path, blob, {
+    const { data: sessionData } = await supabase.auth.getSession()
+    const userId = sessionData?.session?.user?.id
+    if (!userId) return ''
+    const bucket = supabase.storage.from(APP_DOWNLOAD_BUCKET)
+    try {
+      const { data: previous } = await bucket.list(userId, { limit: 100 })
+      if (previous?.length) await bucket.remove(previous.map((item) => `${userId}/${item.name}`))
+    } catch {
+      // Cleanup is best-effort.
+    }
+    const safeName = String(fileName || 'Guardian_Angel_Report.pdf').replace(/[^\w.-]+/g, '_')
+    const path = `${userId}/${Date.now()}-${safeName}`
+    const { error } = await bucket.upload(path, blob, {
       contentType: 'application/pdf',
-      cacheControl: '3600',
-      upsert: true,
+      cacheControl: '0',
+      upsert: false,
     })
     if (error) return ''
-    const { data } = supabase.storage.from(APP_DOWNLOAD_BUCKET).getPublicUrl(path, {
-      download: fileName,
-    })
-    return data?.publicUrl || ''
+    const { data, error: signError } = await bucket.createSignedUrl(path, 60 * 30, { download: fileName })
+    if (signError) return ''
+    return data?.signedUrl || ''
   } catch {
     return ''
   }

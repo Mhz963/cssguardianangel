@@ -9261,3 +9261,146 @@ a {
   }
 }
 
+
+/* ===================================================================
+   Accessibility, loading states and laptop-width header (Nov 2026)
+   =================================================================== */
+
+/* Visible keyboard focus everywhere (mouse clicks stay outline-free). */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 3px solid #f2d56b;
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -100px;
+  z-index: 100;
+  padding: 0.7rem 1.1rem;
+  border-radius: 10px;
+  background: #f2d56b;
+  color: #10141f;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 0.75rem;
+}
+
+main:focus {
+  outline: none;
+}
+
+.page-loader {
+  min-height: 60vh;
+  display: grid;
+  place-items: center;
+}
+
+.page-loader-text {
+  color: var(--text-muted, #a7a7b5);
+  letter-spacing: 0.08em;
+  animation: page-loader-pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes page-loader-pulse {
+  50% {
+    opacity: 0.45;
+  }
+}
+
+.not-found-page {
+  min-height: 55vh;
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  gap: 0.8rem;
+}
+
+.not-found-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.profile-danger-card {
+  border-color: rgb(239 108 98 / 45%);
+}
+
+.profile-danger-text {
+  color: var(--text-muted, #b9b9c6);
+  line-height: 1.55;
+}
+
+/* Laptop widths: the full desktop header used to overflow between ~720px and ~1230px. */
+@media (min-width: 721px) and (max-width: 1280px) {
+  .topbar-inner {
+    gap: 0.6rem;
+  }
+
+  .brand img {
+    width: 52px;
+    height: 52px;
+  }
+
+  .brand strong {
+    font-size: 0.95rem;
+  }
+
+  .brand span {
+    font-size: 0.78rem;
+  }
+
+  .nav {
+    gap: 0.6rem;
+  }
+
+  .nav-links {
+    gap: 0.75rem;
+    margin-left: 0.4rem;
+  }
+
+  .nav a,
+  .nav-group-trigger {
+    font-size: 0.84rem;
+  }
+
+  .nav-compact-label {
+    font-size: 0.8rem;
+  }
+
+  .nav-actions {
+    gap: 0.4rem;
+  }
+
+  .nav-actions .btn {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.82rem;
+  }
+
+  .theme-toggle {
+    width: 40px;
+    height: 38px;
+  }
+}
+
+@media (min-width: 721px) and (max-width: 1100px) {
+  /* Keep the logo, drop the wordmark so every nav item fits on one line. */
+  .topbar .brand > div {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,8 +1,18 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import * as pdfjsLib from 'pdfjs-dist'
-import pdfWorkerUrl from 'pdfjs-dist/build/pdf.worker.min.mjs?url'
-
-pdfjsLib.GlobalWorkerOptions.workerSrc = pdfWorkerUrl
+// PDF.js is large (~130 KB gzipped); load it only when a PDF is actually opened.
+let pdfjsPromise = null
+function loadPdfjs() {
+  if (!pdfjsPromise) {
+    pdfjsPromise = Promise.all([
+      import('pdfjs-dist'),
+      import('pdfjs-dist/build/pdf.worker.min.mjs?url'),
+    ]).then(([pdfjsLib, worker]) => {
+      pdfjsLib.GlobalWorkerOptions.workerSrc = worker.default
+      return pdfjsLib
+    })
+  }
+  return pdfjsPromise
+}
 
 export const GA_PDF_APP_VIEW_EVENT = 'ga-pdf-app-view'
 export const GA_PDF_APP_TOAST_EVENT = 'ga-pdf-app-toast'
@@ -120,6 +130,8 @@ export function PdfAppExperienceHost() {
       setViewerStatus('loading')
       try {
         const source = viewer.dataUrl || viewer.blobUrl || viewer.src
+        const pdfjsLib = await loadPdfjs()
+        if (cancelled) return
         let loadingTask
         if (String(source).startsWith('data:')) {
           loadingTask = pdfjsLib.getDocument({ data: dataUrlToBytes(source) })

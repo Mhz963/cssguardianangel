@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, Navigate } from 'react-router-dom'
 import { hasSupabaseConfig, supabase } from './utils/supabaseClient.js'
 import { isSuperAdminEmail } from './utils/adminClient.js'
+import { deleteMyAccount } from './utils/accountClient.js'
 
 function formatDate(isoDate) {
   if (!isoDate) return '—'
@@ -16,6 +17,26 @@ function ProfilePage({ authUser }) {
   const [error, setError] = useState('')
   const [message, setMessage] = useState('')
   const [isChangingPassword, setIsChangingPassword] = useState(false)
+  const [deleteConfirm, setDeleteConfirm] = useState('')
+  const [deleteError, setDeleteError] = useState('')
+  const [isDeleting, setIsDeleting] = useState(false)
+
+  const handleDeleteAccount = async (event) => {
+    event.preventDefault()
+    setDeleteError('')
+    if (deleteConfirm.trim() !== 'DELETE') {
+      setDeleteError('Type DELETE in capital letters to confirm.')
+      return
+    }
+    setIsDeleting(true)
+    try {
+      await deleteMyAccount()
+      window.location.assign('/?account=deleted')
+    } catch (err) {
+      setDeleteError(err?.message || 'Unable to delete account.')
+      setIsDeleting(false)
+    }
+  }
 
   useEffect(() => {
     if (!supabase) return undefined
@@ -170,6 +191,31 @@ function ProfilePage({ authUser }) {
                   {isChangingPassword ? 'Updating...' : 'Update Password'}
                 </button>
               </form>
+            </article>
+
+            <article className="planner-card auth-card profile-card profile-danger-card" id="delete-account">
+              <h3>Delete Account</h3>
+              <p className="profile-danger-text">
+                This permanently deletes your account, study planner data, notes, blog posts, comments and
+                portfolio, including uploaded files. It cannot be undone.
+              </p>
+              <form className="planner-form profile-password-form" onSubmit={handleDeleteAccount}>
+                <label htmlFor="delete-account-confirm">
+                  Type DELETE to confirm
+                  <input
+                    id="delete-account-confirm"
+                    type="text"
+                    value={deleteConfirm}
+                    onChange={(event) => setDeleteConfirm(event.target.value)}
+                    autoComplete="off"
+                    disabled={isDeleting}
+                  />
+                </label>
+                <button className="btn btn-danger" type="submit" disabled={isDeleting || deleteConfirm.trim() !== 'DELETE'}>
+                  {isDeleting ? 'Deleting…' : 'Permanently delete my account'}
+                </button>
+              </form>
+              {deleteError ? <p className="planner-error profile-error" role="alert">{deleteError}</p> : null}
             </article>
           </div>
 

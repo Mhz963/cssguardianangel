@@ -21,7 +21,7 @@ function ensureSpace(doc, y, needed, pageBottom, contentStartY) {
   return contentStartY
 }
 
-function addSectionHeading(doc, title, x, y, maxWidth) {
+function addSectionHeading(doc, title, x, y, _maxWidth) {
   doc.setFont('helvetica', 'bold')
   doc.setFontSize(14)
   doc.setTextColor(...BLUE)

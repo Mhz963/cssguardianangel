@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /admin
+Disallow: /profile
+Disallow: /api/
 
-Sitemap: https://mhzguardianangel.vercel.app/sitemap.xml
+Sitemap: https://cssguardianangel.com/sitemap.xml

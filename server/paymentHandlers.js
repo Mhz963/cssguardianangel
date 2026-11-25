@@ -1,7 +1,6 @@
 import {
   ACTIVATION_FEE_STRIPE_AMOUNT,
   getAuthUserFromRequest,
-  getSiteOrigin,
   getStripeClient,
   getSupabaseAdmin,
   hasActiveSubscription,
@@ -11,7 +10,6 @@ import {
   recordPaymentOrderFromInvoice,
   sendJson,
   syncSubscriptionFromStripe,
-  upsertSubscriptionRecord,
 } from './payment.js'
 
 export async function handleCreateCheckoutSession(req, res) {
@@ -143,7 +141,8 @@ export async function handleVerifyCheckoutSession(req, res) {
 }
 
 function getConfiguredVoucherCode() {
-  return String(process.env.PREMIUM_VOUCHER_CODE || 'secretperson').trim().toLowerCase()
+  // No default: without PREMIUM_VOUCHER_CODE set, no code is accepted.
+  return String(process.env.PREMIUM_VOUCHER_CODE || '').trim().toLowerCase()
 }
 
 export async function handleRedeemVoucher(req, res) {

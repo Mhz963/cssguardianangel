@@ -4,8 +4,8 @@ import { join } from 'node:path'
 const root = process.cwd()
 const apiDir = join(root, 'api')
 
-// Keep super-admin APIs on Vercel Hobby. Stripe/payment routes stay in api-disabled/.
-const KEEP_API_FILES = new Set(['admin-dashboard.js', 'admin-user-action.js'])
+// Keep super-admin and account-deletion APIs on Vercel Hobby. Stripe/payment routes stay in api-disabled/.
+const KEEP_API_FILES = new Set(['admin-dashboard.js', 'admin-user-action.js', 'delete-account.js'])
 
 if (existsSync(apiDir)) {
   for (const name of readdirSync(apiDir)) {

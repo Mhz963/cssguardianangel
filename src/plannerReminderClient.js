@@ -292,6 +292,8 @@ export function usePlannerReminderPopup() {
     }
 
     const onBridgeMessage = (event) => {
+      // react-native-webview delivers messages without an origin; ignore other windows.
+      if (event?.origin && event.origin !== window.location.origin) return
       const detail = parsePlannerReminderBridgeMessage(event?.data)
       if (!detail) return
       playPlannerReminderChime()

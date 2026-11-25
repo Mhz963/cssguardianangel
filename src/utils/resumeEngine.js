@@ -291,15 +291,6 @@ function detectJobFamily(targetRole, blob) {
   return JOB_FAMILIES.find((family) => family.match.test(haystack)) || GENERAL_FAMILY
 }
 
-function estimateYears(experiences) {
-  const years = (experiences || [])
-    .map((item) => parseInt(String(item.startDate || '').replace(/\D/g, '').slice(0, 4), 10))
-    .filter((year) => year >= 1975 && year <= new Date().getFullYear())
-  if (!years.length) return ''
-  const span = Math.max(1, new Date().getFullYear() - Math.min(...years))
-  return span === 1 ? ' one year of' : ` over ${span} years of`
-}
-
 function formatDateRange(startDate, endDate, current) {
   const start = normalizeWhitespace(startDate)
   const end = current ? 'Present' : normalizeWhitespace(endDate)
@@ -309,10 +300,6 @@ function formatDateRange(startDate, endDate, current) {
 
 function hasContent(entry, keys) {
   return keys.some((key) => !isPlaceholder(entry?.[key]))
-}
-
-function isWeakNote(text) {
-  return isPlaceholder(text)
 }
 
 function parseSkills(skillsText) {

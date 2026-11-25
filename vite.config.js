@@ -9,16 +9,19 @@ import react from '@vitejs/plugin-react'
 async function loadLocalAdminHandlers() {
   const adminPath = join(process.cwd(), 'server', 'adminHandlers.js')
   const paymentPath = join(process.cwd(), 'server', 'payment.js')
-  if (!existsSync(adminPath) || !existsSync(paymentPath)) return null
+  const accountPath = join(process.cwd(), 'server', 'accountHandlers.js')
+  if (!existsSync(adminPath) || !existsSync(paymentPath) || !existsSync(accountPath)) return null
 
-  const [admin, payment] = await Promise.all([
+  const [admin, payment, account] = await Promise.all([
     import(pathToFileURL(adminPath).href),
     import(pathToFileURL(paymentPath).href),
+    import(pathToFileURL(accountPath).href),
   ])
 
   return {
     handleAdminDashboardStats: admin.handleAdminDashboardStats,
     handleAdminUserAction: admin.handleAdminUserAction,
+    handleDeleteAccount: account.handleDeleteAccount,
     readRawBody: payment.readRawBody,
   }
 }
@@ -43,20 +46,11 @@ export default defineConfig(({ mode }) => {
             if (id.includes('node_modules/leaflet') || id.includes('node_modules/react-leaflet')) {
               return 'leaflet-vendor'
             }
-            if (id.includes('node_modules/jspdf') || id.includes('node_modules/html2canvas')) {
-              return 'jspdf-vendor'
-            }
-            if (id.includes('node_modules/pdfjs-dist')) {
-              return 'pdfjs-vendor'
-            }
+            // jsPDF / PDF.js / pptx2html / transformers are deliberately NOT grouped here:
+            // forcing them into named chunks made Vite modulepreload them on every page.
+            // Left alone, they are split per dynamic import and load only when used.
             if (id.includes('node_modules/@supabase')) {
               return 'supabase-vendor'
-            }
-            if (id.includes('node_modules/pptx2html')) {
-              return 'pptx-vendor'
-            }
-            if (id.includes('node_modules/@huggingface') || id.includes('onnxruntime')) {
-              return 'transformers-vendor'
             }
           },
         },
@@ -253,6 +247,18 @@ export default defineConfig(({ mode }) => {
               res.statusCode = 500
               res.setHeader('Content-Type', 'application/json')
               res.end(JSON.stringify({ error: error?.message || 'Unable to load admin dashboard.' }))
+            }
+          })
+
+          server.middlewares.use('/api/delete-account', async (req, res) => {
+            try {
+              await attachJsonBody(req)
+              await handlers.handleDeleteAccount(req, res)
+            } catch (error) {
+              if (res.writableEnded) return
+              res.statusCode = 500
+              res.setHeader('Content-Type', 'application/json')
+              res.end(JSON.stringify({ error: error?.message || 'Unable to delete account.' }))
             }
           })
 
