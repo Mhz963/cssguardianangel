@@ -1,6 +1,204 @@
 {
   "pairs": [
     {
+      "id": "abdicate-abrogate",
+      "words": [
+        {
+          "word": "Abdicate",
+          "pos": "verb",
+          "meaning": "to give up a throne, power or responsibility formally",
+          "example": "Edward VIII abdicated the British throne in 1936."
+        },
+        {
+          "word": "Abrogate",
+          "pos": "verb",
+          "meaning": "to repeal or abolish a law, treaty or agreement formally",
+          "example": "The government abrogated the controversial ordinance."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The king chose to ___ the throne rather than give up his marriage.",
+          "answer": "Abdicate"
+        },
+        {
+          "sentence": "The new government moved to ___ the unequal trade treaty.",
+          "answer": "Abrogate"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "abeyance-obeisance",
+      "words": [
+        {
+          "word": "Abeyance",
+          "pos": "noun",
+          "meaning": "a state of temporary suspension or disuse",
+          "example": "The project was held in abeyance for lack of funds."
+        },
+        {
+          "word": "Obeisance",
+          "pos": "noun",
+          "meaning": "a gesture of respect such as a bow; homage",
+          "example": "Courtiers made obeisance before the Mughal emperor."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The road project remains in ___ until funds are released.",
+          "answer": "Abeyance"
+        },
+        {
+          "sentence": "Courtiers bowed low in ___ before the emperor.",
+          "answer": "Obeisance"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "abjure-adjure",
+      "words": [
+        {
+          "word": "Abjure",
+          "pos": "verb",
+          "meaning": "to renounce a belief, claim or practice formally",
+          "example": "The militants were asked to abjure violence before talks."
+        },
+        {
+          "word": "Adjure",
+          "pos": "verb",
+          "meaning": "to urge or command someone solemnly",
+          "example": "The judge adjured the witness to speak the truth."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The rebels were required to ___ violence before peace talks could begin.",
+          "answer": "Abjure"
+        },
+        {
+          "sentence": "I ___ you, in the name of all you hold sacred, to tell the truth.",
+          "answer": "Adjure"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "aboard-abroad",
+      "words": [
+        {
+          "word": "Aboard",
+          "pos": "preposition/adverb",
+          "meaning": "on or into a ship, aircraft, train or bus",
+          "example": "All passengers are now aboard the flight to Jeddah."
+        },
+        {
+          "word": "Abroad",
+          "pos": "adverb",
+          "meaning": "in or to a foreign country",
+          "example": "Millions of Pakistanis work abroad and send remittances home."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The pilgrims climbed ___ the ship at Karachi port.",
+          "answer": "Aboard"
+        },
+        {
+          "sentence": "He went ___ for higher studies on a scholarship.",
+          "answer": "Abroad"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "accede-exceed",
+      "words": [
+        {
+          "word": "Accede",
+          "pos": "verb",
+          "meaning": "to agree to a demand or request; to take up an office",
+          "example": "The government acceded to the teachers' demands."
+        },
+        {
+          "word": "Exceed",
+          "pos": "verb",
+          "meaning": "to go beyond a limit or amount",
+          "example": "Spending must not exceed the approved budget."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The management finally agreed to ___ to the workers' demands.",
+          "answer": "Accede"
+        },
+        {
+          "sentence": "Drivers who ___ the speed limit on the motorway are fined.",
+          "answer": "Exceed"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "accent-ascent",
+      "words": [
+        {
+          "word": "Accent",
+          "pos": "noun",
+          "meaning": "a regional or group way of pronouncing words; stress on a syllable",
+          "example": "She speaks English with a slight Pashto accent."
+        },
+        {
+          "word": "Ascent",
+          "pos": "noun",
+          "meaning": "the act of climbing or rising; an upward slope",
+          "example": "The ascent of Nanga Parbat tests even experienced climbers."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "He speaks Urdu with a strong Punjabi ___.",
+          "answer": "Accent"
+        },
+        {
+          "sentence": "The climbers began their ___ of K2 before dawn.",
+          "answer": "Ascent"
+        }
+      ],
+      "years": [
+        1991
+      ]
+    },
+    {
+      "id": "accept-except",
+      "words": [
+        {
+          "word": "Accept",
+          "pos": "verb",
+          "meaning": "to receive willingly; to agree to",
+          "example": "The committee accepted the report's recommendations."
+        },
+        {
+          "word": "Except",
+          "pos": "preposition/conjunction",
+          "meaning": "not including; apart from",
+          "example": "Every province except Balochistan submitted its report on time."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The committee voted to ___ the proposal without changes.",
+          "answer": "Accept"
+        },
+        {
+          "sentence": "All the provinces ___ one submitted their reports on time.",
+          "answer": "Except"
+        }
+      ],
+      "years": []
+    },
+    {
       "id": "access-excess",
       "words": [
         {
@@ -28,6 +226,320 @@
       ],
       "years": [
         1991
+      ]
+    },
+    {
+      "id": "accident-incident",
+      "words": [
+        {
+          "word": "Accident",
+          "pos": "noun",
+          "meaning": "an unplanned, unfortunate event that causes damage or injury",
+          "example": "Fog caused a serious accident on the motorway near Sheikhupura."
+        },
+        {
+          "word": "Incident",
+          "pos": "noun",
+          "meaning": "an event or occurrence, especially a notable or disturbing one",
+          "example": "The minister ordered an inquiry into the incident at the polling station."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Police concluded that the fire was an ___, not deliberate sabotage.",
+          "answer": "Accident"
+        },
+        {
+          "sentence": "The firing across the border was described as a minor diplomatic ___.",
+          "answer": "Incident"
+        }
+      ],
+      "years": [
+        1987
+      ]
+    },
+    {
+      "id": "acclimatise-acculturate",
+      "words": [
+        {
+          "word": "Acclimatise",
+          "pos": "verb",
+          "meaning": "to adjust to a new climate, altitude or set of conditions",
+          "example": "Troops posted to Siachen need weeks to acclimatise to the altitude."
+        },
+        {
+          "word": "Acculturate",
+          "pos": "verb",
+          "meaning": "to adopt the customs and values of another culture",
+          "example": "Migrant families gradually acculturate to life in British cities."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Climbers rest at base camp for days to ___ to the thin mountain air.",
+          "answer": "Acclimatise"
+        },
+        {
+          "sentence": "Immigrant children often ___ faster than their parents, taking up the local language, dress and customs.",
+          "answer": "Acculturate"
+        }
+      ],
+      "years": [
+        1986
+      ]
+    },
+    {
+      "id": "accused-alleged-suspected",
+      "words": [
+        {
+          "word": "Accused",
+          "pos": "noun/adjective",
+          "meaning": "(a person) formally charged with a crime",
+          "example": "The accused pleaded not guilty before the anti-terrorism court."
+        },
+        {
+          "word": "Alleged",
+          "pos": "adjective/verb",
+          "meaning": "claimed to be true or to have happened, but not yet proved",
+          "example": "The alleged misuse of relief funds is under investigation."
+        },
+        {
+          "word": "Suspected",
+          "pos": "adjective/verb",
+          "meaning": "believed possibly guilty or present, without proof or formal charge",
+          "example": "Two suspected militants were detained at a checkpoint near Bannu."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The ___ was brought before the judge in handcuffs.",
+          "answer": "Accused"
+        },
+        {
+          "sentence": "At a press conference, the opposition leader ___ that the results had been rigged.",
+          "answer": "Alleged"
+        },
+        {
+          "sentence": "Doctors ___ dengue fever and ordered an urgent blood test.",
+          "answer": "Suspected"
+        }
+      ],
+      "years": [
+        1990
+      ]
+    },
+    {
+      "id": "acute-chronic",
+      "words": [
+        {
+          "word": "Acute",
+          "pos": "adjective",
+          "meaning": "(of illness) severe and sudden; sharp or intense",
+          "example": "He was admitted to hospital with acute appendicitis."
+        },
+        {
+          "word": "Chronic",
+          "pos": "adjective",
+          "meaning": "(of illness or problems) persisting for a long time or recurring",
+          "example": "Asthma is a chronic condition requiring lifelong care."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "He was rushed into surgery with ___ appendicitis that had begun that morning.",
+          "answer": "Acute"
+        },
+        {
+          "sentence": "Diabetes is a ___ illness that usually lasts for life.",
+          "answer": "Chronic"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "adapt-adept-adopt",
+      "words": [
+        {
+          "word": "Adapt",
+          "pos": "verb",
+          "meaning": "to change or adjust to suit new conditions or purposes",
+          "example": "Farmers must adapt their methods to a hotter climate."
+        },
+        {
+          "word": "Adept",
+          "pos": "adjective",
+          "meaning": "very skilled or proficient",
+          "example": "The spokesman is adept at handling hostile questions."
+        },
+        {
+          "word": "Adopt",
+          "pos": "verb",
+          "meaning": "to take up as one's own; to take another's child legally",
+          "example": "The assembly adopted the resolution without a single dissenting vote."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "She is ___ at drafting clear and concise official letters.",
+          "answer": "Adapt"
+        },
+        {
+          "sentence": "Wildlife in the Thar must ___ to long periods without rain.",
+          "answer": "Adept"
+        },
+        {
+          "sentence": "The childless couple decided to ___ an orphan from the Edhi centre.",
+          "answer": "Adopt"
+        }
+      ],
+      "years": [
+        1990
+      ]
+    },
+    {
+      "id": "adapt-adopt",
+      "words": [
+        {
+          "word": "Adapt",
+          "pos": "verb",
+          "meaning": "to modify something, or oneself, to fit new circumstances",
+          "example": "The old fort was adapted to serve as a museum."
+        },
+        {
+          "word": "Adopt",
+          "pos": "verb",
+          "meaning": "to take up and follow an idea or plan; to take a child legally",
+          "example": "Many schools have adopted the single national curriculum."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The director plans to ___ the classic novel for a television drama.",
+          "answer": "Adapt"
+        },
+        {
+          "sentence": "The provincial assembly voted to ___ the resolution unanimously.",
+          "answer": "Adopt"
+        }
+      ],
+      "years": [
+        1981
+      ]
+    },
+    {
+      "id": "addict-edict",
+      "words": [
+        {
+          "word": "Addict",
+          "pos": "noun",
+          "meaning": "a person physically or mentally dependent on a substance or activity",
+          "example": "The rehabilitation centre treats every addict free of charge."
+        },
+        {
+          "word": "Edict",
+          "pos": "noun",
+          "meaning": "an official order issued by a person in authority",
+          "example": "Emperor Akbar issued an edict abolishing the jizya tax."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The rehabilitation centre helped the young heroin ___ to recover.",
+          "answer": "Addict"
+        },
+        {
+          "sentence": "The emperor issued an ___ forbidding the slaughter of cows.",
+          "answer": "Edict"
+        }
+      ],
+      "years": [
+        1983
+      ]
+    },
+    {
+      "id": "addition-edition",
+      "words": [
+        {
+          "word": "Addition",
+          "pos": "noun",
+          "meaning": "the act of adding; something added",
+          "example": "In addition to his salary, he receives a house allowance."
+        },
+        {
+          "word": "Edition",
+          "pos": "noun",
+          "meaning": "a particular version or issue of a book or newspaper",
+          "example": "The latest edition of the textbook includes new maps."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "In ___ to a salary, officers receive a medical allowance.",
+          "answer": "Addition"
+        },
+        {
+          "sentence": "A revised ___ of the textbook will be published next year.",
+          "answer": "Edition"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "adherence-adhesion",
+      "words": [
+        {
+          "word": "Adherence",
+          "pos": "noun",
+          "meaning": "faithful observance of rules, beliefs or principles",
+          "example": "Strict adherence to the rules is expected of every officer."
+        },
+        {
+          "word": "Adhesion",
+          "pos": "noun",
+          "meaning": "the physical sticking of one surface or substance to another",
+          "example": "The paint showed poor adhesion on the damp wall."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Strict ___ to the code of conduct is expected of every candidate.",
+          "answer": "Adherence"
+        },
+        {
+          "sentence": "The tape lost its ___ in the humid weather and peeled off the wall.",
+          "answer": "Adhesion"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "adjoin-adjourn",
+      "words": [
+        {
+          "word": "Adjoin",
+          "pos": "verb",
+          "meaning": "to be next to and joined with",
+          "example": "The new library will adjoin the main university building."
+        },
+        {
+          "word": "Adjourn",
+          "pos": "verb",
+          "meaning": "to suspend a meeting or session until a later time",
+          "example": "The chairman adjourned the Senate session until Monday."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The proposed car park will ___ the hospital's emergency wing.",
+          "answer": "Adjoin"
+        },
+        {
+          "sentence": "The Speaker decided to ___ the session until Monday because of the uproar.",
+          "answer": "Adjourn"
+        }
+      ],
+      "years": [
+        2013
       ]
     },
     {
@@ -61,6 +573,62 @@
       ]
     },
     {
+      "id": "advice-advise",
+      "words": [
+        {
+          "word": "Advice",
+          "pos": "noun",
+          "meaning": "an opinion or recommendation about what to do",
+          "example": "He ignored his teacher's advice and failed the paper."
+        },
+        {
+          "word": "Advise",
+          "pos": "verb",
+          "meaning": "to recommend or offer guidance to someone",
+          "example": "Doctors advise people to drink boiled water during floods."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "He wisely followed his father's ___ and studied law.",
+          "answer": "Advice"
+        },
+        {
+          "sentence": "Doctors ___ residents to wear masks during smog season.",
+          "answer": "Advise"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "aesthetic-ascetic",
+      "words": [
+        {
+          "word": "Aesthetic",
+          "pos": "adjective",
+          "meaning": "concerned with beauty or artistic taste",
+          "example": "The Badshahi Mosque has immense aesthetic appeal."
+        },
+        {
+          "word": "Ascetic",
+          "pos": "adjective/noun",
+          "meaning": "practising strict self-denial; one who renounces comforts",
+          "example": "The Sufi saint led an ascetic life of prayer and fasting."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The new plaza is functional but has little ___ appeal.",
+          "answer": "Aesthetic"
+        },
+        {
+          "sentence": "The dervish led an ___ life, owning nothing but a blanket and a bowl.",
+          "answer": "Ascetic"
+        }
+      ],
+      "years": []
+    },
+    {
       "id": "affect-effect",
       "words": [
         {
@@ -84,6 +652,410 @@
         {
           "sentence": "The curfew had little ___ on the crime rate.",
           "answer": "Effect"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "affectation-affection",
+      "words": [
+        {
+          "word": "Affectation",
+          "pos": "noun",
+          "meaning": "behaviour, speech or manner that is artificial and meant to impress",
+          "example": "His foreign accent was a mere affectation."
+        },
+        {
+          "word": "Affection",
+          "pos": "noun",
+          "meaning": "a feeling of fondness or love",
+          "example": "The people of Swat welcomed the guests with affection."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "His put-on British accent was a mere ___ to impress the interviewers.",
+          "answer": "Affectation"
+        },
+        {
+          "sentence": "The mother looked at her newborn with deep ___.",
+          "answer": "Affection"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "affluence-effluence",
+      "words": [
+        {
+          "word": "Affluence",
+          "pos": "noun",
+          "meaning": "wealth and a high standard of living",
+          "example": "The affluence of Islamabad's sectors contrasts sharply with its katchi abadis."
+        },
+        {
+          "word": "Effluence",
+          "pos": "noun",
+          "meaning": "the flowing out of liquid, especially waste; the liquid discharged",
+          "example": "Industrial effluence has turned stretches of the Ravi black."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The ___ of the new housing societies is clear from their grand villas.",
+          "answer": "Affluence"
+        },
+        {
+          "sentence": "Untreated ___ from tanneries is poisoning the river and the fish in it.",
+          "answer": "Effluence"
+        }
+      ],
+      "years": [
+        2007
+      ]
+    },
+    {
+      "id": "aggravate-irritate",
+      "words": [
+        {
+          "word": "Aggravate",
+          "pos": "verb",
+          "meaning": "to make a problem, illness or offence worse",
+          "example": "Burning crop stubble aggravates Punjab's smog."
+        },
+        {
+          "word": "Irritate",
+          "pos": "verb",
+          "meaning": "to annoy; to cause soreness or inflammation",
+          "example": "Constant loudspeaker announcements irritated the residents."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Rising inflation will only ___ the hardship of salaried families.",
+          "answer": "Aggravate"
+        },
+        {
+          "sentence": "Smoke from burning tyres can ___ the eyes and throat.",
+          "answer": "Irritate"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "agnostic-atheist",
+      "words": [
+        {
+          "word": "Agnostic",
+          "pos": "noun",
+          "meaning": "one who holds that God's existence cannot be known or proved",
+          "example": "As an agnostic, he declined to say whether God exists."
+        },
+        {
+          "word": "Atheist",
+          "pos": "noun",
+          "meaning": "one who denies that any god exists",
+          "example": "The atheist argued that the universe needs no creator."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "An ___ says the existence of God can neither be proved nor disproved.",
+          "answer": "Agnostic"
+        },
+        {
+          "sentence": "An ___ firmly rejects belief in any god.",
+          "answer": "Atheist"
+        }
+      ],
+      "years": [
+        1993
+      ]
+    },
+    {
+      "id": "aid-aide",
+      "words": [
+        {
+          "word": "Aid",
+          "pos": "noun/verb",
+          "meaning": "help or support, especially money or supplies; to help",
+          "example": "Foreign aid arrived for the earthquake victims."
+        },
+        {
+          "word": "Aide",
+          "pos": "noun",
+          "meaning": "an assistant to an important person, especially an official",
+          "example": "A senior aide to the prime minister briefed the press."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Emergency ___ in the form of tents and food reached the flood victims.",
+          "answer": "Aid"
+        },
+        {
+          "sentence": "A close ___ to the prime minister denied the reports.",
+          "answer": "Aide"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "aisle-isle",
+      "words": [
+        {
+          "word": "Aisle",
+          "pos": "noun",
+          "meaning": "a passage between rows of seats or shelves",
+          "example": "Passengers must keep the aisle clear during take-off."
+        },
+        {
+          "word": "Isle",
+          "pos": "noun",
+          "meaning": "a small island (mostly literary or in place names)",
+          "example": "The Isle of Wight lies off England's southern coast."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Passengers must keep the ___ clear during the flight.",
+          "answer": "Aisle"
+        },
+        {
+          "sentence": "The fishermen landed on a small rocky ___ off the Makran coast.",
+          "answer": "Isle"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "alibi-excuse",
+      "words": [
+        {
+          "word": "Alibi",
+          "pos": "noun",
+          "meaning": "a claim, with evidence, of having been elsewhere when a crime occurred",
+          "example": "CCTV footage supported the accused man's alibi."
+        },
+        {
+          "word": "Excuse",
+          "pos": "noun/verb",
+          "meaning": "a reason given to justify a fault; to pardon",
+          "example": "Traffic is no excuse for arriving late."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Two witnesses confirmed his ___, proving he was in Quetta on the night of the murder.",
+          "answer": "Alibi"
+        },
+        {
+          "sentence": "Heavy traffic is a poor ___ for arriving late to an examination.",
+          "answer": "Excuse"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "all-awl",
+      "words": [
+        {
+          "word": "All",
+          "pos": "determiner/pronoun",
+          "meaning": "the whole number or amount of; everyone or everything",
+          "example": "All candidates must bring their admit cards."
+        },
+        {
+          "word": "Awl",
+          "pos": "noun",
+          "meaning": "a small pointed tool for piercing holes in leather or wood",
+          "example": "The cobbler pierced the sandal strap with an awl."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "___ the candidates must report to the hall by nine o'clock.",
+          "answer": "All"
+        },
+        {
+          "sentence": "The cobbler made a hole in the leather strap with a sharp ___.",
+          "answer": "Awl"
+        }
+      ],
+      "years": [
+        1994
+      ]
+    },
+    {
+      "id": "all-ready-already",
+      "words": [
+        {
+          "word": "All ready",
+          "pos": "phrase",
+          "meaning": "completely prepared",
+          "example": "The polling staff were all ready by seven o'clock."
+        },
+        {
+          "word": "Already",
+          "pos": "adverb",
+          "meaning": "before now or before a particular time",
+          "example": "The train had already left when we arrived."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The troops were ___ for the parade when the rain began.",
+          "answer": "All ready"
+        },
+        {
+          "sentence": "The train had ___ left when we reached the station.",
+          "answer": "Already"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "all-together-altogether",
+      "words": [
+        {
+          "word": "All together",
+          "pos": "phrase",
+          "meaning": "everyone or everything at the same place or time",
+          "example": "The family sat all together for the Eid lunch."
+        },
+        {
+          "word": "Altogether",
+          "pos": "adverb",
+          "meaning": "completely; in total; on the whole",
+          "example": "The scheme was altogether unsuited to rural districts."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The students sang the national anthem ___ in the hall.",
+          "answer": "All together"
+        },
+        {
+          "sentence": "The committee rejected the proposal ___, finding nothing worth saving.",
+          "answer": "Altogether"
+        }
+      ],
+      "years": [
+        1996
+      ]
+    },
+    {
+      "id": "allay-ally",
+      "words": [
+        {
+          "word": "Allay",
+          "pos": "verb",
+          "meaning": "to reduce or calm fear, suspicion or worry",
+          "example": "The health minister tried to allay fears about the new vaccine."
+        },
+        {
+          "word": "Ally",
+          "pos": "noun/verb",
+          "meaning": "a state or person joined with another for a common purpose; to join",
+          "example": "Pakistan and China have long been close allies."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The governor's visit was meant to ___ the traders' fears about new taxes.",
+          "answer": "Allay"
+        },
+        {
+          "sentence": "Turkey has stood by Pakistan as a dependable ___ for decades.",
+          "answer": "Ally"
+        }
+      ],
+      "years": [
+        2013
+      ]
+    },
+    {
+      "id": "alleviate-mitigate",
+      "words": [
+        {
+          "word": "Alleviate",
+          "pos": "verb",
+          "meaning": "to make pain, suffering or hardship easier to bear",
+          "example": "Free ration bags helped alleviate the hardship of flood victims."
+        },
+        {
+          "word": "Mitigate",
+          "pos": "verb",
+          "meaning": "to lessen the severity or harmful effect of something; to reduce blame",
+          "example": "Early-warning systems can mitigate the damage caused by cyclones."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The doctor prescribed tablets to ___ her headache.",
+          "answer": "Alleviate"
+        },
+        {
+          "sentence": "Planting mangroves along the coast can ___ the risk of flooding.",
+          "answer": "Mitigate"
+        }
+      ],
+      "years": [
+        2008
+      ]
+    },
+    {
+      "id": "allowed-aloud",
+      "words": [
+        {
+          "word": "Allowed",
+          "pos": "verb (past participle)",
+          "meaning": "permitted",
+          "example": "Mobile phones are not allowed in the examination hall."
+        },
+        {
+          "word": "Aloud",
+          "pos": "adverb",
+          "meaning": "in an audible voice; not silently",
+          "example": "The teacher read the poem aloud to the class."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Mobile phones are not ___ in the examination hall.",
+          "answer": "Allowed"
+        },
+        {
+          "sentence": "The teacher asked the pupil to read the poem ___.",
+          "answer": "Aloud"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "allude-elude",
+      "words": [
+        {
+          "word": "Allude",
+          "pos": "verb",
+          "meaning": "to refer to something indirectly",
+          "example": "The speaker alluded to his rival without naming him."
+        },
+        {
+          "word": "Elude",
+          "pos": "verb",
+          "meaning": "to escape or avoid cleverly; to be beyond understanding",
+          "example": "The gang managed to elude the police for months."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The minister seemed to ___ to his rival without naming him.",
+          "answer": "Allude"
+        },
+        {
+          "sentence": "The thief managed to ___ the police for several weeks.",
+          "answer": "Elude"
         }
       ],
       "years": []
@@ -120,6 +1092,64 @@
       ]
     },
     {
+      "id": "allusive-elusive",
+      "words": [
+        {
+          "word": "Allusive",
+          "pos": "adjective",
+          "meaning": "containing indirect references to other works or ideas",
+          "example": "Iqbal's allusive verse rewards readers who know the Persian classics."
+        },
+        {
+          "word": "Elusive",
+          "pos": "adjective",
+          "meaning": "difficult to find, catch, define or achieve",
+          "example": "Lasting peace in the region has proved elusive."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The poem is highly ___, full of hidden references to Rumi and Hafiz.",
+          "answer": "Allusive"
+        },
+        {
+          "sentence": "The ___ smuggler has escaped arrest for years.",
+          "answer": "Elusive"
+        }
+      ],
+      "years": [
+        1994
+      ]
+    },
+    {
+      "id": "altar-alter",
+      "words": [
+        {
+          "word": "Altar",
+          "pos": "noun",
+          "meaning": "a raised table used in religious ceremonies",
+          "example": "Candles were lit on the church altar at Christmas."
+        },
+        {
+          "word": "Alter",
+          "pos": "verb",
+          "meaning": "to change or modify",
+          "example": "Nothing can alter the facts of history."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The priest placed candles on the church ___.",
+          "answer": "Altar"
+        },
+        {
+          "sentence": "No amount of propaganda can ___ the facts.",
+          "answer": "Alter"
+        }
+      ],
+      "years": []
+    },
+    {
       "id": "alternate-alternative",
       "words": [
         {
@@ -146,6 +1176,1015 @@
         }
       ],
       "years": []
+    },
+    {
+      "id": "ambiguous-ambivalent",
+      "words": [
+        {
+          "word": "Ambiguous",
+          "pos": "adjective",
+          "meaning": "open to more than one interpretation; unclear",
+          "example": "The ambiguous clause led to years of litigation."
+        },
+        {
+          "word": "Ambivalent",
+          "pos": "adjective",
+          "meaning": "having mixed or contradictory feelings about something",
+          "example": "Many traders feel ambivalent about the new tax regime."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The minister's ___ statement could be read in two quite different ways.",
+          "answer": "Ambiguous"
+        },
+        {
+          "sentence": "Many voters feel ___ about the policy, seeing both benefits and drawbacks.",
+          "answer": "Ambivalent"
+        }
+      ],
+      "years": [
+        1996
+      ]
+    },
+    {
+      "id": "amiable-amicable",
+      "words": [
+        {
+          "word": "Amiable",
+          "pos": "adjective",
+          "meaning": "(of a person) friendly and pleasant",
+          "example": "Our amiable neighbour greets everyone with a smile."
+        },
+        {
+          "word": "Amicable",
+          "pos": "adjective",
+          "meaning": "(of relations or agreements) friendly and without quarrelling",
+          "example": "The two families reached an amicable settlement."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Our ___ neighbour always greets us with a warm smile.",
+          "answer": "Amiable"
+        },
+        {
+          "sentence": "The landowners reached an ___ settlement out of court.",
+          "answer": "Amicable"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "among-between",
+      "words": [
+        {
+          "word": "Among",
+          "pos": "preposition",
+          "meaning": "in the midst of, or shared by, more than two",
+          "example": "Relief goods were distributed among the villagers."
+        },
+        {
+          "word": "Between",
+          "pos": "preposition",
+          "meaning": "shared by or involving two people or things",
+          "example": "The water dispute between the two provinces persists."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Mangoes were distributed ___ all the children of the village.",
+          "answer": "Among"
+        },
+        {
+          "sentence": "The prize money was divided equally ___ the two finalists.",
+          "answer": "Between"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "amoral-immoral",
+      "words": [
+        {
+          "word": "Amoral",
+          "pos": "adjective",
+          "meaning": "without moral standards; unconcerned with right and wrong",
+          "example": "A purely amoral foreign policy considers only national interest."
+        },
+        {
+          "word": "Immoral",
+          "pos": "adjective",
+          "meaning": "consciously violating accepted moral principles",
+          "example": "Hoarding wheat during a famine is immoral."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Technology itself is ___; it is neither good nor evil until people use it.",
+          "answer": "Amoral"
+        },
+        {
+          "sentence": "Taking bribes to approve unsafe buildings is plainly ___.",
+          "answer": "Immoral"
+        }
+      ],
+      "years": [
+        2007
+      ]
+    },
+    {
+      "id": "amount-number",
+      "words": [
+        {
+          "word": "Amount",
+          "pos": "noun",
+          "meaning": "a quantity of something uncountable",
+          "example": "A huge amount of money was spent on the project."
+        },
+        {
+          "word": "Number",
+          "pos": "noun",
+          "meaning": "a quantity of countable things or people",
+          "example": "A large number of candidates failed the English paper."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "A large ___ of money was wasted on the abandoned project.",
+          "answer": "Amount"
+        },
+        {
+          "sentence": "A large ___ of candidates failed the essay paper.",
+          "answer": "Number"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "anecdote-antidote",
+      "words": [
+        {
+          "word": "Anecdote",
+          "pos": "noun",
+          "meaning": "a short, amusing or interesting story about a real event",
+          "example": "The speaker opened with an anecdote about his school days."
+        },
+        {
+          "word": "Antidote",
+          "pos": "noun",
+          "meaning": "a remedy that counteracts poison; a cure for a problem",
+          "example": "Education is the best antidote to extremism."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The speaker opened with a humorous ___ about his first day in office.",
+          "answer": "Anecdote"
+        },
+        {
+          "sentence": "The snakebite victim was given an ___ just in time.",
+          "answer": "Antidote"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "annual-annul",
+      "words": [
+        {
+          "word": "Annual",
+          "pos": "adjective",
+          "meaning": "happening once a year; yearly",
+          "example": "The annual budget is presented in June."
+        },
+        {
+          "word": "Annul",
+          "pos": "verb",
+          "meaning": "to declare legally invalid",
+          "example": "The court annulled the irregular appointments."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The ___ budget is presented to parliament every June.",
+          "answer": "Annual"
+        },
+        {
+          "sentence": "The court decided to ___ the unlawful contract.",
+          "answer": "Annul"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "anonymous-unanimous",
+      "words": [
+        {
+          "word": "Anonymous",
+          "pos": "adjective",
+          "meaning": "of unknown or unnamed identity",
+          "example": "An anonymous donor paid the hospital bills."
+        },
+        {
+          "word": "Unanimous",
+          "pos": "adjective",
+          "meaning": "agreed by everyone involved",
+          "example": "The resolution was passed by a unanimous vote."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "An ___ letter, unsigned and without an address, reached the editor.",
+          "answer": "Anonymous"
+        },
+        {
+          "sentence": "The resolution was passed by a ___ vote, with no one opposing it.",
+          "answer": "Unanimous"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "antagonist-protagonist",
+      "words": [
+        {
+          "word": "Antagonist",
+          "pos": "noun",
+          "meaning": "an opponent; the character who opposes the hero in a story",
+          "example": "The greedy landlord is the antagonist of the novel."
+        },
+        {
+          "word": "Protagonist",
+          "pos": "noun",
+          "meaning": "the main character in a story; a leading supporter of a cause",
+          "example": "Sir Syed was a leading protagonist of modern education."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "In the drama, the ___ is a cruel feudal lord who opposes the hero at every turn.",
+          "answer": "Antagonist"
+        },
+        {
+          "sentence": "Hamlet is the ___ of Shakespeare's tragedy and appears in most scenes.",
+          "answer": "Protagonist"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "antic-antique",
+      "words": [
+        {
+          "word": "Antic",
+          "pos": "noun",
+          "meaning": "a foolish, playful or grotesque act (usually plural)",
+          "example": "The minister's antics in the assembly drew public ridicule."
+        },
+        {
+          "word": "Antique",
+          "pos": "noun/adjective",
+          "meaning": "an old, valuable object; belonging to an earlier age",
+          "example": "The museum in Lahore displays antique Mughal furniture."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Every ___ of the clown made the children roar with laughter.",
+          "answer": "Antic"
+        },
+        {
+          "sentence": "The museum bought an ___ clock from the colonial era.",
+          "answer": "Antique"
+        }
+      ],
+      "years": [
+        2023
+      ]
+    },
+    {
+      "id": "antipathy-apathy",
+      "words": [
+        {
+          "word": "Antipathy",
+          "pos": "noun",
+          "meaning": "a deep-seated dislike or hostility",
+          "example": "There is old antipathy between the two rival clans."
+        },
+        {
+          "word": "Apathy",
+          "pos": "noun",
+          "meaning": "lack of interest, enthusiasm or concern",
+          "example": "Voter apathy led to a low turnout."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "There has long been bitter ___ between the two rival clans.",
+          "answer": "Antipathy"
+        },
+        {
+          "sentence": "Public ___ led to a turnout of barely thirty per cent.",
+          "answer": "Apathy"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "apiary-aviary",
+      "words": [
+        {
+          "word": "Apiary",
+          "pos": "noun",
+          "meaning": "a place where bees are kept",
+          "example": "The apiary near Mardan produces high-quality honey."
+        },
+        {
+          "word": "Aviary",
+          "pos": "noun",
+          "meaning": "a large enclosure for keeping birds",
+          "example": "The zoo's aviary houses parrots, peacocks and pheasants."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The farmer keeps fifty hives of bees in his ___.",
+          "answer": "Apiary"
+        },
+        {
+          "sentence": "The zoo's new ___ houses peacocks and parrots.",
+          "answer": "Aviary"
+        }
+      ],
+      "years": [
+        1998
+      ]
+    },
+    {
+      "id": "apposite-opposite",
+      "words": [
+        {
+          "word": "Apposite",
+          "pos": "adjective",
+          "meaning": "apt; well suited to the situation",
+          "example": "The judge closed with an apposite line from Faiz."
+        },
+        {
+          "word": "Opposite",
+          "pos": "adjective/noun/preposition",
+          "meaning": "facing; on the other side; completely different",
+          "example": "The bank stands opposite the district courts."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The speaker quoted an ___ verse from Iqbal that suited the occasion perfectly.",
+          "answer": "Apposite"
+        },
+        {
+          "sentence": "The post office is on the ___ side of the road.",
+          "answer": "Opposite"
+        }
+      ],
+      "years": [
+        2005,
+        1981
+      ]
+    },
+    {
+      "id": "appraise-apprise",
+      "words": [
+        {
+          "word": "Appraise",
+          "pos": "verb",
+          "meaning": "to assess the value, quality or performance of",
+          "example": "Officers' performance is appraised every year."
+        },
+        {
+          "word": "Apprise",
+          "pos": "verb",
+          "meaning": "to inform or tell someone about something",
+          "example": "The secretary apprised the cabinet of the security situation."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Experts were called in to ___ the value of the gold jewellery.",
+          "answer": "Appraise"
+        },
+        {
+          "sentence": "Officials will ___ the minister of the latest flood situation.",
+          "answer": "Apprise"
+        }
+      ],
+      "years": [
+        1996,
+        1981
+      ]
+    },
+    {
+      "id": "appreciable-appreciative",
+      "words": [
+        {
+          "word": "Appreciable",
+          "pos": "adjective",
+          "meaning": "large or important enough to be noticed",
+          "example": "There has been an appreciable fall in petrol prices."
+        },
+        {
+          "word": "Appreciative",
+          "pos": "adjective",
+          "meaning": "feeling or showing gratitude or admiration",
+          "example": "The audience was appreciative of the young poet's work."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "There has been an ___ rise in literacy over the past decade.",
+          "answer": "Appreciable"
+        },
+        {
+          "sentence": "The villagers were deeply ___ of the doctors' help.",
+          "answer": "Appreciative"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "apprehend-comprehend",
+      "words": [
+        {
+          "word": "Apprehend",
+          "pos": "verb",
+          "meaning": "to arrest or seize; to grasp or perceive",
+          "example": "Police apprehended the suspects at Torkham."
+        },
+        {
+          "word": "Comprehend",
+          "pos": "verb",
+          "meaning": "to understand fully",
+          "example": "Few could comprehend the scale of the 2022 floods."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Police managed to ___ the smugglers at the border crossing.",
+          "answer": "Apprehend"
+        },
+        {
+          "sentence": "Young children cannot fully ___ the complexities of the constitution.",
+          "answer": "Comprehend"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "arc-ark",
+      "words": [
+        {
+          "word": "Arc",
+          "pos": "noun",
+          "meaning": "a curved line; part of a circle",
+          "example": "The rainbow formed a perfect arc over the Margalla Hills."
+        },
+        {
+          "word": "Ark",
+          "pos": "noun",
+          "meaning": "the vessel built by Noah; a chest or place of refuge",
+          "example": "Noah's ark carried pairs of every animal."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The rainbow formed a bright ___ across the evening sky.",
+          "answer": "Arc"
+        },
+        {
+          "sentence": "Noah built an ___ to save his family from the flood.",
+          "answer": "Ark"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "ardour-order",
+      "words": [
+        {
+          "word": "Ardour",
+          "pos": "noun",
+          "meaning": "great enthusiasm or passion",
+          "example": "The volunteers worked with ardour during the relief campaign."
+        },
+        {
+          "word": "Order",
+          "pos": "noun/verb",
+          "meaning": "an arrangement or sequence; a command; a peaceful state; to command",
+          "example": "The police restored order after the riot."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The young volunteers served the flood victims with great ___.",
+          "answer": "Ardour"
+        },
+        {
+          "sentence": "The judge struck his gavel to restore ___ in the courtroom.",
+          "answer": "Order"
+        }
+      ],
+      "years": [
+        1983
+      ]
+    },
+    {
+      "id": "arise-arouse",
+      "words": [
+        {
+          "word": "Arise",
+          "pos": "verb (intransitive)",
+          "meaning": "to come into being; to emerge",
+          "example": "Disputes arise when boundaries are unclear."
+        },
+        {
+          "word": "Arouse",
+          "pos": "verb (transitive)",
+          "meaning": "to awaken or stir up a feeling or response",
+          "example": "His sudden wealth aroused suspicion."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Disputes may ___ if land boundaries are not clearly marked.",
+          "answer": "Arise"
+        },
+        {
+          "sentence": "His sudden wealth was enough to ___ the suspicion of investigators.",
+          "answer": "Arouse"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "aristocrat-autocrat",
+      "words": [
+        {
+          "word": "Aristocrat",
+          "pos": "noun",
+          "meaning": "a member of the nobility or hereditary upper class",
+          "example": "The young aristocrat inherited vast estates in Sindh."
+        },
+        {
+          "word": "Autocrat",
+          "pos": "noun",
+          "meaning": "a ruler who holds absolute power",
+          "example": "The autocrat silenced the press and dissolved parliament."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Born into an old noble family, he was an ___ by birth.",
+          "answer": "Aristocrat"
+        },
+        {
+          "sentence": "The ___ ruled without parliament, courts or a free press to check him.",
+          "answer": "Autocrat"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "artisan-artist",
+      "words": [
+        {
+          "word": "Artisan",
+          "pos": "noun",
+          "meaning": "a skilled worker who makes useful things by hand",
+          "example": "Multan's artisans are famous for blue pottery."
+        },
+        {
+          "word": "Artist",
+          "pos": "noun",
+          "meaning": "a person who creates fine art, such as paintings or sculpture",
+          "example": "Sadequain was an artist of international renown."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "A skilled ___ such as a potter, weaver or carpenter makes useful goods by hand.",
+          "answer": "Artisan"
+        },
+        {
+          "sentence": "Sadequain was a celebrated ___ whose painted murals adorn public buildings.",
+          "answer": "Artist"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "artist-artiste",
+      "words": [
+        {
+          "word": "Artist",
+          "pos": "noun",
+          "meaning": "a creator of fine art, such as a painter or sculptor",
+          "example": "The artist painted a portrait of the Quaid for the assembly."
+        },
+        {
+          "word": "Artiste",
+          "pos": "noun",
+          "meaning": "a professional entertainer, such as a singer, dancer or actor",
+          "example": "The stage show featured a popular folk artiste from Sindh."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The ___ spent months painting the calligraphy panels for the mosque.",
+          "answer": "Artist"
+        },
+        {
+          "sentence": "The variety show featured an ___ who sang, danced and told jokes.",
+          "answer": "Artiste"
+        }
+      ],
+      "years": [
+        1981
+      ]
+    },
+    {
+      "id": "ascent-assent",
+      "words": [
+        {
+          "word": "Ascent",
+          "pos": "noun",
+          "meaning": "the act of climbing or rising",
+          "example": "The ascent to the plateau took four hours."
+        },
+        {
+          "word": "Assent",
+          "pos": "noun/verb",
+          "meaning": "official agreement or approval; to agree",
+          "example": "The bill became law after the President gave his assent."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The bill became an act after receiving the President's ___.",
+          "answer": "Ascent"
+        },
+        {
+          "sentence": "The ___ to the summit of Rakaposhi took three days.",
+          "answer": "Assent"
+        }
+      ],
+      "years": [
+        1992,
+        1987
+      ]
+    },
+    {
+      "id": "aspire-expire",
+      "words": [
+        {
+          "word": "Aspire",
+          "pos": "verb",
+          "meaning": "to have a strong desire to achieve something",
+          "example": "Thousands of graduates aspire to join the civil service."
+        },
+        {
+          "word": "Expire",
+          "pos": "verb",
+          "meaning": "to come to an end or cease to be valid; to die",
+          "example": "My passport will expire next month."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Many young Pakistanis ___ to serve in the foreign service.",
+          "answer": "Aspire"
+        },
+        {
+          "sentence": "The licence will ___ at the end of this year unless renewed.",
+          "answer": "Expire"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "assay-essay",
+      "words": [
+        {
+          "word": "Assay",
+          "pos": "noun/verb",
+          "meaning": "a test of a metal or ore for purity; to test thus",
+          "example": "The assay showed the gold to be twenty-two carat."
+        },
+        {
+          "word": "Essay",
+          "pos": "noun/verb",
+          "meaning": "a short written composition; an attempt; to attempt",
+          "example": "The CSS English essay paper carries a hundred marks."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Gold samples from the mine were sent to the laboratory for ___.",
+          "answer": "Assay"
+        },
+        {
+          "sentence": "Candidates must write an ___ of about three thousand words.",
+          "answer": "Essay"
+        }
+      ],
+      "years": [
+        2011
+      ]
+    },
+    {
+      "id": "assistance-assistants",
+      "words": [
+        {
+          "word": "Assistance",
+          "pos": "noun",
+          "meaning": "help or support",
+          "example": "The government provided financial assistance to flood victims."
+        },
+        {
+          "word": "Assistants",
+          "pos": "noun (plural)",
+          "meaning": "people who help others in their work",
+          "example": "The minister's assistants prepared the briefing notes."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The government gave financial ___ to families affected by the floods.",
+          "answer": "Assistance"
+        },
+        {
+          "sentence": "Two research ___ prepared the minister's briefing notes.",
+          "answer": "Assistants"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "assure-ensure",
+      "words": [
+        {
+          "word": "Assure",
+          "pos": "verb",
+          "meaning": "to tell someone confidently so as to remove doubt",
+          "example": "The minister assured the public that prices would fall."
+        },
+        {
+          "word": "Ensure",
+          "pos": "verb",
+          "meaning": "to make certain that something happens or is the case",
+          "example": "Officials must ensure that every ballot is counted."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The minister tried to ___ the public that petrol prices would fall.",
+          "answer": "Assure"
+        },
+        {
+          "sentence": "Regular chlorination will ___ the water is safe to drink.",
+          "answer": "Ensure"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "astrology-astronomy",
+      "words": [
+        {
+          "word": "Astrology",
+          "pos": "noun",
+          "meaning": "the belief that stars and planets influence human affairs",
+          "example": "Astrology has no basis in science."
+        },
+        {
+          "word": "Astronomy",
+          "pos": "noun",
+          "meaning": "the scientific study of stars, planets and space",
+          "example": "Astronomy explains how eclipses occur."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Followers of ___ believe the stars shape a person's destiny.",
+          "answer": "Astrology"
+        },
+        {
+          "sentence": "___ is the scientific study of planets, stars and galaxies.",
+          "answer": "Astronomy"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "attack-invade",
+      "words": [
+        {
+          "word": "Attack",
+          "pos": "noun/verb",
+          "meaning": "a violent or hostile act against someone; to assault or criticise",
+          "example": "Militants launched an attack on a police checkpost."
+        },
+        {
+          "word": "Invade",
+          "pos": "verb",
+          "meaning": "to enter a country or area by force to occupy it; to intrude upon",
+          "example": "In 1979 Soviet troops invaded Afghanistan."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Militants launched an ___ on the police station at midnight.",
+          "answer": "Attack"
+        },
+        {
+          "sentence": "Photographers should not ___ the privacy of grieving families.",
+          "answer": "Invade"
+        }
+      ],
+      "years": [
+        2004
+      ]
+    },
+    {
+      "id": "attain-obtain",
+      "words": [
+        {
+          "word": "Attain",
+          "pos": "verb",
+          "meaning": "to reach or achieve a goal, level or age through effort",
+          "example": "Pakistan aims to attain full literacy within a generation."
+        },
+        {
+          "word": "Obtain",
+          "pos": "verb",
+          "meaning": "to get or acquire something",
+          "example": "Applicants must obtain a domicile certificate."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The chinar tree can ___ a height of thirty metres.",
+          "answer": "Attain"
+        },
+        {
+          "sentence": "Applicants must ___ a character certificate from the local police station.",
+          "answer": "Obtain"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "auger-augur",
+      "words": [
+        {
+          "word": "Auger",
+          "pos": "noun",
+          "meaning": "a tool with a spiral blade for boring holes",
+          "example": "Workers used an auger to drill holes for the fence posts."
+        },
+        {
+          "word": "Augur",
+          "pos": "verb/noun",
+          "meaning": "to foretell or signal a future outcome; a soothsayer",
+          "example": "The early monsoon augurs well for the rice crop."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The carpenter bored a hole through the beam with an ___.",
+          "answer": "Auger"
+        },
+        {
+          "sentence": "These timely rains ___ well for the wheat harvest.",
+          "answer": "Augur"
+        }
+      ],
+      "years": [
+        2004
+      ]
+    },
+    {
+      "id": "aural-oral",
+      "words": [
+        {
+          "word": "Aural",
+          "pos": "adjective",
+          "meaning": "relating to the ear or to hearing",
+          "example": "The language test includes an aural comprehension section."
+        },
+        {
+          "word": "Oral",
+          "pos": "adjective",
+          "meaning": "spoken rather than written; relating to the mouth",
+          "example": "Polio drops are an oral vaccine."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "In the ___ test, candidates listen to a recording and answer questions.",
+          "answer": "Aural"
+        },
+        {
+          "sentence": "Polio drops are given as an ___ vaccine, swallowed rather than injected.",
+          "answer": "Oral"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "authoritarian-authoritative",
+      "words": [
+        {
+          "word": "Authoritarian",
+          "pos": "adjective",
+          "meaning": "enforcing strict obedience at the expense of personal freedom",
+          "example": "The authoritarian regime banned all political rallies."
+        },
+        {
+          "word": "Authoritative",
+          "pos": "adjective",
+          "meaning": "reliable and respected as accurate; commanding",
+          "example": "Her book is the most authoritative account of Partition."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The ___ regime banned public rallies and jailed critics.",
+          "answer": "Authoritarian"
+        },
+        {
+          "sentence": "Her study is regarded as the most ___ account of Partition.",
+          "answer": "Authoritative"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "autobiography-biography",
+      "words": [
+        {
+          "word": "Autobiography",
+          "pos": "noun",
+          "meaning": "an account of a person's life written by that person",
+          "example": "In his autobiography, the general recalls his childhood."
+        },
+        {
+          "word": "Biography",
+          "pos": "noun",
+          "meaning": "an account of a person's life written by someone else",
+          "example": "Stanley Wolpert wrote a biography of Jinnah."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "In his ___, the former president describes his own childhood.",
+          "answer": "Autobiography"
+        },
+        {
+          "sentence": "A historian wrote a detailed ___ of Quaid-e-Azam.",
+          "answer": "Biography"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "avenge-revenge",
+      "words": [
+        {
+          "word": "Avenge",
+          "pos": "verb",
+          "meaning": "to punish a wrong done, often on another's behalf, as justice",
+          "example": "The hero set out to avenge his brother's murder."
+        },
+        {
+          "word": "Revenge",
+          "pos": "noun",
+          "meaning": "harm inflicted in retaliation for a personal injury or grievance",
+          "example": "Blood feuds are fuelled by a desire for revenge."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The nation resolved to ___ the martyrs by bringing the killers to justice.",
+          "answer": "Avenge"
+        },
+        {
+          "sentence": "The tribe vowed to take ___ for the killing of its elder.",
+          "answer": "Revenge"
+        }
+      ],
+      "years": [
+        1998
+      ]
     },
     {
       "id": "avocation-vocation",
@@ -176,6 +2215,448 @@
       "years": []
     },
     {
+      "id": "bad-badly",
+      "words": [
+        {
+          "word": "Bad",
+          "pos": "adjective",
+          "meaning": "poor in quality; unpleasant; (after linking verbs) unwell or sorry",
+          "example": "I feel bad about missing your wedding."
+        },
+        {
+          "word": "Badly",
+          "pos": "adverb",
+          "meaning": "in a poor or unsatisfactory way; very much",
+          "example": "The team played badly in the final."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "I feel ___ about forgetting my friend's birthday.",
+          "answer": "Bad"
+        },
+        {
+          "sentence": "Our team played ___ and lost the match by six wickets.",
+          "answer": "Badly"
+        }
+      ],
+      "years": [
+        1996
+      ]
+    },
+    {
+      "id": "bail-bale",
+      "words": [
+        {
+          "word": "Bail",
+          "pos": "noun/verb",
+          "meaning": "release of an accused pending trial, against security; to release thus",
+          "example": "The court granted the accused bail against a surety bond."
+        },
+        {
+          "word": "Bale",
+          "pos": "noun",
+          "meaning": "a large bound bundle of cotton, hay or similar material",
+          "example": "Each bale of cotton weighs about 170 kilograms."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The court granted the accused ___ against a surety bond.",
+          "answer": "Bail"
+        },
+        {
+          "sentence": "Each ___ of cotton weighs about 170 kilograms.",
+          "answer": "Bale"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "baited-bated",
+      "words": [
+        {
+          "word": "Baited",
+          "pos": "verb (past tense)",
+          "meaning": "furnished with bait; deliberately provoked",
+          "example": "The angler baited his hook with a worm."
+        },
+        {
+          "word": "Bated",
+          "pos": "adjective",
+          "meaning": "(only in 'with bated breath') held in anxiety or excitement",
+          "example": "The nation waited with bated breath for the verdict."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The fisherman ___ his hook with a worm and cast it into the river.",
+          "answer": "Baited"
+        },
+        {
+          "sentence": "The nation waited with ___ breath for the election result.",
+          "answer": "Bated"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "ballet-ballot",
+      "words": [
+        {
+          "word": "Ballet",
+          "pos": "noun",
+          "meaning": "an artistic dance form using set steps and gestures",
+          "example": "The ballet was performed to music by Tchaikovsky."
+        },
+        {
+          "word": "Ballot",
+          "pos": "noun/verb",
+          "meaning": "a paper or system used for secret voting; to vote",
+          "example": "Voters cast their ballots in transparent boxes."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The dancers performed a classical ___ at the arts council.",
+          "answer": "Ballet"
+        },
+        {
+          "sentence": "Each voter places the ___ in a transparent box.",
+          "answer": "Ballot"
+        }
+      ],
+      "years": [
+        1992
+      ]
+    },
+    {
+      "id": "barbarism-barbarity",
+      "words": [
+        {
+          "word": "Barbarism",
+          "pos": "noun",
+          "meaning": "an uncivilised condition; a word or usage considered incorrect",
+          "example": "Writing 'criterias' as the plural of 'criterion' is a barbarism."
+        },
+        {
+          "word": "Barbarity",
+          "pos": "noun",
+          "meaning": "extreme cruelty; a brutal act",
+          "example": "The barbarity of the attack on the school shocked the world."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Using 'irregardless' is a ___ that careful writers avoid.",
+          "answer": "Barbarism"
+        },
+        {
+          "sentence": "The ___ with which the hostages were treated horrified the world.",
+          "answer": "Barbarity"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "bare-bear",
+      "words": [
+        {
+          "word": "Bare",
+          "pos": "adjective/verb",
+          "meaning": "uncovered or naked; basic; to uncover",
+          "example": "Labourers carried bricks with bare hands."
+        },
+        {
+          "word": "Bear",
+          "pos": "verb/noun",
+          "meaning": "to carry or endure; a large heavy mammal",
+          "example": "The rope cannot bear such a heavy load."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Labourers carried hot bricks with ___ hands.",
+          "answer": "Bare"
+        },
+        {
+          "sentence": "The old bridge cannot ___ the weight of loaded trucks.",
+          "answer": "Bear"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "baron-barren",
+      "words": [
+        {
+          "word": "Baron",
+          "pos": "noun",
+          "meaning": "a nobleman; a powerful businessman in a particular industry",
+          "example": "A wealthy sugar baron funded the campaign."
+        },
+        {
+          "word": "Barren",
+          "pos": "adjective",
+          "meaning": "(of land) too poor to grow crops; unproductive",
+          "example": "Much of Balochistan's land is barren."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "A wealthy sugar ___ financed the party's campaign.",
+          "answer": "Baron"
+        },
+        {
+          "sentence": "Without irrigation, the land remained dry and ___.",
+          "answer": "Barren"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "bases-basis",
+      "words": [
+        {
+          "word": "Bases",
+          "pos": "noun (plural)",
+          "meaning": "plural of 'base' and of 'basis'",
+          "example": "The air force operates several bases in the north."
+        },
+        {
+          "word": "Basis",
+          "pos": "noun (singular)",
+          "meaning": "the foundation or underlying principle of something",
+          "example": "Merit should be the sole basis of selection."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "On what ___ was the candidate rejected?",
+          "answer": "Bases"
+        },
+        {
+          "sentence": "The army maintains several ___ in the northern areas.",
+          "answer": "Basis"
+        }
+      ],
+      "years": [
+        2013
+      ]
+    },
+    {
+      "id": "bath-bathe",
+      "words": [
+        {
+          "word": "Bath",
+          "pos": "noun",
+          "meaning": "a tub for washing the body; an act of washing in one",
+          "example": "After the long journey, he took a hot bath."
+        },
+        {
+          "word": "Bathe",
+          "pos": "verb",
+          "meaning": "to swim or wash in water; to wash a wound gently",
+          "example": "Children bathe in the canal on hot afternoons."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "After the long journey, he took a hot ___.",
+          "answer": "Bath"
+        },
+        {
+          "sentence": "On hot afternoons village boys ___ in the canal.",
+          "answer": "Bathe"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "bazaar-bizarre",
+      "words": [
+        {
+          "word": "Bazaar",
+          "pos": "noun",
+          "meaning": "a market, especially in South Asia or the Middle East",
+          "example": "Anarkali Bazaar is crowded before Eid."
+        },
+        {
+          "word": "Bizarre",
+          "pos": "adjective",
+          "meaning": "very strange or unusual",
+          "example": "The witness gave a bizarre account of events."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Anarkali ___ is packed with shoppers before Eid.",
+          "answer": "Bazaar"
+        },
+        {
+          "sentence": "It was a ___ decision that nobody could explain.",
+          "answer": "Bizarre"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "bear-born-borne",
+      "words": [
+        {
+          "word": "Bear",
+          "pos": "verb",
+          "meaning": "to carry or support; to endure; to give birth to",
+          "example": "The old bridge cannot bear heavy trucks."
+        },
+        {
+          "word": "Born",
+          "pos": "adjective (past participle)",
+          "meaning": "brought into life by birth (passive sense only)",
+          "example": "Allama Iqbal was born in Sialkot in 1877."
+        },
+        {
+          "word": "Borne",
+          "pos": "verb (past participle)",
+          "meaning": "carried or endured; given birth to (active sense)",
+          "example": "The cost will be borne by the federal government."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The ice is too thin to ___ your weight.",
+          "answer": "Bear"
+        },
+        {
+          "sentence": "Quaid-e-Azam was ___ in Karachi in 1876.",
+          "answer": "Born"
+        },
+        {
+          "sentence": "The cost of the project will be ___ by the provincial government.",
+          "answer": "Borne"
+        }
+      ],
+      "years": [
+        1990
+      ]
+    },
+    {
+      "id": "belief-believe",
+      "words": [
+        {
+          "word": "Belief",
+          "pos": "noun",
+          "meaning": "acceptance that something is true; a conviction",
+          "example": "It is a common belief that hard work pays."
+        },
+        {
+          "word": "Believe",
+          "pos": "verb",
+          "meaning": "to accept something as true",
+          "example": "Many people believe education is the key to progress."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "It is a widely held ___ that education is the key to progress.",
+          "answer": "Belief"
+        },
+        {
+          "sentence": "Many people ___ that education is the key to progress.",
+          "answer": "Believe"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "below-beneath",
+      "words": [
+        {
+          "word": "Below",
+          "pos": "preposition/adverb",
+          "meaning": "at a lower level, figure or rank than",
+          "example": "The temperature in Skardu fell below zero."
+        },
+        {
+          "word": "Beneath",
+          "pos": "preposition",
+          "meaning": "directly underneath; unworthy of",
+          "example": "Such petty revenge is beneath a man of his stature."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Last night the temperature in Quetta fell ___ zero.",
+          "answer": "Below"
+        },
+        {
+          "sentence": "Such petty quarrels are ___ the dignity of a judge.",
+          "answer": "Beneath"
+        }
+      ],
+      "years": [
+        1976
+      ]
+    },
+    {
+      "id": "beneficent-benevolent",
+      "words": [
+        {
+          "word": "Beneficent",
+          "pos": "adjective",
+          "meaning": "actively doing good; producing benefit",
+          "example": "The beneficent effects of the canal transformed the district."
+        },
+        {
+          "word": "Benevolent",
+          "pos": "adjective",
+          "meaning": "well-meaning and kindly; set up for charity",
+          "example": "A benevolent fund supports the families of martyred policemen."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The ___ effects of the new irrigation scheme were soon visible in higher yields.",
+          "answer": "Beneficent"
+        },
+        {
+          "sentence": "The department runs a ___ fund for the widows of its employees.",
+          "answer": "Benevolent"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "berth-birth",
+      "words": [
+        {
+          "word": "Berth",
+          "pos": "noun",
+          "meaning": "a sleeping bunk on a train or ship; a ship's mooring place",
+          "example": "We booked a lower berth on the Karachi Express."
+        },
+        {
+          "word": "Birth",
+          "pos": "noun",
+          "meaning": "the act of being born; a beginning or origin",
+          "example": "The birth of Pakistan in 1947 changed the map of Asia."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "We reserved an upper ___ on the night train to Karachi.",
+          "answer": "Berth"
+        },
+        {
+          "sentence": "The ___ of the baby brought joy to the whole family.",
+          "answer": "Birth"
+        }
+      ],
+      "years": [
+        1981
+      ]
+    },
+    {
       "id": "beside-besides",
       "words": [
         {
@@ -202,6 +2683,548 @@
         }
       ],
       "years": []
+    },
+    {
+      "id": "biannual-biennial",
+      "words": [
+        {
+          "word": "Biannual",
+          "pos": "adjective",
+          "meaning": "occurring twice a year",
+          "example": "The biannual report is issued every January and July."
+        },
+        {
+          "word": "Biennial",
+          "pos": "adjective",
+          "meaning": "occurring every two years",
+          "example": "The biennial book fair is held in alternate years."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The bank publishes a ___ report every January and July.",
+          "answer": "Biannual"
+        },
+        {
+          "sentence": "The ___ arts festival is held once every two years.",
+          "answer": "Biennial"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "bloc-block",
+      "words": [
+        {
+          "word": "Bloc",
+          "pos": "noun",
+          "meaning": "a group of countries or parties allied for a common purpose",
+          "example": "The opposition bloc walked out of the assembly."
+        },
+        {
+          "word": "Block",
+          "pos": "noun/verb",
+          "meaning": "a solid piece of material; an obstruction; to obstruct",
+          "example": "Protesters blocked the main highway."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The opposition ___ walked out of the assembly in protest.",
+          "answer": "Bloc"
+        },
+        {
+          "sentence": "Protesters tried to ___ the main highway with burning tyres.",
+          "answer": "Block"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "boarder-border",
+      "words": [
+        {
+          "word": "Boarder",
+          "pos": "noun",
+          "meaning": "a pupil who lives at school; a lodger who pays for meals",
+          "example": "Each boarder at the cadet college shares a room."
+        },
+        {
+          "word": "Border",
+          "pos": "noun/verb",
+          "meaning": "a boundary between countries or areas; to adjoin",
+          "example": "Troops guard the border with Afghanistan."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Every ___ at the hostel must return by nine o'clock.",
+          "answer": "Boarder"
+        },
+        {
+          "sentence": "Troops patrol the ___ between the two countries.",
+          "answer": "Border"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "bough-bow",
+      "words": [
+        {
+          "word": "Bough",
+          "pos": "noun",
+          "meaning": "a main branch of a tree",
+          "example": "Children swung from a low bough of the banyan tree."
+        },
+        {
+          "word": "Bow",
+          "pos": "verb",
+          "meaning": "to bend the head or body as a sign of respect",
+          "example": "Guests bow their heads in respect at the shrine."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "A monkey sat on a low ___ of the old banyan tree.",
+          "answer": "Bough"
+        },
+        {
+          "sentence": "The players ___ to the audience at the end of the performance.",
+          "answer": "Bow"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "bought-brought",
+      "words": [
+        {
+          "word": "Bought",
+          "pos": "verb (past tense)",
+          "meaning": "past tense and participle of 'buy'; purchased",
+          "example": "He bought a plot in a new housing scheme."
+        },
+        {
+          "word": "Brought",
+          "pos": "verb (past tense)",
+          "meaning": "past tense and participle of 'bring'; carried or led here",
+          "example": "The guests brought sweets for the children."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "He ___ a new car with his savings.",
+          "answer": "Bought"
+        },
+        {
+          "sentence": "The guests ___ sweets with them for the children.",
+          "answer": "Brought"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "boy-buoy",
+      "words": [
+        {
+          "word": "Boy",
+          "pos": "noun",
+          "meaning": "a male child or young man",
+          "example": "The boy delivers newspapers before school."
+        },
+        {
+          "word": "Buoy",
+          "pos": "noun/verb",
+          "meaning": "a floating marker in water; to keep afloat or lift the spirits",
+          "example": "A red buoy marks the channel at Karachi port."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The ___ sells newspapers at the traffic signal every morning.",
+          "answer": "Boy"
+        },
+        {
+          "sentence": "A red ___ floats at the mouth of the harbour to guide ships.",
+          "answer": "Buoy"
+        }
+      ],
+      "years": [
+        1994
+      ]
+    },
+    {
+      "id": "brake-break",
+      "words": [
+        {
+          "word": "Brake",
+          "pos": "noun/verb",
+          "meaning": "a device for stopping a vehicle; to slow or stop",
+          "example": "The driver applied the brake too late."
+        },
+        {
+          "word": "Break",
+          "pos": "verb/noun",
+          "meaning": "to separate into pieces; to interrupt; a pause",
+          "example": "Students get a short break between papers."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The bus driver pressed the ___ too late to avoid the collision.",
+          "answer": "Brake"
+        },
+        {
+          "sentence": "Students get a short ___ between the two papers.",
+          "answer": "Break"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "breach-breech",
+      "words": [
+        {
+          "word": "Breach",
+          "pos": "noun/verb",
+          "meaning": "a violation of a law or agreement; a gap; to break through",
+          "example": "The leak was a serious breach of national security."
+        },
+        {
+          "word": "Breech",
+          "pos": "noun",
+          "meaning": "the rear part of a gun barrel; a baby born bottom first",
+          "example": "The soldier loaded the shell into the breech of the gun."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Leaking classified files was a serious ___ of national security.",
+          "answer": "Breach"
+        },
+        {
+          "sentence": "The soldier loaded the shell into the ___ of the gun.",
+          "answer": "Breech"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "breakout-outbreak",
+      "words": [
+        {
+          "word": "Breakout",
+          "pos": "noun",
+          "meaning": "an escape, especially from prison; a forceful advance",
+          "example": "The jail breakout in Dera Ismail Khan freed dozens of prisoners."
+        },
+        {
+          "word": "Outbreak",
+          "pos": "noun",
+          "meaning": "the sudden start of something unwelcome, such as disease or war",
+          "example": "An outbreak of cholera was reported in Hyderabad."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Five prisoners escaped during a jail ___ last night.",
+          "answer": "Breakout"
+        },
+        {
+          "sentence": "Health teams rushed to the village after an ___ of measles.",
+          "answer": "Outbreak"
+        }
+      ],
+      "years": [
+        1986
+      ]
+    },
+    {
+      "id": "breath-breathe",
+      "words": [
+        {
+          "word": "Breath",
+          "pos": "noun",
+          "meaning": "air taken into or sent out of the lungs",
+          "example": "He took a deep breath before the interview."
+        },
+        {
+          "word": "Breathe",
+          "pos": "verb",
+          "meaning": "to take air into the lungs and send it out",
+          "example": "Asthma patients struggle to breathe during smog."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "He took a deep ___ before entering the interview room.",
+          "answer": "Breath"
+        },
+        {
+          "sentence": "Residents of Lahore find it hard to ___ during the smog season.",
+          "answer": "Breathe"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "bridal-bridle",
+      "words": [
+        {
+          "word": "Bridal",
+          "pos": "adjective",
+          "meaning": "relating to a bride or a wedding",
+          "example": "Lahore's Liberty Market is famous for bridal wear."
+        },
+        {
+          "word": "Bridle",
+          "pos": "noun/verb",
+          "meaning": "headgear used to control a horse; to show anger or resentment",
+          "example": "The rider held the horse's bridle tightly."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The shop on Tariq Road sells ___ dresses and jewellery.",
+          "answer": "Bridal"
+        },
+        {
+          "sentence": "The rider tightened the ___ to control the restless horse.",
+          "answer": "Bridle"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "briefing-debriefing",
+      "words": [
+        {
+          "word": "Briefing",
+          "pos": "noun",
+          "meaning": "a meeting giving information or instructions before a task",
+          "example": "The pilots attended a briefing before the mission."
+        },
+        {
+          "word": "Debriefing",
+          "pos": "noun",
+          "meaning": "questioning someone after a mission to obtain information",
+          "example": "After their return, the freed hostages went through a detailed debriefing."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Before take-off, the pilots attended a ___ on weather and targets.",
+          "answer": "Briefing"
+        },
+        {
+          "sentence": "On returning from the mission, the agents underwent a ___ about what they had seen.",
+          "answer": "Debriefing"
+        }
+      ],
+      "years": [
+        1993
+      ]
+    },
+    {
+      "id": "bring-take",
+      "words": [
+        {
+          "word": "Bring",
+          "pos": "verb",
+          "meaning": "to carry or come with something towards the speaker",
+          "example": "Please bring your CNIC when you come here."
+        },
+        {
+          "word": "Take",
+          "pos": "verb",
+          "meaning": "to carry or go with something away from the speaker",
+          "example": "Take these files to the commissioner's office."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Please ___ your CNIC with you when you come here tomorrow.",
+          "answer": "Bring"
+        },
+        {
+          "sentence": "Please ___ these files to the commissioner's office across town.",
+          "answer": "Take"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "broach-brooch",
+      "words": [
+        {
+          "word": "Broach",
+          "pos": "verb",
+          "meaning": "to raise a sensitive subject for discussion",
+          "example": "He was nervous about how to broach the subject of a pay rise."
+        },
+        {
+          "word": "Brooch",
+          "pos": "noun",
+          "meaning": "an ornamental pin worn on clothing",
+          "example": "She fastened her shawl with a silver brooch."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "She hesitated to ___ the subject of marriage with her parents.",
+          "answer": "Broach"
+        },
+        {
+          "sentence": "She pinned an emerald ___ to her shawl.",
+          "answer": "Brooch"
+        }
+      ],
+      "years": [
+        2001
+      ]
+    },
+    {
+      "id": "burglary-robbery",
+      "words": [
+        {
+          "word": "Burglary",
+          "pos": "noun",
+          "meaning": "entering a building illegally in order to steal",
+          "example": "The burglary occurred while the family was away."
+        },
+        {
+          "word": "Robbery",
+          "pos": "noun",
+          "meaning": "stealing from a person by force or threat of force",
+          "example": "The robbery took place at gunpoint outside the bank."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The ___ happened while the family was away, the thieves entering through a window.",
+          "answer": "Burglary"
+        },
+        {
+          "sentence": "Armed men committed a ___ at gunpoint, snatching a commuter's phone and wallet.",
+          "answer": "Robbery"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "buy-by",
+      "words": [
+        {
+          "word": "Buy",
+          "pos": "verb",
+          "meaning": "to obtain something by paying for it",
+          "example": "Farmers cannot afford to buy costly fertiliser."
+        },
+        {
+          "word": "By",
+          "pos": "preposition",
+          "meaning": "near; through the agency of; not later than",
+          "example": "The bill was passed by a large majority."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Many farmers cannot afford to ___ costly fertiliser.",
+          "answer": "Buy"
+        },
+        {
+          "sentence": "The bill was passed ___ a large majority.",
+          "answer": "By"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "callous-callus",
+      "words": [
+        {
+          "word": "Callous",
+          "pos": "adjective",
+          "meaning": "insensitive and cruel; showing no concern for others",
+          "example": "The official's callous remarks about flood victims caused outrage."
+        },
+        {
+          "word": "Callus",
+          "pos": "noun",
+          "meaning": "a patch of hardened, thickened skin",
+          "example": "Years of farm work left a thick callus on his palm."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "It was ___ of the landlord to evict the widow in winter.",
+          "answer": "Callous"
+        },
+        {
+          "sentence": "The guitarist developed a hard ___ on each fingertip.",
+          "answer": "Callus"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "calvary-cavalry",
+      "words": [
+        {
+          "word": "Calvary",
+          "pos": "noun",
+          "meaning": "the hill where Jesus was crucified; an experience of intense suffering",
+          "example": "Christian pilgrims visit the site believed to be Calvary."
+        },
+        {
+          "word": "Cavalry",
+          "pos": "noun",
+          "meaning": "soldiers who fought on horseback; now, armoured army units",
+          "example": "The cavalry charged across the plain at Panipat."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Christians believe Christ was crucified on ___, outside Jerusalem.",
+          "answer": "Calvary"
+        },
+        {
+          "sentence": "Tanks have replaced horses in the modern armoured ___.",
+          "answer": "Cavalry"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "cannon-canon",
+      "words": [
+        {
+          "word": "Cannon",
+          "pos": "noun",
+          "meaning": "a large, heavy gun, usually mounted, that fires heavy shot",
+          "example": "Zamzama, the famous cannon, stands on The Mall outside the Lahore Museum."
+        },
+        {
+          "word": "Canon",
+          "pos": "noun",
+          "meaning": "an accepted rule or principle; a body of recognised works",
+          "example": "Copying another writer's work without credit breaks the basic canons of scholarship."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The old fort's thick walls were built to withstand ___ fire.",
+          "answer": "Cannon"
+        },
+        {
+          "sentence": "Iqbal's poetry holds a secure place in the ___ of Urdu literature.",
+          "answer": "Canon"
+        }
+      ],
+      "years": [
+        1998
+      ]
     },
     {
       "id": "canvas-canvass",
@@ -235,6 +3258,212 @@
       ]
     },
     {
+      "id": "capital-capitol",
+      "words": [
+        {
+          "word": "Capital",
+          "pos": "noun",
+          "meaning": "a city that is the seat of government; also wealth used for investment",
+          "example": "Islamabad replaced Karachi as Pakistan's capital in the 1960s."
+        },
+        {
+          "word": "Capitol",
+          "pos": "noun",
+          "meaning": "the building in Washington where the US Congress meets",
+          "example": "Foreign journalists filmed the debate from inside the Capitol."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Investors hesitate to commit ___ during political uncertainty.",
+          "answer": "Capital"
+        },
+        {
+          "sentence": "American senators climbed the steps of the domed ___ for the vote.",
+          "answer": "Capitol"
+        }
+      ],
+      "years": [
+        2011
+      ]
+    },
+    {
+      "id": "carat-caret",
+      "words": [
+        {
+          "word": "Carat",
+          "pos": "noun",
+          "meaning": "a unit of weight for gems, or a measure of gold's purity",
+          "example": "Many brides in Lahore prefer jewellery made of 22-carat gold."
+        },
+        {
+          "word": "Caret",
+          "pos": "noun",
+          "meaning": "a proofreading mark (^) showing where something must be inserted",
+          "example": "The examiner drew a caret where the candidate had missed an article."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The jeweller showed us a two-___ diamond ring.",
+          "answer": "Carat"
+        },
+        {
+          "sentence": "Use a ___ to mark the spot where a missing word should be inserted.",
+          "answer": "Caret"
+        }
+      ],
+      "years": [
+        1998
+      ]
+    },
+    {
+      "id": "career-carrier",
+      "words": [
+        {
+          "word": "Career",
+          "pos": "noun",
+          "meaning": "the course of a person's working life or profession",
+          "example": "She built a distinguished career in Pakistan's Foreign Service."
+        },
+        {
+          "word": "Carrier",
+          "pos": "noun",
+          "meaning": "a person or thing that carries something, such as goods or a disease",
+          "example": "PIA has long served as Pakistan's national flag carrier."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Passing the CSS examination can launch a ___ in public service.",
+          "answer": "Career"
+        },
+        {
+          "sentence": "The Aedes mosquito is the ___ of the dengue virus.",
+          "answer": "Carrier"
+        }
+      ],
+      "years": [
+        1986
+      ]
+    },
+    {
+      "id": "cast-caste",
+      "words": [
+        {
+          "word": "Cast",
+          "pos": "verb",
+          "meaning": "to throw; to give a vote; (noun) the actors in a play",
+          "example": "Millions of citizens cast their votes in the general election."
+        },
+        {
+          "word": "Caste",
+          "pos": "noun",
+          "meaning": "a hereditary social class, especially in Hindu society",
+          "example": "India's constitution forbids discrimination on the basis of caste."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Voters queued for hours in the heat to ___ their ballots.",
+          "answer": "Cast"
+        },
+        {
+          "sentence": "In parts of South Asia, marriage outside one's ___ is still frowned upon.",
+          "answer": "Caste"
+        }
+      ],
+      "years": [
+        1981
+      ]
+    },
+    {
+      "id": "casual-causal",
+      "words": [
+        {
+          "word": "Casual",
+          "pos": "adjective",
+          "meaning": "relaxed and informal; happening by chance; not regular",
+          "example": "Wear casual clothes to the staff picnic."
+        },
+        {
+          "word": "Causal",
+          "pos": "adjective",
+          "meaning": "relating to or acting as a cause",
+          "example": "Researchers found a causal link between smoking and lung cancer."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "He was hired as a ___ labourer at the port, paid by the day.",
+          "answer": "Casual"
+        },
+        {
+          "sentence": "Scientists are studying the ___ relationship between poverty and crime.",
+          "answer": "Causal"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "cease-seize",
+      "words": [
+        {
+          "word": "Cease",
+          "pos": "verb",
+          "meaning": "to stop or bring to an end",
+          "example": "Both sides agreed to cease firing along the border at midnight."
+        },
+        {
+          "word": "Seize",
+          "pos": "verb",
+          "meaning": "to take hold of suddenly or by force; to confiscate",
+          "example": "Customs officers seized a consignment of smuggled goods at Torkham."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The factory was ordered to ___ operations until it met safety standards.",
+          "answer": "Cease"
+        },
+        {
+          "sentence": "The court ordered the authorities to ___ the property of the absconding accused.",
+          "answer": "Seize"
+        }
+      ],
+      "years": [
+        1986
+      ]
+    },
+    {
+      "id": "ceiling-sealing",
+      "words": [
+        {
+          "word": "Ceiling",
+          "pos": "noun",
+          "meaning": "the upper inner surface of a room; an upper limit",
+          "example": "The government fixed a ceiling on the price of flour."
+        },
+        {
+          "word": "Sealing",
+          "pos": "verb / noun",
+          "meaning": "closing securely; officially shutting a building or place",
+          "example": "The district administration is sealing shops that violate the rules."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The fan hung from a high ___ in the old hall.",
+          "answer": "Ceiling"
+        },
+        {
+          "sentence": "Officials began ___ the illegal marriage halls on Monday.",
+          "answer": "Sealing"
+        }
+      ],
+      "years": []
+    },
+    {
       "id": "censor-censure",
       "words": [
         {
@@ -263,6 +3492,176 @@
       "years": []
     },
     {
+      "id": "censor-sensor",
+      "words": [
+        {
+          "word": "Censor",
+          "pos": "verb / noun",
+          "meaning": "to remove objectionable material from media; an official who does this",
+          "example": "The board censored several violent scenes from the film."
+        },
+        {
+          "word": "Sensor",
+          "pos": "noun",
+          "meaning": "a device that detects and responds to physical changes",
+          "example": "A smoke sensor triggered the fire alarm."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The authorities tried to ___ news of the riots.",
+          "answer": "Censor"
+        },
+        {
+          "sentence": "A motion ___ switches on the lights when someone enters.",
+          "answer": "Sensor"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "cereal-serial",
+      "words": [
+        {
+          "word": "Cereal",
+          "pos": "noun",
+          "meaning": "a grain crop such as wheat or rice; a breakfast food made from grain",
+          "example": "Wheat is the most important cereal grown in Pakistan."
+        },
+        {
+          "word": "Serial",
+          "pos": "noun / adjective",
+          "meaning": "a story in instalments; happening in a series",
+          "example": "The drama serial is broadcast every Tuesday night."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Rice and maize are major ___ crops in Punjab.",
+          "answer": "Cereal"
+        },
+        {
+          "sentence": "The police arrested a ___ offender wanted in five cases.",
+          "answer": "Serial"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "ceremonial-ceremonious",
+      "words": [
+        {
+          "word": "Ceremonial",
+          "pos": "adjective",
+          "meaning": "relating to or used in formal ceremonies",
+          "example": "The President is largely a ceremonial head of state."
+        },
+        {
+          "word": "Ceremonious",
+          "pos": "adjective",
+          "meaning": "(of people or manner) excessively formal and polite",
+          "example": "The ceremonious host insisted on formal titles even at dinner."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Guards in ___ dress changed duty at the Quaid's mausoleum.",
+          "answer": "Ceremonial"
+        },
+        {
+          "sentence": "Stiffly ___, he insisted on titles and formalities even among friends.",
+          "answer": "Ceremonious"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "cession-session",
+      "words": [
+        {
+          "word": "Cession",
+          "pos": "noun",
+          "meaning": "the formal giving up of territory or rights by a state",
+          "example": "The cession of Hong Kong to Britain followed the First Opium War."
+        },
+        {
+          "word": "Session",
+          "pos": "noun",
+          "meaning": "a period devoted to a meeting or particular activity",
+          "example": "The budget session of the National Assembly begins in June."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The treaty provided for the ___ of the island to its neighbour.",
+          "answer": "Cession"
+        },
+        {
+          "sentence": "The question-and-answer ___ lasted two hours.",
+          "answer": "Session"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "character-conduct",
+      "words": [
+        {
+          "word": "Character",
+          "pos": "noun",
+          "meaning": "a person's inner moral nature and qualities, such as honesty or courage",
+          "example": "A man of strong character stays honest even when no one is watching."
+        },
+        {
+          "word": "Conduct",
+          "pos": "noun",
+          "meaning": "the way a person actually behaves; outward actions in given circumstances",
+          "example": "The officer's conduct during the inquiry was found to be improper."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Reputation is what others think of you; ___ is what you truly are.",
+          "answer": "Character"
+        },
+        {
+          "sentence": "Government servants who join political parties break the official rules of ___.",
+          "answer": "Conduct"
+        }
+      ],
+      "years": [
+        1988
+      ]
+    },
+    {
+      "id": "check-cheque",
+      "words": [
+        {
+          "word": "Check",
+          "pos": "verb",
+          "meaning": "to examine something to make sure it is correct or safe",
+          "example": "Always check your answers before handing in the paper."
+        },
+        {
+          "word": "Cheque",
+          "pos": "noun",
+          "meaning": "(British) a written order telling a bank to pay a sum",
+          "example": "He paid the admission fee by cheque."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Please ___ the spelling of every name on the list.",
+          "answer": "Check"
+        },
+        {
+          "sentence": "The company issued him a ___ for his final salary.",
+          "answer": "Cheque"
+        }
+      ],
+      "years": []
+    },
+    {
       "id": "childish-childlike",
       "words": [
         {
@@ -286,6 +3685,494 @@
         {
           "sentence": "Even at eighty, the poet looked at the world with ___ wonder.",
           "answer": "Childlike"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "choice-preference",
+      "words": [
+        {
+          "word": "Choice",
+          "pos": "noun",
+          "meaning": "the act or opportunity of choosing; the option selected",
+          "example": "Voters had a choice of twelve candidates in the constituency."
+        },
+        {
+          "word": "Preference",
+          "pos": "noun",
+          "meaning": "a greater liking for one option over others; a priority given",
+          "example": "Many students show a clear preference for science over the arts."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "With the deadline passed, she had no ___ but to accept the offer.",
+          "answer": "Choice"
+        },
+        {
+          "sentence": "My father has a strong ___ for green tea over coffee.",
+          "answer": "Preference"
+        }
+      ],
+      "years": [
+        1987
+      ]
+    },
+    {
+      "id": "choose-chose",
+      "words": [
+        {
+          "word": "Choose",
+          "pos": "verb",
+          "meaning": "(present tense) to select from options",
+          "example": "Each year students must choose their optional subjects."
+        },
+        {
+          "word": "Chose",
+          "pos": "verb",
+          "meaning": "the past tense of 'choose'",
+          "example": "Last year the party chose a new leader."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Tomorrow the assembly will ___ a new Speaker.",
+          "answer": "Choose"
+        },
+        {
+          "sentence": "In 2018 the voters ___ a different government.",
+          "answer": "Chose"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "chord-cord",
+      "words": [
+        {
+          "word": "Chord",
+          "pos": "noun",
+          "meaning": "musical notes played together; a line joining two points on a curve",
+          "example": "His speech struck a chord with young voters."
+        },
+        {
+          "word": "Cord",
+          "pos": "noun",
+          "meaning": "a thin string or rope; a cord-like body part, such as the spinal cord",
+          "example": "Tie the parcel firmly with a cord."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The sitar player struck a final ___ and the hall fell silent.",
+          "answer": "Chord"
+        },
+        {
+          "sentence": "The spinal ___ carries messages between the brain and the body.",
+          "answer": "Cord"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "cite-site",
+      "words": [
+        {
+          "word": "Cite",
+          "pos": "verb",
+          "meaning": "to quote or mention something as evidence or authority",
+          "example": "The judge cited an earlier Supreme Court ruling in her verdict."
+        },
+        {
+          "word": "Site",
+          "pos": "noun",
+          "meaning": "the place where something is, was or will be located",
+          "example": "Mohenjo-daro is a UNESCO World Heritage Site in Sindh."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "In an essay, always ___ the sources of your facts.",
+          "answer": "Cite"
+        },
+        {
+          "sentence": "The construction ___ was closed after a worker was injured.",
+          "answer": "Site"
+        }
+      ],
+      "years": [
+        1983
+      ]
+    },
+    {
+      "id": "classic-classical",
+      "words": [
+        {
+          "word": "Classic",
+          "pos": "adjective",
+          "meaning": "of the highest quality; a typical example of its kind",
+          "example": "Forgetting one's passport is a classic travel mistake."
+        },
+        {
+          "word": "Classical",
+          "pos": "adjective",
+          "meaning": "relating to ancient Greece and Rome; traditional and serious in art or music",
+          "example": "Ustad Salamat Ali Khan was a great singer of classical music."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Blaming the previous government is a ___ political excuse.",
+          "answer": "Classic"
+        },
+        {
+          "sentence": "Students of ___ Greek read Homer in the original language.",
+          "answer": "Classical"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "climactic-climatic",
+      "words": [
+        {
+          "word": "Climactic",
+          "pos": "adjective",
+          "meaning": "forming the most intense or decisive point of a story",
+          "example": "The film's climactic scene was shot in Hunza."
+        },
+        {
+          "word": "Climatic",
+          "pos": "adjective",
+          "meaning": "relating to climate",
+          "example": "Pakistan faces severe climatic challenges such as glacial melt."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "In the drama's ___ final episode, the villain is unmasked.",
+          "answer": "Climactic"
+        },
+        {
+          "sentence": "Rising temperatures and erratic monsoons are signs of ___ change.",
+          "answer": "Climatic"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "clothes-cloths",
+      "words": [
+        {
+          "word": "Clothes",
+          "pos": "noun",
+          "meaning": "garments worn on the body",
+          "example": "Volunteers collected warm clothes for earthquake survivors."
+        },
+        {
+          "word": "Cloths",
+          "pos": "noun",
+          "meaning": "pieces of fabric, especially for cleaning or covering",
+          "example": "Wipe the tables with clean, damp cloths."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "He changed into fresh ___ after the long journey.",
+          "answer": "Clothes"
+        },
+        {
+          "sentence": "The cleaner keeps separate ___ for dusting and for polishing.",
+          "answer": "Cloths"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "coarse-course",
+      "words": [
+        {
+          "word": "Coarse",
+          "pos": "adjective",
+          "meaning": "rough in texture; crude or vulgar",
+          "example": "The sacks were made of coarse jute fibre."
+        },
+        {
+          "word": "Course",
+          "pos": "noun",
+          "meaning": "a series of lessons; a route or direction; a part of a meal",
+          "example": "She enrolled in a short course on public speaking."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "His ___ language offended everyone at the meeting.",
+          "answer": "Coarse"
+        },
+        {
+          "sentence": "The river changed its ___ after the floods.",
+          "answer": "Course"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "collaborate-corroborate",
+      "words": [
+        {
+          "word": "Collaborate",
+          "pos": "verb",
+          "meaning": "to work jointly with others on a task",
+          "example": "Universities in Lahore and Karachi collaborate on climate research."
+        },
+        {
+          "word": "Corroborate",
+          "pos": "verb",
+          "meaning": "to confirm or support a statement with evidence",
+          "example": "CCTV footage corroborated the witness's account."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Scientists from several countries ___ on the glacier study.",
+          "answer": "Collaborate"
+        },
+        {
+          "sentence": "Two independent witnesses ___ the victim's story.",
+          "answer": "Corroborate"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "collision-collusion",
+      "words": [
+        {
+          "word": "Collision",
+          "pos": "noun",
+          "meaning": "a crash between moving objects; a violent clash of interests",
+          "example": "A collision between two buses blocked the motorway for hours."
+        },
+        {
+          "word": "Collusion",
+          "pos": "noun",
+          "meaning": "secret cooperation between parties for a dishonest purpose",
+          "example": "The inquiry found collusion between contractors and revenue officials."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The head-on ___ left both cars badly wrecked.",
+          "answer": "Collision"
+        },
+        {
+          "sentence": "Officials acted in ___ with the cartel to fix sugar prices.",
+          "answer": "Collusion"
+        }
+      ],
+      "years": [
+        2001,
+        1989
+      ]
+    },
+    {
+      "id": "colonel-kernel",
+      "words": [
+        {
+          "word": "Colonel",
+          "pos": "noun",
+          "meaning": "an army officer ranking above a lieutenant colonel",
+          "example": "He retired from the army as a colonel."
+        },
+        {
+          "word": "Kernel",
+          "pos": "noun",
+          "meaning": "the soft inner part of a nut or seed; the central core of something",
+          "example": "There is a kernel of truth in most rumours."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "He was promoted to the rank of ___ after twenty years' service.",
+          "answer": "Colonel"
+        },
+        {
+          "sentence": "The ___ of the argument is that education drives growth.",
+          "answer": "Kernel"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "coma-comma",
+      "words": [
+        {
+          "word": "Coma",
+          "pos": "noun",
+          "meaning": "a long state of deep unconsciousness",
+          "example": "After the accident, he lay in a coma for three weeks."
+        },
+        {
+          "word": "Comma",
+          "pos": "noun",
+          "meaning": "a punctuation mark (,) indicating a short pause",
+          "example": "Place a comma after an introductory phrase."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Doctors induced a ___ to protect the patient's brain.",
+          "answer": "Coma"
+        },
+        {
+          "sentence": "A missing ___ can change the meaning of a sentence.",
+          "answer": "Comma"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "command-commend",
+      "words": [
+        {
+          "word": "Command",
+          "pos": "verb / noun",
+          "meaning": "to give an order; to have authority over; an order",
+          "example": "The general will command the troops in the northern sector."
+        },
+        {
+          "word": "Commend",
+          "pos": "verb",
+          "meaning": "to praise formally; to entrust to someone's care",
+          "example": "The Prime Minister commended the rescue workers."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "A good officer must ___ the respect of his men.",
+          "answer": "Command"
+        },
+        {
+          "sentence": "I ___ the volunteers for their bravery during the floods.",
+          "answer": "Commend"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "compare-contrast",
+      "words": [
+        {
+          "word": "Compare",
+          "pos": "verb",
+          "meaning": "to examine things to find likenesses and differences; to liken",
+          "example": "The report compares Pakistan's literacy rate with that of its neighbours."
+        },
+        {
+          "word": "Contrast",
+          "pos": "verb / noun",
+          "meaning": "to set things side by side to stress their differences; a striking difference",
+          "example": "The essay contrasts rural poverty with urban affluence."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Poets often ___ a beloved's face to the full moon.",
+          "answer": "Compare"
+        },
+        {
+          "sentence": "There is a sharp ___ between the green north and the arid south.",
+          "answer": "Contrast"
+        }
+      ],
+      "years": [
+        1996
+      ]
+    },
+    {
+      "id": "compel-impel",
+      "words": [
+        {
+          "word": "Compel",
+          "pos": "verb",
+          "meaning": "to force someone to act, usually by outside authority or pressure",
+          "example": "The court can compel a witness to appear."
+        },
+        {
+          "word": "Impel",
+          "pos": "verb",
+          "meaning": "to drive or urge someone forward, usually by an inner motive",
+          "example": "Curiosity impelled her to explore the old ruins."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The new law will ___ factory owners to pay the minimum wage.",
+          "answer": "Compel"
+        },
+        {
+          "sentence": "Though no one forced him, an inner sense of duty seemed to ___ him onward.",
+          "answer": "Impel"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "complacent-complaisant",
+      "words": [
+        {
+          "word": "Complacent",
+          "pos": "adjective",
+          "meaning": "smugly self-satisfied and unaware of possible danger",
+          "example": "After an easy series win, the team grew complacent and lost the final."
+        },
+        {
+          "word": "Complaisant",
+          "pos": "adjective",
+          "meaning": "eager to please others; obliging and willing to comply",
+          "example": "The complaisant clerk agreed to every request without question."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "After years of low inflation, policymakers became ___ about rising prices.",
+          "answer": "Complacent"
+        },
+        {
+          "sentence": "Always eager to please, the ___ host gave in to every wish of his guests.",
+          "answer": "Complaisant"
+        }
+      ],
+      "years": [
+        2001,
+        1976
+      ]
+    },
+    {
+      "id": "complaint-compliant",
+      "words": [
+        {
+          "word": "Complaint",
+          "pos": "noun",
+          "meaning": "a statement that something is wrong or unsatisfactory",
+          "example": "Citizens can lodge a complaint with the Ombudsman online."
+        },
+        {
+          "word": "Compliant",
+          "pos": "adjective",
+          "meaning": "obeying rules or standards; too ready to obey",
+          "example": "The new factory is fully compliant with environmental laws."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "She filed a formal ___ against the overcharging shopkeeper.",
+          "answer": "Complaint"
+        },
+        {
+          "sentence": "Only banks that are ___ with the new regulations will receive licences.",
+          "answer": "Compliant"
         }
       ],
       "years": []
@@ -326,6 +4213,150 @@
       ]
     },
     {
+      "id": "compose-comprise",
+      "words": [
+        {
+          "word": "Compose",
+          "pos": "verb",
+          "meaning": "(of parts) to make up a whole; to create music or writing",
+          "example": "Four provinces, together with Islamabad, compose the federation."
+        },
+        {
+          "word": "Comprise",
+          "pos": "verb",
+          "meaning": "(of a whole) to consist of or contain parts",
+          "example": "The Senate comprises members from all federating units."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Seven members from different parties will ___ the new committee.",
+          "answer": "Compose"
+        },
+        {
+          "sentence": "The new committee will ___ seven members from different parties.",
+          "answer": "Comprise"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "comprehensible-comprehensive",
+      "words": [
+        {
+          "word": "Comprehensible",
+          "pos": "adjective",
+          "meaning": "able to be understood",
+          "example": "The lecture was simple and comprehensible to beginners."
+        },
+        {
+          "word": "Comprehensive",
+          "pos": "adjective",
+          "meaning": "complete; including all or nearly all aspects",
+          "example": "The report offers a comprehensive review of the education sector."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "His handwriting was barely ___.",
+          "answer": "Comprehensible"
+        },
+        {
+          "sentence": "We need a ___ plan covering health, education and housing.",
+          "answer": "Comprehensive"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "compulsive-compulsory",
+      "words": [
+        {
+          "word": "Compulsive",
+          "pos": "adjective",
+          "meaning": "resulting from an irresistible urge; unable to stop a behaviour",
+          "example": "He is a compulsive gambler who cannot stop betting."
+        },
+        {
+          "word": "Compulsory",
+          "pos": "adjective",
+          "meaning": "required by law or rule; mandatory",
+          "example": "Education is compulsory for children aged five to sixteen under Article 25-A."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Her ___ checking of the phone worried her family.",
+          "answer": "Compulsive"
+        },
+        {
+          "sentence": "Attendance at the training course is ___ for all new officers.",
+          "answer": "Compulsory"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "concur-conquer",
+      "words": [
+        {
+          "word": "Concur",
+          "pos": "verb",
+          "meaning": "to agree; to happen at the same time",
+          "example": "The other judges concurred with the Chief Justice's opinion."
+        },
+        {
+          "word": "Conquer",
+          "pos": "verb",
+          "meaning": "to overcome or take control of by force or effort",
+          "example": "Mahmud of Ghazni conquered large parts of the Punjab."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "I fully ___ with the committee's findings.",
+          "answer": "Concur"
+        },
+        {
+          "sentence": "Alexander set out to ___ the Persian Empire.",
+          "answer": "Conquer"
+        }
+      ],
+      "years": [
+        1983
+      ]
+    },
+    {
+      "id": "confidant-confidante",
+      "words": [
+        {
+          "word": "Confidant",
+          "pos": "noun",
+          "meaning": "a person, traditionally a man, trusted with private matters",
+          "example": "The minister's closest confidant was his old private secretary."
+        },
+        {
+          "word": "Confidante",
+          "pos": "noun",
+          "meaning": "a woman trusted with private matters and secrets",
+          "example": "Fatima Jinnah was her brother's lifelong confidante."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The king revealed the plan only to his trusted ___, an old general.",
+          "answer": "Confidant"
+        },
+        {
+          "sentence": "Her elder sister was her only ___, the one woman who knew everything.",
+          "answer": "Confidante"
+        }
+      ],
+      "years": [
+        1993
+      ]
+    },
+    {
       "id": "confidant-confident",
       "words": [
         {
@@ -349,6 +4380,267 @@
         {
           "sentence": "She felt calm and ___ before the interview.",
           "answer": "Confident"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "confirm-conform",
+      "words": [
+        {
+          "word": "Confirm",
+          "pos": "verb",
+          "meaning": "to establish the truth of something; to make definite",
+          "example": "Please confirm your seat on the flight a day in advance."
+        },
+        {
+          "word": "Conform",
+          "pos": "verb",
+          "meaning": "to comply with rules, standards or customs",
+          "example": "All new buildings must conform to the building code."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The spokesman refused to ___ reports of the minister's resignation.",
+          "answer": "Confirm"
+        },
+        {
+          "sentence": "Products must ___ to national quality standards.",
+          "answer": "Conform"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "congenial-congenital",
+      "words": [
+        {
+          "word": "Congenial",
+          "pos": "adjective",
+          "meaning": "pleasant and agreeable, especially through shared tastes",
+          "example": "The staff worked in a congenial and friendly atmosphere."
+        },
+        {
+          "word": "Congenital",
+          "pos": "adjective",
+          "meaning": "(of a condition) present from birth",
+          "example": "The child was born with a congenital heart defect."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "We found him a ___ companion on the long train journey.",
+          "answer": "Congenial"
+        },
+        {
+          "sentence": "Some ___ disorders can be detected before birth.",
+          "answer": "Congenital"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "conscience-conscious",
+      "words": [
+        {
+          "word": "Conscience",
+          "pos": "noun",
+          "meaning": "the inner sense of what is right and wrong",
+          "example": "His conscience would not let him sign the false report."
+        },
+        {
+          "word": "Conscious",
+          "pos": "adjective",
+          "meaning": "aware of something; awake and alert",
+          "example": "The minister was conscious of public anger over prices."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "A guilty ___ kept him awake all night.",
+          "answer": "Conscience"
+        },
+        {
+          "sentence": "The patient remained ___ throughout the operation.",
+          "answer": "Conscious"
+        }
+      ],
+      "years": [
+        1993
+      ]
+    },
+    {
+      "id": "conscientious-conscious",
+      "words": [
+        {
+          "word": "Conscientious",
+          "pos": "adjective",
+          "meaning": "careful and diligent in one's work; guided by conscience",
+          "example": "A conscientious teacher checks every notebook carefully."
+        },
+        {
+          "word": "Conscious",
+          "pos": "adjective",
+          "meaning": "aware of something; awake",
+          "example": "Were you conscious of the risks before you signed?"
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "A ___ officer double-checks every figure before signing.",
+          "answer": "Conscientious"
+        },
+        {
+          "sentence": "Were you ___ of the dangers when you entered the building?",
+          "answer": "Conscious"
+        }
+      ],
+      "years": [
+        1991
+      ]
+    },
+    {
+      "id": "conscientiousness-consciousness",
+      "words": [
+        {
+          "word": "Conscientiousness",
+          "pos": "noun",
+          "meaning": "the quality of being careful, thorough and dutiful",
+          "example": "Her conscientiousness in checking every file earned her a promotion."
+        },
+        {
+          "word": "Consciousness",
+          "pos": "noun",
+          "meaning": "the state of being awake and aware; awareness of something",
+          "example": "Social media has raised public consciousness about climate change."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The officer was praised for his ___ in completing every task on time.",
+          "answer": "Conscientiousness"
+        },
+        {
+          "sentence": "The injured driver lost ___ after the crash.",
+          "answer": "Consciousness"
+        }
+      ],
+      "years": [
+        1989,
+        1972
+      ]
+    },
+    {
+      "id": "consequent-subsequent",
+      "words": [
+        {
+          "word": "Consequent",
+          "pos": "adjective",
+          "meaning": "following as a result (often 'consequent on/upon')",
+          "example": "The floods and consequent crop losses hurt farmers badly."
+        },
+        {
+          "word": "Subsequent",
+          "pos": "adjective",
+          "meaning": "coming after in time; later",
+          "example": "Subsequent events proved the minister right."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The heavy losses ___ upon the floods crippled the rural economy.",
+          "answer": "Consequent"
+        },
+        {
+          "sentence": "The matter was settled at a ___ meeting held a month later.",
+          "answer": "Subsequent"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "conservation-conversation",
+      "words": [
+        {
+          "word": "Conservation",
+          "pos": "noun",
+          "meaning": "the protection and careful preservation of nature or resources",
+          "example": "Wildlife conservation has helped the markhor population recover."
+        },
+        {
+          "word": "Conversation",
+          "pos": "noun",
+          "meaning": "an informal talk between two or more people",
+          "example": "We had a long conversation about politics over tea."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Water ___ is vital in a country facing scarcity.",
+          "answer": "Conservation"
+        },
+        {
+          "sentence": "Their ___ on the telephone lasted an hour.",
+          "answer": "Conversation"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "considerable-considerate",
+      "words": [
+        {
+          "word": "Considerable",
+          "pos": "adjective",
+          "meaning": "large in size, amount or importance",
+          "example": "The floods caused considerable damage to the cotton crop."
+        },
+        {
+          "word": "Considerate",
+          "pos": "adjective",
+          "meaning": "thoughtful about the needs and feelings of others",
+          "example": "It was considerate of the neighbours to lower their music during exams."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The project will need a ___ amount of money.",
+          "answer": "Considerable"
+        },
+        {
+          "sentence": "Be ___ of the elderly and offer them your seat.",
+          "answer": "Considerate"
+        }
+      ],
+      "years": [
+        1988
+      ]
+    },
+    {
+      "id": "contagious-infectious",
+      "words": [
+        {
+          "word": "Contagious",
+          "pos": "adjective",
+          "meaning": "(of a disease) spread by direct or close bodily contact",
+          "example": "Chickenpox is highly contagious among schoolchildren."
+        },
+        {
+          "word": "Infectious",
+          "pos": "adjective",
+          "meaning": "(of a disease) caused by germs that may spread by air, water or insects",
+          "example": "Malaria is an infectious disease carried by mosquitoes."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Scabies passes from person to person by touch, so it is ___ as well as infectious.",
+          "answer": "Contagious"
+        },
+        {
+          "sentence": "Malaria is ___ but not contagious, since it spreads through mosquito bites.",
+          "answer": "Infectious"
         }
       ],
       "years": []
@@ -415,6 +4707,120 @@
       ]
     },
     {
+      "id": "convince-persuade",
+      "words": [
+        {
+          "word": "Convince",
+          "pos": "verb",
+          "meaning": "to make someone believe that something is true",
+          "example": "The lawyer convinced the court of his client's innocence."
+        },
+        {
+          "word": "Persuade",
+          "pos": "verb",
+          "meaning": "to cause someone to do something by reasoning or urging",
+          "example": "Her parents persuaded her to sit the CSS exam."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The prosecutor could not ___ the judge of the accused's guilt.",
+          "answer": "Convince"
+        },
+        {
+          "sentence": "Teachers tried to ___ the parents to send their daughters to school.",
+          "answer": "Persuade"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "corporal-corporeal",
+      "words": [
+        {
+          "word": "Corporal",
+          "pos": "adjective",
+          "meaning": "relating to the body, especially of punishment",
+          "example": "Pakistan has banned corporal punishment in schools."
+        },
+        {
+          "word": "Corporeal",
+          "pos": "adjective",
+          "meaning": "having a physical, material body; not spiritual",
+          "example": "Sufis teach that the soul outlives our corporeal existence."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Beating pupils is a form of ___ punishment.",
+          "answer": "Corporal"
+        },
+        {
+          "sentence": "Ghosts, if they exist, have no ___ form.",
+          "answer": "Corporeal"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "corps-corpse",
+      "words": [
+        {
+          "word": "Corps",
+          "pos": "noun",
+          "meaning": "an organised body of people; a military unit (pronounced 'core')",
+          "example": "The diplomatic corps attended the Pakistan Day parade."
+        },
+        {
+          "word": "Corpse",
+          "pos": "noun",
+          "meaning": "a dead body, especially of a human",
+          "example": "The police sent the corpse for a post-mortem examination."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "He joined the Army Medical ___ after graduating.",
+          "answer": "Corps"
+        },
+        {
+          "sentence": "The rescue team recovered the ___ from the river.",
+          "answer": "Corpse"
+        }
+      ],
+      "years": [
+        1992
+      ]
+    },
+    {
+      "id": "costume-custom",
+      "words": [
+        {
+          "word": "Costume",
+          "pos": "noun",
+          "meaning": "clothes worn by an actor, or typical of a period or place",
+          "example": "Each actor wore a Mughal-era costume."
+        },
+        {
+          "word": "Custom",
+          "pos": "noun",
+          "meaning": "a traditional, widely accepted practice of a society",
+          "example": "It is a custom in Punjab to distribute sweets on good news."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The actor's ___ for the historical drama took weeks to stitch.",
+          "answer": "Costume"
+        },
+        {
+          "sentence": "Offering tea to every guest is a deep-rooted ___ in Pakistan.",
+          "answer": "Custom"
+        }
+      ],
+      "years": []
+    },
+    {
       "id": "council-counsel",
       "words": [
         {
@@ -445,6 +4851,92 @@
       ]
     },
     {
+      "id": "councillor-counsellor",
+      "words": [
+        {
+          "word": "Councillor",
+          "pos": "noun",
+          "meaning": "an elected member of a local council",
+          "example": "The union councillor raised the sewage problem at the meeting."
+        },
+        {
+          "word": "Counsellor",
+          "pos": "noun",
+          "meaning": "a person trained to give guidance on personal or other problems",
+          "example": "The school counsellor helps students cope with exam stress."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Residents elected a new ___ to represent their ward.",
+          "answer": "Councillor"
+        },
+        {
+          "sentence": "After the trauma, she spoke regularly to a trained ___.",
+          "answer": "Counsellor"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "creak-creek",
+      "words": [
+        {
+          "word": "Creak",
+          "pos": "verb / noun",
+          "meaning": "(to make) a harsh, high-pitched squeaking sound",
+          "example": "The old wooden gate creaked in the wind."
+        },
+        {
+          "word": "Creek",
+          "pos": "noun",
+          "meaning": "a narrow inlet of the sea or a small stream",
+          "example": "Sir Creek is a disputed tidal estuary between Pakistan and India."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The floorboards ___ whenever anyone walks upstairs.",
+          "answer": "Creak"
+        },
+        {
+          "sentence": "Fishermen moored their boats in a quiet ___ near Keti Bandar.",
+          "answer": "Creek"
+        }
+      ],
+      "years": [
+        2024
+      ]
+    },
+    {
+      "id": "credible-creditable",
+      "words": [
+        {
+          "word": "Credible",
+          "pos": "adjective",
+          "meaning": "able to be believed; convincing",
+          "example": "The witness gave a credible account of the robbery."
+        },
+        {
+          "word": "Creditable",
+          "pos": "adjective",
+          "meaning": "deserving praise or respect, though not outstanding",
+          "example": "Finishing third among forty teams was a creditable effort."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Elections must be free and fair to be ___ to the public.",
+          "answer": "Credible"
+        },
+        {
+          "sentence": "Despite limited funds, the school achieved ___ results.",
+          "answer": "Creditable"
+        }
+      ],
+      "years": []
+    },
+    {
       "id": "credible-credulous",
       "words": [
         {
@@ -473,6 +4965,591 @@
       "years": []
     },
     {
+      "id": "crepitation-crepuscular",
+      "words": [
+        {
+          "word": "Crepitation",
+          "pos": "noun",
+          "meaning": "a crackling or grating sound, as heard in diseased lungs or broken bones",
+          "example": "The doctor heard crepitation in the patient's chest."
+        },
+        {
+          "word": "Crepuscular",
+          "pos": "adjective",
+          "meaning": "relating to twilight; (of animals) active at dawn and dusk",
+          "example": "Many deer are crepuscular creatures that feed in the half-light."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The doctor heard ___ in the lungs, suggesting pneumonia.",
+          "answer": "Crepitation"
+        },
+        {
+          "sentence": "Bats and some owls are ___, hunting mainly at dusk.",
+          "answer": "Crepuscular"
+        }
+      ],
+      "years": [
+        2025
+      ]
+    },
+    {
+      "id": "crevasse-crevice",
+      "words": [
+        {
+          "word": "Crevasse",
+          "pos": "noun",
+          "meaning": "a deep open crack in a glacier or ice sheet",
+          "example": "The climber fell into a crevasse on the Baltoro Glacier."
+        },
+        {
+          "word": "Crevice",
+          "pos": "noun",
+          "meaning": "a narrow crack in rock or a wall",
+          "example": "A lizard slipped into a crevice in the old wall."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Mountaineers roped together in case anyone fell into a hidden ___ in the ice.",
+          "answer": "Crevasse"
+        },
+        {
+          "sentence": "Weeds grew from every ___ in the crumbling brick wall.",
+          "answer": "Crevice"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "cue-queue",
+      "words": [
+        {
+          "word": "Cue",
+          "pos": "noun",
+          "meaning": "a signal to begin something; a stick used in snooker",
+          "example": "The actor missed his cue and walked on stage late."
+        },
+        {
+          "word": "Queue",
+          "pos": "noun / verb",
+          "meaning": "a line of people or vehicles waiting their turn",
+          "example": "Voters stood in a long queue outside the polling station."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The applause was his ___ to begin the speech.",
+          "answer": "Cue"
+        },
+        {
+          "sentence": "Patients formed a long ___ outside the hospital's outpatient department.",
+          "answer": "Queue"
+        }
+      ],
+      "years": [
+        1993
+      ]
+    },
+    {
+      "id": "curb-kerb",
+      "words": [
+        {
+          "word": "Curb",
+          "pos": "verb / noun",
+          "meaning": "to restrain or keep under control; a restraint",
+          "example": "The State Bank raised interest rates to curb inflation."
+        },
+        {
+          "word": "Kerb",
+          "pos": "noun",
+          "meaning": "(British) the raised stone edge of a pavement",
+          "example": "The car hit the kerb and burst a tyre."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The government has introduced measures to ___ smuggling.",
+          "answer": "Curb"
+        },
+        {
+          "sentence": "Pedestrians should wait on the ___ until the light turns green.",
+          "answer": "Kerb"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "currant-current",
+      "words": [
+        {
+          "word": "Currant",
+          "pos": "noun",
+          "meaning": "a small dried seedless grape used in cooking",
+          "example": "She added a handful of currants to the cake mix."
+        },
+        {
+          "word": "Current",
+          "pos": "noun / adjective",
+          "meaning": "a flow of water, air or electricity; (adj.) happening now",
+          "example": "The strong current swept the boat downstream."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Each bun had a single ___ pressed into its top.",
+          "answer": "Currant"
+        },
+        {
+          "sentence": "The ___ government has promised fresh elections.",
+          "answer": "Current"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "custom-habit",
+      "words": [
+        {
+          "word": "Custom",
+          "pos": "noun",
+          "meaning": "a long-established practice shared by a community or society",
+          "example": "Exchanging sweets on Eid is a cherished custom in Pakistan."
+        },
+        {
+          "word": "Habit",
+          "pos": "noun",
+          "meaning": "an individual's settled, often unconscious, tendency or practice",
+          "example": "He has a habit of reading the newspaper before breakfast."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "By ancient ___, village elders settle disputes in a jirga.",
+          "answer": "Custom"
+        },
+        {
+          "sentence": "Biting his nails was a nervous ___ he had had since childhood.",
+          "answer": "Habit"
+        }
+      ],
+      "years": [
+        1988,
+        1987
+      ]
+    },
+    {
+      "id": "cymbal-symbol",
+      "words": [
+        {
+          "word": "Cymbal",
+          "pos": "noun",
+          "meaning": "a round brass plate struck to make a ringing, clashing sound",
+          "example": "The drummer ended the song with a crash of the cymbal."
+        },
+        {
+          "word": "Symbol",
+          "pos": "noun",
+          "meaning": "a sign or object representing something else",
+          "example": "The crescent and star are symbols of Pakistan's identity."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The band's ___ rang out as the parade began.",
+          "answer": "Cymbal"
+        },
+        {
+          "sentence": "The dove is a universal ___ of peace.",
+          "answer": "Symbol"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "dairy-diary",
+      "words": [
+        {
+          "word": "Dairy",
+          "pos": "noun",
+          "meaning": "a place where milk is processed; milk and its products",
+          "example": "The dairy supplies fresh milk to schools in the district."
+        },
+        {
+          "word": "Diary",
+          "pos": "noun",
+          "meaning": "a book for a daily record of events or appointments",
+          "example": "She recorded her thoughts in a diary every night."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Milk, butter and yoghurt are ___ products.",
+          "answer": "Dairy"
+        },
+        {
+          "sentence": "The minister checked his ___ for the date of the meeting.",
+          "answer": "Diary"
+        }
+      ],
+      "years": [
+        1992
+      ]
+    },
+    {
+      "id": "deadly-deathly",
+      "words": [
+        {
+          "word": "Deadly",
+          "pos": "adjective",
+          "meaning": "causing or able to cause death",
+          "example": "Dengue can be deadly if left untreated."
+        },
+        {
+          "word": "Deathly",
+          "pos": "adjective",
+          "meaning": "resembling death in pallor, stillness or silence",
+          "example": "A deathly hush fell over the courtroom."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Carbon monoxide from gas heaters can be ___ in closed rooms.",
+          "answer": "Deadly"
+        },
+        {
+          "sentence": "The patient looked ___ pale, as though all life had drained from him.",
+          "answer": "Deathly"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "decease-disease",
+      "words": [
+        {
+          "word": "Decease",
+          "pos": "noun",
+          "meaning": "(formal, legal) death",
+          "example": "On the decease of the owner, the land passed to his heirs."
+        },
+        {
+          "word": "Disease",
+          "pos": "noun",
+          "meaning": "an illness affecting body or mind",
+          "example": "Polio is a crippling disease that Pakistan is working to eradicate."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The pension passes to the widow upon the ___ of the employee.",
+          "answer": "Decease"
+        },
+        {
+          "sentence": "Contaminated water spreads ___ such as cholera and typhoid.",
+          "answer": "Disease"
+        }
+      ],
+      "years": [
+        1991
+      ]
+    },
+    {
+      "id": "deceitful-deceptive",
+      "words": [
+        {
+          "word": "Deceitful",
+          "pos": "adjective",
+          "meaning": "(of a person) deliberately dishonest; intending to mislead",
+          "example": "The deceitful agent took money for visas that never came."
+        },
+        {
+          "word": "Deceptive",
+          "pos": "adjective",
+          "meaning": "giving a false impression, whether or not intended",
+          "example": "The calm surface of the river is deceptive."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The ___ broker lied to his clients to steal their savings.",
+          "answer": "Deceitful"
+        },
+        {
+          "sentence": "Appearances can be ___; the small car is surprisingly roomy.",
+          "answer": "Deceptive"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "decent-descent",
+      "words": [
+        {
+          "word": "Decent",
+          "pos": "adjective",
+          "meaning": "respectable and morally good; of an acceptable standard",
+          "example": "Every worker deserves a decent wage."
+        },
+        {
+          "word": "Descent",
+          "pos": "noun",
+          "meaning": "a downward movement; family origin or ancestry",
+          "example": "The plane began its descent into Islamabad."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "He is a ___ man who treats everyone with respect.",
+          "answer": "Decent"
+        },
+        {
+          "sentence": "Many people in Karachi are of Gujarati ___.",
+          "answer": "Descent"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "decree-degree",
+      "words": [
+        {
+          "word": "Decree",
+          "pos": "noun",
+          "meaning": "an official order by a ruler, government or court",
+          "example": "The court issued a decree in favour of the tenants."
+        },
+        {
+          "word": "Degree",
+          "pos": "noun",
+          "meaning": "an academic qualification; an extent or level; a unit of temperature",
+          "example": "She holds a degree in economics from the University of the Punjab."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The civil court passed a ___ in favour of the plaintiff.",
+          "answer": "Decree"
+        },
+        {
+          "sentence": "He earned a master's ___ in international relations.",
+          "answer": "Degree"
+        }
+      ],
+      "years": [
+        2011
+      ]
+    },
+    {
+      "id": "decry-descry",
+      "words": [
+        {
+          "word": "Decry",
+          "pos": "verb",
+          "meaning": "to condemn or criticise openly",
+          "example": "Rights groups decried the use of torture in custody."
+        },
+        {
+          "word": "Descry",
+          "pos": "verb",
+          "meaning": "(literary) to catch sight of something distant",
+          "example": "From the summit we could descry a village far below."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Opposition leaders ___ the new tax as anti-poor.",
+          "answer": "Decry"
+        },
+        {
+          "sentence": "Through the mist, the sailors could barely ___ the coastline.",
+          "answer": "Descry"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "deduce-imply",
+      "words": [
+        {
+          "word": "Deduce",
+          "pos": "verb",
+          "meaning": "to reach a conclusion by reasoning from evidence",
+          "example": "From the muddy footprints, the inspector deduced that the thief came through the garden."
+        },
+        {
+          "word": "Imply",
+          "pos": "verb",
+          "meaning": "to suggest something indirectly without stating it",
+          "example": "The minister's silence seemed to imply that he disagreed."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Detectives had to ___ the culprit's identity from scattered clues.",
+          "answer": "Deduce"
+        },
+        {
+          "sentence": "By raising his eyebrows, he seemed to ___ that he doubted my story.",
+          "answer": "Imply"
+        }
+      ],
+      "years": [
+        1996
+      ]
+    },
+    {
+      "id": "deface-efface",
+      "words": [
+        {
+          "word": "Deface",
+          "pos": "verb",
+          "meaning": "to spoil the surface or look of something, e.g. by writing on it",
+          "example": "Vandals defaced the new bus shelter with political slogans."
+        },
+        {
+          "word": "Efface",
+          "pos": "verb",
+          "meaning": "to rub out or erase; to make oneself inconspicuous",
+          "example": "Time had almost effaced the inscription on the tomb."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Students who scribble in library books ___ public property.",
+          "answer": "Deface"
+        },
+        {
+          "sentence": "Nothing can ___ the memory of that tragedy from the nation's mind.",
+          "answer": "Efface"
+        }
+      ],
+      "years": [
+        1988
+      ]
+    },
+    {
+      "id": "defective-deficient",
+      "words": [
+        {
+          "word": "Defective",
+          "pos": "adjective",
+          "meaning": "having a fault or flaw; not working properly",
+          "example": "The company recalled thousands of defective phones."
+        },
+        {
+          "word": "Deficient",
+          "pos": "adjective",
+          "meaning": "lacking something necessary; insufficient",
+          "example": "Many children are deficient in iron and vitamin A."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The fire was caused by ___ wiring.",
+          "answer": "Defective"
+        },
+        {
+          "sentence": "A diet ___ in protein stunts children's growth.",
+          "answer": "Deficient"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "defenestration-denouement",
+      "words": [
+        {
+          "word": "Defenestration",
+          "pos": "noun",
+          "meaning": "the act of throwing someone out of a window; abrupt removal from office",
+          "example": "The sudden defenestration of the party chief shocked his supporters."
+        },
+        {
+          "word": "Denouement",
+          "pos": "noun",
+          "meaning": "the final part of a story, where the plot is resolved",
+          "example": "In the denouement, the lost brothers are finally reunited."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The ___ of Prague in 1618 helped trigger the Thirty Years' War.",
+          "answer": "Defenestration"
+        },
+        {
+          "sentence": "The novel's ___ reveals who wrote the anonymous letters.",
+          "answer": "Denouement"
+        }
+      ],
+      "years": [
+        2025
+      ]
+    },
+    {
+      "id": "defer-differ",
+      "words": [
+        {
+          "word": "Defer",
+          "pos": "verb",
+          "meaning": "to postpone; to yield to another's opinion (defer to)",
+          "example": "The university deferred the exams because of the floods."
+        },
+        {
+          "word": "Differ",
+          "pos": "verb",
+          "meaning": "to be unlike; to disagree",
+          "example": "Opinions differ on whether the new tax will work."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The committee decided to ___ its decision until next month.",
+          "answer": "Defer"
+        },
+        {
+          "sentence": "The two brothers ___ greatly in temperament.",
+          "answer": "Differ"
+        }
+      ],
+      "years": [
+        1993,
+        1988
+      ]
+    },
+    {
+      "id": "deference-difference",
+      "words": [
+        {
+          "word": "Deference",
+          "pos": "noun",
+          "meaning": "polite respect and submission to another's wishes or judgement",
+          "example": "In deference to the elders, the young men remained standing."
+        },
+        {
+          "word": "Difference",
+          "pos": "noun",
+          "meaning": "the state of being unlike; a point of unlikeness",
+          "example": "There is a big difference between knowledge and wisdom."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Out of ___ to her teacher, she did not argue.",
+          "answer": "Deference"
+        },
+        {
+          "sentence": "What is the ___ between a democracy and a republic?",
+          "answer": "Difference"
+        }
+      ],
+      "years": [
+        1989,
+        1985
+      ]
+    },
+    {
       "id": "definite-definitive",
       "words": [
         {
@@ -499,6 +5576,154 @@
         }
       ],
       "years": []
+    },
+    {
+      "id": "defuse-diffuse",
+      "words": [
+        {
+          "word": "Defuse",
+          "pos": "verb",
+          "meaning": "to remove the fuse from an explosive; to reduce tension",
+          "example": "Diplomats worked to defuse tension on the border."
+        },
+        {
+          "word": "Diffuse",
+          "pos": "verb / adjective",
+          "meaning": "to spread over a wide area; (adj.) spread out, not concentrated",
+          "example": "The lampshade diffuses light evenly."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The bomb disposal squad managed to ___ the device in time.",
+          "answer": "Defuse"
+        },
+        {
+          "sentence": "Through the internet, new ideas ___ rapidly across the world.",
+          "answer": "Diffuse"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "degrade-denigrate",
+      "words": [
+        {
+          "word": "Degrade",
+          "pos": "verb",
+          "meaning": "to lower in quality, rank or dignity; to break down chemically",
+          "example": "Plastic bags take centuries to degrade in the soil."
+        },
+        {
+          "word": "Denigrate",
+          "pos": "verb",
+          "meaning": "to criticise unfairly; to belittle someone's reputation",
+          "example": "It is unfair to denigrate village teachers as lazy."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Polluted air can ___ the quality of farmland over time.",
+          "answer": "Degrade"
+        },
+        {
+          "sentence": "Rival commentators tried to ___ her as a mere novice.",
+          "answer": "Denigrate"
+        }
+      ],
+      "years": [
+        2007
+      ]
+    },
+    {
+      "id": "delusion-illusion",
+      "words": [
+        {
+          "word": "Delusion",
+          "pos": "noun",
+          "meaning": "a firmly held false belief that resists evidence, often a sign of illness",
+          "example": "He lives under the delusion that he is a great poet."
+        },
+        {
+          "word": "Illusion",
+          "pos": "noun",
+          "meaning": "a false perception or deceptive appearance",
+          "example": "The mirage on the desert road is an optical illusion."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Psychiatrists treated him for a paranoid ___ of persecution.",
+          "answer": "Delusion"
+        },
+        {
+          "sentence": "Mirrors in the small shop create the ___ of space.",
+          "answer": "Illusion"
+        }
+      ],
+      "years": [
+        2001
+      ]
+    },
+    {
+      "id": "demean-demesne",
+      "words": [
+        {
+          "word": "Demean",
+          "pos": "verb",
+          "meaning": "to lower someone's dignity or status",
+          "example": "Do not demean yourself by begging for favours."
+        },
+        {
+          "word": "Demesne",
+          "pos": "noun",
+          "meaning": "land kept by a lord for his own use; a domain",
+          "example": "The landlord's demesne stretched across the whole valley."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "A good leader never tries to ___ his subordinates in public.",
+          "answer": "Demean"
+        },
+        {
+          "sentence": "The castle stood at the heart of the baron's ___.",
+          "answer": "Demesne"
+        }
+      ],
+      "years": [
+        1998
+      ]
+    },
+    {
+      "id": "dependant-dependent",
+      "words": [
+        {
+          "word": "Dependant",
+          "pos": "noun",
+          "meaning": "(British) a person who relies on another for financial support",
+          "example": "Employees may claim medical benefits for each dependant."
+        },
+        {
+          "word": "Dependent",
+          "pos": "adjective",
+          "meaning": "relying on someone or something; determined by",
+          "example": "Pakistan's economy remains heavily dependent on imported oil."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "A government servant may list his wife as a ___ for medical cover.",
+          "answer": "Dependant"
+        },
+        {
+          "sentence": "Success in the exam is ___ on steady preparation.",
+          "answer": "Dependent"
+        }
+      ],
+      "years": [
+        2026
+      ]
     },
     {
       "id": "deprecate-depreciate",
@@ -531,6 +5756,34 @@
       ]
     },
     {
+      "id": "derisive-derisory",
+      "words": [
+        {
+          "word": "Derisive",
+          "pos": "adjective",
+          "meaning": "expressing mockery or ridicule",
+          "example": "The crowd greeted his excuses with derisive laughter."
+        },
+        {
+          "word": "Derisory",
+          "pos": "adjective",
+          "meaning": "so small or inadequate as to be ridiculous",
+          "example": "Workers rejected the derisory pay rise of fifty rupees."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The opposition benches met the speech with ___ jeers.",
+          "answer": "Derisive"
+        },
+        {
+          "sentence": "The compensation offered to the farmers was ___, barely covering a week's food.",
+          "answer": "Derisory"
+        }
+      ],
+      "years": []
+    },
+    {
       "id": "descent-dissent",
       "words": [
         {
@@ -554,6 +5807,406 @@
         {
           "sentence": "In a democracy, peaceful ___ should not be treated as treason.",
           "answer": "Dissent"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "desert-dessert",
+      "words": [
+        {
+          "word": "Desert",
+          "pos": "noun / verb",
+          "meaning": "a dry, barren region; (verb) to abandon",
+          "example": "The Thar Desert stretches across Sindh into India."
+        },
+        {
+          "word": "Dessert",
+          "pos": "noun",
+          "meaning": "the sweet course eaten at the end of a meal",
+          "example": "Kheer was served as dessert after the wedding dinner."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Camels are well suited to life in the ___.",
+          "answer": "Desert"
+        },
+        {
+          "sentence": "Gulab jamun is a popular ___ in Pakistan.",
+          "answer": "Dessert"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "desirable-desirous",
+      "words": [
+        {
+          "word": "Desirable",
+          "pos": "adjective",
+          "meaning": "worth having or wanting; attractive",
+          "example": "Fluency in English is a desirable skill for civil servants."
+        },
+        {
+          "word": "Desirous",
+          "pos": "adjective",
+          "meaning": "having a strong wish (usually 'desirous of')",
+          "example": "Both countries are desirous of peaceful relations."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Computer skills are ___ in most modern jobs.",
+          "answer": "Desirable"
+        },
+        {
+          "sentence": "The minister was ___ of meeting the protesting farmers.",
+          "answer": "Desirous"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "desolate-dissolute",
+      "words": [
+        {
+          "word": "Desolate",
+          "pos": "adjective",
+          "meaning": "bleak, empty and lifeless; lonely and miserable",
+          "example": "After the floods, the village looked desolate and abandoned."
+        },
+        {
+          "word": "Dissolute",
+          "pos": "adjective",
+          "meaning": "indulging excessively in sensual pleasures; morally loose",
+          "example": "The prince wasted his youth in a dissolute life of gambling."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The ___ plains of Cholistan stretched endlessly before us.",
+          "answer": "Desolate"
+        },
+        {
+          "sentence": "His ___ habits of drinking and gambling ruined the family fortune.",
+          "answer": "Dissolute"
+        }
+      ],
+      "years": [
+        2011
+      ]
+    },
+    {
+      "id": "detract-distract",
+      "words": [
+        {
+          "word": "Detract",
+          "pos": "verb",
+          "meaning": "to reduce the worth or value of something (detract from)",
+          "example": "One poor match does not detract from his great career."
+        },
+        {
+          "word": "Distract",
+          "pos": "verb",
+          "meaning": "to draw someone's attention away from something",
+          "example": "Loud traffic distracted the students during the exam."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "A few spelling errors should not ___ from the merit of her essay.",
+          "answer": "Detract"
+        },
+        {
+          "sentence": "Mobile phones ___ drivers and cause accidents.",
+          "answer": "Distract"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "device-devise",
+      "words": [
+        {
+          "word": "Device",
+          "pos": "noun",
+          "meaning": "a tool or piece of equipment made for a purpose; a plan or trick",
+          "example": "A smartphone is a useful device for learning."
+        },
+        {
+          "word": "Devise",
+          "pos": "verb",
+          "meaning": "to plan or invent something carefully",
+          "example": "Planners must devise a strategy to tackle smog."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The police found an explosive ___ under the car.",
+          "answer": "Device"
+        },
+        {
+          "sentence": "The committee will ___ a new formula for sharing revenue.",
+          "answer": "Devise"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "dew-due",
+      "words": [
+        {
+          "word": "Dew",
+          "pos": "noun",
+          "meaning": "tiny drops of water that form on cool surfaces overnight",
+          "example": "The grass in the park was wet with morning dew."
+        },
+        {
+          "word": "Due",
+          "pos": "adjective",
+          "meaning": "owed; expected to happen or arrive",
+          "example": "The electricity bill is due by the end of the month."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "At dawn, drops of ___ glittered on the rose petals.",
+          "answer": "Dew"
+        },
+        {
+          "sentence": "The next train from Rawalpindi is ___ at noon.",
+          "answer": "Due"
+        }
+      ],
+      "years": [
+        1992
+      ]
+    },
+    {
+      "id": "diagnosis-prognosis",
+      "words": [
+        {
+          "word": "Diagnosis",
+          "pos": "noun",
+          "meaning": "the identification of an illness from its symptoms",
+          "example": "Blood tests confirmed the diagnosis of typhoid."
+        },
+        {
+          "word": "Prognosis",
+          "pos": "noun",
+          "meaning": "a forecast of the likely course or outcome of an illness",
+          "example": "With early treatment, the prognosis for recovery is good."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The doctor reached a ___ only after the scan revealed a tumour.",
+          "answer": "Diagnosis"
+        },
+        {
+          "sentence": "Since the cancer was detected early, the ___ for survival is excellent.",
+          "answer": "Prognosis"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "die-dye",
+      "words": [
+        {
+          "word": "Die",
+          "pos": "verb",
+          "meaning": "to stop living",
+          "example": "Without water, the crops will die."
+        },
+        {
+          "word": "Dye",
+          "pos": "verb / noun",
+          "meaning": "to change the colour of something; a colouring substance",
+          "example": "Women use henna to dye their hair."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Thousands of fish ___ each year from river pollution.",
+          "answer": "Die"
+        },
+        {
+          "sentence": "The craftsmen ___ the cloth indigo before printing the ajrak.",
+          "answer": "Dye"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "differ-from-differ-with",
+      "words": [
+        {
+          "word": "Differ from",
+          "pos": "phrase",
+          "meaning": "to be unlike something else",
+          "example": "Urdu differs from Hindi mainly in its script and borrowed vocabulary."
+        },
+        {
+          "word": "Differ with",
+          "pos": "phrase",
+          "meaning": "to disagree with a person about something",
+          "example": "I differ with my colleague on the need for new taxes."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "A cheetah ___ a leopard in its slender build.",
+          "answer": "Differ from"
+        },
+        {
+          "sentence": "I ___ you on this matter, but I respect your view.",
+          "answer": "Differ with"
+        }
+      ],
+      "years": [
+        1996
+      ]
+    },
+    {
+      "id": "disapprove-disprove",
+      "words": [
+        {
+          "word": "Disapprove",
+          "pos": "verb",
+          "meaning": "to have an unfavourable opinion of something",
+          "example": "Many elders disapprove of love marriages."
+        },
+        {
+          "word": "Disprove",
+          "pos": "verb",
+          "meaning": "to prove that something is false",
+          "example": "New evidence may disprove the prosecution's theory."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Her parents ___ of her plan to drop out of university.",
+          "answer": "Disapprove"
+        },
+        {
+          "sentence": "No one has been able to ___ his alibi.",
+          "answer": "Disprove"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "disburse-disperse",
+      "words": [
+        {
+          "word": "Disburse",
+          "pos": "verb",
+          "meaning": "to pay out money from a fund",
+          "example": "The government will disburse cash grants to flood victims."
+        },
+        {
+          "word": "Disperse",
+          "pos": "verb",
+          "meaning": "to scatter in different directions; to break up a crowd",
+          "example": "Police used tear gas to disperse the crowd."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The bank will ___ the loan in three instalments.",
+          "answer": "Disburse"
+        },
+        {
+          "sentence": "The fog began to ___ by mid-morning.",
+          "answer": "Disperse"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "disclosure-exposure",
+      "words": [
+        {
+          "word": "Disclosure",
+          "pos": "noun",
+          "meaning": "the act of making information known, often formally or voluntarily",
+          "example": "Candidates must file a full disclosure of their assets."
+        },
+        {
+          "word": "Exposure",
+          "pos": "noun",
+          "meaning": "the revealing of something hidden, especially wrongdoing; contact with something harmful",
+          "example": "The newspaper's exposure of the scandal forced the minister to resign."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Listed companies must make prompt ___ of their annual accounts to shareholders.",
+          "answer": "Disclosure"
+        },
+        {
+          "sentence": "Prolonged ___ to the sun can cause skin damage.",
+          "answer": "Exposure"
+        }
+      ],
+      "years": [
+        1987
+      ]
+    },
+    {
+      "id": "discomfit-discomfort",
+      "words": [
+        {
+          "word": "Discomfit",
+          "pos": "verb",
+          "meaning": "to make someone uneasy or embarrassed",
+          "example": "Sharp questions from reporters discomfited the minister."
+        },
+        {
+          "word": "Discomfort",
+          "pos": "noun",
+          "meaning": "slight pain or physical or mental unease",
+          "example": "The patient complained of discomfort in his chest."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Probing questions from the committee seemed to ___ the witness.",
+          "answer": "Discomfit"
+        },
+        {
+          "sentence": "Wearing tight shoes all day caused her great ___.",
+          "answer": "Discomfort"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "discover-invent",
+      "words": [
+        {
+          "word": "Discover",
+          "pos": "verb",
+          "meaning": "to find something that already existed but was unknown",
+          "example": "Archaeologists discovered the ruins of Harappa in the 1920s."
+        },
+        {
+          "word": "Invent",
+          "pos": "verb",
+          "meaning": "to create something that did not exist before",
+          "example": "Who invented the telephone?"
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Archaeologists hope to ___ more ruins buried beneath the mound.",
+          "answer": "Discover"
+        },
+        {
+          "sentence": "Who was the first person to ___ the printing press?",
+          "answer": "Invent"
         }
       ],
       "years": []
@@ -587,6 +6240,34 @@
       "years": []
     },
     {
+      "id": "discriminating-discriminatory",
+      "words": [
+        {
+          "word": "Discriminating",
+          "pos": "adjective",
+          "meaning": "showing good judgement or refined taste",
+          "example": "A discriminating reader can tell good prose from bad."
+        },
+        {
+          "word": "Discriminatory",
+          "pos": "adjective",
+          "meaning": "treating people unfairly on grounds such as religion, sex or race",
+          "example": "The court struck down the discriminatory law."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "___ buyers compare quality, not just price.",
+          "answer": "Discriminating"
+        },
+        {
+          "sentence": "The Constitution forbids ___ treatment of citizens on the basis of religion.",
+          "answer": "Discriminatory"
+        }
+      ],
+      "years": []
+    },
+    {
       "id": "disinterested-uninterested",
       "words": [
         {
@@ -613,6 +6294,268 @@
         }
       ],
       "years": []
+    },
+    {
+      "id": "dissimulation-simulation",
+      "words": [
+        {
+          "word": "Dissimulation",
+          "pos": "noun",
+          "meaning": "concealing one's true feelings or intentions behind a false appearance",
+          "example": "His calm smile was pure dissimulation; inside, he was furious."
+        },
+        {
+          "word": "Simulation",
+          "pos": "noun",
+          "meaning": "an imitation of a real situation or process; pretending to have something",
+          "example": "Pilots train on a flight simulation before flying real aircraft."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Diplomats are skilled in ___, hiding their real aims behind polite words.",
+          "answer": "Dissimulation"
+        },
+        {
+          "sentence": "The disaster agency ran a ___ of an earthquake to test its response.",
+          "answer": "Simulation"
+        }
+      ],
+      "years": [
+        2004
+      ]
+    },
+    {
+      "id": "distinct-distinctive",
+      "words": [
+        {
+          "word": "Distinct",
+          "pos": "adjective",
+          "meaning": "clearly separate or different; clearly noticeable",
+          "example": "The word has two distinct meanings."
+        },
+        {
+          "word": "Distinctive",
+          "pos": "adjective",
+          "meaning": "characteristic of one thing and marking it out from others",
+          "example": "Ajrak, with its distinctive blue and red patterns, symbolises Sindhi identity."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The word 'bank' has two ___ meanings that must not be confused.",
+          "answer": "Distinct"
+        },
+        {
+          "sentence": "Ornate truck art is ___ of Pakistani popular culture.",
+          "answer": "Distinctive"
+        }
+      ],
+      "years": [
+        2005
+      ]
+    },
+    {
+      "id": "dose-doze",
+      "words": [
+        {
+          "word": "Dose",
+          "pos": "noun",
+          "meaning": "a measured quantity of medicine taken at one time",
+          "example": "Take one dose of the syrup after each meal."
+        },
+        {
+          "word": "Doze",
+          "pos": "verb / noun",
+          "meaning": "to sleep lightly for a short time",
+          "example": "Grandfather likes to doze in his chair after lunch."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Every child should receive a ___ of polio vaccine.",
+          "answer": "Dose"
+        },
+        {
+          "sentence": "The guard began to ___ off during the night shift.",
+          "answer": "Doze"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "doubtful-dubious",
+      "words": [
+        {
+          "word": "Doubtful",
+          "pos": "adjective",
+          "meaning": "uncertain; feeling or causing doubt",
+          "example": "It is doubtful that the match will go ahead in this rain."
+        },
+        {
+          "word": "Dubious",
+          "pos": "adjective",
+          "meaning": "of questionable honesty, value or reliability; suspicious",
+          "example": "The businessman made his fortune through dubious deals."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "It is ___ that the bridge will be finished on time.",
+          "answer": "Doubtful"
+        },
+        {
+          "sentence": "The website made ___ claims about miracle cures.",
+          "answer": "Dubious"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "draft-draught",
+      "words": [
+        {
+          "word": "Draft",
+          "pos": "noun / verb",
+          "meaning": "a preliminary version of a document; (verb) to prepare one",
+          "example": "The ministry circulated a draft of the new education policy."
+        },
+        {
+          "word": "Draught",
+          "pos": "noun",
+          "meaning": "(British) a current of cool air in a room; a single swallow of drink",
+          "example": "Hang a curtain to keep out the cold draught."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The lawyer prepared the first ___ of the agreement.",
+          "answer": "Draft"
+        },
+        {
+          "sentence": "A chilly ___ blew under the door all night.",
+          "answer": "Draught"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "draught-drought",
+      "words": [
+        {
+          "word": "Draught",
+          "pos": "noun",
+          "meaning": "(British) a current of cool air in a room; a single swallow of drink",
+          "example": "Close the window; there is a cold draught in the room."
+        },
+        {
+          "word": "Drought",
+          "pos": "noun",
+          "meaning": "a long period of abnormally low rainfall",
+          "example": "A severe drought left the farmers of Thar without water."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "He drank the cool water in a single ___.",
+          "answer": "Draught"
+        },
+        {
+          "sentence": "Years of ___ have dried up the wells of Tharparkar.",
+          "answer": "Drought"
+        }
+      ],
+      "years": [
+        2023
+      ]
+    },
+    {
+      "id": "dual-duel",
+      "words": [
+        {
+          "word": "Dual",
+          "pos": "adjective",
+          "meaning": "consisting of two parts or elements",
+          "example": "Many overseas Pakistanis hold dual nationality."
+        },
+        {
+          "word": "Duel",
+          "pos": "noun",
+          "meaning": "a formal fight between two people; a close contest",
+          "example": "The Russian poet Pushkin died after a duel in 1837."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "Under the law, members of parliament cannot hold ___ nationality.",
+          "answer": "Dual"
+        },
+        {
+          "sentence": "The two chess champions fought a tense ___ that lasted six hours.",
+          "answer": "Duel"
+        }
+      ],
+      "years": [
+        1993
+      ]
+    },
+    {
+      "id": "dyeing-dying",
+      "words": [
+        {
+          "word": "Dyeing",
+          "pos": "verb",
+          "meaning": "colouring cloth, hair or another material with dye",
+          "example": "Fabric dyeing is a traditional craft in Multan."
+        },
+        {
+          "word": "Dying",
+          "pos": "verb / adjective",
+          "meaning": "about to die; coming to an end",
+          "example": "Many regional languages are dying out."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The workers were ___ the cloth deep red for the wedding season.",
+          "answer": "Dyeing"
+        },
+        {
+          "sentence": "Lost in the desert, the travellers were ___ of thirst.",
+          "answer": "Dying"
+        }
+      ],
+      "years": []
+    },
+    {
+      "id": "dysfunctional-functional",
+      "words": [
+        {
+          "word": "Dysfunctional",
+          "pos": "adjective",
+          "meaning": "not working normally; marked by unhealthy relationships",
+          "example": "Years of neglect left the municipal system dysfunctional."
+        },
+        {
+          "word": "Functional",
+          "pos": "adjective",
+          "meaning": "working properly; designed for practical use",
+          "example": "The new office is plain but functional."
+        }
+      ],
+      "quiz": [
+        {
+          "sentence": "The hospital's lifts have been ___ for months, forcing patients to use the stairs.",
+          "answer": "Dysfunctional"
+        },
+        {
+          "sentence": "The building is plain but ___, built for use rather than beauty.",
+          "answer": "Functional"
+        }
+      ],
+      "years": [
+        1994
+      ]
     },
     {
       "id": "economic-economical",
