@@ -655,7 +655,7 @@ function HomePage() {
     <>
       <HomeFaqStructuredData />
       <section className="intro" id="home">
-        <div className="intro-video" aria-hidden="true">
+        <div className="intro-video intro-video--fit" aria-hidden="true">
           {introVideoOn ? (
             <video autoPlay loop muted playsInline preload="none" poster="/media/guardian-angel-intro-poster.webp">
               <source src="/media/guardian-angel-intro-720p.mp4" type="video/mp4" media="(max-width: 900px)" />
