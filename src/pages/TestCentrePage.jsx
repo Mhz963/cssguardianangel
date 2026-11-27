@@ -184,10 +184,10 @@ export default function TestCentrePage() {
           id="tc-guide"
           src="/media/test-centre-tutorial.mp4"
           poster="/media/test-centre-tutorial-poster.webp"
-          title="How to use the Test Centre"
+          title="Clear the MPT on your first attempt: see how in 2 minutes"
           duration="2 min"
         >
-          The MPT pattern, taking a timed mock, reading your results by area, and daily practice by subject.
+          The real MPT pattern, timed mocks weighted like the exam, results by area, and daily practice with real FPSC MCQs.
         </VideoGuide>
 
         {error ? <p className="tc-error">The question bank could not be loaded. Please try again.</p> : null}
