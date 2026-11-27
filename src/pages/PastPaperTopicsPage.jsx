@@ -312,10 +312,10 @@ export default function PastPaperTopicsPage() {
               id="ppt-guide"
               src="/media/topic-wise-past-papers-tutorial.mp4"
               poster="/media/topic-wise-past-papers-tutorial-poster.webp"
-              title="How to study by topic"
+              title="Stop guessing: see the topics FPSC repeats every year"
               duration="2 min"
             >
-              Find the most-asked topics, read the heatmap, filter questions by topic and practise against the clock.
+              Find the most-asked topics, read every question on a topic in one place, and practise your answers against the clock.
             </VideoGuide>
             <div className="ppt-subjects">
               {index.subjects.map((s) => (
