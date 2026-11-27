@@ -61,3 +61,10 @@
 .gsp-landing-guide {
   padding: clamp(1.5rem, 4vw, 2.5rem) 0;
 }
+
+/* Study Planner video under the sign-in card (the planner's front door for signed-out visitors). */
+.auth-guide {
+  width: min(100%, 980px);
+  margin: clamp(1.5rem, 4vw, 2.5rem) auto 0;
+  text-align: left;
+}

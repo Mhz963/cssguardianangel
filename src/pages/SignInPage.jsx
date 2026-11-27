@@ -1,4 +1,5 @@
 import logo from '../assets/guardian-angel-logo-720.webp'
+import VideoGuide from '../components/VideoGuide.jsx'
 import {
   cleanRecoveryUrl,
   clearPasswordRecovery,
@@ -572,6 +573,20 @@ export default function SignInPage({ authUser, isAuthReady }) {
             {error ? <p className="planner-error">{error}</p> : null}
           </form>
         </article>
+        {mode === 'signin' || mode === 'signup' ? (
+          <div className="auth-guide">
+            <VideoGuide
+              id="planner-guide"
+              src="/media/study-planner-tutorial.mp4"
+              poster="/media/study-planner-tutorial-poster.webp"
+              title="Your personal CSS study plan, built in 2 minutes"
+              duration="2 min"
+            >
+              Lock your subjects, generate a strategy for your exam date, track every study hour and watch your progress
+              grow in the Guardian Angel Report.
+            </VideoGuide>
+          </div>
+        ) : null}
       </section>
       </section>
     </>
