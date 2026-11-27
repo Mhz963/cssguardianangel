@@ -1,4 +1,4 @@
-import { Link, Navigate, useParams } from 'react-router-dom'
+import { Link, Navigate, useLocation, useParams } from 'react-router-dom'
 import '../styles/english.css'
 import { useEnglishProgress, streakFrom, MASTERED_BOX } from '../english/englishStore.js'
 import {
@@ -6,6 +6,7 @@ import {
   GrammarModule,
   GroupingModule,
   PairsModule,
+  PastPapersModule,
   PunctuationModule,
   VocabularyModule,
 } from '../english/EnglishModules.jsx'
@@ -16,55 +17,65 @@ export const ENGLISH_MODULES = [
   {
     slug: 'grammar',
     title: 'Grammar',
-    section: 'Grammar & Vocabulary · 20 marks',
-    text: 'Tenses, articles, prepositions, conjunctions, phrasal verbs, agreement, voice and narration. Short rules, then practice.',
+    section: 'Supports Q4 and Q5',
+    text: '500+ questions on tenses, articles, prepositions, conjunctions, phrasal verbs, agreement, voice and narration. Short rules, then practice.',
     Component: GrammarModule,
   },
   {
     slug: 'punctuation',
     title: 'Punctuation',
-    section: 'Grammar & Sentence Correction',
+    section: 'Q5 · Punctuation and prepositions',
     text: 'Commas, semicolons, colons, apostrophes and capitals, the marks FPSC uses in its correction questions.',
     Component: PunctuationModule,
   },
   {
     slug: 'sentence-correction',
     title: 'Sentence Correction',
-    section: 'Sentence Correction · 10 marks',
-    text: 'Fix one clear error in each sentence, changing nothing else. See exactly what to add and remove.',
+    section: 'Q4 · 10 marks',
+    text: '860+ sentences, including 200 set by FPSC from 2000 to 2026. Fix the error and see exactly what to add and remove.',
     Component: CorrectionModule,
   },
   {
     slug: 'pairs-of-words',
     title: 'Pairs of Words',
-    section: 'Pairs of Words · 10 marks',
+    section: 'Q6 · 10 marks',
     text: 'Commonly confused words such as principal and principle. Study the difference, then test yourself.',
     Component: PairsModule,
   },
   {
-    slug: 'grouping-of-words',
-    title: 'Grouping of Words',
-    section: 'Grouping of Words · 10 marks',
-    text: 'Pair twenty words by similar or opposite meaning, exactly as the paper asks.',
+    slug: 'synonyms-antonyms',
+    title: 'Synonyms & Antonyms',
+    section: 'Q1 · 20 marks',
+    text: 'Match words by similar or opposite meaning in 60+ sets, then try the real FPSC multiple-choice questions.',
     Component: GroupingModule,
   },
   {
     slug: 'vocabulary',
     title: 'Vocabulary',
-    section: 'Synonyms, antonyms & usage',
-    text: 'A CSS word list with daily spaced-repetition review, so words come back just before you forget them.',
+    section: '1,000+ CSS words',
+    text: 'A CSS word list with Urdu meanings and daily spaced-repetition review, so words come back just before you forget them.',
     Component: VocabularyModule,
+  },
+  {
+    slug: 'past-papers',
+    title: 'Past Paper References',
+    section: 'FPSC English papers',
+    text: 'What FPSC actually asked, year by year: sentences to correct, synonyms, prepositions and pairs, with official PDFs.',
+    Component: PastPapersModule,
   },
 ]
 
+/** Old links keep working after a module is renamed. */
+const RENAMED_MODULES = { 'grouping-of-words': 'synonyms-antonyms' }
+
 const PAPER_MAP = [
-  { part: 'Precis writing', marks: 20, status: 'Coming soon' },
-  { part: 'Reading comprehension', marks: 20, status: 'Coming soon' },
-  { part: 'Grammar & vocabulary', marks: 20, to: 'grammar', label: 'Grammar, Punctuation, Vocabulary' },
-  { part: 'Sentence correction', marks: 10, to: 'sentence-correction', label: 'Sentence Correction' },
-  { part: 'Grouping of words', marks: 10, to: 'grouping-of-words', label: 'Grouping of Words' },
-  { part: 'Pairs of words', marks: 10, to: 'pairs-of-words', label: 'Pairs of Words' },
-  { part: 'Translation (Urdu to English)', marks: 10, status: 'Coming soon' },
+  { part: 'Q1 Synonyms and antonyms (MCQs)', marks: 20, to: 'synonyms-antonyms', label: 'Synonyms & Antonyms, Vocabulary' },
+  { part: 'Q2 Précis writing', marks: 20, status: 'Coming soon' },
+  { part: 'Q3 Reading comprehension', marks: 20, status: 'Coming soon' },
+  { part: 'Q4 Sentence correction', marks: 10, to: 'sentence-correction', label: 'Sentence Correction, Grammar' },
+  { part: 'Q5 Punctuation and prepositions', marks: 10, to: 'punctuation', label: 'Punctuation, Grammar' },
+  { part: 'Q6 Pairs of words', marks: 10, to: 'pairs-of-words', label: 'Pairs of Words' },
+  { part: 'Q7 Translation (Urdu to English)', marks: 10, status: 'Coming soon' },
 ]
 
 function moduleProgress(slug, progress) {
@@ -81,7 +92,7 @@ function moduleProgress(slug, progress) {
     }
     case 'pairs-of-words':
       return progress.pairs.attempts ? `Best ${progress.pairs.best}%` : ''
-    case 'grouping-of-words': {
+    case 'synonyms-antonyms': {
       const sets = Object.keys(progress.grouping).length
       return sets ? `${sets} sets played` : ''
     }
@@ -165,12 +176,16 @@ function EnglishHub({ store }) {
               {PAPER_MAP.map((row) => (
                 <tr key={row.part}>
                   <td>{row.part}</td>
-                  <td>{row.marks}</td>
+                  <td>
+                    <span className="ge-marks">{row.marks}</span>
+                  </td>
                   <td>
                     {row.to ? (
-                      <Link to={`${ENGLISH_BASE}/${row.to}`}>{row.label}</Link>
+                      <Link className="ge-table-link" to={`${ENGLISH_BASE}/${row.to}`}>
+                        {row.label} <span aria-hidden="true">→</span>
+                      </Link>
                     ) : (
-                      <span className="ge-muted">{row.status}</span>
+                      <span className="ge-soon">{row.status}</span>
                     )}
                   </td>
                 </tr>
@@ -178,10 +193,18 @@ function EnglishHub({ store }) {
             </tbody>
           </table>
         </div>
-        <p className="ge-muted">
-          Based on the FPSC syllabus for English (Precis &amp; Composition), 100 marks. Practise with{' '}
-          <Link to="/css-past-papers">real FPSC past papers</Link> too.
-        </p>
+        <div className="ge-paper-cta">
+          <div>
+            <p className="ge-paper-cta-title">Built on the real FPSC papers</p>
+            <p className="ge-paper-cta-text">
+              The layout above follows the English (Precis &amp; Composition) papers of 2024 to 2026, 100 marks in all. See
+              exactly what FPSC asked, year by year, from 1972 to 2026.
+            </p>
+          </div>
+          <Link className="btn btn-primary" to={`${ENGLISH_BASE}/past-papers`}>
+            See what each paper asked →
+          </Link>
+        </div>
       </section>
     </>
   )
@@ -189,8 +212,10 @@ function EnglishHub({ store }) {
 
 export default function GuardianEnglishPage({ authUser }) {
   const { module: slug } = useParams()
+  const { search } = useLocation()
   const store = useEnglishProgress(authUser)
   const current = slug ? ENGLISH_MODULES.find((m) => m.slug === slug) : null
+  if (slug && RENAMED_MODULES[slug]) return <Navigate to={`${ENGLISH_BASE}/${RENAMED_MODULES[slug]}${search}`} replace />
   if (slug && !current) return <Navigate to={ENGLISH_BASE} replace />
 
   return (
@@ -213,9 +238,23 @@ export default function GuardianEnglishPage({ authUser }) {
         ) : (
           <>
             <p className="ge-lead">
-              Free practice for the CSS English (Precis &amp; Composition) paper. Learn the rule, practise it and get
-              instant feedback. No sign-up needed.
+              Practice for the CSS English (Precis &amp; Composition) paper. Learn the rule, practise it and get
+              instant feedback, with real FPSC questions from past papers. No sign-up needed.
             </p>
+            <section className="ge-guide" id="ge-guide" aria-labelledby="ge-guide-title">
+              <div className="ge-guide-copy">
+                <p className="ge-guide-kicker">Video guide · 3 min 19 s</p>
+                <h3 id="ge-guide-title">How the English Lab works</h3>
+                <p>
+                  A walk through every section: grammar rounds, punctuation, sentence correction, pairs of words, synonyms and
+                  antonyms, vocabulary review and the past paper references, plus how your progress is saved.
+                </p>
+              </div>
+              <video className="ge-guide-video" controls preload="none" playsInline poster="/media/english-lab-tutorial-poster.webp">
+                <source src="/media/english-lab-tutorial.mp4" type="video/mp4" />
+                Your browser cannot play this video.
+              </video>
+            </section>
             <EnglishHub store={store} />
           </>
         )}

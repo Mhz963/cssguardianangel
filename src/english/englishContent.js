@@ -4,9 +4,12 @@ import { useEffect, useState } from 'react'
 
 const cache = new Map()
 
+// Bump when files in /public/english change, so browsers fetch the new content instead of a cached copy.
+export const CONTENT_VERSION = '2026-11-26-3'
+
 export function loadEnglishContent(name) {
   if (!cache.has(name)) {
-    const promise = fetch(`/english/${name}.json`, { cache: 'force-cache' }).then((response) => {
+    const promise = fetch(`/english/${name}.json?v=${CONTENT_VERSION}`, { cache: 'force-cache' }).then((response) => {
       if (!response.ok) throw new Error(`Could not load ${name} (${response.status})`)
       return response.json()
     })

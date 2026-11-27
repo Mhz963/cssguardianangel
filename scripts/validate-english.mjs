@@ -76,8 +76,17 @@ if (correction) {
   items.forEach((i) => {
     if (!i.sentence || !(i.answers || []).length || !i.explanation || !i.focus) fail('sentence-correction', `${i.id}: missing field`)
     if ((i.answers || []).includes(i.sentence)) fail('sentence-correction', `${i.id}: answer equals original`)
+    if (i.years && (!Array.isArray(i.years) || i.years.some((y) => !Number.isInteger(y) || y < 1950 || y > 2100))) {
+      fail('sentence-correction', `${i.id}: bad years`)
+    }
   })
-  counts['sentence-correction'] = `${items.length} sentences`
+  const seenSentences = new Set()
+  items.forEach((i) => {
+    const key = String(i.sentence || '').trim().toLowerCase()
+    if (seenSentences.has(key)) fail('sentence-correction', `${i.id}: duplicate sentence`)
+    seenSentences.add(key)
+  })
+  counts['sentence-correction'] = `${items.length} sentences (${items.filter((i) => i.years?.length).length} from past papers)`
 }
 
 const pairs = load('pairs-of-words')
@@ -115,8 +124,9 @@ if (grouping) {
     const words = (s.pairs || []).flat()
     if ((s.pairs || []).some((p) => p.length !== 2)) fail('grouping', `${s.id}: every pair needs 2 words`)
     if (new Set(words).size !== words.length) fail('grouping', `${s.id}: repeated word inside the set`)
+    if (s.glosses && s.glosses.length !== (s.pairs || []).length) fail('grouping', `${s.id}: glosses must match pairs`)
   })
-  counts.grouping = `${sets.length} sets`
+  counts.grouping = `${sets.length} sets, ${sets.reduce((n, s) => n + (s.pairs || []).length, 0)} pairs`
 }
 
 const vocabulary = load('vocabulary')
@@ -126,7 +136,34 @@ if (vocabulary) {
   words.forEach((w) => {
     if (!w.word || !w.meaning || !w.pos || !w.example) fail('vocabulary', `${w.id}: missing field`)
   })
+  const seenWords = new Set()
+  words.forEach((w) => {
+    const key = String(w.word || '').toLowerCase()
+    if (seenWords.has(key)) fail('vocabulary', `${w.id}: duplicate word`)
+    seenWords.add(key)
+  })
   counts.vocabulary = `${words.length} words`
+}
+
+const pastPapers = load('past-papers')
+if (pastPapers) {
+  const years = pastPapers.years || []
+  const seenYears = new Set()
+  years.forEach((y) => {
+    if (!Number.isInteger(y.year)) fail('past-papers', 'year without a number')
+    if (seenYears.has(y.year)) fail('past-papers', `${y.year}: duplicate year`)
+    seenYears.add(y.year)
+    ;(y.vocabulary || []).forEach((v, index) => {
+      if (!v.word || !['synonym', 'antonym'].includes(v.type)) fail('past-papers', `${y.year} vocabulary ${index + 1}: needs word and type`)
+      if (v.options?.length && (!Number.isInteger(v.answer) || v.answer < 0 || v.answer >= v.options.length)) {
+        fail('past-papers', `${y.year} vocabulary ${index + 1}: answer index out of range`)
+      }
+    })
+    ;(y.prepositions || []).forEach((p, index) => {
+      if (!p.sentence?.includes('___') || !p.answer) fail('past-papers', `${y.year} preposition ${index + 1}: needs ___ and an answer`)
+    })
+  })
+  counts['past-papers'] = `${years.length} years`
 }
 
 for (const [file, summary] of Object.entries(counts)) console.log(`[english] ${file}: ${summary}`)

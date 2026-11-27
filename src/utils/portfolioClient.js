@@ -6,12 +6,16 @@ export const MAX_PORTFOLIO_FILE_BYTES = 8 * 1024 * 1024
 export const MAX_PORTFOLIO_PHOTO_BYTES = 4 * 1024 * 1024
 export const ALLOWED_PORTFOLIO_EXTENSIONS = ['.pdf', '.png', '.jpg', '.jpeg', '.webp', '.doc', '.docx']
 export const ALLOWED_PHOTO_EXTENSIONS = ['.png', '.jpg', '.jpeg', '.webp']
-export const MAX_GIGS = 3
+export const MAX_GIGS = 5
 export const GIG_CATEGORIES = [
   'Writing',
-  'Design',
-  'Virtual assistant',
+  'Translation',
   'Tutoring',
+  'Research',
+  'Design',
+  'Social media',
+  'Virtual assistant',
+  'Data entry',
   'Web',
   'Video',
   'Other',
@@ -99,7 +103,8 @@ export function createEmptyPortfolio(authUser) {
       website: '',
     },
     slug: slugifyPortfolio(username, userId ? `user-${userId.slice(0, 8)}` : ''),
-    is_public: true,
+    // New profiles stay private until the owner publishes them in the editor's last step.
+    is_public: false,
     photo_path: '',
     photoUrl: '',
     gigs: [],
@@ -597,4 +602,24 @@ export function visibleLinkEntries(links, displayName = '') {
   if (normalized.linkedin) entries.push({ label: 'LinkedIn', href: toHttpUrl(normalized.linkedin) })
   if (normalized.website) entries.push({ label: 'Website', href: toHttpUrl(normalized.website) })
   return entries
+}
+
+/**
+ * Public directory for /guardian-portfolio/browse. Reads published profiles directly
+ * (RLS allows anyone to read rows where is_public = true), so no server function is needed.
+ */
+export async function fetchPublicDirectory({ limit = 120 } = {}) {
+  return withFreshAuth(async () => {
+    const client = requireSupabase()
+    const { data, error } = await client
+      .from('user_portfolios')
+      .select('*')
+      .eq('is_public', true)
+      .order('updated_at', { ascending: false })
+      .limit(limit)
+    if (error) throw error
+    return (data || [])
+      .map((row) => ({ ...mapPortfolioRow(row), updatedAt: row.updated_at || '' }))
+      .filter((profile) => profile.display_name && profile.slug)
+  }, { allowAnonymousRetry: true })
 }

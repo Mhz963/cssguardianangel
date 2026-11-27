@@ -48,6 +48,10 @@ const ProfilePage = lazy(() => import('./ProfilePage.jsx'))
 const AdminDashboardPage = lazy(() => import('./AdminDashboardPage.jsx'))
 const GuardianPortfolioPage = lazy(() => import('./GuardianPortfolioPage.jsx'))
 const GuardianPortfolioPublicPage = lazy(() => import('./GuardianPortfolioPublicPage.jsx'))
+const ConflictAtlasPage = lazy(() => import('./pages/ConflictAtlasPage.jsx'))
+const PortfolioLanding = lazy(() => import('./pages/portfolio/PortfolioLanding.jsx'))
+const PortfolioBrowse = lazy(() => import('./pages/portfolio/PortfolioBrowse.jsx'))
+const PortfolioExample = lazy(() => import('./pages/portfolio/PortfolioExample.jsx'))
 
 const GOOGLE_PLAY_APP_URL = 'https://play.google.com/store/apps/details?id=com.cssguardianangel.app'
 const FACEBOOK_PAGE_URL = 'https://www.facebook.com/profile.php?id=61572039072912'
@@ -115,9 +119,28 @@ const SEO_BY_PATH = {
       'Sign in to access Subject Locker, Strategy Builder, Performance Analysis, Timer, Calendar, PDF reports, and AI Examiner — free for every CSS Jawan.',
   },
   '/guardian-portfolio': {
-    title: 'Guardian Portfolio | Showcase Your Work',
+    title: 'Guardian Portfolio | Free Freelance Profiles for CSS Jawans',
     description:
-      'Create a public Guardian Angel portfolio, upload work samples, and share one link with clients. Empty fields stay empty.',
+      'Earn while you prepare for CSS. Create a free Fiverr-style profile, publish your skills as gigs and share one link to get orders. No fees, no commission.',
+  },
+  '/guardian-conflict-atlas': {
+    title: 'Guardian Conflict Atlas | Ongoing Wars and Conflicts Map',
+    description:
+      'Every ongoing armed conflict on one world map centred on Pakistan: sides, start dates, casualties, summaries and the latest headlines, with sources. Updated every 6 hours.',
+  },
+  '/guardian-portfolio/browse': {
+    title: 'Browse CSS Jawans | Guardian Portfolio',
+    description:
+      'Find tutors, writers, translators and researchers preparing for CSS. View their gigs and contact them directly. Free, with no commission.',
+  },
+  '/guardian-portfolio/example': {
+    title: 'Example Profile | Guardian Portfolio',
+    description:
+      'See what a complete Guardian Portfolio looks like: headline, gigs with prices, work samples and contact details.',
+  },
+  '/guardian-portfolio/edit': {
+    title: 'Portfolio Editor | Guardian Portfolio',
+    description: 'Create and edit your free Guardian Portfolio in four short steps: profile, gigs, work samples, publish.',
   },
   '/blogs': {
     title: 'CSS Blog | Guardian Angel Insights',
@@ -469,8 +492,9 @@ function Header({ theme, onToggleTheme, authUser, onLogout }) {
     pathname === '/global-affairs'
   const isAngelResourcesRoute = (pathname) =>
     pathname === '/guardian-study-planner' ||
-    pathname === '/guardian-portfolio' ||
+    pathname.startsWith('/guardian-portfolio') ||
     pathname.startsWith('/guardian-english') ||
+    pathname === '/guardian-conflict-atlas' ||
     pathname.startsWith('/p/')
 
   const navItems = [
@@ -494,6 +518,7 @@ function Header({ theme, onToggleTheme, authUser, onLogout }) {
       isActive: isAngelResourcesRoute(location.pathname),
       children: [
         { label: 'Guardian English Lab', to: '/guardian-english' },
+        { label: 'Guardian Conflict Atlas', to: '/guardian-conflict-atlas' },
         { label: 'Guardian Study Planner', to: '/guardian-study-planner' },
         { label: 'Guardian Portfolio', to: '/guardian-portfolio' },
       ],
@@ -775,10 +800,6 @@ function HomePage() {
 
         <section className="hero container">
           <div className="hero-copy reveal-on-scroll">
-            <p className="hero-eyebrow">
-              <span className="hero-eyebrow-dot" aria-hidden="true" />
-              Free · Independent · For every CSS Jawan
-            </p>
             <h1>Empowering Pakistan’s Future Leaders</h1>
             <p className="subtext">
               Guardian Angel is an independent platform dedicated to helping CSS Jawans across
@@ -1037,6 +1058,7 @@ function Footer() {
           <Link to="/css-study-material">CSS Study Material</Link>
           <Link to="/key-documents">Key Documents</Link>
           <Link to="/guardian-english">Guardian English Lab</Link>
+          <Link to="/guardian-conflict-atlas">Guardian Conflict Atlas</Link>
           <Link to="/guardian-study-planner">Guardian Study Planner</Link>
           <Link to="/guardian-portfolio">Guardian Portfolio</Link>
         </div>
@@ -1224,16 +1246,17 @@ const resolveRouteSeo = (pathname, search) => {
       punctuation: 'Punctuation Practice',
       'sentence-correction': 'Sentence Correction Practice',
       'pairs-of-words': 'Pairs of Words Practice',
-      'grouping-of-words': 'Grouping of Words Practice',
+      'synonyms-antonyms': 'Synonyms & Antonyms Practice',
       vocabulary: 'CSS Vocabulary Builder',
+      'past-papers': 'CSS English Past Paper References',
     }
     const slug = pathname.split('/')[2] || ''
     return {
       title: moduleTitles[slug]
         ? `${moduleTitles[slug]} | Guardian English Lab`
-        : 'Guardian English Lab | Free CSS English Practice',
+        : 'Guardian English Lab | CSS English Practice',
       description:
-        'Free practice for the CSS English (Precis & Composition) paper: grammar, punctuation, sentence correction, pairs of words, grouping of words and vocabulary with instant feedback.',
+        'Practice for the CSS English (Precis & Composition) paper: grammar, punctuation, sentence correction, pairs of words, synonyms and antonyms, vocabulary and FPSC past paper references with instant feedback.',
     }
   }
 
@@ -1269,7 +1292,7 @@ const resolveRouteSeo = (pathname, search) => {
 const KNOWN_ROUTES = new Set([
   '/', '/pakistan-affairs', '/global-affairs', '/css-syllabus', '/css-rules', '/css-past-papers', '/css-study-material',
   '/key-documents', '/constitution-of-pakistan', '/about-guardian-angel', '/privacy-policy', '/terms', '/delete-account', '/blogs', '/blog', '/signin',
-  '/payment', '/dashboard', '/guardian-study-planner', '/guardian-portfolio', '/guardian-resume-builder', '/profile', '/admin',
+  '/payment', '/dashboard', '/guardian-study-planner', '/guardian-conflict-atlas', '/guardian-portfolio', '/guardian-portfolio/edit', '/guardian-portfolio/browse', '/guardian-portfolio/example', '/guardian-resume-builder', '/profile', '/admin',
 ])
 const KNOWN_ROUTE_PREFIXES = ['/blogs/', '/blog/', '/css-syllabus/', '/p/', '/guardian-english']
 
@@ -1644,6 +1667,30 @@ function App() {
           <Route
             path="/guardian-portfolio"
             element={
+              <Suspense fallback={<main className="page-main" />}>
+                <PortfolioLanding authUser={authUser} />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/guardian-portfolio/browse"
+            element={
+              <Suspense fallback={<main className="page-main" />}>
+                <PortfolioBrowse />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/guardian-portfolio/example"
+            element={
+              <Suspense fallback={<main className="page-main" />}>
+                <PortfolioExample />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/guardian-portfolio/edit"
+            element={
               !isAuthReady ? null : authUser ? (
                 <Suspense
                   fallback={
@@ -1657,7 +1704,7 @@ function App() {
                   <GuardianPortfolioPage authUser={authUser} />
                 </Suspense>
               ) : (
-                <Navigate to="/signin" replace state={{ from: '/guardian-portfolio' }} />
+                <Navigate to="/signin" replace state={{ from: '/guardian-portfolio/edit' }} />
               )
             }
           />
@@ -1699,6 +1746,14 @@ function App() {
             }
           />
           <Route path="/css-syllabus/:subjectSlug" element={<SubjectDetailPage />} />
+          <Route
+            path="/guardian-conflict-atlas"
+            element={
+              <Suspense fallback={<main className="page-main" />}>
+                <ConflictAtlasPage />
+              </Suspense>
+            }
+          />
           <Route path="/guardian-english" element={<GuardianEnglishPage authUser={authUser} />} />
           <Route path="/guardian-english/:module" element={<GuardianEnglishPage authUser={authUser} />} />
           <Route path="*" element={<NotFoundPage />} />

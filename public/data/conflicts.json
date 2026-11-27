@@ -1,0 +1,3367 @@
+{
+ "updatedAt": "2026-11-27T05:46:50.079Z",
+ "listRevision": 1387653824,
+ "sources": [
+  {
+   "label": "Wikipedia: List of ongoing armed conflicts",
+   "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
+  },
+  {
+   "label": "Wikidata (sides involved)",
+   "url": "https://www.wikidata.org/"
+  },
+  {
+   "label": "GDELT Project (latest headlines)",
+   "url": "https://www.gdeltproject.org/"
+  },
+  {
+   "label": "Google News (headline fallback)",
+   "url": "https://news.google.com/"
+  }
+ ],
+ "conflicts": [
+  {
+   "id": "arab-israeli-conflict",
+   "name": "Arab–Israeli/Iran–Israel proxy wars (since 2023)",
+   "includes": [
+    "Israeli–Palestinian conflict",
+    "Gaza conflict (since 2023)",
+    "Spillover in the West Bank",
+    "Israeli settler violence in the West Bank",
+    "Palestinian factional conflicts",
+    "Salafist insurgency in Gaza"
+   ],
+   "intensity": "Major war",
+   "tier": 0,
+   "started": "1948",
+   "countries": [
+    "Occupied Palestine",
+    "Lebanon",
+    "Syria",
+    "Iran",
+    "Iraq",
+    "Jordan",
+    "Saudi Arabia",
+    "Kuwait",
+    "Qatar",
+    "United Arab Emirates",
+    "Oman",
+    "Yemen",
+    "Egypt"
+   ],
+   "cumulativeFatalities": "254,000–263,000+",
+   "fatalitiesByYear": {
+    "2025": "28,111",
+    "2026": "12,007"
+   },
+   "lat": 30.911,
+   "lng": 34.848,
+   "summary": "Since the declaration of Israel's establishment in 1948, conflict has existed between Israel and the surrounding Arab countries, rooted in the Israeli–Palestinian conflict. Zionists viewed the region of Palestine as the Jewish ancestral homeland and sought to establish a Jewish state or homeland there through colonization, while Arabs generally opposed Zionism, envisioning Palestine as Arab Palestinian land and an essential part of the Arab world.",
+   "wikidata": "Q8669",
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Arab%E2%80%93Israeli_conflict"
+    },
+    {
+     "label": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q8669"
+    },
+    {
+     "label": "List of ongoing armed conflicts",
+     "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
+    },
+    {
+     "label": "Google News",
+     "url": "https://news.google.com/"
+    }
+   ],
+   "sides": [],
+   "news": [
+    {
+     "title": "Environmental War Crimes",
+     "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5PRG1jbXY2TF9kUy1jeGw0Z1czQTM4dHo3ZTIxOW1zeEFHQ1ZmT2ZNbmxGZ2FWM3YxMGdtWmRnUWU4SWF0bmJQeDZ1LXV5akNsbTdRUDZ4NkI3UzlKMU1Fb0FJQ2FjeWs4MHc?oc=5",
+     "source": "Oxfam",
+     "date": "2026-11-23"
+    },
+    {
+     "title": "Gaza war has undone 77 years of human development, UN warns",
+     "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE42di1XS05IQklCbFVUR01VeFI1a0tTQTktVmp1ZGZZUzJmVm1CdlhwMmVPcFFHMXN3UGxteDVWTjhxTTRQdHUzTEliVGpuTlBsUWtpWDhlQQ?oc=5",
+     "source": "UN News",
+     "date": "2026-11-23"
+    },
+    {
+     "title": "How Silicon Valley became central to Israel’s war on Palestinians",
+     "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPM2RsUEN1V1RwM21nY2ppVzZLajhYT25pZXM0VEFtU1NfRmVoalZLVW0xeFJ0OHRWM1pPVTNaRzB1LUtzbTB3dEkzZUh4SXJUb0RPWkRhVmM5TDhMc091Z2FHUk9jM2ZGNFd5LV85OWhVUHd4SlFNMndvWHp3NkxFOTNjdURUNEtIU0JSUkpIV3VNWmFjNXNZ0gGcAUFVX3lxTE9RQ1FaVXlMblA0TGc1Tkd1RkdjYmZXLTNYanJLdzB1WXp3ZHRJUEg0by1XbDVBR3N1Zy1nVVg5VmkxTWRTR05sV3FUZG9HeDFnZkduYjF5M1JpN2NmbnFsZlhjQ25HdjJwZVlsU2FSci11UVdRel9lbnVqUldrQUJqci02c0xZMmtPSmU4dGhxdVFfSHp4cVNkZHE4Xw?oc=5",
+     "source": "Al Jazeera",
+     "date": "2026-11-26"
+    },
+    {
+     "title": "Israel’s destruction of Gaza has created a ‘toxic wasteland’, experts find",
+     "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQdHhuX2FjNjlDYmQtdG1TT0hPSkptRTBNcC0wd3lwekxoRkdSaDNFVWhhOWpEanZQVkNDa0JaLTNjQmFXWTNOQzU2OTUzY1c1RWoxRHpkQmtVNklZZGowSEMxZmRvRVRFa2JJY290b1hNSXZVUWNVdDVvV0RsRHhjNzcyeFZyYTVVNGRBNWVtdVVDVUhfTnNiU2lMWE1lYVRHczNmTjM2azliQQ?oc=5",
+     "source": "The Guardian",
+     "date": "2026-11-23"
+    }
+   ],
+   "newsVia": "Google News"
+  },
+  {
+   "id": "myanmar-conflict",
+   "name": "Myanmar civil war (since 2021)",
+   "includes": [
+    "Rohingya conflict",
+    "Rakhine State conflict",
+    "Karen conflict",
+    "Karen–Mon conflict",
+    "Kachin conflict",
+    "Spillover in Northeast India"
+   ],
+   "intensity": "Major war",
+   "tier": 0,
+   "started": "1948",
+   "countries": [
+    "Myanmar",
+    "India",
+    "Bangladesh",
+    "Thailand",
+    "China"
+   ],
+   "cumulativeFatalities": "214,000+",
+   "fatalitiesByYear": {
+    "2025": "15,917",
+    "2026": "9,832"
+   },
+   "lat": 21.574,
+   "lng": 95.804,
+   "summary": "Myanmar has been in armed conflict since 1948, when the country, then known as Burma, gained independence from the United Kingdom. The conflict has largely been ethnic-based, with ethnic armed organisations fighting Myanmar's armed forces, the Tatmadaw, for self-determination. Despite numerous ceasefires and the creation of autonomous self-administered zones in 2008, armed groups continue to call for independence, increased autonomy, democracy, or the federalisation of Myanmar. It is the world's longest-running civil war.",
+   "wikidata": "Q852088",
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Myanmar_conflict"
+    },
+    {
+     "label": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q852088"
+    },
+    {
+     "label": "List of ongoing armed conflicts",
+     "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
+    },
+    {
+     "label": "Google News",
+     "url": "https://news.google.com/"
+    }
+   ],
+   "sides": [],
+   "news": [
+    {
+     "title": "Global land mine casualties hit a 5-year high, driven by Myanmar’s brutal civil war and Syria",
+     "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNY19LTXBIamxRUE45YXB6UmxNQ1pTaC10SHNMekRLZDNRdHNoaTlOcUdWclVMRndGRzdCbk5tVmYxdFVTTjJYRHNrSzdzeFV3d1IzTnVBd2l5VnUyOXZEcEI4VjhlS1JXZ2RoWE1mMDV1Y2phTXpNTnNiQkl2aUxRLWtETjBnR1hnV1pDOEgteVRqb1FiUnl4b29UNnNXQVNyTVlrWDVVWGRJbThXSS1lc3JFQ3czaVRtNHRqOUpEWUloOUtQZElEdktIcWpIcFQ5NllHSmt3?oc=5",
+     "source": "Los Angeles Times",
+     "date": "2026-11-24"
+    },
+    {
+     "title": "Myanmar's Rohingya win landmark genocide ruling, but return home remains distant",
+     "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxOS2g5Z3pOWXZjSC0zVlVLN2ZFVHZYZHg5N2dqVGdBZFlmblkwcl9nSFpUQ1ROb0lIeTZPUG5iaGxHRUJSX0lNTG5mdkc0d3N5cV9pb1lQZFhhY1Bnczlfem1yRElXR3g1ajZzeFBabHctXzFZejFiQzF1T0RYRzVMT3U1NjZKYzl5T3AwRVNVOGZHTXdHbXl2eUMwcDVlNXhrVm9sVzVka1diN0xRSVBZMTd5c0RxOFZKX3JlRUhqek9IZ0xlWWR4ZQ?oc=5",
+     "source": "Reuters",
+     "date": "2026-11-20"
+    },
+    {
+     "title": "Global landmine casualties hit a five-year high, driven by Myanmar, Syria",
+     "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPa0xHamswNHlRTTRjVXBjSFdSM2VFMldDekVyWnRRbmFSbGdpbnJNRVlGdnk4cUFXWjZHcmZicWNUdzF4UVFlSWJ4Mm55NXNHV1V6OTJuTlNTeWJNVGhZbHhJNDl2WjRZdDA4Q2tEcGNCU096cWM4dW1EREc0dDFuVWVGaURxNW4tMzBnSmRjOTVVQ1lZQkNKMnBqaFdwRGxTb1hRY3ZpeEh0bTR6NFY3MTNZa9IBuAFBVV95cUxNdlFQc1NHbjFoOEpib0U4b3Y4dnluZDFPaTBNRmt4ck9hLVdyZ1k1WElUdGY3X09oVDZVLWpOcHEzeG5sWFFLS1JCNU5ibi1KMnZIdDlVVmEybUc1NlRQYkI1RlRGNjZRWFN4cnNWNnRuM1c3RHo4Q0FrblNUeU4tZG5xakIyVDIxNHRkMG5VYlE1TER1WlAtbm95UDViSlRFWjVVcldqdUhWVFFNLVRWQVJRc1JVR1FN?oc=5",
+     "source": "Al Jazeera",
+     "date": "2026-11-24"
+    },
+    {
+     "title": "Myanmar - Myanmar since 1988",
+     "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE0zY1ZiRkVLbXZuSDExUjhVVGNMN3p3Zl9xUTBKRVRXSmVzbGk4dkVkRW5jUUlSenpBRVMzNVJ1LXBKZDJ3YmdYM0U1c1k1SkRqQVdxU3lCY2ZMdkF6YTZmSGVxRXlwMlU1MEFJ?oc=5",
+     "source": "Britannica",
+     "date": "2026-11-24"
+    }
+   ],
+   "newsVia": "Google News"
+  },
+  {
+   "id": "sudanese-civil-war",
+   "name": "Sudanese civil wars (tribal conflicts)",
+   "includes": [
+    "South Sudanese civil war",
+    "Abyei border conflict",
+    "Jonglei clashes",
+    "North Sudanese civil war",
+    "Kordofan campaign",
+    "Blue Nile campaign"
+   ],
+   "intensity": "Major war",
+   "tier": 0,
+   "started": "1955",
+   "countries": [
+    "Sudan",
+    "South Sudan",
+    "Egypt",
+    "Libya",
+    "Chad",
+    "Ethiopia",
+    "Central African Republic"
+   ],
+   "cumulativeFatalities": "1,521,000+",
+   "fatalitiesByYear": {
+    "2025": "21,994–80,000+",
+    "2026": "12,799"
+   },
+   "lat": 16.331,
+   "lng": 29.261,
+   "summary": "The term Sudanese Civil War refers to at least three separate conflicts, intermittently ongoing for more than 70 years, in Sudan:First Sudanese Civil War (1955–1972)\nSecond Sudanese Civil War (1983–2005)\nSudanese civil war (2023–present)",
+   "wikidata": "Q1163563",
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Sudanese_Civil_War"
+    },
+    {
+     "label": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q1163563"
+    },
+    {
+     "label": "List of ongoing armed conflicts",
+     "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
+    },
+    {
+     "label": "Google News",
+     "url": "https://news.google.com/"
+    }
+   ],
+   "sides": [],
+   "news": [
+    {
+     "title": "Conflicts in Ethiopia and Sudan highlights risks of wider regional instability",
+     "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFAwRnppTjJVRXJ2VHJTdzVIZ3JWWGFPcDM3VnNxdjROeVhieTU0VVVEQkJmVmJ1RWNZT0xJbFVOSVZIYTVaVXp6S3FzdnBvbWNLNDBVUGEzYmRUMC1UcVVRMTl0M0pLdklNSVNNYjZ4VkdXQ1F4?oc=5",
+     "source": "The House of Commons Library",
+     "date": "2026-11-24"
+    },
+    {
+     "title": "Khartoum goes on the offensive in Sudan war",
+     "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxOMzNmMFpCSXVlSG96UGhjelctdXRSVTg1WEVid2V6U0RoMTVvZGI3UGxzR1BDOW5fZkh0UEhVN21iTWhYdEpZWHF4Q3pEVXhPaENMdnJpTVBWVmlzenBybGVWX1VCWXE5LWlsQzhBS01RdS1wTUdVbEhCWF9SWGEwdjFxbE0?oc=5",
+     "source": "Financial Times",
+     "date": "2026-11-22"
+    },
+    {
+     "title": "Sudan’s war will end, but will it be too late?",
+     "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxOUy00VFBBN1E5ZmxpOTFxbzN2R0RiVVo5V3FtUXFYRkdCWE8yQmlJcDQzOENHU0JPYVhwTDgwU1pSRjg3N0FlTWZzM1FSbmxnaUhJN2ZUejQ3WHJlcWloWi1lMlJZTFNkVFNxeFJwckJSTkI3TEoxWEloTS12aU9XSFZ4TzFEWFZiOVoxVTJweHY0bGPSAZgBQVVfeXFMUEw2N3lIMFFEQndQc2plVzE3SnBMZFdFMjJCb0FxdEd4RzM4cHZwOHFwa1ZWYmlPZ1NZQjl3UW00NXl5VDFLblZINzRGSkpwZ1B0Uy1oLS1lbmdaZDBjT3RRaEV3V2Vkb0dlVFE3WE4zb0k4M3R3NHNRWkNUX2ZZWWFKZTVmTVcwYWVZYkgycHRSUmRSeWluaEc?oc=5",
+     "source": "Al Jazeera",
+     "date": "2026-11-21"
+    },
+    {
+     "title": "London Hosts Peace Conference Tomorrow, as Sudan Enters Third Year of Civil War",
+     "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNWFlRMVZOZjhCRmoxVUgzRC05X3liXzEyLUw1YldEU2NNbWFyU1BBakM2N3ZqUkJsU1hfMUtWVS1FNEQzbHUyWFYwYmJUNkJwcXBVQmlnRDd3TWVadTN1M2JOeksxVTFXSGM3UkNmSFE3enpMMUttR09HZDJZc1BscVJwVDlWQTFjVlhramFSWXF4d1dKSURCb0d1RUdnaXhSaHJkMjhVNXZ0U0VR?oc=5",
+     "source": "https://thesentry.org/",
+     "date": "2026-11-25"
+    }
+   ],
+   "newsVia": "Google News"
+  },
+  {
+   "id": "congolese-civil-war-disambiguation",
+   "name": "Congolese conflicts",
+   "includes": [
+    "Katanga insurgency",
+    "LRA insurgency",
+    "ADF insurgency",
+    "Kivu conflict",
+    "Ituri conflict (since 2017)",
+    "M23 offensive"
+   ],
+   "intensity": "Major war",
+   "tier": 0,
+   "started": "1960",
+   "countries": [
+    "Democratic Republic of the Congo",
+    "Central African Republic",
+    "South Sudan",
+    "Rwanda",
+    "Burundi",
+    "Uganda"
+   ],
+   "cumulativeFatalities": "219,700+",
+   "fatalitiesByYear": {
+    "2025": "7,737–10,000+",
+    "2026": "4,152"
+   },
+   "lat": -1.858,
+   "lng": 23.459,
+   "summary": "Congolese Civil War or Congo War may refer to any of a number of armed internal conflicts in the present-day countries of the Democratic Republic of the Congo and the \nRepublic of the Congo in Central Africa.",
+   "wikidata": "Q364610",
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Congolese_Civil_War"
+    },
+    {
+     "label": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q364610"
+    },
+    {
+     "label": "List of ongoing armed conflicts",
+     "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
+    },
+    {
+     "label": "Google News",
+     "url": "https://news.google.com/"
+    }
+   ],
+   "sides": [],
+   "news": [
+    {
+     "title": "Rebel group retreats in DR Congo after heavy clashes with government forces",
+     "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQWDdrcllEUWhscEtTb1k0WGVQOGhsZGJGbjY5VS1IM004VUNlVnpheFlFNGFfU0pFZlg5TjRNRi1ib3IyVzNrRDBoczk2cWhtaTZvTXJ5LTVqZldLVGFfaWVGRWY1VXM5b0tjQUp2VnRUNTQ0T0lPa05EUTNGZC1kRXIyWDdRTC0tOVNXa2c5aDQzamE5ZHp2OFY5RDQwUnRtT01PUWlicWNFNEw2SENBc0NKb09VeC1Y0gG-AUFVX3lxTE5peTRoS1NQY2hRWktSV19HczN1WmRQaXZ4UEVUN21ZNHQ3ZkFfbUdJYW14dC10YWVqQ3dyTHMzODJsRnkweG1RbWZNMXg4ejd6T2NFeXJGaWlwSWdsS0hPYjB2LTVlVmtIWTY4MFlOdHEtMjFYV1gxeVRCOXY1TWJzbHhHV1VzcG9tS1dvVHNNTExJcmpvbEZpQWZmQzZCSEpLSkNoRlktT3h2MEEyU0VUSHR6cDNVb3BlMjRpT3c?oc=5",
+     "source": "Al Jazeera",
+     "date": "2026-11-24"
+    },
+    {
+     "title": "The Democratic Republic of the Congo",
+     "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNZ01zSFpLaGFna1RCSU5UbVUzZjNLYTNsWWdCQ0VIVV80cXNhaFhfYVFIRXpKZmV6Tm14MWJ4M0dLVm1kNUduR2pvMTVJRmoyR0lMUnpOQkQ3Umt5NHdsV05xWVJUQmhrblFQdFdwemcwRUxsaUNhbENodzBtVnhTZWlGTEFqcmMxdlFSdmRyQ3dEWl9XYkVkOGdLYmZZN0dpWFVodGZUd0FQQlJqUU9qWVRXVQ?oc=5",
+     "source": "Britannica",
+     "date": "2026-11-21"
+    },
+    {
+     "title": "DR Congo: Peacekepers step up civilian protection amid fighting in Ituri",
+     "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE00WmxwSV9jNXZtSUVOamNZTVhyTm9PS3lCZXYwZFdCaHMycmNFZVJDc3VfUHBNNHp2VVZNaHRUVGdTUzh1TFNKWk54Y2NRNTBZc296bVhjVQ?oc=5",
+     "source": "UN News",
+     "date": "2026-11-26"
+    },
+    {
+     "title": "Congo warns that EU countries’ Rwanda deportation deal could fund armed militia",
+     "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxNbU5RYWZTOVk4X2JQU3l0YnZrRWJxRUxISmtsWTQ3M25qMUtaOF9QbkNRX3Zoc0w3czhBUGduM0JwR05hNS1pUkctZE1GdGR0eEI1UmNtak1RQlgySUt3WG5aR0tHMkR6RWdac1lTSUR0VkpRUWFYdVFqM3BpX0YtZ3VoNEJIdw?oc=5",
+     "source": "POLITICO.eu",
+     "date": "2026-11-23"
+    }
+   ],
+   "newsVia": "Google News"
+  },
+  {
+   "id": "somali-civil-war",
+   "name": "Somali Civil War (since 2009)",
+   "includes": [
+    "Ethiopian–Somali conflict",
+    "Naval operations against Somali piracy",
+    "Operation Atalanta",
+    "American intervention",
+    "Puntland–Somaliland conflict",
+    "ISIS insurgency in Puntland"
+   ],
+   "intensity": "Major war",
+   "tier": 0,
+   "started": "1978",
+   "countries": [
+    "Somalia",
+    "Somaliland",
+    "Kenya",
+    "Ethiopia"
+   ],
+   "cumulativeFatalities": "376,200–1,000,000+",
+   "fatalitiesByYear": {
+    "2025": "10,788",
+    "2026": "6,680"
+   },
+   "lat": 3.569,
+   "lng": 45.192,
+   "summary": "The Somali Civil War is an ongoing civil war that is taking place in Somalia. It grew out of resistance to the military junta led by Siad Barre during the 1980s.",
+   "wikidata": "Q243620",
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Somali_Civil_War"
+    },
+    {
+     "label": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q243620"
+    },
+    {
+     "label": "List of ongoing armed conflicts",
+     "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
+    },
+    {
+     "label": "Google News",
+     "url": "https://news.google.com/"
+    }
+   ],
+   "sides": [],
+   "news": [
+    {
+     "title": "The New York Times. . Satellite images reveal the UAE transformed civilian airports in breakaway regions of Somalia into large military facilities. Flight tracking data shows the U.S. has made visits. Our visual investigations reporter Christoph Koettl explains.",
+     "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxObjluT1BXeVh5WXN3dHBpVnBnc2E1QVpiVVpqYkRmbGJza05nbmlEaDkwZjNrZ20yYW1xTjBZTHlQQ3hDcXFYbmFYbDFkdi1nWFM5eUxGMS1rejZMNlkza0w2VGZjQjh0SHh3RjY0eHNzQm1DcnFOcTU0dENfRGo4dkVyZVBkMm8zR29YdVZwNnFRR3FMcVY1c0o5c1JUUG1pRXEySmpPQ2tYa3Q3MHJsSzlMaTVMYzNWY2NQZDlLRUZOMDY3?oc=5",
+     "source": "Facebook",
+     "date": "2026-11-20"
+    },
+    {
+     "title": "Family seeks hate crime charge in Near-Fatal attack on Somali Uber driver",
+     "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPRGpRUU5DbHlzOWZLVk1FcGpobXEwSGtvLTF6WkhzTXpJQXJ6VDd6VGw5X0RLdmlPd3hjLVpGNmlhQnBvV19UWGdJWEd2OG1yZmxJdkxpNUk1R0JSYUhCb1Zud1dxUHVDWDdGaEt6aFVQLUY2cUVmRjdUY1BNUVI5VGlqWjZSbGNrUWpDSTdvbkVXemZDZ0ZrSTk2RGg2UEhsdXQ5Y0I3b2ltbEhjVEs2bTZOSjdSbktoaGFHeDFmOXk?oc=5",
+     "source": "Hiiraan Online",
+     "date": "2026-11-25"
+    },
+    {
+     "title": "Demolitions Public Land and the Test of Law - In Somalia's capital Mogadishu power has strong muscles intended to destroy most vulnerable",
+     "url": "https://news.google.com/rss/articles/CBMigwJBVV95cUxOQm1XcF80VWJCTkZWbDJ2Qm4wZ1V2MDBjLVhiWEktdjUzREkxQjBwYTgyVTlROTljeGxwVk9pTXl3eE92dGxRUjJVbUJkTzU5dDI5N21aTjl6NC1ZeG44RFFsZGNMN1BjN21rVGVtTldfb3RZNlFpMkRBRXFGc2UxMmNsaFg4UWpSdkROM0t6SjY0WmJsdVI0Q2t1YV9XRG9zSVM3VkRYT1E1c3RocUZaWmRmSHNRZ3NkbFRsNXBSc05fd1VXUWdfOE1BQmlRaEZOQUN6WkplbHZMam54TkpXejNMTmI1R3AzQnp0YVdPekJsRkllR1g1V1R6NVNLcy1pOUh3?oc=5",
+     "source": "Horn Observer",
+     "date": "2026-11-23"
+    },
+    {
+     "title": "Ilhan Omar’s fate in federal case could come down to Kenya refugee camp docs: ‘Caught red-handed’",
+     "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOQndJWDNfcmprMmVCQk40amlod1FTdXpiVHF4cHlEOVRNVERiQ0JRaF9ucFBJb1hONWdrZFB3Y2ViQ0lrVS0yM3o0cnBQTzFrU3BSREU2NWlpS2p5RTMxR0Z4SXdfb0xQNlE3Z3pTLVFpQjY0cHNHT1RjRXdTamF2bXZ0VDlIaTJUWXZoWnRud1NxN0xoUlZ1R1V1ZnBNM0U1eExCcnRVN01tVVpKU1VsRXpMbHNBaXhKRG9oXzhWWQ?oc=5",
+     "source": "New York Post",
+     "date": "2026-11-25"
+    }
+   ],
+   "newsVia": "Google News"
+  },
+  {
+   "id": "insurgency-in-the-maghreb-2002-present",
+   "name": "Islamist insurgencies in the Maghreb/Sahel",
+   "includes": [
+    "Boko Haram insurgency",
+    "Boko Haram–ISWAP conflict",
+    "Insurgency in Mali",
+    "2026 Mali offensives",
+    "Insurgency in Niger",
+    "Insurgency in Burkina Faso"
+   ],
+   "intensity": "Major war",
+   "tier": 0,
+   "started": "2002",
+   "countries": [
+    "Algeria",
+    "Benin",
+    "Burkina Faso",
+    "Cameroon",
+    "Chad",
+    "Ivory Coast",
+    "Libya",
+    "Mali",
+    "Mauritania",
+    "Morocco",
+    "Niger",
+    "Nigeria",
+    "Togo",
+    "Tunisia"
+   ],
+   "cumulativeFatalities": "488,500+",
+   "fatalitiesByYear": {
+    "2025": "24,046",
+    "2026": "21,535"
+   },
+   "lat": 27.397,
+   "lng": 2.808,
+   "summary": "An Islamist insurgency is taking place in the Maghreb region of North Africa, followed on from the end of the Algerian Civil War in 2002. The Algerian militant group Salafist Group for Preaching and Combat (GSPC) allied itself with al-Qaeda to eventually become al-Qaeda in the Islamic Maghreb (AQIM). The Algerian and other Maghreb governments fighting the militants have worked with the United States and the United Kingdom since 2007, when Operation Enduring Freedom – Trans Sahara began.",
+   "wikidata": "Q632787",
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Insurgency_in_the_Maghreb_(2002%E2%80%93present)"
+    },
+    {
+     "label": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q632787"
+    },
+    {
+     "label": "List of ongoing armed conflicts",
+     "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
+    },
+    {
+     "label": "Google News",
+     "url": "https://news.google.com/"
+    }
+   ],
+   "sides": [
+    "Algeria",
+    "Mauritania",
+    "Tunisia",
+    "Libya",
+    "Mali",
+    "United Nations Multidimensional Integrated Stabilization Mission in Mali",
+    "Niger",
+    "Chad",
+    "France",
+    "Salafist Group for Preaching and Combat",
+    "al-Qaeda in the Islamic Maghreb",
+    "Jama'at Nasr al-Islam wal Muslimin"
+   ],
+   "news": [
+    {
+     "title": "Algeria - Civil War, Islamists, Army",
+     "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxOQzIzbW5YU1Bya184dW5uYXpJVDRxckg4a2FER21hcFJEcWx3Wm90YjRlTVdhekZ0UklKdm1YOWkzTWh5NG1CSG5zN2xYbnpjQWNURHF6bllPMlJoTGlMVVl4TnJPc016NWFQQk5lWWRsSVBoaDg0bmhlajZESU8zUGlGZ3h4WFk?oc=5",
+     "source": "Britannica",
+     "date": "2026-11-20"
+    },
+    {
+     "title": "Algeria’s war talk masks deepening social and economic crisis",
+     "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOclkxbk1laGJOM0ZMNnhDTV9DVDlmYUtMdHVlSDhtV2xMZE5xTVFuUWY2VElpUC05dXNhbHJ1bzBEX3dibnF2d2lGTmVFSmg5bG9yc2NUZUt6cFJoVFJlTTJ4NERDQUotT3c4LVJRUENhbERnM1VCWTRHZmM0elRhbGVVeUg3TEN4Rms1V2JXVXJyQllaVUhPUlZQS0hEc1pWbFE?oc=5",
+     "source": "The North Africa Post",
+     "date": "2026-11-23"
+    },
+    {
+     "title": "Algeria says killed two Moroccans over drug trafficking",
+     "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxOdW5GYlNIUUZ5eDRXUmpYMENFWENxbkc2aEZHSEcyWkxUSk5kUWZxZTI4VHdES2dqcG52RzNpeUZzck14LWxDWXZBWjdGX2loTWNJVW0telRPOXkteWItNDdqN010MHlRT3VmWXRLSExMenJwN0ZTd1E1UkRYY3d5NDd1YXI4cWpxNmg2ddIBkgFBVV95cUxNcEZNWldYZ3hlbWFoLUZNWUFJQnE5bkJ4cXZOVmNlM1Q2c1hRc3JwdDhLem5ZWGJVUXliVjNVQ0dpR3c2YkxMZkc5bWp1YW9ucHYzUGhKd2Q0VHl0MmY2aktkenVIR2djOXVaZ3BWendxNDVQTnhHNW15dzFLWXpwZGluOXZrSkFHUW4zV0M5MG5HUQ?oc=5",
+     "source": "The New Arab",
+     "date": "2026-11-21"
+    },
+    {
+     "title": "Algeria war veterans back protests demanding end to Bouteflika's rule",
+     "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQd0JYNE5CeUxCUG4wOFBxWlJTbEtnNzhKRm5NQ3p2MmdYeGRGSmItSkZZb1ZOZnVRTk1admhNcGFYa1p6dWtYVTdBUzQwZzJjUU1WbDlGZVlUNUFudUJkZWFaTzFZQkI5WDBqRktsLU9iWEZBNFc5WVpLUXBlMHRvMGRxaXE5aTQxY2dxT3BoOFpSQ2Q5RjJwc0JHRTRxWDVoSDY3eFpXSEpXTm8?oc=5",
+     "source": "Yeni Safak English",
+     "date": "2026-11-20"
+    }
+   ],
+   "newsVia": "Google News"
+  },
+  {
+   "id": "mexican-drug-war",
+   "name": "Mexican drug war",
+   "includes": [
+    "Gulf Cartel infighting",
+    "Los Zetas infighting",
+    "Sinaloa Cartel infighting",
+    "Spillover in Texas"
+   ],
+   "intensity": "Major war",
+   "tier": 0,
+   "started": "2006",
+   "countries": [
+    "Mexico",
+    "Belize",
+    "El Salvador",
+    "Honduras",
+    "Guatemala",
+    "Nicaragua",
+    "United States"
+   ],
+   "cumulativeFatalities": "358,000–417,000",
+   "fatalitiesByYear": {
+    "2025": "8,973–10,767",
+    "2026": "6,593"
+   },
+   "lat": 23.92,
+   "lng": -102.289,
+   "summary": "The Mexican drug war is an ongoing asymmetric armed conflict between the Mexican government and various drug trafficking syndicates. When the Mexican military intervened in 2006, the government's main objective was to reduce drug-related violence. The Mexican government has asserted that its primary focus is on dismantling the cartels and preventing drug trafficking. The conflict has been described as the Mexican theater of the global war on drugs, as led by the United States federal government. Analysts estimate wholesale earnings from illicit drug sales range from $13.6 to $49.4 billion annually.",
+   "wikidata": "Q475678",
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Mexican_drug_war"
+    },
+    {
+     "label": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q475678"
+    },
+    {
+     "label": "List of ongoing armed conflicts",
+     "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
+    },
+    {
+     "label": "Google News",
+     "url": "https://news.google.com/"
+    }
+   ],
+   "sides": [
+    "Mexico"
+   ],
+   "news": [
+    {
+     "title": "Field Report: Zacatecas: Why Reducing Homicide Rates Is Not Enough",
+     "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOeXIzcDUwQ1JQYWJrVFFsRm1EOTRsRVdaZTN0eE5pWEVMVm1QU280TjhXc1ZtRXZTOWRBYTFkTzRMNGI0MVJGcmpYamhVa0hYU3FxRkMyRjQtbTJhTnZTSkktLXhRb1lZNWJwLUpQNUVMa3JPS1JtOEJfTy16aE9DWkxqMXplSGtOOXc1QmdMZWZhbGJIYndkc2JxYzVlR0VLcFNaMDFxRl8?oc=5",
+     "source": "Small Wars Journal",
+     "date": "2026-11-24"
+    },
+    {
+     "title": "Mexico arrests drug kingpin on FBI's 10 Most Wanted, sparking violence in Sinaloa",
+     "url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxONVpRUHZYdzNpWnpjLTh4SDkxUVVDRnFQQkR6LVM4QnppMDdKTEozYTdaMm1ySGNBUzFuV2hKM3RZUFFRWTl6YUZNMkt6OEFQWlZIanRCNXoweDdETjNWRjdWMGtnUGEtbVJhSk1GajJHZkhvQ2R5el9oSjh0cWl5N09LMVhGX2hEUXZrQ3JMLUZYdnZITVRqYzZpYjc0NVRIYVBwR1Brb0VRamVnMjRtR1FtbTJMMWI5endhM1V4SDItclNjSHU5akF6VVFlV1NoSlFMcjlaU2luN3NmdGl0bkhaZ1V3aDBhdmdKNTdKYmc?oc=5",
+     "source": "WINK News - Southwest Florida",
+     "date": "2026-11-21"
+    },
+    {
+     "title": "Finding our gratitude as we prepare for Thanksgiving | Guest Commentary",
+     "url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxOcWlyV25XZUlPZlNmT3ROXzFyM0NmYWl0ckJWUXppOElJWWl3UHY1V2pUR1hRNEhwSGcxVTFmQVozWjZ5NFplZnRkRlhWNE1CNTZaRm9Rb1ZqWDM2WTQtOTBJQTg5SHJQSWVDNS1UcEk4X21yOC1uZGZPdHFGOUlnOHdHSkpMQzhENHJadHd3RmJ6YmVBa3pvUFNieFBfSmNic2U5MlRRX1BhWnNOY2FmRlJmbjU2bkV1X0t6aVJfcXRwZjBhdG5RZGctWGtmRHBYSXhSTVB6UDhKUDE5UGtwM0FJRDJ6bUF4LUlpVEp1TFRleDB4aGxyVw?oc=5",
+     "source": "Santa Maria Times",
+     "date": "2026-11-20"
+    },
+    {
+     "title": "US and Mexico Arrest Cartel Leader Fausto Isidro Meza Flores",
+     "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNcFNjdVc0cWtuYUxHcnlzNncxVWVYTmFvZmJYdXl0c3o2WnpIVGxXdGhUTGR2ZkdQYVI2S0JEVjNwV0k5d0hNZ3ZNQ0RQWmJ5Z3gxb3ZpUDNHcTJUX2o3bmVHYmlkWHpRazUxcHMyX1pkYXFiYzZueFp5T2FCRXQ2V3hucFE4RHdFaDMwYVJfeThZMGhMU0dWS21kb1M0R0M3SHc?oc=5",
+     "source": "Head Topics",
+     "date": "2026-11-21"
+    }
+   ],
+   "newsVia": "Google News"
+  },
+  {
+   "id": "yemeni-civil-war-2014-present",
+   "name": "Yemeni civil war (crisis)",
+   "includes": [
+    "Al-Qaeda insurgency in Yemen",
+    "Saudi Arabian intervention",
+    "Houthi–Saudi conflict",
+    "2026 Yemen offensives",
+    "Strait of Bab al-Mandab crisis",
+    "Houthi–Israeli conflict in the Red Sea"
+   ],
+   "intensity": "Major war",
+   "tier": 0,
+   "started": "2011",
+   "countries": [
+    "Yemen",
+    "Saudi Arabia",
+    "United Arab Emirates",
+    "Occupied Palestine"
+   ],
+   "cumulativeFatalities": "385,000+",
+   "fatalitiesByYear": {
+    "2025": "2,940",
+    "2026": "11,416"
+   },
+   "lat": 15.328,
+   "lng": 45.874,
+   "summary": "The Yemeni civil war is an ongoing multilateral civil war that began in late 2014 mainly between the Rashad al-Alimi-led Presidential Leadership Council and the Mahdi al-Mashat-led Houthi Supreme Political Council, along with their respective supporters and allies. Both sides claim to constitute the official government of Yemen while the Presidential Leadership Council is recognized by the United Nations as the official government.",
+   "wikidata": "Q19686631",
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Yemeni_civil_war_(2014%E2%80%93present)"
+    },
+    {
+     "label": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q19686631"
+    },
+    {
+     "label": "List of ongoing armed conflicts",
+     "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
+    },
+    {
+     "label": "Google News",
+     "url": "https://news.google.com/"
+    }
+   ],
+   "sides": [
+    "Ali Mohsen al-Ahmar",
+    "Khaled Bahah",
+    "Ahmad Al Asiri",
+    "Hamoud Saeed Al-Makhlafi",
+    "Abd al-Malik al-Houthi",
+    "Abdrabbuh Mansour Hadi",
+    "Ali Abdullah Saleh",
+    "Mahmoud al-Subaihi",
+    "Mohammed Ali al-Houthi",
+    "Abdullah Yahya Al-hakim",
+    "Abdul-Hafez al-Saqqaf",
+    "Hussein Khairan"
+   ],
+   "news": [
+    {
+     "title": "Houthi movement (Ansar Allah) | Yemen, Religion, History, Conflict with Saudi Arabia, Goals, Maps",
+     "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBkc1djRkdJREFHMlQ0UmxkQ3VDbXdvUmY2SXpsTjh0eXBMMWJuUEZRZG9vejBSYlhwNlU1SUVNS3ZEVUZhSWVvOF95RlpPUUJxa01TbmpXeEltUXNy?oc=5",
+     "source": "Britannica",
+     "date": "2026-11-24"
+    },
+    {
+     "title": "Yemeni Government Defends Aden Against Houthi Advance",
+     "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxNNjJSLWw4RnRnTFlIM1dub0VHcUlEaS1vcGcwLTNFeXFaRENWVEhaNnpuQVlXS1diWF96ckgwbzBONU9UbndyTWtBQnVIWXBqWEpxdGlReW5TWmx2UmdzaWJ0U3RGbWY3RldFcVVucUNLc0NxMFRfb0drbk1pLTV1UzRUWkI?oc=5",
+     "source": "조선일보",
+     "date": "2026-11-26"
+    },
+    {
+     "title": "Saudi Coalition Strikes Sanaa After Houthi Drone Wounds 11 in Riyadh",
+     "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFA1OE1JTXlJWEg0TG5jRUVISWljZ1EtbDRLOW9kYzViMnRFZFlhc1J0RVFQcGI5cTYzS001aHBCVjU1VTJVWm0xQk1QT0xpejU1YUZBZWlDYkRxTGZQSzJ0WHNZa3ZId3NPVEdkSw?oc=5",
+     "source": "https://houseofsaud.com/",
+     "date": "2026-11-26"
+    },
+    {
+     "title": "Iran War Spreads to Red Sea and Caspian, Gulf Quiet as US Forgoes Strikes",
+     "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPZVB6QzVLazd0Z3k5YkN0SGZOMlJzQTVEeTdTRmxQamVETjI3aS1HaFo2UGRfQXpqU0hDRGlQbFpqNU1NanRNMTFPUk93dEd4OHZZS0wwRW00QkU0eTlPR2hPbkdiVnhjNkEyLThOaFM1bVpqd2xFNXZiX0pacHNxVkF5QW5GUDhuN0c1Y3JUN1FwamdIdFc0X2JGTEdSSnZoeXEwMg?oc=5",
+     "source": "EnergyNow",
+     "date": "2026-11-21"
+    }
+   ],
+   "newsVia": "Google News"
+  },
+  {
+   "id": "russo-ukrainian-war",
+   "name": "Russo-Ukrainian war (since 2022)",
+   "includes": [
+    "Ukrainian resistance in Russian-occupied Ukraine",
+    "Attacks in Russia (partisan insurgency and rail war)",
+    "Belarusian involvement (partisan insurgency)",
+    "North Korean involvement"
+   ],
+   "intensity": "Major war",
+   "tier": 0,
+   "started": "2014",
+   "countries": [
+    "Ukraine",
+    "Russia",
+    "Belarus"
+   ],
+   "cumulativeFatalities": "369,028–827,000+",
+   "fatalitiesByYear": {
+    "2025": "80,245",
+    "2026": "50,611"
+   },
+   "lat": 49.725,
+   "lng": 32.141,
+   "summary": "The Russo-Ukrainian war began in February 2014 and is ongoing. Following Ukraine's Revolution of Dignity, Russia occupied Crimea and annexed it from Ukraine. It then supported Russian separatist armed groups who started a war in the eastern Donbas region against Ukraine's military. In 2018, Ukraine declared the region to be occupied by Russia. The first eight years of conflict also involved naval incidents and cyberwarfare. In February 2022, Russia launched a full-scale invasion of Ukraine and began occupying more of the country, starting the current phase of the war, the largest conflict in Europe since World War II. The war has resulted in a refugee crisis and hundreds of thousands of deaths.",
+   "wikidata": "Q15860072",
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Russo-Ukrainian_war"
+    },
+    {
+     "label": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q15860072"
+    },
+    {
+     "label": "List of ongoing armed conflicts",
+     "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
+    },
+    {
+     "label": "Google News",
+     "url": "https://news.google.com/"
+    }
+   ],
+   "sides": [
+    "Russian Armed Forces",
+    "Armed Forces of Ukraine",
+    "International Legion of Territorial Defense of Ukraine",
+    "Georgian Legion",
+    "DPR People's Militia",
+    "LPR People's Militia",
+    "Donetsk People's Republic"
+   ],
+   "news": [
+    {
+     "title": "Russo-Ukrainian War – Day 1730: APEC Summit in Shenzhen",
+     "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNZkVCdjdtWU9PaWhKdl8zbm5YTnZBMVE4OWlJbmx3bUVfNlhvYWE3dWNCNk5BS1VwcldtMnI0Y3Y2emc5aExRV2YyMV9KU3dZeWFCWHZBZGI0ZlZ0VnRVUGFMNk0zT1VIanNoZFY0TUZQeHhCTEx1SjdXcGlCeGVaMDJ3MFB4Rkw2Y1E?oc=5",
+     "source": "Ejércitos",
+     "date": "2026-11-20"
+    },
+    {
+     "title": "Russo-Ukrainian war, day 1732: Residents report explosions and drone activity at Russia’s Baltic Fleet base in Kaliningrad",
+     "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE1yYlJUZjJMY3pQZUttVW5IQTlZRDcweGQxc1l6TTR2T0F1b2VycE1XYl9XSmtGb2wzX2poR0c1MG1SX0VIRHM5a2FNbnM1MEItQTJuaERTNmR4aW5iX25tdEhkZlZidG5rM2tua3QxT2FUSmFCVTU0?oc=5",
+     "source": "Euromaidan Press",
+     "date": "2026-11-21"
+    },
+    {
+     "title": "Witnessing the Russo-Ukrainian War, Valentyn Syniy Adopts a Theology of the Road",
+     "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOSFlsNkRMNWxhWXY3X3dYdzBVc2ZieDdndUlyNUR5WTJOencwSHdLeUEyS3lJeGZMS19sUlJVWG1QT3BxNk1rTDgyRkJBdWE1M3gtOU9lVEpwc3FaeUtsVUhEYzZod3FHWUtIUjYzcW1VbExMQjY2T3Nyd2I2cDhCalhTNEx6OWxVeHBDYzlRNjk5ZW1Lc005RUdqNHltT1IwNlE4VmplcHg0WEdHRWpnNFR0VHNYd1BHdEU1QQ?oc=5",
+     "source": "The Wheaton Record",
+     "date": "2026-11-23"
+    },
+    {
+     "title": "Russo-Ukrainian War – Day 1636: Back to the nuclear issue",
+     "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNd2dUQ3N0ZEVvNHFSUDlseUdWVl8tdjNZQVZPNG50Y2hCTFdBcmJtMFFONFh2eEQtSG15RWNpUWJBVGNDZjl5QTFCR0VBY002RnIzZlkyVHRKcE9JWmtnU2w5eFdPQ19PWVlPX0swTGZtMWhQZDFUUzJvb2xXSXRYLWlnRmx5VnJ3SW1idg?oc=5",
+     "source": "Ejércitos",
+     "date": "2026-11-26"
+    }
+   ],
+   "newsVia": "Google News"
+  },
+  {
+   "id": "terrorism-in-iran",
+   "name": "Insurgencies in Iran (2026 Iran war)",
+   "includes": [
+    "Separatist conflicts in Iran",
+    "Kurdish insurgency in Iran",
+    "Iran–PJAK conflict",
+    "2026 Kurdish–Iranian crisis (Western Iran clashes)",
+    "Arab insurgency in Khuzestan",
+    "Insurgency in Sistan and Balochistan (Sistan and Balochistan clashes)"
+   ],
+   "intensity": "Minor war",
+   "tier": 1,
+   "started": "1918",
+   "countries": [
+    "Iran",
+    "Iraq",
+    "Turkey"
+   ],
+   "cumulativeFatalities": "47,900+",
+   "fatalitiesByYear": {
+    "2025": "63",
+    "2026": "7,060+"
+   },
+   "lat": 32.166,
+   "lng": 54.931,
+   "summary": "Numerous civilians, including men, women, children, government officials, activists, secular intellectuals and clerics have been victims of assassination, terrorism, or violence against non-combatants, over the course of modern Iranian history. Among the most notable acts of terrorism in Iran in the 20th century have been the 1978 Cinema Rex fire and the 1990s chain murders of Iran.",
+   "wikidata": "Q7703934",
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Assassination_and_terrorism_in_Iran"
+    },
+    {
+     "label": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q7703934"
+    },
+    {
+     "label": "List of ongoing armed conflicts",
+     "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
+    },
+    {
+     "label": "Google News",
+     "url": "https://news.google.com/"
+    }
+   ],
+   "sides": [],
+   "news": [
+    {
+     "title": "Energy price cap: The Iran war is being blamed for raising bills - here's why",
+     "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9PR0toS1BhNmQzM1Q5UGtTcWdIeVA5NkFSem85ck1GQVhRRndnZkxHQzFtMnV3VmFRWTZVdy13SDdCeTI5Q01XaFFHM0FDME9JMEJ0aFBnSUR2QkZaTXc?oc=5",
+     "source": "BBC",
+     "date": "2026-11-25"
+    },
+    {
+     "title": "Energy bill increases since the start of the Iran war have been three times higher for a typical fossil fuel household than for a modern electric household",
+     "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxPWklkYmVQUXBmWmFmRDdxaFFKSFJ0MnZmRjRsWS04RDY5OERaUkZfVkJPSW1ZN2VieFJybDlvZGRLZ3pha0ZsZWc1Rm5CbmpEc2kybDdwcm1tOXBzTjJZbWFWZzREVHpHR3lmSDl3YUw3M1ZURWhYQjVqVWl2MzdLdy1mQ2s?oc=5",
+     "source": "Climate Change Committee",
+     "date": "2026-11-25"
+    },
+    {
+     "title": "What Trump should do next about Iran",
+     "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxQVW9kOUVYOU9ZUkVFaEM1OTV2WGVfeVhYNTFFOVg4QkJycEZrV0w3VmVHSUNPSW14alU0V3dKVTBUSGdCUEthdmo2MnR4b3ItdW1adUYteTRQQXl5bmZSdFJlUUlrNkxuNHhsdGtaT1hJSHNZTU1VRU9EclZjV2h2bE9GS1NlQXM?oc=5",
+     "source": "Atlantic Council",
+     "date": "2026-11-25"
+    },
+    {
+     "title": "Two Italians killed in Kuwait drone attack; Trump says Iran war ends ‘whenever I want it’",
+     "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxOWXdZWk9aY1VrSmlEbExnWV93RnFxTDFwV3RLdjhtYW1SaXU0aXJCbGJBRUVOS0FramRyaVdva0VwUWRLQlBZdHcwYktUWVlwaEp4MTNEeUN3Y2Q1bi1RUG5TRTZoWlY0S2lFUVpqSVF3NzJQZ2hiUGFjU19LTW93cERfYzNNY3VKalHSAY8BQVVfeXFMTXlQSEhkZ20xOFJXTzlvczJPelo5S294dENlYTBpMzAxVHVxeHhFNUk3eHZVYVQzY0t6cWZ5T1hEYUdjbkc1SmROUVVTVWc4Mjdza3FYNXplRTE0Qk5NY1NyTTNwdEN6Z2JyWEJhOVRVd3RVOVRoTVlubGNUYTBsWS1zTkZ3czV6WThYWkk4RVU?oc=5",
+     "source": "CNBC",
+     "date": "2026-11-27"
+    }
+   ],
+   "newsVia": "Google News"
+  },
+  {
+   "id": "terrorism-in-pakistan",
+   "name": "Insurgencies in Pakistan",
+   "includes": [
+    "Afghan–Pakistani border conflict (Islamist insurgency)",
+    "Insurgency in Balochistan",
+    "Balochi–ISIS conflict",
+    "Spillover in Iran (Sistan and Balochistan clashes)",
+    "Insurgency in Khyber Pakhtunkhwa",
+    "2026 Afghan–Pakistani war"
+   ],
+   "intensity": "Minor war",
+   "tier": 1,
+   "started": "1948",
+   "countries": [
+    "Pakistan",
+    "Afghanistan",
+    "Iran"
+   ],
+   "cumulativeFatalities": "23,100+",
+   "fatalitiesByYear": {
+    "2025": "985",
+    "2026": "1,565"
+   },
+   "lat": 29.328,
+   "lng": 68.546,
+   "summary": "\n\n \nTerrorism in Pakistan, according to the Ministry of Interior, poses a significant threat to the people of Pakistan. The wave of terrorism in Pakistan is believed to have started in 2000. \nAttacks and fatalities in Pakistan were on a \"declining trend\" between 2015 and 2019, but has gone back up from 2020 to 2022, with 971 fatalities in 2022.",
+   "wikidata": "Q7703943",
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Terrorism_in_Pakistan"
+    },
+    {
+     "label": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q7703943"
+    },
+    {
+     "label": "List of ongoing armed conflicts",
+     "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
+    },
+    {
+     "label": "Google News",
+     "url": "https://news.google.com/"
+    }
+   ],
+   "sides": [],
+   "news": [
+    {
+     "title": "Pakistan minister visits India for first time since 2025 war",
+     "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQU3cxeG5EWFBBdXltOGNvckRTYW5hMi1NY0ZuOFZIZ1h2cnNhd1hnUUo3bXBLbU5jcmVnd0tjbC0xU0k5MWhDM2pzbG92dDVBTkpMeDhlWnBXOTdUVk1JMkxJanVxYV9WYnM3eFlhZEx1SFVnOWZlSlhDLUx3VkFiVGVFUmFnd2R3TW9RWWU1QTAxZTdGeDhrd19ZbEpxWEFYamp4a0hGRzdSUzFoUjZSbNIBtgFBVV95cUxNVlJtTzBEX2VGRkFtcWVTUnJXN0VGMWtzenkyQUtuTEtFY2ZZdk5jZDRyNXduc20tYmxGdEFWZDBuaXQ1czdoT05YQV9RR1FIVmVSaVpDR25nd3d0dFRoenNoSGtabW5EQWVlWTI3dHJZb293U0FJSU1DLXRTNVZydm1mbEtEMWhKb3ZXMzdrUWk5THNjNXpuVWpaVWcwSGcxV1A5Qk1FajBNbTRzeXNEUFUySk1Kdw?oc=5",
+     "source": "Al Jazeera",
+     "date": "2026-11-20"
+    },
+    {
+     "title": "Pakistan FM hopeful for US-Iran deal, warns against prolonged war",
+     "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQRjZFeDJFbTdjUFI5UDUzbUhTMGNtVEpmVFhUYkQ4YURQS21NMXdHbXhSeExSRXc4NnZZeDNRaGtUNXg2bmh5YW5LUmlCVVNtcDNoanY5Zk1WSU5uQ0pnYlAxYWtteVpQU1kzcExydEF0VUREdUZ3emN6OGM4VXBBNUxNRy03QlpOUmNkNUpXUjZkNlF1WkV5WG02ak9mSlRkOHhoWEJ3?oc=5",
+     "source": "Arab News",
+     "date": "2026-11-22"
+    },
+    {
+     "title": "Is Pakistan backing anti-Taliban groups in Afghanistan?",
+     "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNaU1yXzhvNUZUNGdYQVlCMlZ4eG91cFh0djAzVzVxdnZLekpUSW5RZHJ5UzBXRnd2elJvVmR2clE0UzRyeTNuR205WmdTZl81c0FQUEozSi1aMkU2aUxsUXNrN3ZJcUNxd2Z5X0xMOUVSUUpSSkpqc2F4MW5OQ04zRlc2cjlzU25KdGtpakMwZFXSAZABQVVfeXFMTlJxblhIUUd4Tm5yb3RWMVdzSjFmdFlmVXdzenIwV1N1bXdUUDJadG9iRnlCQW4xYktqZktTMjBraEZESHo1dldwZFNsVmFRYkVjYjVQenNZSXFUdUFra0RCQWZ4c3gwdHRDR25EMzhRdXcxSFhQSnVyWklHaEcxeVQ5TUtkUksxQ25xUzhZM1M3?oc=5",
+     "source": "DW.com",
+     "date": "2026-11-20"
+    },
+    {
+     "title": "America’s Afghan war weapons now haunt Pakistan",
+     "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOYzhVZ08yRHlremdsT2ZiSUFaUGJDWlVfb3BEYTRXLWVwc0swQnVYSWVOc0Vwc2hpQUphUmhMOVdEMFBzYnoxRTJfQmwyTDVRRkJDYTI2eHFXNk5Rb0JudWpqXzRJb0VsV0FvekJfWjBQVm9UR2hFdTFoWk9iS3VJX2hTc3l5NVI1MmdHMi1OM0ZYZnMwZ2xuUlIwMXlScV95NDBMTVZEQW5DbnlZck9oXzBxcF9WUkdJek5ZeXp3?oc=5",
+     "source": "Atalayar",
+     "date": "2026-11-22"
+    }
+   ],
+   "newsVia": "Google News"
+  },
+  {
+   "id": "ethiopian-civil-war-disambiguation",
+   "name": "Ethiopian civil wars (since 2018)",
+   "includes": [
+    "2026 Ethiopian offensive",
+    "Eritrean invasion of Ethiopia",
+    "Oromo conflict",
+    "OLA insurgency",
+    "Gambela conflict",
+    "Fano insurgency"
+   ],
+   "intensity": "Minor war",
+   "tier": 1,
+   "started": "1961",
+   "countries": [
+    "Ethiopia",
+    "Eritrea",
+    "Somalia",
+    "Sudan"
+   ],
+   "cumulativeFatalities": "500,000–616,300+",
+   "fatalitiesByYear": {
+    "2025": "6,332",
+    "2026": "6,836"
+   },
+   "lat": 8.033,
+   "lng": 39.089,
+   "summary": "The Ethiopian Civil War took place from 1974–1991 between Eritrean and Ethiopian rebels on one side, and the ruling Ethiopian military junta on the other.",
+   "wikidata": "Q115121302",
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Ethiopian_civil_war_(disambiguation)"
+    },
+    {
+     "label": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q115121302"
+    },
+    {
+     "label": "List of ongoing armed conflicts",
+     "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
+    },
+    {
+     "label": "Google News",
+     "url": "https://news.google.com/"
+    }
+   ],
+   "sides": [],
+   "news": [
+    {
+     "title": "Conflict in Ethiopia | Global Conflict Tracker",
+     "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE5jY01qYVJ0eS1nVkI5NnNoa0JhODlhTDdReEdVREl2dFphVlRfTE1ZeDlvamJIdHo1ajhxeDRkY20wNXhpV0N5eW5oaTFjM05zc3V0aHY3V2k4M2NJVFJVcVV0ZmpPcndPQWlBNWwwVHliTmlKR25jZHFn?oc=5",
+     "source": "Council on Foreign Relations",
+     "date": "2026-11-23"
+    },
+    {
+     "title": "Conflicts in Ethiopia and Sudan highlights risks of wider regional instability",
+     "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFAwRnppTjJVRXJ2VHJTdzVIZ3JWWGFPcDM3VnNxdjROeVhieTU0VVVEQkJmVmJ1RWNZT0xJbFVOSVZIYTVaVXp6S3FzdnBvbWNLNDBVUGEzYmRUMC1UcVVRMTl0M0pLdklNSVNNYjZ4VkdXQ1F4?oc=5",
+     "source": "The House of Commons Library",
+     "date": "2026-11-24"
+    },
+    {
+     "title": "Ethiopia: Lethal artillery strikes on civilian neighbourhoods in Tigray’s Alamata city must be investigated as war crimes",
+     "url": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxPVHlHdGtkcFlkcG1DUExQVFoxVU5ydk1jbzUtTGtjeERhTHdoakktdWZNZ1phTXJFdVR5NS1zZEh4X202UnpYQ1Btc1Q2dkNadVhwY1UtOTFLTEJvRVBuOFd3X3hZc2Q1LUppRElaSUhNM0xwX3Q2TTFZdE1EU3ZjdGZyT2lRX3FuZkYweTA4SzhvbExrODNCVXA5UWxFcVY1TzRsWVc3Z1FUckduTzJIM2xzRW1JbERmNW9DczZzcU82ZFFLb0lsYlNYdEQweTFiMmUwZjFzMkR0N3Z2NHFsNzBkWkItVE1ac21ha2o4VVAwbjlvbW1EYTRuSQ?oc=5",
+     "source": "Amnesty International",
+     "date": "2026-11-23"
+    },
+    {
+     "title": "China walks ‘thin line’ in push to prevent another Horn of Africa war",
+     "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNV2lBSkpVVkNwSHotal94bmRSMXJmTkJNZVZ1bzIyMXNPcG1GUXJGRXJmdWVkWnUtNHJ4ZHU1Y3hYNUh1enpad3ZDWkFXS2YwNEtPWndabWdWV3ZKQ2xrREFiMWxIZFFIX2hMbml6Z1BpY3Bram9zU2pqVXN2OVlMZ0tCbWFSNmNvYXZzYVJETldfTGF4ZHJhWG9neXJ0ZlUwaFA4bzJvZi1ZLWUtVVHSAbMBQVVfeXFMT3Ewem15YlliVmJPNjdRR2I4V3VnSXNFZWI3M3pNREw3Y0c4b2s1SXd2YkRRc2YxRTJ2U21Va2NoTTNPVzlvVVpsOTVpWjdkV2N1X2hneXB3c2EtU0pfOEY2Z0gyZUEzeU43anYzZzc0OU9jbXp4VEFpLURlZ1d0QW5nV2VqYWpUcGdlRk9SRFExV29ldGJhQXpXaXJMWG93eW9aRmFrT3N1Y1h1WUFRbUNxS2M?oc=5",
+     "source": "Al Jazeera",
+     "date": "2026-11-24"
+    }
+   ],
+   "newsVia": "Google News"
+  },
+  {
+   "id": "colombian-conflict",
+   "name": "Colombian conflict",
+   "includes": [
+    "Catatumbo campaign",
+    "Operation Southern Spear"
+   ],
+   "intensity": "Minor war",
+   "tier": 1,
+   "started": "1964",
+   "countries": [
+    "Colombia",
+    "Venezuela",
+    "Ecuador"
+   ],
+   "cumulativeFatalities": "460,300+",
+   "fatalitiesByYear": {
+    "2025": "2,293",
+    "2026": "1,852"
+   },
+   "lat": 3.373,
+   "lng": -73.174,
+   "summary": "The Colombian conflict began on May 27, 1964, and is a low-intensity asymmetric war between the government of Colombia, paramilitary groups, crime syndicates, and far-left guerrilla groups engaged in armed factional hostilities to increase their influence in Colombian territory. Some of the most important international contributors to the Colombian conflict include multinational corporations, the United States, Cuba, and the drug trafficking industry.",
+   "wikidata": "Q169072",
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Colombian_conflict"
+    },
+    {
+     "label": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q169072"
+    },
+    {
+     "label": "List of ongoing armed conflicts",
+     "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
+    },
+    {
+     "label": "Google News",
+     "url": "https://news.google.com/"
+    }
+   ],
+   "sides": [],
+   "news": [
+    {
+     "title": "Ten years after its 2016 peace deal, Colombia faces a return to conflict",
+     "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNZ2Vucm9LcFBubDEtRVZfUmFXSzV2eHk1MXE3dWIxSnlETS1YTTFOZ3Bxal9Yb2wxdXA4UHVsLXpVLVlMeTB3VnZmN2VkV3V5U1dKSkdSU3JIdmpVN2Zxczd2TlBLRWJnQUFMYlBnU3VYSnlNMXdleExkVVRBb01SYmtMalFueDZOdGtKYVMyY2o1REJWWEV6MWs2ajNZZmZXcnFNSlV0RnlDQkpHbHdMWmJVejNCY1JpeF9YLUVJNNIBxAFBVV95cUxOWnRwa0EwdlVKbGJLdGxiTjRsZ2k2SW5nSUFIQVFCVVZXcGx3SUpWZ3ZQWnd1Z3kwdkZiUEtaSzloTmVZaDlTU0VNblJjQXN5TjNJMFpyY1FFMWNmNUlZb0xjUmZuTWdaNjVuczNEVGMyTWZrU3h2Z3JNeWpPbVZ2ZTltNTRDM1lpS1pvYXNTMjZaVDBlZXZUWjdFV2l6TUN4SU1qZUZnVkRFblVFOXNMYVBFWHJnVmpTbU5TaFdHUm40ODVD?oc=5",
+     "source": "Al Jazeera",
+     "date": "2026-11-24"
+    },
+    {
+     "title": "Colombia’s ELN and FARC Dissidents Fight Over Power, Leaving Civilians Under Siege",
+     "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxONHh1anZpWXRhRWlUQUlzY2ttYm03TkRkOF85Vklra292ODgzV2pFLW1SLWVrRHJITEY1eUJZaWlKVkI4dVBKOHZZY1FCZk5aWkZQanVqLTc4dFFoN2FTcXktVXpSbTNtdDJ5WW83c1NtSWFqZ3g4ZjA5NzlaVmxqWTlZVzE0VlNDbWxNZk1NQzM5UHlmcFBEazZHNmtVNU00SU0xelFiVW9jeXFrdTlxa2RyN0tWNGFqUHR5Wg?oc=5",
+     "source": "LatinAmerican Post",
+     "date": "2026-11-24"
+    },
+    {
+     "title": "Making peace with the past: an ex-FARC fighter and his hostage",
+     "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQNDFQZnR2S3F1Snl3WWkxeG8xZnlvdTJnZ1lfRTJIZUZSd0dGVk5uOFZGNmlFSEV0ZUNhY0YzX2dnY2Q0cU5yaDF4elRpRVVLejI4b1A3bTI3QWdVUnd0RlBvVGpkN1E1aTIwQ3hwVEIxQmVyM0NJV0J6TjAtbmQ3ZXJlNVYxM1k5MmktVXctZmE1WGNfOWhuT2tuSTU2NW9WVTlncw?oc=5",
+     "source": "Bangkok Post",
+     "date": "2026-11-23"
+    }
+   ],
+   "newsVia": "Google News"
+  },
+  {
+   "id": "afghan-conflict",
+   "name": "Afghanistan conflicts",
+   "includes": [
+    "Afghan–Pakistani border conflict",
+    "2026 Afghan–Pakistani war",
+    "ISIS–Taliban conflict",
+    "Republican insurgency in Afghanistan",
+    "Afghan–Tajik border conflict"
+   ],
+   "intensity": "Minor war",
+   "tier": 1,
+   "started": "1978",
+   "countries": [
+    "Afghanistan",
+    "Pakistan",
+    "Tajikistan"
+   ],
+   "cumulativeFatalities": "380,000–2,805,000+",
+   "fatalitiesByYear": {
+    "2025": "4,409",
+    "2026": "6,321"
+   },
+   "lat": 34.164,
+   "lng": 66.497,
+   "summary": "The Afghan conflict is the series of events that have kept Afghanistan in a near-continuous state of armed conflict since the 1970s. Early instability followed the collapse of the Kingdom of Afghanistan in the largely non-violent 1973 coup d'état, which deposed Afghan monarch Mohammad Zahir Shah in absentia, ending his 40-year-long reign. With the concurrent establishment of the Republic of Afghanistan, headed by Mohammad Daoud Khan, the country's relatively peaceful and stable period in modern history came to an end. However, all-out fighting did not erupt until after 1978, when the Saur Revolution violently overthrew Khan's government and established the Democratic Republic of Afghanistan. Subsequent unrest over the radical reforms that were being pushed by the then-ruling People's Democratic Party of Afghanistan (PDPA) led to unprecedented violence, prompting a large-scale pro-PDPA military intervention by the Soviet Union in 1979. In the ensuing Soviet–Afghan War, the anti-Soviet Afghan mujahideen received extensive support from Pakistan, the United States, and Saudi Arabia in a joint covert effort that was dubbed Operation Cyclone.",
+   "wikidata": "Q1519107",
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Afghan_conflict"
+    },
+    {
+     "label": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q1519107"
+    },
+    {
+     "label": "List of ongoing armed conflicts",
+     "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
+    },
+    {
+     "label": "Google News",
+     "url": "https://news.google.com/"
+    }
+   ],
+   "sides": [],
+   "news": [
+    {
+     "title": "Afghanistan - Mujahideen, Taliban, Civil War",
+     "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxOdTh2WTYxMFRLTllvRmtQaWpYZG8zY0xQaXFOYTZMVzVBS3l6LVgzWWNmQlpJbDg1YXFRdEVGOXdRYmd4ck8xYmtaMDRiV0c1bVRwWkh5UjNaQ3NZWUozSWJVeWxJcERNMWU2YzJFNWNrWU41ajlKU25GMVNJandsb0RMOEhqd3RhUU1qcDBmUW4yNEk?oc=5",
+     "source": "Britannica",
+     "date": "2026-11-23"
+    },
+    {
+     "title": "HRW warns ICC decision threatens accountability for Afghanistan war crimes",
+     "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQZ2k1dVVLVGszVlh4N1FOZGs3TGJ3Qllpbkh4SWZ0YVVMVXdsdFlDNUxFTUV5OFdwa3EyRW5DTkp1TW1XenNLMkxBU1lfWTd3VGJDdUR6VFlhR3hLWm02Ul9GY0Y3ZWppU1YtSmJLVDg0bndaQXZuUGJNZVljTTJyUTl2Rk1pY25sWEMxS0dyTjdXWFpERmVMQzZnelhVd0dpblhVcC11VGhlYmZJZFhuMQ?oc=5",
+     "source": "Jurist.org",
+     "date": "2026-11-20"
+    },
+    {
+     "title": "Is Pakistan backing anti-Taliban groups in Afghanistan?",
+     "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNaU1yXzhvNUZUNGdYQVlCMlZ4eG91cFh0djAzVzVxdnZLekpUSW5RZHJ5UzBXRnd2elJvVmR2clE0UzRyeTNuR205WmdTZl81c0FQUEozSi1aMkU2aUxsUXNrN3ZJcUNxd2Z5X0xMOUVSUUpSSkpqc2F4MW5OQ04zRlc2cjlzU25KdGtpakMwZFXSAZABQVVfeXFMTlJxblhIUUd4Tm5yb3RWMVdzSjFmdFlmVXdzenIwV1N1bXdUUDJadG9iRnlCQW4xYktqZktTMjBraEZESHo1dldwZFNsVmFRYkVjYjVQenNZSXFUdUFra0RCQWZ4c3gwdHRDR25EMzhRdXcxSFhQSnVyWklHaEcxeVQ5TUtkUksxQ25xUzhZM1M3?oc=5",
+     "source": "DW.com",
+     "date": "2026-11-20"
+    },
+    {
+     "title": "Book Review: Afghanistan Amid Rival Geopolitics",
+     "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOT19qdTVUVDN4OFlPQWtWWTgtcHZfakR5Z3lCQ0FMb0xObmMyWW1xQV9tTVVUeU1EdmNyQUtxUXZodmJmY3k0ZkdBMXloVXJnakE5LXk5cjVyTFEzMVNtSTFXbTJSdEd5RHpCWlhxY3JEdk1ocC1LaEJtemZEOUNWSHg2T3hGR0VKNjgwLXVzTFA?oc=5",
+     "source": "Small Wars Journal",
+     "date": "2026-11-25"
+    }
+   ],
+   "newsVia": "Google News"
+  },
+  {
+   "id": "terrorism-in-ecuador",
+   "name": "Ecuadorian conflict",
+   "includes": [
+    "Communist insurgency in Ecuador",
+    "Ecuadorian drug war (since 2024)",
+    "Operation Southern Spear"
+   ],
+   "intensity": "Minor war",
+   "tier": 1,
+   "started": "1993",
+   "countries": [
+    "Ecuador",
+    "Colombia"
+   ],
+   "cumulativeFatalities": "13,000+",
+   "fatalitiesByYear": {
+    "2025": "4,073",
+    "2026": "3,341"
+   },
+   "lat": -1.259,
+   "lng": -78.188,
+   "summary": "Terrorism in Ecuador was, until the outbreak of the current security crisis due to the government's fight against drug-trafficking organizations, a relatively rare and sporadic occurrence as the country, despite periods of economic and political instability, was traditionally known as a peaceful state in Latin America. This was unlike its neighboring states, Peru and Colombia, which have suffered widespread violence by insurgent, paramilitary, and drug trafficking organizations in different degrees for more than fifty years.",
+   "wikidata": "Q21044322",
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Terrorism_in_Ecuador"
+    },
+    {
+     "label": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q21044322"
+    },
+    {
+     "label": "List of ongoing armed conflicts",
+     "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
+    },
+    {
+     "label": "Google News",
+     "url": "https://news.google.com/"
+    }
+   ],
+   "sides": [],
+   "news": [
+    {
+     "title": "Hegseth Wraps Central, South American Trip by Delivering Anti-Cartel Message",
+     "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxOcWVBNzlnSnZ2aExqTUJ1M0VjaExjZk1xSHBsd2NwcHBYSkw1dTFHb29WSjZZV2J6NXluX0F0c1g4T0gtcG1MMTJJUEkxelpmYUtadlQzd1BnZ0F5OGRMci1URjBGSERia0tsRlJ5a0pqcEVBenVKVmlYTU9Wek0zVjNHOUNET0FHZG80dFVVell3MG4yY0l0ZVRxT0ltWHlTZ0J6VTM3MlE5SHpnRXlwY0FtV0tNLWRqamhFSWd6NXc0UXpidzJTczRMdXRYcVZETndVNg?oc=5",
+     "source": "U.S. Department of War (.gov)",
+     "date": "2026-11-20"
+    },
+    {
+     "title": "US expands military operations in Latin America",
+     "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQaVlsN2FuNE82VGp2ZXBmTF9Odkk0OU5waE5qUGdMZnRRNjRtQlVWaTg4encxV1NiMU9FTWh4TnVLc09DN1dLOWlRRHczUDBsWjEzdk9vdzY2N0VldVlXdTBSQXBha3pfb3RrMDE4LUctbHE4eWxxbXRLVktPM28wZlZrNWpQcVM1WHF0bEl4MXdpdTZONVBsUzkwMGxmRHFPNTBiaFQ1UDNKSjVkd2JqVlRqclkzUWVPX09qUGxn?oc=5",
+     "source": "Le Monde.fr",
+     "date": "2026-11-20"
+    },
+    {
+     "title": "Ecuador and US review joint military operations, official says",
+     "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOS2NwQ0FtM0RxZmk3SmtlQjJlUHI0dUJ3OGFVRi1QV240a0lHTTROcG1tN2h1by1aeXU3VXNNVEJrbnpkbXEzNlA2MGNyUnFmbEhLUmZET3VIQzRKckdVZjh3U2ZiXzgtcG5fYmhvMGFvbG03d2FzakVwUTJqTW5lWkQzR2Npc3lYa1YzUnRSaFRWUnRRYlNxWlktejNRUkJSbnlhcFl30gGrAUFVX3lxTE5vMHduc2p6NDc1S1RrdnNENDRYTnRGNjNfdWNaUXJaQjEzNmJHTG91Z2ozVzQzOG9saDhiNkg3di0tMFJEcEtaMV92SUFBUFMwQUJxZGh6Y05RX2VNcmZwamtRVGp5bG1ZeGFaXzd4X1BORXdKOXpTMmNkdnVFRURSUzVvOVlJSEZRaHhwVUtWQlk4T0xzQkdJeW1XT05kZzdvbmo3X0J0ckhkUQ?oc=5",
+     "source": "Al Jazeera",
+     "date": "2026-11-25"
+    },
+    {
+     "title": "US military pause clouds Ecuador’s illegal mining fight",
+     "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxOY0I2bkp6LUNBVmFsQTVEd21qLUNHZVJJWWF3dDFaYnBWLXF6TU9fdV9pWVljUmpPb2hOVmsxcU1USjBxNlVVZVVlMGRONy1fUWNTQmVfelJ5YWZwUTExampxclg2QUQtQndnNkFhb3dFUUgtclRNZU0xbkM1RUJheWJOMlU?oc=5",
+     "source": "Mining.com",
+     "date": "2026-11-25"
+    }
+   ],
+   "newsVia": "Google News"
+  },
+  {
+   "id": "communal-conflicts-in-nigeria",
+   "name": "Civil conflicts in Nigeria",
+   "includes": [
+    "Religious violence",
+    "Boko Haram insurgency",
+    "Boko Haram–ISWAP conflict",
+    "Herder–farmer conflicts",
+    "Nigerian bandit conflict",
+    "Separatist conflicts of Nigeria"
+   ],
+   "intensity": "Minor war",
+   "tier": 1,
+   "started": "1998",
+   "countries": [
+    "Nigeria",
+    "Niger",
+    "Cameroon",
+    "Chad"
+   ],
+   "cumulativeFatalities": "107,300+",
+   "fatalitiesByYear": {
+    "2025": "3,200",
+    "2026": "3,620"
+   },
+   "lat": 9.44,
+   "lng": 7.503,
+   "summary": "Communal conflicts in Nigeria can be divided into two broad categories:Ethno-religious conflicts, attributed to actors primarily divided by cultural, ethnic, or religious communities and identities, such as instances of religious violence between Christian and Muslim communities.\nHerder–farmer conflicts, typically involving disputes over land and/or cattle between herders and farmers.",
+   "wikidata": "Q21039541",
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Communal_conflicts_in_Nigeria"
+    },
+    {
+     "label": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q21039541"
+    },
+    {
+     "label": "List of ongoing armed conflicts",
+     "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
+    },
+    {
+     "label": "Google News",
+     "url": "https://news.google.com/"
+    }
+   ],
+   "sides": [],
+   "news": [
+    {
+     "title": "Dozens killed in latest land dispute attacks in Nigeria's Niger state",
+     "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNOFAzYURQNmZjRTMtNno3QzJSeTBjeEFib3JhNG1HSTdhdHFfX1JNOUkzVnNoVkR3WnpwMmpYZU9HczVsTmRrT0hrazM1TlhEWmo5ZDZObV96YjVDREVQZlZXVG1WUHFCQ3hZZkdfNWlZY2doUUlhWE00YUFaR2RXRzEtcjhPdzBNUkE?oc=5",
+     "source": "The Independent",
+     "date": "2026-11-24"
+    },
+    {
+     "title": "Nigeria’s Tinubu pledges to bring peace to rebellion-hit border region",
+     "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNbzJOZExJTjEzeUpfb1d5V2x0YmpDbk5Ea0x0aGN1aGVQaF9mR1NoWTZrNWNLM0ZEVUdyeENmelpkRl9SV0Q5bXZrSVNubFdXQm5xVkQ4ejcybXN6a2pyRVBkZTdzcklzeEQyMkk5bmdIc0dIQTJKbXg3LXBLOUdYdF9uSVBEel9OUmRUTy1wUzc2ZU9DSGxVbWduUjhuY3hEZ2NTWGlTelV0NEJ0OHlwTU9udG1TUdIBuwFBVV95cUxORWFkVTB3ZzYwTV9WWF80ZUhnUEJkMFd5djlUclhkQUV2eEpmRENXWG9fQXVhOHhLTl9WMGU5azZuUFd5NWhkcm52OW1fd05HMmgtdkhJNS1IVzZaSFFUcXNrLUFabXROeDUyaVM5YlU5a2JEM0xkMkR5VlZTMlVIYmx2TG5Ock41U201VWdhT0ZYMnlJRjdCQUZUbXpNZ2JrbVIyY1hBbVFRWGprUVAta0ZNR0VqaVpjTTRR?oc=5",
+     "source": "Al Jazeera",
+     "date": "2026-11-25"
+    },
+    {
+     "title": "NDC campaign attack in Delta: Police confam death of six pipo for attack on Ovie Omo-Agege campaign team",
+     "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE16dFVLdlNkSU8yV1RFMFNESzA2cXptQ1RRZzBObDFiZzItRDY4ekV2YzZMVUtYMjNta0Z3dEFJa3ZtV1A1M2ZZTFZ3MzdNTnBrd1JmQ1hsQk1vY2NnbUHSAWNBVV95cUxOcWxac2RrNC1yTE1mYkNjNXRodVpCeGEwLWtVZy1GMEdrZWN4TDhQSXZmR1hLbGhBZFplOW4weGdZbmxRS3lWOWJsUWpJN05TQ0dWbkVVQVNnUThHenhsWDkxSHM?oc=5",
+     "source": "BBC",
+     "date": "2026-11-23"
+    },
+    {
+     "title": "The security timebomb that is Nigeria",
+     "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9MTHAtdE1kX2xSOXQ5czVkMnVhdGhtaThpLW1LM1pEUXBVR3FKMXc4RzNCYndKdmcxMzNJMnlWM0dkMXVveVdnN3hFeXVybnhHc2RaWWp0ZHFkUlZpX2NYa0FDcHZlTnZ1QlFNVm9hRV9mSVk?oc=5",
+     "source": "GIS Reports",
+     "date": "2026-11-20"
+    }
+   ],
+   "newsVia": "Google News"
+  },
+  {
+   "id": "crisis-in-venezuela",
+   "name": "Venezuelan conflict",
+   "includes": [
+    "Pemon conflict",
+    "Catatumbo campaign",
+    "Operation Southern Spear"
+   ],
+   "intensity": "Minor war",
+   "tier": 1,
+   "started": "2010",
+   "countries": [
+    "Venezuela",
+    "Colombia"
+   ],
+   "cumulativeFatalities": "540+",
+   "fatalitiesByYear": {
+    "2025": "2,602",
+    "2026": "415"
+   },
+   "lat": 7.182,
+   "lng": -64.599,
+   "summary": "An ongoing socioeconomic and political crisis began in Venezuela during the presidencies of Hugo Chávez, Nicolás Maduro as well as Delcy Rodríguez. It has been marked by hyperinflation, starvation, disease, crime, and mortality rates, resulting in massive emigration. Food shortages and hyperinflation have ended, but inflation remains high. It is the worst economic crisis in Venezuela's history and considered by some sources as more severe than the Great Depression in the United States, the 1985–1994 Brazilian economic crisis, or the 2008–2009 hyperinflation in Zimbabwe. In 2019, the Institute of International Finance called it the single largest economic collapse outside of war in 45 years. Writers have compared aspects, such as unemployment and GDP contraction, to Bosnia and Herzegovina after the 1992–95 Bosnian War, and those in Russia, Cuba and Albania following the Revolutions of 1989.",
+   "wikidata": "Q28485502",
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Crisis_in_Venezuela"
+    },
+    {
+     "label": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q28485502"
+    },
+    {
+     "label": "List of ongoing armed conflicts",
+     "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
+    },
+    {
+     "label": "Google News",
+     "url": "https://news.google.com/"
+    }
+   ],
+   "sides": [],
+   "news": [
+    {
+     "title": "What Is Happening Between the United States and Venezuela?",
+     "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOeXI1dnNNdzNYSGdWMEtZdnl4VlB4NGZ1aDZJQWNJU0hlVkkxSlVNZGRqUGxyQzFKS2Z0V3F6ajFlQVJ6Y0U1U09ybGhlWHpoczRJcm43MlBOUlVwZV9nbUhrMUVrX1JGV1ZST1JORTczanhVQ0xGLUp3NGNPdHVzdjJMb1ZnOGhkYUxEZHRpaGp1Zm5n?oc=5",
+     "source": "Britannica",
+     "date": "2026-11-23"
+    },
+    {
+     "title": "Hegseth Wraps Central, South American Trip by Delivering Anti-Cartel Message",
+     "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxOcWVBNzlnSnZ2aExqTUJ1M0VjaExjZk1xSHBsd2NwcHBYSkw1dTFHb29WSjZZV2J6NXluX0F0c1g4T0gtcG1MMTJJUEkxelpmYUtadlQzd1BnZ0F5OGRMci1URjBGSERia0tsRlJ5a0pqcEVBenVKVmlYTU9Wek0zVjNHOUNET0FHZG80dFVVell3MG4yY0l0ZVRxT0ltWHlTZ0J6VTM3MlE5SHpnRXlwY0FtV0tNLWRqamhFSWd6NXc0UXpidzJTczRMdXRYcVZETndVNg?oc=5",
+     "source": "U.S. Department of War (.gov)",
+     "date": "2026-11-20"
+    },
+    {
+     "title": "US expands military operations in Latin America",
+     "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQaVlsN2FuNE82VGp2ZXBmTF9Odkk0OU5waE5qUGdMZnRRNjRtQlVWaTg4encxV1NiMU9FTWh4TnVLc09DN1dLOWlRRHczUDBsWjEzdk9vdzY2N0VldVlXdTBSQXBha3pfb3RrMDE4LUctbHE4eWxxbXRLVktPM28wZlZrNWpQcVM1WHF0bEl4MXdpdTZONVBsUzkwMGxmRHFPNTBiaFQ1UDNKSjVkd2JqVlRqclkzUWVPX09qUGxn?oc=5",
+     "source": "Le Monde.fr",
+     "date": "2026-11-20"
+    },
+    {
+     "title": "What’s next for Cuba’s political future: an attack by Trump before year’s end or a democratic shift?",
+     "url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxOMHVPUUJhR3EwTmFGRWtESG1XZnNkM1QwaWZ2dUhSOW5zY3kxeDNaV3F3SzNNdlgyOVVxT1E0bmwxaVNVVkJrVnJNV1NlektDeXJxREZIWDBKRnZOU1A4MXFNRzZQR1Z1M3pTNFBRaDluRm1YRHVSRFBlbUlxUFdwTUZGMGMzaEVfRm4tRGN4UENGbWVMbFppZnVRcnhvSWQ5d3hiZklNQ0ZUNW9HZHdNSG9QU2d5NkJ5TDVYOC1lZWZSMmFZUUFoXzctemFMeTNScFNBZl95cVpoU1hGM3pfZzM0cXFra1HSAfsBQVVfeXFMTWRhTnNrRmQ4Z2NsYjZDa2NiR1AxQ3pKc0MwaTI0MzdoN1pHNTFoYlJwUUhocWZGLTFlSWlkOGpOR1oxWjV4aXhVTWZDbmNBMUltQmVNbFJaNFdrR2dZVWc1djZzRF9WekNwUjRraVozb1gweGNPZTFzQmxwSEgzUkZxV0tOYzVRYkpTUEFncjFYZGxQbU1NbHRGcERwa2d5SWhDenFmMEtyS0VNWkk3dXZDdTQ0R2szZ1NIRTdhYWo4U1prc3lYenA4d2tLVGZDQlhZQ19vOWtfdm8wb2lobWZjRlBMOFF5WDlsby1Hd04zbnRlaGQyNWpQV00?oc=5",
+     "source": "EL PAÍS English",
+     "date": "2026-11-23"
+    }
+   ],
+   "newsVia": "Google News"
+  },
+  {
+   "id": "aftermath-of-the-syrian-civil-war",
+   "name": "Aftermath/Spillover of the Syrian civil war",
+   "includes": [
+    "Turkey–ISIS conflict",
+    "Israeli intervention",
+    "2024 Israeli invasion of Syria",
+    "Druze insurgency in Southern Syria",
+    "Spillover of the Iran war in Syria",
+    "Western Syria clashes"
+   ],
+   "intensity": "Minor war",
+   "tier": 1,
+   "started": "2011",
+   "countries": [
+    "Syria",
+    "Occupied Palestine",
+    "Lebanon",
+    "Iraq",
+    "Turkey"
+   ],
+   "cumulativeFatalities": "664,800+",
+   "fatalitiesByYear": {
+    "2025": "8,837",
+    "2026": "1,778"
+   },
+   "lat": 35.007,
+   "lng": 38.278,
+   "summary": "Disputes and clashes in Syria have continued following the fall of the Assad regime in December 2024, which many sources consider the end of the Syrian civil war. Numerous actors are involved, including clashes between the newly-formed Syrian caretaker government and later the Syrian transitional government led by the former emir of Hay'at Tahrir al-Sham (HTS) and incumbent president Ahmed al-Sharaa, Assad loyalists, Alawite groups, and Druze insurgents; clashes between elements of the Turkish-backed Syrian National Army (SNA) and the government on one side, and formerly the Kurdish-led Syrian Democratic Forces (SDF) on the other; as well as an Israeli invasion and occupation of the demilitarized buffer zone in southwestern Syria.",
+   "wikidata": "Q140320823",
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Aftermath_of_the_Syrian_civil_war"
+    },
+    {
+     "label": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q140320823"
+    },
+    {
+     "label": "List of ongoing armed conflicts",
+     "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
+    },
+    {
+     "label": "Google News",
+     "url": "https://news.google.com/"
+    }
+   ],
+   "sides": [],
+   "news": [
+    {
+     "title": "Land mine casualties soar in Syria, two years after war",
+     "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE1zVWxaQ1dTMmRuX2pKRGx3aTQ2SWplakJPYzZ2TFJMOVJiY1MzbzJMeEhXU0VzOFpiVktMZEk1N1RvaGFyX2kxV2MxZ2hoaFBxZm5nQkt0ZDJvOUdsTVE?oc=5",
+     "source": "BBC",
+     "date": "2026-11-24"
+    },
+    {
+     "title": "Syria Is Paying the Price for the Iran War",
+     "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE0wSnZnWHZ6emNZNTV2Rl9ZaDF6T3kyUWRXeV9mVExuTWNJQ0JrRXJqVk9TN3p3VHZhbFhmWnRPSUFRS1RTZHdTTW1IcUFUNFQ2M21GdXNYV3JNLWdxRl80dHBMaXh0XzhWeXo3WGhSMWFRMS1sUDN1ZEdB?oc=5",
+     "source": "Middle East Institute",
+     "date": "2026-11-20"
+    },
+    {
+     "title": "As Syria-EU talks progress, diplomats fear focus will be on repatriation",
+     "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQYTJtZmx1VXI2Q3cyVDR1VlhSUFI2WV9LMnhPdTFma0swdm4xd0pzZEdranA0VnlYTEV5TFNrX05zd1Q3RU9jLVZNcTRaT1g1ZXV4OVE2aVNKOHd1MGE3UHQzZWthcWVPanc3MEFUTDMzclFwTnVGU0tvVVVrbS04R1NnUzVDaDRnS1BPa3B6aHIwenMyZHVTb282U0FHVmhLQ2hPT1JDTmM5d3hXZG1NSDRLckpvNmFx0gG-AUFVX3lxTE83QjBNWEN2WXFXOW9VOTRZUFJZZUZWTVRzaUxqdEhJcHJibU04alNrTUptWDJMSDNzNERHYVNoLXJHc2dKZXpucGY0dXBobF9uYk14QnBEOVFhVkZFUTZzQkJXTlZISlV0WHBRQUhKYkZkdWlsYkVOT1F4dkcwSnhKSmlPc3dxemxBU2t5U1puM2NyUlBROXBWY2tiN3RBZEZFaWFFUzQwSEQ1eHAtYlhxcEN0ZGZSbWVUbjFHNUE?oc=5",
+     "source": "Al Jazeera",
+     "date": "2026-11-23"
+    },
+    {
+     "title": "The OIC Condemns the Terrorist Attack on a Security Headquarters in Hasakah, Syria",
+     "url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE9MTEpYSUVTV1FhQlBxbWZzTm9iZTlHTXdEeW5hSDN1TGlHbjYxS1NNWHRISUdzUGE3TTc1MTZtQS03MnA1emNOY2JOcmw?oc=5",
+     "source": "Organisation of Islamic Cooperation — OIC",
+     "date": "2026-11-25"
+    }
+   ],
+   "newsVia": "Google News"
+  },
+  {
+   "id": "cameroonian-civil-war-disambiguation",
+   "name": "Cameroonian conflicts",
+   "includes": [
+    "Boko Haram insurgency",
+    "Boko Haram–ISWAP conflict",
+    "Anglophone Crisis",
+    "Pro-Biafran insurgency in Bakassi"
+   ],
+   "intensity": "Minor war",
+   "tier": 1,
+   "started": "2012",
+   "countries": [
+    "Cameroon",
+    "Nigeria",
+    "Niger",
+    "Chad"
+   ],
+   "cumulativeFatalities": "11,000+",
+   "fatalitiesByYear": {
+    "2025": "1,966",
+    "2026": "1,719"
+   },
+   "lat": 4.585,
+   "lng": 12.473,
+   "summary": "Cameroonian Civil War may refer to any of these internal conflicts in Cameroon:Cameroon War\nBakassi conflict\nBoko Haram insurgency\nAnglophone Crisis",
+   "wikidata": "Q133505908",
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Cameroonian_Civil_War"
+    },
+    {
+     "label": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q133505908"
+    },
+    {
+     "label": "List of ongoing armed conflicts",
+     "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
+    },
+    {
+     "label": "Google News",
+     "url": "https://news.google.com/"
+    }
+   ],
+   "sides": [],
+   "news": [
+    {
+     "title": "Shot in the face at 15: The lives shattered by Cameroon's decade of conflict",
+     "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5pX1JobmRlOFhfMGc1OHpMUkNzak5KRFptS1B0RmJSYS1CRnNaUjkyVXU2QXhvNGZKYW1mX2ZkNDJSeG96VnhhSHJQU0dGRmJ4eENIM0NqNTdsdk9CRHc?oc=5",
+     "source": "BBC",
+     "date": "2026-11-25"
+    },
+    {
+     "title": "Growing up displaced in Cameroon after ten years of conflict",
+     "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxOSmVyMGhvN3cwbTBNMTB0T1FsaXJDeVd4VF9QYXkyOHZiSVE1NlUyN3NlaFRLSGN0UFFEWkxQeEFEVFp6WHdYWlhKYV8tLW5wUzQ5YkJSelU1S1RUS2czN1VmZVExMWdzcVpGQnNNYXN1YkNiWTVzQ1dUTWtPb2FNN0pnMElYdTlMUHJmLU5sYTF5SUZ1VW9kVWpoM2tvUQ?oc=5",
+     "source": "Global Voices",
+     "date": "2026-11-21"
+    },
+    {
+     "title": "Cameroon separatist leader pleads not guilty at war crimes trial in Norway",
+     "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNM0xXRVZMVE5DakhUSjBnMlV1b3V5TzJ4bDUyWmd4U19IUThNYXVXX3dvRUMwc2tkazNGTjY5a1pPN0EzOUVkcDVSZWx0Z3JRdDZ6Z3Q3em5NT3NJNG9OR2paZXZfUDB4ekNwVGN6QVhwdzNiaDFjZXVCdnF0TFRDem5EcjdNa09WWS1ZMTF5ZUlBUjFEM09CN0hudUFTMmxKbDV1QU5DWnpEeGQyV3dz0gGvAUFVX3lxTE0zTFdFVkxUTkNqSFRKMGcyVXVvdXlPMnhsNTJaZ3hTX0hROE1hdVdfd29FQzBza2RrM0ZONjlrWk83QTM5RWRwNVJlbHRnclF0NnpndDd6bk1Pc0k0b05Halpldl9QMHh6Q3BUY3pBWHB3M2JoMWNldUJ2cXRMVEN6bkRyN01rT1ZZLVkxMXllSUFSMUQzT0I3SG51QVMybEpsNXVBTkNaekR4ZDJXd3M?oc=5",
+     "source": "Al Jazeera",
+     "date": "2026-11-24"
+    },
+    {
+     "title": "Cameroon separatist leader pleads not guilty at Norway war crimes trial",
+     "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNeGVEUU9UdDB4TDFjRVVZUldoWEMtRGVWOUNSb3YzR0Izd3JCRS0xUmxqWmhxdjNRUjQtcm5PZXZEVXl2QkhoV3RnWFZpY2pjZEVBYnpzcFAzLVcxalZoYkxRQ3V2c2JCczlFNlR5aWtqNmU4RG9rSFJJM2YyWWdUNHVIM24xcXFFQkEzbFdBQ0dFaGhnSjJDZDhnNzU0dWN2bE0zWEpRTU5MSE02a2ww0gG0AUFVX3lxTE1mM2RybVg1a3M2a1BFRFh6YWdhRWliMnFUdXlNUkp4VFMtWHFRS1l0RlN3cFdmSXBKbjNjZXJtU1BXZkxxQUxPa3Nja0FNZzhVQnhBMTdoZ0xWZllDZklEcHJGLUJCNy1UUFo2UnJ5X3plNTB0Qnk2U1ZWVEVYeGlEWUpLc2cwNS1ubkkwQ2w0dE1BSWpicUVTaml5WWxPa2ROVzlSdHMxVHpmQ2lLcmZYTTM5aA?oc=5",
+     "source": "Africanews",
+     "date": "2026-11-24"
+    }
+   ],
+   "newsVia": "Google News"
+  },
+  {
+   "id": "central-african-republic-civil-war",
+   "name": "Central African Republic Civil War",
+   "includes": [
+    "LRA insurgency"
+   ],
+   "intensity": "Minor war",
+   "tier": 1,
+   "started": "2012",
+   "countries": [
+    "Central African Republic",
+    "Cameroon",
+    "Democratic Republic of the Congo",
+    "South Sudan"
+   ],
+   "cumulativeFatalities": "16,300+",
+   "fatalitiesByYear": {
+    "2025": "1,276",
+    "2026": "541"
+   },
+   "lat": 6.99,
+   "lng": 20.907,
+   "summary": "The Central African Republic Civil War is an ongoing civil war in the Central African Republic (CAR) involving the successive governments, rebels from the former Séléka coalition, the Anti-balaka militias, and various foreign and international forces.",
+   "wikidata": "Q3411181",
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Central_African_Republic_Civil_War"
+    },
+    {
+     "label": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q3411181"
+    },
+    {
+     "label": "List of ongoing armed conflicts",
+     "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
+    },
+    {
+     "label": "Google News",
+     "url": "https://news.google.com/"
+    }
+   ],
+   "sides": [],
+   "news": [
+    {
+     "title": "Central African Republic - Conflict, Poverty, Instability",
+     "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE43d2g2Q1AxcHh3N3FsRFNOUTFxRUZacUJNUkpoZl9QeGFQZkY5R2V2VTlISnAzTTR3TWtTYzlJTUxTNlM4cjAzN2Nkb0FXbWxkbjZ3cUw4dzdSSmxBZ2lpNFR2UVN1c0pXVEN0V1ZKQk94ZndUYkdZR2FESzJ1azQ?oc=5",
+     "source": "Britannica",
+     "date": "2026-11-23"
+    },
+    {
+     "title": "Submission with the Office of the Prosecutor of the ICC about crimes against humanity and war crimes committed in the Central African Republic (CAR) since 2018",
+     "url": "https://news.google.com/rss/articles/CBMirwJBVV95cUxNamNTUmh6UlZnZEtPSkJSMFZ1aV9zc1BTSGNJY3FjTnRfRl9Yc0taUWMzY0lubUZ5OXg5bG9TQmQ0ZF9uYzRsWXRpLU91TTJXSWhFenhxeFpoVlRpNVNacElTb181MV9xSDQyODVxTXYtNDdkVVVvOC1uLUdJdWc3WWEtRmJqa3ZYTXY0NmJrZVhobHVmUHJOMm5vbm1NR0Z3c1h4S0QzeEJ5UE5IQ0FPa0ItZXl4RHROZm5xeTBJRUROc25pWFNtVDBkOFZrQlBEcGktTlczbVIyaWpRczlMSUpCTUtkNlV4emlxWmNkUUMwNmszRkh5b1Rmb24yaFByaW9DNVBNYUhFUm4yMVFRZGNlb0ViaVltLVBTX2t6dHdVdzFuYXBoYVdHdVZ2c3M?oc=5",
+     "source": "Truth Hounds",
+     "date": "2026-11-20"
+    },
+    {
+     "title": "London Hosts Peace Conference Tomorrow, as Sudan Enters Third Year of Civil War",
+     "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNWFlRMVZOZjhCRmoxVUgzRC05X3liXzEyLUw1YldEU2NNbWFyU1BBakM2N3ZqUkJsU1hfMUtWVS1FNEQzbHUyWFYwYmJUNkJwcXBVQmlnRDd3TWVadTN1M2JOeksxVTFXSGM3UkNmSFE3enpMMUttR09HZDJZc1BscVJwVDlWQTFjVlhramFSWXF4d1dKSURCb0d1RUdnaXhSaHJkMjhVNXZ0U0VR?oc=5",
+     "source": "https://thesentry.org/",
+     "date": "2026-11-25"
+    },
+    {
+     "title": "Central African Republic - Conflict, Colonialism, Independence",
+     "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE1wUW5CY3ZwMkFCcDBaalNNd0dNSGFqWmRESVVSdlk1a3dENHRoOHBrYTlJbXE5Zno5VFZ3MVBzVC1RQmlZNzBiYVpQRDBlcDA3M0YzTjB4Q0xMT3VXczkxMzlwVFVYRWZEeU9rVzJleTBOYTQ?oc=5",
+     "source": "Britannica",
+     "date": "2026-11-23"
+    }
+   ],
+   "newsVia": "Google News"
+  },
+  {
+   "id": "haitian-crisis-2018-present",
+   "name": "Haitian conflict (since 2020)",
+   "includes": [
+    "Salvadoran military intervention in Haiti"
+   ],
+   "intensity": "Minor war",
+   "tier": 1,
+   "started": "2018",
+   "countries": [
+    "Haiti"
+   ],
+   "cumulativeFatalities": "26,300+",
+   "fatalitiesByYear": {
+    "2025": "4,828",
+    "2026": "2,975"
+   },
+   "lat": 19.264,
+   "lng": -72.224,
+   "summary": "The existing political, economic, and social crisis began with protests across cities in Haiti on 7 July 2018 in response to rising fuel prices. These protests gradually evolved into demands for the resignation of President Jovenel Moïse. Led by opposition politician Jean-Charles Moïse, protesters demanded a transitional government, provision of social programs, and the prosecution of corrupt officials. From 2019 to 2021, massive protests called for the Jovenel Moïse government to resign. Moïse had come to power in the 2016 presidential election, which had voter turnout of only 21%. Previously, the 2015 elections had been annulled due to fraud. On 7 February 2021, supporters of the opposition allegedly attempted a coup d'état, leading to 23 arrests, as well as clashes between protestors and police.",
+   "wikidata": "Q61742338",
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Haitian_crisis"
+    },
+    {
+     "label": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q61742338"
+    },
+    {
+     "label": "List of ongoing armed conflicts",
+     "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
+    },
+    {
+     "label": "Google News",
+     "url": "https://news.google.com/"
+    }
+   ],
+   "sides": [],
+   "news": [
+    {
+     "title": "On Our Radar",
+     "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1TTTkyVGppeko1WEFvMmEzamUxWU9rVzBaOEh6MklzRUhjRUVaWkJidHEweHFXTDcyT2dERWt4ZDV6bG9hSVdvVWtrTXpLcVRqZjhBVUVNZ2hqdkct?oc=5",
+     "source": "International Crisis Group",
+     "date": "2026-11-20"
+    },
+    {
+     "title": "Chaos among the five armed forces operating in Haiti increases risk to the civilian population: ‘It’s an orchestra without a conductor’",
+     "url": "https://news.google.com/rss/articles/CBMilwJBVV95cUxPcnVvUmxUZktpYS1CcHFsR1AwR25qbGJQSWJQQUdUdnlyT2tFWDNzR3B0TTc1M1BrcjJJMGR4RV85Y3Q2amRHYmpMdHlVdVBrSklWMXA4OHZyWDN5RW9ld2VuM2JmWE1fTTdMcjdvUXNnX2hGZ0RlNERfNU54bVgyZi11TDVucm1nNWw4ZE5Da3NtNl8tUkhpT0x0OVFtZUNSMmdydWcwYl91UUNROTlvUTJUNkxaeE9Ia1lQa2Vobmd0a2FzTG9MX3ppdmRLZm96NVVaTXhBWlFiWURCNmNjWkF2NFF1Yl9jU0R1ckF3TmFSRmRaZzdoNTl0OHVNdHh6Z0lGeDBhZnk4ZGxkRmdHWXNDaTV5ek3SAasCQVVfeXFMTnJXWk1Cd2ZzT2pHeHRIRjhWSWRILWJvQVp1V2xBTFVvU3o0aGRvMUJKWHdsV1F4NHRjNU4tLU9TT2NubzIwMXhfMEdiRC1jUHdCVVdSZjlHRFA4cG9ELWhtcE5EMkhWcm5YRmZ3ck1sT0dpUk9QZ2FoR0NwUmkweEhJdkdMNkg2U2ZxbnlqZzNOSmVFVUNPQ0RwR1pla01zaEx4dmhiekRmOUNLVFJORTBOcVR1Y2lqQ2NEcVFHODl1ZTVWUjBWSjhTMnZvb0JDenBxU1Zud3FYQUdQSmo5bEVKREJMd09STGlrdXpoaTk0Y0FGcnVjLVlDSWRlc2hhM2NxdHdRd05CRFBHUWlBdWMwdUthQkFDMnBEXzVTZHBOb243V042amlfNlk?oc=5",
+     "source": "EL PAÍS English",
+     "date": "2026-11-21"
+    }
+   ],
+   "newsVia": "Google News"
+  },
+  {
+   "id": "timeline-of-kurdish-uprisings",
+   "name": "Kurdish nationalist conflicts",
+   "includes": [
+    "Iranian–Kurdish conflict",
+    "Iran–PJAK conflict",
+    "2026 Kurdish–Iranian crisis (Western Iran clashes)",
+    "Iraqi–Kurdish conflict",
+    "Turkish-Kurdish conflict"
+   ],
+   "intensity": "Conflict",
+   "tier": 2,
+   "started": "1918",
+   "countries": [
+    "Iran",
+    "Iraq",
+    "Syria",
+    "Turkey"
+   ],
+   "cumulativeFatalities": "135,950–178,450+",
+   "fatalitiesByYear": {
+    "2025": "300",
+    "2026": "40+"
+   },
+   "lat": 32.76,
+   "lng": 54.282,
+   "summary": "\n\nThis is an incomplete list of Kurdish uprisings. You can help by expanding it.",
+   "wikidata": "Q3673877",
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Timeline_of_Kurdish_uprisings"
+    },
+    {
+     "label": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q3673877"
+    },
+    {
+     "label": "List of ongoing armed conflicts",
+     "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
+    },
+    {
+     "label": "Google News",
+     "url": "https://news.google.com/"
+    }
+   ],
+   "sides": [],
+   "news": [
+    {
+     "title": "Energy price cap: The Iran war is being blamed for raising bills - here's why",
+     "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9PR0toS1BhNmQzM1Q5UGtTcWdIeVA5NkFSem85ck1GQVhRRndnZkxHQzFtMnV3VmFRWTZVdy13SDdCeTI5Q01XaFFHM0FDME9JMEJ0aFBnSUR2QkZaTXc?oc=5",
+     "source": "BBC",
+     "date": "2026-11-25"
+    },
+    {
+     "title": "Energy bill increases since the start of the Iran war have been three times higher for a typical fossil fuel household than for a modern electric household",
+     "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxPWklkYmVQUXBmWmFmRDdxaFFKSFJ0MnZmRjRsWS04RDY5OERaUkZfVkJPSW1ZN2VieFJybDlvZGRLZ3pha0ZsZWc1Rm5CbmpEc2kybDdwcm1tOXBzTjJZbWFWZzREVHpHR3lmSDl3YUw3M1ZURWhYQjVqVWl2MzdLdy1mQ2s?oc=5",
+     "source": "Climate Change Committee",
+     "date": "2026-11-25"
+    },
+    {
+     "title": "What Trump should do next about Iran",
+     "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxQVW9kOUVYOU9ZUkVFaEM1OTV2WGVfeVhYNTFFOVg4QkJycEZrV0w3VmVHSUNPSW14alU0V3dKVTBUSGdCUEthdmo2MnR4b3ItdW1adUYteTRQQXl5bmZSdFJlUUlrNkxuNHhsdGtaT1hJSHNZTU1VRU9EclZjV2h2bE9GS1NlQXM?oc=5",
+     "source": "Atlantic Council",
+     "date": "2026-11-25"
+    },
+    {
+     "title": "Two Italians killed in Kuwait drone attack; Trump says Iran war ends ‘whenever I want it’",
+     "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxOWXdZWk9aY1VrSmlEbExnWV93RnFxTDFwV3RLdjhtYW1SaXU0aXJCbGJBRUVOS0FramRyaVdva0VwUWRLQlBZdHcwYktUWVlwaEp4MTNEeUN3Y2Q1bi1RUG5TRTZoWlY0S2lFUVpqSVF3NzJQZ2hiUGFjU19LTW93cERfYzNNY3VKalHSAY8BQVVfeXFMTXlQSEhkZ20xOFJXTzlvczJPelo5S294dENlYTBpMzAxVHVxeHhFNUk3eHZVYVQzY0t6cWZ5T1hEYUdjbkc1SmROUVVTVWc4Mjdza3FYNXplRTE0Qk5NY1NyTTNwdEN6Z2JyWEJhOVRVd3RVOVRoTVlubGNUYTBsWS1zTkZ3czV6WThYWkk4RVU?oc=5",
+     "source": "CNBC",
+     "date": "2026-11-27"
+    }
+   ],
+   "newsVia": "Google News"
+  },
+  {
+   "id": "terrorism-in-turkey",
+   "name": "Insurgencies in Turkey",
+   "includes": [
+    "Kurdish insurgency in Turkey",
+    "Maoist insurgency in Turkey",
+    "DHKP/C insurgency",
+    "ISIS insurgency in Turkey",
+    "AK Party–Gülen movement conflict"
+   ],
+   "intensity": "Conflict",
+   "tier": 2,
+   "started": "1921",
+   "countries": [
+    "Turkey",
+    "Syria",
+    "Iraq"
+   ],
+   "cumulativeFatalities": "138,000+",
+   "fatalitiesByYear": {
+    "2025": "300",
+    "2026": "5"
+   },
+   "lat": 39.345,
+   "lng": 34.508,
+   "summary": "Terrorism in Turkey is defined in Turkey's criminal law as crimes against the constitutional order and internal and external security of the state by the use of violence as incitement or systematic to create a general climate of fear and intimidation of the population and thereby effect political, religious, or ideological goals. Since the establishment of the Republic of Turkey, both organized groups, lone wolf, and international spy agencies have committed many acts of domestic terrorism against Turkish people.",
+   "wikidata": "Q39086957",
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Terrorism_in_Turkey"
+    },
+    {
+     "label": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q39086957"
+    },
+    {
+     "label": "List of ongoing armed conflicts",
+     "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
+    },
+    {
+     "label": "Google News",
+     "url": "https://news.google.com/"
+    }
+   ],
+   "sides": [],
+   "news": [
+    {
+     "title": "How Iran war is driving Turkey’s defense deals with Qatar, Gulf states",
+     "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNS0FTRzZOQ19YQjFuUnc2aGcyZVBORk5hTXFiSUF5VjRaSzRNX0xJWDB5TE5mZWVhblVoRkFEcVNZZThfVWRLclExU3FRS2RLdWtmWFpvcUhFOGxIVnQwUF9DTVJfNHd6R3dfNldsZExIRlE3SGZaV0JITFdOUTl0S3VlNGNMU3E3bTRpUWV3QzdqOGp0S2duR085YjhpektkcTJ5MHJuRUo?oc=5",
+     "source": "Al-Monitor",
+     "date": "2026-11-22"
+    },
+    {
+     "title": "Turkey - Russia, Regional Affairs, Erdogan",
+     "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQWko5cXlobWwzWWVkc0pZYXhOaGFIdWhyWmo5ckxrdHBGbGgxRWI4RG9yc0liT01ieDM3TW9jRGJMdDBlTWR1MDdiSTYxLXNHWHVsUjZhaWNQZlZBZ0RSMlo5ZGhKVTlsR19lVWR1cFpCUVZBRGFYaW9SLURrTnltbTVEanM0dVNEQUd3bkFuQy1FU25ZbktPT2ptZ01TRWNXT0wxbkl5WjI?oc=5",
+     "source": "Britannica",
+     "date": "2026-11-23"
+    },
+    {
+     "title": "Turkey says PKK evacuated 14 more bases in northern Iraq",
+     "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQUlg2YmpOOFNEWGFhWU12bTJBdGFlLWlJS3BEZlYzbkt6YkljRGFmYnBxYU1WaWV4WGNTNVhYR1duQWVMdndzTVpoRklGZkZhN241eXhmWG9CYThvVFgxMjljSUFPQ2tRTGxja21nNGkyMXRQc1ppMFp1Y1pHZXpOeU1DcXJqNWlkdnpaRkQxdlRRTkptSGt5ck1yVzdiN3k0ekZ5SW1n?oc=5",
+     "source": "France 24",
+     "date": "2026-11-23"
+    },
+    {
+     "title": "Why is Turkey warning of an Israeli military operation in Syria?",
+     "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxON01TVHd6TFN2eTVWN3FsS19IRXl1TmVLZkxjN0tfdDNBejU3amRRZmJ1QkllWDI2cC1Wb0FXNEt3SEtBd0M3c3ZWSk92TmE0WTJrcmFBQzAtblcwUTJvUzBjX2ktSTB1cEhtem9RakYzUWNWNkxNbUpZTFB1cEhyZWg1Q3lkNk5FZFUzU3pBa1EyRWt2WlJZ?oc=5",
+     "source": "Middle East Eye",
+     "date": "2026-11-22"
+    }
+   ],
+   "newsVia": "Google News"
+  },
+  {
+   "id": "jamaican-political-conflict",
+   "name": "Jamaican political conflict",
+   "includes": [],
+   "intensity": "Conflict",
+   "tier": 2,
+   "started": "1943",
+   "countries": [
+    "Jamaica"
+   ],
+   "cumulativeFatalities": "1,900+",
+   "fatalitiesByYear": {
+    "2025": "297",
+    "2026": "245"
+   },
+   "lat": 18.137,
+   "lng": -77.319,
+   "summary": "The Jamaican political conflict is a long-standing feud between right-wing and left-wing elements in the country, often involving violence. The Jamaican Labour Party (JLP) and the People's National Party (PNP) have fought for control of the island for years and the rivalry has led to urban warfare in Kingston. Each side claims the other side is controlled by foreign elements; the JLP was accused of being backed by the American Central Intelligence Agency (CIA) and the PNP was accused of being backed by the Soviet Union and Cuba.",
+   "wikidata": "Q55614857",
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Jamaican_political_conflict"
+    },
+    {
+     "label": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q55614857"
+    },
+    {
+     "label": "List of ongoing armed conflicts",
+     "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
+    }
+   ],
+   "sides": [],
+   "news": [],
+   "newsVia": "Google News"
+  },
+  {
+   "id": "kashmir-conflict",
+   "name": "Kashmir conflict",
+   "includes": [
+    "Indo-Pakistani border conflict",
+    "Indian-Kashmiri insurgency",
+    "Sino-Indian border conflict"
+   ],
+   "intensity": "Conflict",
+   "tier": 2,
+   "started": "1947",
+   "countries": [
+    "India",
+    "Pakistan",
+    "China"
+   ],
+   "cumulativeFatalities": "202,200–2,000,000",
+   "fatalitiesByYear": {
+    "2025": "975",
+    "2026": "295"
+   },
+   "lat": 22.687,
+   "lng": 79.358,
+   "summary": "The Kashmir conflict is a territorial conflict over the Kashmir region, primarily between India and Pakistan, and also between China and India in the northeastern portion of the region. The conflict started after the partition of India in 1947 as both India and Pakistan claimed the entirety of the former princely state of Jammu and Kashmir. It is a dispute over the region that escalated into three wars between India and Pakistan and several other armed skirmishes. India controls approximately 55% of the land area of the region that includes Jammu, the Kashmir Valley, most of Ladakh, the Siachen Glacier, and 70% of its population; Pakistan controls approximately 30% of the land area that includes Azad Kashmir and Gilgit-Baltistan; and China controls the remaining 15% of the land area that includes the Aksai Chin region, the mostly uninhabited Trans-Karakoram Tract, and part of the Demchok sector.",
+   "wikidata": "Q1413732",
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Kashmir_conflict"
+    },
+    {
+     "label": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q1413732"
+    },
+    {
+     "label": "List of ongoing armed conflicts",
+     "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
+    },
+    {
+     "label": "Google News",
+     "url": "https://news.google.com/"
+    }
+   ],
+   "sides": [
+    "Pakistan",
+    "India",
+    "All Parties Hurriyat Conference"
+   ],
+   "news": [
+    {
+     "title": "Two tankers hit by unidentified projectiles off Oman",
+     "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPVngxSVAyQzZPSERHS0psTmx0T1hDQ3psd0dobHdMYTJnbUh0RHpCSmVucmtpSTIwcjVDVktybHJqNEZPTXNGdWhaRTVFNGF3OGpOVG1HYlpKRVBwbG9PTzYxOUJndnRhejJTSm1ndDdsanp4VXlWbjFmM25HRk1GTjRFRnRTZFBxVVV5Z2ZvUjlodUtqZVZpZzRB0gGfAUFVX3lxTE0wWURxMFJnX0k3cG93MXM0bVhyU1c3bGNDTnVNSWZsNHpuQVc2R29INUxHblVWQlA2ZnM1X3pTYXBaaHYzbWVMT1U5WDBZODlCRm9YVFp0Rm1BU1Q0Q1ZYemdsMUZvWG1Ib2JKUHFyYXBTQU5tSkx2bFFPWnNBdVI1aExRTW5kQ0QweGNnZFdlbkVOUGNWYnNaM1FrTXBnTQ?oc=5",
+     "source": "Free Press Kashmir",
+     "date": "2026-11-21"
+    },
+    {
+     "title": "UKPNP spokesperson condemns Pakistan's threat of military operation in PoJK's Poonch, calls for dialogue",
+     "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxQQkYwNjB4SFd3LTlJNXphTkV0bWdUaERnNkVLS3JLcTI2TVMtQ3hXdGdYVWFRRHZqVzZZWi1CYXgtN184bHhhTjZaNUFvSU5aT0tHa25sazZNeHV3RUt4WHhaVHRIb010YmhUM3hOWjhwU3RTb0I2Qk0yTEhaUmxKazdoMGpPdDU5dGp4UzIwSVVZYmhHTmFoZm5hWUdXdzRQQkxFQU9nMi1wYk1Sb0Q2R1JJQ3Zoczk0d0NMYW1fRXVucVU0WkhKVDROR2w2OFR6QTBqUDVuMHlMTzhVNWFjanNkbUdFelBJclY5Tw?oc=5",
+     "source": "ANI News",
+     "date": "2026-11-25"
+    },
+    {
+     "title": "Properties of Five Pakistan-Based Militants to Be Attached in Reasi",
+     "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQTXo5QUxEUEtSU3dscHZBdjA4bmxycGR1TFVIWlBQb2VFTnFoUExWcVQ0bkpFSmgwSzZrWGE4bVl3Vy1XYnZCTy14VjJ6NTFZYkFEVGlUUmNzQWMxS2FmWExNT0hhbXM5NHJ6X0xEYzJjc1dBRUNYVjQyUHVmaFlnbEk5a3pKTkF2azdrUEhTWkd0b09iTFNXaEtLZkRrWVZw?oc=5",
+     "source": "Kashmir Life",
+     "date": "2026-11-25"
+    },
+    {
+     "title": "MMU Seeks Probe into Unsafe Food Supply Chain in Jammu Kashmir",
+     "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNcngxNTkwSnBvR202WXBtcTQ2QXp5akthd0R3cVAtUGJwaXBsbG9fQ2FOM2xEQ1FNSVdSVTdDTk1Rb01mTHNlOHdFV1hBVjRWNUdKbTVHUGo4V01xNm1NNEp1UWFCalNrWU9UZUlVMlhPMzQwUkpQUWxOX2lPeVVZWVdGOUcxeUluSTJNYkwyTGp4djdFdi1ZRzN3?oc=5",
+     "source": "Kashmir Life",
+     "date": "2026-11-21"
+    }
+   ],
+   "newsVia": "Google News"
+  },
+  {
+   "id": "terrorism-in-india",
+   "name": "Insurgencies in India",
+   "includes": [
+    "Insurgency in Northeast India",
+    "Insurgency in Manipur (since 2023)",
+    "Insurgency in Assam",
+    "Insurgency in Nagaland",
+    "Insurgency in Arunachal Pradesh",
+    "Spillover in Myanmar"
+   ],
+   "intensity": "Conflict",
+   "tier": 2,
+   "started": "1954",
+   "countries": [
+    "India",
+    "Myanmar",
+    "Bhutan"
+   ],
+   "cumulativeFatalities": "81,400",
+   "fatalitiesByYear": {
+    "2025": "980",
+    "2026": "575"
+   },
+   "lat": 23.281,
+   "lng": 78.709,
+   "summary": "Terrorism in India, according to the Ministry of Home Affairs, poses a significant threat to the people of India. Compared to other countries, India faces a wide range of terror groups. Terrorism found in India includes Islamist terrorism, ultranationalist terrorism, and left-wing terrorism. India is one of the countries most impacted by terrorism.",
+   "wikidata": "Q3352401",
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Terrorism_in_India"
+    },
+    {
+     "label": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q3352401"
+    },
+    {
+     "label": "List of ongoing armed conflicts",
+     "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
+    },
+    {
+     "label": "Google News",
+     "url": "https://news.google.com/"
+    }
+   ],
+   "sides": [],
+   "news": [
+    {
+     "title": "Pakistan minister visits India for first time since 2025 war",
+     "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQU3cxeG5EWFBBdXltOGNvckRTYW5hMi1NY0ZuOFZIZ1h2cnNhd1hnUUo3bXBLbU5jcmVnd0tjbC0xU0k5MWhDM2pzbG92dDVBTkpMeDhlWnBXOTdUVk1JMkxJanVxYV9WYnM3eFlhZEx1SFVnOWZlSlhDLUx3VkFiVGVFUmFnd2R3TW9RWWU1QTAxZTdGeDhrd19ZbEpxWEFYamp4a0hGRzdSUzFoUjZSbNIBtgFBVV95cUxNVlJtTzBEX2VGRkFtcWVTUnJXN0VGMWtzenkyQUtuTEtFY2ZZdk5jZDRyNXduc20tYmxGdEFWZDBuaXQ1czdoT05YQV9RR1FIVmVSaVpDR25nd3d0dFRoenNoSGtabW5EQWVlWTI3dHJZb293U0FJSU1DLXRTNVZydm1mbEtEMWhKb3ZXMzdrUWk5THNjNXpuVWpaVWcwSGcxV1A5Qk1FajBNbTRzeXNEUFUySk1Kdw?oc=5",
+     "source": "Al Jazeera",
+     "date": "2026-11-20"
+    },
+    {
+     "title": "India's Congress warns of more protests against Meta after clashes with police",
+     "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNTmdhX3h3bjctYVFyRXFLZHQ5Zm9aTmQ3cS15R01pWHFxdnRySDBDa1JJbFBHVEZmMm9scHV0VW1xOVlHT19FWlpWaWcxN25aZ3NUQjR6SkFRU2RwQ3Y0YVg5X3A3bTZDT0FXV0JBeEF0SHRjUUM5UWg0cm80YVNyT2JlWHVYR0Iwc2pDZGZKcFNyaG1EWmEtenViMnBDajltODNOUUg2QWo4Yk5sdTllelNGUEdiNGxPWjNKYkthdkg?oc=5",
+     "source": "Reuters",
+     "date": "2026-11-21"
+    },
+    {
+     "title": "India look for 'eight good balls' on final day's 'war of attrition'",
+     "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxQd090MU9PY2MzblduN2dPT0RsU0RjZWdyRGlFMnRYUDIyOU01UmNZTnp4M3k5TjJwN0ZKaEtCZk5lLXVhTGtTOXBicmVYT2tQTXZkN2FXeEZSVjlRZFJiODNZOC1tdFkyYWR3cVpWWDlLUWVoN2FfclhhMEJ4RE95ODBuSzFTa3E5RVNScGhVaUtnYm50a1FFeGY3cHZZYmgxOTd5SUpWY1RIUUluN21GU25USmUwNGJPQlZUNENfRlFMZEo5M3JRZ1NNUEhESzlB0gHiAUFVX3lxTE1icEl6YklmMWpZZ19hZnVZZ19Mcjd2VnJBSXRlUFBLWlNjUDh1d0NTLUtHY3hkWG5LTTJpREw3a05DU0tkaXBkYnBtOE5HOGFMa3lQNlYzQlhhYmVhaGtTRjMyaUVMeHBPaHVxRmZCWTltVTM4WEFSV0hOUEY4WU5kOFpYa0tEMFA2d1M4VHhHcHhTT3o5b3kzNHZlbmJHV09xb3NfeURHcE01d2pGWXRRNVNXUS1vNjNhLWZpLVNfSUxMV3BnRkYyTjNFOWFhM2Jya3dJMzA5bVNnbXdrOW9zVkE?oc=5",
+     "source": "Cricinfo",
+     "date": "2026-11-22"
+    },
+    {
+     "title": "Indian opposition party’s youth wing warns of more Meta protests after police clashes",
+     "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNUUJRdUNRRXhnbERmUzJMcjMwOWZqOUl1RmZYLXRMTTZmMzJhUW50clpub2M1OVpDcW0tOVEyUGljcHcxanVYUk9yYnRNQWpJYXozVlFTaFozODdSSEp5VzVySUFLamQxZlZQR1RiSVdSdEc2dVRDNExEQ09zbG82VGg1ckJBNTkzckJZX0ZVeTFtdXhpd0E?oc=5",
+     "source": "The Guardian",
+     "date": "2026-11-22"
+    }
+   ],
+   "newsVia": "Google News"
+  },
+  {
+   "id": "papua-conflict",
+   "name": "Papua conflict",
+   "includes": [],
+   "intensity": "Conflict",
+   "tier": 2,
+   "started": "1962",
+   "countries": [
+    "Indonesia"
+   ],
+   "cumulativeFatalities": "100,400–500,000",
+   "fatalitiesByYear": {
+    "2025": "259",
+    "2026": "300"
+   },
+   "lat": -0.954,
+   "lng": 101.893,
+   "summary": "The Papua conflict is an ongoing conflict in Western New Guinea between Indonesia and the Free Papua Movement, a pro-independence group in the region.",
+   "wikidata": "Q1893456",
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Papua_conflict"
+    },
+    {
+     "label": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q1893456"
+    },
+    {
+     "label": "List of ongoing armed conflicts",
+     "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
+    },
+    {
+     "label": "Google News",
+     "url": "https://news.google.com/"
+    }
+   ],
+   "sides": [],
+   "news": [
+    {
+     "title": "Change of OPM Name to KEB and the Long Road to Resolving the Papua Conflict",
+     "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOTHJBRWJQcWg3ZGFSdmRIZFZRSHVac3VHS0tCdVVGMFJOU2cycDlFRWM4cDM1LVIwMHh1eUVaMkZZU19jSDItd2M5WGFzLUZGVVVOYXRTS2hOUGkta1JNXzZvZTlJd0hydW1xRmw0aUMzVFdIQlBua1E1VFJQT3dHMHNGN2Q1SmNJWHhYU2FCYkdEdXlNTUJlYkFxTnp6M1FJU1BDWGktZ3BQRy1mX0d4NkZWTzZ5RVIzWUdaeVZSTQ?oc=5",
+     "source": "Kompas.com",
+     "date": "2026-11-24"
+    },
+    {
+     "title": "The Mechanism for Electing the Vice President Begins, How to Ensure Transparency?",
+     "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNSzBCdXQySFRyWjdmcGtoemJfaXBLZUdWWWM4UHZNcG1hclJRYWFUUHJNMnIwMV9SVkFNWlpBaHlPTXBuRzBYNExLVk0xM2txYmpFeEhNYUhELU45MEdibk1JZGFqYU1Kb0RMaWxqeGlHcy1USUJsZ1g0RTlMbjltRUNKUk14aTNpRnZTeERtZEN4RWd0c3FoZ1ItRVNjdG5YRTVyUFBZX21nYW5tc2poazMzdmdrQkNFNkFOOGZaNkk3bjVs?oc=5",
+     "source": "Kompas.com",
+     "date": "2026-11-24"
+    },
+    {
+     "title": "Schedule for Verification Stages of Andi Amran Sulaiman and Sugiono as Prabowo's Vice-Presidential Candidates",
+     "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQVVZ6eV92a2stcEFac0NSZ211aER0dXRob3gtVkVjU2hTanhZLVAwM1c2MzlRSUdhYTluVmFNWld5dHBqTEZHRHF0TnYyT0JaSU9iYWhITktETGd5Y1BkWC1Ga2dVaGRRaUxzVmMtMnUxVXFEelkzMFN2SGRCWkpobWwtZS0tV1p3YVMxNHJvNUgxRzZFX01CZlpZYnhadFIzTzF1empaZ0FCY1UyMWduRWVRb1B3ZmNTVTB6OFZOMWxLaWtv?oc=5",
+     "source": "Kompas.com",
+     "date": "2026-11-24"
+    },
+    {
+     "title": "When Priority Programs Drive Economic Growth",
+     "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPNG83ZFFRRnpmNlpYSWdrbFZmM1FrNTVraUwyZlJlV1NoaDBudGEyTWM3SThKODFlUlk1SkVfVFFpMHdpeXpnV0k3cnJsd25XSmdqbmdxVHZfYVAyeXFYMjN1cmFZNUJVaWZuZWNKaEVBSnB4TEFKZk1rTUJ5R285bUxQckdyZDl0Vzl2cEV0MTRvcFl3c2lZ?oc=5",
+     "source": "Kompas.com",
+     "date": "2026-11-20"
+    }
+   ],
+   "newsVia": "Google News"
+  },
+  {
+   "id": "civil-conflict-in-the-philippines",
+   "name": "Civil conflict in the Philippines",
+   "includes": [
+    "New People's Army rebellion",
+    "ISIS insurgency in the Philippines (since 2023)",
+    "Philippine drug war"
+   ],
+   "intensity": "Conflict",
+   "tier": 2,
+   "started": "1969",
+   "countries": [
+    "Philippines"
+   ],
+   "cumulativeFatalities": "166,600–245,200",
+   "fatalitiesByYear": {
+    "2025": "537",
+    "2026": "389"
+   },
+   "lat": 11.198,
+   "lng": 122.465,
+   "summary": "The civil conflict in the Philippines is a series of insurgencies launched by Communist rebels, Moro rebels, and Islamists against Government forces that began in 1969 during the presidency of Ferdinand Marcos.NPA rebellion\nMoro conflict \nISIL insurgency ",
+   "wikidata": "Q16146546",
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Civil_conflict_in_the_Philippines"
+    },
+    {
+     "label": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q16146546"
+    },
+    {
+     "label": "List of ongoing armed conflicts",
+     "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
+    }
+   ],
+   "sides": [],
+   "news": [],
+   "newsVia": "Google News"
+  },
+  {
+   "id": "terrorism-in-bangladesh",
+   "name": "Insurgencies in Bangladesh",
+   "includes": [
+    "Chittagong Hill Tracts conflict",
+    "Maoist insurgency in Bangladesh",
+    "Spillover of Rohingya conflict from Myanmar"
+   ],
+   "intensity": "Conflict",
+   "tier": 2,
+   "started": "1972",
+   "countries": [
+    "Bangladesh",
+    "Myanmar",
+    "India"
+   ],
+   "cumulativeFatalities": "80,100+",
+   "fatalitiesByYear": {
+    "2025": "369",
+    "2026": "322"
+   },
+   "lat": 24.215,
+   "lng": 89.685,
+   "summary": "Terrorism in Bangladesh is primarily composed of Islamist militant activities aimed at subverting the secular constitutional system to establish Sharia rule. These activities are often linked with international jihadist networks such as Al-Qaeda and ISIS. Major groups include Jama'at-ul-Mujahideen Bangladesh (JMB), responsible for coordinated bombings in 63 locations in 2005 which killed dozens and injured hundreds; its reformed splinter group, Neo-JMB; and Ansarullah Bangla Team (ABT), which targets secular bloggers and minorities.",
+   "wikidata": "Q19364861",
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Terrorism_in_Bangladesh"
+    },
+    {
+     "label": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q19364861"
+    },
+    {
+     "label": "List of ongoing armed conflicts",
+     "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
+    }
+   ],
+   "sides": [],
+   "news": [],
+   "newsVia": "Google News"
+  },
+  {
+   "id": "cabinda-war",
+   "name": "Cabinda War",
+   "includes": [],
+   "intensity": "Conflict",
+   "tier": 2,
+   "started": "1975",
+   "countries": [
+    "Angola"
+   ],
+   "cumulativeFatalities": "30,200",
+   "fatalitiesByYear": {
+    "2025": "200",
+    "2026": "25"
+   },
+   "lat": -12.183,
+   "lng": 17.984,
+   "summary": "The Cabinda War is an ongoing separatist insurgency, waged by the Front for the Liberation of the Enclave of Cabinda (FLEC) against the government of Angola. FLEC aims at the restoration of the self-proclaimed Republic of Cabinda, located within the borders of the Cabinda province of Angola.",
+   "wikidata": "Q152060",
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Cabinda_War"
+    },
+    {
+     "label": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q152060"
+    },
+    {
+     "label": "List of ongoing armed conflicts",
+     "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
+    },
+    {
+     "label": "Google News",
+     "url": "https://news.google.com/"
+    }
+   ],
+   "sides": [
+    "Angola",
+    "Front for the Liberation of the State of Cabinda",
+    "Forças Armadas de Cabinda"
+   ],
+   "news": [
+    {
+     "title": "How do we finance the recovery of wild landscapes after conflict?",
+     "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPOURBNnZreEdNUVhpcUtmSHFhMlJYWVJ3bE1NSFdfWFdWQmNEamlNbUo4dlNxOWF1WWJoUWRkdEU1VTdyRG5SU18yMTNGc2hqbG1DWlUya0Ffdmc3SGVtQlVrWlhBVmtRQTg0Q0ZNcW1VekJvTDEyLXNIUzFfMlc3aVd2MUdRVDRnT1A5OHZOWXhIdw?oc=5",
+     "source": "The HALO Trust",
+     "date": "2026-11-24"
+    },
+    {
+     "title": "Why did South Africa support UNITA during the Angolan civil war?",
+     "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOR2ZaUTk4a3VfeGs2TGRTMFpvUXR3SGhPRHlYb1Y4VlJSc1hwSExfa3Y1ZGh2VWQ2cEVSNGp4MTJFTThvZzgwM2ROTHNFNXRuQ3gza1g3dEJWWGZxNXk3WkxEOGFYNHJTVGhmWVRWQTluUnFLMW5MM25heG9OeVlWNW9TOHUwVEFnMXF3amtJM2lEUnRIZHdMaUxobkQ?oc=5",
+     "source": "Britannica",
+     "date": "2026-11-24"
+    },
+    {
+     "title": "Shearwater Wins 4D Streamer Seismic Contract With TotalEnergies Offshore Angola",
+     "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQclhTUG1hZFlXNHM3RkQ3am9Hc3J6a0JNblZ3dGdiaFhuajNPUUNoUlNkZFRTNU9qclFTR0tJeUw3cGlqZTA5ZWYwQ1hWUi1wN2Q3Z0ZXWlhUem1NcjRCeG9WZ0JnVkJUUThpdVVaX3RyZ3NfenVQMXEwYzBGdDN1ajdmQmkxbzMwQWZvaE10MkZxVkFPYklnU0dqRWlaU0stbERsenBORnFFTERqMnE4YkloY2ZMUlhQZEVUaFBWVFdoTWc?oc=5",
+     "source": "Ocean News & Technology",
+     "date": "2026-11-25"
+    },
+    {
+     "title": "Algeria and Angola reaffirm support for just causes and legitimate rights of peoples struggling for freedom and independence",
+     "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE43NGVpUFpEZEo3eXVkNkZBSjdqcGtCTDRxb1B6Q1R1aEJielJrcWR3MlFIUklhQzJEOGxIY2luODQ1T2JmTWlnVnUxS2VjVkdfVkI4ZzdnVzMyemQ0aGc?oc=5",
+     "source": "وكالة الأنباء الصحراوية",
+     "date": "2026-11-24"
+    }
+   ],
+   "newsVia": "Google News"
+  },
+  {
+   "id": "ethnic-violence-in-papua-new-guinea",
+   "name": "Ethnic violence in Papua New Guinea",
+   "includes": [],
+   "intensity": "Conflict",
+   "tier": 2,
+   "started": "1988",
+   "countries": [
+    "Papua New Guinea"
+   ],
+   "cumulativeFatalities": "15,400–20,000",
+   "fatalitiesByYear": {
+    "2025": "142",
+    "2026": "207"
+   },
+   "lat": -5.695,
+   "lng": 143.91,
+   "summary": "Ethnic violence in Papua New Guinea often revolves around inter-tribal warfare.",
+   "wikidata": "Q123010164",
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Ethnic_violence_in_Papua_New_Guinea"
+    },
+    {
+     "label": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q123010164"
+    },
+    {
+     "label": "List of ongoing armed conflicts",
+     "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
+    }
+   ],
+   "sides": [],
+   "news": [],
+   "newsVia": "Google News"
+  },
+  {
+   "id": "brazilian-drug-war",
+   "name": "Brazilian drug war",
+   "includes": [],
+   "intensity": "Conflict",
+   "tier": 2,
+   "started": "1992",
+   "countries": [
+    "Brazil",
+    "Argentina",
+    "Bolivia",
+    "Colombia",
+    "Peru",
+    "Paraguay",
+    "Venezuela",
+    "France"
+   ],
+   "cumulativeFatalities": "50,000+",
+   "fatalitiesByYear": {
+    "2025": "130+",
+    "2026": "12+"
+   },
+   "lat": -12.099,
+   "lng": -49.559,
+   "summary": "The Brazilian drug war is an ongoing conflict fought mainly between police militias, drug cartels and federal security forces in Brazil.",
+   "wikidata": "Q112610292",
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Brazilian_drug_war"
+    },
+    {
+     "label": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q112610292"
+    },
+    {
+     "label": "List of ongoing armed conflicts",
+     "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
+    },
+    {
+     "label": "Google News",
+     "url": "https://news.google.com/"
+    }
+   ],
+   "sides": [],
+   "news": [
+    {
+     "title": "Divided and displaced: Brazil’s Kaingang people wait for an end to illegal leasing conflict",
+     "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNQ3lkaWhhYXBKSk9wVXNpVkY2OHZfa28wYm50LUxwTE4zeVM2czF0aXNILVZ0cW45S19FNHpiaXplTU1uMjR1SWEzTXI2WnA1Ujgwck5jTGVtWHZOZTZjR0ZZajFEalVEdjlfcGtoYXRqU0V5cGtyenpUaUZEVjBieU8wWWZ0NnFrbDRQaHI3eVdKOTNiaTFRbWFZRGtsMExNM2FWdXpmZlhGZXNfOUZUV2tzYmE5T09DSzhYbDJfbVl1Z9IBxwFBVV95cUxNekxvaE1MeUdQUVV0Z0lKRjlITkozUi1xb3haSk04N01jeHNQYUYwSDlTc0FHRnB2aVZNSjlreWJWbHc5R1pKUDc2ZFZNOGVrcERvQ1dRY05VT3AwTzNfTHRlUkc1QVNfTnBSUG5qaHpldUh1WkZ5MzEzMGFfWGw5RUhCbDJiX0t2M3RFRkZOSTBGUmt2TTBDMVZ1akZnM1p2STdtYnhjUVZjQ3RRSi1pdTNnbjV3R2RCM0xqQ0xjMG1qRWVkOTdN?oc=5",
+     "source": "news - Mongabay",
+     "date": "2026-11-25"
+    },
+    {
+     "title": "Nvidia’s Tangled Web, Risks of Smartphone Tracking in Japan, Banned Pesticides in Brazil, and Fox News’ WNBA Culture War Coverage",
+     "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxQeC1VU3FTNUx1QWNWLUhOQVBLeDNqbThuckNKTjdxUzNXZzVJU2VJQ1VxbEpVS0RDb1lqQTZpWE9QTUowczBnVGQxRFVpVUV3THVLZGhtNnVxVmhnMUQxa1pIQ3Vic3ZVMkVlYmprMVZpYUhseDRlQ2RDSUJTUF8zMEoyVlJJOE56cTZyVg?oc=5",
+     "source": "Global Investigative Journalism Network (GIJN)",
+     "date": "2026-11-20"
+    },
+    {
+     "title": "Music in the favelas of Brazil - Music in conflict: 26 iconic images",
+     "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQeVdKMFFjcjZQUXVpRW9uMjRBT2RDQ05FSlpDeENfamRReW1yWnkzSWNRanFYNHVaU09MQTdQQUZmU1JuSmhNQngwbVdXbkNoUjFmNUZ2OGRyUEJOTkk2aUxpYTZTRGwtb21CRlVpMHpONjJ5SnJYaFhwSzgxRW5fZWRxYUxKc09f?oc=5",
+     "source": "Classic FM",
+     "date": "2026-11-21"
+    },
+    {
+     "title": "Lured by High Salaries, Some Brazilians Were Duped Into Fighting for Russia",
+     "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxOVC01QXZKYmVBMGVqT0s0TExPOWFKWGkxNTVqZHE1STJhNUZZUmFBNWs2eG1Ca3BNQ0Y4ZXhreDdPNTBpX1ZmSE9OZkR1WUNnUF9ySlprQkxaVzRLakJUekFpY2VkeWJ6WVZzaVVMWUxBSGFOQVp5VlN4enI3VmdPRkQzUnRhVHVTWXhZcw?oc=5",
+     "source": "The New York Times",
+     "date": "2026-11-26"
+    }
+   ],
+   "newsVia": "Google News"
+  },
+  {
+   "id": "iraqi-conflict",
+   "name": "Iraqi conflict",
+   "includes": [
+    "Iraqi–Kurdish conflict",
+    "ISIS insurgency in Iraq"
+   ],
+   "intensity": "Conflict",
+   "tier": 2,
+   "started": "2003",
+   "countries": [
+    "Iraq"
+   ],
+   "cumulativeFatalities": "334,700–1,215,000+",
+   "fatalitiesByYear": {
+    "2025": "575",
+    "2026": "469"
+   },
+   "lat": 33.094,
+   "lng": 43.262,
+   "summary": "The Iraqi conflict is a series of violent events that began with the 2003 American-led invasion of Iraq and deposition of Iraqi dictator Saddam Hussein, followed by a series of conflicts including the protracted Iraq War (2003–2011), the Iraqi insurgency (2011–2013), the War in Iraq (2013–2017), and most recently, the small-scale Islamic State insurgency in 4 provinces located in Northern Iraq since 2017.",
+   "wikidata": "Q47015896",
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Iraqi_conflict"
+    },
+    {
+     "label": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q47015896"
+    },
+    {
+     "label": "List of ongoing armed conflicts",
+     "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
+    },
+    {
+     "label": "Google News",
+     "url": "https://news.google.com/"
+    }
+   ],
+   "sides": [],
+   "news": [
+    {
+     "title": "Luxury US Startup Bets Big On 10 Airbus A220s With A Private Suite And Just 54 Seats",
+     "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPUUM5LUh5d2lKNW15eVlveUZwQjFHcVRaREcwMmQ1cmlpV2NkYjVnNm1FRDQ0bXBTQ0txVWhUa3FqVzBCTGdWMGxLNF85LUYtMmMydnN1NFlNb3dZVDcyMlZWQm5laXJIQUdvWC1FYzdpczhjNzhibS1hZzRpRnNfQ242aGx0ak9nTGg2SW51TmpfRDZzeXM5akFITG1SU1dLaGpwc3RqczBSOEVXcFlWQTVVUVJQSm8?oc=5",
+     "source": "Simple Flying",
+     "date": "2026-11-23"
+    }
+   ],
+   "newsVia": "Google News"
+  },
+  {
+   "id": "libyan-crisis",
+   "name": "Libyan crisis",
+   "includes": [
+    "Turkish intervention in Libya"
+   ],
+   "intensity": "Conflict",
+   "tier": 2,
+   "started": "2011",
+   "countries": [
+    "Libya"
+   ],
+   "cumulativeFatalities": "30,300–43,000",
+   "fatalitiesByYear": {
+    "2025": "282",
+    "2026": "205"
+   },
+   "lat": 26.639,
+   "lng": 18.011,
+   "summary": "The Libyan crisis is the current humanitarian crisis and political-military instability occurring in Libya, beginning with the Arab Spring protests of 2011, which led to two civil wars, foreign military intervention, and the ousting and killing of Muammar Gaddafi. The first civil war's aftermath and proliferation of armed groups led to violence and instability across the country, which erupted into renewed civil war in 2014. The second war lasted until 23 October 2020, when all parties agreed to a permanent ceasefire and negotiations.",
+   "wikidata": "Q18702324",
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Libyan_crisis"
+    },
+    {
+     "label": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q18702324"
+    },
+    {
+     "label": "List of ongoing armed conflicts",
+     "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
+    },
+    {
+     "label": "Google News",
+     "url": "https://news.google.com/"
+    }
+   ],
+   "sides": [],
+   "news": [
+    {
+     "title": "What strike on Russian ship in Libya says about spread of Ukraine war",
+     "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFAzRlpROXRSV044RXVOaF82dVp1Y3NpM0FjdGgtcm1EWTRDY3V0REVZckZEbHE2Y2F1VGp5S3NLdk5kUkNrN1lBOW1IQVVnXzN3TXVHTUNVMzJyNkdWWWc?oc=5",
+     "source": "BBC",
+     "date": "2026-11-23"
+    },
+    {
+     "title": "Russian warship sinks in Benghazi after suspected Ukrainian drone attack",
+     "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOSFVTX1ZRdG95VXVFbTBCdEVjNDQxeUJCSC1zczMtNVJtSTNsX1Z4NkJFUGowNW1xNjNJUlJ3NkZuazFqM183NUhueGF0LU5xUzZocnFNR3N4WEktS3Ezelo3YldkT1I5dGMxYW1BZFZQNTVOQmlxMjM2cmlONjhhbEs2ZnJIRk9Rc1dHaXVJSzJuSlNibVNlOWp5ZU1qSGdYcE9adA?oc=5",
+     "source": "The Guardian",
+     "date": "2026-11-22"
+    },
+    {
+     "title": "Could Russia-Ukraine war threaten Libya’s fragile reunification process?",
+     "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNb3VCbzA2cllMdlZvQU1ZclBLd0ZOV2xCVElUZi1ZaGdPemZYZFhBeW4xYUE4dkhzaW1VOGFxSjhRQ0Y3Q196TmtYeEpWejEyaEtZUUJLODRNMWNsREkxR1Bibmc1eFJibUdEWHJyTmh2NkJwQXBpd0VFZG1xREROTjJhYTdkUHVQSFAxcFpmQUZLWUFmLS1CUWNLM1lFbTZUN19Ga0Y4T0FLVElKSnM4ZGRLVkItWGMyMFJIMEd30gHDAUFVX3lxTFBDM21DMlk1Mnp6MWwyT2plZVlDdWJXQlVuSHdxd01ZNmJPOGs2ZGYxRGVtRmctRFRtbm1rY01Pc0RvWlVKeXFUSlAzeW5fVEVMblQ1TmFkRy01amkwZWlYbGFSbGlEZzVYRko3anNmcDFySkl0Y1FtdWMxOFVzTFdYbTZYZGdKSkoxT1FzbEZsamttX1dtdU9Ia2JIX0pPRlV0cVh5M3JLU0daLTZUeVkyNF9VdmRQb0tLREFZQ3kxZ3YxVQ?oc=5",
+     "source": "Al Jazeera",
+     "date": "2026-11-24"
+    },
+    {
+     "title": "Ukraine says attack on Russian ships in Libya was self-defence",
+     "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOTzIzWjZLTEdiVXRtR0I1cEJ3MFVCUzF5ZktKdWRUQlNtMEVDTnQ4Mk5xU2tvODVlRUJFeE5KOGlieGxsYkp5c1dhZklONzRZNW1VWTR4OVM1MGFQM0cxRXBaQm93b1lhWG1qR3F0ZGV2VTRRRGxtbTRkU1VYQ2c2dEtHckpXQmJCbmpYZlNKeFVrNW8zVjBldDFEWGc1TmIzRTJTM0ozNy1yanVq?oc=5",
+     "source": "Reuters",
+     "date": "2026-11-24"
+    }
+   ],
+   "newsVia": "Google News"
+  },
+  {
+   "id": "insurgency-in-cabo-delgado",
+   "name": "Insurgency in Cabo Delgado",
+   "includes": [],
+   "intensity": "Conflict",
+   "tier": 2,
+   "started": "2017",
+   "countries": [
+    "Mozambique",
+    "Tanzania"
+   ],
+   "cumulativeFatalities": "7,800+",
+   "fatalitiesByYear": {
+    "2025": "824",
+    "2026": "522"
+   },
+   "lat": -13.943,
+   "lng": 37.838,
+   "summary": "The insurgency in Cabo Delgado is an ongoing Islamist insurgency in Cabo Delgado Province, Mozambique, mainly fought between militant Islamists and jihadists attempting to establish an Islamic state in the region, and Mozambican security forces. Civilians have been the main targets of terrorist attacks by Islamist militants. The main insurgent faction is Ansar al-Sunna, a native extremist faction with tenuous international connections. From mid-2018, the Islamic State's Central Africa Province has allegedly become active in northern Mozambique as well, and claimed its first attack against Mozambican security forces in June 2019. In addition, bandits have exploited the rebellion to carry out raids. As of 2020, the insurgency intensified, as in the first half of 2020 there were nearly as many attacks carried out as in the whole of 2019.",
+   "wikidata": "Q47499139",
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Insurgency_in_Cabo_Delgado"
+    },
+    {
+     "label": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q47499139"
+    },
+    {
+     "label": "List of ongoing armed conflicts",
+     "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
+    },
+    {
+     "label": "Google News",
+     "url": "https://news.google.com/"
+    }
+   ],
+   "sides": [],
+   "news": [
+    {
+     "title": "After the Sahel, Madagascar: Why Russia Is Moving Into the Mozambique Channel",
+     "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOWHc5blo2cDhjdnhpQU1ydXlRVDRuaTdlZ1dkX0lvVTg3MjBrWmpQYWRzM3lXcTZ4ekZrMzhQZm5TSEw1WkpwSTk4bnNSbElOMU52RzJuZndOdm9pM1FBaDVteVdUT2F3ZzdFRzItS0pHa1U4d3FlZzJkOUpFcUhCa1J5ZGpEMEIzSnY5bVdNV01HNUZtOTZkVDU3cHpKV2xOWWJ2SlVuQzJ2c0NocGw3YXBMWWY?oc=5",
+     "source": "Modern Diplomacy",
+     "date": "2026-11-26"
+    },
+    {
+     "title": "EU Extends Military Assistance Mission In Mozambique Until 2028, Allocates €17.1 Million To Strengthen",
+     "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxNcVl0LVZhWF82b0RUNTR5WUdRUUgwT3Vkb0JzWndvVjFkTWVaMnRyN0tIdTBaLUY3SUpSMzMzMnp3ZUR3Q0JxbmNqZGxrM3dLRTRiNnBsUzJRS3NLYV9fYkRrUnh6czVxdDBEc2o5cHVsOFdwUjlXYk1qNDhUeFR1OEhtRFRTMk1CbS1IZ3dmNEJDUG5mSjN5V19ac1E0dVREdlRRY2ZRYnJEUDRNcFpEczZqSG1HcTV0RjlZXzY1VmJGalZ2cXNpNHJOVktiY3pYZHl1V01hOUZuSFo4RWwwMlJKZ9IB6wFBVV95cUxNci1LRFE5ZGhyR1BqT292WnhKWXRuVEFSbm5jSno3a2I5QUlhRVI3N1RwRzV5Znc4OGdmQ0I3VWcwaXU0ZkV0eVhoMzdGWlo3SXVuTnBDektEaXN1SjdqNXJoeENFa3hyUHlFclNVenJUeHdBU3FqM195M09scS14VVNiTnBQUVVfU1ZxSWdlNmlYN1Q2bEkyLU5ZMmVILVpKWEdtNktseTdBQ0VNNnk3TThWMW9rcnJsZTl2emFhbHZ4bHYzczFhZm1uWVFHcDZKTW9oYkZNNEtEZWxuQW83Uk5mUnhsWjZlSzlz?oc=5",
+     "source": "Trendsnafrica",
+     "date": "2026-11-26"
+    }
+   ],
+   "newsVia": "Google News"
+  },
+  {
+   "id": "honduran-gang-crackdown",
+   "name": "Honduran gang crackdown",
+   "includes": [],
+   "intensity": "Conflict",
+   "tier": 2,
+   "started": "2022",
+   "countries": [
+    "Honduras"
+   ],
+   "cumulativeFatalities": "100+–1,700",
+   "fatalitiesByYear": {
+    "2025": "561",
+    "2026": "622"
+   },
+   "lat": 14.795,
+   "lng": -86.888,
+   "summary": "The Honduran gang crackdown, referred to in Honduras as the Régimen de Excepción, began in December 2022 after parts of the constitution were suspended to fight criminal gangs in the country.",
+   "wikidata": "Q115628162",
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Honduran_gang_crackdown"
+    },
+    {
+     "label": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q115628162"
+    },
+    {
+     "label": "List of ongoing armed conflicts",
+     "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
+    },
+    {
+     "label": "Google News",
+     "url": "https://news.google.com/"
+    }
+   ],
+   "sides": [],
+   "news": [
+    {
+     "title": "Hegseth Wraps Central, South American Trip by Delivering Anti-Cartel Message",
+     "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxOcWVBNzlnSnZ2aExqTUJ1M0VjaExjZk1xSHBsd2NwcHBYSkw1dTFHb29WSjZZV2J6NXluX0F0c1g4T0gtcG1MMTJJUEkxelpmYUtadlQzd1BnZ0F5OGRMci1URjBGSERia0tsRlJ5a0pqcEVBenVKVmlYTU9Wek0zVjNHOUNET0FHZG80dFVVell3MG4yY0l0ZVRxT0ltWHlTZ0J6VTM3MlE5SHpnRXlwY0FtV0tNLWRqamhFSWd6NXc0UXpidzJTczRMdXRYcVZETndVNg?oc=5",
+     "source": "U.S. Department of War (.gov)",
+     "date": "2026-11-20"
+    },
+    {
+     "title": "Sudan: Drone strike kills 10-year-old pupil attending NRC-supported school in attack on family home",
+     "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOa1duMENORkRrVjFUWWl2bTRfRXlJMTRQV3V0dVJnM1o1S0xNQ0xwR0RiMHEwQkNvUXZmWnpvajdYQ3M2T2hBZGgyVTRCWWFJUkNibkxYZHFtM2hGSmxaLXhzOXpSQ3dHTkt6clNnLWVFQXBUTUNSZXhjbzd5RTFjNmJ0V2lXUUwtazFCNTYxb09iSXZXVTZnRS14a29yT3NLZGd6QXJjb1lRQjRlbkQ3YWtWbVI0bFN0cGtYa21uTS1vdHF6VkE?oc=5",
+     "source": "Norwegian Refugee Council",
+     "date": "2026-11-25"
+    },
+    {
+     "title": "Guatemala Strengthens Its Borders to Curb Organized Crime",
+     "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQLUJGOFVCdzFLVkNwa3JQZ2NkUFJ3YnppTzl1S3lxeHpsVWluOW1KeW1zMWllWjQ1TUpkSWhTRmJubm5RdmQyTHFBa3dGaFA4RXRKUHk2djkxRTBFUkhkZkJoMjNaREhkbUFaX1Uya0hJaVM0UjdzV0FRdEd6MU5yN1d5NHNxT2lJSUxyRUoyc0VmcjNJVk41bGprcHc?oc=5",
+     "source": "Diálogo Americas",
+     "date": "2026-11-24"
+    },
+    {
+     "title": "Three US citizens among 4 convicted in Honduras over sex-trafficking case",
+     "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOZ0xvMGNPTEc2T0ktTTNMMXExblp3cFhkLTEwZTE4dm5pRVlWRGZQdmdYTFZ6SUdLdlJ0U29DbTcwR0xzMGtLU3FIUWNmaVoyUWRRN2JPT3JjZFRzVC1hMnZORmlKVU9tQndWeDUtOHZBbThkTWw1MVI3V0dpVlZOOG0tbERYUGtPTXJhT1RZdWw0dlYyaUZFV2pud20zckk5WHdNNjBJLXl1LWdiQmozMWlKVFlUUdIBuwFBVV95cUxOdmgzVjV4OTRXWHVJdkF1OUNTajN2QVdPdlY2NUd3bFpMM3VOaDY2eG9PbjI3MUUxdmZvOEVlMjVPT204c0Q0WXFnM2pZWWtVdFBDZElybXVUX3c5RE00OEp0QVgta2VaQUFDLTBLMlNRMjh3RDdta3BYcUNrWXdzb3Zhcnk2ZTRsdWxsZTlQMDl3VXZ6RUhxZ1F4MUtOanBqQ01VWFRscndRYjM5blMtZ2N2cnd3ak5abXVJ?oc=5",
+     "source": "Al Jazeera",
+     "date": "2026-11-21"
+    }
+   ],
+   "newsVia": "Google News"
+  },
+  {
+   "id": "ethnic-conflict-in-ghana",
+   "name": "Ethnic conflict in Ghana",
+   "includes": [
+    "Bawku conflict"
+   ],
+   "intensity": "Skirmishes and clashes",
+   "tier": 3,
+   "started": "1957",
+   "countries": [
+    "Ghana"
+   ],
+   "cumulativeFatalities": "300+",
+   "fatalitiesByYear": {
+    "2025": "0+",
+    "2026": "10"
+   },
+   "lat": 7.718,
+   "lng": -1.037,
+   "summary": "Ghana has experienced ethnic conflict throughout its history. Ghana ranks 43rd in the Global Peace Index. and as the most peaceful country in West Africa.",
+   "wikidata": "Q55611102",
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Ethnic_conflict_in_Ghana"
+    },
+    {
+     "label": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q55611102"
+    },
+    {
+     "label": "List of ongoing armed conflicts",
+     "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
+    }
+   ],
+   "sides": [],
+   "news": [],
+   "newsVia": "Google News"
+  },
+  {
+   "id": "cross-border-attacks-in-sabah",
+   "name": "Cross border attacks in Sabah/Drug trafficking in Malaysia",
+   "includes": [],
+   "intensity": "Skirmishes and clashes",
+   "tier": 3,
+   "started": "1962",
+   "countries": [
+    "Malaysia",
+    "Philippines"
+   ],
+   "cumulativeFatalities": "134+",
+   "fatalitiesByYear": {
+    "2025": "3–6",
+    "2026": "3+"
+   },
+   "lat": 2.529,
+   "lng": 113.837,
+   "summary": "The cross border attacks in Sabah are a series of cross border terrorist attacks perpetrated by Moro pirates from Mindanao, Philippines, in the state of Sabah, Malaysia, that began even before the British colonial period. Many civilians have died or suffered during these incidents, causing an increase in anti-Filipino sentiment among the native peoples of Sabah, especially after major attacks in 1985, 2000 and 2013. The attacks were more intense during the presidential terms of Diosdado Macapagal and Ferdinand Marcos, who supported irredentist claims to include eastern Sabah as part of the Philippines territory. In addition, recent infiltration and attacks by militants as well as uncontrolled human migration from Mindanao to Sabah has led to more unease among the local residents of Sabah, with around 78% of prison inmates that were caught in the state due to involvement in criminal activities and lawlessness issues mainly originating from the southern Philippines.",
+   "wikidata": "Q18711630",
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Cross_border_attacks_in_Sabah"
+    },
+    {
+     "label": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q18711630"
+    },
+    {
+     "label": "List of ongoing armed conflicts",
+     "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
+    },
+    {
+     "label": "Google News",
+     "url": "https://news.google.com/"
+    }
+   ],
+   "sides": [],
+   "news": [
+    {
+     "title": "Eleven injured in second Houthi attack on Riyadh skyscraper",
+     "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxOM3ZqZnIzRzQzWEdiOTM2Q29LQVdqRVdSVWIzNUJSN0JYMXhPUDlDU09DNVNQc0dUdHZjNkNfUU5kY01QT2RfOEJPR0xEOGlSemt2aU9jVFdrSkRMSGtHLUVxOXBkZ25jdm90RHpmX2tCdktZMVgxTktTa3BNM0otQTA1RDZUZktTRHc?oc=5",
+     "source": "Yahoo",
+     "date": "2026-11-25"
+    },
+    {
+     "title": "Malaysia set to return thousands of Rohingya refugees to Myanmar",
+     "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPYWczaE96aHBTQkVocnh1MmlITjR0cUV4c2tzdFlaQmpUX2RNLVQ0U081bFlGSnFQdXZ1Q1A1T2FFbXY3VDJtejRXWlJiZThuN3RDTkhVQk1UUGRiTzVLTXZzTFBMcDNscjlicld6R0NfeWxKX0ZyZ01tNHhvUEZiYm91V0daQm52LTZ1UTdtSl9BRWRrTTVnR0ZIeExaRE1sdEpNeHNtMXFTSXdp0gGyAUFVX3lxTE05WnZxVE9rLXlIVTJabGIzalRqcGl6M0VudG1HWGtvbDZPdGtQOTRvaXB5Z1JPZl9rZTRsTnRMQjUwLTQyN2Y1RGdGZjVaUE4yOTNXT1dvTXU4Ri1Dc3V1blF0N2hJT1RfcFRlMklWVGRjR3dkMUhaMk90Ny1rTkh5ZW03emlueE1sSXRPNlAzSzNxVUtKWWVrRFdmeWJhR2Nvc2NRV1dlSjU4QjQ3SUNXUEE?oc=5",
+     "source": "Al Jazeera",
+     "date": "2026-11-24"
+    },
+    {
+     "title": "Suspects in first Daesh attack in Malaysia change plea",
+     "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNbUMtUFR5eUtiLVE2RE40RTFRdnBXa3VUd1U0dGc0a0NDWXBiYWt3VS1jNFdBZVZNTmRYZDMtb2o1S1pBTW9FVjVsaG5QbkVWWkpjOXQzYmEtQzFfME1nQ19CLTF1Y3NrUkJxT0wzU1pKT0lXVGFZWW5xS2kxZmd4MHdscHBtcVNjQktwdWtNS0ZJMy1ZY3dseA?oc=5",
+     "source": "Yeni Safak English",
+     "date": "2026-11-24"
+    },
+    {
+     "title": "Malaysia Plans to Send 6,803 More Myanmar Nationals Home After Genocide Ruling",
+     "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPTHgzMEtLNWFmS0p0OUJsUUdnYmZPa2hteUFzQ3ZMWUtFWDJHZzJtcXY4dWVaX0l5cEZJdHVOTlFQcVpWV2VTZkc2YWdNRjZFbjlNTkE3WTRrRjVMSlZKRnZXRWZqUkw2MEN1MUwzWVpNT2hJam9SMEVpbWJYdXhzQWpPYVdKS1hWNzJMS2xVNDBudlV4Si1PaUR3cGtxSHpOX1M3WEc5U3Z4Y2NpdzZ6dkJYclAtbFE?oc=5",
+     "source": "Around Prague",
+     "date": "2026-11-24"
+    }
+   ],
+   "newsVia": "Google News"
+  },
+  {
+   "id": "western-sahara-conflict",
+   "name": "Western Sahara conflict (since 2020)",
+   "includes": [],
+   "intensity": "Skirmishes and clashes",
+   "tier": 3,
+   "started": "1970",
+   "countries": [
+    "Morocco"
+   ],
+   "cumulativeFatalities": "14,000–21,000+",
+   "fatalitiesByYear": {
+    "2025": "54",
+    "2026": "7"
+   },
+   "lat": 31.651,
+   "lng": -7.187,
+   "summary": "The Western Sahara conflict is an ongoing conflict between the Sahrawi Arab Democratic Republic (SADR) and the Kingdom of Morocco. The conflict originated from an insurgency by the Polisario Front against Spanish colonial forces from 1973 to 1975 and the subsequent Western Sahara War against Morocco between 1975 and 1991. Today the conflict is dominated by unarmed civil campaigns of the Polisario Front and their self-proclaimed SADR state to gain fully recognized independence for Western Sahara.",
+   "wikidata": "Q15731384",
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Western_Sahara_conflict"
+    },
+    {
+     "label": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q15731384"
+    },
+    {
+     "label": "List of ongoing armed conflicts",
+     "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
+    },
+    {
+     "label": "Google News",
+     "url": "https://news.google.com/"
+    }
+   ],
+   "sides": [
+    "Morocco",
+    "Polisario Front"
+   ],
+   "news": [
+    {
+     "title": "What Withdrawal of the UN Mission Means for Western Sahara",
+     "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQMVNFYXNGRVRUaTBPZkpGVThVb1dGWHBNSFlRcU9OVHFMQUtLUDdYYklpSFgwNnU0SERlYlotbkhxMnh5akVIR1V2LUlqc1dTd0R3SVRMUW1lNTNLbGVISXhlTFFCclB5LWJucHk3QlFRZGp0d3d0Y0J0UUhoblN3Qnc5d1lSRVNhaFBlT2xIbTZBZTBUc2hvVmtKS2lkbDY5SklINDBoMUMzSWVmbmZhYllhVi1Fd0FSdlJV?oc=5",
+     "source": "International Crisis Group",
+     "date": "2026-11-20"
+    },
+    {
+     "title": "EU stresses importance of reaching just and lasting solution to Western Sahara conflict",
+     "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBWaERtMUhIdTdqNEtsSEhGOGh1bnNSZVpBVVJPd29QRXZjSDhhVktuTjdRMXktblRvcjkzbkN1QU51U2Q4bkR1RW9fOVNLb1FwUkR1YXhkaG1sR09BbFE?oc=5",
+     "source": "وكالة الأنباء الصحراوية",
+     "date": "2026-11-22"
+    },
+    {
+     "title": "Morocco consolidates its control over the Sahara following the end of MINURSO with 9,214 million in strategic investments",
+     "url": "https://news.google.com/rss/articles/CBMikAJBVV95cUxQN0ZSWk96NmhfMUdyUnA4dkprZ3dqbWhsc2FzU2RIQVRRU01ISWZFQ3lRT2V6aEE4OW9uemxmZVdmS284XzRLNHpjdzc1RGw1M1BscklicTBPVkx0Zk5yMmtYZzJiUTdNNktxR21uYWhKcXFpUEN6cU9nb1RpR001UV9TZkl4anpFVXExSzd6VmFBSXBmXzF0XzZQbUV4eGUyRUZwa0JVODl5dTRGd0I5djNmaEJXRDVIWkg5aXFmQXFpQVR2aGY5WDJ6ZHBxZkxyQTVkeGZXRThDRGxrQzl6WDBSekVBR0JtTE1lSHByZkNLRzNPOF8waXNtOGZKU2JRbzBJNno4LUpPRjcyYWUxSw?oc=5",
+     "source": "Atalayar",
+     "date": "2026-11-23"
+    },
+    {
+     "title": "Occitanie communist elected officials reaffirm solidarity with Sahrawi people",
+     "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE85MTFldEJGcmc3U1VlWFk0OTZVb3M1T2ZJYXNYRHk3OWJMRHBiZnN2VldOc0J3bmZZVVp3OUh1WGdENjl4TG5mMTdNdkk4NnplOHFQcXNIY291Vm1uTnc?oc=5",
+     "source": "وكالة الأنباء الصحراوية",
+     "date": "2026-11-22"
+    }
+   ],
+   "newsVia": "Google News"
+  },
+  {
+   "id": "insurgency-in-laos",
+   "name": "Insurgency in Laos",
+   "includes": [],
+   "intensity": "Skirmishes and clashes",
+   "tier": 3,
+   "started": "1975",
+   "countries": [
+    "Laos"
+   ],
+   "cumulativeFatalities": "100,000+",
+   "fatalitiesByYear": {
+    "2025": "5–75",
+    "2026": "1"
+   },
+   "lat": 19.432,
+   "lng": 102.534,
+   "summary": "The insurgency in Laos is a low-intensity conflict between the Lao People's Democratic Republic on one side and former members of the Secret Army, Laotian royalists, Hmong fighters, and other highland Laotian ethnic minorities on the other. These groups have faced reprisals from the Lao People's Army and Vietnam People's Army for their support of the United States-aligned, anti-communist military campaigns in Laos during the Laotian Civil War, which the insurgency is an extension of itself. The North Vietnamese invaded Laos in 1958 and supported the communist Pathet Lao. The Vietnamese communists continued to support the Pathet Lao after the end of the Laotian Civil War and the establishment of the Lao People's Democratic Republic. At least 100,000 Hmong civilians were killed as the result of Laotian governmental policies, in what has sometimes been referred to as the Hmong genocide.",
+   "wikidata": "Q249853",
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Insurgency_in_Laos"
+    },
+    {
+     "label": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q249853"
+    },
+    {
+     "label": "List of ongoing armed conflicts",
+     "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
+    },
+    {
+     "label": "Google News",
+     "url": "https://news.google.com/"
+    }
+   ],
+   "sides": [
+    "Laos",
+    "Vietnam"
+   ],
+   "news": [
+    {
+     "title": "Laos’s lonely graduation",
+     "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPa3k1bTY4ajV3dUtFMWs2MUZxaE80dzA2bEo3cURpUmFtMWZFZ2c1MjZnZnBoYkU4VnZQemxzQThIdklPVHZDOW9qdzY5UVluUlBpY1lySjg3STVrQkVaWmRSZzdRUlJpVVVna2hCRkZOQ2lQM2FJZzVrc0VqSE04WDdteVJWRFgzVjh0TkNKU2NjeHRxc2VR?oc=5",
+     "source": "The Economist",
+     "date": "2026-11-24"
+    },
+    {
+     "title": "EU Delegation in Laos Warns of Fake Job Ads Luring Foreigners Into Russia's Army",
+     "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPcG5nd1lIM3V0RWVuSEZmbmVGd1c5M3NjZjhEVXBiWmZMMVB6eVUxbHZVWnlYcEg0LVd3N3ZBYXd3Q3RVcWNKWGYta05sTGZFT19DSzlacU5TSkhSZGRGMm83THlNaFpaNFNwTWtWVmxVYzdzTDdLTUtRUWdLZWxYOXo4eVlWNEItb1ZxYWdDM2tHbzR0TmRBMVdKMzRNczQ4bXp1dVdNcUhvM2h2c1pYcEdjZk9ybVFIZnU4eDFR?oc=5",
+     "source": "Stop Russian Recruiters",
+     "date": "2026-11-20"
+    },
+    {
+     "title": "Laos’ economic miracle: From bombed-out semi-colony to advancing socialist nation",
+     "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQWEZCalgtSWd6eGtnM0w1b3dEVDNEQ0Z4Y2VWVk9UVEJyX0VUMTZTc2trSlhfWTNRYl95ajJ1YzZzSnNuM1dydWZ0OHpvS1BVbVZxLXQzM2N6VzBTdk1iR2NyektaYmw2ZTlId0tpSkJJRkpKT3JoYmJqZzNCc1lwYUVWN2xybXMxUngtU2x2b3M2NEV1MUtGZ3pYMlFBYUdqZFU1RmxfOE42TGM4QTVIMUk1NlRtYTNX?oc=5",
+     "source": "People's World",
+     "date": "2026-11-24"
+    },
+    {
+     "title": "Operation Igloo White: The Sensor War on the Ho Chi Minh Trail",
+     "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPeFVwSXlNRGJXeUxTUFVsa0NkaURUSFJHWk42NksxX3AyUTBmOWc2SlQ5Slp4QmpHQ1hYNHpwY2hvVTluOVZOaUVsMi0tdmx0bEdMUnc5cWdFY28wcW9fdUFkQXFzX3VwYlFFNGl2Q3V3MGZmN1ppVm03Y2p3bmxyaE1PLUotZDNBd2lVVVJlYlJySkpaUlNhWG1pTjY5Slh0bTFLWEZRcnM?oc=5",
+     "source": "MiGFlug",
+     "date": "2026-11-24"
+    }
+   ],
+   "newsVia": "Google News"
+  },
+  {
+   "id": "internal-conflict-in-peru",
+   "name": "Peruvian conflict (since 2021)",
+   "includes": [],
+   "intensity": "Skirmishes and clashes",
+   "tier": 3,
+   "started": "1980",
+   "countries": [
+    "Peru"
+   ],
+   "cumulativeFatalities": "70,000",
+   "fatalitiesByYear": {
+    "2025": "47",
+    "2026": "39"
+   },
+   "lat": -12.977,
+   "lng": -72.9,
+   "summary": "The internal conflict in Peru is an armed conflict between the Government of Peru and the Maoist guerrilla group Shining Path. The conflict's main phase began on 17 May 1980 and ended in December 2000. From 1982 to 1997 the Túpac Amaru Revolutionary Movement (MRTA) waged its own insurgency as a Marxist–Leninist rival to the Shining Path.",
+   "wikidata": "Q852133",
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Internal_conflict_in_Peru"
+    },
+    {
+     "label": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q852133"
+    },
+    {
+     "label": "List of ongoing armed conflicts",
+     "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
+    },
+    {
+     "label": "Google News",
+     "url": "https://news.google.com/"
+    }
+   ],
+   "sides": [
+    "Shining Path",
+    "Túpac Amaru Revolutionary Movement",
+    "Peruvian Armed Forces",
+    "Civil Guard",
+    "Republican Guard",
+    "Peruvian Investigative Police",
+    "National Police of Peru"
+   ],
+   "news": [
+    {
+     "title": "Moviegoers head for the exits as quake strikes Peru",
+     "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPWHFWWC10bnMtOWVFV2xBTU16THFqZ0doS0xLeUlKa2pNMERFMFhTWWJrbjFacjYxNjFYNWxWN2dXajZCV3NSempweXpaSnF5QkFPZEJkY0ktMzJyMjEzaFFNcGFBZE1YNmhTeDNaRnRsR2U4QjdkWFRiNE9PaWhPNmF4MGM1aWdlbExsMjlaRUp2TlA4YWN0QXByMmwzXzVObTZmT2FId0ItQzDSAasBQVVfeXFMT1hxVlgtdG5zLTllRVdsQU1NekxxamdHaEtMS3lJSmtqTTBERTBYU1lia24xWnI2MTYxWDVsVjdnV2o2QldzUnpqcHl6WkpxeUJBT2RCZGNJLTMycjIxM2hRTXBhQWRNWDZoU3gzWkZ0bEdlOEI3ZFhUYjRPT2loTzZheDBjNWlnZWxMbDI5WkVKdk5QOGFjdEFwcjJsM181Tm02Zk9hSHdCLUMw?oc=5",
+     "source": "Al Jazeera",
+     "date": "2026-11-22"
+    },
+    {
+     "title": "Peru - The second junta",
+     "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE1WWUxhbVFlSklfdWxzeExpR2RxOVU2UEh6YVRZVVpnVi04U0NfdS1LN3FHZURqcTFkUkJ6VTVnQnJCcEFhVWxWaFFvTW1scFJ5QkNBcHFFNkd4Qm9PSk1rZzlpNE0?oc=5",
+     "source": "Britannica",
+     "date": "2026-11-20"
+    },
+    {
+     "title": "6.7-magnitude earthquake strikes central Peru, no fatalities reported",
+     "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBpTkFDSW9qLWg3OFBNQ19keUFLX3pCdnVCcHRBQUtHejZkQ3JxaU9LeEN4a1ZMSzRBb3BtZGZRdVFMOE5XekxpM2dLcjFxbHN0Yy1DbWREdU8?oc=5",
+     "source": "TRT World",
+     "date": "2026-11-21"
+    },
+    {
+     "title": "Cerimedo recordings tie Fujimori’s narrow victory in Peru to US manipulation",
+     "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5oSDZlMkhTYm5Wbm14cjVQaWRFdjU5emlBUEsybVkyUW1rd1ZjOEF1SlFOUkRQYm9CVnMyLTlVc0V6Q0RySDdfNDZwMDhuUnAwbHVxd25Zd0Y5cDM2TUZTVjNKb3RtYzN3?oc=5",
+     "source": "World Socialist Web Site",
+     "date": "2026-11-25"
+    }
+   ],
+   "newsVia": "Google News"
+  },
+  {
+   "id": "casamance-conflict",
+   "name": "Casamance conflict",
+   "includes": [
+    "ECOWAS military intervention in the Gambia"
+   ],
+   "intensity": "Skirmishes and clashes",
+   "tier": 3,
+   "started": "1982",
+   "countries": [
+    "Senegal",
+    "Gambia"
+   ],
+   "cumulativeFatalities": "5,000+",
+   "fatalitiesByYear": {
+    "2025": "6",
+    "2026": "5"
+   },
+   "lat": 15.138,
+   "lng": -14.779,
+   "summary": "The Casamance conflict is an ongoing low-level conflict that has been waged between the Government of Senegal and the Movement of Democratic Forces of Casamance (MFDC) since 1982. On 1 May 2014, the leader of the MFDC sued for peace and declared a unilateral ceasefire.",
+   "wikidata": "Q209965",
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Casamance_conflict"
+    },
+    {
+     "label": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q209965"
+    },
+    {
+     "label": "List of ongoing armed conflicts",
+     "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
+    },
+    {
+     "label": "Google News",
+     "url": "https://news.google.com/"
+    }
+   ],
+   "sides": [
+    "Senegal",
+    "Movement of Democratic Forces of Casamance"
+   ],
+   "news": [
+    {
+     "title": "Senegal - West Africa, Dakar, Culture",
+     "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE8zT1BIVWMwdXNuU2FwR2RuSG1CUnhKSXJjbzByNnRCMFJRZjJSLW43UDktOU44Vnh1a1BNZ3B3bnFjTXNrOXNKWU94cVphT1Qxbm5CRXZLaFg2WWVuNFhEMDBRaDMzbk9DVXQ3dw?oc=5",
+     "source": "Britannica",
+     "date": "2026-11-24"
+    }
+   ],
+   "newsVia": "Google News"
+  },
+  {
+   "id": "nagorno-karabakh-conflict",
+   "name": "Nagorno-Karabakh conflict",
+   "includes": [
+    "Armenia–Azerbaijan border crisis"
+   ],
+   "intensity": "Skirmishes and clashes",
+   "tier": 3,
+   "started": "1988",
+   "countries": [
+    "Armenia",
+    "Azerbaijan"
+   ],
+   "cumulativeFatalities": "39,800–49,000+",
+   "fatalitiesByYear": {
+    "2025": "8",
+    "2026": "2"
+   },
+   "lat": 40.459,
+   "lng": 44.801,
+   "summary": "The Nagorno-Karabakh conflict is an ethnic and territorial conflict between Armenia and Azerbaijan over the region of Nagorno-Karabakh, inhabited mostly by ethnic Armenians until their expulsion in 2023, and seven surrounding districts, inhabited mostly by Azerbaijanis until their expulsion during the 1990s. The Nagorno-Karabakh region was entirely claimed by and partially controlled by the breakaway Republic of Artsakh, but was recognized internationally as part of Azerbaijan. Azerbaijan gradually re-established control over Nagorno-Karabakh region and the seven surrounding districts.",
+   "wikidata": "Q16954835",
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Nagorno-Karabakh_conflict"
+    },
+    {
+     "label": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q16954835"
+    },
+    {
+     "label": "List of ongoing armed conflicts",
+     "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
+    },
+    {
+     "label": "Google News",
+     "url": "https://news.google.com/"
+    }
+   ],
+   "sides": [],
+   "news": [
+    {
+     "title": "Azerbaijan - Nagorno-Karabakh, Soviet Union, Heydar Aliyev",
+     "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxOMER4UkZ6RDNxMENad3kyRFBjeW5heWVPS2U4TTdabEJuak5qc21lY1pIUUZMeHA3QmFYeGl3czZGMlE2cGlETzhZRUdWSVNzRXdLc2FxOUJ5RU1tNFdaZjJGNUEyNzJHVloxcUx2Z09hOXNXOVd5ckRSdGJHemdsNEpndHkyZ0Y2aC0yWEd4MGcwRnM4SElwblBxdjcxUHFwTkxWaTRtNTN0SlVReGhwYVVRX1BvS3gtb1ZVR0VaZ3hXVTVoWWExU2FQXzU4OHB4bFl2cXNn?oc=5",
+     "source": "Britannica",
+     "date": "2026-11-23"
+    },
+    {
+     "title": "Armenia Removes Nagorno-Karabakh Reference from Draft Constitution as Pashinyan Seeks Peace with Azerbaijan",
+     "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE5pdHBYR2tmVWoyRjM3TTQwaHJMUzNacS1PQ1MzcHRHNzQwbjM4cGRLUnAtWGhWVHBfYzlTcG9uSUZLTl9zNTVHQXhtU2hNNHBGRmtIYTFXX2FrMUhVZ1NwRmtoR043RVNIeEI1RkxxY2ZqZkFrVnE2RldzclJSdw?oc=5",
+     "source": "EU Today",
+     "date": "2026-11-23"
+    },
+    {
+     "title": "What caused tensions between Azerbaijan and Armenia?",
+     "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNN2d1bVpDbzdpMDZ2aUpwZTc0Z3JGMXBzU1FVN1doMHZpRmRvQ0JSbzZ2X3MtVE9RWjNvRE5nNzJIUGt0WkVZT1JPYWU0Y3lxS0Q1Y2k3N3NrX250RVpYR1EwbUpmdkYyai00Z1JxcjdYaXFpVzhoM1VnYVJERmp2Zk9aWkpjclNTXy05OA?oc=5",
+     "source": "Britannica",
+     "date": "2026-11-24"
+    },
+    {
+     "title": "Journalist vows to sue Pashinyan for calling her ‘deplorable’",
+     "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOTU5RT1V0X3NvUjRJMXNNS1FqOVVUMnZOT2xURlhYX0oyc2tPUUhIYWNwVkxFQk1qWWt3b1N2a1lsTGNoUkhDdkRsRGdlMmpzOGRyMHU5U2xLekZwU1MyZEFhRy15MDVLM1g1LXE3a25kS3djbjg2V1lqZ3lfZ3BWUE52UjlpdVN5?oc=5",
+     "source": "OC Media",
+     "date": "2026-11-20"
+    }
+   ],
+   "newsVia": "Google News"
+  },
+  {
+   "id": "wars-in-the-caucasus",
+   "name": "North Caucasus conflict",
+   "includes": [
+    "Spillover in Azerbaijan"
+   ],
+   "intensity": "Skirmishes and clashes",
+   "tier": 3,
+   "started": "1991",
+   "countries": [
+    "Russia",
+    "Azerbaijan",
+    "Georgia"
+   ],
+   "cumulativeFatalities": "300,000+",
+   "fatalitiesByYear": {
+    "2025": "9",
+    "2026": "3"
+   },
+   "lat": 58.249,
+   "lng": 44.686,
+   "summary": "The Wars in the Caucasus were a series of interrelated ethnic and political conflicts which engulfed the Caucasus in the period shortly before and after the dissolution of the Soviet Union. The conflicts, resulting from centuries of ethnic tensions, reached a boiling point as the former republics of the Soviet Union began to seek independence in the late 1980s and early 1990s. Exacerbated by ethnic nationalist claims, they led to the establishment of several de facto independent states, violent government change and a refugee crisis that led to the displacement of 1.5–2 million people.",
+   "wikidata": "Q132477746",
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Wars_in_the_Caucasus"
+    },
+    {
+     "label": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q132477746"
+    },
+    {
+     "label": "List of ongoing armed conflicts",
+     "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
+    },
+    {
+     "label": "Google News",
+     "url": "https://news.google.com/"
+    }
+   ],
+   "sides": [],
+   "news": [
+    {
+     "title": "Russia’s war of aggression against Ukraine: EU restricts trade with 15 entities linked to Russia’s military and industrial complex",
+     "url": "https://news.google.com/rss/articles/CBMiowJBVV95cUxNTnU1ZVFyZUlfUnFTX01zLVcyWEdLcjMyVmJJSllqQ1pNRVpsMmJvb1gtZ1pSSmtWd1pXYTVGTXJPenNRUXFUMndnc2pQb0pkMWRxZWxOVU1xdWxodktpamFwYnBpSU44ajFUTkFqVmxjOW1SZHZ1eFZicXhGcGREVEtGcnV2dVdnem5OQUFFOF9ReXJBYzJCRW5QUGtuU1Fqb1dON1BKZ1NhQW1rY2tHWF90RHV1ZnFrN2lWTE9SRElkMnhLZGtfcWwwUGFXRXNVSFkxczJDSWE4eXBxV1dnaDg3WFE5N3JNanhUU2RobUIzUFliVnZUNF9zTm1zUGU3TjNDa0Vwd3E0ZUlvRllpLWM3M2MyZG42U1duZXUzUkVhZVU?oc=5",
+     "source": "Council, European Union",
+     "date": "2026-11-25"
+    },
+    {
+     "title": "Russia’s war dead: the hidden toll of the Ukraine conflict",
+     "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQcHEzaFFZSHUwdzN0LS1RbTVLRlF1MFpWblFUV2l1eUtybk9fOHJzNmQzeW8zSi13TEdMWGtYTE9UTFNHbGx4UUZ6Z2UyRlJQUU1kY3hKNmtsV3V1ZkVsWWR3UmxvdDlud0NQa2VRRldnWFQwdV85R0RNZTVKaTJKbko0UV9Qa3FLR0J1S1FNSkZxM01k?oc=5",
+     "source": "The Guardian",
+     "date": "2026-11-23"
+    },
+    {
+     "title": "Russia's own figures show it has lost nearly 500,000 people in Ukraine war",
+     "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9majdiXzYxdlU5VzFlNmlZRTRzMzlJeE9nLUFpQ25QaENDaS1YNjQ1aUcyTGhsUHFBM0lMVnR0VUpwM1NzWDhRNXFuQ05ERmRtVk9HX3ZiemVBejM4NHc?oc=5",
+     "source": "BBC",
+     "date": "2026-11-25"
+    },
+    {
+     "title": "Europe Is 'Somewhere Between Peace And War' With Russia, Former Finnish Defense Chief Says",
+     "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQQVBJS2s5OTd0LW8zUjdxanZlTjh1VkN0aXFhQktBQi11eWh0VUxDR1RFaUkyeUVpMUNUamY3QkV3UWNvYzVudXdNcVVTMGM0VVJzbzVoNDhfNjExVmtONHpLSHpOWnNjOV9iOGxJdklPU3lZV0xhaEZlTlZBV2g4WEI2amd4dVFDWENwNmVpd2TSAZMBQVVfeXFMTkVQQWpJLTNGU0dENkE1V2doVUR0dE9MOEhDSXktVXNIZnF6d2taUVdwQS1MLWIwSUNIcks5em9NaFNRX1pHbmRMZ2JMTWhYVFlzbmlhbjl3dER0NVY0YjJVMmktWWRxY0ZPeDRKa3p6Uzg1MnEwWTJyOHBRVVhVYmkzbld6VG5taDVtd2o4OFNiMjV3?oc=5",
+     "source": "Radio Free Europe/Radio Liberty",
+     "date": "2026-11-22"
+    }
+   ],
+   "newsVia": "Google News"
+  },
+  {
+   "id": "south-thailand-insurgency",
+   "name": "South Thailand insurgency",
+   "includes": [],
+   "intensity": "Skirmishes and clashes",
+   "tier": 3,
+   "started": "2004",
+   "countries": [
+    "Thailand"
+   ],
+   "cumulativeFatalities": "7,683+",
+   "fatalitiesByYear": {
+    "2025": "51",
+    "2026": "50"
+   },
+   "lat": 15.46,
+   "lng": 101.073,
+   "summary": "The Southern Thailand insurgency is an ongoing conflict centered in southern Thailand. It originated in 1948 as a separatist insurgency in the historical Malay Patani Region, made up of the three southernmost provinces of Thailand and parts of a fourth, but has become more complex and increasingly violent since the early 2000s from drug cartels, oil smuggling networks, and sometimes pirate raids.",
+   "wikidata": "Q1094356",
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Southern_Thailand_insurgency"
+    },
+    {
+     "label": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q1094356"
+    },
+    {
+     "label": "List of ongoing armed conflicts",
+     "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
+    },
+    {
+     "label": "Google News",
+     "url": "https://news.google.com/"
+    }
+   ],
+   "sides": [
+    "Thailand",
+    "Barisan Nasional Pembebasan Patani",
+    "Patani United Liberation Organization",
+    "Jamaah Islamiyah",
+    "Barisan Revolusi Nasional",
+    "Runda Kumpulan Kecil",
+    "Bersatu",
+    "Islamic State"
+   ],
+   "news": [
+    {
+     "title": "Ukrainian Oplot Tanks Prove More Reliable Than Chinese VT-4s in Thailand’s Clashes, Reports Say",
+     "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxQNzhjT1d4dTk5U3BscTBGMzQ2ZVQwRE1aOVhOallTWTBhemRzeFdROU9pajVoN1JWZUFVVWJkcHAwak9QLU1qaDRVSUhhOFNPZ0xSVXV6S3U1X0V6WVgyZUY0ZlZtLTJaVGM5a2VhdUd3cm1zX0Z4Skx3S2Jxd1ZfSDE1bWJoU1Z0MWN0cjdsYUhScTJPVHFiLUNFNnZwd0VwWkttS2t0YXR3Z3gtWFVwMDNJbDNtSHpTRUI0Wm9yekdENklRTDItWW9WYw?oc=5",
+     "source": "UNITED24 Media",
+     "date": "2026-11-23"
+    },
+    {
+     "title": "On Our Radar",
+     "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1TTTkyVGppeko1WEFvMmEzamUxWU9rVzBaOEh6MklzRUhjRUVaWkJidHEweHFXTDcyT2dERWt4ZDV6bG9hSVdvVWtrTXpLcVRqZjhBVUVNZ2hqdkct?oc=5",
+     "source": "International Crisis Group",
+     "date": "2026-11-20"
+    },
+    {
+     "title": "Thailand-Cambodia Border Conflict Spills Into Retail as 7-Eleven Exits Cambodia at Christmas",
+     "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE9tWXNpbWNJYlZPMmFUazkzTFpaN3A0WXBOOXhUVzBndS01QTljdlJRV1c3bjBCSkM4cGZ4a2YzeEh2QUhHRFZGcWhYczhwajNuMEVuRVVwckZLOUV0REV0TExadzF2SlBsenpUTmxkWVc2a3pWYUE?oc=5",
+     "source": "BigGo Finance",
+     "date": "2026-11-25"
+    },
+    {
+     "title": "Cambodia Phnom Penh’s new military doctrine draws on lessons from 2025 Thai border conflict",
+     "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxOZHg0aXN2VEF0SlJSdlc4VEZZRFBabGNIUGg0WWRWaG9tRXYyQ1dOdnNPMl9hOFNoNkxkc1lDT2dVRE51ZFZ6TTFKOEhUaTlxYmwtY2s5VHctbzl6NTh0c01UX3p2MHlLT0pYcmVOUHAwZ1pSaThuTDg0dkw5TVM5eFJEbm12a2h6WHg5ZUc4blV1aE5kQ3VDbE5WOVZMYV9FSVhKVXlCLVp2UVhpVVFSMlpsQXRnU1ZhUTI0U3JlajY4aWJIZ3BWQ3VLMExXVnhTQWpSUmI4X0c2c3B6TTFoSlVhbVIzVE9FX3ZwOQ?oc=5",
+     "source": "Intelligence Online",
+     "date": "2026-11-25"
+    }
+   ],
+   "newsVia": "Google News"
+  },
+  {
+   "id": "insurgency-in-paraguay",
+   "name": "Insurgency in Paraguay",
+   "includes": [],
+   "intensity": "Skirmishes and clashes",
+   "tier": 3,
+   "started": "2005",
+   "countries": [
+    "Paraguay"
+   ],
+   "cumulativeFatalities": "166+",
+   "fatalitiesByYear": {
+    "2025": "2",
+    "2026": "1"
+   },
+   "lat": -21.675,
+   "lng": -60.146,
+   "summary": "The insurgency in Paraguay, also known as the Paraguayan People's Army insurgency and the EPP rebellion, is an ongoing low-level armed conflict in northeastern Paraguay. Between 2005 and the summer of 2014, the EPP campaign resulted in at least 145 deaths, the majority of them local ranchers, private security guards, and police officers, along with several insurgents. During that same period the group perpetrated 28 kidnappings for ransom and a total of 85 \"violent acts\".",
+   "wikidata": "Q16962642",
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Insurgency_in_Paraguay"
+    },
+    {
+     "label": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q16962642"
+    },
+    {
+     "label": "List of ongoing armed conflicts",
+     "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
+    }
+   ],
+   "sides": [],
+   "news": [],
+   "newsVia": "Google News"
+  },
+  {
+   "id": "timeline-of-terrorism-in-egypt-2013-present",
+   "name": "Islamic insurgency in Egypt",
+   "includes": [],
+   "intensity": "Skirmishes and clashes",
+   "tier": 3,
+   "started": "2013",
+   "countries": [
+    "Egypt"
+   ],
+   "cumulativeFatalities": "6,000–7,353+",
+   "fatalitiesByYear": {
+    "2025": "53",
+    "2026": "17"
+   },
+   "lat": 26.186,
+   "lng": 29.446,
+   "summary": "In July 2013, at the same time as mass protests began against the 3 July coup d'état which deposed Mohamed Morsi, and in parallel with the escalation of the already ongoing jihadist insurgency in the Sinai Peninsula, pro-Muslim Brotherhood militants started violent attacks against policemen and soldiers in central and western Egypt. In the following months, new Islamist armed groups were created to reinstate Islamist rule in Egypt, such as Soldiers of Egypt and the Popular Resistance Movement. Since 2013, violence in mainland Egypt has escalated and developed into a low-level Islamist insurgency against the Egyptian government.",
+   "wikidata": "Q22935835",
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Timeline_of_terrorism_in_Egypt_(2013%E2%80%93present)"
+    },
+    {
+     "label": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q22935835"
+    },
+    {
+     "label": "List of ongoing armed conflicts",
+     "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
+    },
+    {
+     "label": "Google News",
+     "url": "https://news.google.com/"
+    }
+   ],
+   "sides": [
+    "Egyptian Armed Forces",
+    "Egyptian National Police",
+    "Central Security Forces",
+    "The Hasm Movement",
+    "Muslim Brotherhood in Egypt",
+    "Soldiers of Egypt",
+    "Al Furqan Brigades",
+    "Ansar al-Sharia",
+    "Al-Qaeda in the Sinai Peninsula",
+    "Islamic State"
+   ],
+   "news": [
+    {
+     "title": "Instability in Libya | Global Conflict Tracker",
+     "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTFBmZzlDcUZwakNnSkg3akI2N0IxSkZRUURsMnFlMThGcFJlamtXN2VxRVNOeWJCb29iWTJya2k3X3NkRDNPVTRJTkI5RFU2S2htSlJod3VKTG0xU1ZISEZEcnRnM2UwTkN3em16N2VyVnF2UVlMZk00?oc=5",
+     "source": "Council on Foreign Relations",
+     "date": "2026-11-23"
+    },
+    {
+     "title": "Is it safe to travel to Egypt right now? Latest advice",
+     "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPbVJSQWp3RkNyYU0tQzVGMnRhM0lhd0ptd3c0VFpjb1pfWm5tMGpjNVRySDVqTVNMWGtQZ1RMV1dVLU0zWUFpYzZEbDFWNUZSNlFKZEVUcm5xMTJfRHd0eEFBckVHaGRZTTRQOURkdzlWaWN2OWYtc0tNMW1LWXVwTg?oc=5",
+     "source": "The Times",
+     "date": "2026-11-25"
+    },
+    {
+     "title": "China walks ‘thin line’ in push to prevent another Horn of Africa war",
+     "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNV2lBSkpVVkNwSHotal94bmRSMXJmTkJNZVZ1bzIyMXNPcG1GUXJGRXJmdWVkWnUtNHJ4ZHU1Y3hYNUh1enpad3ZDWkFXS2YwNEtPWndabWdWV3ZKQ2xrREFiMWxIZFFIX2hMbml6Z1BpY3Bram9zU2pqVXN2OVlMZ0tCbWFSNmNvYXZzYVJETldfTGF4ZHJhWG9neXJ0ZlUwaFA4bzJvZi1ZLWUtVVHSAbMBQVVfeXFMT3Ewem15YlliVmJPNjdRR2I4V3VnSXNFZWI3M3pNREw3Y0c4b2s1SXd2YkRRc2YxRTJ2U21Va2NoTTNPVzlvVVpsOTVpWjdkV2N1X2hneXB3c2EtU0pfOEY2Z0gyZUEzeU43anYzZzc0OU9jbXp4VEFpLURlZ1d0QW5nV2VqYWpUcGdlRk9SRFExV29ldGJhQXpXaXJMWG93eW9aRmFrT3N1Y1h1WUFRbUNxS2M?oc=5",
+     "source": "Al Jazeera",
+     "date": "2026-11-24"
+    },
+    {
+     "title": "Al-Sisi discusses post-war reconstruction with Sudan’s PM Idris",
+     "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPUTFUTlVEU3BadjBpUjZ3TVhMVF9fOUg0a3hYei1TYWdoel84ODMtMlFGTHV5OWl4WG1yc19FVlkzY3ZaLWRieGdwRW5VaXg1ajNGMEdJMkpMaGh2bFBTdl9GY2RTYkU5Rlo5S1B5WGFac0RwQ0xUUXhibFVsdVkwYUVGUmE5Z0JLQUtrVnl0QjFiT0haaXFmQWRQMk90YkI5WXE0?oc=5",
+     "source": "Dailynewsegypt",
+     "date": "2026-11-24"
+    }
+   ],
+   "newsVia": "Google News"
+  },
+  {
+   "id": "salvadoran-gang-crackdown",
+   "name": "Salvadoran gang crackdown",
+   "includes": [],
+   "intensity": "Skirmishes and clashes",
+   "tier": 3,
+   "started": "2022",
+   "countries": [
+    "El Salvador"
+   ],
+   "cumulativeFatalities": "615+",
+   "fatalitiesByYear": {
+    "2025": "11",
+    "2026": "9"
+   },
+   "lat": 13.685,
+   "lng": -88.89,
+   "summary": "A government crackdown on gangs in El Salvador began on 27 March 2022 in response to a series of homicides committed by criminal gangs between 25 and 27 March 2022 that killed 87 people. After the killings, the Salvadoran government under President Nayib Bukele declared a state of emergency that suspended several constitutional rights and enabled the government to launch mass arrests of suspected gang members. The crackdown and state of emergency has since been extended 57 times as of 24 November 2026. In El Salvador, the crackdown has been called the \"State of Exception\" or the \"War Against the Gangs\".",
+   "wikidata": "Q111653302",
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Salvadoran_gang_crackdown"
+    },
+    {
+     "label": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q111653302"
+    },
+    {
+     "label": "List of ongoing armed conflicts",
+     "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
+    },
+    {
+     "label": "Google News",
+     "url": "https://news.google.com/"
+    }
+   ],
+   "sides": [],
+   "news": [
+    {
+     "title": "Haitians excited but uneasy as El Salvador troops fight gangs",
+     "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNdUpnajZydnpaU3U0WjBwVHl4U3Uzckc2Q2JUY01IWjJEQXRyUmlrTXloVXpGVTlWbDRteER3bXNUY2w1bVFSVzk2TDNrQzBGenRqM0RfUm4xOWtCYnJWWnNBbHVuaHk0Vm9nLVpQcC1yYzNsV0FUX0xvMnVZbGVhRHF2bzNXNTNIeW9vQlR2LWR6b05nTlBWSHRLZm5lN2lROU5BSkRfYVo?oc=5",
+     "source": "The Guardian",
+     "date": "2026-11-21"
+    },
+    {
+     "title": "Bukele shares details on deaths of El Salvador’s troops in Haiti",
+     "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOY1plY1VjUWdYdGhReW5iUVVTcUlVSkVQcnRiT0VUdGJIN01SWlN2NTk2RGg4UzFJTDYxNzFZVE9hVEQtOXIwcFdETUlNUTJsbUFwUnBWbGZpQkh0T20ydnhoOVo4RVlWd3ZIOWEtZEw1MGIwWVloNnZOTjJCc3JTbVZEaUxDRzdqTDdmSlhpU1ozWFVoNldoT0d2c3lzSUNYSU9vUU5QT1hNdFNSSFJPUkdSeElvQ1nSAbwBQVVfeXFMTloxYXRRN3hQaEJFX0FrLW8ydXdjOElzSm9OWFVMTXVNWTNqSEZaUmZ2UVF3T2NvYVVoOGRJMFMtRVE4VmF4aGYwWE1fRFBla25xN2ZMNjE2ZDZ0TnZMVV9HeVh0aHA2V1RVVHFBUmZ4Z0lyY1I3RlZJT3JUbHRmT0NrQXhwQ1lDMmpSZTZFVUNWclI5RkkwNHJjelc0cU9kN3VpelVnLTQ4UENRVktqY0QtTWVGZTU2bGVwOGM?oc=5",
+     "source": "Al Jazeera",
+     "date": "2026-11-24"
+    },
+    {
+     "title": "St. Oscar Romero | Biography, Patron Saint, Feast Day, Assassination, & Death",
+     "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1fWU5LUzQ4dFVpVENaQzlwVm1tNFZvTzF1X2ppVmpsTHNPNDZkQ0FpV2JndHphUnhxbVM4WWYyRTBMcWh1SldDaUlwQW94Tk9tNS1LRnAzWXNuZ2hQV3BvV1liS21TdExl?oc=5",
+     "source": "Britannica",
+     "date": "2026-11-24"
+    },
+    {
+     "title": "El Salvador put soldiers on the streets of Haiti’s capital. It’s not clear how long they’ll stay.",
+     "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOZDkxT1Jic2p1bTZWSUtVQTl0V25ReWhRYkFacGdBNHNzTFl3SXFfTkhyZjRKdm5tMWJ4UHUtdHFoSVFQZzNXaWxrX1g1RG1GeF9ZUEFQMFNuWF91Q3MtNlNzS0hmd3B6UkVuQmJGQVJ3NlhFWENIbmVLZk1FMG1nTVNXUF9FcGhCQTZtcUdSdjQ?oc=5",
+     "source": "The Christian Science Monitor",
+     "date": "2026-11-23"
+    }
+   ],
+   "newsVia": "Google News"
+  },
+  {
+   "id": "operation-yukthiya",
+   "name": "Sri Lankan drug war",
+   "includes": [],
+   "intensity": "Skirmishes and clashes",
+   "tier": 3,
+   "started": "2023",
+   "countries": [
+    "Sri Lanka"
+   ],
+   "cumulativeFatalities": "100+",
+   "fatalitiesByYear": {
+    "2025": "40+",
+    "2026": "38"
+   },
+   "lat": 7.581,
+   "lng": 80.705,
+   "summary": "Operation Yukthiya, also known as Sri Lanka's Drug War is an ongoing anti-drug trafficking operation conducted by the Sri Lanka Police following directives from the Ministry of Public Security.",
+   "wikidata": "Q124427949",
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Operation_Yukthiya"
+    },
+    {
+     "label": "Wikidata",
+     "url": "https://www.wikidata.org/wiki/Q124427949"
+    },
+    {
+     "label": "List of ongoing armed conflicts",
+     "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
+    },
+    {
+     "label": "Google News",
+     "url": "https://news.google.com/"
+    }
+   ],
+   "sides": [],
+   "news": [
+    {
+     "title": "New UN Report Investigates Attacks on Aid Workers During Sri Lanka’s Civil War",
+     "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxOTm9XQ3gwa1FXVTU2RHE0YktIWEJncS1HaUdIWk9QYnFEUGwzUVFOYTNlbTNENnhpYXBDWmhReDJ6SVYzTkhRYjk3WUo2XzU2OXJjNG12MnBNcGc4YlFPTmZDaV94c3ZYY09SRFd2dEZ0ekF2MTlwVGVwNldnNFdBbFAwUDlMT0xGaGZaRWxmaThRZmRtX1U2aWRfSkNvQ0lFSWpmX1ZpbzRvemh1a0Iwc3VMWQ?oc=5",
+     "source": "Human Rights Watch",
+     "date": "2026-11-26"
+    },
+    {
+     "title": "Sri Lanka: UN report underscores need to end decades-long impunity for conflict-related crimes",
+     "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQWHVCWDNYYkw0VEZ3T1pmSmNJaGtMSnMwOUdpc1o5cU51SUl5MG8weUwtUU1NaGdjNEp2alAtZTRlY1ZyWlNaT19lYkxJdnk5a3pjMFNlUnpWbFNWU19Hc01MRnU1bTU2LXh6S0pOajZXaW85eW1neVFtUkZtaFVBU2I5N0ZETTZMQ3huQ3BYWTBxQXo4ZkFmN0kyVVJ3VmZmSGhGX2FEMFAza2E2WVBCbjZFb3VtblBFSE9lUGdxRXVwdmx3cGE5enZ0a3A3N05GNzJndkZ4MjQ?oc=5",
+     "source": "Amnesty International",
+     "date": "2026-11-26"
+    },
+    {
+     "title": "Liberation Tigers of Tamil Eelam (LTTE)",
+     "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9IdE1EWlA0d3pndXcxZnlhMGZyOW41RVJTSjRMQUtZbWZXT0pvVGh3MU95TkYwYkhIWTZZUjI4QWZGVlhTUTNiOUNVN2FxbE9aQ29CV1ZKalFZSXdTMno0bWcwdE1SVVVRaU5vN0Ixay02Tms?oc=5",
+     "source": "Britannica",
+     "date": "2026-11-21"
+    },
+    {
+     "title": "Sri Lanka mass grave revives quest for answers to forgotten Muslim massacre",
+     "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPTDg0RERYTk96TnNVYUFfNjlNT2VDV3FsZV9GaEFCeGVKN2FOMmNnOFppVzBaM0VHcGJYcGtaZk1adU1GUnByQ1hsc3U4OWZKcVB6X3ZOcDhZZmxrMnZKM2lQZUpMSU44UGFaVGFPaGFkbVV2V0pCVnVNenZNcHNTOWc2Y0F1a1FVN3hlelZQMExoUk5XV09sUm5KdGdTTndfbHh6a3J2RjBFeXBoNVdQcl9mOGNrOW9s0gG-AUFVX3lxTE00Znkta2FIdUhaeDRxN1V0Slo2NWtKdm9zYjZBdl9VRkRmS2tSdkNOdFc1QkRCR2dEV3ZyQkdxTGZEenV1TWlNSmdRamlaZVFIYmQ3Zm4tX0JIM1FTS29nS3ZjXzM5NTVTemlWUlpLMGVoRHFTWHVoNE5BdDFsc1NHOWZsYllTa3dYQzBWQjJ4UF9zeVVEMlZ1bUsta1RnN2tER0NzZjMxRGQ5dHZpR3pLcFE4Y3RJeFQzQjU2YXc?oc=5",
+     "source": "Al Jazeera",
+     "date": "2026-11-26"
+    }
+   ],
+   "newsVia": "Google News"
+  }
+ ]
+}

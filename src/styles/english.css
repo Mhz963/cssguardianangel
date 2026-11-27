@@ -922,3 +922,456 @@
     top: 74px;
   }
 }
+
+/* ---------- Additions: correction alternatives, synonyms key, vocabulary filter, past papers ---------- */
+.ge-alt-answers {
+  margin: 0.4rem 0 0.6rem;
+  padding-left: 1.2rem;
+  color: var(--text-secondary);
+}
+
+.ge-link-btn {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--ga-accent-text);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: left;
+}
+
+.ge-link-btn:hover {
+  text-decoration: underline;
+}
+
+.ge-key-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 0.35rem 1rem;
+  margin: 0.4rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ge-az button {
+  min-width: 30px;
+  height: 30px;
+  padding: 0 0.4rem;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--ga-accent-text);
+  font: inherit;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.ge-az button.is-active {
+  background: var(--ga-icon-bg);
+  color: var(--text-primary);
+}
+
+.ge-year-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 1rem;
+}
+
+.ge-year-picker button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid var(--ga-card-border);
+  background: var(--ga-card-bg);
+  color: var(--text-primary);
+  font: inherit;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.ge-year-picker button span {
+  padding: 0 0.4rem;
+  border-radius: 999px;
+  background: var(--ga-icon-bg);
+  color: var(--ga-accent-text);
+  font-size: 0.75rem;
+}
+
+.ge-year-picker button.is-active {
+  border-color: #c9a227;
+  box-shadow: 0 0 0 3px rgb(201 162 39 / 18%);
+}
+
+.ge-pp-year {
+  display: grid;
+  gap: 1.2rem;
+}
+
+.ge-pp-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.ge-pp-head h3 {
+  margin: 0 0 0.3rem;
+}
+
+.ge-pp-block {
+  padding-top: 1rem;
+  border-top: 1px solid var(--ga-card-border);
+}
+
+.ge-pp-block-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.6rem;
+  margin-bottom: 0.6rem;
+}
+
+.ge-pp-block-head h4 {
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--text-primary);
+}
+
+.ge-pp-list {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0;
+  padding-left: 1.4rem;
+  color: var(--text-primary);
+  line-height: 1.55;
+}
+
+.ge-pp-answer {
+  margin: 0.2rem 0 0;
+  color: #2f9e62;
+  font-weight: 600;
+}
+
+.ge-pp-pairs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ge-pp-pairs li {
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid var(--ga-card-border);
+  font-size: 0.88rem;
+  color: var(--text-primary);
+}
+
+.ge-pp-sources a {
+  color: var(--ga-accent-text);
+}
+
+/* ---------- Past Paper Questions panel (top of every module) ---------- */
+.ge-ppq {
+  position: relative;
+  display: grid;
+  gap: 0.9rem;
+  margin: 0 0 1.6rem;
+  padding: clamp(1rem, 2.6vw, 1.5rem);
+  border-radius: calc(var(--ga-radius) + 4px);
+  border: 2px solid #c9a227;
+  background: var(--ga-band-bg);
+  box-shadow: 0 0 0 4px rgb(201 162 39 / 12%), var(--ga-card-shadow);
+}
+
+.ge-ppq-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+
+.ge-ppq-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0 0 0.45rem;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #f2d56b, #c9a227);
+  color: #1b1405;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.ge-ppq-title {
+  margin: 0 0 0.3rem;
+  font-size: clamp(1.15rem, 2.4vw, 1.4rem);
+  color: var(--text-primary);
+}
+
+.ge-ppq-intro {
+  margin: 0;
+  max-width: 70ch;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+.ge-ppq-count {
+  padding: 0.45rem 0.85rem;
+  border-radius: 14px;
+  border: 1px solid var(--ga-card-border);
+  background: var(--ga-card-bg);
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  white-space: nowrap;
+}
+
+.ge-ppq-count strong {
+  color: var(--ga-accent-text);
+  font-size: 1.15rem;
+}
+
+.ge-ppq-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.ge-ppq-select {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.ge-ppq-select select {
+  padding: 0.5rem 0.7rem;
+  border-radius: 10px;
+  border: 1px solid var(--ga-card-border);
+  background: var(--input-bg, var(--bg-secondary));
+  color: var(--text-primary);
+  font: inherit;
+  font-weight: 600;
+}
+
+.ge-ppq-btn {
+  padding: 0.5rem 0.95rem;
+  font-size: 0.9rem;
+}
+
+.ge-ppq-list {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ge-ppq-list li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.25rem 0.75rem;
+  align-items: start;
+  padding: 0.75rem 0.9rem;
+  border-radius: 12px;
+  border: 1px solid var(--ga-card-border);
+  background: var(--ga-card-bg);
+  color: var(--text-primary);
+  line-height: 1.55;
+}
+
+.ge-ppq-year {
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  background: var(--ga-icon-bg);
+  color: var(--ga-accent-text);
+  font-size: 0.76rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.ge-ppq-q,
+.ge-ppq-a {
+  grid-column: 2;
+  min-width: 0;
+}
+
+.ge-ppq-a {
+  color: #2f9e62;
+  font-weight: 600;
+}
+
+.ge-ppq-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem 0.9rem;
+  margin-top: 0.2rem;
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+}
+
+.ge-ppq-passage {
+  margin: 0;
+}
+
+.ge-ppq-more {
+  justify-self: start;
+}
+
+.ge-ppq-note {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+}
+
+@media (max-width: 560px) {
+  .ge-ppq-list li {
+    grid-template-columns: 1fr;
+  }
+
+  .ge-ppq-q,
+  .ge-ppq-a {
+    grid-column: 1;
+  }
+
+  .ge-ppq-year {
+    justify-self: start;
+  }
+}
+
+/* ---------- Hub: paper map table and call-out ---------- */
+.ge-table a.ge-table-link,
+.ge-table a.ge-table-link:visited {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--ga-accent-text);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.ge-table a.ge-table-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.ge-marks {
+  display: inline-grid;
+  place-items: center;
+  min-width: 2.2rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: var(--ga-icon-bg);
+  color: var(--ga-accent-text);
+  font-weight: 800;
+  font-size: 0.88rem;
+}
+
+.ge-soon {
+  display: inline-block;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  border: 1px dashed var(--ga-card-border);
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+}
+
+.ge-paper-cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding: clamp(1rem, 2.6vw, 1.4rem) clamp(1rem, 2.6vw, 1.6rem);
+  border-radius: calc(var(--ga-radius) + 2px);
+  border: 1px solid rgb(201 162 39 / 55%);
+  border-left: 5px solid #c9a227;
+  background: var(--ga-band-bg);
+  box-shadow: var(--ga-card-shadow);
+}
+
+.ge-paper-cta-title {
+  margin: 0 0 0.3rem;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.ge-paper-cta-text {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+/* ---------- Hub: video guide ---------- */
+.ge-guide {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(1rem, 3vw, 2rem);
+  align-items: center;
+  margin: 0 0 1.6rem;
+  padding: clamp(1rem, 2.6vw, 1.5rem);
+  border-radius: calc(var(--ga-radius) + 4px);
+  border: 1px solid rgb(201 162 39 / 55%);
+  background: var(--ga-band-bg);
+  box-shadow: var(--ga-card-shadow);
+}
+
+.ge-guide-kicker {
+  display: inline-block;
+  margin: 0 0 0.5rem;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #f2d56b, #c9a227);
+  color: #1b1405;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.ge-guide h3 {
+  margin: 0 0 0.5rem;
+  font-size: clamp(1.2rem, 2.6vw, 1.5rem);
+  color: var(--text-primary);
+}
+
+.ge-guide-copy p:last-child {
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.ge-guide-video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--ga-radius);
+  border: 1px solid var(--ga-card-border);
+  background: #0b1020;
+  box-shadow: var(--ga-card-shadow);
+}
+
+@media (max-width: 860px) {
+  .ge-guide {
+    grid-template-columns: 1fr;
+  }
+}

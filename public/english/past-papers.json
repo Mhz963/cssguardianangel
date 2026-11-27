@@ -1,0 +1,4461 @@
+{
+ "years": [
+  {
+   "year": 2026,
+   "official": true,
+   "pdf": "https://www.fpsc.gov.pk/uploads/content/1782899025347_ENGLISH_P_C_.pdf",
+   "outline": [
+    {
+     "q": "Q1 (Part I)",
+     "part": "Synonyms and antonyms: 20 multiple-choice questions",
+     "marks": 20
+    },
+    {
+     "q": "Q2",
+     "part": "Précis with a title. Passage: Improvements in working people's lives",
+     "marks": 20
+    },
+    {
+     "q": "Q3",
+     "part": "Reading comprehension. Passage: A short story about a woman born into a petty official's family",
+     "marks": 20
+    },
+    {
+     "q": "Q4",
+     "part": "Correct any five of eight sentences",
+     "marks": 10
+    },
+    {
+     "q": "Q5",
+     "part": "(a) Punctuate a passage (b) Fill in prepositions",
+     "marks": 10
+    },
+    {
+     "q": "Q6",
+     "part": "Use five pairs of words in sentences",
+     "marks": 10
+    },
+    {
+     "q": "Q7",
+     "part": "Translate an Urdu passage into English, on the resources of the Muslim world",
+     "marks": 10
+    }
+   ],
+   "vocabulary": [
+    {
+     "word": "ENIGMA",
+     "options": [
+      "Stature",
+      "Axiom",
+      "Adage",
+      "Conundrum"
+     ],
+     "answer": 3,
+     "type": "synonym"
+    },
+    {
+     "word": "HACKNEYED",
+     "options": [
+      "Unplanned",
+      "Intriguing",
+      "Stubborn",
+      "Clichéd"
+     ],
+     "answer": 3,
+     "type": "synonym"
+    },
+    {
+     "word": "PANACEA",
+     "options": [
+      "Elixir",
+      "Destitution",
+      "Deprivation",
+      "Predicament"
+     ],
+     "answer": 0,
+     "type": "synonym"
+    },
+    {
+     "word": "CAJOLE",
+     "options": [
+      "Lure",
+      "Intimidate",
+      "Harass",
+      "Tease"
+     ],
+     "answer": 0,
+     "type": "synonym"
+    },
+    {
+     "word": "INSCRUTABLE",
+     "options": [
+      "Unattainable",
+      "Mysterious",
+      "Obstinate",
+      "Vigilant"
+     ],
+     "answer": 1,
+     "type": "synonym"
+    },
+    {
+     "word": "REVERIE",
+     "options": [
+      "Palimpsest",
+      "Phantom",
+      "Daydream",
+      "Curio"
+     ],
+     "answer": 2,
+     "type": "synonym"
+    },
+    {
+     "word": "SUMPTUOUS",
+     "options": [
+      "Delirious",
+      "Gorgeous",
+      "Perilous",
+      "Luxurious"
+     ],
+     "answer": 3,
+     "type": "synonym",
+     "note": "Gorgeous is also close."
+    },
+    {
+     "word": "APPALL",
+     "options": [
+      "Delirious",
+      "Covered",
+      "Dismay",
+      "Confuse"
+     ],
+     "answer": 2,
+     "type": "synonym"
+    },
+    {
+     "word": "ABJECT",
+     "options": [
+      "Indigent",
+      "Desire",
+      "Despondent",
+      "Extreme"
+     ],
+     "answer": 2,
+     "type": "synonym",
+     "note": "'Extreme' fits phrases like 'abject poverty'; despondent fits 'abject' as wretched and hopeless."
+    },
+    {
+     "word": "BESPOKE",
+     "options": [
+      "Tailored",
+      "Quiet",
+      "Gentle",
+      "Handsome"
+     ],
+     "answer": 0,
+     "type": "synonym"
+    },
+    {
+     "word": "CANDOUR",
+     "options": [
+      "Rebuttal",
+      "Evasiveness",
+      "Restraint",
+      "Candidness"
+     ],
+     "answer": 1,
+     "type": "antonym"
+    },
+    {
+     "word": "COLLOQUIAL",
+     "options": [
+      "Vernacular",
+      "Informal",
+      "Literary",
+      "Quarrelsome"
+     ],
+     "answer": 2,
+     "type": "antonym"
+    },
+    {
+     "word": "EUPHORIA",
+     "options": [
+      "Ecstasy",
+      "Obnoxious",
+      "Nostalgic",
+      "Melancholy"
+     ],
+     "answer": 3,
+     "type": "antonym"
+    },
+    {
+     "word": "SURROGATE",
+     "options": [
+      "Proxy",
+      "Soothing",
+      "Forbidden",
+      "Real"
+     ],
+     "answer": 3,
+     "type": "antonym"
+    },
+    {
+     "word": "OBLIVIOUS",
+     "options": [
+      "Ignorant",
+      "Conscious",
+      "Sober",
+      "Flamboyant"
+     ],
+     "answer": 1,
+     "type": "antonym"
+    },
+    {
+     "word": "AMELIORATE",
+     "options": [
+      "Impair",
+      "Rectify",
+      "Precipitate",
+      "Renew"
+     ],
+     "answer": 0,
+     "type": "antonym"
+    },
+    {
+     "word": "BENIGN",
+     "options": [
+      "Amiable",
+      "Effective",
+      "Boost",
+      "Malicious"
+     ],
+     "answer": 3,
+     "type": "antonym"
+    },
+    {
+     "word": "CACOPHONY",
+     "options": [
+      "Noise",
+      "Disaster",
+      "Stillness",
+      "Rattle"
+     ],
+     "answer": 2,
+     "type": "antonym"
+    },
+    {
+     "word": "DOLEFUL",
+     "options": [
+      "Witty",
+      "Rich",
+      "Empty",
+      "Vivacious"
+     ],
+     "answer": 3,
+     "type": "antonym"
+    },
+    {
+     "word": "ELAN",
+     "options": [
+      "Inelegance",
+      "Stupidity",
+      "Obscure",
+      "Despair"
+     ],
+     "answer": 0,
+     "type": "antonym"
+    }
+   ],
+   "prepositions": [
+    {
+     "sentence": "Nobody is certain ___ the future but some are convinced ___ the past.",
+     "answer": "about … of"
+    },
+    {
+     "sentence": "He was familiar ___ the author but not knowledgeable in depth ___ him.",
+     "answer": "with … about"
+    },
+    {
+     "sentence": "After weighing ___ all the options we decided to plump ___ the first design.",
+     "answer": "up … for"
+    },
+    {
+     "sentence": "The accused declared that he had no credible motive ___ revenge and denied ___ the charges.",
+     "answer": "for … no preposition ('denied the charges')"
+    },
+    {
+     "sentence": "The party's withdrawal ___ the elections was widely seen as an obstacle ___ the success of the peace plan.",
+     "answer": "from … to"
+    },
+    {
+     "sentence": "They agreed to cooperate ___ police ___ these matters.",
+     "answer": "with … on"
+    },
+    {
+     "sentence": "I don't advise ___ anyone, I just listen ___ their complaints.",
+     "answer": "no preposition ('advise anyone') … to"
+    },
+    {
+     "sentence": "The landscape ___ the Pampas is in places similar ___ the Dutch landscape.",
+     "answer": "of … to"
+    }
+   ],
+   "punctuation": [
+    {
+     "text": "Scientists and philosophers of science tend to speak as if \"scientific language\" were intrinsically precise as if those who use it must understand one another's meaning even if they disagree but in fact scientific language is not as different from ordinary language as is commonly believed it too is subject to imprecision and ambiguity and hence to imperfect understanding moreover new theories or arguments are rarely if ever constructed by way of clear-cut steps of induction deduction and verification or falsification neither are they defended rejected or accepted in so straightforward a manner in practice scientists combine the rules of scientific methodology with a generous admixture of intuition aesthetics and philosophical commitment the importance of what are sometimes called extra-rational or extra-logical components of thought in the discovery of a new principle or law is generally acknowledged",
+     "answer": "Scientists and philosophers of science tend to speak as if \"scientific language\" were intrinsically precise, as if those who use it must understand one another's meaning even if they disagree. But, in fact, scientific language is not as different from ordinary language as is commonly believed; it, too, is subject to imprecision and ambiguity and hence to imperfect understanding. Moreover, new theories or arguments are rarely, if ever, constructed by way of clear-cut steps of induction, deduction and verification or falsification; neither are they defended, rejected or accepted in so straightforward a manner. In practice, scientists combine the rules of scientific methodology with a generous admixture of intuition, aesthetics and philosophical commitment. The importance of what are sometimes called extra-rational or extra-logical components of thought in the discovery of a new principle or law is generally acknowledged."
+    }
+   ]
+  },
+  {
+   "year": 2025,
+   "official": true,
+   "pdf": "https://www.fpsc.gov.pk/uploads/content/1781593353365_ENGLISH_P_C_.pdf",
+   "outline": [
+    {
+     "q": "Q1 (Part I)",
+     "part": "Synonyms and antonyms: 20 multiple-choice questions",
+     "marks": 20
+    },
+    {
+     "q": "Q2",
+     "part": "Précis with a title. Passage: Homi K. Bhabha on nationalism",
+     "marks": 20
+    },
+    {
+     "q": "Q3",
+     "part": "Reading comprehension. Passage: The idea of wandering",
+     "marks": 20
+    },
+    {
+     "q": "Q4",
+     "part": "Correct any five of eight sentences",
+     "marks": 10
+    },
+    {
+     "q": "Q5",
+     "part": "(a) Punctuate a passage (b) Fill in prepositions",
+     "marks": 10
+    },
+    {
+     "q": "Q6",
+     "part": "Use five pairs of words in sentences",
+     "marks": 10
+    },
+    {
+     "q": "Q7",
+     "part": "Translate an Urdu passage into English, on the thought of al-Ghazali",
+     "marks": 10
+    }
+   ],
+   "vocabulary": [
+    {
+     "word": "FRABJOUS",
+     "options": [
+      "Wonderful",
+      "Surprising",
+      "Blithe",
+      "Gusto"
+     ],
+     "answer": 0,
+     "type": "synonym"
+    },
+    {
+     "word": "ACCUBATION",
+     "options": [
+      "Conversation",
+      "Reclining",
+      "Ambulation",
+      "Occupation"
+     ],
+     "answer": 1,
+     "type": "synonym"
+    },
+    {
+     "word": "LEVITATE",
+     "options": [
+      "Sink",
+      "Float",
+      "Plod",
+      "Wander"
+     ],
+     "answer": 1,
+     "type": "synonym"
+    },
+    {
+     "word": "SIBYLLINE",
+     "options": [
+      "Enigmatic",
+      "Obvious",
+      "Transparent",
+      "Subtle"
+     ],
+     "answer": 0,
+     "type": "synonym"
+    },
+    {
+     "word": "MACADAMIZED",
+     "options": [
+      "Graveled",
+      "Mudded",
+      "Turfed",
+      "Paved"
+     ],
+     "answer": 3,
+     "type": "synonym"
+    },
+    {
+     "word": "FINAGLE",
+     "options": [
+      "Surrender",
+      "Manipulate",
+      "Cooperate",
+      "Wheedle"
+     ],
+     "answer": 1,
+     "type": "synonym"
+    },
+    {
+     "word": "DESIDERIUM",
+     "options": [
+      "Craving",
+      "Satisfaction",
+      "Fulfillment",
+      "Contentment"
+     ],
+     "answer": 0,
+     "type": "synonym"
+    },
+    {
+     "word": "AMANUENSIS",
+     "options": [
+      "Secretary",
+      "Assistant",
+      "Clerk",
+      "Scribe"
+     ],
+     "answer": 3,
+     "type": "synonym",
+     "note": "Secretary is also close; an amanuensis writes from dictation."
+    },
+    {
+     "word": "CROMULENT",
+     "options": [
+      "Acceptable",
+      "Unacceptable",
+      "Questionable",
+      "Dubious"
+     ],
+     "answer": 0,
+     "type": "synonym"
+    },
+    {
+     "word": "PROPINQUITY",
+     "options": [
+      "Distance",
+      "Closeness",
+      "Remoteness",
+      "Isolation"
+     ],
+     "answer": 1,
+     "type": "synonym"
+    },
+    {
+     "word": "PERSPICACITY",
+     "options": [
+      "Acumen",
+      "Astuteness",
+      "Naivety",
+      "Intelligence"
+     ],
+     "answer": 2,
+     "type": "antonym"
+    },
+    {
+     "word": "CONFABULATION",
+     "options": [
+      "Verification",
+      "Fabrication",
+      "Distortion",
+      "Exaggeration"
+     ],
+     "answer": 0,
+     "type": "antonym"
+    },
+    {
+     "word": "DILETTANTE",
+     "options": [
+      "Amateur",
+      "Connoisseur",
+      "Novice",
+      "Enthusiast"
+     ],
+     "answer": 1,
+     "type": "antonym"
+    },
+    {
+     "word": "KILTER",
+     "options": [
+      "Balance",
+      "Order",
+      "Harmony",
+      "Out-of-sync"
+     ],
+     "answer": 3,
+     "type": "antonym"
+    },
+    {
+     "word": "RHUBARB",
+     "options": [
+      "Serenity",
+      "Cacophony",
+      "Harmony",
+      "Sweetness"
+     ],
+     "answer": 0,
+     "type": "antonym",
+     "note": "Harmony is also acceptable; here rhubarb means a noisy commotion."
+    },
+    {
+     "word": "CORUSCATING",
+     "options": [
+      "Mundane",
+      "Tenebrous",
+      "Sparkling",
+      "Brilliant"
+     ],
+     "answer": 1,
+     "type": "antonym",
+     "note": "Tenebrous (dark) opposes the literal 'sparkling'; mundane opposes the figurative 'brilliant'."
+    },
+    {
+     "word": "VELLEITY",
+     "options": [
+      "Aversion",
+      "Passion",
+      "Indifference",
+      "Apathy"
+     ],
+     "answer": 1,
+     "type": "antonym"
+    },
+    {
+     "word": "BAROQUE",
+     "options": [
+      "Minimalist",
+      "Ornate",
+      "Classical",
+      "Rococo"
+     ],
+     "answer": 0,
+     "type": "antonym"
+    },
+    {
+     "word": "CAVEAT",
+     "options": [
+      "Guarantee",
+      "Warning",
+      "Assurance",
+      "Disclaimer"
+     ],
+     "answer": 0,
+     "type": "antonym"
+    },
+    {
+     "word": "BLUSTER",
+     "options": [
+      "Bravado",
+      "Boast",
+      "Confidence",
+      "Meekness"
+     ],
+     "answer": 3,
+     "type": "antonym"
+    }
+   ],
+   "prepositions": [
+    {
+     "sentence": "The massive landslide tumbled ___ the valley below, blocking the river and causing widespread flooding that destroyed crops and habitats.",
+     "answer": "into"
+    },
+    {
+     "sentence": "The controversy surrounding arranged marriages raged ___ the Pakistani community, with some arguing that it was a vital part of their cultural heritage, while others saw it as a form of oppression.",
+     "answer": "within / through"
+    },
+    {
+     "sentence": "As she read the poem, the subtle symbolism and metaphors whispered ___ the surface of the words, awakening a depth of emotion within her.",
+     "answer": "beneath"
+    },
+    {
+     "sentence": "The concept of Tawhid, or the oneness of God, lies ___ the very fabric of Islamic theology, weaving together the intricate threads of faith, reason, and spirituality.",
+     "answer": "in"
+    },
+    {
+     "sentence": "As social media scrolled endlessly ___ her daily life, her attention span shriveled, leaving her with a perpetual sense of distraction.",
+     "answer": "through"
+    },
+    {
+     "sentence": "Power consolidated ___ the ruling elite, silencing dissent.",
+     "answer": "within / among"
+    },
+    {
+     "sentence": "Her online persona leaned ___ perfection, hiding flaws.",
+     "answer": "towards"
+    },
+    {
+     "sentence": "Themes of love, loss, and longing wove ___ Ghalib's verses, creating a rich tapestry of emotion.",
+     "answer": "through"
+    }
+   ],
+   "punctuation": [
+    {
+     "text": "In Pakistani folklore Heer Ranjha Sohni Mahiwal and Sassi Punnu are iconic tales of star-crossed lovers. These stories deeply rooted in tribal connections serve as allegories and commentaries on spiritual and romantic love they explore the complexities of human emotion the trials of love and the transformative power of spiritual elevation The themes of trial emotional anguish separation and expulsion resulting in the moral polishing of the lovers are timeless and universal... Heer Ranjha's epic tale penned by Waris Shah is a masterpiece of Punjabi literature a testament to the power of love to transcend mortal bounds.",
+     "answer": "In Pakistani folklore, Heer Ranjha, Sohni Mahiwal and Sassi Punnu are iconic tales of star-crossed lovers. These stories, deeply rooted in tribal connections, serve as allegories and commentaries on spiritual and romantic love; they explore the complexities of human emotion, the trials of love and the transformative power of spiritual elevation. The themes of trial, emotional anguish, separation and expulsion, resulting in the moral polishing of the lovers, are timeless and universal. Heer Ranjha's epic tale, penned by Waris Shah, is a masterpiece of Punjabi literature, a testament to the power of love to transcend mortal bounds."
+    }
+   ]
+  },
+  {
+   "year": 2024,
+   "official": true,
+   "pdf": "https://www.fpsc.gov.pk/uploads/content/1783311891604_ENGLISH_P_C_.pdf",
+   "outline": [
+    {
+     "q": "Q1 (Part I)",
+     "part": "Synonyms and antonyms: 20 multiple-choice questions",
+     "marks": 20
+    },
+    {
+     "q": "Q2",
+     "part": "Précis with a title. Passage: Urban green spaces",
+     "marks": 20
+    },
+    {
+     "q": "Q3",
+     "part": "Reading comprehension. Passage: Technology and humanity",
+     "marks": 20
+    },
+    {
+     "q": "Q4",
+     "part": "Correct any five of eight sentences",
+     "marks": 10
+    },
+    {
+     "q": "Q5",
+     "part": "(a) Punctuate a passage (b) Fill in prepositions",
+     "marks": 10
+    },
+    {
+     "q": "Q6",
+     "part": "Use five pairs of words in sentences",
+     "marks": 10
+    },
+    {
+     "q": "Q7",
+     "part": "Translate an Urdu passage into English, on Palestine at the United Nations",
+     "marks": 10
+    }
+   ],
+   "vocabulary": [
+    {
+     "word": "UBIQUITOUS",
+     "options": [
+      "Scarce",
+      "Present everywhere",
+      "Unique",
+      "Limited"
+     ],
+     "answer": 1,
+     "type": "synonym"
+    },
+    {
+     "word": "PERNICIOUS",
+     "options": [
+      "Beneficial",
+      "Harmful",
+      "Lucid",
+      "Fervent"
+     ],
+     "answer": 1,
+     "type": "synonym"
+    },
+    {
+     "word": "MELLIFLUOUS",
+     "options": [
+      "Grating",
+      "Smooth and sweet-sounding",
+      "Dissonant",
+      "Discordant"
+     ],
+     "answer": 1,
+     "type": "synonym"
+    },
+    {
+     "word": "EPHEMERAL",
+     "options": [
+      "Enduring",
+      "Eternal",
+      "Short-lived",
+      "Persistent"
+     ],
+     "answer": 2,
+     "type": "synonym"
+    },
+    {
+     "word": "ASTUTE",
+     "options": [
+      "Indifferent",
+      "Pensive",
+      "Stupid",
+      "Insightful"
+     ],
+     "answer": 3,
+     "type": "synonym"
+    },
+    {
+     "word": "ENTHRALL",
+     "options": [
+      "Bore",
+      "Captivate",
+      "Fascinate",
+      "Disinterest"
+     ],
+     "answer": 1,
+     "type": "synonym",
+     "note": "Fascinate is also close; captivate is the closest."
+    },
+    {
+     "word": "SYCOPHANT",
+     "options": [
+      "Admirer",
+      "Advocate",
+      "Critic",
+      "Flatterer"
+     ],
+     "answer": 3,
+     "type": "synonym"
+    },
+    {
+     "word": "ASSUAGE",
+     "options": [
+      "Aggravate",
+      "Intensify",
+      "Soothe",
+      "Alleviate"
+     ],
+     "answer": 2,
+     "type": "synonym",
+     "note": "Alleviate is also close; soothe is the closest."
+    },
+    {
+     "word": "RETICENT",
+     "options": [
+      "Talkative",
+      "Loquacious",
+      "Vocal",
+      "Reserved"
+     ],
+     "answer": 3,
+     "type": "synonym"
+    },
+    {
+     "word": "INCESSANT",
+     "options": [
+      "Sporadic",
+      "Intermittent",
+      "Persistent",
+      "Halted"
+     ],
+     "answer": 2,
+     "type": "synonym"
+    },
+    {
+     "word": "ESOTERIC",
+     "options": [
+      "Obvious",
+      "Understood by few",
+      "Extraneous",
+      "Common"
+     ],
+     "answer": 3,
+     "type": "antonym",
+     "note": "Obvious is also acceptable."
+    },
+    {
+     "word": "SQUALID",
+     "options": [
+      "Dirty",
+      "Wretched",
+      "Lavish",
+      "Clean"
+     ],
+     "answer": 3,
+     "type": "antonym",
+     "note": "Lavish also opposes the 'wretched' sense."
+    },
+    {
+     "word": "TACITURN",
+     "options": [
+      "Loquacious",
+      "Voluble",
+      "Reticent",
+      "Silent"
+     ],
+     "answer": 0,
+     "type": "antonym",
+     "note": "Voluble is equally correct."
+    },
+    {
+     "word": "CONSTRICT",
+     "options": [
+      "Tighten",
+      "Contract",
+      "Expand",
+      "Release"
+     ],
+     "answer": 2,
+     "type": "antonym"
+    },
+    {
+     "word": "LOQUACIOUS",
+     "options": [
+      "Talkative",
+      "Silent",
+      "Reticent",
+      "Reserved"
+     ],
+     "answer": 1,
+     "type": "antonym"
+    },
+    {
+     "word": "INDOLENT",
+     "options": [
+      "Lazy",
+      "Active",
+      "Lethargic",
+      "Energetic"
+     ],
+     "answer": 3,
+     "type": "antonym",
+     "note": "Active is also acceptable."
+    },
+    {
+     "word": "COALESCE",
+     "options": [
+      "Merge",
+      "Combine",
+      "Disperse",
+      "Separate"
+     ],
+     "answer": 3,
+     "type": "antonym",
+     "note": "Disperse is also acceptable."
+    },
+    {
+     "word": "RANCOR",
+     "options": [
+      "Animosity",
+      "Bitterness",
+      "Hostility",
+      "Amicability"
+     ],
+     "answer": 3,
+     "type": "antonym"
+    },
+    {
+     "word": "ACQUIESCE",
+     "options": [
+      "Comply",
+      "Resist",
+      "Agree",
+      "Deny"
+     ],
+     "answer": 1,
+     "type": "antonym"
+    },
+    {
+     "word": "DEBILITATE",
+     "options": [
+      "Fortify",
+      "Weaken",
+      "Strengthen",
+      "Enervate"
+     ],
+     "answer": 2,
+     "type": "antonym",
+     "note": "Fortify is equally correct."
+    }
+   ],
+   "prepositions": [
+    {
+     "sentence": "His research is characterized ___ a deep understanding of genetic mutations.",
+     "answer": "by"
+    },
+    {
+     "sentence": "The solution is contingent ___ various factors.",
+     "answer": "on / upon"
+    },
+    {
+     "sentence": "The experiment is predicated ___ the assumption of uniform conditions.",
+     "answer": "on / upon"
+    },
+    {
+     "sentence": "The project is commensurate ___ the skills of the research team.",
+     "answer": "with"
+    },
+    {
+     "sentence": "The methodology is impervious ___ external influences.",
+     "answer": "to"
+    },
+    {
+     "sentence": "The discussion oscillated ___ two main points.",
+     "answer": "between"
+    },
+    {
+     "sentence": "His proposal hinges ___ securing adequate funding.",
+     "answer": "on / upon"
+    },
+    {
+     "sentence": "The model is contingent ___ accurate data inputs.",
+     "answer": "on / upon"
+    }
+   ],
+   "punctuation": [
+    {
+     "text": "The cordless vacuum one of the least interesting of the household appliances got its start as a moon drill.",
+     "answer": "The cordless vacuum, one of the least interesting of the household appliances, got its start as a moon drill."
+    },
+    {
+     "text": "Dr. Seuss books are famous for their delightful rhymes and nonsense words If I Ran a Zoo, however, likely gave us the real word nerd.",
+     "answer": "Dr. Seuss books are famous for their delightful rhymes and nonsense words; If I Ran a Zoo, however, likely gave us the real word \"nerd.\""
+    },
+    {
+     "text": "There are many theories about Edgar Allan Poe's mysterious death, including rabies, alcoholism, and a truly strange possibility he may have been a victim of a voter fraud scheme.",
+     "answer": "There are many theories about Edgar Allan Poe's mysterious death, including rabies, alcoholism, and a truly strange possibility: he may have been a victim of a voter fraud scheme."
+    },
+    {
+     "text": "The film critic said, \"One of the most misquoted lines in movie history is Play it again, Sam.\"",
+     "answer": "The film critic said, \"One of the most misquoted lines in movie history is 'Play it again, Sam.'\""
+    },
+    {
+     "text": "Poorly named animals include: the flying fox, which is really a bat the electric eel, which is really a knifefish and the honey badger, which is the only member of its genus and species!",
+     "answer": "Poorly named animals include the flying fox, which is really a bat; the electric eel, which is really a knifefish; and the honey badger, which is the only member of its genus and species!"
+    },
+    {
+     "text": "The Haskell Opera House sits right on the US Canadian border with the stage in Quebec and many of the seats in Vermont.",
+     "answer": "The Haskell Opera House sits right on the US–Canadian border, with the stage in Quebec and many of the seats in Vermont."
+    },
+    {
+     "text": "Most carnivorous plants attract and digest insects and other invertebrates but some large pitcher plants have been known to digest frogs, rodents, and other vertebrates.",
+     "answer": "Most carnivorous plants attract and digest insects and other invertebrates, but some large pitcher plants have been known to digest frogs, rodents, and other vertebrates."
+    },
+    {
+     "text": "Harvey is a good driver moreover he is a very friendly one.",
+     "answer": "Harvey is a good driver; moreover, he is a very friendly one."
+    }
+   ]
+  },
+  {
+   "year": 2023,
+   "official": true,
+   "pdf": "https://www.fpsc.gov.pk/uploads/content/1783316367641_English_P_C_subjective.pdf",
+   "outline": [
+    {
+     "q": "Q1 (Part I)",
+     "part": "Multiple-choice questions (separate MCQ paper)",
+     "marks": 20
+    },
+    {
+     "q": "Q2",
+     "part": "Précis with a title. Passage: Freedom in education",
+     "marks": 20
+    },
+    {
+     "q": "Q3",
+     "part": "Reading comprehension. Passage: Simple living and consumerism",
+     "marks": 20
+    },
+    {
+     "q": "Q4",
+     "part": "Correct any five of eight sentences",
+     "marks": 10
+    },
+    {
+     "q": "Q5",
+     "part": "(a) Punctuate a passage (b) Fill in prepositions",
+     "marks": 10
+    },
+    {
+     "q": "Q6",
+     "part": "Use five pairs of words in sentences",
+     "marks": 10
+    },
+    {
+     "q": "Q7",
+     "part": "Translate an Urdu passage into English, on a mountain flower said to restore lost sight",
+     "marks": 10
+    }
+   ],
+   "vocabulary": [],
+   "prepositions": [
+    {
+     "sentence": "The neighbours came ___ my house to see what's going on in the house.",
+     "answer": "to"
+    },
+    {
+     "sentence": "She sat ___ the shade of the tree.",
+     "answer": "in"
+    },
+    {
+     "sentence": "The moon does not shine ___ its own light.",
+     "answer": "by"
+    },
+    {
+     "sentence": "The burglar jumped ___ the compound wall.",
+     "answer": "over"
+    },
+    {
+     "sentence": "She entered ___ an agreement with them.",
+     "answer": "into"
+    },
+    {
+     "sentence": "I have been working hard ___ arithmetic.",
+     "answer": "at"
+    },
+    {
+     "sentence": "He got ___ his bicycle.",
+     "answer": "on"
+    },
+    {
+     "sentence": "It cannot be done ___ offence.",
+     "answer": "without"
+    }
+   ],
+   "punctuation": [
+    {
+     "text": "while taking a nap on the porch one hot summer day hodga dreamed that a stranger promised to give him ten pieces of gold the stranger placed them in hodgas hand one by one until he reached the tenth piece which he hesitated to give him come on what are you waiting for said hodga you promised me ten just then he woke up he immediately looked at his hand and saw that it was empty he quickly shut his eyes again stretched out his hand and said all right i ll settle for nine.",
+     "answer": "While taking a nap on the porch one hot summer day, Hodga dreamed that a stranger promised to give him ten pieces of gold. The stranger placed them in Hodga's hand one by one until he reached the tenth piece, which he hesitated to give him. \"Come on! What are you waiting for?\" said Hodga. \"You promised me ten.\" Just then he woke up. He immediately looked at his hand and saw that it was empty. He quickly shut his eyes again, stretched out his hand and said, \"All right, I'll settle for nine.\""
+    }
+   ]
+  },
+  {
+   "year": 2022,
+   "official": false,
+   "pdf": null,
+   "sources": [
+    "https://csspastpapers.pk/wp-content/uploads/2024/06/english-precis-and-composition-2022.pdf",
+    "https://cssprep.com.pk/english-precis-comprehension-mcqs-2022/",
+    "https://cssprepforum.com/css-2022-solved-sentence-correction/"
+   ],
+   "outlineText": "Part-I MCQs (20 marks). Part-II: Q2 précis on Greek oracles + title (20); Q3 comprehension on civil society (20); Q4 correct only five (10); Q5 punctuate (05) and prepositions, only five (05); Q6 five pairs of words in sentences (10); Q7 Urdu-to-English translation (10).",
+   "vocabulary": [
+    {
+     "word": "QUELL",
+     "type": "synonym",
+     "options": [
+      "Tremble",
+      "Suppress",
+      "Alter",
+      "Hide"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "WREAK",
+     "type": "synonym",
+     "options": [
+      "Smell",
+      "Inflict",
+      "Twist",
+      "None of these"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "PLIANT",
+     "type": "synonym",
+     "options": [
+      "Steady",
+      "Quick",
+      "Languid",
+      "Flexible"
+     ],
+     "answer": 3
+    },
+    {
+     "word": "DRECK",
+     "type": "synonym",
+     "options": [
+      "Trash",
+      "Uneasiness",
+      "Decorated",
+      "Dull"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "DRACONIAN",
+     "type": "synonym",
+     "options": [
+      "Dreary",
+      "Catchy",
+      "Harsh",
+      "Jolly"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "DEBENTURE",
+     "type": "synonym",
+     "options": [
+      "Penny share",
+      "Short term bond",
+      "Common fund",
+      "Long term loan"
+     ],
+     "answer": 3
+    },
+    {
+     "word": "GRITTY",
+     "type": "synonym",
+     "options": [
+      "Sandy",
+      "Silky",
+      "Bulky",
+      "Handy"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "RENASCENT",
+     "type": "synonym",
+     "options": [
+      "Warming again",
+      "Rising again",
+      "Falling again",
+      "Resting again"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "PANACHE",
+     "type": "synonym",
+     "options": [
+      "Noise",
+      "Weakness",
+      "Verve",
+      "Nerve"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "QUARRY",
+     "type": "synonym",
+     "options": [
+      "Wall",
+      "Hill",
+      "Bill",
+      "Prey"
+     ],
+     "answer": 3
+    },
+    {
+     "word": "RECONDITE",
+     "type": "antonym",
+     "options": [
+      "Manifest",
+      "Flexible",
+      "Provident",
+      "Sociable"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "PROTEAN",
+     "type": "antonym",
+     "options": [
+      "Fickle",
+      "Unchanging",
+      "Elaborate",
+      "Selective"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "ASPERITY",
+     "type": "antonym",
+     "options": [
+      "Moistness",
+      "Amenity",
+      "Sour",
+      "Generosity"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "FLAUNT",
+     "type": "antonym",
+     "options": [
+      "Whip",
+      "Flatter",
+      "Show off",
+      "Hide"
+     ],
+     "answer": 3
+    },
+    {
+     "word": "FLOURISH",
+     "type": "antonym",
+     "options": [
+      "Thrive",
+      "Flush",
+      "Addict",
+      "Wither"
+     ],
+     "answer": 3
+    },
+    {
+     "word": "PHILISTINE",
+     "type": "antonym",
+     "options": [
+      "Debutante",
+      "Novice",
+      "Intellectual",
+      "Pious"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "PEAKED",
+     "type": "antonym",
+     "options": [
+      "Tired",
+      "Arrogant",
+      "Pointy",
+      "Ruddy"
+     ],
+     "answer": 3
+    },
+    {
+     "word": "DROLL",
+     "type": "antonym",
+     "options": [
+      "Forgo",
+      "Charm",
+      "Serious",
+      "Absurd"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "GUMPTION",
+     "type": "antonym",
+     "options": [
+      "Brainlessness",
+      "Apathy",
+      "Wisdom",
+      "Despair"
+     ],
+     "answer": 1,
+     "note": "Gumption means resourceful initiative; 'Brainlessness' opposes its 'common sense' sense."
+    }
+   ],
+   "prepositions": []
+  },
+  {
+   "year": 2021,
+   "official": false,
+   "pdf": null,
+   "sources": [
+    "https://csspastpapers.pk/wp-content/uploads/2024/06/english-precis-and-composition-2021.pdf",
+    "https://cssprep.com.pk/english-precis-comprehension-mcqs-2021/",
+    "https://cssprepforum.com/css-2021-solved-paper-english-sentence-corrections-by-sir-syed-kazim-ali/",
+    "https://t4tutorials.pk/?p=12168"
+   ],
+   "outlineText": "Part-I MCQs (20 marks). Part-II: Q2 précis on Nizar Hassan + title (20); Q3 comprehension on America as hyperpower (20); Q4 correct only five (10); Q5 punctuate (05) and prepositions, only five (05); Q6 five pairs of words in sentences (10); Q7 Urdu-to-English translation on Syed Ahmad Khan (10).",
+   "vocabulary": [
+    {
+     "word": "MISCEGENATION",
+     "type": "synonym",
+     "options": [
+      "Mongrel",
+      "Amalgam",
+      "Hybrid",
+      "Crossbreed"
+     ],
+     "answer": 3
+    },
+    {
+     "word": "DEFENESTRATION",
+     "type": "synonym",
+     "options": [
+      "Ejection",
+      "Axe",
+      "Riddance",
+      "Eliminations"
+     ],
+     "answer": 0,
+     "note": "Corrected key: defenestration is throwing someone out of a window, so 'Ejection' fits best; 'Axe' (dismissal) is only the slang figurative sense."
+    },
+    {
+     "word": "SOT",
+     "type": "synonym",
+     "options": [
+      "Tramp",
+      "Drunkard",
+      "Stroller",
+      "Addict"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "VISCERAL",
+     "type": "synonym",
+     "options": [
+      "Innate",
+      "Ingrained",
+      "Intuitive",
+      "Subliminal"
+     ],
+     "answer": 2,
+     "note": "Corrected key: visceral means instinctive, felt in the gut rather than reasoned, so 'Intuitive' fits best."
+    },
+    {
+     "word": "DERACINATED",
+     "type": "synonym",
+     "options": [
+      "Uprooted",
+      "Native",
+      "Alien",
+      "Nomad"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "DEMIURGE",
+     "type": "synonym",
+     "options": [
+      "Deity",
+      "Divinity",
+      "Immortal",
+      "God"
+     ],
+     "answer": 0,
+     "note": "A demiurge is a creator deity; 'God' is also close."
+    },
+    {
+     "word": "ALLUVIAL",
+     "type": "synonym",
+     "options": [
+      "Muddy",
+      "Grainy",
+      "Deposited",
+      "Sandy"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "HAGIOGRAPHIC",
+     "type": "synonym",
+     "options": [
+      "Sycophancy",
+      "Flattering",
+      "Adulatory",
+      "Drooling"
+     ],
+     "answer": 2,
+     "note": "Flattering is also close."
+    },
+    {
+     "word": "TOUSLED",
+     "type": "synonym",
+     "options": [
+      "Disheveled",
+      "Untidy",
+      "Scattered",
+      "Unkempt"
+     ],
+     "answer": 0,
+     "note": "Untidy and unkempt are also close."
+    },
+    {
+     "word": "QUISLING",
+     "type": "antonym",
+     "options": [
+      "Loyalist",
+      "Faithful",
+      "Adherent",
+      "Follower"
+     ],
+     "answer": 0,
+     "note": "A quisling is a traitor; 'Faithful' is also opposed."
+    },
+    {
+     "word": "CAITIFF",
+     "type": "antonym",
+     "options": [
+      "Angel",
+      "Innocent",
+      "Saint",
+      "Hero"
+     ],
+     "answer": 3
+    },
+    {
+     "word": "ANACHRONISTIC",
+     "type": "antonym",
+     "options": [
+      "Fresh",
+      "New",
+      "Contemporary",
+      "Updated"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "NYMPHOMANIAC",
+     "type": "antonym",
+     "options": [
+      "Unerotic",
+      "Impotent",
+      "Sadist",
+      "Voyeur"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "CLERISY",
+     "type": "antonym",
+     "options": [
+      "Unselected",
+      "Queer",
+      "Laity",
+      "Commoner"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "FERAL",
+     "type": "antonym",
+     "options": [
+      "Domesticated",
+      "Busted",
+      "Tamed",
+      "Mastered"
+     ],
+     "answer": 0,
+     "note": "Tamed is equally correct."
+    },
+    {
+     "word": "BIBULOUS",
+     "type": "antonym",
+     "options": [
+      "Temperate",
+      "Nonabsorbent",
+      "Celibate",
+      "Dull"
+     ],
+     "answer": 0
+    }
+   ],
+   "prepositions": []
+  },
+  {
+   "year": 2020,
+   "official": false,
+   "pdf": null,
+   "sources": [
+    "https://csspastpapers.pk/wp-content/uploads/2024/06/english-precis-and-composition-2020.pdf",
+    "https://cssprep.com.pk/english-precis-comprehension-mcqs-2020/",
+    "https://cssprepforum.com/css-solved-corrections-from-1990-to-2020/"
+   ],
+   "outlineText": "Part-I MCQs (20 marks). Part-II: Q2 précis on Manto + title (20); Q3 comprehension on globalization (20); Q4 correct only five (10); Q5(a) punctuate (5) (b) prepositions, only five (5); Q6 five idioms in sentences (10); Q7 Urdu-to-English translation (10).",
+   "vocabulary": [
+    {
+     "word": "INCEPTION",
+     "type": "synonym",
+     "options": [
+      "Incision",
+      "Unending",
+      "Beginning",
+      "Growth"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "EXPATRIATE",
+     "type": "synonym",
+     "options": [
+      "Emigrant",
+      "Displaced",
+      "Infirm",
+      "Male"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "CONTRAPTION",
+     "type": "synonym",
+     "options": [
+      "Intrigue",
+      "Device",
+      "Sticker",
+      "Trend"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "ANIMOSITY",
+     "type": "synonym",
+     "options": [
+      "Friendly",
+      "Flow",
+      "Enmity",
+      "Vanity"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "GUILE",
+     "type": "synonym",
+     "options": [
+      "Slyness",
+      "Decency",
+      "Blame",
+      "Mad"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "ESSAY",
+     "type": "synonym",
+     "options": [
+      "Direct",
+      "Compose",
+      "Attempt",
+      "Effort"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "PLAGIARISM",
+     "type": "synonym",
+     "options": [
+      "Copy",
+      "Piracy",
+      "Deviance",
+      "Plague"
+     ],
+     "answer": 1,
+     "note": "Copy is also close."
+    },
+    {
+     "word": "IMPEACHMENT",
+     "type": "synonym",
+     "options": [
+      "Indictment",
+      "Castigation",
+      "Contempt",
+      "Charge"
+     ],
+     "answer": 0,
+     "note": "Charge is also close."
+    },
+    {
+     "word": "SINISTER",
+     "type": "synonym",
+     "options": [
+      "Malevolent",
+      "Sinful",
+      "Ill-famed",
+      "Occult"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "RELINQUISH",
+     "type": "antonym",
+     "options": [
+      "Assume",
+      "Confer",
+      "Leave",
+      "Throw"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "LAUDABLE",
+     "type": "antonym",
+     "options": [
+      "Extol",
+      "Unworthy",
+      "Ignorance",
+      "Praise"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "EXAGGERATION",
+     "type": "antonym",
+     "options": [
+      "Fabricate",
+      "Understate",
+      "Confab",
+      "Curse"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "PANDEMONIUM",
+     "type": "antonym",
+     "options": [
+      "Platform",
+      "Quietude",
+      "Confusion",
+      "Tension"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "CONSISTENCY",
+     "type": "antonym",
+     "options": [
+      "Anomaly",
+      "Constant",
+      "Regularity",
+      "Errant"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "HYPOTHETICAL",
+     "type": "antonym",
+     "options": [
+      "Unreal",
+      "Vague",
+      "Actual",
+      "None of these"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "POOH-POOH",
+     "type": "antonym",
+     "options": [
+      "Ridicule",
+      "Reprehend",
+      "Ravage",
+      "Praise"
+     ],
+     "answer": 3
+    },
+    {
+     "word": "HENPECKED",
+     "type": "antonym",
+     "options": [
+      "Meek",
+      "Assertive",
+      "Obedient",
+      "Rebel"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "ETERNITY",
+     "type": "antonym",
+     "options": [
+      "Heaven",
+      "Transience",
+      "Mundane",
+      "Abstract"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "EXTEMPORE",
+     "type": "antonym",
+     "options": [
+      "Sudden",
+      "Prepared",
+      "Imprint",
+      "Frenzy"
+     ],
+     "answer": 1
+    }
+   ],
+   "prepositions": []
+  },
+  {
+   "year": 2019,
+   "official": false,
+   "pdf": null,
+   "sources": [
+    "https://csspastpapers.pk/wp-content/uploads/2024/06/english-precis-and-composition-2019.pdf",
+    "https://cssprep.com.pk/english-precis-comprehension-mcqs-2019/",
+    "https://cssprepforum.com/he-enjoyed-during-the-holidays-css-2019-sentence-correction/",
+    "https://cssprepforum.com/i-regret-at-the-delay-how-to-solve-the-css-2019-sentence-correction-questions/",
+    "https://cssprepforum.com/i-could-not-help-but-laugh-how-to-solve-the-css-2019-sentence-correction-questions/",
+    "https://cssprepforum.com/i-always-have-and-always-shall-be-your-friend-how-to-solve-the-css-2019-sentence-correction-questions/"
+   ],
+   "outlineText": "Part-I MCQs (20 marks). Part-II: Q2 précis + title (20); Q3 comprehension on a War of the Worlds excerpt (20); Q4 correct only five (10); Q5(a) punctuate a passage (5) (b) fill in prepositions, only five (5); Q6 five idioms in sentences (10); Q7 Urdu-to-English translation (10).",
+   "vocabulary": [
+    {
+     "word": "PUSILLANIMOUS",
+     "type": "synonym",
+     "options": [
+      "Coward",
+      "Intrepid",
+      "Gallant",
+      "Valorous"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "SABBATICAL",
+     "type": "synonym",
+     "options": [
+      "Sick leave",
+      "Leave of absence",
+      "Shore Leave",
+      "Recess"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "CHARLATAN",
+     "type": "synonym",
+     "options": [
+      "Imposter",
+      "Quack",
+      "Operator",
+      "Maestro"
+     ],
+     "answer": 1,
+     "note": "Imposter is also close."
+    },
+    {
+     "word": "VACILLATE",
+     "type": "synonym",
+     "options": [
+      "Keep an eye on",
+      "Waver",
+      "Attend",
+      "Nourish"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "BELLICOSE",
+     "type": "synonym",
+     "options": [
+      "Nasty",
+      "War like",
+      "Belligerent",
+      "Military"
+     ],
+     "answer": 1,
+     "note": "Belligerent is equally correct."
+    },
+    {
+     "word": "TUMULT",
+     "type": "synonym",
+     "options": [
+      "Confusion",
+      "Commotion",
+      "Disorder",
+      "Agitation"
+     ],
+     "answer": 1,
+     "note": "Confusion and disorder are also close."
+    },
+    {
+     "word": "FLABBERGASTED",
+     "type": "synonym",
+     "options": [
+      "Astonished",
+      "Fascinated",
+      "Gaping",
+      "Dazed"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "SLEAZY",
+     "type": "synonym",
+     "options": [
+      "Dirty",
+      "Cheap",
+      "Mangy",
+      "Flimsy"
+     ],
+     "answer": 1,
+     "note": "Dirty is also close."
+    },
+    {
+     "word": "OXIDIZED",
+     "type": "synonym",
+     "options": [
+      "Reduce",
+      "Rusty",
+      "Alkalize",
+      "Basify"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "EMBRYONIC",
+     "type": "synonym",
+     "options": [
+      "Paranoiac",
+      "Emblazoner",
+      "Rudimentary",
+      "Sardonic"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "STRIDENT",
+     "type": "antonym",
+     "options": [
+      "Muffled",
+      "Enfold",
+      "Encompass",
+      "Embrace"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "CONVOLUTED",
+     "type": "antonym",
+     "options": [
+      "Complex",
+      "Labyrinthine",
+      "Simple",
+      "Elaborate"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "ENFRANCHISE",
+     "type": "antonym",
+     "options": [
+      "Emancipate",
+      "Loose",
+      "Subjugate",
+      "Unbind"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "OBLITERATE",
+     "type": "antonym",
+     "options": [
+      "Create",
+      "Annihilate",
+      "Abolish",
+      "Liquidate"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "ANOMALY",
+     "type": "antonym",
+     "options": [
+      "Abnormality",
+      "Consistency",
+      "Rarity",
+      "Aberration"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "SCURRILOUS",
+     "type": "antonym",
+     "options": [
+      "Decent",
+      "Ribald",
+      "Abusive",
+      "Mitigate"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "SALUTARY",
+     "type": "antonym",
+     "options": [
+      "Upright",
+      "Dependable",
+      "Injurious",
+      "Serious"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "INANE",
+     "type": "antonym",
+     "options": [
+      "Sensible",
+      "Idiotic",
+      "Illogical",
+      "Imbecilic"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "MELANCHOLY",
+     "type": "antonym",
+     "options": [
+      "Desolate",
+      "Exuberant",
+      "Melancholic",
+      "Lugubrious"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "DENIGRATE",
+     "type": "antonym",
+     "options": [
+      "Decry",
+      "Laud",
+      "Deprecate",
+      "Diminish"
+     ],
+     "answer": 1
+    }
+   ],
+   "prepositions": []
+  },
+  {
+   "year": 2018,
+   "official": false,
+   "pdf": null,
+   "sources": [
+    "https://csspastpapers.pk/wp-content/uploads/2024/06/english-precis-and-composition-2018.pdf",
+    "https://cssprep.com.pk/english-precis-comprehension-mcqs-2018/"
+   ],
+   "outlineText": "Part-I MCQs (20 marks). Part-II: Q2 précis ~120 words + title (20); Q3 comprehension on the defects of civilization (20); Q4(a) correct only five (5) (b) punctuation (5); Q5(a) prepositions MCQ (5) (b) dialogue into paragraph form (5); Q6(a) differences between word pairs (5) (b) idioms (5); Q7 Urdu-to-English translation (10).",
+   "vocabulary": [
+    {
+     "word": "PICKET",
+     "type": "synonym",
+     "options": [
+      "Conformist",
+      "Peaceful",
+      "Protester",
+      "Pick up"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "DISGORGE",
+     "type": "synonym",
+     "options": [
+      "Retain",
+      "Keep Down",
+      "Compress",
+      "Eject"
+     ],
+     "answer": 3
+    },
+    {
+     "word": "LAPSE",
+     "type": "synonym",
+     "options": [
+      "Valid",
+      "Improve",
+      "Strengthen",
+      "Decline"
+     ],
+     "answer": 3
+    },
+    {
+     "word": "UNFAZED",
+     "type": "synonym",
+     "options": [
+      "Confounded",
+      "Confident",
+      "Baffled",
+      "Fickle"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "UNDERLING",
+     "type": "synonym",
+     "options": [
+      "Boss",
+      "Leader",
+      "Superior",
+      "Sub-ordinate"
+     ],
+     "answer": 3
+    },
+    {
+     "word": "SLACK",
+     "type": "synonym",
+     "options": [
+      "Efficient",
+      "Loose",
+      "Tight",
+      "Under control"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "THWART",
+     "type": "synonym",
+     "options": [
+      "Prevent",
+      "Assist",
+      "Facilitate",
+      "Provision"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "TIFF",
+     "type": "synonym",
+     "options": [
+      "Agreement",
+      "Reconciliation",
+      "Party",
+      "Dispute"
+     ],
+     "answer": 3
+    },
+    {
+     "word": "INCEPTION",
+     "type": "synonym",
+     "options": [
+      "Commencement",
+      "End",
+      "Incite",
+      "Ignition"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "BALEFUL",
+     "type": "antonym",
+     "options": [
+      "Hostile",
+      "Benevolent",
+      "Wicked",
+      "Malign"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "LAX",
+     "type": "antonym",
+     "options": [
+      "Stern",
+      "Unmindful",
+      "Careless",
+      "Negligent"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "MESH",
+     "type": "antonym",
+     "options": [
+      "Engage",
+      "Disengage",
+      "Connect",
+      "Interlock"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "PLACID",
+     "type": "antonym",
+     "options": [
+      "Quiet",
+      "Tranquil",
+      "Stormy",
+      "Plummet"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "ZEALOT",
+     "type": "antonym",
+     "options": [
+      "Fanatic",
+      "Enthusiast",
+      "Radical",
+      "Moderate"
+     ],
+     "answer": 3
+    },
+    {
+     "word": "SNIPPET",
+     "type": "antonym",
+     "options": [
+      "Piece",
+      "Fragment",
+      "Excerpt",
+      "Full Length"
+     ],
+     "answer": 3
+    },
+    {
+     "word": "PUMMEL",
+     "type": "antonym",
+     "options": [
+      "Compliment",
+      "Fall Down",
+      "Plummet",
+      "Bash"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "INSUPERABLE",
+     "type": "antonym",
+     "options": [
+      "Surmountable",
+      "Invincible",
+      "Unconquerable",
+      "Impossible"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "CRUDE",
+     "type": "antonym",
+     "options": [
+      "Rough",
+      "Simple",
+      "Refined",
+      "Unrefined"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "CAGEY",
+     "type": "antonym",
+     "options": [
+      "Naive",
+      "Secretive",
+      "Reticent",
+      "Cage"
+     ],
+     "answer": 0
+    }
+   ],
+   "prepositions": []
+  },
+  {
+   "year": 2017,
+   "official": false,
+   "pdf": null,
+   "sources": [
+    "https://csspastpapers.pk/wp-content/uploads/2024/06/english-precis-and-composition-2017.pdf",
+    "https://cssprep.com.pk/english-precis-comprehension-mcqs-2017/"
+   ],
+   "outlineText": "Part-I MCQs (20 marks). Part-II: Q2 précis + title (20); Q3 comprehension on education and beauty (20); Q4(a) correct only five (5) (b) fill in the blanks, MCQ style (5); Q5(a) analogies (5) (b) punctuate a passage (5); Q6(a) differences between word pairs (5) (b) idioms (5); Q7 Urdu-to-English translation (10).",
+   "vocabulary": [
+    {
+     "word": "FUDGE",
+     "type": "synonym",
+     "options": [
+      "Tough",
+      "Inception",
+      "Distant",
+      "Avoid"
+     ],
+     "answer": 3
+    },
+    {
+     "word": "EXTOL",
+     "type": "synonym",
+     "options": [
+      "Rail",
+      "Malign",
+      "Silence",
+      "Praise"
+     ],
+     "answer": 3
+    },
+    {
+     "word": "LEVITATE",
+     "type": "synonym",
+     "options": [
+      "Open",
+      "Retirement",
+      "Natural",
+      "Hover"
+     ],
+     "answer": 3
+    },
+    {
+     "word": "NICETY",
+     "type": "synonym",
+     "options": [
+      "Fine",
+      "Sudden",
+      "Shine",
+      "Rough"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "OCCULT",
+     "type": "synonym",
+     "options": [
+      "Veiled",
+      "Dwindled",
+      "Dynamic",
+      "Apparent"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "PERORATION",
+     "type": "synonym",
+     "options": [
+      "Shorten",
+      "Summation",
+      "Beauty",
+      "Giving up"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "TRICE",
+     "type": "synonym",
+     "options": [
+      "Waned",
+      "Tolerance",
+      "Shuffle",
+      "Jiffy"
+     ],
+     "answer": 3
+    },
+    {
+     "word": "WANTON",
+     "type": "synonym",
+     "options": [
+      "Kind",
+      "Malicious",
+      "Friendly",
+      "Nice"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "WILTED",
+     "type": "synonym",
+     "options": [
+      "Mighty",
+      "Strong",
+      "Wane",
+      "Haughty"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "VENIAL",
+     "type": "synonym",
+     "options": [
+      "Straight",
+      "Discreditable",
+      "Trivial",
+      "Blameworthy"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "NUMMARY",
+     "type": "synonym",
+     "options": [
+      "Fabricate",
+      "Money",
+      "Obduracy",
+      "Numpty"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "DASTARD",
+     "type": "synonym",
+     "options": [
+      "Harmless",
+      "Hero",
+      "Rugged",
+      "Recreant"
+     ],
+     "answer": 3
+    },
+    {
+     "word": "BUXOM",
+     "type": "antonym",
+     "options": [
+      "Busty",
+      "Curvature",
+      "Skinny",
+      "Plump"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "SEEDY",
+     "type": "synonym",
+     "options": [
+      "Waeful",
+      "Degraded",
+      "Phenomenal",
+      "Miniscule"
+     ],
+     "answer": 1,
+     "note": "Corrected key: seedy means sordid or run-down, so 'Degraded' is the synonym; 'Phenomenal' is not an opposite."
+    },
+    {
+     "word": "TORTUOUS",
+     "type": "antonym",
+     "options": [
+      "Simple",
+      "Complex",
+      "Junk",
+      "Swift"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "VOCIFEROUS",
+     "type": "synonym",
+     "options": [
+      "Dummy",
+      "Noisy",
+      "Evil",
+      "Extension"
+     ],
+     "answer": 1,
+     "note": "Corrected key: vociferous means loud and insistent, so 'Noisy' is the synonym; 'Dummy' is not a recognised opposite."
+    },
+    {
+     "word": "AWRY",
+     "type": "antonym",
+     "options": [
+      "Dishonest",
+      "Straight",
+      "Untidy",
+      "Evasive"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "CRASS",
+     "type": "antonym",
+     "options": [
+      "Unsophisticated",
+      "Tactless",
+      "Astute",
+      "Scrawny"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "CONDIGN",
+     "type": "antonym",
+     "options": [
+      "Right",
+      "Gratuitous",
+      "Earned",
+      "Justifiable"
+     ],
+     "answer": 1,
+     "note": "Condign means deserved; 'gratuitous' means unwarranted."
+    },
+    {
+     "word": "IMPEDING",
+     "type": "antonym",
+     "options": [
+      "Shadow",
+      "Promote",
+      "Supply",
+      "Stop"
+     ],
+     "answer": 1
+    }
+   ],
+   "prepositions": []
+  },
+  {
+   "year": 2016,
+   "official": false,
+   "pdf": null,
+   "sources": [
+    "https://csspastpapers.pk/wp-content/uploads/2024/06/english-precis-and-composition-2016.pdf",
+    "https://cssprep.com.pk/english-precis-comprehension-mcqs-2016/"
+   ],
+   "outlineText": "Part-I MCQs (20 marks). Part-II: Q2 précis ~120 words + title (20); Q3 comprehension on New Year resolutions (20); Q4(a) correct only five (5) (b) punctuation (5); Q5(a) analogies (5) (b) dialogue into indirect-speech paragraph (5); Q6(a) differences between word pairs (5) (b) idioms (5); Q7 Urdu-to-English translation (10).",
+   "vocabulary": [
+    {
+     "word": "NABOB",
+     "type": "synonym",
+     "options": [
+      "Bigwig",
+      "Doubter",
+      "Frolic",
+      "Converse"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "PALL",
+     "type": "synonym",
+     "options": [
+      "Light",
+      "Satiate",
+      "Carry",
+      "Horror"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "SACROSANCT",
+     "type": "synonym",
+     "options": [
+      "Prayer",
+      "Sanctuary",
+      "Pious",
+      "Sacred"
+     ],
+     "answer": 3
+    },
+    {
+     "word": "LOUCHE",
+     "type": "synonym",
+     "options": [
+      "Gauche",
+      "Fine",
+      "Brilliant",
+      "Indecent"
+     ],
+     "answer": 3
+    },
+    {
+     "word": "STENTORIAN",
+     "type": "synonym",
+     "options": [
+      "Violent",
+      "Misbegotten",
+      "Loud",
+      "Stealthy"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "LOQUACIOUS",
+     "type": "synonym",
+     "options": [
+      "Talkative",
+      "Thirsty",
+      "Beautiful",
+      "Complicated"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "CHIMERA",
+     "type": "synonym",
+     "options": [
+      "Chimney",
+      "Protest",
+      "Illusion",
+      "Panache"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "TEMERITY",
+     "type": "synonym",
+     "options": [
+      "Audacity",
+      "Fearfulness",
+      "Shyness",
+      "Stupidity"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "PROPINQUITY",
+     "type": "synonym",
+     "options": [
+      "Habit",
+      "Nearness",
+      "Capacity",
+      "Tendency"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "VOCIFEROUS",
+     "type": "synonym",
+     "options": [
+      "Numerous",
+      "Bountiful",
+      "Strident",
+      "Garrulous"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "QUIESCENT",
+     "type": "antonym",
+     "options": [
+      "Lackadaisical",
+      "Active",
+      "Dull",
+      "Prescient"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "MATUTINAL",
+     "type": "antonym",
+     "options": [
+      "Paternal",
+      "Crepuscular",
+      "Maritime",
+      "Marsupial"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "IMPECUNIOUS",
+     "type": "antonym",
+     "options": [
+      "Wealthy",
+      "Cautious",
+      "Hungry",
+      "Tardy"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "SAPIENT",
+     "type": "antonym",
+     "options": [
+      "Hunched",
+      "Strong",
+      "Simple",
+      "Simian"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "GERMANE",
+     "type": "antonym",
+     "options": [
+      "Irrelevant",
+      "Indifferent",
+      "Impartial",
+      "Improvident"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "IRASCIBLE",
+     "type": "antonym",
+     "options": [
+      "Determined",
+      "Placid",
+      "Reasonable",
+      "Pliant"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "APPROBATE",
+     "type": "antonym",
+     "options": [
+      "Ingratitude",
+      "Condemn",
+      "Dissatisfaction",
+      "Master"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "SUPERCILIOUS",
+     "type": "antonym",
+     "options": [
+      "Unimportant",
+      "Relevant",
+      "Serious",
+      "Meek"
+     ],
+     "answer": 3
+    },
+    {
+     "word": "FATUOUS",
+     "type": "antonym",
+     "options": [
+      "Crafty",
+      "Frugal",
+      "Sensible",
+      "Inane"
+     ],
+     "answer": 2
+    }
+   ],
+   "prepositions": []
+  },
+  {
+   "year": 2015,
+   "official": false,
+   "pdf": null,
+   "sources": [
+    "https://cssprep.com.pk/css-english-precis-compre-past-paper-desc/",
+    "https://drive.google.com/file/d/12ZWWTI_-Yhtkt1J0K8ihwPvsANJ46bEX/view",
+    "https://cssprep.com.pk/english-precis-comprehension-mcqs-2015/"
+   ],
+   "outlineText": "Part-I MCQs (20 marks). Part-II: Q2 précis + title (20); Q3 comprehension on belief and scientific method (20); Q4 comprehensive note (20); Q5(a) idioms (b) differences between word pairs; Q6(a) correct only five (b) convert a direct/indirect speech passage.",
+   "vocabulary": [
+    {
+     "word": "FLAGRANT",
+     "type": "synonym",
+     "options": [
+      "Expensive",
+      "Common",
+      "Clerical",
+      "Glaring"
+     ],
+     "answer": 3
+    },
+    {
+     "word": "IMMINENT",
+     "type": "synonym",
+     "options": [
+      "Important",
+      "Historical",
+      "Impending",
+      "Inopportune"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "ASTUTE",
+     "type": "synonym",
+     "options": [
+      "Tedious",
+      "Illogical",
+      "Aggressive",
+      "Shrewd"
+     ],
+     "answer": 3
+    },
+    {
+     "word": "AVERSE",
+     "type": "synonym",
+     "options": [
+      "Eager",
+      "Reluctant",
+      "Willing",
+      "Unresponsive"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "PROGNOSIS",
+     "type": "synonym",
+     "options": [
+      "Offering",
+      "Prediction",
+      "Warning",
+      "Advance"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "PUNGENT",
+     "type": "synonym",
+     "options": [
+      "Sharp",
+      "Disagreeable",
+      "Smoky",
+      "Anesthetizing"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "FIDUCIARY",
+     "type": "synonym",
+     "options": [
+      "Trustee",
+      "Assistant",
+      "Notary",
+      "Attorney"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "PHILANDERING",
+     "type": "synonym",
+     "options": [
+      "Spending",
+      "Exaggerating",
+      "Wandering",
+      "None of these"
+     ],
+     "answer": 3,
+     "note": "Philandering means flirting or womanising; none of the options matches."
+    },
+    {
+     "word": "POIGNANT",
+     "type": "synonym",
+     "options": [
+      "Precious",
+      "Tender",
+      "Intense",
+      "Sorrowful"
+     ],
+     "answer": 3,
+     "note": "Corrected key: poignant means evoking a keen sense of sadness; 'Intense' is only partly right."
+    },
+    {
+     "word": "CONTINGENT",
+     "type": "synonym",
+     "options": [
+      "Conditional",
+      "Questionable",
+      "Argued",
+      "Rejected"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "LAUDED",
+     "type": "antonym",
+     "options": [
+      "Disparage",
+      "Applaud",
+      "Settle",
+      "Hesitate"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "COWARDLY",
+     "type": "antonym",
+     "options": [
+      "Brave",
+      "Poor",
+      "Intrepidly",
+      "Ignorant"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "PRAISE",
+     "type": "antonym",
+     "options": [
+      "Censure",
+      "Tickle",
+      "Acclaim",
+      "Skip"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "CONFUSE",
+     "type": "antonym",
+     "options": [
+      "Lucid",
+      "Extraordinary",
+      "Dirty",
+      "Muddle"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "NEGLECT",
+     "type": "antonym",
+     "options": [
+      "Omit",
+      "Destroy",
+      "Mistake",
+      "Nourish"
+     ],
+     "answer": 3
+    },
+    {
+     "word": "VETERAN",
+     "type": "antonym",
+     "options": [
+      "Novice",
+      "Pious",
+      "Intellectual",
+      "Debutante"
+     ],
+     "answer": 0,
+     "note": "Debutante is also close."
+    },
+    {
+     "word": "IMPORTANT",
+     "type": "antonym",
+     "options": [
+      "Trivial",
+      "Clear",
+      "Turning",
+      "Wavy"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "IRREGULAR",
+     "type": "antonym",
+     "options": [
+      "Erratic",
+      "Prevailing",
+      "Difficult",
+      "Enticing"
+     ],
+     "answer": 1,
+     "note": "Prevailing (usual, normal) is the only option opposed to irregular."
+    },
+    {
+     "word": "SPENDING",
+     "type": "antonym",
+     "options": [
+      "Sober",
+      "Mute",
+      "Revenue",
+      "Spendthrift"
+     ],
+     "answer": 2,
+     "note": "Revenue (income) is the opposite of spending (expenditure)."
+    },
+    {
+     "word": "CLUMSY",
+     "type": "antonym",
+     "options": [
+      "Foolish",
+      "Inept",
+      "Infer",
+      "Dexterous"
+     ],
+     "answer": 3
+    }
+   ],
+   "prepositions": []
+  },
+  {
+   "year": 2014,
+   "official": false,
+   "pdf": null,
+   "sources": [
+    "https://cssprep.com.pk/css-english-precis-compre-past-paper-desc/",
+    "https://drive.google.com/file/d/1o8IxjYiFaaIhleB20iBxGlyXY9SjKTu3/view",
+    "https://cssprep.com.pk/english-precis-comprehension-mcqs-2014/"
+   ],
+   "outlineText": "Part-I MCQs (20 marks, not in the paper source). Part-II: Q2 précis + heading (20+2); Q3 comprehension on Enlightenment revolutions (20); Q4 comprehensive note (20); Q5 five idioms in sentences (10); Q6 correct only four of seven (08).",
+   "vocabulary": [
+    {
+     "word": "APROPOS",
+     "type": "synonym",
+     "options": [
+      "Regarding",
+      "Unexpected",
+      "Misspoken",
+      "Idea"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "BULWARK",
+     "type": "synonym",
+     "options": [
+      "Conundrum",
+      "Festival",
+      "Rampart",
+      "Confuse"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "EPITOME",
+     "type": "synonym",
+     "options": [
+      "Volume",
+      "Essence",
+      "Summit",
+      "Deliverance"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "REGURGITATE",
+     "type": "synonym",
+     "options": [
+      "Assimilate",
+      "Reproduce",
+      "Exemplify",
+      "Study"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "PLUTOCRAT",
+     "type": "synonym",
+     "options": [
+      "Magnate",
+      "Priest",
+      "Judge",
+      "Astronaut"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "INEBRIATE",
+     "type": "synonym",
+     "options": [
+      "Dreamy",
+      "Stupefied",
+      "Unsteady",
+      "Drunken"
+     ],
+     "answer": 3
+    },
+    {
+     "word": "PRODIGIOUS",
+     "type": "synonym",
+     "options": [
+      "Unacceptable",
+      "Phenomenal",
+      "Discouraging",
+      "Vain"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "NUANCE",
+     "type": "synonym",
+     "options": [
+      "New word",
+      "Sense",
+      "Interpretation",
+      "Subtle Making"
+     ],
+     "answer": 3
+    },
+    {
+     "word": "CANNY",
+     "type": "synonym",
+     "options": [
+      "Obstinate",
+      "Handsome",
+      "Clever",
+      "Stout"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "SONOROUS",
+     "type": "synonym",
+     "options": [
+      "Loud",
+      "Heavy",
+      "Sleepy",
+      "Bright"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "BRUSQUE",
+     "type": "antonym",
+     "options": [
+      "Gold",
+      "Opulent",
+      "Gracious",
+      "Suspect"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "VERDANT",
+     "type": "antonym",
+     "options": [
+      "Dishonest",
+      "Suspicious",
+      "Moldy",
+      "Arid"
+     ],
+     "answer": 3
+    },
+    {
+     "word": "EPICUREAN",
+     "type": "antonym",
+     "options": [
+      "Ascetic",
+      "Slovenly",
+      "Imprecision",
+      "Providential"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "QUIESCENT",
+     "type": "antonym",
+     "options": [
+      "Active",
+      "Dormant",
+      "Weak",
+      "Unconcerned"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "LOQUACIOUS",
+     "type": "antonym",
+     "options": [
+      "Reticent",
+      "Talkative",
+      "Garrulous",
+      "Verbose"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "EXTENUATE",
+     "type": "antonym",
+     "options": [
+      "Alleviate",
+      "Preclude",
+      "Worsen",
+      "Subdue"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "INADVERTENT",
+     "type": "antonym",
+     "options": [
+      "Accidental",
+      "Disingenuous",
+      "Forthright",
+      "Calculated"
+     ],
+     "answer": 3
+    },
+    {
+     "word": "ORNATE",
+     "type": "antonym",
+     "options": [
+      "Spartan",
+      "Blemished",
+      "Sturdy",
+      "Counterfeit"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "FLAGITIOUS",
+     "type": "antonym",
+     "options": [
+      "Cardinal",
+      "Mercenary",
+      "Meritorious",
+      "Askew"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "MALEDICTION",
+     "type": "antonym",
+     "options": [
+      "Blessing",
+      "Termination",
+      "Parochial",
+      "Simian"
+     ],
+     "answer": 0
+    }
+   ],
+   "prepositions": []
+  },
+  {
+   "year": 2013,
+   "official": false,
+   "pdf": null,
+   "sources": [
+    "https://cssprep.com.pk/css-english-precis-compre-past-paper-desc/",
+    "https://drive.google.com/file/d/1DuN04OUB_gk65H366P3zSHSwAQncaNzq/view",
+    "https://cssprep.com.pk/english-precis-comprehension-mcqs-2013/"
+   ],
+   "outlineText": "Part-I Q1 20 MCQs (10 synonyms, 10 antonyms, five options each). Part-II: Q2 précis + heading (20+2); Q3 comprehension on Chinese civilization (20); Q4 comprehensive note (20); Q5(a) four idioms (b) four pairs of words; Q6(a) correct only five (b) narration, only five.",
+   "vocabulary": [
+    {
+     "word": "BRISTLE",
+     "type": "synonym",
+     "options": [
+      "Regulate",
+      "Flare up",
+      "Frail",
+      "Exhilarate",
+      "None of these"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "DELUGE",
+     "type": "synonym",
+     "options": [
+      "Immerse",
+      "Rescue",
+      "Drown",
+      "Overflow",
+      "None of these"
+     ],
+     "answer": 3
+    },
+    {
+     "word": "TIRADE",
+     "type": "synonym",
+     "options": [
+      "Argument",
+      "Procession",
+      "Angry Speech",
+      "Torture",
+      "None of these"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "QUASI",
+     "type": "synonym",
+     "options": [
+      "Secret",
+      "Improper",
+      "Seeming",
+      "Whole",
+      "None of these"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "VILIFY",
+     "type": "synonym",
+     "options": [
+      "To Prove",
+      "Boast",
+      "Defraud",
+      "Defame",
+      "None of these"
+     ],
+     "answer": 3
+    },
+    {
+     "word": "RIGMAROLE",
+     "type": "synonym",
+     "options": [
+      "Unnecessary",
+      "Disorder",
+      "Confused talk",
+      "Game",
+      "None of these"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "DEIGN",
+     "type": "synonym",
+     "options": [
+      "Condescend",
+      "Pretend",
+      "Disparage",
+      "Refuse",
+      "None of these"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "PROLETARIAT",
+     "type": "synonym",
+     "options": [
+      "Trade agreement",
+      "Government Secretariat",
+      "Labouring Class",
+      "Wealthy Class",
+      "None of these"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "LUDICROUS",
+     "type": "synonym",
+     "options": [
+      "Liberal",
+      "Fearful",
+      "Comic",
+      "Praise Worthy",
+      "None of these"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "MALEFIC",
+     "type": "synonym",
+     "options": [
+      "Baleful",
+      "Belonging to a male person",
+      "Social",
+      "Fighting by nature",
+      "None of these"
+     ],
+     "answer": 0,
+     "note": "Malefic means causing harm; 'baleful' (harmful, menacing) matches."
+    },
+    {
+     "word": "LANGUID",
+     "type": "antonym",
+     "options": [
+      "Feeble",
+      "Dull",
+      "Vigorous",
+      "Weak",
+      "None of these"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "HIGH-STRUNG",
+     "type": "antonym",
+     "options": [
+      "Nervous",
+      "Tense",
+      "Costly",
+      "Calm",
+      "None of these"
+     ],
+     "answer": 3
+    },
+    {
+     "word": "METTLE",
+     "type": "antonym",
+     "options": [
+      "Courage",
+      "Boldness",
+      "Cowardice",
+      "Spirit",
+      "None of these"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "ABRIDGEMENT",
+     "type": "antonym",
+     "options": [
+      "Epitome",
+      "Dissect",
+      "Abstract",
+      "Synopsis",
+      "None of these"
+     ],
+     "answer": 4,
+     "note": "Epitome, abstract and synopsis are synonyms and 'dissect' is unrelated, so no option is an antonym."
+    },
+    {
+     "word": "CAJOLE",
+     "type": "antonym",
+     "options": [
+      "Flaunt",
+      "Coax",
+      "Beguile",
+      "Flatter",
+      "None of these"
+     ],
+     "answer": 4,
+     "note": "Coax, beguile and flatter are synonyms and 'flaunt' (show off) is unrelated, so no option is an antonym."
+    },
+    {
+     "word": "CELIBACY",
+     "type": "antonym",
+     "options": [
+      "Virginity",
+      "Wedlock",
+      "Chastity",
+      "Single",
+      "None of these"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "INCLEMENT",
+     "type": "antonym",
+     "options": [
+      "Rough",
+      "Unpleasant",
+      "Unfavourable",
+      "Genial",
+      "None of these"
+     ],
+     "answer": 3
+    },
+    {
+     "word": "IRRESOLUTE",
+     "type": "antonym",
+     "options": [
+      "Ineffective",
+      "Without resolution",
+      "Yielding",
+      "Sturdy",
+      "None of these"
+     ],
+     "answer": 3
+    },
+    {
+     "word": "ANNEXATION",
+     "type": "antonym",
+     "options": [
+      "Supplement",
+      "Augmentation",
+      "Appendix",
+      "Contraction",
+      "None of these"
+     ],
+     "answer": 3
+    },
+    {
+     "word": "INCUR",
+     "type": "antonym",
+     "options": [
+      "Shun",
+      "Run",
+      "Blame",
+      "Meet",
+      "None of these"
+     ],
+     "answer": 0
+    }
+   ],
+   "prepositions": []
+  },
+  {
+   "year": 2012,
+   "official": false,
+   "pdf": null,
+   "sources": [
+    "https://cssprep.com.pk/css-english-precis-compre-past-paper-desc/",
+    "https://drive.google.com/file/d/1reXhaT9rCsOyQuh0kVYV_O96CoRuu1iC/view",
+    "https://samestudy.blogspot.com/2013/03/css-exam-english-2012-past-papers-css.html"
+   ],
+   "outlineText": "Part-I MCQs (20 marks, not in source). Part-II: Q2 précis + title (20+5); Q3 comprehension on fear of death (5x4); Q4 comprehensive note on a proverb (20); Q5 five idioms in sentences (05); Q6(a) correct only five (b) narration, only five.",
+   "vocabulary": [],
+   "prepositions": []
+  },
+  {
+   "year": 2011,
+   "official": false,
+   "pdf": null,
+   "sources": [
+    "https://cssprep.com.pk/css-english-precis-compre-past-paper-desc/",
+    "https://drive.google.com/file/d/1538VY_F5grQpQClcHBpYlcGqpKpZJfd6/view",
+    "https://cssprep.com.pk/english-precis-comprehension-mcqs-2011/"
+   ],
+   "outlineText": "Part-I Q1 MCQs (10 marks): (a) synonyms (b) antonyms, do five each. Part-II: Q2 précis + heading (20+5); Q3 comprehension (5x4); Q4 comprehensive note (20); Q5(a) idioms (b) pairs of words (10); Q6(a) correct only five (b) narration.",
+   "vocabulary": [
+    {
+     "word": "CHRONICLE",
+     "type": "synonym",
+     "options": [
+      "Daily ritual",
+      "Widely held belief",
+      "Account of events"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "FLUME",
+     "type": "synonym",
+     "options": [
+      "Sea bird with a wing span four times its body length",
+      "Narrow gorge with a stream running through it",
+      "Warm summer wind"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "EPITAPH",
+     "type": "synonym",
+     "options": [
+      "Editorial",
+      "Clever head line",
+      "Tomb stone inscription"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "LACONIC",
+     "type": "synonym",
+     "options": [
+      "Concise",
+      "Weekly",
+      "Circular"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "SHINGLE",
+     "type": "synonym",
+     "options": [
+      "Gravelly beach",
+      "Exposed sand bar",
+      "Group of dolphins"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "FILIAL",
+     "type": "synonym",
+     "options": [
+      "Related by marriage",
+      "Of sons and daughters",
+      "Of brothers"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "MISOPEDIA",
+     "type": "synonym",
+     "options": [
+      "A hatred for children",
+      "Middle age",
+      "Family history"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "MENAGE",
+     "type": "synonym",
+     "options": [
+      "Marriage vow",
+      "Household",
+      "Golden years"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "ANNIHILATE",
+     "type": "antonym",
+     "options": [
+      "Supplement",
+      "Augment",
+      "Append",
+      "Contract"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "BRUSQUE",
+     "type": "antonym",
+     "options": [
+      "Gruff",
+      "Curt",
+      "Smooth",
+      "Discourteous"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "CONCORD",
+     "type": "antonym",
+     "options": [
+      "Amity",
+      "Accord",
+      "Variance",
+      "Unity"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "CONSCIENTIOUS",
+     "type": "antonym",
+     "options": [
+      "Uncorrupt",
+      "Honourable",
+      "Principled",
+      "Profligate"
+     ],
+     "answer": 3
+    },
+    {
+     "word": "DIPLOMATIC",
+     "type": "antonym",
+     "options": [
+      "Sagacious",
+      "Shrewd",
+      "Bungling",
+      "Prudent"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "HYPOCRISY",
+     "type": "antonym",
+     "options": [
+      "Uprightness",
+      "Pretence",
+      "Cant",
+      "Deceit"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "ONEROUS",
+     "type": "antonym",
+     "options": [
+      "Burdensome",
+      "Wearing",
+      "Difficult",
+      "Fluent"
+     ],
+     "answer": 3,
+     "note": "Onerous means burdensome; 'fluent' (flowing easily) is the only option opposed to it."
+    }
+   ],
+   "prepositions": []
+  },
+  {
+   "year": 2010,
+   "official": false,
+   "pdf": null,
+   "sources": [
+    "https://cssprep.com.pk/css-english-precis-compre-past-paper-desc/",
+    "https://drive.google.com/file/d/10yYbDfGZnZVTMwTcF9hXg6yoRFwN6u7Q/view",
+    "https://cssprep.com.pk/english-precis-comprehension-mcqs-2010/"
+   ],
+   "outlineText": "Part-I Q1 MCQs (10 marks): (a) synonyms (b) antonyms. Part-II: Q2 précis ~100 words + title (20+5); Q3 comprehension (20); Q4 comprehensive note (20); Q5(a) idioms (b) pairs of words (10); Q6(a) correct only five (b) narration.",
+   "vocabulary": [
+    {
+     "word": "ACRIMONIOUS",
+     "type": "synonym",
+     "options": [
+      "Bitter",
+      "Provocative",
+      "Cheap",
+      "Volatile"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "CALLIGRAPHY",
+     "type": "synonym",
+     "options": [
+      "Computers",
+      "Handwriting",
+      "Blood pressure",
+      "Brain waves"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "UNEQUIVOCAL",
+     "type": "synonym",
+     "options": [
+      "Variable",
+      "Plain",
+      "Unmistakable",
+      "Negligent"
+     ],
+     "answer": 2,
+     "note": "Plain is also close."
+    },
+    {
+     "word": "DEMISE",
+     "type": "synonym",
+     "options": [
+      "Conclude",
+      "End",
+      "Affection",
+      "Death"
+     ],
+     "answer": 3,
+     "note": "End is also close; demise means death."
+    },
+    {
+     "word": "INCENDIARY",
+     "type": "synonym",
+     "options": [
+      "Happy",
+      "Sneer",
+      "Causing fire",
+      "Jolly"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "TOUCHSTONE",
+     "type": "synonym",
+     "options": [
+      "Remind",
+      "A hall",
+      "At rest",
+      "Criterion"
+     ],
+     "answer": 3
+    },
+    {
+     "word": "VOID",
+     "type": "synonym",
+     "options": [
+      "Emptiness",
+      "Lea",
+      "Anger",
+      "Trick"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "ESSAY",
+     "type": "synonym",
+     "options": [
+      "Direct",
+      "Compose",
+      "Attempt",
+      "Suppose"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "IGNOBLE",
+     "type": "antonym",
+     "options": [
+      "Lowly",
+      "Vile",
+      "Good",
+      "Noble"
+     ],
+     "answer": 3,
+     "note": "Good is also opposed, but 'Noble' is the direct opposite."
+    },
+    {
+     "word": "MELANCHOLY",
+     "type": "antonym",
+     "options": [
+      "Sorrowful",
+      "Happy",
+      "Forbidden",
+      "Brisk"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "OBLITERATE",
+     "type": "antonym",
+     "options": [
+      "Preserve",
+      "Destroy",
+      "Ravage",
+      "Design"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "ALLY",
+     "type": "antonym",
+     "options": [
+      "Alloy",
+      "Foe",
+      "Partner",
+      "Accessory"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "VULGAR",
+     "type": "antonym",
+     "options": [
+      "Coarse",
+      "Gross",
+      "Exquisite",
+      "Obscene"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "PRETEND",
+     "type": "antonym",
+     "options": [
+      "Sham",
+      "Substantiate",
+      "Feign",
+      "Fabricate"
+     ],
+     "answer": 1,
+     "note": "Pretend means to feign; 'substantiate' (prove true) is the only option opposed to it."
+    },
+    {
+     "word": "LIBERTY",
+     "type": "antonym",
+     "options": [
+      "Permission",
+      "Licence",
+      "Serfdom",
+      "Bound"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "CONSCIENTIOUS",
+     "type": "antonym",
+     "options": [
+      "Uncorrupt",
+      "Honourable",
+      "Principled",
+      "Profligate"
+     ],
+     "answer": 3
+    }
+   ],
+   "prepositions": []
+  },
+  {
+   "year": 2009,
+   "official": false,
+   "pdf": null,
+   "sources": [
+    "https://cssprep.com.pk/css-english-precis-compre-past-paper-desc/",
+    "https://drive.google.com/file/d/1UwN2v-YIHiCCCjB8rSZXtub6gXy5tQKS/view",
+    "https://cssprep.com.pk/english-precis-comprehension-mcqs-2009/"
+   ],
+   "outlineText": "Part-I Q1 MCQs (10 marks): (a) synonyms (b) antonyms. Part-II: Q2 précis + heading (20+5); Q3 comprehension on the helicopter (20); Q4 comprehensive note (20); Q5(a) narration, only five (b) correct only five; Q6(a) idioms (b) pairs of words (10).",
+   "vocabulary": [
+    {
+     "word": "OBSCURE",
+     "type": "synonym",
+     "options": [
+      "Unclear",
+      "Doubtful"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "AMIABLE",
+     "type": "synonym",
+     "options": [
+      "Obnoxious",
+      "Affable"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "HOODWINK",
+     "type": "synonym",
+     "options": [
+      "Delude",
+      "Avoid"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "GUILEFUL",
+     "type": "synonym",
+     "options": [
+      "Honourable",
+      "Disingenuous"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "OBSESSION",
+     "type": "synonym",
+     "options": [
+      "Fixed ideas",
+      "Delusion"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "RADICAL",
+     "type": "synonym",
+     "options": [
+      "Innate",
+      "Moderate"
+     ],
+     "answer": 0,
+     "note": "In its root sense radical means fundamental or inherent; 'moderate' is its opposite."
+    },
+    {
+     "word": "PRESUMPTIVE",
+     "type": "synonym",
+     "options": [
+      "Credible",
+      "Timid"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "PRESENTABLE",
+     "type": "antonym",
+     "options": [
+      "Unable",
+      "Scruffy",
+      "Suitable",
+      "Personable"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "SALVATION",
+     "type": "antonym",
+     "options": [
+      "Escape",
+      "Starvation",
+      "Doom",
+      "Rescue"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "PLAIN",
+     "type": "antonym",
+     "options": [
+      "Clean",
+      "Distinct",
+      "Ambiguous",
+      "Frugal"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "ODIOUS",
+     "type": "antonym",
+     "options": [
+      "Porus",
+      "Charming",
+      "Horrid",
+      "Offensive"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "INFLAME",
+     "type": "antonym",
+     "options": [
+      "Calm",
+      "Anger",
+      "Excite",
+      "Kindle"
+     ],
+     "answer": 0
+    }
+   ],
+   "prepositions": []
+  },
+  {
+   "year": 2008,
+   "official": false,
+   "pdf": null,
+   "sources": [
+    "https://cssprep.com.pk/css-english-precis-compre-past-paper-desc/",
+    "https://drive.google.com/file/d/12hSRvlgpsoa9K8emzEVYlL1aMjqujn2z/view",
+    "https://cssprep.com.pk/english-precis-comprehension-mcqs-2008/"
+   ],
+   "outlineText": "Q1 précis ~100 words + title (20+5); Q2 comprehension; Q3 comprehensive note (20); Q4(a) idioms in sentences (b) pairs of words; Q5(a) word-meaning MCQs, any five (b) give the meaning of words/phrases; Q6(a) correct any five (b) narration.",
+   "vocabulary": [
+    {
+     "word": "MORATORIUM",
+     "type": "synonym",
+     "options": [
+      "Large tomb",
+      "Waiting period",
+      "Security for debt",
+      "Funeral house"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "PROLIFIC",
+     "type": "synonym",
+     "options": [
+      "Skilful",
+      "Fruitful",
+      "Wordy",
+      "Spread"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "BI-PARTISAN",
+     "type": "synonym",
+     "options": [
+      "Narrow minded",
+      "Progressive",
+      "Representing two out parties",
+      "Divided"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "UNEQUIVOCAL",
+     "type": "synonym",
+     "options": [
+      "Careless",
+      "Unmistakable",
+      "Variable",
+      "Incomparable"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "COVENANT",
+     "type": "synonym",
+     "options": [
+      "Prayer",
+      "Debate",
+      "Garden",
+      "Agreement"
+     ],
+     "answer": 3
+    },
+    {
+     "word": "TENTATIVE",
+     "type": "synonym",
+     "options": [
+      "Expedient",
+      "Nominal",
+      "Provisional",
+      "Alternative"
+     ],
+     "answer": 2
+    }
+   ],
+   "prepositions": []
+  },
+  {
+   "year": 2007,
+   "official": false,
+   "pdf": null,
+   "sources": [
+    "https://cssprep.com.pk/css-english-precis-compre-past-paper-desc/",
+    "https://drive.google.com/file/d/19qK-u0BC746Ee_AAwbdw3wGxjRySDwF2/view",
+    "https://cssprep.com.pk/english-precis-comprehension-mcqs-2007/"
+   ],
+   "outlineText": "Q1 précis + heading; Q2 comprehension on education and the classics (questions a-e); Q3 note (250-300 words) on one of five topics. The rest of the paper is missing from the source PDF.",
+   "vocabulary": [
+    {
+     "word": "LACUNAE",
+     "type": "synonym",
+     "options": [
+      "Tiny marine life",
+      "Shallow water",
+      "Local dialect",
+      "Missing parts"
+     ],
+     "answer": 3
+    },
+    {
+     "word": "PAROXYSMS",
+     "type": "synonym",
+     "options": [
+      "Moral lesson",
+      "Sudden outburst",
+      "Contradiction",
+      "Pallid imitation"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "GROTTO",
+     "type": "synonym",
+     "options": [
+      "Statue",
+      "Cavern",
+      "Neighborhood",
+      "Type of moth"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "FETTER",
+     "type": "synonym",
+     "options": [
+      "Rot",
+      "To restrain",
+      "Make better",
+      "Enable to fly"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "STOICISM",
+     "type": "synonym",
+     "options": [
+      "Indifference",
+      "Boldness",
+      "Deep affection",
+      "Patient endurance"
+     ],
+     "answer": 3
+    },
+    {
+     "word": "SUCCULENT",
+     "type": "antonym",
+     "options": [
+      "Edible",
+      "Parched",
+      "Generous",
+      "Mature"
+     ],
+     "answer": 1,
+     "note": "Corrected key: succulent means juicy, so 'Parched' is its opposite; 'Edible' is not a synonym."
+    },
+    {
+     "word": "MALEDICTION",
+     "type": "synonym",
+     "options": [
+      "Curse",
+      "Summary",
+      "Perfume",
+      "Awkwardness"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "TWINE",
+     "type": "antonym",
+     "options": [
+      "Straighten",
+      "Continue",
+      "Unravel",
+      "Detach"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "FRUGAL",
+     "type": "antonym",
+     "options": [
+      "Prodigal",
+      "Intemperate",
+      "Extravagant",
+      "Profuse"
+     ],
+     "answer": 0,
+     "note": "Extravagant is equally correct."
+    },
+    {
+     "word": "GAWKY",
+     "type": "antonym",
+     "options": [
+      "Neat",
+      "Handy",
+      "Graceful",
+      "Handsome"
+     ],
+     "answer": 2
+    }
+   ],
+   "prepositions": []
+  },
+  {
+   "year": 2006,
+   "official": false,
+   "pdf": null,
+   "sources": [
+    "https://cssprep.com.pk/css-english-precis-compre-past-paper-desc/",
+    "https://drive.google.com/file/d/1bymyi9KCVMGe36COVwjIdtbLBLXkqw2N/view",
+    "https://cssprep.com.pk/english-precis-comprehension-mcqs-2006/"
+   ],
+   "outlineText": "Q1 précis + heading (20+5); Q2 comprehension on Cranford (20); Q3 comprehensive note (20); Q4(A) 5 synonyms (B) 5 antonyms; Q5(A) narration, only five (B) correct only five; Q6(A) phrasal verbs/idioms in sentences (B) five pairs of words.",
+   "vocabulary": [
+    {
+     "word": "FINICKY",
+     "type": "synonym",
+     "options": [
+      "Unstable",
+      "Troubled",
+      "Fussy",
+      "Unpleasant"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "SAMIZDAT",
+     "type": "synonym",
+     "options": [
+      "Underground press",
+      "Secret police",
+      "Twirling jig",
+      "Large metal tea urn"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "VELD",
+     "type": "synonym",
+     "options": [
+      "Arctic wasteland",
+      "European plains",
+      "South African grassland",
+      "Deep valley"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "CAJUN",
+     "type": "synonym",
+     "options": [
+      "French-Canadian descendant",
+      "American Indian",
+      "Native of the Everglades",
+      "Early inhabitant of the Bahama Islands"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "LOGGIA",
+     "type": "synonym",
+     "options": [
+      "Pathway",
+      "Marsh",
+      "Gallery",
+      "Carriage"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "CAPTIOUS",
+     "type": "antonym",
+     "options": [
+      "Tolerant",
+      "Capable",
+      "Winning",
+      "Recollected"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "PENCHANT",
+     "type": "antonym",
+     "options": [
+      "Dislike",
+      "Attitude",
+      "Imminence",
+      "Distance"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "PUTATIVE",
+     "type": "antonym",
+     "options": [
+      "Powerful",
+      "Colonial",
+      "Undisputed",
+      "Unremarkable"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "LARCENY",
+     "type": "antonym",
+     "options": [
+      "Appropriation",
+      "Peculation",
+      "Purloining",
+      "Indemnification"
+     ],
+     "answer": 3
+    }
+   ],
+   "prepositions": []
+  },
+  {
+   "year": 2005,
+   "official": false,
+   "pdf": null,
+   "sources": [
+    "https://cssprep.com.pk/css-english-precis-compre-past-paper-desc/",
+    "https://drive.google.com/file/d/1E1ljTi27l1tfi_vCAB1bn4Ac6tCMQA2u/view",
+    "https://cssprep.com.pk/english-precis-comprehension-mcqs-2005/"
+   ],
+   "outlineText": "Q1 précis + heading (20+5); Q2 comprehension (autobiography excerpt); Q3 comprehensive note (20); Q4(A) 5 synonyms (B) 5 antonyms; Q5(A) narration, any five (B) corrections, any five; Q6(A) idioms in sentences (B) pairs of words.",
+   "vocabulary": [
+    {
+     "word": "ANATHEMA",
+     "type": "synonym",
+     "options": [
+      "Curse",
+      "Cure",
+      "Anemia",
+      "Asthma"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "TORPOR",
+     "type": "synonym",
+     "options": [
+      "Fever",
+      "Lethargy",
+      "Taciturn",
+      "Torrid"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "TOUCHSTONE",
+     "type": "synonym",
+     "options": [
+      "Criterion",
+      "Gold",
+      "Character",
+      "Characteristics"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "SEQUESTER",
+     "type": "synonym",
+     "options": [
+      "Eliminate",
+      "Finalize",
+      "Sedate",
+      "Isolate"
+     ],
+     "answer": 3
+    },
+    {
+     "word": "DENOUEMENT",
+     "type": "synonym",
+     "options": [
+      "Denunciation",
+      "Dormancy",
+      "Termination",
+      "Explanation"
+     ],
+     "answer": 2,
+     "note": "The denouement is the final resolution of a plot; 'termination' (ending) is the closest."
+    },
+    {
+     "word": "DELETERIOUS",
+     "type": "antonym",
+     "options": [
+      "Nourishing",
+      "Injurious",
+      "Vital",
+      "Fatal"
+     ],
+     "answer": 0
+    },
+    {
+     "word": "SEDENTARY",
+     "type": "antonym",
+     "options": [
+      "Afraid",
+      "Loyal",
+      "Active",
+      "Torpid"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "TURBID",
+     "type": "antonym",
+     "options": [
+      "Muddy",
+      "Clear",
+      "Invariable",
+      "Improbable"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "PHLEGMATIC",
+     "type": "antonym",
+     "options": [
+      "Dull",
+      "Active",
+      "Lymphatic",
+      "Frigid"
+     ],
+     "answer": 1
+    }
+   ],
+   "prepositions": []
+  },
+  {
+   "year": 2004,
+   "official": false,
+   "pdf": null,
+   "sources": [
+    "https://cssprep.com.pk/css-english-precis-compre-past-paper-desc/",
+    "https://drive.google.com/file/d/1FAGGz6NfCWIpQ9A44w3RZRFdNVOf-RDt/view"
+   ],
+   "outlineText": "Q1 précis + heading; Q2 comprehension (20); Q3 comprehensive note (20); Q4(a) 5 synonyms (b) 5 antonyms; Q5(a) change the voice, any five (b) correct any five; Q6(a) idioms in sentences (b) five pairs of words (10).",
+   "vocabulary": [
+    {
+     "word": "ARCHIPELAGO",
+     "type": "synonym",
+     "options": [
+      "Reef",
+      "Glacier",
+      "Cluster of islands",
+      "Lagoon"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "PIAZZA",
+     "type": "synonym",
+     "options": [
+      "Cheese dish",
+      "Veranda",
+      "Public Square",
+      "Style or dash"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "BAKLAVA",
+     "type": "synonym",
+     "options": [
+      "Stringed instrument",
+      "Dessert",
+      "Whining dance",
+      "Gratuity"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "IONIC",
+     "type": "synonym",
+     "options": [
+      "Indian stone monument",
+      "Greek architecture",
+      "Roman Sculpture",
+      "Mediterranean Sea"
+     ],
+     "answer": 1
+    },
+    {
+     "word": "CICERONE",
+     "type": "synonym",
+     "options": [
+      "Teacher",
+      "Literary classic",
+      "Chaperone",
+      "Guide"
+     ],
+     "answer": 3,
+     "note": "A cicerone is a guide who shows sightseers around; 'chaperone' is close but means an escort."
+    },
+    {
+     "word": "CAVIL",
+     "type": "antonym",
+     "options": [
+      "Discern",
+      "Disclose",
+      "Introduce",
+      "Flatter",
+      "Commend"
+     ],
+     "answer": 4,
+     "note": "To cavil is to raise petty objections; 'commend' (praise) is the opposite."
+    },
+    {
+     "word": "RAUCOUS",
+     "type": "antonym",
+     "options": [
+      "Orderly",
+      "Absorbent",
+      "Boyant",
+      "Mellifluous",
+      "Contentious"
+     ],
+     "answer": 3
+    },
+    {
+     "word": "DESICCATE",
+     "type": "antonym",
+     "options": [
+      "Lengthen",
+      "Hallow",
+      "Exonerate",
+      "Saturate",
+      "Anesthetize"
+     ],
+     "answer": 3
+    },
+    {
+     "word": "APOTHEOSIS",
+     "type": "antonym",
+     "options": [
+      "Departure from tradition",
+      "Impatience with stupidity",
+      "Demotion from glory",
+      "Surrender to impulse",
+      "Cause for grief"
+     ],
+     "answer": 2
+    },
+    {
+     "word": "SPUNK",
+     "type": "antonym",
+     "options": [
+      "Success",
+      "Timidity",
+      "Growing awareness",
+      "Loss of prestige",
+      "Lack of intelligence"
+     ],
+     "answer": 1
+    }
+   ],
+   "prepositions": []
+  },
+  {
+   "year": 2003,
+   "official": false,
+   "pdf": null,
+   "sources": [
+    "https://cssprep.com.pk/css-english-precis-compre-past-paper-desc/",
+    "https://drive.google.com/file/d/1KOERjETMz1Dq3O5odpPM2_qY0C4D1a3_/view"
+   ],
+   "outlineText": "Q1 précis + heading (20); Q2 comprehension (20); Q3 comprehensive note (20); Q4 change the voice (10); Q5 reported speech (10); Q6 correct 10 sentences; Q7 idioms in sentences (10). No MCQ part.",
+   "vocabulary": [],
+   "prepositions": []
+  },
+  {
+   "year": 2002,
+   "official": false,
+   "pdf": null,
+   "sources": [
+    "https://cssprep.com.pk/css-english-precis-compre-past-paper-desc/",
+    "https://drive.google.com/file/d/14mC0WbAXVIdwM-R_oufE0Qu1xYlHAgHk/view"
+   ],
+   "outlineText": "Q1 précis + heading (20); Q2 comprehension incl. meanings of underlined expressions (20); Q3 comprehensive note (20); Q4 change the voice (10); Q5 direct to indirect speech (10); Q6 correct 10 sentences (10); Q7 sentences with 'take' phrasal idioms (10). No MCQ part.",
+   "vocabulary": [],
+   "prepositions": []
+  },
+  {
+   "year": 2001,
+   "official": false,
+   "pdf": null,
+   "sources": [
+    "https://cssprep.com.pk/css-english-precis-compre-past-paper-desc/",
+    "https://drive.google.com/file/d/1MI8xVzxqU46HFvNS-fUs2mudhDvlIkia/view"
+   ],
+   "outlineText": "Q1 précis one-third length + heading (20); Q2 comprehension (20); Q3 comprehensive note (20); Q4 correct 10 sentences (10); Q5 five idioms in sentences (10); Q6 five pairs of words (10); Q7 place given phrases into a dialogue (10). No MCQ part.",
+   "vocabulary": [],
+   "prepositions": []
+  },
+  {
+   "year": 2000,
+   "official": false,
+   "pdf": null,
+   "sources": [
+    "https://cssprep.com.pk/css-english-precis-compre-past-paper-desc/",
+    "https://drive.google.com/file/d/1JF7fP63rbUOHFYZEZ8HEcPJRG-8ptcYX/view"
+   ],
+   "outlineText": "Q1 précis in one-third length + title (20); Q2 comprehension (20); Q3 comprehensive note 250-300 words (20); Q4 correct 10 sentences; Q5 idioms in sentences (any five); Q6 five pairs of words (10); Q7 complete a conversation with the correct idioms (10). Total 100, no MCQ part.",
+   "vocabulary": [],
+   "prepositions": []
+  }
+ ]
+}

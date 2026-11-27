@@ -1,568 +1,3568 @@
 {
-  "sets": [
-    {
-      "id": "syn-01",
-      "type": "synonyms",
-      "instruction": "Group these twenty words into ten pairs of words with similar meanings.",
-      "pairs": [
-        [
-          "abate",
-          "subside"
-        ],
-        [
-          "candid",
-          "frank"
-        ],
-        [
-          "frugal",
-          "thrifty"
-        ],
-        [
-          "obstinate",
-          "stubborn"
-        ],
-        [
-          "eloquent",
-          "articulate"
-        ],
-        [
-          "ponder",
-          "contemplate"
-        ],
-        [
-          "timid",
-          "diffident"
-        ],
-        [
-          "affluent",
-          "wealthy"
-        ],
-        [
-          "vindicate",
-          "exonerate"
-        ],
-        [
-          "ardent",
-          "fervent"
-        ]
-      ]
-    },
-    {
-      "id": "syn-02",
-      "type": "synonyms",
-      "instruction": "Group these twenty words into ten pairs of words with similar meanings.",
-      "pairs": [
-        [
-          "ephemeral",
-          "transient"
-        ],
-        [
-          "ubiquitous",
-          "omnipresent"
-        ],
-        [
-          "cogent",
-          "convincing"
-        ],
-        [
-          "deleterious",
-          "harmful"
-        ],
-        [
-          "exacerbate",
-          "aggravate"
-        ],
-        [
-          "impeccable",
-          "flawless"
-        ],
-        [
-          "ostensible",
-          "apparent"
-        ],
-        [
-          "tenacious",
-          "persistent"
-        ],
-        [
-          "zealous",
-          "enthusiastic"
-        ],
-        [
-          "pragmatic",
-          "practical"
-        ]
-      ]
-    },
-    {
-      "id": "syn-03",
-      "type": "synonyms",
-      "instruction": "Group these twenty words into ten pairs of words with similar meanings.",
-      "pairs": [
-        [
-          "lucid",
-          "intelligible"
-        ],
-        [
-          "prudent",
-          "judicious"
-        ],
-        [
-          "inexorable",
-          "relentless"
-        ],
-        [
-          "magnanimous",
-          "generous"
-        ],
-        [
-          "mitigate",
-          "alleviate"
-        ],
-        [
-          "scrutinise",
-          "examine"
-        ],
-        [
-          "indolent",
-          "lazy"
-        ],
-        [
-          "eminent",
-          "distinguished"
-        ],
-        [
-          "nefarious",
-          "wicked"
-        ],
-        [
-          "sporadic",
-          "intermittent"
-        ]
-      ]
-    },
-    {
-      "id": "syn-04",
-      "type": "synonyms",
-      "instruction": "Group these twenty words into ten pairs of words with similar meanings.",
-      "pairs": [
-        [
-          "benevolent",
-          "kindly"
-        ],
-        [
-          "audacious",
-          "daring"
-        ],
-        [
-          "futile",
-          "fruitless"
-        ],
-        [
-          "hostile",
-          "antagonistic"
-        ],
-        [
-          "opulent",
-          "luxurious"
-        ],
-        [
-          "laconic",
-          "terse"
-        ],
-        [
-          "docile",
-          "submissive"
-        ],
-        [
-          "rudimentary",
-          "elementary"
-        ],
-        [
-          "conspicuous",
-          "noticeable"
-        ],
-        [
-          "diligent",
-          "industrious"
-        ]
-      ]
-    },
-    {
-      "id": "syn-05",
-      "type": "synonyms",
-      "instruction": "Group these twenty words into ten pairs of words with similar meanings.",
-      "pairs": [
-        [
-          "augment",
-          "increase"
-        ],
-        [
-          "censure",
-          "condemn"
-        ],
-        [
-          "dearth",
-          "scarcity"
-        ],
-        [
-          "enigmatic",
-          "mysterious"
-        ],
-        [
-          "fallacious",
-          "erroneous"
-        ],
-        [
-          "gregarious",
-          "sociable"
-        ],
-        [
-          "haughty",
-          "arrogant"
-        ],
-        [
-          "insipid",
-          "bland"
-        ],
-        [
-          "jeopardise",
-          "endanger"
-        ],
-        [
-          "venerate",
-          "revere"
-        ]
-      ]
-    },
-    {
-      "id": "syn-06",
-      "type": "synonyms",
-      "instruction": "Group these twenty words into ten pairs of words with similar meanings.",
-      "pairs": [
-        [
-          "abhor",
-          "detest"
-        ],
-        [
-          "belligerent",
-          "aggressive"
-        ],
-        [
-          "clandestine",
-          "covert"
-        ],
-        [
-          "commend",
-          "praise"
-        ],
-        [
-          "emulate",
-          "imitate"
-        ],
-        [
-          "eradicate",
-          "eliminate"
-        ],
-        [
-          "feasible",
-          "viable"
-        ],
-        [
-          "impede",
-          "hinder"
-        ],
-        [
-          "incessant",
-          "unceasing"
-        ],
-        [
-          "pensive",
-          "thoughtful"
-        ]
-      ]
-    },
-    {
-      "id": "ant-01",
-      "type": "antonyms",
-      "instruction": "Group these twenty words into ten pairs of words with opposite meanings.",
-      "pairs": [
-        [
-          "abate",
-          "intensify"
-        ],
-        [
-          "candid",
-          "evasive"
-        ],
-        [
-          "frugal",
-          "extravagant"
-        ],
-        [
-          "obstinate",
-          "compliant"
-        ],
-        [
-          "eloquent",
-          "inarticulate"
-        ],
-        [
-          "ephemeral",
-          "permanent"
-        ],
-        [
-          "verbose",
-          "concise"
-        ],
-        [
-          "timid",
-          "bold"
-        ],
-        [
-          "affluent",
-          "impoverished"
-        ],
-        [
-          "vindicate",
-          "incriminate"
-        ]
-      ]
-    },
-    {
-      "id": "ant-02",
-      "type": "antonyms",
-      "instruction": "Group these twenty words into ten pairs of words with opposite meanings.",
-      "pairs": [
-        [
-          "hostile",
-          "amicable"
-        ],
-        [
-          "ubiquitous",
-          "scarce"
-        ],
-        [
-          "deleterious",
-          "beneficial"
-        ],
-        [
-          "exacerbate",
-          "alleviate"
-        ],
-        [
-          "prudent",
-          "reckless"
-        ],
-        [
-          "zealous",
-          "apathetic"
-        ],
-        [
-          "pragmatic",
-          "idealistic"
-        ],
-        [
-          "magnanimous",
-          "petty"
-        ],
-        [
-          "transparent",
-          "opaque"
-        ],
-        [
-          "acquit",
-          "convict"
-        ]
-      ]
-    },
-    {
-      "id": "ant-03",
-      "type": "antonyms",
-      "instruction": "Group these twenty words into ten pairs of words with opposite meanings.",
-      "pairs": [
-        [
-          "lucid",
-          "obscure"
-        ],
-        [
-          "diligent",
-          "indolent"
-        ],
-        [
-          "gregarious",
-          "reclusive"
-        ],
-        [
-          "haughty",
-          "humble"
-        ],
-        [
-          "censure",
-          "commend"
-        ],
-        [
-          "dearth",
-          "abundance"
-        ],
-        [
-          "fallacious",
-          "valid"
-        ],
-        [
-          "docile",
-          "unruly"
-        ],
-        [
-          "zenith",
-          "nadir"
-        ],
-        [
-          "rudimentary",
-          "sophisticated"
-        ]
-      ]
-    },
-    {
-      "id": "ant-04",
-      "type": "antonyms",
-      "instruction": "Group these twenty words into ten pairs of words with opposite meanings.",
-      "pairs": [
-        [
-          "augment",
-          "diminish"
-        ],
-        [
-          "clandestine",
-          "overt"
-        ],
-        [
-          "impede",
-          "facilitate"
-        ],
-        [
-          "feasible",
-          "impracticable"
-        ],
-        [
-          "incessant",
-          "intermittent"
-        ],
-        [
-          "venerate",
-          "despise"
-        ],
-        [
-          "laconic",
-          "garrulous"
-        ],
-        [
-          "credulous",
-          "sceptical"
-        ],
-        [
-          "tranquil",
-          "turbulent"
-        ],
-        [
-          "benign",
-          "malignant"
-        ]
-      ]
-    },
-    {
-      "id": "ant-05",
-      "type": "antonyms",
-      "instruction": "Group these twenty words into ten pairs of words with opposite meanings.",
-      "pairs": [
-        [
-          "ambiguous",
-          "unequivocal"
-        ],
-        [
-          "belligerent",
-          "conciliatory"
-        ],
-        [
-          "expedite",
-          "delay"
-        ],
-        [
-          "taciturn",
-          "loquacious"
-        ],
-        [
-          "lethargic",
-          "energetic"
-        ],
-        [
-          "novice",
-          "veteran"
-        ],
-        [
-          "profound",
-          "superficial"
-        ],
-        [
-          "mundane",
-          "extraordinary"
-        ],
-        [
-          "wane",
-          "wax"
-        ],
-        [
-          "parsimonious",
-          "lavish"
-        ]
-      ]
-    },
-    {
-      "id": "ant-06",
-      "type": "antonyms",
-      "instruction": "Group these twenty words into ten pairs of words with opposite meanings.",
-      "pairs": [
-        [
-          "abhor",
-          "cherish"
-        ],
-        [
-          "adversity",
-          "prosperity"
-        ],
-        [
-          "arrogant",
-          "modest"
-        ],
-        [
-          "cautious",
-          "rash"
-        ],
-        [
-          "conceal",
-          "reveal"
-        ],
-        [
-          "prolific",
-          "barren"
-        ],
-        [
-          "stringent",
-          "lenient"
-        ],
-        [
-          "vague",
-          "precise"
-        ],
-        [
-          "fragile",
-          "sturdy"
-        ],
-        [
-          "orthodox",
-          "unconventional"
-        ]
-      ]
-    }
-  ]
+ "sets": [
+  {
+   "id": "syn-01",
+   "type": "synonyms",
+   "instruction": "Group these twenty words into ten pairs of words with similar meanings.",
+   "pairs": [
+    [
+     "abate",
+     "subside"
+    ],
+    [
+     "candid",
+     "frank"
+    ],
+    [
+     "frugal",
+     "thrifty"
+    ],
+    [
+     "obstinate",
+     "stubborn"
+    ],
+    [
+     "eloquent",
+     "articulate"
+    ],
+    [
+     "ponder",
+     "contemplate"
+    ],
+    [
+     "timid",
+     "diffident"
+    ],
+    [
+     "affluent",
+     "wealthy"
+    ],
+    [
+     "vindicate",
+     "exonerate"
+    ],
+    [
+     "ardent",
+     "fervent"
+    ]
+   ]
+  },
+  {
+   "id": "syn-02",
+   "type": "synonyms",
+   "instruction": "Group these twenty words into ten pairs of words with similar meanings.",
+   "pairs": [
+    [
+     "ephemeral",
+     "transient"
+    ],
+    [
+     "ubiquitous",
+     "omnipresent"
+    ],
+    [
+     "cogent",
+     "convincing"
+    ],
+    [
+     "deleterious",
+     "harmful"
+    ],
+    [
+     "exacerbate",
+     "aggravate"
+    ],
+    [
+     "impeccable",
+     "flawless"
+    ],
+    [
+     "ostensible",
+     "apparent"
+    ],
+    [
+     "tenacious",
+     "persistent"
+    ],
+    [
+     "zealous",
+     "enthusiastic"
+    ],
+    [
+     "pragmatic",
+     "practical"
+    ]
+   ]
+  },
+  {
+   "id": "syn-03",
+   "type": "synonyms",
+   "instruction": "Group these twenty words into ten pairs of words with similar meanings.",
+   "pairs": [
+    [
+     "lucid",
+     "intelligible"
+    ],
+    [
+     "prudent",
+     "judicious"
+    ],
+    [
+     "inexorable",
+     "relentless"
+    ],
+    [
+     "magnanimous",
+     "generous"
+    ],
+    [
+     "mitigate",
+     "alleviate"
+    ],
+    [
+     "scrutinise",
+     "examine"
+    ],
+    [
+     "indolent",
+     "lazy"
+    ],
+    [
+     "eminent",
+     "distinguished"
+    ],
+    [
+     "nefarious",
+     "wicked"
+    ],
+    [
+     "sporadic",
+     "intermittent"
+    ]
+   ]
+  },
+  {
+   "id": "syn-04",
+   "type": "synonyms",
+   "instruction": "Group these twenty words into ten pairs of words with similar meanings.",
+   "pairs": [
+    [
+     "benevolent",
+     "kindly"
+    ],
+    [
+     "audacious",
+     "daring"
+    ],
+    [
+     "futile",
+     "fruitless"
+    ],
+    [
+     "hostile",
+     "antagonistic"
+    ],
+    [
+     "opulent",
+     "luxurious"
+    ],
+    [
+     "laconic",
+     "terse"
+    ],
+    [
+     "docile",
+     "submissive"
+    ],
+    [
+     "rudimentary",
+     "elementary"
+    ],
+    [
+     "conspicuous",
+     "noticeable"
+    ],
+    [
+     "diligent",
+     "industrious"
+    ]
+   ]
+  },
+  {
+   "id": "syn-05",
+   "type": "synonyms",
+   "instruction": "Group these twenty words into ten pairs of words with similar meanings.",
+   "pairs": [
+    [
+     "augment",
+     "increase"
+    ],
+    [
+     "censure",
+     "condemn"
+    ],
+    [
+     "dearth",
+     "scarcity"
+    ],
+    [
+     "enigmatic",
+     "mysterious"
+    ],
+    [
+     "fallacious",
+     "erroneous"
+    ],
+    [
+     "gregarious",
+     "sociable"
+    ],
+    [
+     "haughty",
+     "arrogant"
+    ],
+    [
+     "insipid",
+     "bland"
+    ],
+    [
+     "jeopardise",
+     "endanger"
+    ],
+    [
+     "venerate",
+     "revere"
+    ]
+   ]
+  },
+  {
+   "id": "syn-06",
+   "type": "synonyms",
+   "instruction": "Group these twenty words into ten pairs of words with similar meanings.",
+   "pairs": [
+    [
+     "abhor",
+     "detest"
+    ],
+    [
+     "belligerent",
+     "aggressive"
+    ],
+    [
+     "clandestine",
+     "covert"
+    ],
+    [
+     "commend",
+     "praise"
+    ],
+    [
+     "emulate",
+     "imitate"
+    ],
+    [
+     "eradicate",
+     "eliminate"
+    ],
+    [
+     "feasible",
+     "viable"
+    ],
+    [
+     "impede",
+     "hinder"
+    ],
+    [
+     "incessant",
+     "unceasing"
+    ],
+    [
+     "pensive",
+     "thoughtful"
+    ]
+   ]
+  },
+  {
+   "id": "ant-01",
+   "type": "antonyms",
+   "instruction": "Group these twenty words into ten pairs of words with opposite meanings.",
+   "pairs": [
+    [
+     "abate",
+     "intensify"
+    ],
+    [
+     "candid",
+     "evasive"
+    ],
+    [
+     "frugal",
+     "extravagant"
+    ],
+    [
+     "obstinate",
+     "compliant"
+    ],
+    [
+     "eloquent",
+     "inarticulate"
+    ],
+    [
+     "ephemeral",
+     "permanent"
+    ],
+    [
+     "verbose",
+     "concise"
+    ],
+    [
+     "timid",
+     "bold"
+    ],
+    [
+     "affluent",
+     "impoverished"
+    ],
+    [
+     "vindicate",
+     "incriminate"
+    ]
+   ]
+  },
+  {
+   "id": "ant-02",
+   "type": "antonyms",
+   "instruction": "Group these twenty words into ten pairs of words with opposite meanings.",
+   "pairs": [
+    [
+     "hostile",
+     "amicable"
+    ],
+    [
+     "ubiquitous",
+     "scarce"
+    ],
+    [
+     "deleterious",
+     "beneficial"
+    ],
+    [
+     "exacerbate",
+     "alleviate"
+    ],
+    [
+     "prudent",
+     "reckless"
+    ],
+    [
+     "zealous",
+     "apathetic"
+    ],
+    [
+     "pragmatic",
+     "idealistic"
+    ],
+    [
+     "magnanimous",
+     "petty"
+    ],
+    [
+     "transparent",
+     "opaque"
+    ],
+    [
+     "acquit",
+     "convict"
+    ]
+   ]
+  },
+  {
+   "id": "ant-03",
+   "type": "antonyms",
+   "instruction": "Group these twenty words into ten pairs of words with opposite meanings.",
+   "pairs": [
+    [
+     "lucid",
+     "obscure"
+    ],
+    [
+     "diligent",
+     "indolent"
+    ],
+    [
+     "gregarious",
+     "reclusive"
+    ],
+    [
+     "haughty",
+     "humble"
+    ],
+    [
+     "censure",
+     "commend"
+    ],
+    [
+     "dearth",
+     "abundance"
+    ],
+    [
+     "fallacious",
+     "valid"
+    ],
+    [
+     "docile",
+     "unruly"
+    ],
+    [
+     "zenith",
+     "nadir"
+    ],
+    [
+     "rudimentary",
+     "sophisticated"
+    ]
+   ]
+  },
+  {
+   "id": "ant-04",
+   "type": "antonyms",
+   "instruction": "Group these twenty words into ten pairs of words with opposite meanings.",
+   "pairs": [
+    [
+     "augment",
+     "diminish"
+    ],
+    [
+     "clandestine",
+     "overt"
+    ],
+    [
+     "impede",
+     "facilitate"
+    ],
+    [
+     "feasible",
+     "impracticable"
+    ],
+    [
+     "incessant",
+     "intermittent"
+    ],
+    [
+     "venerate",
+     "despise"
+    ],
+    [
+     "laconic",
+     "garrulous"
+    ],
+    [
+     "credulous",
+     "sceptical"
+    ],
+    [
+     "tranquil",
+     "turbulent"
+    ],
+    [
+     "benign",
+     "malignant"
+    ]
+   ]
+  },
+  {
+   "id": "ant-05",
+   "type": "antonyms",
+   "instruction": "Group these twenty words into ten pairs of words with opposite meanings.",
+   "pairs": [
+    [
+     "ambiguous",
+     "unequivocal"
+    ],
+    [
+     "belligerent",
+     "conciliatory"
+    ],
+    [
+     "expedite",
+     "delay"
+    ],
+    [
+     "taciturn",
+     "loquacious"
+    ],
+    [
+     "lethargic",
+     "energetic"
+    ],
+    [
+     "novice",
+     "veteran"
+    ],
+    [
+     "profound",
+     "superficial"
+    ],
+    [
+     "mundane",
+     "extraordinary"
+    ],
+    [
+     "wane",
+     "wax"
+    ],
+    [
+     "parsimonious",
+     "lavish"
+    ]
+   ]
+  },
+  {
+   "id": "ant-06",
+   "type": "antonyms",
+   "instruction": "Group these twenty words into ten pairs of words with opposite meanings.",
+   "pairs": [
+    [
+     "abhor",
+     "cherish"
+    ],
+    [
+     "adversity",
+     "prosperity"
+    ],
+    [
+     "arrogant",
+     "modest"
+    ],
+    [
+     "cautious",
+     "rash"
+    ],
+    [
+     "conceal",
+     "reveal"
+    ],
+    [
+     "prolific",
+     "barren"
+    ],
+    [
+     "stringent",
+     "lenient"
+    ],
+    [
+     "vague",
+     "precise"
+    ],
+    [
+     "fragile",
+     "sturdy"
+    ],
+    [
+     "orthodox",
+     "unconventional"
+    ]
+   ]
+  },
+  {
+   "id": "syn-07",
+   "type": "synonyms",
+   "instruction": "Group these twenty words into ten pairs of words with similar meanings.",
+   "level": "medium",
+   "pairs": [
+    [
+     "abandon",
+     "forsake"
+    ],
+    [
+     "courageous",
+     "valiant"
+    ],
+    [
+     "assist",
+     "aid"
+    ],
+    [
+     "vast",
+     "immense"
+    ],
+    [
+     "wrath",
+     "fury"
+    ],
+    [
+     "renowned",
+     "celebrated"
+    ],
+    [
+     "swift",
+     "rapid"
+    ],
+    [
+     "truthful",
+     "veracious"
+    ],
+    [
+     "weary",
+     "fatigued"
+    ],
+    [
+     "gloomy",
+     "dismal"
+    ]
+   ],
+   "glosses": [
+    "to leave behind for good",
+    "showing bravery",
+    "to help",
+    "extremely large in extent",
+    "intense anger",
+    "widely known and admired",
+    "very fast",
+    "telling the truth",
+    "very tired",
+    "dark and depressing"
+   ]
+  },
+  {
+   "id": "syn-08",
+   "type": "synonyms",
+   "instruction": "Group these twenty words into ten pairs of words with similar meanings.",
+   "level": "medium",
+   "pairs": [
+    [
+     "commence",
+     "begin"
+    ],
+    [
+     "cease",
+     "halt"
+    ],
+    [
+     "reluctant",
+     "unwilling"
+    ],
+    [
+     "evident",
+     "obvious"
+    ],
+    [
+     "perilous",
+     "hazardous"
+    ],
+    [
+     "peculiar",
+     "odd"
+    ],
+    [
+     "loyal",
+     "faithful"
+    ],
+    [
+     "serene",
+     "placid"
+    ],
+    [
+     "famished",
+     "ravenous"
+    ],
+    [
+     "reproach",
+     "rebuke"
+    ]
+   ],
+   "glosses": [
+    "to start",
+    "to stop",
+    "not wanting to do something",
+    "clearly seen or understood",
+    "full of danger",
+    "strange or unusual",
+    "steadfast in allegiance",
+    "calm and peaceful",
+    "extremely hungry",
+    "to express disapproval of"
+   ]
+  },
+  {
+   "id": "syn-09",
+   "type": "synonyms",
+   "instruction": "Group these twenty words into ten pairs of words with similar meanings.",
+   "level": "medium",
+   "pairs": [
+    [
+     "copious",
+     "plentiful"
+    ],
+    [
+     "archaic",
+     "antiquated"
+    ],
+    [
+     "anxious",
+     "apprehensive"
+    ],
+    [
+     "fleeting",
+     "momentary"
+    ],
+    [
+     "cunning",
+     "crafty"
+    ],
+    [
+     "assemble",
+     "gather"
+    ],
+    [
+     "mock",
+     "ridicule"
+    ],
+    [
+     "foretell",
+     "predict"
+    ],
+    [
+     "remote",
+     "distant"
+    ],
+    [
+     "sorrow",
+     "grief"
+    ]
+   ],
+   "glosses": [
+    "existing in large amounts",
+    "very old-fashioned",
+    "worried about what may happen",
+    "lasting a very short time",
+    "clever at deceiving",
+    "to come or bring together",
+    "to make fun of",
+    "to say what will happen",
+    "far away",
+    "deep sadness"
+   ]
+  },
+  {
+   "id": "syn-10",
+   "type": "synonyms",
+   "instruction": "Group these twenty words into ten pairs of words with similar meanings.",
+   "level": "medium",
+   "pairs": [
+    [
+     "eager",
+     "keen"
+    ],
+    [
+     "genuine",
+     "authentic"
+    ],
+    [
+     "enormous",
+     "colossal"
+    ],
+    [
+     "repair",
+     "mend"
+    ],
+    [
+     "quarrel",
+     "dispute"
+    ],
+    [
+     "shrewd",
+     "astute"
+    ],
+    [
+     "tedious",
+     "monotonous"
+    ],
+    [
+     "vacant",
+     "empty"
+    ],
+    [
+     "yield",
+     "surrender"
+    ],
+    [
+     "hasten",
+     "hurry"
+    ]
+   ],
+   "glosses": [
+    "wanting very much to do something",
+    "real, not fake",
+    "extremely big",
+    "to fix something broken",
+    "an angry disagreement",
+    "sharp in judgement",
+    "dull and repetitive",
+    "not occupied",
+    "to give way or give up",
+    "to move or act quickly"
+   ]
+  },
+  {
+   "id": "syn-11",
+   "type": "synonyms",
+   "instruction": "Group these twenty words into ten pairs of words with similar meanings.",
+   "level": "medium",
+   "pairs": [
+    [
+     "admonish",
+     "warn"
+    ],
+    [
+     "cordial",
+     "genial"
+    ],
+    [
+     "deceive",
+     "mislead"
+    ],
+    [
+     "defy",
+     "disobey"
+    ],
+    [
+     "endorse",
+     "approve"
+    ],
+    [
+     "fortify",
+     "strengthen"
+    ],
+    [
+     "illustrious",
+     "famous"
+    ],
+    [
+     "meagre",
+     "scanty"
+    ],
+    [
+     "obsolete",
+     "outmoded"
+    ],
+    [
+     "plunder",
+     "loot"
+    ]
+   ],
+   "glosses": [
+    "to caution or reprimand firmly",
+    "warm and friendly",
+    "to make someone believe something false",
+    "to refuse to obey",
+    "to give support to",
+    "to make stronger",
+    "well known for great achievements",
+    "small in quantity, insufficient",
+    "no longer in use",
+    "to steal by force"
+   ]
+  },
+  {
+   "id": "syn-12",
+   "type": "synonyms",
+   "instruction": "Group these twenty words into ten pairs of words with similar meanings.",
+   "level": "medium",
+   "pairs": [
+    [
+     "abrogate",
+     "abolish"
+    ],
+    [
+     "gaffe",
+     "blunder"
+    ],
+    [
+     "reside",
+     "dwell"
+    ],
+    [
+     "hamper",
+     "obstruct"
+    ],
+    [
+     "deduce",
+     "infer"
+    ],
+    [
+     "jovial",
+     "merry"
+    ],
+    [
+     "lament",
+     "mourn"
+    ],
+    [
+     "punctual",
+     "prompt"
+    ],
+    [
+     "sincere",
+     "earnest"
+    ],
+    [
+     "grim",
+     "stern"
+    ]
+   ],
+   "glosses": [
+    "to formally do away with",
+    "a careless, embarrassing mistake",
+    "to live in a place",
+    "to get in the way of",
+    "to reach a conclusion by reasoning",
+    "cheerful and good-humoured",
+    "to express grief for",
+    "on time",
+    "serious and honest in intention",
+    "severe and forbidding"
+   ]
+  },
+  {
+   "id": "syn-13",
+   "type": "synonyms",
+   "instruction": "Group these twenty words into ten pairs of words with similar meanings.",
+   "level": "medium",
+   "pairs": [
+    [
+     "adept",
+     "skilful"
+    ],
+    [
+     "anguish",
+     "agony"
+    ],
+    [
+     "cajole",
+     "coax"
+    ],
+    [
+     "dubious",
+     "doubtful"
+    ],
+    [
+     "feeble",
+     "weak"
+    ],
+    [
+     "gaunt",
+     "emaciated"
+    ],
+    [
+     "inquisitive",
+     "curious"
+    ],
+    [
+     "mutiny",
+     "insurrection"
+    ],
+    [
+     "nimble",
+     "agile"
+    ],
+    [
+     "chide",
+     "scold"
+    ]
+   ],
+   "glosses": [
+    "very good at something",
+    "severe pain or distress",
+    "to persuade gently",
+    "uncertain, open to question",
+    "lacking strength",
+    "very thin, bony",
+    "eager to know",
+    "an uprising against authority",
+    "quick and light in movement",
+    "to tell off"
+   ]
+  },
+  {
+   "id": "syn-14",
+   "type": "synonyms",
+   "instruction": "Group these twenty words into ten pairs of words with similar meanings.",
+   "level": "hard",
+   "pairs": [
+    [
+     "acrimonious",
+     "rancorous"
+    ],
+    [
+     "sedulous",
+     "assiduous"
+    ],
+    [
+     "bellicose",
+     "warlike"
+    ],
+    [
+     "pellucid",
+     "limpid"
+    ],
+    [
+     "desultory",
+     "haphazard"
+    ],
+    [
+     "equanimity",
+     "composure"
+    ],
+    [
+     "garish",
+     "gaudy"
+    ],
+    [
+     "mendacious",
+     "untruthful"
+    ],
+    [
+     "obsequious",
+     "servile"
+    ],
+    [
+     "perfidious",
+     "treacherous"
+    ]
+   ],
+   "glosses": [
+    "bitter and angry",
+    "showing great care and effort",
+    "eager to fight",
+    "perfectly clear",
+    "lacking plan or purpose",
+    "calmness under stress",
+    "showy in a tasteless way",
+    "not telling the truth",
+    "excessively eager to please",
+    "betraying trust"
+   ]
+  },
+  {
+   "id": "syn-15",
+   "type": "synonyms",
+   "instruction": "Group these twenty words into ten pairs of words with similar meanings.",
+   "level": "hard",
+   "pairs": [
+    [
+     "abstruse",
+     "recondite"
+    ],
+    [
+     "alacrity",
+     "readiness"
+    ],
+    [
+     "cupidity",
+     "avarice"
+    ],
+    [
+     "denigrate",
+     "disparage"
+    ],
+    [
+     "ebullient",
+     "exuberant"
+    ],
+    [
+     "fortuitous",
+     "accidental"
+    ],
+    [
+     "grandiloquent",
+     "pompous"
+    ],
+    [
+     "lugubrious",
+     "doleful"
+    ],
+    [
+     "munificent",
+     "bountiful"
+    ],
+    [
+     "nascent",
+     "incipient"
+    ]
+   ],
+   "glosses": [
+    "hard to understand",
+    "cheerful promptness",
+    "greed for money",
+    "to criticise unfairly",
+    "full of cheerful energy",
+    "happening by chance",
+    "using showy, inflated language",
+    "looking or sounding sad",
+    "very generous",
+    "just beginning to develop"
+   ]
+  },
+  {
+   "id": "syn-16",
+   "type": "synonyms",
+   "instruction": "Group these twenty words into ten pairs of words with similar meanings.",
+   "level": "hard",
+   "pairs": [
+    [
+     "obdurate",
+     "unyielding"
+    ],
+    [
+     "penury",
+     "destitution"
+    ],
+    [
+     "sanguine",
+     "optimistic"
+    ],
+    [
+     "spurious",
+     "bogus"
+    ],
+    [
+     "truculent",
+     "pugnacious"
+    ],
+    [
+     "vacillate",
+     "waver"
+    ],
+    [
+     "vituperation",
+     "invective"
+    ],
+    [
+     "wily",
+     "artful"
+    ],
+    [
+     "parochial",
+     "insular"
+    ],
+    [
+     "ameliorate",
+     "improve"
+    ]
+   ],
+   "glosses": [
+    "refusing to change one's mind",
+    "extreme poverty",
+    "hopeful about the future",
+    "false or fake",
+    "eager to argue or fight",
+    "to be indecisive",
+    "bitter, abusive language",
+    "skilled at gaining advantage by trickery",
+    "narrow in outlook",
+    "to make better"
+   ]
+  },
+  {
+   "id": "syn-17",
+   "type": "synonyms",
+   "instruction": "Group these twenty words into ten pairs of words with similar meanings.",
+   "level": "hard",
+   "pairs": [
+    [
+     "recalcitrant",
+     "refractory"
+    ],
+    [
+     "bucolic",
+     "pastoral"
+    ],
+    [
+     "circumspect",
+     "wary"
+    ],
+    [
+     "didactic",
+     "instructive"
+    ],
+    [
+     "efficacious",
+     "effective"
+    ],
+    [
+     "furtive",
+     "stealthy"
+    ],
+    [
+     "harbinger",
+     "precursor"
+    ],
+    [
+     "impecunious",
+     "penniless"
+    ],
+    [
+     "inveterate",
+     "habitual"
+    ],
+    [
+     "salubrious",
+     "wholesome"
+    ]
+   ],
+   "glosses": [
+    "stubbornly uncooperative",
+    "relating to the countryside",
+    "careful to consider risks",
+    "intended to teach",
+    "producing the intended result",
+    "secretive, trying not to be noticed",
+    "a sign of what is to come",
+    "having little or no money",
+    "long-established and unlikely to change",
+    "good for health"
+   ]
+  },
+  {
+   "id": "syn-18",
+   "type": "synonyms",
+   "instruction": "Group these twenty words into ten pairs of words with similar meanings.",
+   "level": "hard",
+   "pairs": [
+    [
+     "maudlin",
+     "mawkish"
+    ],
+    [
+     "nonchalant",
+     "unconcerned"
+    ],
+    [
+     "ostracise",
+     "shun"
+    ],
+    [
+     "paucity",
+     "shortage"
+    ],
+    [
+     "quell",
+     "suppress"
+    ],
+    [
+     "rapacious",
+     "grasping"
+    ],
+    [
+     "tacit",
+     "implicit"
+    ],
+    [
+     "unctuous",
+     "smarmy"
+    ],
+    [
+     "vex",
+     "irk"
+    ],
+    [
+     "abjure",
+     "renounce"
+    ]
+   ],
+   "glosses": [
+    "sentimental in a self-pitying way",
+    "casually calm",
+    "to exclude from a group",
+    "the presence of too little",
+    "to put an end to by force",
+    "aggressively greedy",
+    "understood without being stated",
+    "excessively flattering, oily",
+    "to annoy",
+    "to formally give up"
+   ]
+  },
+  {
+   "id": "syn-19",
+   "type": "synonyms",
+   "instruction": "Group these twenty words into ten pairs of words with similar meanings.",
+   "level": "medium",
+   "pairs": [
+    [
+     "astonish",
+     "amaze"
+    ],
+    [
+     "blemish",
+     "flaw"
+    ],
+    [
+     "dexterous",
+     "deft"
+    ],
+    [
+     "endure",
+     "tolerate"
+    ],
+    [
+     "fragrance",
+     "aroma"
+    ],
+    [
+     "hoard",
+     "stockpile"
+    ],
+    [
+     "irate",
+     "livid"
+    ],
+    [
+     "prohibit",
+     "forbid"
+    ],
+    [
+     "vivid",
+     "graphic"
+    ],
+    [
+     "frail",
+     "infirm"
+    ]
+   ],
+   "glosses": [
+    "to surprise greatly",
+    "a small mark or defect",
+    "skilful with the hands",
+    "to put up with",
+    "a pleasant smell",
+    "a stored-up supply",
+    "extremely angry",
+    "to not allow",
+    "clear and detailed",
+    "physically weak, especially through age"
+   ]
+  },
+  {
+   "id": "syn-20",
+   "type": "synonyms",
+   "instruction": "Group these twenty words into ten pairs of words with similar meanings.",
+   "level": "medium",
+   "pairs": [
+    [
+     "accomplish",
+     "achieve"
+    ],
+    [
+     "brawl",
+     "scuffle"
+    ],
+    [
+     "competent",
+     "capable"
+    ],
+    [
+     "discard",
+     "jettison"
+    ],
+    [
+     "imply",
+     "insinuate"
+    ],
+    [
+     "jubilant",
+     "elated"
+    ],
+    [
+     "negligent",
+     "careless"
+    ],
+    [
+     "rigorous",
+     "exacting"
+    ],
+    [
+     "recurrent",
+     "repeated"
+    ],
+    [
+     "verify",
+     "confirm"
+    ]
+   ],
+   "glosses": [
+    "to succeed in doing",
+    "a rough fight",
+    "able to do something well",
+    "to throw away",
+    "to suggest indirectly",
+    "extremely happy",
+    "not taking proper care",
+    "demanding thoroughness",
+    "happening again and again",
+    "to establish as true"
+   ]
+  },
+  {
+   "id": "syn-21",
+   "type": "synonyms",
+   "instruction": "Group these twenty words into ten pairs of words with similar meanings.",
+   "level": "medium",
+   "pairs": [
+    [
+     "confederate",
+     "ally"
+    ],
+    [
+     "blatant",
+     "flagrant"
+    ],
+    [
+     "inept",
+     "maladroit"
+    ],
+    [
+     "brutal",
+     "savage"
+    ],
+    [
+     "dilapidated",
+     "ramshackle"
+    ],
+    [
+     "eccentric",
+     "quirky"
+    ],
+    [
+     "fickle",
+     "capricious"
+    ],
+    [
+     "gruelling",
+     "arduous"
+    ],
+    [
+     "lethal",
+     "deadly"
+    ],
+    [
+     "pacify",
+     "appease"
+    ]
+   ],
+   "glosses": [
+    "a partner in a common cause",
+    "shamelessly obvious",
+    "lacking skill",
+    "fiercely cruel",
+    "in a state of disrepair",
+    "unconventional and slightly strange",
+    "changing one's mind often",
+    "extremely tiring and demanding",
+    "able to cause death",
+    "to calm someone down"
+   ]
+  },
+  {
+   "id": "syn-22",
+   "type": "synonyms",
+   "instruction": "Group these twenty words into ten pairs of words with similar meanings.",
+   "level": "medium",
+   "pairs": [
+    [
+     "abduct",
+     "kidnap"
+    ],
+    [
+     "bias",
+     "prejudice"
+    ],
+    [
+     "conceit",
+     "vanity"
+    ],
+    [
+     "devout",
+     "pious"
+    ],
+    [
+     "enmity",
+     "animosity"
+    ],
+    [
+     "gratify",
+     "please"
+    ],
+    [
+     "illicit",
+     "unlawful"
+    ],
+    [
+     "lure",
+     "entice"
+    ],
+    [
+     "upshot",
+     "outcome"
+    ],
+    [
+     "barter",
+     "exchange"
+    ]
+   ],
+   "glosses": [
+    "to take someone away by force",
+    "an unfair preference or dislike",
+    "excessive pride in oneself",
+    "deeply religious",
+    "strong hostility",
+    "to give satisfaction to",
+    "not permitted by law",
+    "to tempt or attract",
+    "the final result",
+    "to trade goods without money"
+   ]
+  },
+  {
+   "id": "syn-23",
+   "type": "synonyms",
+   "instruction": "Group these twenty words into ten pairs of words with similar meanings.",
+   "level": "hard",
+   "pairs": [
+    [
+     "cogitate",
+     "ruminate"
+    ],
+    [
+     "deride",
+     "belittle"
+    ],
+    [
+     "fecund",
+     "fertile"
+    ],
+    [
+     "gargantuan",
+     "mammoth"
+    ],
+    [
+     "heinous",
+     "atrocious"
+    ],
+    [
+     "ineffable",
+     "inexpressible"
+    ],
+    [
+     "lacklustre",
+     "uninspired"
+    ],
+    [
+     "harangue",
+     "tirade"
+    ],
+    [
+     "mollify",
+     "placate"
+    ],
+    [
+     "acquiesce",
+     "consent"
+    ]
+   ],
+   "glosses": [
+    "to think deeply",
+    "to treat with contempt",
+    "highly productive",
+    "enormous",
+    "utterly wicked",
+    "too great to be described",
+    "lacking energy or brilliance",
+    "a long, angry speech",
+    "to soothe someone's anger",
+    "to accept without protest"
+   ]
+  },
+  {
+   "id": "syn-24",
+   "type": "synonyms",
+   "instruction": "Group these twenty words into ten pairs of words with similar meanings.",
+   "level": "hard",
+   "pairs": [
+    [
+     "emollient",
+     "soothing"
+    ],
+    [
+     "fractious",
+     "irritable"
+    ],
+    [
+     "hegemony",
+     "dominance"
+    ],
+    [
+     "inchoate",
+     "unformed"
+    ],
+    [
+     "lassitude",
+     "languor"
+    ],
+    [
+     "magnate",
+     "tycoon"
+    ],
+    [
+     "pernicious",
+     "injurious"
+    ],
+    [
+     "proclivity",
+     "propensity"
+    ],
+    [
+     "vacuous",
+     "inane"
+    ],
+    [
+     "capitulate",
+     "succumb"
+    ]
+   ],
+   "glosses": [
+    "calming, softening",
+    "easily annoyed, unruly",
+    "leadership or control over others",
+    "not yet fully developed",
+    "physical or mental weariness",
+    "a wealthy, powerful businessperson",
+    "harmful in a gradual or subtle way",
+    "a natural tendency",
+    "lacking thought or intelligence",
+    "to give in"
+   ]
+  },
+  {
+   "id": "syn-25",
+   "type": "synonyms",
+   "instruction": "Group these twenty words into ten pairs of words with similar meanings.",
+   "level": "hard",
+   "pairs": [
+    [
+     "anathema",
+     "abomination"
+    ],
+    [
+     "benighted",
+     "ignorant"
+    ],
+    [
+     "clemency",
+     "mercy"
+    ],
+    [
+     "debacle",
+     "fiasco"
+    ],
+    [
+     "eulogy",
+     "panegyric"
+    ],
+    [
+     "expunge",
+     "erase"
+    ],
+    [
+     "idiosyncrasy",
+     "mannerism"
+    ],
+    [
+     "obloquy",
+     "opprobrium"
+    ],
+    [
+     "platitude",
+     "truism"
+    ],
+    [
+     "tenuous",
+     "flimsy"
+    ]
+   ],
+   "glosses": [
+    "something intensely disliked",
+    "in a state of ignorance",
+    "leniency in punishment",
+    "a complete failure",
+    "a speech of high praise",
+    "to wipe out completely",
+    "a distinctive personal habit",
+    "public disgrace or abuse",
+    "an overused, obvious remark",
+    "very weak or slight"
+   ]
+  },
+  {
+   "id": "syn-26",
+   "type": "synonyms",
+   "instruction": "Group these twenty words into ten pairs of words with similar meanings.",
+   "level": "medium",
+   "pairs": [
+    [
+     "abrupt",
+     "sudden"
+    ],
+    [
+     "commotion",
+     "uproar"
+    ],
+    [
+     "deplete",
+     "exhaust"
+    ],
+    [
+     "envy",
+     "jealousy"
+    ],
+    [
+     "foe",
+     "enemy"
+    ],
+    [
+     "humid",
+     "muggy"
+    ],
+    [
+     "notorious",
+     "infamous"
+    ],
+    [
+     "precarious",
+     "insecure"
+    ],
+    [
+     "rescue",
+     "save"
+    ],
+    [
+     "tactful",
+     "diplomatic"
+    ]
+   ],
+   "glosses": [
+    "happening unexpectedly",
+    "noisy confusion",
+    "to use up",
+    "resentment of another's advantages",
+    "an opponent",
+    "warm and damp",
+    "famous for something bad",
+    "not securely held, unstable",
+    "to free from danger",
+    "careful not to offend"
+   ]
+  },
+  {
+   "id": "syn-27",
+   "type": "synonyms",
+   "instruction": "Group these twenty words into ten pairs of words with similar meanings.",
+   "level": "medium",
+   "pairs": [
+    [
+     "adjacent",
+     "neighbouring"
+    ],
+    [
+     "bewilder",
+     "perplex"
+    ],
+    [
+     "elude",
+     "dodge"
+    ],
+    [
+     "feud",
+     "vendetta"
+    ],
+    [
+     "gist",
+     "essence"
+    ],
+    [
+     "lucrative",
+     "profitable"
+    ],
+    [
+     "mandatory",
+     "compulsory"
+    ],
+    [
+     "narrate",
+     "recount"
+    ],
+    [
+     "persuade",
+     "induce"
+    ],
+    [
+     "trivial",
+     "trifling"
+    ]
+   ],
+   "glosses": [
+    "next to",
+    "to confuse",
+    "to escape or avoid",
+    "a long, bitter quarrel",
+    "the central point",
+    "making a lot of money",
+    "required by rule",
+    "to tell a story",
+    "to cause someone to act",
+    "of little importance"
+   ]
+  },
+  {
+   "id": "syn-28",
+   "type": "synonyms",
+   "instruction": "Group these twenty words into ten pairs of words with similar meanings.",
+   "level": "medium",
+   "pairs": [
+    [
+     "accumulate",
+     "amass"
+    ],
+    [
+     "banish",
+     "exile"
+    ],
+    [
+     "contempt",
+     "disdain"
+    ],
+    [
+     "diverse",
+     "varied"
+    ],
+    [
+     "frivolous",
+     "flippant"
+    ],
+    [
+     "initiate",
+     "launch"
+    ],
+    [
+     "meek",
+     "gentle"
+    ],
+    [
+     "paltry",
+     "measly"
+    ],
+    [
+     "replenish",
+     "refill"
+    ],
+    [
+     "sullen",
+     "morose"
+    ]
+   ],
+   "glosses": [
+    "to collect over time",
+    "to send away from one's country",
+    "a feeling that something is worthless",
+    "showing variety",
+    "not serious",
+    "to set something going",
+    "quiet and mild",
+    "very small, worthless",
+    "to fill again",
+    "gloomy and bad-tempered"
+   ]
+  },
+  {
+   "id": "syn-29",
+   "type": "synonyms",
+   "instruction": "Group these twenty words into ten pairs of words with similar meanings.",
+   "level": "hard",
+   "pairs": [
+    [
+     "abstemious",
+     "temperate"
+    ],
+    [
+     "acumen",
+     "discernment"
+    ],
+    [
+     "cognisant",
+     "aware"
+    ],
+    [
+     "deprecate",
+     "disapprove"
+    ],
+    [
+     "enervate",
+     "debilitate"
+    ],
+    [
+     "fallible",
+     "imperfect"
+    ],
+    [
+     "hackneyed",
+     "trite"
+    ],
+    [
+     "indefatigable",
+     "tireless"
+    ],
+    [
+     "nebulous",
+     "hazy"
+    ],
+    [
+     "ostentatious",
+     "showy"
+    ]
+   ],
+   "glosses": [
+    "moderate in eating and drinking",
+    "sharp judgement",
+    "having knowledge of",
+    "to express disapproval of",
+    "to weaken",
+    "capable of error",
+    "overused and unoriginal",
+    "never tiring",
+    "unclear, vague",
+    "designed to impress"
+   ]
+  },
+  {
+   "id": "syn-30",
+   "type": "synonyms",
+   "instruction": "Group these twenty words into ten pairs of words with similar meanings.",
+   "level": "hard",
+   "pairs": [
+    [
+     "probity",
+     "integrity"
+    ],
+    [
+     "predilection",
+     "partiality"
+    ],
+    [
+     "reticent",
+     "reserved"
+    ],
+    [
+     "sagacious",
+     "wise"
+    ],
+    [
+     "scintillating",
+     "sparkling"
+    ],
+    [
+     "sycophant",
+     "flatterer"
+    ],
+    [
+     "venal",
+     "corrupt"
+    ],
+    [
+     "wanton",
+     "gratuitous"
+    ],
+    [
+     "vindictive",
+     "vengeful"
+    ],
+    [
+     "quagmire",
+     "morass"
+    ]
+   ],
+   "glosses": [
+    "strong moral principles",
+    "a preference",
+    "not revealing one's thoughts",
+    "having good judgement",
+    "brilliantly lively",
+    "a person who praises to gain favour",
+    "open to bribery",
+    "deliberate and unprovoked",
+    "wanting revenge",
+    "a difficult, entangling situation"
+   ]
+  },
+  {
+   "id": "syn-31",
+   "type": "synonyms",
+   "instruction": "Group these twenty words into ten pairs of words with similar meanings.",
+   "level": "hard",
+   "pairs": [
+    [
+     "perfunctory",
+     "cursory"
+    ],
+    [
+     "anomaly",
+     "aberration"
+    ],
+    [
+     "callous",
+     "unfeeling"
+    ],
+    [
+     "conundrum",
+     "puzzle"
+    ],
+    [
+     "dogmatic",
+     "opinionated"
+    ],
+    [
+     "exorbitant",
+     "excessive"
+    ],
+    [
+     "germane",
+     "relevant"
+    ],
+    [
+     "impervious",
+     "impenetrable"
+    ],
+    [
+     "insolent",
+     "impudent"
+    ],
+    [
+     "nuance",
+     "subtlety"
+    ]
+   ],
+   "glosses": [
+    "done with minimal effort",
+    "a departure from the norm",
+    "insensitive to others",
+    "a difficult problem",
+    "asserting opinions as facts",
+    "unreasonably high",
+    "connected to the matter",
+    "not allowing passage through",
+    "rude and disrespectful",
+    "a fine distinction"
+   ]
+  },
+  {
+   "id": "ant-07",
+   "type": "antonyms",
+   "instruction": "Group these twenty words into ten pairs of words with opposite meanings.",
+   "level": "medium",
+   "pairs": [
+    [
+     "ancient",
+     "modern"
+    ],
+    [
+     "accept",
+     "reject"
+    ],
+    [
+     "artificial",
+     "natural"
+    ],
+    [
+     "asset",
+     "liability"
+    ],
+    [
+     "create",
+     "destroy"
+    ],
+    [
+     "dwarf",
+     "giant"
+    ],
+    [
+     "include",
+     "exclude"
+    ],
+    [
+     "maximum",
+     "minimum"
+    ],
+    [
+     "victory",
+     "defeat"
+    ],
+    [
+     "import",
+     "export"
+    ]
+   ],
+   "glosses": [
+    "very old vs of the present",
+    "take vs refuse",
+    "man-made vs from nature",
+    "something valuable vs a burden",
+    "bring into being vs ruin",
+    "very small vs very large being",
+    "let in vs leave out",
+    "greatest vs least amount",
+    "winning vs losing",
+    "bring in vs send out goods"
+   ]
+  },
+  {
+   "id": "ant-08",
+   "type": "antonyms",
+   "instruction": "Group these twenty words into ten pairs of words with opposite meanings.",
+   "level": "medium",
+   "pairs": [
+    [
+     "ascend",
+     "descend"
+    ],
+    [
+     "attack",
+     "defend"
+    ],
+    [
+     "cruel",
+     "compassionate"
+    ],
+    [
+     "guilty",
+     "innocent"
+    ],
+    [
+     "hope",
+     "despair"
+    ],
+    [
+     "optimist",
+     "pessimist"
+    ],
+    [
+     "punish",
+     "reward"
+    ],
+    [
+     "rural",
+     "urban"
+    ],
+    [
+     "shallow",
+     "deep"
+    ],
+    [
+     "majority",
+     "minority"
+    ]
+   ],
+   "glosses": [
+    "go up vs go down",
+    "assault vs protect",
+    "causing pain vs caring",
+    "responsible for wrong vs blameless",
+    "expecting good vs losing all hope",
+    "expects the best vs expects the worst",
+    "penalise vs give something for merit",
+    "of the countryside vs of the city",
+    "not deep vs going far down",
+    "the larger vs the smaller part"
+   ]
+  },
+  {
+   "id": "ant-09",
+   "type": "antonyms",
+   "instruction": "Group these twenty words into ten pairs of words with opposite meanings.",
+   "level": "medium",
+   "pairs": [
+    [
+     "admit",
+     "deny"
+    ],
+    [
+     "advance",
+     "retreat"
+    ],
+    [
+     "borrow",
+     "lend"
+    ],
+    [
+     "comedy",
+     "tragedy"
+    ],
+    [
+     "concord",
+     "discord"
+    ],
+    [
+     "dawn",
+     "dusk"
+    ],
+    [
+     "encourage",
+     "deter"
+    ],
+    [
+     "expand",
+     "contract"
+    ],
+    [
+     "famine",
+     "feast"
+    ],
+    [
+     "inferior",
+     "superior"
+    ]
+   ],
+   "glosses": [
+    "accept as true vs refuse to accept",
+    "move forward vs move back",
+    "take for a time vs give for a time",
+    "funny play vs sad play",
+    "agreement vs disagreement",
+    "daybreak vs nightfall",
+    "spur on vs discourage",
+    "grow larger vs shrink",
+    "extreme food shortage vs a lavish meal",
+    "lower in quality vs higher in quality"
+   ]
+  },
+  {
+   "id": "ant-10",
+   "type": "antonyms",
+   "instruction": "Group these twenty words into ten pairs of words with opposite meanings.",
+   "level": "medium",
+   "pairs": [
+    [
+     "absent",
+     "present"
+    ],
+    [
+     "active",
+     "passive"
+    ],
+    [
+     "broad",
+     "narrow"
+    ],
+    [
+     "courteous",
+     "rude"
+    ],
+    [
+     "external",
+     "internal"
+    ],
+    [
+     "fact",
+     "fiction"
+    ],
+    [
+     "frequent",
+     "rare"
+    ],
+    [
+     "hero",
+     "villain"
+    ],
+    [
+     "literal",
+     "figurative"
+    ],
+    [
+     "sober",
+     "intoxicated"
+    ]
+   ],
+   "glosses": [
+    "not here vs here",
+    "acting vs acted upon",
+    "wide vs not wide",
+    "polite vs impolite",
+    "outside vs inside",
+    "truth vs invention",
+    "happening often vs seldom found",
+    "admired figure vs wrongdoer",
+    "exact meaning vs metaphorical",
+    "not drunk vs drunk"
+   ]
+  },
+  {
+   "id": "ant-11",
+   "type": "antonyms",
+   "instruction": "Group these twenty words into ten pairs of words with opposite meanings.",
+   "level": "medium",
+   "pairs": [
+    [
+     "abstract",
+     "concrete"
+    ],
+    [
+     "affirm",
+     "negate"
+    ],
+    [
+     "clarity",
+     "confusion"
+    ],
+    [
+     "deficit",
+     "surplus"
+    ],
+    [
+     "entrance",
+     "exit"
+    ],
+    [
+     "flexible",
+     "rigid"
+    ],
+    [
+     "mortal",
+     "immortal"
+    ],
+    [
+     "nocturnal",
+     "diurnal"
+    ],
+    [
+     "subjective",
+     "objective"
+    ],
+    [
+     "vertical",
+     "horizontal"
+    ]
+   ],
+   "glosses": [
+    "theoretical vs physical and real",
+    "state as true vs nullify",
+    "clearness vs muddle",
+    "shortfall vs excess",
+    "way in vs way out",
+    "able to bend vs stiff",
+    "subject to death vs living for ever",
+    "active at night vs active by day",
+    "personal vs impartial",
+    "upright vs level"
+   ]
+  },
+  {
+   "id": "ant-12",
+   "type": "antonyms",
+   "instruction": "Group these twenty words into ten pairs of words with opposite meanings.",
+   "level": "medium",
+   "pairs": [
+    [
+     "cowardice",
+     "valour"
+    ],
+    [
+     "dismiss",
+     "appoint"
+    ],
+    [
+     "domestic",
+     "foreign"
+    ],
+    [
+     "emigrate",
+     "immigrate"
+    ],
+    [
+     "gain",
+     "loss"
+    ],
+    [
+     "hasty",
+     "deliberate"
+    ],
+    [
+     "liberty",
+     "bondage"
+    ],
+    [
+     "oppose",
+     "support"
+    ],
+    [
+     "sacred",
+     "profane"
+    ],
+    [
+     "smooth",
+     "rough"
+    ]
+   ],
+   "glosses": [
+    "lack of courage vs great courage",
+    "remove from a post vs give a post",
+    "of one's own country vs of another",
+    "leave a country vs come into a country",
+    "something acquired vs something lost",
+    "hurried vs careful and slow",
+    "freedom vs slavery",
+    "be against vs be for",
+    "holy vs irreverent or secular",
+    "even vs uneven"
+   ]
+  },
+  {
+   "id": "ant-13",
+   "type": "antonyms",
+   "instruction": "Group these twenty words into ten pairs of words with opposite meanings.",
+   "level": "medium",
+   "pairs": [
+    [
+     "accelerate",
+     "decelerate"
+    ],
+    [
+     "consume",
+     "produce"
+    ],
+    [
+     "dynamic",
+     "static"
+    ],
+    [
+     "float",
+     "sink"
+    ],
+    [
+     "obedient",
+     "rebellious"
+    ],
+    [
+     "plural",
+     "singular"
+    ],
+    [
+     "private",
+     "public"
+    ],
+    [
+     "flourish",
+     "wither"
+    ],
+    [
+     "junior",
+     "senior"
+    ],
+    [
+     "debit",
+     "credit"
+    ]
+   ],
+   "glosses": [
+    "speed up vs slow down",
+    "use up vs make",
+    "changing vs unchanging",
+    "stay on the surface vs go under",
+    "following orders vs resisting authority",
+    "more than one vs one",
+    "personal vs open to all",
+    "grow well vs shrivel",
+    "lower in rank vs higher in rank",
+    "money taken out vs money put in"
+   ]
+  },
+  {
+   "id": "ant-14",
+   "type": "antonyms",
+   "instruction": "Group these twenty words into ten pairs of words with opposite meanings.",
+   "level": "hard",
+   "pairs": [
+    [
+     "adroit",
+     "clumsy"
+    ],
+    [
+     "altruistic",
+     "selfish"
+    ],
+    [
+     "antipathy",
+     "affinity"
+    ],
+    [
+     "ebb",
+     "flow"
+    ],
+    [
+     "heterogeneous",
+     "homogeneous"
+    ],
+    [
+     "innocuous",
+     "noxious"
+    ],
+    [
+     "prodigal",
+     "provident"
+    ],
+    [
+     "cacophony",
+     "euphony"
+    ],
+    [
+     "ascetic",
+     "sybaritic"
+    ],
+    [
+     "affable",
+     "surly"
+    ]
+   ],
+   "glosses": [
+    "skilful vs awkward",
+    "caring for others vs caring for oneself",
+    "strong dislike vs natural liking",
+    "tide going out vs coming in",
+    "varied vs uniform",
+    "harmless vs poisonous",
+    "wasteful vs planning for the future",
+    "harsh noise vs pleasant sound",
+    "self-denying vs pleasure-loving",
+    "friendly vs bad-tempered"
+   ]
+  },
+  {
+   "id": "ant-15",
+   "type": "antonyms",
+   "instruction": "Group these twenty words into ten pairs of words with opposite meanings.",
+   "level": "hard",
+   "pairs": [
+    [
+     "acclaim",
+     "vilification"
+    ],
+    [
+     "assent",
+     "dissent"
+    ],
+    [
+     "bane",
+     "boon"
+    ],
+    [
+     "disparity",
+     "parity"
+    ],
+    [
+     "fallow",
+     "cultivated"
+    ],
+    [
+     "meticulous",
+     "slapdash"
+    ],
+    [
+     "prolix",
+     "succinct"
+    ],
+    [
+     "pristine",
+     "tarnished"
+    ],
+    [
+     "exodus",
+     "influx"
+    ],
+    [
+     "felicity",
+     "misery"
+    ]
+   ],
+   "glosses": [
+    "public praise vs abusive criticism",
+    "agreement vs disagreement",
+    "a curse vs a blessing",
+    "inequality vs equality",
+    "left unplanted vs farmed",
+    "very careful vs careless",
+    "long-winded vs brief and clear",
+    "spotless vs stained",
+    "mass departure vs mass arrival",
+    "great happiness vs great suffering"
+   ]
+  },
+  {
+   "id": "ant-16",
+   "type": "antonyms",
+   "instruction": "Group these twenty words into ten pairs of words with opposite meanings.",
+   "level": "hard",
+   "pairs": [
+    [
+     "abstain",
+     "indulge"
+    ],
+    [
+     "burgeon",
+     "dwindle"
+    ],
+    [
+     "erudite",
+     "unlettered"
+    ],
+    [
+     "exalt",
+     "debase"
+    ],
+    [
+     "impetuous",
+     "measured"
+    ],
+    [
+     "jocular",
+     "solemn"
+    ],
+    [
+     "lax",
+     "strict"
+    ],
+    [
+     "obtuse",
+     "perceptive"
+    ],
+    [
+     "sparse",
+     "dense"
+    ],
+    [
+     "torpid",
+     "vigorous"
+    ]
+   ],
+   "glosses": [
+    "refrain vs allow oneself",
+    "grow rapidly vs shrink gradually",
+    "learned vs uneducated",
+    "raise in status vs lower in value",
+    "acting rashly vs carefully considered",
+    "joking vs serious",
+    "not strict vs enforcing rules",
+    "slow to understand vs quick to notice",
+    "thinly scattered vs closely packed",
+    "sluggish vs full of energy"
+   ]
+  },
+  {
+   "id": "ant-17",
+   "type": "antonyms",
+   "instruction": "Group these twenty words into ten pairs of words with opposite meanings.",
+   "level": "hard",
+   "pairs": [
+    [
+     "benefactor",
+     "malefactor"
+    ],
+    [
+     "consensus",
+     "disagreement"
+    ],
+    [
+     "enhance",
+     "impair"
+    ],
+    [
+     "gauche",
+     "suave"
+    ],
+    [
+     "indigenous",
+     "exotic"
+    ],
+    [
+     "penitent",
+     "unrepentant"
+    ],
+    [
+     "sublime",
+     "ridiculous"
+    ],
+    [
+     "terrestrial",
+     "celestial"
+    ],
+    [
+     "latent",
+     "manifest"
+    ],
+    [
+     "ingress",
+     "egress"
+    ]
+   ],
+   "glosses": [
+    "one who helps vs one who does wrong",
+    "general agreement vs difference of opinion",
+    "improve vs damage",
+    "socially awkward vs smoothly charming",
+    "native vs from abroad",
+    "sorry for wrongdoing vs not sorry",
+    "supremely excellent vs absurd",
+    "of the earth vs of the sky",
+    "hidden vs clearly shown",
+    "entry vs exit"
+   ]
+  },
+  {
+   "id": "ant-18",
+   "type": "antonyms",
+   "instruction": "Group these twenty words into ten pairs of words with opposite meanings.",
+   "level": "hard",
+   "pairs": [
+    [
+     "philanthropist",
+     "misanthrope"
+    ],
+    [
+     "egalitarian",
+     "elitist"
+    ],
+    [
+     "equivocal",
+     "categorical"
+    ],
+    [
+     "extrovert",
+     "introvert"
+    ],
+    [
+     "fastidious",
+     "slovenly"
+    ],
+    [
+     "pliant",
+     "intractable"
+    ],
+    [
+     "salutary",
+     "detrimental"
+    ],
+    [
+     "tyro",
+     "expert"
+    ],
+    [
+     "verdant",
+     "arid"
+    ],
+    [
+     "voluntary",
+     "obligatory"
+    ]
+   ],
+   "glosses": [
+    "lover of humanity vs hater of humanity",
+    "favouring equality vs favouring a privileged few",
+    "ambiguous vs absolute and explicit",
+    "outgoing person vs inward-looking person",
+    "very particular vs messy",
+    "easily influenced vs hard to control",
+    "beneficial vs harmful",
+    "beginner vs master",
+    "green with growth vs dry",
+    "done by choice vs required"
+   ]
+  },
+  {
+   "id": "ant-19",
+   "type": "antonyms",
+   "instruction": "Group these twenty words into ten pairs of words with opposite meanings.",
+   "level": "medium",
+   "pairs": [
+    [
+     "alert",
+     "drowsy"
+    ],
+    [
+     "amateur",
+     "professional"
+    ],
+    [
+     "ample",
+     "insufficient"
+    ],
+    [
+     "harmony",
+     "strife"
+    ],
+    [
+     "brief",
+     "lengthy"
+    ],
+    [
+     "dependent",
+     "autonomous"
+    ],
+    [
+     "merit",
+     "demerit"
+    ],
+    [
+     "noble",
+     "vile"
+    ],
+    [
+     "spacious",
+     "cramped"
+    ],
+    [
+     "tame",
+     "wild"
+    ]
+   ],
+   "glosses": [
+    "wide awake vs sleepy",
+    "unpaid enthusiast vs paid expert",
+    "more than enough vs not enough",
+    "peaceful agreement vs conflict",
+    "short vs long",
+    "relying on others vs self-governing",
+    "good quality vs fault",
+    "honourable vs morally bad",
+    "roomy vs too small",
+    "domesticated vs untamed"
+   ]
+  },
+  {
+   "id": "ant-20",
+   "type": "antonyms",
+   "instruction": "Group these twenty words into ten pairs of words with opposite meanings.",
+   "level": "medium",
+   "pairs": [
+    [
+     "acquire",
+     "forfeit"
+    ],
+    [
+     "arrival",
+     "departure"
+    ],
+    [
+     "chaos",
+     "order"
+    ],
+    [
+     "confident",
+     "hesitant"
+    ],
+    [
+     "coarse",
+     "refined"
+    ],
+    [
+     "inflate",
+     "deflate"
+    ],
+    [
+     "negative",
+     "positive"
+    ],
+    [
+     "thrive",
+     "languish"
+    ],
+    [
+     "spendthrift",
+     "miser"
+    ],
+    [
+     "wisdom",
+     "folly"
+    ]
+   ],
+   "glosses": [
+    "gain vs lose as a penalty",
+    "coming vs going",
+    "disorder vs organisation",
+    "self-assured vs unsure",
+    "rough vs polished",
+    "fill with air vs let air out",
+    "bad or denying vs good or affirming",
+    "prosper vs weaken",
+    "one who wastes money vs one who hoards it",
+    "good sense vs foolishness"
+   ]
+  },
+  {
+   "id": "ant-21",
+   "type": "antonyms",
+   "instruction": "Group these twenty words into ten pairs of words with opposite meanings.",
+   "level": "medium",
+   "pairs": [
+    [
+     "bless",
+     "curse"
+    ],
+    [
+     "complex",
+     "simple"
+    ],
+    [
+     "hollow",
+     "solid"
+    ],
+    [
+     "interior",
+     "exterior"
+    ],
+    [
+     "loose",
+     "tight"
+    ],
+    [
+     "mature",
+     "juvenile"
+    ],
+    [
+     "stale",
+     "fresh"
+    ],
+    [
+     "temporary",
+     "perpetual"
+    ],
+    [
+     "liberal",
+     "conservative"
+    ],
+    [
+     "inhale",
+     "exhale"
+    ]
+   ],
+   "glosses": [
+    "invoke good vs invoke harm",
+    "complicated vs easy",
+    "empty inside vs filled throughout",
+    "inside vs outside",
+    "slack vs firmly fixed",
+    "fully grown vs childish",
+    "no longer fresh vs new",
+    "short-term vs everlasting",
+    "open to change vs favouring tradition",
+    "breathe in vs breathe out"
+   ]
+  },
+  {
+   "id": "ant-22",
+   "type": "antonyms",
+   "instruction": "Group these twenty words into ten pairs of words with opposite meanings.",
+   "level": "medium",
+   "pairs": [
+    [
+     "absurd",
+     "sensible"
+    ],
+    [
+     "affection",
+     "aversion"
+    ],
+    [
+     "crooked",
+     "straight"
+    ],
+    [
+     "dim",
+     "bright"
+    ],
+    [
+     "vice",
+     "virtue"
+    ],
+    [
+     "fail",
+     "succeed"
+    ],
+    [
+     "heaven",
+     "hell"
+    ],
+    [
+     "servant",
+     "master"
+    ],
+    [
+     "tidy",
+     "disorderly"
+    ],
+    [
+     "wholesale",
+     "retail"
+    ]
+   ],
+   "glosses": [
+    "ridiculous vs reasonable",
+    "fondness vs strong dislike",
+    "bent vs not bent",
+    "faintly lit vs full of light",
+    "immoral habit vs moral quality",
+    "not achieve vs achieve",
+    "paradise vs place of torment",
+    "one who serves vs one in control",
+    "neat vs messy",
+    "selling in bulk vs selling to the public"
+   ]
+  },
+  {
+   "id": "ant-23",
+   "type": "antonyms",
+   "instruction": "Group these twenty words into ten pairs of words with opposite meanings.",
+   "level": "hard",
+   "pairs": [
+    [
+     "chivalrous",
+     "boorish"
+    ],
+    [
+     "desecrate",
+     "consecrate"
+    ],
+    [
+     "dilatory",
+     "expeditious"
+    ],
+    [
+     "hubris",
+     "humility"
+    ],
+    [
+     "immutable",
+     "variable"
+    ],
+    [
+     "pusillanimous",
+     "intrepid"
+    ],
+    [
+     "rescind",
+     "enact"
+    ],
+    [
+     "superfluous",
+     "essential"
+    ],
+    [
+     "esoteric",
+     "accessible"
+    ],
+    [
+     "ignominy",
+     "glory"
+    ]
+   ],
+   "glosses": [
+    "courteous vs rough-mannered",
+    "violate the sacred vs make sacred",
+    "slow and delaying vs quick and efficient",
+    "excessive pride vs modesty",
+    "unchanging vs changeable",
+    "cowardly vs fearless",
+    "revoke vs make into law",
+    "unnecessary vs absolutely necessary",
+    "understood by few vs easy to understand",
+    "public shame vs great honour"
+   ]
+  },
+  {
+   "id": "ant-24",
+   "type": "antonyms",
+   "instruction": "Group these twenty words into ten pairs of words with opposite meanings.",
+   "level": "hard",
+   "pairs": [
+    [
+     "malleable",
+     "unbending"
+    ],
+    [
+     "concur",
+     "demur"
+    ],
+    [
+     "ingenuous",
+     "calculating"
+    ],
+    [
+     "provincial",
+     "cosmopolitan"
+    ],
+    [
+     "irascible",
+     "equable"
+    ],
+    [
+     "proscribe",
+     "permit"
+    ],
+    [
+     "tumult",
+     "stillness"
+    ],
+    [
+     "vociferous",
+     "muted"
+    ],
+    [
+     "nomadic",
+     "sedentary"
+    ],
+    [
+     "squalor",
+     "splendour"
+    ]
+   ],
+   "glosses": [
+    "easily shaped vs inflexible",
+    "agree vs raise objections",
+    "innocent and trusting vs scheming",
+    "narrow and unsophisticated vs worldly",
+    "quick-tempered vs even-tempered",
+    "forbid vs allow",
+    "uproar vs quiet calm",
+    "loud and forceful vs subdued",
+    "wandering vs settled",
+    "filth and misery vs magnificence"
+   ]
+  },
+  {
+   "id": "ant-25",
+   "type": "antonyms",
+   "instruction": "Group these twenty words into ten pairs of words with opposite meanings.",
+   "level": "hard",
+   "pairs": [
+    [
+     "amorphous",
+     "structured"
+    ],
+    [
+     "antediluvian",
+     "newfangled"
+    ],
+    [
+     "bourgeois",
+     "proletarian"
+    ],
+    [
+     "sedate",
+     "frenetic"
+    ],
+    [
+     "convivial",
+     "dour"
+    ],
+    [
+     "deference",
+     "irreverence"
+    ],
+    [
+     "myopic",
+     "visionary"
+    ],
+    [
+     "peripheral",
+     "central"
+    ],
+    [
+     "inception",
+     "conclusion"
+    ],
+    [
+     "munificence",
+     "stinginess"
+    ]
+   ],
+   "glosses": [
+    "shapeless vs organised",
+    "very old-fashioned vs newly invented",
+    "middle-class vs working-class",
+    "calm and unhurried vs wildly active",
+    "friendly and lively vs stern and gloomy",
+    "respect vs lack of respect",
+    "short-sighted vs far-sighted",
+    "on the edge vs at the centre",
+    "beginning vs end",
+    "great generosity vs meanness"
+   ]
+  },
+  {
+   "id": "ant-26",
+   "type": "antonyms",
+   "instruction": "Group these twenty words into ten pairs of words with opposite meanings.",
+   "level": "medium",
+   "pairs": [
+    [
+     "attract",
+     "repel"
+    ],
+    [
+     "backward",
+     "progressive"
+    ],
+    [
+     "cheap",
+     "costly"
+    ],
+    [
+     "forget",
+     "recall"
+    ],
+    [
+     "graceful",
+     "awkward"
+    ],
+    [
+     "illuminate",
+     "darken"
+    ],
+    [
+     "massive",
+     "tiny"
+    ],
+    [
+     "plain",
+     "ornate"
+    ],
+    [
+     "spontaneous",
+     "premeditated"
+    ],
+    [
+     "poverty",
+     "riches"
+    ]
+   ],
+   "glosses": [
+    "draw towards vs push away",
+    "behind the times vs forward-looking",
+    "inexpensive vs expensive",
+    "fail to remember vs remember",
+    "elegant vs clumsy",
+    "light up vs make dark",
+    "huge vs very small",
+    "simple vs highly decorated",
+    "unplanned vs planned in advance",
+    "being poor vs great wealth"
+   ]
+  },
+  {
+   "id": "ant-27",
+   "type": "antonyms",
+   "instruction": "Group these twenty words into ten pairs of words with opposite meanings.",
+   "level": "medium",
+   "pairs": [
+    [
+     "adore",
+     "loathe"
+    ],
+    [
+     "captive",
+     "free"
+    ],
+    [
+     "victor",
+     "vanquished"
+    ],
+    [
+     "fortunate",
+     "hapless"
+    ],
+    [
+     "gradual",
+     "precipitous"
+    ],
+    [
+     "oral",
+     "written"
+    ],
+    [
+     "patriot",
+     "traitor"
+    ],
+    [
+     "quiet",
+     "noisy"
+    ],
+    [
+     "war",
+     "peace"
+    ],
+    [
+     "withhold",
+     "grant"
+    ]
+   ],
+   "glosses": [
+    "love deeply vs hate",
+    "imprisoned vs at liberty",
+    "winner vs the defeated",
+    "lucky vs unlucky",
+    "slow and steady vs sudden and steep",
+    "spoken vs on paper",
+    "one loyal to the country vs one who betrays it",
+    "silent vs loud",
+    "armed conflict vs absence of conflict",
+    "hold back vs give"
+   ]
+  },
+  {
+   "id": "ant-28",
+   "type": "antonyms",
+   "instruction": "Group these twenty words into ten pairs of words with opposite meanings.",
+   "level": "medium",
+   "pairs": [
+    [
+     "clarify",
+     "muddle"
+    ],
+    [
+     "guest",
+     "host"
+    ],
+    [
+     "harsh",
+     "tender"
+    ],
+    [
+     "initial",
+     "final"
+    ],
+    [
+     "lofty",
+     "lowly"
+    ],
+    [
+     "mobile",
+     "stationary"
+    ],
+    [
+     "seldom",
+     "often"
+    ],
+    [
+     "credible",
+     "implausible"
+    ],
+    [
+     "sane",
+     "deranged"
+    ],
+    [
+     "frivolity",
+     "gravity"
+    ]
+   ],
+   "glosses": [
+    "make clear vs confuse",
+    "one visiting vs one receiving",
+    "severe vs kind and gentle",
+    "first vs last",
+    "high and noble vs humble",
+    "moving vs not moving",
+    "rarely vs frequently",
+    "believable vs unbelievable",
+    "of sound mind vs insane",
+    "lightness vs seriousness"
+   ]
+  },
+  {
+   "id": "ant-29",
+   "type": "antonyms",
+   "instruction": "Group these twenty words into ten pairs of words with opposite meanings.",
+   "level": "hard",
+   "pairs": [
+    [
+     "adulation",
+     "scorn"
+    ],
+    [
+     "assuage",
+     "inflame"
+    ],
+    [
+     "austere",
+     "sumptuous"
+    ],
+    [
+     "hirsute",
+     "bald"
+    ],
+    [
+     "circuitous",
+     "direct"
+    ],
+    [
+     "conscientious",
+     "remiss"
+    ],
+    [
+     "diffuse",
+     "concentrated"
+    ],
+    [
+     "exculpate",
+     "inculpate"
+    ],
+    [
+     "facetious",
+     "serious"
+    ],
+    [
+     "impartial",
+     "partisan"
+    ]
+   ],
+   "glosses": [
+    "excessive admiration vs contempt",
+    "ease vs make worse",
+    "plain and severe vs lavishly rich",
+    "hairy vs hairless",
+    "roundabout vs straight",
+    "careful and dutiful vs negligent",
+    "spread out vs gathered together",
+    "clear of blame vs accuse",
+    "flippantly joking vs in earnest",
+    "unbiased vs one-sided"
+   ]
+  },
+  {
+   "id": "ant-30",
+   "type": "antonyms",
+   "instruction": "Group these twenty words into ten pairs of words with opposite meanings.",
+   "level": "hard",
+   "pairs": [
+    [
+     "callow",
+     "seasoned"
+    ],
+    [
+     "decorous",
+     "unseemly"
+    ],
+    [
+     "effusive",
+     "restrained"
+    ],
+    [
+     "fallacy",
+     "truth"
+    ],
+    [
+     "indigent",
+     "rich"
+    ],
+    [
+     "laudable",
+     "reprehensible"
+    ],
+    [
+     "pejorative",
+     "complimentary"
+    ],
+    [
+     "plethora",
+     "lack"
+    ],
+    [
+     "torrid",
+     "frigid"
+    ],
+    [
+     "atheist",
+     "believer"
+    ]
+   ],
+   "glosses": [
+    "inexperienced vs experienced",
+    "proper vs improper",
+    "gushing vs held back",
+    "a false belief vs what is true",
+    "very poor vs wealthy",
+    "praiseworthy vs blameworthy",
+    "disparaging vs expressing praise",
+    "excess vs shortage",
+    "very hot vs very cold",
+    "denies God vs has faith"
+   ]
+  },
+  {
+   "id": "ant-31",
+   "type": "antonyms",
+   "instruction": "Group these twenty words into ten pairs of words with opposite meanings.",
+   "level": "hard",
+   "pairs": [
+    [
+     "adherent",
+     "opponent"
+    ],
+    [
+     "amenable",
+     "uncooperative"
+    ],
+    [
+     "dispassionate",
+     "impassioned"
+    ],
+    [
+     "elucidate",
+     "obfuscate"
+    ],
+    [
+     "evanescent",
+     "everlasting"
+    ],
+    [
+     "corpulent",
+     "slender"
+    ],
+    [
+     "mirth",
+     "melancholy"
+    ],
+    [
+     "onerous",
+     "undemanding"
+    ],
+    [
+     "plaintiff",
+     "defendant"
+    ],
+    [
+     "scrupulous",
+     "unprincipled"
+    ]
+   ],
+   "glosses": [
+    "supporter vs one against",
+    "willing to comply vs unwilling to help",
+    "coolly impartial vs filled with emotion",
+    "make clear vs make unclear",
+    "quickly fading vs lasting for ever",
+    "fat vs slim",
+    "laughter vs sadness",
+    "burdensome vs easy",
+    "one who sues vs one who is sued",
+    "morally careful vs without morals"
+   ]
+  }
+ ]
 }

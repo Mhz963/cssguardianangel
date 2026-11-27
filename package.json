@@ -13,13 +13,16 @@
     "refresh-fpsc-papers": "node scripts/extract-fpsc-papers.mjs",
     "lint": "eslint .",
     "check:english": "node scripts/validate-english.mjs",
+    "build:conflicts": "node scripts/build-conflicts.mjs",
     "preview": "vite preview"
   },
   "dependencies": {
     "@huggingface/transformers": "^4.3.2",
+    "@maplibre/maplibre-gl-leaflet": "^0.1.4",
     "@supabase/supabase-js": "^2.57.4",
     "jspdf": "^4.2.1",
     "leaflet": "^1.9.4",
+    "maplibre-gl": "^6.19.0",
     "pdfjs-dist": "^6.5.438",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",

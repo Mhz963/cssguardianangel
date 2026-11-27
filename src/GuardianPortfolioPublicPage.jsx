@@ -54,9 +54,16 @@ export default function GuardianPortfolioPublicPage() {
       ) : null}
       {!isLoading && portfolio ? <GuardianPortfolioShowcase portfolio={portfolio} items={items} /> : null}
 
-      <p className="gp-public-foot">
-        <Link to="/guardian-portfolio">Create your own Guardian Portfolio</Link>
-      </p>
+      <div className="gp-public-foot">
+        <p>
+          <Link to="/guardian-portfolio">Create your own free Guardian Portfolio</Link>
+          {' · '}
+          <Link to="/guardian-portfolio/browse">Browse more CSS Jawans</Link>
+        </p>
+        <p className="gp-public-disclaimer">
+          Agree work and payment directly with this member. Guardian Angel takes no commission and does not handle payments.
+        </p>
+      </div>
     </main>
   )
 }

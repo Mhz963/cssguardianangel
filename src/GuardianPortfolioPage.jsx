@@ -1,12 +1,13 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
+import './styles/portfolio.css'
 import GuardianPortfolioShowcase from './GuardianPortfolioShowcase.jsx'
+import { GIG_IDEAS } from './portfolio/portfolioContent.js'
 import {
   ALLOWED_PHOTO_EXTENSIONS,
   ALLOWED_PORTFOLIO_EXTENSIONS,
   GIG_CATEGORIES,
   GIG_CURRENCIES,
-  formatGigPrice,
   MAX_GIGS,
   MAX_PORTFOLIO_ITEMS,
   addPortfolioItem,
@@ -16,7 +17,9 @@ import {
   fetchMyPortfolio,
   fetchMyPortfolioItems,
   formatFileSize,
+  formatGigPrice,
   getInitials,
+  parseSkills,
   removeGigCover,
   removePortfolioPhoto,
   saveMyPortfolio,
@@ -24,19 +27,43 @@ import {
   uploadPortfolioPhoto,
 } from './utils/portfolioClient.js'
 
-function Field({ label, hint, children }) {
+const STEPS = [
+  { id: 'profile', label: 'Profile' },
+  { id: 'gigs', label: 'Gigs' },
+  { id: 'work', label: 'Work samples' },
+  { id: 'publish', label: 'Contact & publish' },
+]
+
+function Field({ label, optional = false, hint, children }) {
   return (
-    <label className="gp-field">
-      <span className="gp-field-label">{label}</span>
+    <label className="pf-field">
+      <span>
+        {label} {optional ? <em>(optional)</em> : null}
+      </span>
       {children}
-      <small className="gp-field-hint">{hint || '\u00a0'}</small>
+      {hint ? <small>{hint}</small> : null}
     </label>
   )
 }
 
+function buildChecklist(draft, items) {
+  const gigs = draft.gigs || []
+  return [
+    { label: 'Name and headline', done: Boolean(draft.display_name?.trim() && draft.headline?.trim()) },
+    { label: 'About you and your skills', done: Boolean(draft.bio?.trim() && parseSkills(draft.skillsText).length) },
+    { label: 'Profile photo', done: Boolean(draft.photoUrl) },
+    { label: 'At least one gig with a price', done: gigs.some((g) => g.price) },
+    { label: 'At least one work sample', done: items.length > 0 },
+    { label: 'WhatsApp number so clients can reach you', done: Boolean(draft.links?.whatsapp?.trim()) },
+    { label: 'Published', done: Boolean(draft.is_public) },
+  ]
+}
+
 export default function GuardianPortfolioPage({ authUser }) {
   const [draft, setDraft] = useState(() => createEmptyPortfolio(authUser))
+  const [savedPublic, setSavedPublic] = useState(false)
   const [items, setItems] = useState([])
+  const [step, setStep] = useState(0)
   const [itemDraft, setItemDraft] = useState({ title: '', description: '', url: '', file: null })
   const [gigDraft, setGigDraft] = useState(createEmptyGigDraft)
   const [fileInputKey, setFileInputKey] = useState(0)
@@ -59,12 +86,10 @@ export default function GuardianPortfolioPage({ authUser }) {
       setIsLoading(true)
       setError('')
       try {
-        const [portfolio, nextItems] = await Promise.all([
-          fetchMyPortfolio(authUser),
-          fetchMyPortfolioItems(authUser.id),
-        ])
+        const [portfolio, nextItems] = await Promise.all([fetchMyPortfolio(authUser), fetchMyPortfolioItems(authUser.id)])
         if (cancelled) return
         setDraft(portfolio)
+        setSavedPublic(Boolean(portfolio.is_public))
         setItems(nextItems)
       } catch (loadError) {
         if (!cancelled) setError(loadError?.message || 'Unable to load your portfolio.')
@@ -84,41 +109,85 @@ export default function GuardianPortfolioPage({ authUser }) {
     return `${window.location.origin}${publicPath}`
   }, [publicPath])
 
+  const checklist = buildChecklist(draft, items)
+  const doneCount = checklist.filter((c) => c.done).length
+  const gigs = Array.isArray(draft.gigs) ? draft.gigs : []
+  const hasName = Boolean(String(draft.display_name || '').trim())
+  const stepDone = [
+    Boolean(hasName && draft.headline?.trim()),
+    gigs.length > 0,
+    items.length > 0,
+    Boolean(savedPublic),
+  ]
+
+  const clearNotices = () => {
+    setError('')
+    setMessage('')
+  }
+
+  const goTo = (index) => {
+    clearNotices()
+    setStep(index)
+    window.document.getElementById('pf-editor-top')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+
   const updateField = (key, value) => {
     setDraft((current) => ({ ...current, [key]: value }))
   }
 
   const updateLink = (key, value) => {
-    setDraft((current) => ({
-      ...current,
-      links: { ...current.links, [key]: value },
-    }))
+    setDraft((current) => ({ ...current, links: { ...current.links, [key]: value } }))
   }
 
-  const handleSave = async (event) => {
-    event.preventDefault()
-    setError('')
-    setMessage('')
+  const saveDraft = async (nextDraft, successMessage) => {
+    clearNotices()
     setIsSaving(true)
     try {
-      const saved = await saveMyPortfolio(authUser, draft)
+      const saved = await saveMyPortfolio(authUser, nextDraft)
       setDraft(saved)
-      setMessage(saved.is_public ? 'Portfolio saved. Your public link is ready.' : 'Portfolio saved. It stays private until you publish it.')
+      setSavedPublic(Boolean(saved.is_public))
+      if (successMessage) setMessage(successMessage)
+      return true
     } catch (saveError) {
       setError(saveError?.message || 'Unable to save your portfolio.')
+      return false
     } finally {
       setIsSaving(false)
     }
+  }
+
+  const handleProfileSubmit = async (event) => {
+    event.preventDefault()
+    if (!hasName) {
+      setError('Add your name so clients know who they are hiring.')
+      return
+    }
+    if (!draft.headline?.trim()) {
+      setError('Add a one-line headline, for example "English tutor and essay reviewer".')
+      return
+    }
+    const ok = await saveDraft(draft, 'Profile saved.')
+    if (ok) goTo(1)
+  }
+
+  const handlePublishSubmit = async (event) => {
+    event.preventDefault()
+    await saveDraft(
+      draft,
+      draft.is_public
+        ? 'Saved and published. Share your link below.'
+        : 'Saved. Your profile is private until you tick "Publish my profile".',
+    )
   }
 
   const handleCopyLink = async () => {
     if (!publicUrl) return
     try {
       await navigator.clipboard.writeText(publicUrl)
-      setMessage('Public link copied.')
+      setMessage('Link copied. Paste it in your WhatsApp status, groups and social media bios.')
       setError('')
     } catch {
-      setError('Could not copy the link. Copy it from the address bar after you open it.')
+      setError('Could not copy the link. Open your page and copy it from the address bar.')
     }
   }
 
@@ -130,13 +199,11 @@ export default function GuardianPortfolioPage({ authUser }) {
   const handlePhotoChange = async (event) => {
     const file = event.target.files?.[0]
     if (!file) return
-    setError('')
-    setMessage('')
+    clearNotices()
     setIsPhotoBusy(true)
     try {
       const uploaded = await uploadPortfolioPhoto(authUser.id, file, draft.photo_path)
-      const nextDraft = { ...draft, ...uploaded }
-      const saved = await persistDraft(nextDraft)
+      const saved = await persistDraft({ ...draft, ...uploaded })
       setDraft(saved)
       setPhotoInputKey((current) => current + 1)
       setMessage('Profile photo updated.')
@@ -149,12 +216,11 @@ export default function GuardianPortfolioPage({ authUser }) {
 
   const handleRemovePhoto = async () => {
     if (!draft.photo_path && !draft.photoUrl) return
-    setError('')
+    clearNotices()
     setIsPhotoBusy(true)
     try {
       await removePortfolioPhoto(draft.photo_path)
-      const nextDraft = { ...draft, photo_path: '', photoUrl: '', links: { ...draft.links, photo_path: '' } }
-      const saved = await persistDraft(nextDraft)
+      const saved = await persistDraft({ ...draft, photo_path: '', photoUrl: '', links: { ...draft.links, photo_path: '' } })
       setDraft(saved)
       setPhotoInputKey((current) => current + 1)
       setMessage('Profile photo removed.')
@@ -167,8 +233,7 @@ export default function GuardianPortfolioPage({ authUser }) {
 
   const handleAddItem = async (event) => {
     event.preventDefault()
-    setError('')
-    setMessage('')
+    clearNotices()
     setIsUploading(true)
     try {
       const nextItem = await addPortfolioItem({
@@ -196,9 +261,16 @@ export default function GuardianPortfolioPage({ authUser }) {
     setGigFileKey((current) => current + 1)
   }
 
+  const applyGigIdea = (idea) => {
+    clearNotices()
+    setEditingGigId('')
+    setGigDraft({ ...createEmptyGigDraft(), ...idea, currency: 'PKR', file: null })
+    setGigFileKey((current) => current + 1)
+    setMessage('Idea added to the form. Change the wording and price to match what you really offer, then save.')
+  }
+
   const handleEditGig = (gig) => {
-    setError('')
-    setMessage('')
+    clearNotices()
     setPendingGigId('')
     setEditingGigId(gig.id)
     setGigDraft({
@@ -212,25 +284,27 @@ export default function GuardianPortfolioPage({ authUser }) {
       coverUrl: gig.coverUrl || '',
     })
     setGigFileKey((current) => current + 1)
-    window.document.getElementById('gp-gig-form')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    window.document.getElementById('pf-gig-form')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
   const handleSaveGig = async (event) => {
     event.preventDefault()
-    setError('')
-    setMessage('')
-    const gigs = Array.isArray(draft.gigs) ? draft.gigs : []
+    clearNotices()
     const isEditing = Boolean(editingGigId)
+    if (!hasName) {
+      setError('Save your profile (step 1) before adding gigs.')
+      return
+    }
     if (!isEditing && gigs.length >= MAX_GIGS) {
-      setError(`You can publish up to ${MAX_GIGS} gigs.`)
+      setError(`You can publish up to ${MAX_GIGS} gigs. Remove one to add another.`)
       return
     }
     if (!String(gigDraft.title || '').trim()) {
-      setError('Give this gig a title.')
+      setError('Give this gig a title, for example "I will review your CSS essay".')
       return
     }
     if (!String(gigDraft.price || '').trim()) {
-      setError('Add a starting price for this gig.')
+      setError('Add a starting price so clients know what to expect.')
       return
     }
 
@@ -238,10 +312,7 @@ export default function GuardianPortfolioPage({ authUser }) {
     try {
       const currentGig = isEditing ? gigs.find((gig) => gig.id === editingGigId) : null
       const gigId = currentGig?.id || crypto.randomUUID()
-      let cover = {
-        cover_path: currentGig?.cover_path || '',
-        coverUrl: currentGig?.coverUrl || '',
-      }
+      let cover = { cover_path: currentGig?.cover_path || '', coverUrl: currentGig?.coverUrl || '' }
       if (gigDraft.file) {
         cover = await uploadGigCover(authUser.id, gigId, gigDraft.file, currentGig?.cover_path || '')
       }
@@ -251,18 +322,16 @@ export default function GuardianPortfolioPage({ authUser }) {
         description: String(gigDraft.description || '').trim(),
         category: gigDraft.category,
         currency: gigDraft.currency,
-        price: gigDraft.price.trim(),
+        price: String(gigDraft.price).trim(),
         delivery: String(gigDraft.delivery || '').trim(),
         cover_path: cover.cover_path,
         coverUrl: cover.coverUrl,
       }
-      const nextGigs = isEditing
-        ? gigs.map((gig) => (gig.id === gigId ? nextGig : gig))
-        : [...gigs, nextGig]
+      const nextGigs = isEditing ? gigs.map((gig) => (gig.id === gigId ? nextGig : gig)) : [...gigs, nextGig]
       const saved = await persistDraft({ ...draft, gigs: nextGigs })
       setDraft(saved)
       resetGigForm()
-      setMessage(isEditing ? 'Gig updated.' : 'Gig added to your profile.')
+      setMessage(isEditing ? 'Gig updated.' : 'Gig saved. Add another or continue to work samples.')
     } catch (gigError) {
       setError(gigError?.message || 'Unable to save that gig.')
     } finally {
@@ -278,15 +347,11 @@ export default function GuardianPortfolioPage({ authUser }) {
       }, 4000)
       return
     }
-    setError('')
+    clearNotices()
     setIsGigBusy(true)
     try {
       await removeGigCover(gig.cover_path)
-      const nextDraft = {
-        ...draft,
-        gigs: (draft.gigs || []).filter((entry) => entry.id !== gig.id),
-      }
-      const saved = await persistDraft(nextDraft)
+      const saved = await persistDraft({ ...draft, gigs: gigs.filter((entry) => entry.id !== gig.id) })
       setDraft(saved)
       setPendingGigId('')
       if (editingGigId === gig.id) resetGigForm()
@@ -306,7 +371,7 @@ export default function GuardianPortfolioPage({ authUser }) {
       }, 4000)
       return
     }
-    setError('')
+    clearNotices()
     try {
       await deletePortfolioItem(authUser.id, item)
       setItems((current) => current.filter((entry) => entry.id !== item.id))
@@ -317,399 +382,481 @@ export default function GuardianPortfolioPage({ authUser }) {
     }
   }
 
+  const shareText = encodeURIComponent(
+    `Assalam o Alaikum! I now offer freelance services${draft.headline ? ` (${draft.headline})` : ''}. See my gigs and work here: ${publicUrl}`,
+  )
+
+  const notices = (
+    <>
+      {error ? (
+        <p className="pf-message is-error" role="alert">
+          {error}
+        </p>
+      ) : null}
+      {message ? (
+        <p className="pf-message" role="status">
+          {message}
+        </p>
+      ) : null}
+    </>
+  )
+
+  const stepNav = (backLabel, nextLabel) => (
+    <div className="pf-step-nav">
+      {step > 0 ? (
+        <button type="button" className="btn btn-secondary" onClick={() => goTo(step - 1)}>
+          ← {backLabel}
+        </button>
+      ) : (
+        <span />
+      )}
+      {nextLabel ? (
+        <button type="button" className="btn btn-primary" onClick={() => goTo(step + 1)} disabled={!hasName || !savedOnce(draft)}>
+          {nextLabel} →
+        </button>
+      ) : null}
+    </div>
+  )
+
   return (
-    <main className="page-main gp-page">
+    <main className="page-main pf-page" id="main-content">
       <section className="container">
-        <header className="gp-hero">
-          <p className="kicker">Guardian Angel Resources</p>
-          <h1>Guardian Portfolio</h1>
-          <p>
-            Build a public profile, upload proof of work, and share one link with clients. Leave a field empty and it
-            stays empty.
+        <div className="section-title" id="pf-editor-top">
+          <p>Guardian Portfolio</p>
+          <h2>Your portfolio editor</h2>
+        </div>
+        <div className="pf-editor-head">
+          <p className="pf-lead">
+            Four short steps: tell clients who you are, list your services as gigs, show proof of your work, then publish
+            and share your link. Your changes appear in the preview as you type.{' '}
+            <Link className="pf-text-link" to="/guardian-portfolio#tutorial">
+              Watch the guide
+            </Link>
           </p>
-        </header>
+          <span className={`pf-status-pill ${savedPublic ? 'is-live' : ''}`}>{savedPublic ? 'Published' : 'Private draft'}</span>
+        </div>
 
-        {isLoading ? <p className="gp-status">Loading your portfolio…</p> : null}
+        <ol className="pf-stepper" aria-label="Portfolio steps">
+          {STEPS.map((s, index) => (
+            <li key={s.id}>
+              <button
+                type="button"
+                className={`${step === index ? 'is-active' : ''} ${stepDone[index] ? 'is-done' : ''}`}
+                aria-current={step === index ? 'step' : undefined}
+                onClick={() => goTo(index)}
+                disabled={index > 0 && !savedOnce(draft)}
+              >
+                <span className="pf-stepper-num">{stepDone[index] && step !== index ? '✓' : index + 1}</span>
+                {s.label}
+              </button>
+            </li>
+          ))}
+        </ol>
 
-        <div className="gp-layout">
-          <div className="gp-editor">
-            <form className="planner-card planner-form gp-form" onSubmit={handleSave}>
-              <h3>Your public profile</h3>
-              <div className="gp-photo-editor">
-                <div className="gp-portrait is-edit">
-                  {draft.photoUrl ? (
-                    <img src={draft.photoUrl} alt={draft.display_name || 'Profile photo'} />
-                  ) : (
-                    <span>{getInitials(draft.display_name)}</span>
-                  )}
+        {isLoading ? <p className="pf-muted">Loading your portfolio…</p> : null}
+
+        <div className="pf-editor">
+          <div className="pf-card pf-panel">
+            {step === 0 ? (
+              <form className="pf-form" onSubmit={handleProfileSubmit}>
+                <header>
+                  <h3>1. Your profile</h3>
+                  <p className="pf-muted">This is the first thing clients see. Keep it short, honest and specific.</p>
+                </header>
+                <div className="pf-photo-row">
+                  <span className="pf-avatar">
+                    {draft.photoUrl ? <img src={draft.photoUrl} alt="" /> : getInitials(draft.display_name)}
+                  </span>
+                  <div>
+                    <div className="pf-actions">
+                      <label className="btn btn-secondary pf-file-btn">
+                        {isPhotoBusy ? 'Uploading…' : draft.photoUrl ? 'Change photo' : 'Upload photo'}
+                        <input
+                          key={photoInputKey}
+                          type="file"
+                          accept={ALLOWED_PHOTO_EXTENSIONS.join(',')}
+                          onChange={handlePhotoChange}
+                          disabled={isPhotoBusy || !hasName}
+                        />
+                      </label>
+                      {draft.photoUrl ? (
+                        <button className="pf-small-btn" type="button" onClick={handleRemovePhoto} disabled={isPhotoBusy}>
+                          Remove
+                        </button>
+                      ) : null}
+                    </div>
+                    <p className="pf-muted">
+                      {hasName ? 'A clear, friendly photo builds trust. PNG, JPG or WEBP up to 4 MB.' : 'Add your name first, then a photo.'}
+                    </p>
+                  </div>
                 </div>
+                <div className="pf-form-row">
+                  <Field label="Your name">
+                    <input value={draft.display_name} onChange={(e) => updateField('display_name', e.target.value)} autoComplete="name" />
+                  </Field>
+                  <Field label="City" optional>
+                    <input
+                      value={draft.city}
+                      onChange={(e) => updateField('city', e.target.value)}
+                      autoComplete="address-level2"
+                      placeholder="Lahore"
+                    />
+                  </Field>
+                </div>
+                <Field label="Headline" hint="One line under your name. Say what you do, not what you are studying.">
+                  <input
+                    value={draft.headline}
+                    onChange={(e) => updateField('headline', e.target.value)}
+                    placeholder="English tutor and CSS essay reviewer"
+                    maxLength={90}
+                  />
+                </Field>
+                <Field label="What you offer" optional hint="One sentence about the result a client gets.">
+                  <input
+                    value={draft.offer}
+                    onChange={(e) => updateField('offer', e.target.value)}
+                    placeholder="I help students write clearer essays and score higher in English."
+                  />
+                </Field>
+                <Field label="About you" optional hint="Two or three sentences: your background, experience and why clients can trust you.">
+                  <textarea value={draft.bio} onChange={(e) => updateField('bio', e.target.value)} rows={4} />
+                </Field>
+                <Field label="Skills" optional hint="Separate with commas. These show as tags on your profile.">
+                  <input
+                    value={draft.skillsText}
+                    onChange={(e) => updateField('skillsText', e.target.value)}
+                    placeholder="Essay feedback, Précis writing, Urdu–English translation, MS Word"
+                  />
+                </Field>
+                {notices}
+                <div className="pf-step-nav">
+                  <span />
+                  <button className="btn btn-primary" type="submit" disabled={isSaving || isLoading}>
+                    {isSaving ? 'Saving…' : 'Save and continue →'}
+                  </button>
+                </div>
+              </form>
+            ) : null}
+
+            {step === 1 ? (
+              <div className="pf-form">
+                <header>
+                  <h3>2. Your gigs</h3>
+                  <p className="pf-muted">
+                    A gig is one service with a clear price, like on Fiverr. Start with one or two you can deliver well. You
+                    can have up to {MAX_GIGS} ({gigs.length} used).
+                  </p>
+                </header>
                 <div>
-                  <p className="gp-note">Profile photo. Optional. PNG, JPG, or WEBP up to 4 MB.</p>
-                  <div className="gp-actions">
-                    <label className="btn btn-secondary gp-file-btn">
-                      {isPhotoBusy ? 'Uploading…' : draft.photoUrl ? 'Change photo' : 'Upload photo'}
+                  <p className="pf-field">
+                    <span>Need an idea? Tap one to fill the form</span>
+                  </p>
+                  <div className="pf-ideas-strip">
+                    {GIG_IDEAS.map((idea) => (
+                      <button type="button" key={idea.title} className="pf-idea-btn" onClick={() => applyGigIdea(idea)}>
+                        <span className="pf-chip">{idea.category}</span>
+                        <br />
+                        {idea.title}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                <form className="pf-form" id="pf-gig-form" onSubmit={handleSaveGig}>
+                  <Field label="Gig title" hint='Start with "I will…" and say exactly what the client gets.'>
+                    <input
+                      value={gigDraft.title}
+                      onChange={(e) => setGigDraft((c) => ({ ...c, title: e.target.value }))}
+                      placeholder="I will review your CSS essay and give detailed feedback"
+                      maxLength={100}
+                    />
+                  </Field>
+                  <Field label="What is included" optional hint="What you deliver, in what format, and how many revisions.">
+                    <textarea
+                      value={gigDraft.description}
+                      onChange={(e) => setGigDraft((c) => ({ ...c, description: e.target.value }))}
+                      rows={3}
+                    />
+                  </Field>
+                  <div className="pf-form-row is-three">
+                    <Field label="Category">
+                      <select value={gigDraft.category} onChange={(e) => setGigDraft((c) => ({ ...c, category: e.target.value }))}>
+                        {GIG_CATEGORIES.map((c) => (
+                          <option key={c} value={c}>
+                            {c}
+                          </option>
+                        ))}
+                      </select>
+                    </Field>
+                    <Field label="Starting price">
+                      <div className="pf-actions" style={{ flexWrap: 'nowrap', gap: '0.4rem' }}>
+                        <select
+                          aria-label="Currency"
+                          value={gigDraft.currency}
+                          onChange={(e) => setGigDraft((c) => ({ ...c, currency: e.target.value }))}
+                          style={{ width: '5.5rem' }}
+                        >
+                          {GIG_CURRENCIES.map((c) => (
+                            <option key={c.code} value={c.code}>
+                              {c.code}
+                            </option>
+                          ))}
+                        </select>
+                        <input
+                          inputMode="numeric"
+                          value={gigDraft.price}
+                          onChange={(e) => setGigDraft((c) => ({ ...c, price: e.target.value }))}
+                          placeholder="1500"
+                        />
+                      </div>
+                    </Field>
+                    <Field label="Delivery time" optional>
                       <input
-                        key={photoInputKey}
-                        type="file"
-                        accept={ALLOWED_PHOTO_EXTENSIONS.join(',')}
-                        onChange={handlePhotoChange}
-                        disabled={isPhotoBusy}
+                        value={gigDraft.delivery}
+                        onChange={(e) => setGigDraft((c) => ({ ...c, delivery: e.target.value }))}
+                        placeholder="2 days"
                       />
-                    </label>
-                    {draft.photoUrl ? (
-                      <button className="btn btn-secondary" type="button" onClick={handleRemovePhoto} disabled={isPhotoBusy}>
-                        Remove photo
+                    </Field>
+                  </div>
+                  <Field label="Cover image" optional hint="Without one, a neat cover is made from your title. PNG, JPG or WEBP.">
+                    <input
+                      key={gigFileKey}
+                      type="file"
+                      accept={ALLOWED_PHOTO_EXTENSIONS.join(',')}
+                      onChange={(e) => setGigDraft((c) => ({ ...c, file: e.target.files?.[0] || null }))}
+                    />
+                  </Field>
+                  {notices}
+                  <div className="pf-actions">
+                    <button
+                      className="btn btn-primary"
+                      type="submit"
+                      disabled={isGigBusy || (!editingGigId && gigs.length >= MAX_GIGS)}
+                    >
+                      {isGigBusy ? 'Saving…' : editingGigId ? 'Update gig' : 'Save gig'}
+                    </button>
+                    {editingGigId || gigDraft.title ? (
+                      <button className="pf-small-btn" type="button" onClick={resetGigForm}>
+                        {editingGigId ? 'Cancel editing' : 'Clear form'}
                       </button>
                     ) : null}
                   </div>
-                </div>
-              </div>
-              <div className="gp-grid-2">
-                <Field label="Display name">
-                  <input
-                    value={draft.display_name}
-                    onChange={(event) => updateField('display_name', event.target.value)}
-                    autoComplete="name"
-                  />
-                </Field>
-                <Field label="City" hint="Optional">
-                  <input
-                    value={draft.city}
-                    onChange={(event) => updateField('city', event.target.value)}
-                    autoComplete="address-level2"
-                  />
-                </Field>
-              </div>
-              <Field label="Headline" hint="Optional. One line about the work you do.">
-                <input
-                  value={draft.headline}
-                  onChange={(event) => updateField('headline', event.target.value)}
-                  placeholder="English writer for small businesses"
-                />
-              </Field>
-              <Field label="Offer" hint='Optional. Example: I help local shops get 12 Instagram posts in 3 days.'>
-                <input
-                  value={draft.offer}
-                  onChange={(event) => updateField('offer', event.target.value)}
-                />
-              </Field>
-              <Field label="About" hint="Optional">
-                <textarea
-                  value={draft.bio}
-                  onChange={(event) => updateField('bio', event.target.value)}
-                  rows={4}
-                />
-              </Field>
-              <div className="gp-grid-2">
-                <Field label="Skills" hint="Optional. Separate with commas.">
-                  <input
-                    value={draft.skillsText}
-                    onChange={(event) => updateField('skillsText', event.target.value)}
-                    placeholder="English writing, Canva, Excel"
-                  />
-                </Field>
-                <Field label="Rate" hint="Optional">
-                  <input
-                    value={draft.rate_text}
-                    onChange={(event) => updateField('rate_text', event.target.value)}
-                    placeholder="Rs 4,000 per pack · from $15"
-                  />
-                </Field>
-              </div>
-              <div className="gp-grid-2">
-                <Field label="WhatsApp" hint="Optional">
-                  <input
-                    value={draft.links.whatsapp}
-                    onChange={(event) => updateLink('whatsapp', event.target.value)}
-                    placeholder="03001234567"
-                  />
-                </Field>
-                <Field label="Website" hint="Optional">
-                  <input
-                    value={draft.links.website}
-                    onChange={(event) => updateLink('website', event.target.value)}
-                  />
-                </Field>
-                <Field label="Upwork" hint="Optional">
-                  <input
-                    value={draft.links.upwork}
-                    onChange={(event) => updateLink('upwork', event.target.value)}
-                  />
-                </Field>
-                <Field label="Fiverr" hint="Optional">
-                  <input
-                    value={draft.links.fiverr}
-                    onChange={(event) => updateLink('fiverr', event.target.value)}
-                  />
-                </Field>
-                <Field label="LinkedIn" hint="Optional">
-                  <input
-                    value={draft.links.linkedin}
-                    onChange={(event) => updateLink('linkedin', event.target.value)}
-                  />
-                </Field>
-                <Field label="Public link" hint="Letters, numbers, and hyphens only.">
-                  <input
-                    value={draft.slug}
-                    onChange={(event) => updateField('slug', event.target.value)}
-                  />
-                </Field>
-              </div>
-              <label className="gp-check">
-                <input
-                  type="checkbox"
-                  checked={draft.is_public}
-                  onChange={(event) => updateField('is_public', event.target.checked)}
-                />
-                Publish this portfolio so anyone with the link can view it
-              </label>
-              <div className="gp-actions">
-                <button className="btn btn-primary" type="submit" disabled={isSaving || isLoading}>
-                  {isSaving ? 'Saving…' : 'Save profile'}
-                </button>
-                {draft.is_public && publicPath ? (
-                  <>
-                    <Link className="btn btn-secondary" to={publicPath} target="_blank" rel="noreferrer">
-                      Open public page
-                    </Link>
-                    <button className="btn btn-secondary" type="button" onClick={handleCopyLink}>
-                      Copy link
-                    </button>
-                  </>
+                </form>
+                {gigs.length ? (
+                  <ul className="pf-list" aria-label="Your gigs">
+                    {gigs.map((gig) => (
+                      <li className="pf-list-item" key={gig.id}>
+                        <div>
+                          <strong>{gig.title}</strong>
+                          <span>
+                            {gig.category} · {formatGigPrice(gig)}
+                            {gig.delivery ? ` · ${gig.delivery}` : ''}
+                          </span>
+                        </div>
+                        <div className="pf-list-actions">
+                          <button className="pf-small-btn" type="button" onClick={() => handleEditGig(gig)} disabled={isGigBusy}>
+                            Edit
+                          </button>
+                          <button
+                            className="pf-small-btn is-danger"
+                            type="button"
+                            onClick={() => handleDeleteGig(gig)}
+                            disabled={isGigBusy}
+                          >
+                            {pendingGigId === gig.id ? 'Confirm remove' : 'Remove'}
+                          </button>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
                 ) : null}
+                {stepNav('Profile', 'Next: work samples')}
               </div>
-            </form>
+            ) : null}
 
-            <form className="planner-card planner-form gp-form" onSubmit={handleAddItem}>
-              <h3>Work & documents</h3>
-              <p className="gp-note">
-                Upload PDFs, images, or Word files up to 8 MB. You can add up to {MAX_PORTFOLIO_ITEMS} items
-                ({items.length} used).
-              </p>
-              <Field label="Title">
-                <input
-                  value={itemDraft.title}
-                  onChange={(event) => setItemDraft((current) => ({ ...current, title: event.target.value }))}
-                  placeholder="Instagram pack for a local shop"
-                />
-              </Field>
-              <Field label="Description" hint="Optional">
-                <textarea
-                  value={itemDraft.description}
-                  onChange={(event) => setItemDraft((current) => ({ ...current, description: event.target.value }))}
-                  rows={3}
-                />
-              </Field>
-              <div className="gp-grid-2">
-                <Field label="File" hint="PDF, images, or Word · up to 8 MB">
-                  <div className="gp-upload">
-                    <span className={`gp-upload-btn ${itemDraft.file ? 'has-file' : ''}`}>
-                      <span className="gp-upload-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-                          <path d="M12 16V7" strokeLinecap="round" />
-                          <path d="M8.5 10.5 12 7l3.5 3.5" strokeLinecap="round" strokeLinejoin="round" />
-                          <path d="M6 17.5v1.2A1.3 1.3 0 0 0 7.3 20h9.4a1.3 1.3 0 0 0 1.3-1.3v-1.2" strokeLinecap="round" />
-                        </svg>
-                      </span>
-                      <span className="gp-upload-copy">
-                        <strong>{itemDraft.file ? 'File selected' : 'Upload a file'}</strong>
-                        <em>
-                          {itemDraft.file
-                            ? `${itemDraft.file.name} · ${formatFileSize(itemDraft.file.size)}`
-                            : 'Click to browse'}
-                        </em>
-                      </span>
+            {step === 2 ? (
+              <div className="pf-form">
+                <header>
+                  <h3>3. Work samples</h3>
+                  <p className="pf-muted">
+                    Proof wins clients. Add an essay you wrote, a translation, a lesson plan, a design or a certificate.
+                    Remove anything private (names, phone numbers) first. Up to {MAX_PORTFOLIO_ITEMS} items ({items.length}{' '}
+                    used).
+                  </p>
+                </header>
+                <form className="pf-form" onSubmit={handleAddItem}>
+                  <Field label="Title">
+                    <input
+                      value={itemDraft.title}
+                      onChange={(e) => setItemDraft((c) => ({ ...c, title: e.target.value }))}
+                      placeholder="Sample essay feedback"
+                    />
+                  </Field>
+                  <Field label="Short description" optional>
+                    <textarea
+                      value={itemDraft.description}
+                      onChange={(e) => setItemDraft((c) => ({ ...c, description: e.target.value }))}
+                      rows={2}
+                    />
+                  </Field>
+                  <div className="pf-form-row">
+                    <Field
+                      label="Upload a file"
+                      hint={itemDraft.file ? `${itemDraft.file.name} · ${formatFileSize(itemDraft.file.size)}` : 'PDF, Word or image, up to 8 MB'}
+                    >
                       <input
                         key={fileInputKey}
                         type="file"
                         accept={ALLOWED_PORTFOLIO_EXTENSIONS.join(',')}
-                        onChange={(event) =>
-                          setItemDraft((current) => ({ ...current, file: event.target.files?.[0] || null }))
-                        }
+                        onChange={(e) => setItemDraft((c) => ({ ...c, file: e.target.files?.[0] || null }))}
                       />
-                    </span>
+                    </Field>
+                    <Field label="Or paste a link" hint="Google Drive, Behance, a published article…">
+                      <input
+                        value={itemDraft.url}
+                        onChange={(e) => setItemDraft((c) => ({ ...c, url: e.target.value }))}
+                        placeholder="https://"
+                      />
+                    </Field>
                   </div>
-                </Field>
-                <Field label="Or a link" hint="Optional. Behance, Google Drive, GitHub…">
+                  {notices}
+                  <div className="pf-actions">
+                    <button
+                      className="btn btn-primary"
+                      type="submit"
+                      disabled={isUploading || items.length >= MAX_PORTFOLIO_ITEMS}
+                    >
+                      {isUploading ? 'Uploading…' : 'Add sample'}
+                    </button>
+                  </div>
+                </form>
+                {items.length ? (
+                  <ul className="pf-list" aria-label="Your work samples">
+                    {items.map((item) => (
+                      <li className="pf-list-item" key={item.id}>
+                        <div>
+                          <strong>{item.title}</strong>
+                          <span>{item.fileName || item.externalUrl}</span>
+                        </div>
+                        <button className="pf-small-btn is-danger" type="button" onClick={() => handleDeleteItem(item)}>
+                          {pendingDeleteId === item.id ? 'Confirm remove' : 'Remove'}
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
+                {stepNav('Gigs', 'Next: contact & publish')}
+              </div>
+            ) : null}
+
+            {step === 3 ? (
+              <form className="pf-form" onSubmit={handlePublishSubmit}>
+                <header>
+                  <h3>4. Contact & publish</h3>
+                  <p className="pf-muted">
+                    Clients contact you directly. Your WhatsApp number powers the "Get in touch" button on every gig.
+                  </p>
+                </header>
+                <Field label="WhatsApp number" hint="Recommended. Example: 03001234567. It appears on your public page.">
                   <input
-                    value={itemDraft.url}
-                    onChange={(event) => setItemDraft((current) => ({ ...current, url: event.target.value }))}
-                    placeholder="https://"
+                    value={draft.links.whatsapp}
+                    onChange={(e) => updateLink('whatsapp', e.target.value)}
+                    placeholder="03001234567"
+                    inputMode="tel"
                   />
                 </Field>
-              </div>
-              <div className="gp-actions">
-                <button className="btn btn-primary" type="submit" disabled={isUploading || items.length >= MAX_PORTFOLIO_ITEMS}>
-                  {isUploading ? 'Uploading…' : 'Add to portfolio'}
-                </button>
-              </div>
-
-              {items.length ? (
-                <ul className="gp-manage-list">
-                  {items.map((item) => (
-                    <li key={item.id}>
-                      <div>
-                        <strong>{item.title}</strong>
-                        {item.fileName ? <span>{item.fileName}</span> : null}
-                        {item.externalUrl ? <span>{item.externalUrl}</span> : null}
-                      </div>
-                      <button className="btn btn-secondary" type="button" onClick={() => handleDeleteItem(item)}>
-                        {pendingDeleteId === item.id ? 'Confirm remove' : 'Remove'}
+                <div className="pf-form-row">
+                  <Field label="LinkedIn" optional>
+                    <input value={draft.links.linkedin} onChange={(e) => updateLink('linkedin', e.target.value)} placeholder="https://" />
+                  </Field>
+                  <Field label="Fiverr" optional>
+                    <input value={draft.links.fiverr} onChange={(e) => updateLink('fiverr', e.target.value)} placeholder="https://" />
+                  </Field>
+                  <Field label="Upwork" optional>
+                    <input value={draft.links.upwork} onChange={(e) => updateLink('upwork', e.target.value)} placeholder="https://" />
+                  </Field>
+                  <Field label="Website" optional>
+                    <input value={draft.links.website} onChange={(e) => updateLink('website', e.target.value)} placeholder="https://" />
+                  </Field>
+                </div>
+                <div className="pf-form-row">
+                  <Field label="General rate" optional hint="Shown on your profile, e.g. From Rs 1,500 per task.">
+                    <input value={draft.rate_text} onChange={(e) => updateField('rate_text', e.target.value)} />
+                  </Field>
+                  <Field label="Your link name" hint={`Letters, numbers and hyphens. Your page: ${publicUrl || '…'}`}>
+                    <input value={draft.slug} onChange={(e) => updateField('slug', e.target.value)} />
+                  </Field>
+                </div>
+                <label className="pf-check">
+                  <input type="checkbox" checked={draft.is_public} onChange={(e) => updateField('is_public', e.target.checked)} />
+                  <span>
+                    <strong>Publish my profile.</strong> Anyone with the link can see it, and it is listed on Browse CSS Jawans.
+                    Untick any time to make it private again.
+                  </span>
+                </label>
+                {notices}
+                <div className="pf-step-nav">
+                  <button type="button" className="btn btn-secondary" onClick={() => goTo(2)}>
+                    ← Work samples
+                  </button>
+                  <button className="btn btn-primary" type="submit" disabled={isSaving || isLoading}>
+                    {isSaving ? 'Saving…' : draft.is_public ? 'Save and publish' : 'Save'}
+                  </button>
+                </div>
+                {savedPublic && publicPath ? (
+                  <div className="pf-panel">
+                    <p className="pf-field">
+                      <span>Your public link</span>
+                    </p>
+                    <div className="pf-link-box">{publicUrl}</div>
+                    <div className="pf-actions">
+                      <button className="btn btn-secondary" type="button" onClick={handleCopyLink}>
+                        Copy link
                       </button>
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p className="gp-empty">No work samples yet.</p>
-              )}
-            </form>
-          </div>
-
-        </div>
-
-        <form id="gp-gig-form" className="planner-card planner-form gp-form gp-gig-form" onSubmit={handleSaveGig}>
-          <h3>{editingGigId ? 'Edit gig' : 'Your gigs'}</h3>
-          <p className="gp-note">
-            Publish up to {MAX_GIGS} services, Fiverr-style. Use Edit or Remove on a saved gig to update it.
-            {' '}{(draft.gigs || []).length}/{MAX_GIGS} used.
-          </p>
-          <div className="gp-grid-2">
-            <Field label="Gig title">
-              <input
-                value={gigDraft.title}
-                onChange={(event) => setGigDraft((current) => ({ ...current, title: event.target.value }))}
-                placeholder="I will write 5 CSS current affairs notes"
-              />
-            </Field>
-            <Field label="Category">
-              <select
-                value={gigDraft.category}
-                onChange={(event) => setGigDraft((current) => ({ ...current, category: event.target.value }))}
-              >
-                {GIG_CATEGORIES.map((category) => (
-                  <option key={category} value={category}>
-                    {category}
-                  </option>
-                ))}
-              </select>
-            </Field>
-          </div>
-          <Field label="What the client gets" hint="Optional">
-            <textarea
-              value={gigDraft.description}
-              onChange={(event) => setGigDraft((current) => ({ ...current, description: event.target.value }))}
-              rows={3}
-              placeholder="5 typed notes, sources listed, delivered as a PDF."
-            />
-          </Field>
-          <div className="gp-grid-2">
-            <Field label="Currency">
-              <select
-                value={gigDraft.currency}
-                onChange={(event) => setGigDraft((current) => ({ ...current, currency: event.target.value }))}
-              >
-                {GIG_CURRENCIES.map((item) => (
-                  <option key={item.code} value={item.code}>
-                    {item.code} ({item.symbol})
-                  </option>
-                ))}
-              </select>
-            </Field>
-            <Field label="Starting price">
-              <input
-                value={gigDraft.price}
-                onChange={(event) => setGigDraft((current) => ({ ...current, price: event.target.value }))}
-                placeholder="3000"
-              />
-            </Field>
-          </div>
-          <Field label="Delivery time" hint="Optional">
-            <input
-              value={gigDraft.delivery}
-              onChange={(event) => setGigDraft((current) => ({ ...current, delivery: event.target.value }))}
-              placeholder="3 days"
-            />
-          </Field>
-          <Field label="Cover image" hint="Optional. PNG, JPG, or WEBP up to 4 MB.">
-            <div className="gp-upload">
-              <span className={`gp-upload-btn ${gigDraft.file ? 'has-file' : ''}`}>
-                <span className="gp-upload-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-                    <path d="M12 16V7" strokeLinecap="round" />
-                    <path d="M8.5 10.5 12 7l3.5 3.5" strokeLinecap="round" strokeLinejoin="round" />
-                    <path d="M6 17.5v1.2A1.3 1.3 0 0 0 7.3 20h9.4a1.3 1.3 0 0 0 1.3-1.3v-1.2" strokeLinecap="round" />
-                  </svg>
-                </span>
-                <span className="gp-upload-copy">
-                  <strong>{gigDraft.file ? 'Cover selected' : 'Upload a cover'}</strong>
-                  <em>
-                    {gigDraft.file
-                      ? `${gigDraft.file.name} · ${formatFileSize(gigDraft.file.size)}`
-                      : 'Makes the gig card look like Fiverr'}
-                  </em>
-                </span>
-                <input
-                  key={gigFileKey}
-                  type="file"
-                  accept={ALLOWED_PHOTO_EXTENSIONS.join(',')}
-                  onChange={(event) =>
-                    setGigDraft((current) => ({ ...current, file: event.target.files?.[0] || null }))
-                  }
-                />
-              </span>
-            </div>
-          </Field>
-          <div className="gp-actions">
-            <button
-              className="btn btn-primary"
-              type="submit"
-              disabled={isGigBusy || (!editingGigId && (draft.gigs || []).length >= MAX_GIGS)}
-            >
-              {isGigBusy ? 'Saving gig…' : editingGigId ? 'Save changes' : 'Add gig'}
-            </button>
-            {editingGigId ? (
-              <button className="btn btn-secondary" type="button" onClick={resetGigForm} disabled={isGigBusy}>
-                Cancel edit
-              </button>
+                      <a className="btn btn-secondary" href={`https://wa.me/?text=${shareText}`} target="_blank" rel="noopener noreferrer">
+                        Share on WhatsApp
+                      </a>
+                      <Link className="pf-text-link" to={publicPath} target="_blank" rel="noreferrer">
+                        Open my page ↗
+                      </Link>
+                    </div>
+                    <p className="pf-muted">
+                      Tip: put the link in your WhatsApp status and bio, Facebook and LinkedIn, and share it in your college
+                      and community groups.
+                    </p>
+                  </div>
+                ) : null}
+              </form>
             ) : null}
           </div>
-          {(draft.gigs || []).length ? (
-            <ul className="gp-manage-list">
-              {draft.gigs.map((gig) => (
-                <li key={gig.id}>
-                  <div>
-                    <strong>{gig.title}</strong>
-                    <span>{[gig.category, formatGigPrice(gig), gig.delivery].filter(Boolean).join(' · ')}</span>
-                  </div>
-                  <div className="gp-manage-actions">
-                    <button className="btn btn-secondary" type="button" onClick={() => handleEditGig(gig)} disabled={isGigBusy}>
-                      Edit
-                    </button>
-                    <button className="btn btn-secondary" type="button" onClick={() => handleDeleteGig(gig)} disabled={isGigBusy}>
-                      {pendingGigId === gig.id ? 'Confirm remove' : 'Remove'}
-                    </button>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p className="gp-empty">No gigs yet.</p>
-          )}
-        </form>
 
-        <aside className="gp-preview-wide">
-          <h3>Live site preview</h3>
-          <GuardianPortfolioShowcase
-            portfolio={draft}
-            items={items}
-            compact
-            emptyLabel="Your public page will show only the fields you fill in."
-          />
-        </aside>
-
-        {message ? <p className="gp-status is-ok">{message}</p> : null}
-        {error ? <p className="planner-error gp-error">{error}</p> : null}
+          <aside className="pf-card pf-preview" aria-label="Live preview">
+            <div className="pf-preview-head">
+              <span>Live preview</span>
+              <span className="pf-muted">
+                {doneCount}/{checklist.length} done
+              </span>
+            </div>
+            <div style={{ padding: '0.9rem 1rem' }}>
+              <div className="pf-progress" aria-hidden="true">
+                <span style={{ width: `${Math.round((doneCount / checklist.length) * 100)}%` }} />
+              </div>
+              <ul className="pf-checklist" style={{ marginTop: '0.8rem' }}>
+                {checklist.map((c) => (
+                  <li key={c.label} className={c.done ? 'is-done' : ''}>
+                    {c.label}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <GuardianPortfolioShowcase portfolio={draft} items={items} compact />
+          </aside>
+        </div>
       </section>
     </main>
   )
+}
+
+/** Steps after the first need a saved profile (name is required to save). */
+function savedOnce(draft) {
+  return Boolean(String(draft.display_name || '').trim())
 }
