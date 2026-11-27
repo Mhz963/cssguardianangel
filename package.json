@@ -13,6 +13,7 @@
     "refresh-fpsc-papers": "node scripts/extract-fpsc-papers.mjs",
     "lint": "eslint .",
     "check:english": "node scripts/validate-english.mjs",
+    "check:practice": "node scripts/validate-practice.mjs",
     "build:conflicts": "node scripts/build-conflicts.mjs",
     "preview": "vite preview"
   },

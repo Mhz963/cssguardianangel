@@ -42,7 +42,6 @@ npm run dev                  # http://localhost:5173
 | `VITE_SUPPORT_EMAIL` | client | Contact address on the privacy, terms and delete-account pages |
 | `SUPABASE_SERVICE_ROLE_KEY` | server only | Admin dashboard and account deletion |
 | `SUPER_ADMIN_EMAIL` | server only | Account allowed to use the admin APIs |
-| `WORLDNEWSAPI_KEY` | dev server only | News feeds in local development |
 | `STRIPE_*`, `PREMIUM_VOUCHER_CODE` | server only | Payments (currently disabled; see `api-disabled/`) |
 
 Never commit real keys. `.env.local` is git-ignored.

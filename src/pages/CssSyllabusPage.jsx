@@ -1,3 +1,4 @@
+import VideoGuide from '../components/VideoGuide.jsx'
 import { compulsorySubjects, optionalGroups, slugify } from '../data/syllabusData'
 import { Link } from 'react-router-dom'
 
@@ -9,6 +10,16 @@ export default function CssSyllabusPage() {
           <p>CSS Syllabus</p>
           <h2>Compulsory and Optional Subjects</h2>
         </div>
+
+        <VideoGuide
+          id="library-guide"
+          src="/media/resource-library-tutorial.mp4"
+          poster="/media/resource-library-tutorial-poster.webp"
+          title="Find your way around the Resource Library"
+          duration="1 min"
+        >
+          CSS Rules, the syllabus, subject pages, lecture slides, past papers and the Source Vault, and how they connect.
+        </VideoGuide>
 
         <article className="syllabus-block">
           <h3>Compulsory Subjects Syllabus</h3>

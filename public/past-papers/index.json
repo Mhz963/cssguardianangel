@@ -1,0 +1,89 @@
+{
+ "version": "202611271214",
+ "subjects": [
+  {
+   "subject": "essay",
+   "title": "Essay",
+   "group": "Compulsory",
+   "questions": 269,
+   "years": 27,
+   "from": 2000,
+   "to": 2026,
+   "topTopics": [
+    "Ethics, philosophy & human nature",
+    "Economy, poverty & development",
+    "Pakistan: governance, democracy & politics"
+   ]
+  },
+  {
+   "subject": "current-affairs",
+   "title": "Current Affairs",
+   "group": "Compulsory",
+   "questions": 129,
+   "years": 17,
+   "from": 2010,
+   "to": 2026,
+   "topTopics": [
+    "Pakistan: political affairs & governance",
+    "International security & great-power rivalry",
+    "Pakistan, India, Afghanistan & Russia"
+   ]
+  },
+  {
+   "subject": "pakistan-affairs",
+   "title": "Pakistan Affairs",
+   "group": "Compulsory",
+   "questions": 119,
+   "years": 17,
+   "from": 2010,
+   "to": 2026,
+   "topTopics": [
+    "Political evolution & democracy",
+    "Ideology of Pakistan, Iqbal & Jinnah",
+    "Constitutional history & debates"
+   ]
+  },
+  {
+   "subject": "islamiat",
+   "title": "Islamic Studies (Islamiat)",
+   "group": "Compulsory",
+   "questions": 130,
+   "years": 17,
+   "from": 2010,
+   "to": 2026,
+   "topTopics": [
+    "Governance, Khilafat and the political system",
+    "Status of women and the family",
+    "Extremism, terrorism and Jihad"
+   ]
+  },
+  {
+   "subject": "gsa",
+   "title": "General Science & Ability",
+   "group": "Compulsory",
+   "questions": 299,
+   "years": 11,
+   "from": 2016,
+   "to": 2026,
+   "topTopics": [
+    "Computers, software, networks & AI",
+    "Arithmetic: percentages, ratios, rates & averages",
+    "Algebra, equations & geometry"
+   ]
+  },
+  {
+   "subject": "international-relations",
+   "title": "International Relations",
+   "group": "Optional · Group I",
+   "questions": 203,
+   "years": 17,
+   "from": 2010,
+   "to": 2026,
+   "topTopics": [
+    "Pakistan's foreign policy",
+    "Scope of IR & the nation-state system",
+    "IR theories & approaches"
+   ]
+  }
+ ]
+}

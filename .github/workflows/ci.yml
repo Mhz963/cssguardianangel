@@ -19,5 +19,6 @@ jobs:
           ONNXRUNTIME_NODE_INSTALL: skip # the site never needs the native ONNX download from nuget.org
       - run: npm run lint
       - run: npm run check:english
+      - run: npm run check:practice
       - run: npm run build
       - run: npm audit --audit-level=high

@@ -1,0 +1,476 @@
+/* Topic-wise Past Papers */
+.ppt-page {
+  padding-bottom: clamp(2.4rem, 5vw, 4rem);
+}
+
+.ppt-lead {
+  max-width: 70ch;
+  margin: 0 0 1.4rem;
+  color: var(--text-secondary);
+  font-size: 1.03rem;
+  line-height: 1.65;
+}
+
+.ppt-muted {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.ppt-error {
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid rgb(239 108 98 / 45%);
+  background: rgb(239 108 98 / 10%);
+}
+
+.ppt-crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: -0.4rem 0 1.2rem;
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+}
+
+.ppt-crumbs a {
+  color: var(--ga-accent-text);
+  font-weight: 700;
+}
+
+.ppt-crumbs .is-current {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.ppt-subjects {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.ppt-subject-card {
+  display: grid;
+  gap: 0.5rem;
+  padding: 1.15rem 1.2rem;
+  border-radius: var(--ga-radius);
+  border: 1px solid var(--ga-card-border);
+  border-top: 3px solid #c9a227;
+  background: var(--ga-card-bg);
+  box-shadow: var(--ga-card-shadow);
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ppt-subject-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--ga-card-shadow-hover);
+}
+
+.ppt-card-kicker {
+  color: var(--ga-accent-text);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.ppt-subject-card strong {
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: 1.15rem;
+}
+
+.ppt-card-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 0.9rem;
+  color: var(--text-secondary);
+  font-size: 0.86rem;
+}
+
+.ppt-card-stats b {
+  color: var(--text-primary);
+}
+
+.ppt-card-top {
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+/* Subject view */
+.ppt-subject-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+.ppt-subject-head h3 {
+  margin: 0.3rem 0 0.25rem;
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: clamp(1.3rem, 3vw, 1.7rem);
+}
+
+.ppt-back {
+  color: var(--ga-accent-text);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.ppt-block {
+  margin-top: 1.4rem;
+  padding: clamp(0.9rem, 2.4vw, 1.3rem);
+  border-radius: var(--ga-radius);
+  border: 1px solid var(--ga-card-border);
+  background: var(--ga-card-bg);
+}
+
+.ppt-block h4 {
+  margin: 0 0 0.6rem;
+  font-size: 0.86rem;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ga-accent-text);
+}
+
+.ppt-rank {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: rank;
+}
+
+.ppt-rank button {
+  display: grid;
+  gap: 0.35rem;
+  width: 100%;
+  padding: 0.75rem 0.85rem;
+  border-radius: 12px;
+  border: 1px solid var(--ga-card-border);
+  background: transparent;
+  color: var(--text-primary);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.ppt-rank button.is-active,
+.ppt-rank button:hover {
+  border-color: #c9a227;
+}
+
+.ppt-bar {
+  display: block;
+  height: 0.45rem;
+  border-radius: 999px;
+  background: var(--ga-card-border);
+  overflow: hidden;
+}
+
+.ppt-bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #f2d56b, #c9a227);
+}
+
+.ppt-heat-wrap {
+  overflow-x: auto;
+  margin-top: 0.6rem;
+}
+
+.ppt-heat {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 3px;
+  font-size: 0.82rem;
+}
+
+.ppt-heat th {
+  color: var(--text-secondary);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.ppt-heat thead th {
+  font-size: 0.74rem;
+}
+
+.ppt-heat tbody th {
+  min-width: 11rem;
+  text-align: left;
+}
+
+.ppt-heat tbody th button {
+  padding: 0.2rem 0.3rem;
+  border: 0;
+  background: none;
+  color: var(--text-primary);
+  font: inherit;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+
+.ppt-heat tr.is-active th button {
+  color: var(--ga-accent-text);
+}
+
+.ppt-heat td {
+  min-width: 1.9rem;
+  height: 1.9rem;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: 800;
+  color: #1b1405;
+  background: rgb(127 127 127 / 8%);
+}
+
+.ppt-heat td.h1 { background: rgb(242 213 107 / 30%); }
+.ppt-heat td.h2 { background: rgb(242 213 107 / 55%); }
+.ppt-heat td.h3 { background: rgb(226 186 70 / 85%); }
+.ppt-heat td.h4 { background: #c9a227; }
+
+.ppt-heat td.ppt-total {
+  background: none;
+  color: var(--ga-accent-text);
+}
+
+.ppt-qs-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.ppt-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 0.4rem 0 1rem;
+}
+
+.ppt-search {
+  flex: 1 1 260px;
+}
+
+.ppt-search,
+.ppt-filters select {
+  padding: 0.6rem 0.8rem;
+  border-radius: 10px;
+  border: 1px solid var(--ga-card-border);
+  background: var(--input-bg, var(--bg-secondary));
+  color: var(--text-primary);
+  font: inherit;
+}
+
+.ppt-filters select {
+  max-width: 100%;
+}
+
+.ppt-list {
+  display: grid;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ppt-list li {
+  padding: 0.85rem 0.95rem;
+  border-radius: 12px;
+  border: 1px solid var(--ga-card-border);
+}
+
+.ppt-list p {
+  margin: 0.4rem 0 0.5rem;
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+
+.ppt-q-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.7rem;
+  align-items: center;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+}
+
+.ppt-year {
+  padding: 0.1rem 0.55rem;
+  border-radius: 999px;
+  background: var(--ga-icon-bg);
+  color: var(--ga-accent-text);
+  font-weight: 800;
+  font-size: 0.76rem;
+}
+
+.ppt-q-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.ppt-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.ppt-tags button {
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--ga-card-border);
+  background: none;
+  color: var(--text-secondary);
+  font: inherit;
+  font-size: 0.74rem;
+  cursor: pointer;
+}
+
+.ppt-link {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--ga-accent-text);
+  font: inherit;
+  font-weight: 700;
+  font-size: 0.86rem;
+  cursor: pointer;
+}
+
+.ppt-sources {
+  margin: 1.2rem 0 0;
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+/* Practice overlay */
+.ppt-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgb(3 6 14 / 72%);
+}
+
+.ppt-overlay > div {
+  width: min(640px, 100%);
+}
+
+.ppt-practice {
+  padding: 1.3rem;
+  border-radius: calc(var(--ga-radius) + 4px);
+  border: 1px solid #c9a227;
+  background: var(--bg-secondary, #0f1424);
+  color: var(--text-primary);
+  box-shadow: 0 20px 50px rgb(0 0 0 / 40%);
+}
+
+.ppt-practice-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ppt-close {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: 1px solid var(--ga-card-border);
+  background: none;
+  color: var(--text-primary);
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.ppt-practice-q {
+  margin: 0.9rem 0;
+  font-size: 1.08rem;
+  line-height: 1.6;
+}
+
+.ppt-timer {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
+  margin-bottom: 0.9rem;
+}
+
+.ppt-timer strong {
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: 2rem;
+  color: var(--ga-accent-text);
+}
+
+.ppt-timer.is-done strong {
+  color: #e5484d;
+}
+
+.ppt-timer span {
+  color: var(--text-secondary);
+  font-size: 0.86rem;
+}
+
+.ppt-practice-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 0.8rem;
+}
+
+@media (max-width: 560px) {
+  .ppt-subject-head .btn {
+    width: 100%;
+  }
+
+  .ppt-heat tbody th {
+    min-width: 8.5rem;
+  }
+}
+
+/* Call-out on the PDF past papers page */
+.pp-topicwise-cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.8rem;
+  margin: 0 0 1.2rem;
+  padding: 0.8rem 1rem;
+  border-radius: 14px;
+  border: 1px solid #c9a227;
+  background: var(--ga-band-bg);
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.pp-topicwise-cta span {
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #f2d56b, #c9a227);
+  color: #1b1405;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.pp-topicwise-cta em {
+  font-style: normal;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}

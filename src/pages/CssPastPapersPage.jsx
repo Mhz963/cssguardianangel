@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+import '../styles/pptopics.css'
 import { FPSC_CSS_PAST_PAPERS_SOURCE, cssPastPapersByYear } from '../data/cssPastPapersData.js'
 import { useState } from 'react'
 
@@ -30,6 +32,12 @@ export default function CssPastPapersPage() {
             FPSC Previous Question Papers (CSS)
           </a>
         </p>
+
+        <Link className="pp-topicwise-cta" to="/css-past-papers/topic-wise">
+          <span>New</span>
+          <strong>Topic-wise past papers</strong>
+          <em>Every question sorted by syllabus topic, with the most repeated topics →</em>
+        </Link>
 
         <div className="papers-toolbar">
           <div className={`year-select ${isYearMenuOpen ? 'open' : ''}`}>

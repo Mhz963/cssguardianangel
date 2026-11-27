@@ -1,10 +1,23 @@
 import logo from '../assets/guardian-angel-logo-720.webp'
-import { clearPasswordRecovery, detectPasswordRecoveryFromUrl, isPasswordRecoveryPending, markPasswordRecovery } from '../utils/authRecovery.js'
+import {
+  cleanRecoveryUrl,
+  clearPasswordRecovery,
+  detectPasswordRecoveryFromUrl,
+  friendlyAuthError,
+  isPasswordRecoveryPending,
+  markPasswordRecovery,
+  readAuthLinkError,
+  readRecoveryTokenHash,
+} from '../utils/authRecovery.js'
 import { hasSupabaseConfig, supabase } from '../utils/supabaseClient.js'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 
 const SIGNIN_DRAFT_KEY = 'ga-signin-draft'
+/** Supabase allows one reset email per address every 60 seconds. */
+const RESEND_COOLDOWN_S = 60
+/** Modes that must stay on this page even while a (recovery) session exists. */
+const RECOVERY_MODES = new Set(['forgot', 'reset', 'code'])
 
 /** Google OAuth is enabled above this width; disabled (greyed) at mobile widths (WebView / small screens). */
 const SIGNIN_GOOGLE_DISABLED_MEDIA = '(max-width: 720px)'
@@ -19,10 +32,12 @@ export default function SignInPage({ authUser, isAuthReady }) {
   const location = useLocation()
   const [searchParams] = useSearchParams()
   const resolveInitialMode = () => {
+    if (readAuthLinkError()) return 'forgot'
     if (isPasswordRecoveryPending() || detectPasswordRecoveryFromUrl()) return 'reset'
     const modeParam = searchParams.get('mode')
     if (modeParam === 'signup') return 'signup'
     if (modeParam === 'forgot') return 'forgot'
+    if (modeParam === 'code') return 'code'
     if (modeParam === 'reset') return 'reset'
     return 'signin'
   }
@@ -41,8 +56,12 @@ export default function SignInPage({ authUser, isAuthReady }) {
     }
   })
   const [confirmPassword, setConfirmPassword] = useState('')
+  const [resetCode, setResetCode] = useState('')
+  const [resendIn, setResendIn] = useState(0)
+  const [isVerifyingLink, setIsVerifyingLink] = useState(() => Boolean(readRecoveryTokenHash()))
+  const linkHandled = useRef(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [error, setError] = useState('')
+  const [error, setError] = useState(readAuthLinkError)
   const [message, setMessage] = useState('')
   const [isNarrowViewport, setIsNarrowViewport] = useState(() => {
     if (typeof window === 'undefined') return false
@@ -59,6 +78,7 @@ export default function SignInPage({ authUser, isAuthReady }) {
   }, [])
 
   useEffect(() => {
+    if (readAuthLinkError()) return
     if (isPasswordRecoveryPending() || detectPasswordRecoveryFromUrl()) {
       markPasswordRecovery()
       setMode('reset')
@@ -66,6 +86,62 @@ export default function SignInPage({ authUser, isAuthReady }) {
     }
     setMode(resolveInitialMode())
   }, [searchParams])
+
+  // Reset links: show a clear message for expired ones, and verify `token_hash` links on this page.
+  useEffect(() => {
+    if (linkHandled.current) return
+    linkHandled.current = true
+    if (readAuthLinkError()) {
+      // The message is already shown (initial state); drop the error from the address bar.
+      clearPasswordRecovery()
+      navigate('/signin?mode=forgot', { replace: true })
+      return
+    }
+    const tokenHash = readRecoveryTokenHash()
+    if (!tokenHash || !supabase) return
+    markPasswordRecovery()
+    supabase.auth
+      .verifyOtp({ token_hash: tokenHash, type: 'recovery' })
+      .then(({ error: verifyError }) => {
+        if (verifyError) {
+          clearPasswordRecovery()
+          navigate('/signin?mode=forgot', { replace: true })
+          setMode('forgot')
+          setError(friendlyAuthError(verifyError))
+          return
+        }
+        cleanRecoveryUrl()
+        setMessage('Link confirmed. Choose a new password for your account.')
+      })
+      .catch((verifyError) => {
+        setMode('forgot')
+        setError(friendlyAuthError(verifyError))
+      })
+      .finally(() => setIsVerifyingLink(false))
+  }, [])
+
+  // In reset mode without a recovery session (old tab, link opened elsewhere), offer the emailed code instead.
+  useEffect(() => {
+    if (mode !== 'reset' || isVerifyingLink || !supabase) return undefined
+    let active = true
+    const timer = window.setTimeout(async () => {
+      const { data } = await supabase.auth.getSession()
+      if (!active || data?.session) return
+      clearPasswordRecovery()
+      setMode('code')
+      setMessage('Enter your email and the code from your reset email, then choose a new password.')
+    }, 1200)
+    return () => {
+      active = false
+      window.clearTimeout(timer)
+    }
+  }, [mode, isVerifyingLink])
+
+  useEffect(() => {
+    if (resendIn <= 0) return undefined
+    const timer = window.setTimeout(() => setResendIn((value) => value - 1), 1000)
+    return () => window.clearTimeout(timer)
+  }, [resendIn])
 
   useEffect(() => {
     if (!supabase) return undefined
@@ -91,14 +167,14 @@ export default function SignInPage({ authUser, isAuthReady }) {
   }, [location.state])
 
   useEffect(() => {
-    if (authUser && isAuthReady && mode !== 'reset' && mode !== 'forgot') {
+    if (authUser && isAuthReady && !RECOVERY_MODES.has(mode) && !isVerifyingLink) {
       const nextPath = resolvePostAuthPath({ from: location.state?.from })
       navigate(nextPath, { replace: true })
     }
-  }, [authUser, isAuthReady, mode, navigate, location.state])
+  }, [authUser, isAuthReady, mode, isVerifyingLink, navigate, location.state])
 
   useEffect(() => {
-    if (mode === 'reset' || mode === 'forgot') return
+    if (RECOVERY_MODES.has(mode)) return
     try {
       localStorage.setItem(SIGNIN_DRAFT_KEY, JSON.stringify(form))
     } catch {
@@ -119,15 +195,33 @@ export default function SignInPage({ authUser, isAuthReady }) {
     setIsSubmitting(true)
     try {
       if (mode === 'forgot') {
+        await sendResetEmail(email)
+        return
+      }
+
+      if (mode === 'code') {
+        const code = resetCode.replace(/\s+/g, '')
         if (!email) {
           setError('Please enter your email address.')
           return
         }
-        const { error: resetError } = await supabase.auth.resetPasswordForEmail(email, {
-          redirectTo: `${window.location.origin}/signin?mode=reset`,
-        })
-        if (resetError) throw resetError
-        setMessage('Password reset link sent. Please check your email and follow the instructions.')
+        if (!/^\d{6,10}$/.test(code)) {
+          setError('Enter the code from your reset email (numbers only).')
+          return
+        }
+        if (!password || password.length < 6) {
+          setError('Password must be at least 6 characters.')
+          return
+        }
+        if (password !== confirmPassword) {
+          setError('Passwords do not match.')
+          return
+        }
+        const { error: verifyError } = await supabase.auth.verifyOtp({ email, token: code, type: 'recovery' })
+        if (verifyError) throw verifyError
+        const { error: updateError } = await supabase.auth.updateUser({ password })
+        if (updateError) throw updateError
+        finishReset()
         return
       }
 
@@ -144,14 +238,15 @@ export default function SignInPage({ authUser, isAuthReady }) {
           setError('Password must be at least 6 characters.')
           return
         }
+        const { data: sessionData } = await supabase.auth.getSession()
+        if (!sessionData?.session) {
+          setMode('code')
+          setError(friendlyAuthError({ message: 'Auth session missing' }))
+          return
+        }
         const { error: updateError } = await supabase.auth.updateUser({ password })
         if (updateError) throw updateError
-        clearPasswordRecovery()
-        setConfirmPassword('')
-        setForm((current) => ({ ...current, password: '' }))
-        setMessage('Password updated successfully. Redirecting...')
-        const nextPath = resolvePostAuthPath({ from: location.state?.from })
-        navigate(nextPath, { replace: true })
+        finishReset()
         return
       }
 
@@ -180,7 +275,54 @@ export default function SignInPage({ authUser, isAuthReady }) {
         if (signInError) throw signInError
       }
     } catch (submitError) {
-      setError(submitError?.message || 'Unable to continue. Please try again.')
+      setError(
+        RECOVERY_MODES.has(mode)
+          ? friendlyAuthError(submitError)
+          : submitError?.message || 'Unable to continue. Please try again.',
+      )
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
+  async function sendResetEmail(email) {
+    if (!email) {
+      setError('Please enter your email address.')
+      return
+    }
+    const { error: resetError } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: `${window.location.origin}/signin?mode=reset`,
+    })
+    if (resetError) throw resetError
+    setResendIn(RESEND_COOLDOWN_S)
+    setResetCode('')
+    setForm((current) => ({ ...current, password: '' }))
+    setConfirmPassword('')
+    setMode('code')
+    setMessage(
+      `If an account exists for ${email}, a reset email is on its way. Open the link in it, or enter the code from the email below. Check your spam folder if it has not arrived in a few minutes.`,
+    )
+  }
+
+  function finishReset() {
+    clearPasswordRecovery()
+    setConfirmPassword('')
+    setResetCode('')
+    setForm((current) => ({ ...current, password: '' }))
+    setMessage('Password updated successfully. Redirecting...')
+    const nextPath = resolvePostAuthPath({ from: location.state?.from })
+    navigate(nextPath, { replace: true })
+  }
+
+  const handleResend = async () => {
+    if (resendIn > 0 || isSubmitting || !supabase) return
+    setError('')
+    setMessage('')
+    setIsSubmitting(true)
+    try {
+      await sendResetEmail(form.email.trim())
+    } catch (resendError) {
+      setError(friendlyAuthError(resendError))
     } finally {
       setIsSubmitting(false)
     }
@@ -223,7 +365,7 @@ export default function SignInPage({ authUser, isAuthReady }) {
             <h2 className="auth-title-pump">
               {mode === 'signup'
                 ? 'Join The Guardian Angel Community'
-                : mode === 'forgot'
+                : mode === 'forgot' || mode === 'code'
                   ? 'Reset Your Password'
                   : mode === 'reset'
                     ? 'Set a New Password'
@@ -238,7 +380,14 @@ export default function SignInPage({ authUser, isAuthReady }) {
             </p>
           ) : null}
           {mode === 'reset' ? (
-            <p className="auth-mode-lead">Choose a new password for your Guardian Angel account.</p>
+            <p className="auth-mode-lead">
+              {isVerifyingLink ? 'Checking your reset link...' : 'Choose a new password for your Guardian Angel account.'}
+            </p>
+          ) : null}
+          {mode === 'code' ? (
+            <p className="auth-mode-lead">
+              Enter the code from your reset email and choose a new password. This works on any device.
+            </p>
           ) : null}
           <form className="planner-form" onSubmit={handleSubmit}>
             {mode === 'signup' ? (
@@ -270,9 +419,25 @@ export default function SignInPage({ authUser, isAuthReady }) {
             </label>
             ) : null}
 
-            {mode === 'signin' || mode === 'signup' || mode === 'reset' ? (
+            {mode === 'code' ? (
+              <label>
+                Reset Code
+                <input
+                  name="resetCode"
+                  type="text"
+                  inputMode="numeric"
+                  autoComplete="one-time-code"
+                  value={resetCode}
+                  onChange={(event) => setResetCode(event.target.value)}
+                  placeholder="Code from the email"
+                  required
+                />
+              </label>
+            ) : null}
+
+            {mode === 'signin' || mode === 'signup' || mode === 'reset' || mode === 'code' ? (
             <label>
-              {mode === 'reset' ? 'New Password' : 'Password'}
+              {mode === 'reset' || mode === 'code' ? 'New Password' : 'Password'}
               <input
                 name="password"
                 type="password"
@@ -281,12 +446,13 @@ export default function SignInPage({ authUser, isAuthReady }) {
                   setForm((current) => ({ ...current, password: event.target.value }))
                 }
                 required
-                minLength={mode === 'reset' ? 6 : undefined}
+                autoComplete={mode === 'signin' ? 'current-password' : 'new-password'}
+                minLength={mode === 'reset' || mode === 'code' ? 6 : undefined}
               />
             </label>
             ) : null}
 
-            {mode === 'reset' ? (
+            {mode === 'reset' || mode === 'code' ? (
               <label>
                 Confirm New Password
                 <input
@@ -294,6 +460,7 @@ export default function SignInPage({ authUser, isAuthReady }) {
                   type="password"
                   value={confirmPassword}
                   onChange={(event) => setConfirmPassword(event.target.value)}
+                  autoComplete="new-password"
                   required
                   minLength={6}
                 />
@@ -316,15 +483,39 @@ export default function SignInPage({ authUser, isAuthReady }) {
               </p>
             ) : null}
 
+            {mode === 'forgot' ? (
+              <p className="auth-forgot-link">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setError('')
+                    setMessage('')
+                    setMode('code')
+                  }}
+                  disabled={isSubmitting}
+                >
+                  Already have a code?
+                </button>
+              </p>
+            ) : null}
+
+            {mode === 'code' ? (
+              <p className="auth-forgot-link">
+                <button type="button" onClick={handleResend} disabled={isSubmitting || resendIn > 0}>
+                  {resendIn > 0 ? `Resend email in ${resendIn}s` : 'Resend reset email'}
+                </button>
+              </p>
+            ) : null}
+
             <div className="blog-create-actions">
-              <button className="btn btn-primary planner-submit" type="submit" disabled={isSubmitting}>
+              <button className="btn btn-primary planner-submit" type="submit" disabled={isSubmitting || isVerifyingLink}>
                 {mode === 'signup'
                   ? 'Create Account'
                   : mode === 'forgot'
                     ? isSubmitting
                       ? 'Sending...'
                       : 'Send Reset Link'
-                    : mode === 'reset'
+                    : mode === 'reset' || mode === 'code'
                       ? isSubmitting
                         ? 'Updating...'
                         : 'Update Password'
@@ -362,7 +553,8 @@ export default function SignInPage({ authUser, isAuthReady }) {
               onClick={() => {
                 setError('')
                 setMessage('')
-                if (mode === 'forgot' || mode === 'reset') {
+                if (RECOVERY_MODES.has(mode)) {
+                  clearPasswordRecovery()
                   setMode('signin')
                   return
                 }
@@ -370,7 +562,7 @@ export default function SignInPage({ authUser, isAuthReady }) {
               }}
               disabled={isSubmitting}
             >
-              {mode === 'forgot' || mode === 'reset'
+              {RECOVERY_MODES.has(mode)
                 ? 'Back to Sign In'
                 : mode === 'signup'
                   ? 'Have an account? Sign In'

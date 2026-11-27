@@ -1,3 +1,4 @@
+import VideoGuide from './components/VideoGuide.jsx'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { FIRST_MONTH_PRICE_PKR, MONTHLY_PRICE_PKR } from './utils/paymentClient.js'
@@ -141,6 +142,18 @@ function GuardianStudyPlannerLandingPage({ authUser }) {
             </p>
           </footer>
         </div>
+      </section>
+
+      <section className="container gsp-landing-guide">
+        <VideoGuide
+          id="planner-guide"
+          src="/media/study-planner-tutorial.mp4"
+          poster="/media/study-planner-tutorial-poster.webp"
+          title="See the Study Planner in action"
+          duration="2 min"
+        >
+          Lock your subjects, generate your plan, track study hours and follow your progress in the Guardian Angel Report.
+        </VideoGuide>
       </section>
 
       {activeFeature ? (

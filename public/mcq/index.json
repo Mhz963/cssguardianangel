@@ -1,0 +1,785 @@
+{
+ "version": "202611271214",
+ "mpt": {
+  "source": [
+   "https://www.fpsc.gov.pk/uploads/mpt-rules/1767074018441_MPT-rules.pdf",
+   "https://www.fpsc.gov.pk/uploads/syllabus/1767073666057_MPT-Syllabus.pdf",
+   "https://fpsc.gov.pk/sites/default/files/Advance-Public-Notice-CSS-2023.pdf",
+   "https://www.fpsc.gov.pk/uploads/content/1785753970885_MPT_CE-2027.pdf"
+  ],
+  "sourceNotes": "Rule 10A and Appendix-III of the CSS CE Rules 2019 (SRO 1516(I)/2021, 27 Nov 2021) set the 200 minutes, 200 marks, 33% threshold and subject marks. FPSC's Advance Public Notice for CSS 2023 (1 July 2022) adds 200 MCQs of one mark each and 'No Negative Marking'. The CE-2027 MPT notice (2 Aug 2026) keeps the CSS CE Rules 2019 unchanged.",
+  "questions": 200,
+  "marks": 200,
+  "minutes": 200,
+  "passPercent": 33,
+  "passMarks": 66,
+  "negativeMarking": false,
+  "introduced": "Notified 27 November 2021; first held for CSS CE-2022 (February 2022)",
+  "areas": [
+   {
+    "id": "english",
+    "label": "English",
+    "marks": 50,
+    "percent": 25,
+    "banks": [
+     "english"
+    ],
+    "syllabus": "English, including its vocabulary, grammar usage and comprehension."
+   },
+   {
+    "id": "general-abilities",
+    "label": "General Abilities",
+    "marks": 60,
+    "percent": 30,
+    "banks": [
+     "quantitative",
+     "analytical"
+    ],
+    "syllabus": "General abilities, including basic arithmetic (SSC level), algebra (SSC level) and geometry (SSC level), logical problem solving, analytical abilities and mental abilities."
+   },
+   {
+    "id": "general-knowledge",
+    "label": "General Knowledge",
+    "marks": 50,
+    "percent": 25,
+    "banks": [
+     "general-science",
+     "current-affairs",
+     "pakistan-affairs",
+     "general-knowledge"
+    ],
+    "syllabus": "General knowledge, including everyday science, current affairs and Pakistan affairs (per the CSS compulsory-subject syllabi)."
+   },
+   {
+    "id": "islamiat",
+    "label": "Islamic Studies (or Civics & Ethics for non-Muslims)",
+    "marks": 20,
+    "percent": 10,
+    "banks": [
+     "islamiat"
+    ],
+    "syllabus": "Islamic Studies as per the CSS compulsory syllabus. Non-Muslims may opt for Civics & Ethics instead: definition, nature and significance of civics; the state and its elements; organs of state; fundamental human rights; rights and obligations of non-Muslims under the 1973 Constitution; UN aims, organs and agencies; human values; integrity, impartiality, objectivity, dedication to public service, empathy and tolerance; emotional intelligence in administration."
+   },
+   {
+    "id": "urdu",
+    "label": "Urdu",
+    "marks": 20,
+    "percent": 10,
+    "banks": [],
+    "syllabus": "Urdu, including grammar usage and translation: parts of speech (aqsam-e-kalima), compound verbs and tenses, singular/plural, sentence structure, word pairs, gender, synonyms and antonyms, translation."
+   }
+  ]
+ },
+ "banks": [
+  {
+   "id": "pakistan-affairs",
+   "label": "Pakistan Affairs",
+   "count": 179,
+   "real": 49,
+   "topics": [
+    {
+     "name": "Pakistan movement",
+     "count": 26
+    },
+    {
+     "name": "Constitutional history",
+     "count": 24
+    },
+    {
+     "name": "Constitution and institutions",
+     "count": 22
+    },
+    {
+     "name": "Culture and heritage",
+     "count": 21
+    },
+    {
+     "name": "Geography and resources",
+     "count": 17
+    },
+    {
+     "name": "Foreign relations",
+     "count": 12
+    },
+    {
+     "name": "Foreign policy",
+     "count": 9
+    },
+    {
+     "name": "Kashmir",
+     "count": 9
+    },
+    {
+     "name": "Defence",
+     "count": 5
+    },
+    {
+     "name": "Constitution of Pakistan",
+     "count": 5
+    },
+    {
+     "name": "Books and authors",
+     "count": 4
+    },
+    {
+     "name": "Economy",
+     "count": 4
+    },
+    {
+     "name": "Geography of Pakistan",
+     "count": 3
+    },
+    {
+     "name": "Economy of Pakistan",
+     "count": 3
+    },
+    {
+     "name": "Pakistan movement leaders",
+     "count": 2
+    },
+    {
+     "name": "CPEC",
+     "count": 2
+    },
+    {
+     "name": "Pakistan-India relations",
+     "count": 2
+    },
+    {
+     "name": "Early years of Pakistan",
+     "count": 2
+    },
+    {
+     "name": "Khilafat movement",
+     "count": 2
+    },
+    {
+     "name": "Ancient history",
+     "count": 1
+    },
+    {
+     "name": "Muslim rule in South Asia",
+     "count": 1
+    },
+    {
+     "name": "People and achievements",
+     "count": 1
+    },
+    {
+     "name": "Water and Indus Waters Treaty",
+     "count": 1
+    },
+    {
+     "name": "Energy",
+     "count": 1
+    }
+   ]
+  },
+  {
+   "id": "islamiat",
+   "label": "Islamiat",
+   "count": 161,
+   "real": 51,
+   "topics": [
+    {
+     "name": "Qur'an",
+     "count": 27
+    },
+    {
+     "name": "Seerah",
+     "count": 18
+    },
+    {
+     "name": "Islamic civilisation",
+     "count": 16
+    },
+    {
+     "name": "Islamic state, economy and society",
+     "count": 14
+    },
+    {
+     "name": "Khulafa-e-Rashideen",
+     "count": 12
+    },
+    {
+     "name": "Pillars of Islam",
+     "count": 10
+    },
+    {
+     "name": "Islamic scholarship",
+     "count": 8
+    },
+    {
+     "name": "Hadith and Sunnah",
+     "count": 7
+    },
+    {
+     "name": "Articles of faith",
+     "count": 7
+    },
+    {
+     "name": "Quran",
+     "count": 5
+    },
+    {
+     "name": "Seerah (Madinah)",
+     "count": 5
+    },
+    {
+     "name": "Companions",
+     "count": 4
+    },
+    {
+     "name": "Hadith sciences",
+     "count": 4
+    },
+    {
+     "name": "Muslim rule in South Asia",
+     "count": 4
+    },
+    {
+     "name": "Zakat",
+     "count": 3
+    },
+    {
+     "name": "Islamic jurisprudence",
+     "count": 3
+    },
+    {
+     "name": "Seerah (Makkah)",
+     "count": 2
+    },
+    {
+     "name": "Ummahat-ul-Momineen",
+     "count": 2
+    },
+    {
+     "name": "Islam and the modern world",
+     "count": 2
+    },
+    {
+     "name": "Islamic law of inheritance",
+     "count": 1
+    },
+    {
+     "name": "Salah",
+     "count": 1
+    },
+    {
+     "name": "Hajj",
+     "count": 1
+    },
+    {
+     "name": "Seerah and Sunnah",
+     "count": 1
+    },
+    {
+     "name": "Revealed books",
+     "count": 1
+    },
+    {
+     "name": "Family in Islam",
+     "count": 1
+    },
+    {
+     "name": "Islamic economics",
+     "count": 1
+    },
+    {
+     "name": "Beliefs",
+     "count": 1
+    }
+   ]
+  },
+  {
+   "id": "current-affairs",
+   "label": "Current Affairs",
+   "count": 139,
+   "real": 49,
+   "topics": [
+    {
+     "name": "International organisations",
+     "count": 37
+    },
+    {
+     "name": "Treaties and agreements",
+     "count": 13
+    },
+    {
+     "name": "Pakistan's international relations",
+     "count": 13
+    },
+    {
+     "name": "Conflicts and crises",
+     "count": 12
+    },
+    {
+     "name": "Global economy",
+     "count": 8
+    },
+    {
+     "name": "Climate change",
+     "count": 7
+    },
+    {
+     "name": "World politics",
+     "count": 7
+    },
+    {
+     "name": "Middle East",
+     "count": 6
+    },
+    {
+     "name": "Books and authors",
+     "count": 6
+    },
+    {
+     "name": "Climate and environment",
+     "count": 5
+    },
+    {
+     "name": "World geography",
+     "count": 4
+    },
+    {
+     "name": "Awards and honours",
+     "count": 3
+    },
+    {
+     "name": "Constitution of Pakistan",
+     "count": 2
+    },
+    {
+     "name": "Sports",
+     "count": 2
+    },
+    {
+     "name": "Pakistan economy",
+     "count": 2
+    },
+    {
+     "name": "United States",
+     "count": 2
+    },
+    {
+     "name": "Security and defence",
+     "count": 2
+    },
+    {
+     "name": "Asia-Pacific",
+     "count": 2
+    },
+    {
+     "name": "Media and institutions",
+     "count": 1
+    },
+    {
+     "name": "CPEC",
+     "count": 1
+    },
+    {
+     "name": "International days",
+     "count": 1
+    },
+    {
+     "name": "World leaders",
+     "count": 1
+    },
+    {
+     "name": "Europe and China",
+     "count": 1
+    },
+    {
+     "name": "Science and technology",
+     "count": 1
+    }
+   ]
+  },
+  {
+   "id": "general-science",
+   "label": "General Science",
+   "count": 169,
+   "real": 49,
+   "topics": [
+    {
+     "name": "Human biology & health",
+     "count": 28
+    },
+    {
+     "name": "Physics",
+     "count": 24
+    },
+    {
+     "name": "Chemistry",
+     "count": 20
+    },
+    {
+     "name": "Earth & environment",
+     "count": 14
+    },
+    {
+     "name": "Computing & IT",
+     "count": 11
+    },
+    {
+     "name": "Astronomy",
+     "count": 10
+    },
+    {
+     "name": "Energy",
+     "count": 8
+    },
+    {
+     "name": "Computers and communication",
+     "count": 6
+    },
+    {
+     "name": "Environment",
+     "count": 6
+    },
+    {
+     "name": "Plant & cell biology",
+     "count": 5
+    },
+    {
+     "name": "Nutrition",
+     "count": 4
+    },
+    {
+     "name": "Biomolecules",
+     "count": 4
+    },
+    {
+     "name": "Computers and AI",
+     "count": 4
+    },
+    {
+     "name": "Light and optics",
+     "count": 3
+    },
+    {
+     "name": "Weather and climate",
+     "count": 3
+    },
+    {
+     "name": "Food science",
+     "count": 3
+    },
+    {
+     "name": "Basic chemistry",
+     "count": 2
+    },
+    {
+     "name": "Human health",
+     "count": 2
+    },
+    {
+     "name": "Energy resources",
+     "count": 2
+    },
+    {
+     "name": "Plant kingdom",
+     "count": 2
+    },
+    {
+     "name": "Earth and seasons",
+     "count": 1
+    },
+    {
+     "name": "Everyday chemistry",
+     "count": 1
+    },
+    {
+     "name": "Geography of the Earth",
+     "count": 1
+    },
+    {
+     "name": "Soil and agriculture",
+     "count": 1
+    },
+    {
+     "name": "Units of measurement",
+     "count": 1
+    },
+    {
+     "name": "Animal physiology",
+     "count": 1
+    },
+    {
+     "name": "Earth science",
+     "count": 1
+    },
+    {
+     "name": "Animal kingdom",
+     "count": 1
+    }
+   ]
+  },
+  {
+   "id": "quantitative",
+   "label": "Quantitative Ability",
+   "count": 120,
+   "real": 2,
+   "topics": [
+    {
+     "name": "Algebra",
+     "count": 15
+    },
+    {
+     "name": "Percentages",
+     "count": 13
+    },
+    {
+     "name": "Geometry & mensuration",
+     "count": 13
+    },
+    {
+     "name": "Statistics & probability",
+     "count": 13
+    },
+    {
+     "name": "Ratio & proportion",
+     "count": 10
+    },
+    {
+     "name": "Averages",
+     "count": 10
+    },
+    {
+     "name": "Profit & loss",
+     "count": 10
+    },
+    {
+     "name": "Time, speed & distance",
+     "count": 10
+    },
+    {
+     "name": "Simple & compound interest",
+     "count": 9
+    },
+    {
+     "name": "Sequences & series",
+     "count": 8
+    },
+    {
+     "name": "Work & time",
+     "count": 7
+    },
+    {
+     "name": "Permutations and combinations",
+     "count": 1
+    },
+    {
+     "name": "Mensuration",
+     "count": 1
+    }
+   ]
+  },
+  {
+   "id": "analytical",
+   "label": "Analytical Reasoning",
+   "count": 91,
+   "real": 0,
+   "topics": [
+    {
+     "name": "Series completion",
+     "count": 18
+    },
+    {
+     "name": "Coding-decoding",
+     "count": 10
+    },
+    {
+     "name": "Blood relations",
+     "count": 10
+    },
+    {
+     "name": "Direction sense",
+     "count": 10
+    },
+    {
+     "name": "Syllogisms",
+     "count": 10
+    },
+    {
+     "name": "Seating & ordering",
+     "count": 10
+    },
+    {
+     "name": "Analogies",
+     "count": 9
+    },
+    {
+     "name": "Odd one out",
+     "count": 8
+    },
+    {
+     "name": "Data sufficiency",
+     "count": 6
+    }
+   ]
+  },
+  {
+   "id": "english",
+   "label": "English",
+   "count": 99,
+   "real": 0,
+   "topics": [
+    {
+     "name": "Synonyms",
+     "count": 20
+    },
+    {
+     "name": "Antonyms",
+     "count": 18
+    },
+    {
+     "name": "Idioms & phrases",
+     "count": 16
+    },
+    {
+     "name": "Correct usage",
+     "count": 15
+    },
+    {
+     "name": "One-word substitution",
+     "count": 12
+    },
+    {
+     "name": "Prepositions",
+     "count": 9
+    },
+    {
+     "name": "Articles",
+     "count": 5
+    },
+    {
+     "name": "Tenses",
+     "count": 4
+    }
+   ]
+  },
+  {
+   "id": "general-knowledge",
+   "label": "General Knowledge",
+   "count": 90,
+   "real": 0,
+   "topics": [
+    {
+     "name": "Books and authors",
+     "count": 18
+    },
+    {
+     "name": "World geography",
+     "count": 17
+    },
+    {
+     "name": "Capitals and currencies",
+     "count": 15
+    },
+    {
+     "name": "Sports",
+     "count": 12
+    },
+    {
+     "name": "Important days",
+     "count": 10
+    },
+    {
+     "name": "Firsts",
+     "count": 9
+    },
+    {
+     "name": "Inventions and discoveries",
+     "count": 9
+    }
+   ]
+  }
+ ],
+ "papers": [
+  {
+   "source": "FPSC CSS 2024 General Science & Ability",
+   "year": 2024,
+   "bank": "general-science",
+   "bankLabel": "General Science",
+   "count": 16
+  },
+  {
+   "source": "FPSC CSS 2025 General Science & Ability",
+   "year": 2025,
+   "bank": "general-science",
+   "bankLabel": "General Science",
+   "count": 14
+  },
+  {
+   "source": "FPSC CSS 2026 General Science & Ability",
+   "year": 2026,
+   "bank": "general-science",
+   "bankLabel": "General Science",
+   "count": 19
+  },
+  {
+   "source": "FPSC CSS 2024 Current Affairs",
+   "year": 2024,
+   "bank": "current-affairs",
+   "bankLabel": "Current Affairs",
+   "count": 18
+  },
+  {
+   "source": "FPSC CSS 2025 Current Affairs",
+   "year": 2025,
+   "bank": "current-affairs",
+   "bankLabel": "Current Affairs",
+   "count": 14
+  },
+  {
+   "source": "FPSC CSS 2026 Current Affairs",
+   "year": 2026,
+   "bank": "current-affairs",
+   "bankLabel": "Current Affairs",
+   "count": 17
+  },
+  {
+   "source": "FPSC CSS 2024 Pakistan Affairs",
+   "year": 2024,
+   "bank": "pakistan-affairs",
+   "bankLabel": "Pakistan Affairs",
+   "count": 16
+  },
+  {
+   "source": "FPSC CSS 2025 Pakistan Affairs",
+   "year": 2025,
+   "bank": "pakistan-affairs",
+   "bankLabel": "Pakistan Affairs",
+   "count": 16
+  },
+  {
+   "source": "FPSC CSS 2026 Pakistan Affairs",
+   "year": 2026,
+   "bank": "pakistan-affairs",
+   "bankLabel": "Pakistan Affairs",
+   "count": 17
+  },
+  {
+   "source": "FPSC CSS 2024 Islamic Studies",
+   "year": 2024,
+   "bank": "islamiat",
+   "bankLabel": "Islamiat",
+   "count": 17
+  },
+  {
+   "source": "FPSC CSS 2025 Islamic Studies",
+   "year": 2025,
+   "bank": "islamiat",
+   "bankLabel": "Islamiat",
+   "count": 20
+  },
+  {
+   "source": "FPSC CSS 2026 Islamic Studies",
+   "year": 2026,
+   "bank": "islamiat",
+   "bankLabel": "Islamiat",
+   "count": 14
+  }
+ ]
+}

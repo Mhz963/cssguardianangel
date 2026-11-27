@@ -1,3 +1,4 @@
+import VideoGuide from './components/VideoGuide.jsx'
 import {
   lazy,
   Suspense,
@@ -33,7 +34,9 @@ const BlogPage = lazy(() => import('./pages/BlogPage.jsx'))
 const LegacyBlogSlugRedirect = lazy(() => import('./pages/BlogPage.jsx').then((m) => ({ default: m.LegacyBlogSlugRedirect })))
 const KeyDocumentsPage = lazy(() => import('./pages/KeyDocumentsPage.jsx'))
 const CssStudyMaterialPage = lazy(() => import('./pages/CssStudyMaterialPage.jsx'))
-const GlobalAffairsPage = lazy(() => import('./pages/GlobalAffairsPage.jsx'))
+const NewsDeskPage = lazy(() => import('./pages/NewsDeskPage.jsx'))
+const PastPaperTopicsPage = lazy(() => import('./pages/PastPaperTopicsPage.jsx'))
+const TestCentrePage = lazy(() => import('./pages/TestCentrePage.jsx'))
 const SignInPage = lazy(() => import('./pages/SignInPage.jsx'))
 const CssPastPapersPage = lazy(() => import('./pages/CssPastPapersPage.jsx'))
 const PrivacyPolicyPage = lazy(() => import('./pages/InfoPages.jsx').then((m) => ({ default: m.PrivacyPolicyPage })))
@@ -93,15 +96,25 @@ const SEO_BY_PATH = {
     description:
       'Get free CSS study material for compulsory and optional subjects with topic wise coverage for consistent and exam oriented preparation.',
   },
-  '/key-documents': {
-    title: 'Key Documents | Pakistan and International References',
+  '/source-vault': {
+    title: 'Source Vault | Key Documents for CSS: Constitutions, Laws, Treaties',
     description:
-      'Access key Pakistan and international documents including Constitution of Pakistan, UDHR, and UN Charter with quick view and download options.',
+      '177 key documents for the CSS exam, from the Constitution of Pakistan and Objectives Resolution to the UN Charter, UNCLOS and the Paris Agreement, mapped to every CSS subject with official sources.',
   },
-  '/global-affairs': {
-    title: 'Global Affairs | Current Affairs, Pakistan Affairs, Global Conflict Map',
+  '/css-past-papers/topic-wise': {
+    title: 'Topic-wise CSS Past Papers | Most Repeated Topics by Subject',
     description:
-      'Track global current affairs, Pakistan specific developments, and global conflict signals through an interactive map for CSS preparation.',
+      'Every FPSC CSS question for Essay, Current Affairs, Pakistan Affairs, Islamiat, GSA and International Relations, sorted by syllabus topic, with a topic-by-year heatmap of the most repeated topics.',
+  },
+  '/guardian-test-centre': {
+    title: 'Guardian Test Centre | CSS MPT Mock Tests and MCQ Practice',
+    description:
+      'Free CSS MPT mock tests weighted like the real screening test, MCQ practice by subject and topic with explanations, and real FPSC MCQs from past papers.',
+  },
+  '/guardian-news-desk': {
+    title: 'Guardian News Desk | Pakistan and World Current Affairs for CSS',
+    description:
+      "Today's Pakistan and world headlines from Dawn, BBC, UN News and other trusted outlets, sorted by CSS themes: governance, economy, security, diplomacy and climate. Refreshed every 15 minutes.",
   },
   '/signin': {
     title: 'Sign In | Guardian Angel',
@@ -222,15 +235,15 @@ const HOME_RESOURCES = [
   },
   {
     icon: 'scroll',
-    title: 'Key Documents',
-    text: 'The Constitution of Pakistan, UN Charter, UDHR and official sources.',
-    to: '/key-documents',
+    title: 'Source Vault',
+    text: '177 constitutions, laws, treaties and policies, mapped to every CSS subject.',
+    to: '/source-vault',
   },
   {
     icon: 'globe',
-    title: 'Current Affairs',
-    text: 'Pakistan and global affairs with an interactive world conflict map.',
-    to: '/global-affairs',
+    title: 'Guardian News Desk',
+    text: "Today's Pakistan and world headlines, sorted by the themes CSS papers ask about.",
+    to: '/guardian-news-desk',
   },
   {
     icon: 'pen',
@@ -380,8 +393,8 @@ const getFaqHelpfulLinks = (question) => {
   const internalPastPapers = { label: 'Practice CSS Past Papers', url: '/css-past-papers' }
   const internalStudyMaterial = { label: 'Open CSS Study Material', url: '/css-study-material' }
   const internalPlanner = { label: 'Use Guardian Study Planner', url: '/guardian-study-planner' }
-  const internalCurrentAffairs = { label: 'Track Current Affairs and Pakistan Affairs', url: '/global-affairs?tab=global' }
-  const internalMap = { label: 'Open Global Conflict Map', url: '/global-affairs?tab=map' }
+  const internalCurrentAffairs = { label: 'Read today\'s headlines on Guardian News Desk', url: '/guardian-news-desk' }
+  const internalMap = { label: 'Open the Guardian Conflict Atlas', url: '/guardian-conflict-atlas' }
 
   let links = [officialFpsc, internalPlanner, internalSyllabus]
 
@@ -487,14 +500,16 @@ function Header({ theme, onToggleTheme, authUser, onLogout }) {
     pathname === '/css-rules' ||
     pathname === '/css-syllabus' ||
     pathname === '/css-past-papers' ||
+    pathname === '/css-past-papers/topic-wise' ||
     pathname === '/css-study-material' ||
-    pathname === '/key-documents' ||
-    pathname === '/global-affairs'
+    pathname === '/source-vault'
   const isAngelResourcesRoute = (pathname) =>
     pathname === '/guardian-study-planner' ||
     pathname.startsWith('/guardian-portfolio') ||
     pathname.startsWith('/guardian-english') ||
     pathname === '/guardian-conflict-atlas' ||
+    pathname === '/guardian-news-desk' ||
+    pathname === '/guardian-test-centre' ||
     pathname.startsWith('/p/')
 
   const navItems = [
@@ -507,9 +522,9 @@ function Header({ theme, onToggleTheme, authUser, onLogout }) {
         { label: 'CSS Rules', to: '/css-rules' },
         { label: 'CSS Syllabus', to: '/css-syllabus' },
         { label: 'CSS Past Papers', to: '/css-past-papers' },
+        { label: 'Topic-wise Past Papers', to: '/css-past-papers/topic-wise' },
         { label: 'CSS Study Material', to: '/css-study-material' },
-        { label: 'Key Documents', to: '/key-documents' },
-        { label: 'Global Affairs', to: '/global-affairs' },
+        { label: 'Source Vault', to: '/source-vault' },
       ],
     },
     {
@@ -518,6 +533,8 @@ function Header({ theme, onToggleTheme, authUser, onLogout }) {
       isActive: isAngelResourcesRoute(location.pathname),
       children: [
         { label: 'Guardian English Lab', to: '/guardian-english' },
+        { label: 'Guardian Test Centre', to: '/guardian-test-centre' },
+        { label: 'Guardian News Desk', to: '/guardian-news-desk' },
         { label: 'Guardian Conflict Atlas', to: '/guardian-conflict-atlas' },
         { label: 'Guardian Study Planner', to: '/guardian-study-planner' },
         { label: 'Guardian Portfolio', to: '/guardian-portfolio' },
@@ -833,6 +850,18 @@ function HomePage() {
       </section>
 
       <main id="main-content">
+        <section className="home-section container home-guide">
+          <VideoGuide
+            id="welcome-guide"
+            src="/media/welcome-tour.mp4"
+            poster="/media/welcome-tour-poster.webp"
+            title="New here? Take the 2-minute tour"
+            duration="2 min"
+          >
+            Every part of Guardian Angel in one short video: the CSS Resource Library, the practice tools, the Study
+            Planner, and where to start.
+          </VideoGuide>
+        </section>
         <section className="home-section container" id="resources">
           <header className="home-section-head reveal-on-scroll">
             <p className="home-eyebrow">Everything in one place</p>
@@ -1055,9 +1084,12 @@ function Footer() {
           <Link to="/css-syllabus">CSS Syllabus</Link>
           <Link to="/css-rules">CSS Rules</Link>
           <Link to="/css-past-papers">CSS Past Papers</Link>
+          <Link to="/css-past-papers/topic-wise">Topic-wise Past Papers</Link>
           <Link to="/css-study-material">CSS Study Material</Link>
-          <Link to="/key-documents">Key Documents</Link>
+          <Link to="/source-vault">Source Vault</Link>
           <Link to="/guardian-english">Guardian English Lab</Link>
+          <Link to="/guardian-test-centre">Guardian Test Centre</Link>
+          <Link to="/guardian-news-desk">Guardian News Desk</Link>
           <Link to="/guardian-conflict-atlas">Guardian Conflict Atlas</Link>
           <Link to="/guardian-study-planner">Guardian Study Planner</Link>
           <Link to="/guardian-portfolio">Guardian Portfolio</Link>
@@ -1223,7 +1255,7 @@ const upsertLinkTag = (rel, href) => {
   tag.setAttribute('href', href)
 }
 
-const resolveRouteSeo = (pathname, search) => {
+const resolveRouteSeo = (pathname, _search) => {
   if (pathname.startsWith('/blogs/')) {
     return {
       title: 'CSS Blog Article | Guardian Angel',
@@ -1268,30 +1300,24 @@ const resolveRouteSeo = (pathname, search) => {
     }
   }
 
-  if (pathname === '/global-affairs') {
-    const tab = new URLSearchParams(search).get('tab')
-    if (tab === 'pakistan') {
-      return {
-        title: 'Pakistan Affairs News | Guardian Angel',
-        description:
-          'Follow Pakistan affairs updates, policy developments, and national issues relevant for CSS preparation and quality analytical writing.',
-      }
-    }
-    if (tab === 'map') {
-      return {
-        title: 'Global Conflict Map | Guardian Angel',
-        description:
-          'Explore an interactive global conflict map with conflict summaries to support stronger current affairs analysis for CSS preparation.',
-      }
-    }
-  }
-
   return SEO_BY_PATH[pathname] || DEFAULT_SEO
+}
+
+function LegacyKeyDocumentsRedirect() {
+  const { search } = useLocation()
+  return <Navigate to={`/source-vault${search}`} replace />
+}
+
+function LegacyGlobalAffairsRedirect() {
+  const { search } = useLocation()
+  const tab = new URLSearchParams(search).get('tab')
+  if (tab === 'map') return <Navigate to="/guardian-conflict-atlas" replace />
+  return <Navigate to={tab === 'pakistan' ? '/guardian-news-desk' : '/guardian-news-desk?region=world'} replace />
 }
 
 const KNOWN_ROUTES = new Set([
   '/', '/pakistan-affairs', '/global-affairs', '/css-syllabus', '/css-rules', '/css-past-papers', '/css-study-material',
-  '/key-documents', '/constitution-of-pakistan', '/about-guardian-angel', '/privacy-policy', '/terms', '/delete-account', '/blogs', '/blog', '/signin',
+  '/source-vault', '/css-past-papers/topic-wise', '/guardian-test-centre', '/key-documents', '/constitution-of-pakistan', '/guardian-news-desk', '/about-guardian-angel', '/privacy-policy', '/terms', '/delete-account', '/blogs', '/blog', '/signin',
   '/payment', '/dashboard', '/guardian-study-planner', '/guardian-conflict-atlas', '/guardian-portfolio', '/guardian-portfolio/edit', '/guardian-portfolio/browse', '/guardian-portfolio/example', '/guardian-resume-builder', '/profile', '/admin',
 ])
 const KNOWN_ROUTE_PREFIXES = ['/blogs/', '/blog/', '/css-syllabus/', '/p/', '/guardian-english']
@@ -1472,6 +1498,11 @@ function PasswordRecoveryRedirect() {
       nextSearch.set('mode', 'reset')
       const code = currentSearch.get('code')
       if (code) nextSearch.set('code', code)
+      const tokenHash = currentSearch.get('token_hash')
+      if (tokenHash) {
+        nextSearch.set('token_hash', tokenHash)
+        nextSearch.set('type', 'recovery')
+      }
 
       if (location.pathname === '/signin' && currentSearch.get('mode') === 'reset') {
         return
@@ -1623,14 +1654,40 @@ function App() {
         <Suspense fallback={<PageLoader />}>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/pakistan-affairs" element={<GlobalAffairsPage defaultTab="pakistan" />} />
-          <Route path="/global-affairs" element={<GlobalAffairsPage defaultTab="global" />} />
+          <Route
+            path="/css-past-papers/topic-wise"
+            element={
+              <Suspense fallback={<main className="page-main" />}>
+                <PastPaperTopicsPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/guardian-test-centre"
+            element={
+              <Suspense fallback={<main className="page-main" />}>
+                <TestCentrePage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/guardian-news-desk"
+            element={
+              <Suspense fallback={<main className="page-main" />}>
+                <NewsDeskPage />
+              </Suspense>
+            }
+          />
+          {/* Old Global Affairs addresses */}
+          <Route path="/pakistan-affairs" element={<Navigate to="/guardian-news-desk" replace />} />
+          <Route path="/global-affairs" element={<LegacyGlobalAffairsRedirect />} />
           <Route path="/css-syllabus" element={<CssSyllabusPage />} />
           <Route path="/css-rules" element={<CssRulesPage />} />
           <Route path="/css-past-papers" element={<CssPastPapersPage />} />
           <Route path="/css-study-material" element={<CssStudyMaterialPage />} />
-          <Route path="/key-documents" element={<KeyDocumentsPage />} />
-          <Route path="/constitution-of-pakistan" element={<Navigate to="/key-documents" replace />} />
+          <Route path="/source-vault" element={<KeyDocumentsPage />} />
+          <Route path="/key-documents" element={<LegacyKeyDocumentsRedirect />} />
+          <Route path="/constitution-of-pakistan" element={<Navigate to="/source-vault" replace />} />
           <Route path="/about-guardian-angel" element={<AboutGuardianAngelPage />} />
           <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
           <Route path="/terms" element={<TermsPage />} />

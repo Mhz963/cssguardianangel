@@ -1,5 +1,6 @@
 import { Link, useParams } from 'react-router-dom'
 import { detailedSubjectPages } from '../data/subjectPagesData.js'
+import { keyDocsSubjectFor } from '../keydocs/cssSubjects.js'
 
 export default function SubjectDetailPage() {
   const { subjectSlug } = useParams()
@@ -87,6 +88,11 @@ export default function SubjectDetailPage() {
           {/^english/.test(subject.slug) ? (
             <Link className="btn btn-primary" to="/guardian-english">
               Practise in Guardian English Lab
+            </Link>
+          ) : null}
+          {keyDocsSubjectFor(subject.slug) ? (
+            <Link className="btn btn-secondary" to={`/source-vault?subject=${keyDocsSubjectFor(subject.slug)}`}>
+              Key documents for this subject
             </Link>
           ) : null}
           <Link className="btn btn-secondary" to="/css-syllabus">
