@@ -10,6 +10,9 @@ const PUBLISHED_VIDEOS = new Set([
   '/media/topic-wise-past-papers-tutorial.mp4',
   '/media/study-planner-tutorial.mp4',
   '/media/resource-library-tutorial.mp4',
+  '/media/source-vault-tutorial.mp4',
+  '/media/news-desk-tutorial.mp4',
+  '/media/conflict-atlas-tutorial.mp4',
 ])
 
 /**

@@ -243,15 +243,15 @@ export default function GuardianEnglishPage({ authUser }) {
             </p>
             <section className="ge-guide" id="ge-guide" aria-labelledby="ge-guide-title">
               <div className="ge-guide-copy">
-                <p className="ge-guide-kicker">Video guide · 3 min 19 s</p>
-                <h3 id="ge-guide-title">How the English Lab works</h3>
+                <p className="ge-guide-kicker">Video guide · 2 min</p>
+                <h3 id="ge-guide-title">Master the CSS English paper, 15 minutes a day</h3>
                 <p>
-                  A walk through every section: grammar rounds, punctuation, sentence correction, pairs of words, synonyms and
-                  antonyms, vocabulary review and the past paper references, plus how your progress is saved.
+                  Every module in under two minutes: the FPSC Past Paper Questions, grammar, sentence correction, synonyms and
+                  antonyms, the 1,082-word vocabulary builder and the past paper references.
                 </p>
               </div>
-              <video className="ge-guide-video" controls preload="none" playsInline poster="/media/english-lab-tutorial-poster.webp">
-                <source src="/media/english-lab-tutorial.mp4" type="video/mp4" />
+              <video className="ge-guide-video" controls preload="none" playsInline poster="/media/english-lab-guide-poster.webp">
+                <source src="/media/english-lab-guide.mp4" type="video/mp4" />
                 Your browser cannot play this video.
               </video>
             </section>

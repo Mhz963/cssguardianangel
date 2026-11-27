@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
+import VideoGuide from '../components/VideoGuide.jsx'
 import { Link, useSearchParams } from 'react-router-dom'
 import '../styles/newsdesk.css'
 import { PAKISTAN_SOURCES, WORLD_SOURCES } from '../news/newsSources.js'
@@ -123,6 +124,17 @@ export default function NewsDeskPage() {
           Today&apos;s Pakistan and world headlines from trusted outlets, sorted by the themes CSS papers ask about. Read
           the full story at the source, then turn it into your own notes for Current Affairs, Pakistan Affairs and the Essay.
         </p>
+
+        <VideoGuide
+          id="news-guide"
+          src="/media/news-desk-tutorial.mp4"
+          poster="/media/news-desk-tutorial-poster.webp"
+          title="Current affairs in 10 minutes a day: here is how"
+          duration="1 min"
+        >
+          Switch between Pakistan and the world, filter by CSS theme, and turn the day&apos;s headlines into notes linked
+          to the syllabus.
+        </VideoGuide>
 
         <div className="nd-bar">
           <div className="nd-segment" role="tablist" aria-label="Region">

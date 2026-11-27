@@ -9,7 +9,7 @@
   },
   "scripts": {
     "dev": "vite --host",
-    "build": "node scripts/vercel-prepare.mjs && node scripts/generate-seo-files.mjs && vite build",
+    "build": "node scripts/vercel-prepare.mjs && node scripts/generate-seo-files.mjs && vite build && node scripts/prerender-seo.mjs",
     "refresh-fpsc-papers": "node scripts/extract-fpsc-papers.mjs",
     "lint": "eslint .",
     "check:english": "node scripts/validate-english.mjs",

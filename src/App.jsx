@@ -26,6 +26,7 @@ import { detectPasswordRecoveryFromUrl, isPasswordRecoveryPending, markPasswordR
 import { PdfAppExperienceHost } from './PdfAppExperience.jsx'
 import { isSuperAdminEmail } from './utils/adminClient.js'
 import { SITE_URL, YOUTUBE_PAGE_URL } from './siteConfig.js'
+import { DEFAULT_SEO, resolveRouteSeo, routeJsonLd } from './seo/routeSeo.js'
 
 // Route pages load on demand so the home page ships only what it needs.
 const GuardianEnglishPage = lazy(() => import('./pages/GuardianEnglishPage.jsx'))
@@ -62,123 +63,6 @@ const INSTAGRAM_PAGE_URL = 'https://www.instagram.com/cssguardianangel/'
 const LINKEDIN_PAGE_URL = 'https://www.linkedin.com/company/135217403/'
 
 
-const DEFAULT_SEO = {
-  title: 'Guardian Angel | CSS Preparation Platform Pakistan',
-  description:
-    'Guardian Angel provides free CSS preparation resources in Pakistan, including CSS syllabus, CSS rules, past papers, current affairs, Pakistan affairs, and guided study planning.',
-  keywords:
-    'CSS Pakistan, FPSC CSS exam, CSS preparation, CSS syllabus, CSS past papers, CSS rules, current affairs Pakistan, Pakistan affairs, CSS essay preparation, CSS optional subjects',
-}
-
-const SEO_BY_PATH = {
-  '/': {
-    title: 'Guardian Angel | Free CSS Preparation Platform in Pakistan',
-    description:
-      'Prepare for the FPSC CSS exam with free CSS syllabus coverage, past papers, current affairs analysis, Pakistan affairs updates, and practical study guidance.',
-  },
-  '/css-syllabus': {
-    title: 'CSS Syllabus | Compulsory and Optional Subjects',
-    description:
-      'Explore the complete FPSC CSS syllabus with compulsory and optional subjects to build a focused and strategic preparation plan.',
-  },
-  '/css-rules': {
-    title: 'CSS Rules and Eligibility | FPSC Guidance',
-    description:
-      'Review CSS eligibility, age limit, attempts, domicile, and official rule guidance to verify your FPSC CSS exam readiness.',
-  },
-  '/css-past-papers': {
-    title: 'CSS Past Papers | Download and Practice',
-    description:
-      'Access CSS past papers by subject to identify examiner trends, practice answer writing, and strengthen high scoring preparation.',
-  },
-  '/css-study-material': {
-    title: 'CSS Study Material | Free Preparation Resources',
-    description:
-      'Get free CSS study material for compulsory and optional subjects with topic wise coverage for consistent and exam oriented preparation.',
-  },
-  '/source-vault': {
-    title: 'Source Vault | Key Documents for CSS: Constitutions, Laws, Treaties',
-    description:
-      '177 key documents for the CSS exam, from the Constitution of Pakistan and Objectives Resolution to the UN Charter, UNCLOS and the Paris Agreement, mapped to every CSS subject with official sources.',
-  },
-  '/css-past-papers/topic-wise': {
-    title: 'Topic-wise CSS Past Papers | Most Repeated Topics by Subject',
-    description:
-      'Every FPSC CSS question for Essay, Current Affairs, Pakistan Affairs, Islamiat, GSA and International Relations, sorted by syllabus topic, with a topic-by-year heatmap of the most repeated topics.',
-  },
-  '/guardian-test-centre': {
-    title: 'Guardian Test Centre | CSS MPT Mock Tests and MCQ Practice',
-    description:
-      'Free CSS MPT mock tests weighted like the real screening test, MCQ practice by subject and topic with explanations, and real FPSC MCQs from past papers.',
-  },
-  '/guardian-news-desk': {
-    title: 'Guardian News Desk | Pakistan and World Current Affairs for CSS',
-    description:
-      "Today's Pakistan and world headlines from Dawn, BBC, UN News and other trusted outlets, sorted by CSS themes: governance, economy, security, diplomacy and climate. Refreshed every 15 minutes.",
-  },
-  '/signin': {
-    title: 'Sign In | Guardian Angel',
-    description:
-      'Sign in to Guardian Angel to access personalized CSS preparation features and your protected study planner.',
-  },
-  '/payment': {
-    title: 'Guardian Study Planner | Free Access',
-    description:
-      'Guardian Study Planner is now free for all signed-in users. Sign in to access Subject Locker, Strategy Builder, and your full CSS study workspace.',
-  },
-  '/guardian-study-planner': {
-    title: 'Guardian Study Planner | Free CSS Planning Tool',
-    description:
-      'Sign in to access Subject Locker, Strategy Builder, Performance Analysis, Timer, Calendar, PDF reports, and AI Examiner — free for every CSS Jawan.',
-  },
-  '/guardian-portfolio': {
-    title: 'Guardian Portfolio | Free Freelance Profiles for CSS Jawans',
-    description:
-      'Earn while you prepare for CSS. Create a free Fiverr-style profile, publish your skills as gigs and share one link to get orders. No fees, no commission.',
-  },
-  '/guardian-conflict-atlas': {
-    title: 'Guardian Conflict Atlas | Ongoing Wars and Conflicts Map',
-    description:
-      'Every ongoing armed conflict on one world map centred on Pakistan: sides, start dates, casualties, summaries and the latest headlines, with sources. Updated every 6 hours.',
-  },
-  '/guardian-portfolio/browse': {
-    title: 'Browse CSS Jawans | Guardian Portfolio',
-    description:
-      'Find tutors, writers, translators and researchers preparing for CSS. View their gigs and contact them directly. Free, with no commission.',
-  },
-  '/guardian-portfolio/example': {
-    title: 'Example Profile | Guardian Portfolio',
-    description:
-      'See what a complete Guardian Portfolio looks like: headline, gigs with prices, work samples and contact details.',
-  },
-  '/guardian-portfolio/edit': {
-    title: 'Portfolio Editor | Guardian Portfolio',
-    description: 'Create and edit your free Guardian Portfolio in four short steps: profile, gigs, work samples, publish.',
-  },
-  '/blogs': {
-    title: 'CSS Blog | Guardian Angel Insights',
-    description:
-      'Read practical CSS preparation blogs on strategy, current affairs analysis, answer writing, and exam discipline by Guardian Angel.',
-  },
-  '/about-guardian-angel': {
-    title: 'About Guardian Angel | Equal Opportunity for CSS Aspirants',
-    description:
-      'Learn how Guardian Angel stands for equal educational opportunity, ethical CSS preparation, and free top-tier guidance for every CSS Jawan.',
-  },
-  '/privacy-policy': {
-    title: 'Privacy Policy | Guardian Angel',
-    description:
-      'How Guardian Angel collects, uses, stores, and protects personal information when you use our CSS preparation website and related services.',
-  },
-  '/terms': {
-    title: 'Terms of Use | Guardian Angel',
-    description: 'The terms for using Guardian Angel, the free CSS preparation platform for Pakistan.',
-  },
-  '/delete-account': {
-    title: 'Delete Your Account | Guardian Angel',
-    description: 'How to permanently delete your Guardian Angel account and data from the website or the Android app.',
-  },
-}
 
 const pillars = [
   {
@@ -867,7 +751,8 @@ function HomePage() {
             <p className="home-eyebrow">Everything in one place</p>
             <h2>Your complete CSS toolkit</h2>
             <p className="home-section-lead">
-              Authentic, organised and free. Pick up where you are and go further.
+              Free online CSS preparation for Pakistan: the FPSC syllabus, past papers, MPT mocks, English practice and
+              current affairs, all on one website.
             </p>
           </header>
           <div className="home-resource-grid">
@@ -1255,53 +1140,6 @@ const upsertLinkTag = (rel, href) => {
   tag.setAttribute('href', href)
 }
 
-const resolveRouteSeo = (pathname, _search) => {
-  if (pathname.startsWith('/blogs/')) {
-    return {
-      title: 'CSS Blog Article | Guardian Angel',
-      description:
-        'Read detailed CSS preparation blog articles on strategy, self study, writing quality, and exam mindset by Guardian Angel.',
-    }
-  }
-
-  if (pathname.startsWith('/css-syllabus/')) {
-    return {
-      title: 'CSS Subject Details | Guardian Angel',
-      description:
-        'Review subject wise CSS syllabus details and prepare each topic with better structure, relevant references, and focused answer writing practice.',
-    }
-  }
-
-  if (pathname.startsWith('/guardian-english')) {
-    const moduleTitles = {
-      grammar: 'Grammar Practice',
-      punctuation: 'Punctuation Practice',
-      'sentence-correction': 'Sentence Correction Practice',
-      'pairs-of-words': 'Pairs of Words Practice',
-      'synonyms-antonyms': 'Synonyms & Antonyms Practice',
-      vocabulary: 'CSS Vocabulary Builder',
-      'past-papers': 'CSS English Past Paper References',
-    }
-    const slug = pathname.split('/')[2] || ''
-    return {
-      title: moduleTitles[slug]
-        ? `${moduleTitles[slug]} | Guardian English Lab`
-        : 'Guardian English Lab | CSS English Practice',
-      description:
-        'Practice for the CSS English (Precis & Composition) paper: grammar, punctuation, sentence correction, pairs of words, synonyms and antonyms, vocabulary and FPSC past paper references with instant feedback.',
-    }
-  }
-
-  if (pathname.startsWith('/p/')) {
-    return {
-      title: 'Guardian Portfolio | Guardian Angel',
-      description:
-        'View a public Guardian Angel portfolio with work samples, skills, and contact links shared by a signed-in member.',
-    }
-  }
-
-  return SEO_BY_PATH[pathname] || DEFAULT_SEO
-}
 
 function LegacyKeyDocumentsRedirect() {
   const { search } = useLocation()
@@ -1377,15 +1215,16 @@ function SeoMetaManager() {
   const location = useLocation()
 
   useEffect(() => {
-    const seo = resolveRouteSeo(location.pathname, location.search)
-    const canonicalUrl = `${SITE_URL}${location.pathname}${location.search || ''}`
+    const seo = resolveRouteSeo(location.pathname)
+    // Canonical is the path alone, so filtered views (?subject=, ?region=) don't compete with the page itself.
+    const canonicalUrl = `${SITE_URL}${location.pathname === '/' ? '/' : location.pathname.replace(/\/+$/, '')}`
 
     document.title = seo.title
     document.documentElement.setAttribute('lang', 'en')
 
     upsertMetaTag('description', seo.description)
     upsertMetaTag('keywords', DEFAULT_SEO.keywords)
-    upsertMetaTag('robots', isKnownRoute(location.pathname) ? 'index, follow, max-image-preview:large' : 'noindex, follow')
+    upsertMetaTag('robots', isKnownRoute(location.pathname) ? 'index, follow, max-image-preview:large, max-video-preview:-1' : 'noindex, follow')
 
     upsertMetaTag('og:title', seo.title, 'property')
     upsertMetaTag('og:description', seo.description, 'property')
@@ -1400,7 +1239,17 @@ function SeoMetaManager() {
     upsertMetaTag('twitter:image', `${SITE_URL}/og-image.jpg`)
 
     upsertLinkTag('canonical', canonicalUrl)
-  }, [location.pathname, location.search])
+
+    // Page structured data (tutorial video, FAQ). The site-wide WebSite/Organization data lives in index.html.
+    document.head.querySelectorAll('script[data-route-jsonld]').forEach((node) => node.remove())
+    for (const data of routeJsonLd(location.pathname, SITE_URL)) {
+      const script = document.createElement('script')
+      script.type = 'application/ld+json'
+      script.dataset.routeJsonld = 'true'
+      script.textContent = JSON.stringify(data)
+      document.head.appendChild(script)
+    }
+  }, [location.pathname])
 
       return null
     }

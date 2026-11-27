@@ -9573,3 +9573,48 @@ main:focus {
     display: none;
   }
 }
+
+/* CSS Rules: eligibility at a glance (mirrors the FAQ structured data). */
+.rules-glance {
+  margin: 1.2rem 0 1.6rem;
+  padding: clamp(1rem, 2.6vw, 1.5rem);
+  border-radius: 16px;
+  border: 1px solid rgb(201 162 39 / 50%);
+  background: var(--glass-bg);
+  box-shadow: var(--glass-shadow);
+}
+
+.rules-glance h3 {
+  margin: 0 0 0.9rem;
+  font-size: clamp(1.1rem, 2.4vw, 1.35rem);
+  color: var(--text-primary);
+}
+
+.rules-glance-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: 0.8rem 1.4rem;
+  margin: 0;
+}
+
+.rules-glance-item dt {
+  margin: 0 0 0.25rem;
+  font-weight: 700;
+  color: var(--brand-gold-soft);
+}
+
+[data-theme='dark'] .rules-glance-item dt {
+  color: var(--brand-gold);
+}
+
+.rules-glance-item dd {
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+.rules-glance-note {
+  margin: 1rem 0 0;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { RULES_FAQ } from '../seo/routeSeo.js'
 
 const cssRulesSections = [
   {
@@ -142,7 +143,7 @@ export default function CssRulesPage() {
       <section className="container css-rules-page">
         <div className="section-title">
           <p>CSS Rules</p>
-          <h2>Introduction as per CSS Rules 2019</h2>
+          <h2>CSS Rules, Eligibility Criteria and Requirements</h2>
         </div>
 
         <p className="rules-source">
@@ -154,7 +155,23 @@ export default function CssRulesPage() {
           >
             Federal Public Service Commission (FPSC)
           </a>
+          , CSS Competitive Examination Rules, 2019.
         </p>
+
+        <section className="rules-glance" aria-labelledby="rules-glance-title">
+          <h3 id="rules-glance-title">CSS eligibility criteria in Pakistan at a glance</h3>
+          <dl className="rules-glance-grid">
+            {RULES_FAQ.map(([question, answer]) => (
+              <div className="rules-glance-item" key={question}>
+                <dt>{question}</dt>
+                <dd>{answer}</dd>
+              </div>
+            ))}
+          </dl>
+          <p className="rules-glance-note">
+            The full rules are below. Always confirm the latest rules and dates on fpsc.gov.pk before you apply.
+          </p>
+        </section>
 
         <div className="rules-accordion">
           {cssRulesSections.map((rule, index) => {

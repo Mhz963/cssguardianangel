@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import VideoGuide from '../components/VideoGuide.jsx'
 import { useSearchParams } from 'react-router-dom'
 import '../styles/keydocs.css'
 import { handlePdfAction } from '../pdfNativeBridge.js'
@@ -179,6 +180,17 @@ export default function KeyDocumentsPage() {
           <p>CSS Resource Library</p>
           <h2>Source Vault</h2>
         </div>
+
+        <VideoGuide
+          id="vault-guide"
+          src="/media/source-vault-tutorial.mp4"
+          poster="/media/source-vault-tutorial-poster.webp"
+          title="Quote like a topper: the Source Vault in 90 seconds"
+          duration="1 min"
+        >
+          Find the constitutions, laws and treaties for each subject, and learn how to cite them by name and article in
+          your answers.
+        </VideoGuide>
 
         <div className="kd-hero">
           <p className="kd-lead">
