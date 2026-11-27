@@ -4,7 +4,7 @@ import '../styles/videoguide.css'
  * Tutorial videos that are approved and uploaded to /public/media. A guide whose video is not listed
  * here renders nothing, so a page never shows an empty player while its video is still in production.
  */
-const PUBLISHED_VIDEOS = new Set([])
+const PUBLISHED_VIDEOS = new Set(['/media/welcome-tour.mp4'])
 
 /**
  * A short tutorial video in a gold card: title, one-line summary and the player.

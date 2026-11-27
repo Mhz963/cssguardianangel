@@ -855,11 +855,11 @@ function HomePage() {
             id="welcome-guide"
             src="/media/welcome-tour.mp4"
             poster="/media/welcome-tour-poster.webp"
-            title="New here? Take the 2-minute tour"
-            duration="2 min"
+            title="Your CSS journey starts here: see Guardian Angel in 3 minutes"
+            duration="3 min"
           >
-            Every part of Guardian Angel in one short video: the CSS Resource Library, the practice tools, the Study
-            Planner, and where to start.
+            From the syllabus and past papers to MPT mocks and your personal Study Planner: a quick guided tour of
+            everything on Guardian Angel, and exactly where to begin.
           </VideoGuide>
         </section>
         <section className="home-section container" id="resources">
