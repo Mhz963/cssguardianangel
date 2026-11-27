@@ -9435,3 +9435,141 @@ main:focus {
     max-height: 100%;
   }
 }
+
+/* ===== Mobile menu (hamburger): plain text rows on a solid panel, separated by thin lines. ===== */
+@media (max-width: 720px) {
+  .nav {
+    justify-content: flex-start;
+    background: linear-gradient(180deg, #0b1020 0%, #05070d 100%);
+    backdrop-filter: none;
+    border-top: 1px solid rgb(242 213 107 / 20%);
+    border-radius: 0;
+  }
+
+  .nav.nav-open {
+    height: calc(100dvh - var(--ga-mobile-nav-top, calc(78px + env(safe-area-inset-top, 0px))));
+    padding: 0.4rem 1.25rem calc(1.4rem + env(safe-area-inset-bottom, 0px));
+    gap: 0;
+    z-index: 60;
+  }
+
+  .nav-links {
+    flex: none;
+    justify-content: flex-start;
+    gap: 0;
+  }
+
+  .nav-links > a,
+  .nav-group-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1rem 0.15rem;
+    border: 0;
+    border-bottom: 1px solid rgb(255 255 255 / 8%);
+    border-radius: 0;
+    background: transparent;
+    color: #e6eaf3;
+    font-size: 1.02rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    text-align: left;
+  }
+
+  .nav-compact-label {
+    font-size: inherit;
+    white-space: normal;
+  }
+
+  .nav-links > a.nav-active,
+  .nav-item-group.nav-active .nav-group-trigger,
+  .nav-item-group.open .nav-group-trigger {
+    color: #f2d56b;
+  }
+
+  /* A small chevron marks the two groups that open. */
+  .nav-group-trigger::after {
+    content: '';
+    width: 7px;
+    height: 7px;
+    margin-right: 0.3rem;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    flex: none;
+    opacity: 0.55;
+    transform: rotate(45deg);
+    transition: transform 0.25s ease;
+  }
+
+  .nav-item-group.open .nav-group-trigger::after {
+    transform: rotate(225deg);
+  }
+
+  .nav-submenu {
+    margin: 0;
+    width: 100%;
+    padding: 0.2rem 0 0.5rem 1rem;
+    border: 0;
+    border-bottom: 1px solid rgb(255 255 255 / 8%);
+    border-radius: 0;
+    background: transparent;
+  }
+
+  .nav-sub-link,
+  .nav-sub-link + .nav-sub-link {
+    border: 0;
+  }
+
+  .nav-sub-link {
+    padding: 0.6rem 0.15rem;
+    border-radius: 0;
+    background: transparent;
+    color: #aeb8cc;
+    font-size: 0.95rem;
+  }
+
+  .nav-sub-link.nav-active,
+  .nav-sub-link:hover {
+    color: #f2d56b;
+    background: transparent;
+  }
+
+  .nav-actions {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.65rem;
+    margin-top: 1.4rem;
+  }
+
+  .nav-actions > :first-child {
+    grid-column: 1 / -1;
+  }
+
+  .nav .btn-nav,
+  .nav .nav-dashboard-trigger {
+    min-height: 48px;
+    border-radius: 12px;
+  }
+
+  .nav .nav-auth-btn,
+  .nav .theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    border-radius: 12px;
+    background: transparent;
+    border: 1px solid rgb(255 255 255 / 16%);
+  }
+
+  .nav .theme-toggle {
+    width: 48px;
+    padding: 0;
+  }
+
+  /* Keep the floating notes button from covering the menu buttons. */
+  body:has(.nav.nav-open) .sticky-notes-fab {
+    display: none;
+  }
+}
