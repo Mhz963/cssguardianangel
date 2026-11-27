@@ -15,10 +15,10 @@ export default function CssSyllabusPage() {
           id="library-guide"
           src="/media/resource-library-tutorial.mp4"
           poster="/media/resource-library-tutorial-poster.webp"
-          title="Find your way around the Resource Library"
+          title="Everything for CSS in one place: a 1-minute library tour"
           duration="1 min"
         >
-          CSS Rules, the syllabus, subject pages, lecture slides, past papers and the Source Vault, and how they connect.
+          The CSS Rules, the full syllabus, lecture slides, past papers by year and the Source Vault, and how they fit together.
         </VideoGuide>
 
         <article className="syllabus-block">

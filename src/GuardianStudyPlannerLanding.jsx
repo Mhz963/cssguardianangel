@@ -149,10 +149,10 @@ function GuardianStudyPlannerLandingPage({ authUser }) {
           id="planner-guide"
           src="/media/study-planner-tutorial.mp4"
           poster="/media/study-planner-tutorial-poster.webp"
-          title="See the Study Planner in action"
+          title="Your personal CSS study plan, built in 2 minutes"
           duration="2 min"
         >
-          Lock your subjects, generate your plan, track study hours and follow your progress in the Guardian Angel Report.
+          Lock your subjects, generate a strategy for your exam date, track every study hour and watch your progress grow in the Guardian Angel Report.
         </VideoGuide>
       </section>
 

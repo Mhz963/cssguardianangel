@@ -8,6 +8,8 @@ const PUBLISHED_VIDEOS = new Set([
   '/media/welcome-tour.mp4',
   '/media/test-centre-tutorial.mp4',
   '/media/topic-wise-past-papers-tutorial.mp4',
+  '/media/study-planner-tutorial.mp4',
+  '/media/resource-library-tutorial.mp4',
 ])
 
 /**
