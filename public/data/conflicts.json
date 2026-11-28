@@ -1,6 +1,6 @@
 {
- "updatedAt": "2026-11-27T16:52:37.459Z",
- "listRevision": 1387653824,
+ "updatedAt": "2026-11-28T01:30:01.498Z",
+ "listRevision": 1388389934,
  "sources": [
   {
    "label": "Wikipedia: List of ongoing armed conflicts",
@@ -70,21 +70,10 @@
     {
      "label": "List of ongoing armed conflicts",
      "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
-    },
-    {
-     "label": "GDELT news search",
-     "url": "https://www.gdeltproject.org/"
     }
    ],
    "sides": [],
-   "news": [
-    {
-     "title": "Location for illegal settlement Israeli relocation event near Glasgow revealed",
-     "url": "https://www.thenational.scot/news/26751824.glasgow-location-revealed-illegal-israeli-settlement-relocation/",
-     "source": "thenational.scot",
-     "date": "2026-11-22"
-    }
-   ],
+   "news": [],
    "newsVia": "GDELT news search"
   },
   {
@@ -306,20 +295,38 @@
      "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
     },
     {
-     "label": "GDELT news search",
-     "url": "https://www.gdeltproject.org/"
+     "label": "Google News",
+     "url": "https://news.google.com/"
     }
    ],
    "sides": [],
    "news": [
     {
-     "title": "The Erosion Of Institutional Memory And The Crisis Of Governance In Somalia And Puntland - Analysis",
-     "url": "https://www.eurasiareview.com/24112026-the-erosion-of-institutional-memory-and-the-crisis-of-governance-in-somalia-and-puntland-analysis/",
-     "source": "eurasiareview.com",
-     "date": "2026-11-24"
+     "title": "Family seeks hate crime charge in Near-Fatal attack on Somali Uber driver",
+     "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPRGpRUU5DbHlzOWZLVk1FcGpobXEwSGtvLTF6WkhzTXpJQXJ6VDd6VGw5X0RLdmlPd3hjLVpGNmlhQnBvV19UWGdJWEd2OG1yZmxJdkxpNUk1R0JSYUhCb1Zud1dxUHVDWDdGaEt6aFVQLUY2cUVmRjdUY1BNUVI5VGlqWjZSbGNrUWpDSTdvbkVXemZDZ0ZrSTk2RGg2UEhsdXQ5Y0I3b2ltbEhjVEs2bTZOSjdSbktoaGFHeDFmOXk?oc=5",
+     "source": "Hiiraan Online",
+     "date": "2026-11-25"
+    },
+    {
+     "title": "Demolitions Public Land and the Test of Law - In Somalia's capital Mogadishu power has strong muscles intended to destroy most vulnerable",
+     "url": "https://news.google.com/rss/articles/CBMigwJBVV95cUxOQm1XcF80VWJCTkZWbDJ2Qm4wZ1V2MDBjLVhiWEktdjUzREkxQjBwYTgyVTlROTljeGxwVk9pTXl3eE92dGxRUjJVbUJkTzU5dDI5N21aTjl6NC1ZeG44RFFsZGNMN1BjN21rVGVtTldfb3RZNlFpMkRBRXFGc2UxMmNsaFg4UWpSdkROM0t6SjY0WmJsdVI0Q2t1YV9XRG9zSVM3VkRYT1E1c3RocUZaWmRmSHNRZ3NkbFRsNXBSc05fd1VXUWdfOE1BQmlRaEZOQUN6WkplbHZMam54TkpXejNMTmI1R3AzQnp0YVdPekJsRkllR1g1V1R6NVNLcy1pOUh3?oc=5",
+     "source": "Horn Observer",
+     "date": "2026-11-23"
+    },
+    {
+     "title": "Ilhan Omar’s fate in federal case could come down to Kenya refugee camp docs: ‘Caught red-handed’",
+     "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOQndJWDNfcmprMmVCQk40amlod1FTdXpiVHF4cHlEOVRNVERiQ0JRaF9ucFBJb1hONWdrZFB3Y2ViQ0lrVS0yM3o0cnBQTzFrU3BSREU2NWlpS2p5RTMxR0Z4SXdfb0xQNlE3Z3pTLVFpQjY0cHNHT1RjRXdTamF2bXZ0VDlIaTJUWXZoWnRud1NxN0xoUlZ1R1V1ZnBNM0U1eExCcnRVN01tVVpKU1VsRXpMbHNBaXhKRG9oXzhWWQ?oc=5",
+     "source": "New York Post",
+     "date": "2026-11-25"
+    },
+    {
+     "title": "Somali-American Uber driver brutally assaulted in alleged hate crime in Minnesota",
+     "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPTFlmMXJrYVlJTVRpS0hTX3VETXRWc0tHVmNJZWwwa0lKTkthVUx5U0pTeG9hdVpmeEtVVFlmWXQtN3Z5NC1RcWJCRzhhRkg1RjZ5NHcyM3ZzZVQ3V3hpemFXWXNZMk9OVmllVG90ZHpJNEtXRUYxNjQzTUdVTkktcFItWFlGbVVGc19nTGFlMzlpNWp0eUh2Y0RyN3c1TWotOHN4M1EzVjNLU1g5bEpLSEFQc0VFTHNoWnQxMDZNSWlMQkFkZzJ6RTJwOA?oc=5",
+     "source": "Hiiraan Online",
+     "date": "2026-11-25"
     }
    ],
-   "newsVia": "GDELT news search"
+   "newsVia": "Google News"
   },
   {
    "id": "insurgency-in-the-maghreb-2002-present",
@@ -394,28 +401,28 @@
    ],
    "news": [
     {
-     "title": "Algeria - Civil War, Islamists, Army",
-     "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxOQzIzbW5YU1Bya184dW5uYXpJVDRxckg4a2FER21hcFJEcWx3Wm90YjRlTVdhekZ0UklKdm1YOWkzTWh5NG1CSG5zN2xYbnpjQWNURHF6bllPMlJoTGlMVVl4TnJPc016NWFQQk5lWWRsSVBoaDg0bmhlajZESU8zUGlGZ3h4WFk?oc=5",
-     "source": "Britannica",
-     "date": "2026-11-20"
-    },
-    {
      "title": "Algeria’s war talk masks deepening social and economic crisis",
      "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOclkxbk1laGJOM0ZMNnhDTV9DVDlmYUtMdHVlSDhtV2xMZE5xTVFuUWY2VElpUC05dXNhbHJ1bzBEX3dibnF2d2lGTmVFSmg5bG9yc2NUZUt6cFJoVFJlTTJ4NERDQUotT3c4LVJRUENhbERnM1VCWTRHZmM0elRhbGVVeUg3TEN4Rms1V2JXVXJyQllaVUhPUlZQS0hEc1pWbFE?oc=5",
      "source": "The North Africa Post",
      "date": "2026-11-23"
     },
     {
-     "title": "Algeria says killed two Moroccans over drug trafficking",
-     "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxOdW5GYlNIUUZ5eDRXUmpYMENFWENxbkc2aEZHSEcyWkxUSk5kUWZxZTI4VHdES2dqcG52RzNpeUZzck14LWxDWXZBWjdGX2loTWNJVW0telRPOXkteWItNDdqN010MHlRT3VmWXRLSExMenJwN0ZTd1E1UkRYY3d5NDd1YXI4cWpxNmg2ddIBkgFBVV95cUxNcEZNWldYZ3hlbWFoLUZNWUFJQnE5bkJ4cXZOVmNlM1Q2c1hRc3JwdDhLem5ZWGJVUXliVjNVQ0dpR3c2YkxMZkc5bWp1YW9ucHYzUGhKd2Q0VHl0MmY2aktkenVIR2djOXVaZ3BWendxNDVQTnhHNW15dzFLWXpwZGluOXZrSkFHUW4zV0M5MG5HUQ?oc=5",
-     "source": "The New Arab",
-     "date": "2026-11-21"
+     "title": "Algerian state media accuses France of waging ‘war’ on non-hydrocarbon exports to Europe",
+     "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQQ3hSbG44OVlBMlU5dmRLUUpxaEl3ZzZIeWt1VXA2eVBkQ002b0dlc2ZuSHNhb1pPSDR4ajJBTVdHbThXbk4yR3FvWnoyV3FMcnphUkZYQlJsNDByM0FYWkp1V2E1elFSLUVsMmdzZ0IzeDlpMHpLWnQ5bXlMUkxmZ0F2T1dXWkJZODBfc0p2OGhkOU5zUlJ6WW10NUgzZjg4cHh6TU05UzFLSElqLU16WHRtem5ucE0yYnY4Nms4LUtxMDZH?oc=5",
+     "source": "Anadolu Ajansı",
+     "date": "2026-11-27"
     },
     {
-     "title": "Algeria war veterans back protests demanding end to Bouteflika's rule",
-     "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQd0JYNE5CeUxCUG4wOFBxWlJTbEtnNzhKRm5NQ3p2MmdYeGRGSmItSkZZb1ZOZnVRTk1admhNcGFYa1p6dWtYVTdBUzQwZzJjUU1WbDlGZVlUNUFudUJkZWFaTzFZQkI5WDBqRktsLU9iWEZBNFc5WVpLUXBlMHRvMGRxaXE5aTQxY2dxT3BoOFpSQ2Q5RjJwc0JHRTRxWDVoSDY3eFpXSEpXTm8?oc=5",
-     "source": "Yeni Safak English",
-     "date": "2026-11-20"
+     "title": "Algeria condemns 'spillover' of Ukraine war into Libya",
+     "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxOMGZBdU5vaVNJaXU5NDd6anNpVzdueDRHVUt3Q3h6QVZael9vYzRzZ1lfaWFoRzdUMnVKZ1ctX2h4bGJLOWNyMUprWWs1eElaX2tsdUpfLVNhM0pMTVphSU9BZ2ZkR1g3T09jc19EczN4aGtHU0pJdkI3b2c1b3YxcG5HN1pzX0Vtc0Q4T0dXTlFScElEVll1b2hmWdIBmwFBVV95cUxOMGZBdU5vaVNJaXU5NDd6anNpVzdueDRHVUt3Q3h6QVZael9vYzRzZ1lfaWFoRzdUMnVKZ1ctX2h4bGJLOWNyMUprWWs1eElaX2tsdUpfLVNhM0pMTVphSU9BZ2ZkR1g3T09jc19EczN4aGtHU0pJdkI3b2c1b3YxcG5HN1pzX0Vtc0Q4T0dXTlFScElEVll1b2hmWQ?oc=5",
+     "source": "Africanews",
+     "date": "2026-11-27"
+    },
+    {
+     "title": "“From Algeria to India, Sudan to Indonesia”: Zelenskyy warns of threats to food exports through Black Sea amid Russia war",
+     "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxPemxKbGFscXl4Q3VGRDQ1bk1DUnA4NExJdzJBNG9UU2NNZlZ1REQ5M2Ntckg0RjdickRuRGVOVHo4Y3RmYy1pcUpNTmh1WU9JMDR5am9HQ3dxeFVFQmdUd2gzbDEyQ3EyaHZYZEprZEIya3BRS0hPT2VZUTZaR0h6aXlHWnNudEpGVm0wdVhKWEs2azdhOS10Yzc5U0lrbHlScUQ3dnNaZW5GUWdxNnRvcWYzaHpNZE1jLVNoRndaaFowY0gwSGFON1BQU0s1clYxcE92R01KdU1FVzBNWkNRRXRsSFhCRF9ZcUE?oc=5",
+     "source": "The Indian EYE",
+     "date": "2026-11-27"
     }
    ],
    "newsVia": "Google News"
@@ -479,18 +486,6 @@
      "date": "2026-11-24"
     },
     {
-     "title": "Mexico arrests drug kingpin on FBI's 10 Most Wanted, sparking violence in Sinaloa",
-     "url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxONVpRUHZYdzNpWnpjLTh4SDkxUVVDRnFQQkR6LVM4QnppMDdKTEozYTdaMm1ySGNBUzFuV2hKM3RZUFFRWTl6YUZNMkt6OEFQWlZIanRCNXoweDdETjNWRjdWMGtnUGEtbVJhSk1GajJHZkhvQ2R5el9oSjh0cWl5N09LMVhGX2hEUXZrQ3JMLUZYdnZITVRqYzZpYjc0NVRIYVBwR1Brb0VRamVnMjRtR1FtbTJMMWI5endhM1V4SDItclNjSHU5akF6VVFlV1NoSlFMcjlaU2luN3NmdGl0bkhaZ1V3aDBhdmdKNTdKYmc?oc=5",
-     "source": "WINK News - Southwest Florida",
-     "date": "2026-11-21"
-    },
-    {
-     "title": "Finding our gratitude as we prepare for Thanksgiving | Guest Commentary",
-     "url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxOcWlyV25XZUlPZlNmT3ROXzFyM0NmYWl0ckJWUXppOElJWWl3UHY1V2pUR1hRNEhwSGcxVTFmQVozWjZ5NFplZnRkRlhWNE1CNTZaRm9Rb1ZqWDM2WTQtOTBJQTg5SHJQSWVDNS1UcEk4X21yOC1uZGZPdHFGOUlnOHdHSkpMQzhENHJadHd3RmJ6YmVBa3pvUFNieFBfSmNic2U5MlRRX1BhWnNOY2FmRlJmbjU2bkV1X0t6aVJfcXRwZjBhdG5RZGctWGtmRHBYSXhSTVB6UDhKUDE5UGtwM0FJRDJ6bUF4LUlpVEp1TFRleDB4aGxyVw?oc=5",
-     "source": "Santa Maria Times",
-     "date": "2026-11-20"
-    },
-    {
      "title": "US and Mexico Arrest Cartel Leader Fausto Isidro Meza Flores",
      "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNcFNjdVc0cWtuYUxHcnlzNncxVWVYTmFvZmJYdXl0c3o2WnpIVGxXdGhUTGR2ZkdQYVI2S0JEVjNwV0k5d0hNZ3ZNQ0RQWmJ5Z3gxb3ZpUDNHcTJUX2o3bmVHYmlkWHpRazUxcHMyX1pkYXFiYzZueFp5T2FCRXQ2V3hucFE4RHdFaDMwYVJfeThZMGhMU0dWS21kb1M0R0M3SHc?oc=5",
      "source": "Head Topics",
@@ -540,6 +535,10 @@
     {
      "label": "List of ongoing armed conflicts",
      "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
+    },
+    {
+     "label": "Google News",
+     "url": "https://news.google.com/"
     }
    ],
    "sides": [
@@ -556,8 +555,33 @@
     "Abdul-Hafez al-Saqqaf",
     "Hussein Khairan"
    ],
-   "news": [],
-   "newsVia": "GDELT news search"
+   "news": [
+    {
+     "title": "Yemen - Secession, Unrest, Conflict",
+     "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxQdVVPZTk0UVZtNkdYQlFBLVFja3c1UFIxTm50X3pRdU01Y2xDQ1FwQWk4dXlteURhNFM4eHNUd2t2YlY2MllidEtrTTd6M18yR2hUNW9YVTIyeHZiNlhydkpReTlFTjNjZDVhWmxtMVJPa0hESlBXSXg5LWJFZFpVUkRB?oc=5",
+     "source": "Britannica",
+     "date": "2026-11-24"
+    },
+    {
+     "title": "Yemeni Government Defends Aden Against Houthi Advance",
+     "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxNNjJSLWw4RnRnTFlIM1dub0VHcUlEaS1vcGcwLTNFeXFaRENWVEhaNnpuQVlXS1diWF96ckgwbzBONU9UbndyTWtBQnVIWXBqWEpxdGlReW5TWmx2UmdzaWJ0U3RGbWY3RldFcVVucUNLc0NxMFRfb0drbk1pLTV1UzRUWkI?oc=5",
+     "source": "조선일보",
+     "date": "2026-11-26"
+    },
+    {
+     "title": "Iran War Spreads to Red Sea and Caspian, Gulf Quiet as US Forgoes Strikes",
+     "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPZVB6QzVLazd0Z3k5YkN0SGZOMlJzQTVEeTdTRmxQamVETjI3aS1HaFo2UGRfQXpqU0hDRGlQbFpqNU1NanRNMTFPUk93dEd4OHZZS0wwRW00QkU0eTlPR2hPbkdiVnhjNkEyLThOaFM1bVpqd2xFNXZiX0pacHNxVkF5QW5GUDhuN0c1Y3JUN1FwamdIdFc0X2JGTEdSSnZoeXEwMg?oc=5",
+     "source": "EnergyNow",
+     "date": "2026-11-21"
+    },
+    {
+     "title": "Rubio condemns Houthi attacks on Saudi Arabia",
+     "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxOVWd0Y2MzZnZmQklldWdfNWwyaUR2MXEyNlNDd1ZJTFZtQ2RWMFpOV3duTlMxb2ZmN01UbGtOLVREODVGS0xiTUxwNnA2RHNDalgzMno4X3cxdndEY1V2NHpoYlVYVVJRWUNCRVdfRzd1ZVVCMk56WVJ0aG01RTcxUHVOaldqLUpQdTFFNERVLThtNFJiTWFEZUhqUkRIcW5fWlhacFAtaFBockpFVVR0R25PaXVzLWZwdmpNcjI1cGVWQWNvdmlVTURWcTJrOHRN0gHWAUFVX3lxTE1sSWxwYmt2QmtlLU1qMzA3czVyaDVHMElFTkJSMHJNYWdxMzJvbjJQTkVSOHptWFZ2YW5OcXZ6cGwyRWtpTmRhTlVxSTdJaFVjdVE2a2xmOW9BVDdYbDktZTZTNjEzMmhKUUpaR1Z0VHJKeVZyVXdqU0RvWkJHUXlndXpFQ1h1Wkd1WFlzM1RkTjJnME14cDFxbHN3clA1TFFDY0toN09PS2lySXI2WUgyc3VtbXY4RW1aMjJMM2RMMkVIb1hndm4xZFl4VjNReUFwOUZaNUE?oc=5",
+     "source": "Cleveland Jewish News",
+     "date": "2026-11-25"
+    }
+   ],
+   "newsVia": "Google News"
   },
   {
    "id": "russo-ukrainian-war",
@@ -599,8 +623,8 @@
      "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
     },
     {
-     "label": "GDELT news search",
-     "url": "https://www.gdeltproject.org/"
+     "label": "Google News",
+     "url": "https://news.google.com/"
     }
    ],
    "sides": [
@@ -614,19 +638,31 @@
    ],
    "news": [
     {
-     "title": "8 Third - Generation Fighter Jets Still In Service",
-     "url": "https://www.slashgear.com/2324020/third-generation-fighter-jets-still-in-service/",
-     "source": "slashgear.com",
+     "title": "Russo-Ukrainian War – Day 1636: Back to the nuclear issue",
+     "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNd2dUQ3N0ZEVvNHFSUDlseUdWVl8tdjNZQVZPNG50Y2hCTFdBcmJtMFFONFh2eEQtSG15RWNpUWJBVGNDZjl5QTFCR0VBY002RnIzZlkyVHRKcE9JWmtnU2w5eFdPQ19PWVlPX0swTGZtMWhQZDFUUzJvb2xXSXRYLWlnRmx5VnJ3SW1idg?oc=5",
+     "source": "Ejércitos",
      "date": "2026-11-26"
     },
     {
-     "title": "Mike McNeill Diary for Tuesday , November 24 , 2026 : Flu and COVID reports | Mike McNeill Diary",
-     "url": "https://www.magnoliareporter.com/news_and_business/mike_mcneills_diary/article_8b7a7e37-4400-4f9a-82c5-a8c729520cd5.html",
-     "source": "magnoliareporter.com",
-     "date": "2026-11-24"
+     "title": "Russo-Ukrainian war, day 1734: Merz says Ukraine in NATO in 2008 could have stopped war",
+     "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNVHU0RU5GSHM4dXpHVnFxbHI4Y3QzTkJIQ2d6c2hVZUQzVXRjSEo1RG1UTUxQSkM1VGFjZEdhbEdKakdYWEdxUGN0RHJTaUxrRk5idEYwTXBhbGdKU25qU2dEMU1PSmF4cG1yR0kxNDZSTThnT05kSnl5T3BGOXRIZEtHQUF2OFNkQWJVOUFqVVgwZDBoamxIQ0dtdU8wa2lkR0xOcGVNREN2QmlpYUtrMXlNaHNUeTk3STNLZFhIWXRpaVk?oc=5",
+     "source": "Euromaidan Press",
+     "date": "2026-11-23"
+    },
+    {
+     "title": "Witnessing the Russo-Ukrainian War, Valentyn Syniy Adopts a Theology of the Road",
+     "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOSFlsNkRMNWxhWXY3X3dYdzBVc2ZieDdndUlyNUR5WTJOencwSHdLeUEyS3lJeGZMS19sUlJVWG1QT3BxNk1rTDgyRkJBdWE1M3gtOU9lVEpwc3FaeUtsVUhEYzZod3FHWUtIUjYzcW1VbExMQjY2T3Nyd2I2cDhCalhTNEx6OWxVeHBDYzlRNjk5ZW1Lc005RUdqNHltT1IwNlE4VmplcHg0WEdHRWpnNFR0VHNYd1BHdEU1QQ?oc=5",
+     "source": "The Wheaton Record",
+     "date": "2026-11-23"
+    },
+    {
+     "title": "Book featuring stories of Ukrainians who survived Russian attacks and captivity reaches Polish award finals",
+     "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE01bFdCZnpxcU9mNDhuUVQ5Q2ZodXFBWkZ4NW1KUXFTdS01TXpMTUREeXU0S19SQi03cTVtcUhHbS1QQmxyM3V5U2NzVHNzNmN2QzNwdkN6WHk5a3Rabmw4Q1pTaXl0d1I1akRLTnl0M0FCUQ?oc=5",
+     "source": "Rubryka",
+     "date": "2026-11-26"
     }
    ],
-   "newsVia": "GDELT news search"
+   "newsVia": "Google News"
   },
   {
    "id": "terrorism-in-iran",
@@ -678,27 +714,27 @@
    "news": [
     {
      "title": "Energy price cap: The Iran war is being blamed for raising bills - here's why",
-     "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9PR0toS1BhNmQzM1Q5UGtTcWdIeVA5NkFSem85ck1GQVhRRndnZkxHQzFtMnV3VmFRWTZVdy13SDdCeTI5Q01XaFFHM0FDME9JMEJ0aFBnSUR2QkZaTXc?oc=5",
+     "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9Lc1hIT3ZUS3RQVHhnekFxQkxQUmM1Sm44VlY3T1h0Y0xMMDVaWTJXaHhUSl8zODZUeU5lVFd2eHg3ODl5R2xzRXVsUVFRMllKSTZSQ2VDWV9jUDQ?oc=5",
      "source": "BBC",
      "date": "2026-11-25"
     },
     {
-     "title": "Energy bill increases since the start of the Iran war have been three times higher for a typical fossil fuel household than for a modern electric household",
-     "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxPWklkYmVQUXBmWmFmRDdxaFFKSFJ0MnZmRjRsWS04RDY5OERaUkZfVkJPSW1ZN2VieFJybDlvZGRLZ3pha0ZsZWc1Rm5CbmpEc2kybDdwcm1tOXBzTjJZbWFWZzREVHpHR3lmSDl3YUw3M1ZURWhYQjVqVWl2MzdLdy1mQ2s?oc=5",
-     "source": "Climate Change Committee",
-     "date": "2026-11-25"
+     "title": "Vance stops short of endorsing Trump’s claim that Iran was close to nuclear weapon",
+     "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxNUGEzcUdkaW9kYmFheHhDbzBMTG9PTnhmeGZwTzBURFA5amgtbEZRX1Z2WTVRZzRKV3Z5a09ObWVpMXFpMG83bWxvYngzZi1jOTJMWnJPVkN0V1FiTUxPTkdQYWVraW5hWVN0QXZ0SWtmSExMSmQ2cWtibmdrRFdKRTg4VFhDdw?oc=5",
+     "source": "The Guardian",
+     "date": "2026-11-21"
     },
     {
-     "title": "What Trump should do next about Iran",
-     "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxQVW9kOUVYOU9ZUkVFaEM1OTV2WGVfeVhYNTFFOVg4QkJycEZrV0w3VmVHSUNPSW14alU0V3dKVTBUSGdCUEthdmo2MnR4b3ItdW1adUYteTRQQXl5bmZSdFJlUUlrNkxuNHhsdGtaT1hJSHNZTU1VRU9EclZjV2h2bE9GS1NlQXM?oc=5",
-     "source": "Atlantic Council",
-     "date": "2026-11-25"
+     "title": "Two Italians killed in strike in Kuwait, as Iran denies responsibility",
+     "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9ZM0s2UU5wMkdKN2hGc0FMU1lBM21wQjJzTlBCQ2tPbWNyZDhkTEdONXZqYjcwTXQ4dkEtZm9YUW9vUEppbXhUNlNST1J1LThKM3hlblcyd2NWVTR5R3c?oc=5",
+     "source": "BBC",
+     "date": "2026-11-26"
     },
     {
-     "title": "Two Italians killed in Kuwait drone attack; Trump says Iran war ends ‘whenever I want it’",
-     "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxOWXdZWk9aY1VrSmlEbExnWV93RnFxTDFwV3RLdjhtYW1SaXU0aXJCbGJBRUVOS0FramRyaVdva0VwUWRLQlBZdHcwYktUWVlwaEp4MTNEeUN3Y2Q1bi1RUG5TRTZoWlY0S2lFUVpqSVF3NzJQZ2hiUGFjU19LTW93cERfYzNNY3VKalHSAY8BQVVfeXFMTXlQSEhkZ20xOFJXTzlvczJPelo5S294dENlYTBpMzAxVHVxeHhFNUk3eHZVYVQzY0t6cWZ5T1hEYUdjbkc1SmROUVVTVWc4Mjdza3FYNXplRTE0Qk5NY1NyTTNwdEN6Z2JyWEJhOVRVd3RVOVRoTVlubGNUYTBsWS1zTkZ3czV6WThYWkk4RVU?oc=5",
-     "source": "CNBC",
-     "date": "2026-11-27"
+     "title": "Iran Braces For Winter Gas Shortages As War Damage Deepens Energy Crisis",
+     "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQQ1JkUlF0S0xDTUVCc19NcHRXYkpyc1REREJKQlM1TzFhdUlVY1U1RUxWdHkzOEJSRTBzQTRFandPSC13UUhiWnhENlVETmhNUVp2Q09iWjJPZ21lUkRlM3JfSmtSS01Nck4tS2hiVHZDMFE5dktaNnloUi1DdFhLVktJSlE2MHFL0gGLAUFVX3lxTE1CckpjV0huRnFwMVBfdG50c2s3dFZXUnZHdkR0X3d3cWV5dFplbVlPNEdQa09sdDNMeGRVR0puOUx0WnNkYVEyamlPWE00Z3FSSnZSMWpNVEhIaTlqbHpkdUJCT3B4VXo1YjRJNTI5b3VGc0trYXFheEVYZy1PX0Z5VE5RVkRqRDl2U3c?oc=5",
+     "source": "Radio Free Europe/Radio Liberty",
+     "date": "2026-11-23"
     }
    ],
    "newsVia": "Google News"
@@ -745,38 +781,38 @@
      "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
     },
     {
-     "label": "GDELT news search",
-     "url": "https://www.gdeltproject.org/"
+     "label": "Google News",
+     "url": "https://news.google.com/"
     }
    ],
    "sides": [],
    "news": [
     {
-     "title": "Nuclear Progress Amidst Gloomy Political Outlook",
-     "url": "https://www.ipsnews.net/2026/11/nuclear-progress-amidst-gloomy-political-outlook/",
-     "source": "ipsnews.net",
+     "title": "Why India and Pakistan Are Heading Toward a Major War",
+     "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOVVM3RjJTNENfS1ZTdy1LV0FsMzJ6QmZtTlNWQWxldWZKcE51SWlNZUdYYWpaa0ZhZ1pyMlFueVR0ZENPQWdLeE5zQWVDcjBWYjRLV29GR2M1ZVNhdE9UandaWjZWM0s5bUc5YlVGTDZBdVd5azlVLXBqZFFiVTRja1Ezc05DMG5jVlBHbzdGQnhEM2g5?oc=5",
+     "source": "Middle East Forum",
      "date": "2026-11-27"
     },
     {
-     "title": "Iran vows to break US naval blockade , claims full control over Strait of Hormuz : MP Esmaeil Kowsari",
-     "url": "http://www.kenyastar.com/news/279464412/iran-vows-to-break-us-naval-blockade-claims-full-control-over-strait-of-hormuz-mp-esmaeil-kowsari",
-     "source": "kenyastar.com",
+     "title": "In the Shadow of the Afghanistan-Pakistan Border",
+     "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPYzZoT0RVYnNtVDVYTnRyVUhTdVJkcG42SzlpbjV4MG5rcXN4R0lTalN5VU96Q3l5QnRFQ1pPMUE2TGpDWkVFSjRNcFdtY0tzbFpiZGprZ2YzX3luVGxjWkIwQVNCTzhRU2J2NXJyZVJMNVBkcXNaSFd2SkhuVHVRLXRyWklGZV9M?oc=5",
+     "source": "The Diplomat – Asia-Pacific Current Affairs Magazine",
      "date": "2026-11-27"
     },
     {
-     "title": "No intention of intervening in war , no plans to deploy troops in region : South Korean FM assures Iranian counterpart Araghchi",
-     "url": "http://www.russiaherald.com/news/279464793/no-intention-of-intervening-in-war-no-plans-to-deploy-troops-in-region-south-korean-fm-assures-iranian-counterpart-araghchi",
-     "source": "russiaherald.com",
+     "title": "Pakistan set to host talks with Saudi Arabia and Turkey under trilateral defense pact",
+     "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNbDJydU5lb09wQVd6bU9reW5KUFVEX0JEUTk4c3NfTkFLcHhYVm5TenRGMGdnb0ZOLWlkd3lhWE00VmRxUDliNk5OcHU4YU9peUw5c0ZDYWdUeWJQVW5aQkYyRXZTX2hUaThHU2YzVjFRd2ZncGhvWUlaSkRETHN0ZXJ0Ui1NVHItbWJvc3VSakhtRXc4aW0xTzFvRTQ2WXdR?oc=5",
+     "source": "The Independent",
      "date": "2026-11-27"
     },
     {
-     "title": "Iran insists demands must be met before Strait of Hormuz reopens",
-     "url": "https://www.israelnationalnews.com/news/437249",
-     "source": "israelnationalnews.com",
-     "date": "2026-11-27"
+     "title": "Pakistan Worries About Being Drawn Into US-Iran Conflict After Houthis Attack Saudi Arabia",
+     "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOVTJHS2hXV0doNGMtQjkxWnYzNWhNeXF0NGJwQ2U0Vm1FRkFsRk5iTlp3MDlXc0pOdEVaTm1JemNobFRxVVVnanBOM2dMVXh5eWF4SXdqWVFEVzlqTW5VUThoNmdsZDR0bGloRzMwRkkybnVRUkY0blFtRXBSMWFfOFg1bkpFalJaV095Z0FVYWFBWVBfVHlLNmdmcUJGYnZZVDJLejk3NnlFeHlGSEV6TWNfbUJmZ0hpZWQ5cHhB?oc=5",
+     "source": "EnergyNow.com",
+     "date": "2026-11-25"
     }
    ],
-   "newsVia": "GDELT news search"
+   "newsVia": "Google News"
   },
   {
    "id": "ethiopian-civil-war-disambiguation",
@@ -958,11 +994,40 @@
     {
      "label": "List of ongoing armed conflicts",
      "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
+    },
+    {
+     "label": "Google News",
+     "url": "https://news.google.com/"
     }
    ],
    "sides": [],
-   "news": [],
-   "newsVia": "GDELT news search"
+   "news": [
+    {
+     "title": "Afghanistan - Mujahideen, Taliban, Civil War",
+     "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxOdTh2WTYxMFRLTllvRmtQaWpYZG8zY0xQaXFOYTZMVzVBS3l6LVgzWWNmQlpJbDg1YXFRdEVGOXdRYmd4ck8xYmtaMDRiV0c1bVRwWkh5UjNaQ3NZWUozSWJVeWxJcERNMWU2YzJFNWNrWU41ajlKU25GMVNJandsb0RMOEhqd3RhUU1qcDBmUW4yNEk?oc=5",
+     "source": "Britannica",
+     "date": "2026-11-23"
+    },
+    {
+     "title": "In the Shadow of the Afghanistan-Pakistan Border",
+     "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPYzZoT0RVYnNtVDVYTnRyVUhTdVJkcG42SzlpbjV4MG5rcXN4R0lTalN5VU96Q3l5QnRFQ1pPMUE2TGpDWkVFSjRNcFdtY0tzbFpiZGprZ2YzX3luVGxjWkIwQVNCTzhRU2J2NXJyZVJMNVBkcXNaSFd2SkhuVHVRLXRyWklGZV9M?oc=5",
+     "source": "The Diplomat – Asia-Pacific Current Affairs Magazine",
+     "date": "2026-11-27"
+    },
+    {
+     "title": "Sisyphean Empires and the Afghan Political Sublime",
+     "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPUG5uQVFIQ01wMFVkOWdsU1lselRRNWs0SzZvRGJoamJnbmtNaHRFZjJkTWxTQ3lUaHljS1dKcUIzd0luT3VCVTkwMk1fcHpFb0ZGd1J6NmY4MU1TUTdCeXBBa3hHRkZuYUxLaXlmN1BXWWMtckpGZWVMdFhRSk91eFAzb3E2bHpKVXNyZnZER2N1ZjViTktsS1B3?oc=5",
+     "source": "Los Angeles Review of Books",
+     "date": "2026-11-25"
+    },
+    {
+     "title": "Book Review: Afghanistan Amid Rival Geopolitics",
+     "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOT19qdTVUVDN4OFlPQWtWWTgtcHZfakR5Z3lCQ0FMb0xObmMyWW1xQV9tTVVUeU1EdmNyQUtxUXZodmJmY3k0ZkdBMXloVXJnakE5LXk5cjVyTFEzMVNtSTFXbTJSdEd5RHpCWlhxY3JEdk1ocC1LaEJtemZEOUNWSHg2T3hGR0VKNjgwLXVzTFA?oc=5",
+     "source": "Small Wars Journal",
+     "date": "2026-11-25"
+    }
+   ],
+   "newsVia": "Google News"
   },
   {
    "id": "terrorism-in-ecuador",
@@ -1002,32 +1067,38 @@
      "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
     },
     {
-     "label": "GDELT news search",
-     "url": "https://www.gdeltproject.org/"
+     "label": "Google News",
+     "url": "https://news.google.com/"
     }
    ],
    "sides": [],
    "news": [
     {
-     "title": "Ecuador Security and Crime Explained",
-     "url": "https://www.riotimesonline.com/ecuador-security-crime-explained-2026/",
-     "source": "riotimesonline.com",
+     "title": "Deadly floods leave parts of Ecuador under water",
+     "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxONjEwMzhONEY5MzRMc0V2bG9Kc1RMR016dzVQQXNQQnJuNmljRWdKN0dTMXlyTFkwQTc3NTZtYXJ2Skk0bnJJZEZxalFlb2xhV0wzMlloWXB3SUMydkp0X3FpWUswRk5IVDhJbFpDeG1ITVkzbWVYZHFlTUJuQWxRZUhrUmNjYVowSHl1RzJicDd1VjdBMXluYnVIeFN3RDg3ZExEa2hsRdIBpwFBVV95cUxONjEwMzhONEY5MzRMc0V2bG9Kc1RMR016dzVQQXNQQnJuNmljRWdKN0dTMXlyTFkwQTc3NTZtYXJ2Skk0bnJJZEZxalFlb2xhV0wzMlloWXB3SUMydkp0X3FpWUswRk5IVDhJbFpDeG1ITVkzbWVYZHFlTUJuQWxRZUhrUmNjYVowSHl1RzJicDd1VjdBMXluYnVIeFN3RDg3ZExEa2hsRQ?oc=5",
+     "source": "Al Jazeera",
      "date": "2026-11-27"
     },
     {
-     "title": "Trump administration expands anti - cartel campaign as legal challenges mount",
-     "url": "https://abc7amarillo.com/newsletter-daily/trump-administration-expands-anti-cartel-campaign-as-legal-challenges-mount-traficking",
-     "source": "abc7amarillo.com",
-     "date": "2026-11-27"
+     "title": "US military pause clouds Ecuador’s illegal mining fight",
+     "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxOY0I2bkp6LUNBVmFsQTVEd21qLUNHZVJJWWF3dDFaYnBWLXF6TU9fdV9pWVljUmpPb2hOVmsxcU1USjBxNlVVZVVlMGRONy1fUWNTQmVfelJ5YWZwUTExampxclg2QUQtQndnNkFhb3dFUUgtclRNZU0xbkM1RUJheWJOMlU?oc=5",
+     "source": "Mining.com",
+     "date": "2026-11-25"
     },
     {
-     "title": "Crackdown on trans - Pacific drug smuggling intensifies",
-     "url": "https://www.rnz.co.nz/news/pacific/2817475/crackdown-on-trans-pacific-drug-smuggling-intensifies",
-     "source": "rnz.co.nz",
+     "title": "Ecuador denies that US has suspended joint anti-narco ops",
+     "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQRm1HTndRU0h4UWEwVG9RVlRndnBrRTh3X2RzbTZ4THZ1UEI0aS1vMExXR2IxRG41RlczbmpwRzlUaUpjRUpVa3pSR2JaZldXMTVXUldwbmxFa1RkQmF5SVlZcmhycGZqRU0xakpFR1FfWWR1aFBaYVZGNUlLNW1UcnBucEFPa1E0YUdscjVKUFM5ZkJSRXdNUnFzU2s?oc=5",
+     "source": "Arab News",
+     "date": "2026-11-25"
+    },
+    {
+     "title": "Why has Ecuador adopted many constitutions since becoming independent?",
+     "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQbVBmZW1Vcmh5OFpmRGNwQUlLQ0VKQjFpaGpyZmpMcVBqZXY2WHRZRUNTNHlPdEp4VTNoYlNBRjdVNjRpQ2FzN2JLM3ZxUG9xek8wdnR0RVd1NEFVTE5CUTdvMlZmRVRmNkQwdnZaTFEtZThBcTY1QlpXR1RmQmNhaHpSQkE4d19ZQUJ2eHBfS3RDeTBKSEdwUmMzOUNMM3hmRnpHRA?oc=5",
+     "source": "Britannica",
      "date": "2026-11-27"
     }
    ],
-   "newsVia": "GDELT news search"
+   "newsVia": "Google News"
   },
   {
    "id": "communal-conflicts-in-nigeria",
@@ -1091,16 +1162,16 @@
      "date": "2026-11-25"
     },
     {
+     "title": "Suspected militants kill at least 30 in Nigeria's Niger state, residents say",
+     "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOUW5aeXpDUldIYjR5RlZ2bVdyUHFKZUtRcEUwTERNc3ZTRVFWTlNRSEZjV05VMVNyNG1KTXZNelVaQUJVaUlObUlqYXl5MV85b0hrTDdJMlA4YVcyanRXVVhrV19vUjBqRmR2WDBzcnY2MlFsTjdoS0paNGFTQWdESk5Lcm9GeWNSbUN6dkJwbDhwWk5WR1FqWXVWS1dYVjFVcElvNDd2RS11NnprbVVUdWl3cVVkVC16?oc=5",
+     "source": "Reuters",
+     "date": "2026-11-25"
+    },
+    {
      "title": "NDC campaign attack in Delta: Police confam death of six pipo for attack on Ovie Omo-Agege campaign team",
      "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE16dFVLdlNkSU8yV1RFMFNESzA2cXptQ1RRZzBObDFiZzItRDY4ekV2YzZMVUtYMjNta0Z3dEFJa3ZtV1A1M2ZZTFZ3MzdNTnBrd1JmQ1hsQk1vY2NnbUHSAWNBVV95cUxOcWxac2RrNC1yTE1mYkNjNXRodVpCeGEwLWtVZy1GMEdrZWN4TDhQSXZmR1hLbGhBZFplOW4weGdZbmxRS3lWOWJsUWpJN05TQ0dWbkVVQVNnUThHenhsWDkxSHM?oc=5",
      "source": "BBC",
      "date": "2026-11-23"
-    },
-    {
-     "title": "The security timebomb that is Nigeria",
-     "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9MTHAtdE1kX2xSOXQ5czVkMnVhdGhtaThpLW1LM1pEUXBVR3FKMXc4RzNCYndKdmcxMzNJMnlWM0dkMXVveVdnN3hFeXVybnhHc2RaWWp0ZHFkUlZpX2NYa0FDcHZlTnZ1QlFNVm9hRV9mSVk?oc=5",
-     "source": "GIS Reports",
-     "date": "2026-11-20"
     }
    ],
    "newsVia": "Google News"
@@ -1141,11 +1212,40 @@
     {
      "label": "List of ongoing armed conflicts",
      "url": "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"
+    },
+    {
+     "label": "Google News",
+     "url": "https://news.google.com/"
     }
    ],
    "sides": [],
-   "news": [],
-   "newsVia": "GDELT news search"
+   "news": [
+    {
+     "title": "What Is Happening Between the United States and Venezuela?",
+     "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOeXI1dnNNdzNYSGdWMEtZdnl4VlB4NGZ1aDZJQWNJU0hlVkkxSlVNZGRqUGxyQzFKS2Z0V3F6ajFlQVJ6Y0U1U09ybGhlWHpoczRJcm43MlBOUlVwZV9nbUhrMUVrX1JGV1ZST1JORTczanhVQ0xGLUp3NGNPdHVzdjJMb1ZnOGhkYUxEZHRpaGp1Zm5n?oc=5",
+     "source": "Britannica",
+     "date": "2026-11-23"
+    },
+    {
+     "title": "Venezuela to repeal law that bans opposition figures from office",
+     "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNc01KR0ZUbXpCLUdEZS1xQmhCQk9BYzUxR1JZVkxCU2JvTTRsUkxBN0FLUEkyVWRUMlNqZ09mQkFkaG9TaGxpRlllU3h6QjI2aVlmMjZrRXlvQjdBdU1kQVdJdnJuMVM1QTkyTEt1Wm51QUZfVW1mWXRyM204cm16eXZTVjhBUllHV0dVRlNSNkdfYW04eTc0bjg4VE5veE9sVFJPanZFUkNOd9IBrwFBVV95cUxNVnZBUDMzcDZyV3lIYlJBVU5UYjVaTkVQTmRxZWxHRWgzSXlTUXl4bFlxQXpLeUo3UHR4cVI3NUctcHpDYVpoVFh3Mm1IQzhBajBQcDQ3Ym05MjZ3aFNpbHF2c3JqRGxaOWRrX1hjN2FyZkpMeWtKNDg3NWJEaDVINjJLS0Q1OUNTeGZZNXM0ZVl1bVlyZFhBZHVXVm9qNVVQdmw4eDFESmhERnhDU0FZ?oc=5",
+     "source": "Al Jazeera",
+     "date": "2026-11-27"
+    },
+    {
+     "title": "Reality check: Trump's Venezuela oil deal may have little immediate impact on US gas prices",
+     "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQVGxlT2YyYzQyRUFyTzc4a25QeXRzTHpQV0tTR05YZkZYWl9wd1JUT1Mwb1lJeTBNM2ItVjMwRlRtdDZLOVVCMG5CVWhkMjJCT3B6OHhQWkRDdWRLZUQ3Z2lPZGowaDhNNU9YWjhjdlpiekctM0tpb2JkbnZIQy1qV051Yk1VWmtPdmc4Y29NYUcwUFRFaUlubmUtZWtfc3Y5dzF3bmhHa9IBrAFBVV95cUxQM1hWaXRCS3NTUmd6UFY3MmpRajRiNkZuRkFwZ2ZrVTFYWjQybnF0WFpvbUd5cmw5VzNKU2k0TUI0X2luSllDZFozT2p3dmlFb0hyT2JELU1HSzVZRFVFc3RQOTR4WXNvZWRZQmxsTy1wM09TSng4dlk4TWM5WGtVR04xVWR3VTdPSDdxalNLYzFhMzY2ajRGV0FxY2xjdC1fR0M4LU1hRzVYbkUz?oc=5",
+     "source": "ABC News - Breaking News, Latest News and Videos",
+     "date": "2026-11-27"
+    },
+    {
+     "title": "Hegseth Signs New U.S. - Venezuela Military Agreement",
+     "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxORnpxa0RfQmdoQkJ1anBZWUFBcDNza1JKRmJiM3pQcHZhMnRQTEx4UG16QndzNElrMTFRUlNpdk5BdW1maEwwMGZacC1CVjZudjgtcUZvSFhHenFac3FpUmlKTXAxTG5FTEhWQmEycnRKSnd6SDdTc21qQkEwYzFfVDJMdUl3cnZtR1VLbzZ0d3ljUFQ2eVk5LUd30gGaAUFVX3lxTE5GenFrRF9CZ2hCQnVqcFlZQUFwM3NrUkpGYmIzelBwdmEydFBMTHhQbXpCd3M0SWsxMVFSU2l2TkF1bWZoTDAwZlpwLUJWNm52OC1xRm9IWEd6cVpzcWlSaUpNcDFMbkVMSFZCYTJydEpKd3pIN1NzbWpCQTBjMV9UMkx1SXdydm1HVUtvNnR3eWNQVDZ5WTktR3c?oc=5",
+     "source": "VOA - Voice of America English News",
+     "date": "2026-11-25"
+    }
+   ],
+   "newsVia": "Google News"
   },
   {
    "id": "aftermath-of-the-syrian-civil-war",
@@ -1198,28 +1298,28 @@
    "sides": [],
    "news": [
     {
-     "title": "Land mine casualties soar in Syria, two years after war",
-     "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE1zVWxaQ1dTMmRuX2pKRGx3aTQ2SWplakJPYzZ2TFJMOVJiY1MzbzJMeEhXU0VzOFpiVktMZEk1N1RvaGFyX2kxV2MxZ2hoaFBxZm5nQkt0ZDJvOUdsTVE?oc=5",
-     "source": "BBC",
-     "date": "2026-11-24"
-    },
-    {
-     "title": "Syria Is Paying the Price for the Iran War",
-     "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE0wSnZnWHZ6emNZNTV2Rl9ZaDF6T3kyUWRXeV9mVExuTWNJQ0JrRXJqVk9TN3p3VHZhbFhmWnRPSUFRS1RTZHdTTW1IcUFUNFQ2M21GdXNYV3JNLWdxRl80dHBMaXh0XzhWeXo3WGhSMWFRMS1sUDN1ZEdB?oc=5",
-     "source": "Middle East Institute",
-     "date": "2026-11-20"
-    },
-    {
-     "title": "As Syria-EU talks progress, diplomats fear focus will be on repatriation",
-     "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQYTJtZmx1VXI2Q3cyVDR1VlhSUFI2WV9LMnhPdTFma0swdm4xd0pzZEdranA0VnlYTEV5TFNrX05zd1Q3RU9jLVZNcTRaT1g1ZXV4OVE2aVNKOHd1MGE3UHQzZWthcWVPanc3MEFUTDMzclFwTnVGU0tvVVVrbS04R1NnUzVDaDRnS1BPa3B6aHIwenMyZHVTb282U0FHVmhLQ2hPT1JDTmM5d3hXZG1NSDRLckpvNmFx0gG-AUFVX3lxTE83QjBNWEN2WXFXOW9VOTRZUFJZZUZWTVRzaUxqdEhJcHJibU04alNrTUptWDJMSDNzNERHYVNoLXJHc2dKZXpucGY0dXBobF9uYk14QnBEOVFhVkZFUTZzQkJXTlZISlV0WHBRQUhKYkZkdWlsYkVOT1F4dkcwSnhKSmlPc3dxemxBU2t5U1puM2NyUlBROXBWY2tiN3RBZEZFaWFFUzQwSEQ1eHAtYlhxcEN0ZGZSbWVUbjFHNUE?oc=5",
-     "source": "Al Jazeera",
-     "date": "2026-11-23"
+     "title": "The Syria crisis, explained: 5 things to know in 2026",
+     "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE5seWV0dDVnb2JyMm82U3hmUHhlc2tHb0pHdW9DcEFOeUNpRmNFZnR3QzNVV1pIOXpfYVBQYUczSWs2Y0JVVzA1bXhpWjdpT2dkZ2ZHZVZMZS1uWklXd096dnpkU3NaNVR0cXlWNmYyY3JoN09VRFpiSUlXTDVjdw?oc=5",
+     "source": "https://www.concern.org.uk/",
+     "date": "2026-11-22"
     },
     {
      "title": "The OIC Condemns the Terrorist Attack on a Security Headquarters in Hasakah, Syria",
      "url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE9MTEpYSUVTV1FhQlBxbWZzTm9iZTlHTXdEeW5hSDN1TGlHbjYxS1NNWHRISUdzUGE3TTc1MTZtQS03MnA1emNOY2JOcmw?oc=5",
      "source": "Organisation of Islamic Cooperation — OIC",
      "date": "2026-11-25"
+    },
+    {
+     "title": "Two Syrian security personnel killed in ISIL suicide attack",
+     "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPV2dSSVVqYkVYUXVIaWlfNm1IWTVWQXJSZlR2NHdIaGQwWEpPWEdNOURlaEVVbS01aHpqXzVWZUFuTkQ2Y2dCS0xYN0t0bzcwMVd1dk85dU1vRjduRzhnTnJHdnFDVW81QXJCYlF1SUY3Z2paQ1lsWkc2dlNCWnhEdEF1cmd6RHZ2Z2FQNUZKTmsxc0FmdXlMT09ZV2FVei1yd1pB0gGoAUFVX3lxTE00UHl1SHBjbjl6blZXWXB2X2pOcnpDcEUtQUdwMWVNM0NadFk3UUFwUTQyQ1kwUm9JZC1QeURVQ3poVzVib25tQXAxRGZrYkxlMWotMzVGMFIyZGd2RjV6bjFSQmZkRGdmVzBJMW5RMW9vYUl2NnFlT1BEaWIxUnI5LTJaY2JKSFFDYmItd0x2VFVkYzlNME5takQtNDFpdEVBNHRPd1dVQg?oc=5",
+     "source": "Al Jazeera",
+     "date": "2026-11-26"
+    },
+    {
+     "title": "Arab states, regional bodies condemn Daesh attack in Syria’s Hasakah",
+     "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQZ0Zia0ljeWNiVUNnVTBENUhxNVRJb0FfV1ZLcWxVY1hyMVFzb2Y3RWwzamk2Y0NfN0NtQXFTbTFnQlkwcWpfUlF5NUZnSXdzdGppb0lFc2txaUtvQkhhQzUwMW5xX2hHQS04OXpadk9UdUJyQTQ1cTY1WGZHWllrSjYyRlpjYXRwazFMbnVOVU0zaDNocWpfV1UyUGY3Qi0wY25MbjF1eGNjUWM5ZFlHRg?oc=5",
+     "source": "Arab News",
+     "date": "2026-11-27"
     }
    ],
    "newsVia": "Google News"
@@ -1349,22 +1449,22 @@
      "date": "2026-11-23"
     },
     {
-     "title": "Submission with the Office of the Prosecutor of the ICC about crimes against humanity and war crimes committed in the Central African Republic (CAR) since 2018",
-     "url": "https://news.google.com/rss/articles/CBMirwJBVV95cUxNamNTUmh6UlZnZEtPSkJSMFZ1aV9zc1BTSGNJY3FjTnRfRl9Yc0taUWMzY0lubUZ5OXg5bG9TQmQ0ZF9uYzRsWXRpLU91TTJXSWhFenhxeFpoVlRpNVNacElTb181MV9xSDQyODVxTXYtNDdkVVVvOC1uLUdJdWc3WWEtRmJqa3ZYTXY0NmJrZVhobHVmUHJOMm5vbm1NR0Z3c1h4S0QzeEJ5UE5IQ0FPa0ItZXl4RHROZm5xeTBJRUROc25pWFNtVDBkOFZrQlBEcGktTlczbVIyaWpRczlMSUpCTUtkNlV4emlxWmNkUUMwNmszRkh5b1Rmb24yaFByaW9DNVBNYUhFUm4yMVFRZGNlb0ViaVltLVBTX2t6dHdVdzFuYXBoYVdHdVZ2c3M?oc=5",
-     "source": "Truth Hounds",
-     "date": "2026-11-20"
-    },
-    {
-     "title": "London Hosts Peace Conference Tomorrow, as Sudan Enters Third Year of Civil War",
-     "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNWFlRMVZOZjhCRmoxVUgzRC05X3liXzEyLUw1YldEU2NNbWFyU1BBakM2N3ZqUkJsU1hfMUtWVS1FNEQzbHUyWFYwYmJUNkJwcXBVQmlnRDd3TWVadTN1M2JOeksxVTFXSGM3UkNmSFE3enpMMUttR09HZDJZc1BscVJwVDlWQTFjVlhramFSWXF4d1dKSURCb0d1RUdnaXhSaHJkMjhVNXZ0U0VR?oc=5",
-     "source": "https://thesentry.org/",
-     "date": "2026-11-25"
-    },
-    {
      "title": "Central African Republic - Conflict, Colonialism, Independence",
      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE1wUW5CY3ZwMkFCcDBaalNNd0dNSGFqWmRESVVSdlk1a3dENHRoOHBrYTlJbXE5Zno5VFZ3MVBzVC1RQmlZNzBiYVpQRDBlcDA3M0YzTjB4Q0xMT3VXczkxMzlwVFVYRWZEeU9rVzJleTBOYTQ?oc=5",
      "source": "Britannica",
      "date": "2026-11-23"
+    },
+    {
+     "title": "Central African Republic: Situation Report No. 95, as of 24 November 2026",
+     "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNYkJTcElyaFl4UmoydGVzTjdQRzB1Q3FUYzU1Smx5TFE5WjN3eWxZU2dqYVk2ZlZFNDJZWWFfcTdsM2hEbkx3U0xyYWRxOVJIQWRxNURtWUg2TFJOUk00YU1hYnVXYW1zeUY1SzdLbTZFaUJaUEltVkFaMWg4aVhoT25mMWo1d2ZpVzZCNDRJa21sbUJ4czRSRWZHUkdMUjhHSWl1NlNsUUk5WFlFeVNtZHJHbmVRa3FPVWc?oc=5",
+     "source": "ReliefWeb",
+     "date": "2026-11-26"
+    },
+    {
+     "title": "France arrests Central African war crimes suspect",
+     "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQVnROMm9hUk5IY090bmtibVNiSlIzWTd6blNMZkZLaURLbjUzeFM5TlcwZk9sYWdEM2hmdjBRX0ZXZUphZ29oTG1TREU0aXQ5VEFjVU53QmJhZTROZzhhUlVUUWNpYVNvTER4TEY0Z2U1Y2tUWG9aNVE3ZXFpc0VzOWR0YkxmYVJnM3RwOGFvRE5ZQQ?oc=5",
+     "source": "Yeni Safak English",
+     "date": "2026-11-25"
     }
    ],
    "newsVia": "Google News"
@@ -1469,27 +1569,27 @@
    "news": [
     {
      "title": "Energy price cap: The Iran war is being blamed for raising bills - here's why",
-     "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9PR0toS1BhNmQzM1Q5UGtTcWdIeVA5NkFSem85ck1GQVhRRndnZkxHQzFtMnV3VmFRWTZVdy13SDdCeTI5Q01XaFFHM0FDME9JMEJ0aFBnSUR2QkZaTXc?oc=5",
+     "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9Lc1hIT3ZUS3RQVHhnekFxQkxQUmM1Sm44VlY3T1h0Y0xMMDVaWTJXaHhUSl8zODZUeU5lVFd2eHg3ODl5R2xzRXVsUVFRMllKSTZSQ2VDWV9jUDQ?oc=5",
      "source": "BBC",
      "date": "2026-11-25"
     },
     {
-     "title": "Energy bill increases since the start of the Iran war have been three times higher for a typical fossil fuel household than for a modern electric household",
-     "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxPWklkYmVQUXBmWmFmRDdxaFFKSFJ0MnZmRjRsWS04RDY5OERaUkZfVkJPSW1ZN2VieFJybDlvZGRLZ3pha0ZsZWc1Rm5CbmpEc2kybDdwcm1tOXBzTjJZbWFWZzREVHpHR3lmSDl3YUw3M1ZURWhYQjVqVWl2MzdLdy1mQ2s?oc=5",
-     "source": "Climate Change Committee",
-     "date": "2026-11-25"
+     "title": "Vance stops short of endorsing Trump’s claim that Iran was close to nuclear weapon",
+     "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxNUGEzcUdkaW9kYmFheHhDbzBMTG9PTnhmeGZwTzBURFA5amgtbEZRX1Z2WTVRZzRKV3Z5a09ObWVpMXFpMG83bWxvYngzZi1jOTJMWnJPVkN0V1FiTUxPTkdQYWVraW5hWVN0QXZ0SWtmSExMSmQ2cWtibmdrRFdKRTg4VFhDdw?oc=5",
+     "source": "The Guardian",
+     "date": "2026-11-21"
     },
     {
-     "title": "Two Italians killed in Kuwait drone attack; Trump says Iran war ends ‘whenever I want it’",
-     "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxOWXdZWk9aY1VrSmlEbExnWV93RnFxTDFwV3RLdjhtYW1SaXU0aXJCbGJBRUVOS0FramRyaVdva0VwUWRLQlBZdHcwYktUWVlwaEp4MTNEeUN3Y2Q1bi1RUG5TRTZoWlY0S2lFUVpqSVF3NzJQZ2hiUGFjU19LTW93cERfYzNNY3VKalHSAY8BQVVfeXFMTXlQSEhkZ20xOFJXTzlvczJPelo5S294dENlYTBpMzAxVHVxeHhFNUk3eHZVYVQzY0t6cWZ5T1hEYUdjbkc1SmROUVVTVWc4Mjdza3FYNXplRTE0Qk5NY1NyTTNwdEN6Z2JyWEJhOVRVd3RVOVRoTVlubGNUYTBsWS1zTkZ3czV6WThYWkk4RVU?oc=5",
-     "source": "CNBC",
-     "date": "2026-11-27"
+     "title": "Two Italians killed in strike in Kuwait, as Iran denies responsibility",
+     "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9ZM0s2UU5wMkdKN2hGc0FMU1lBM21wQjJzTlBCQ2tPbWNyZDhkTEdONXZqYjcwTXQ4dkEtZm9YUW9vUEppbXhUNlNST1J1LThKM3hlblcyd2NWVTR5R3c?oc=5",
+     "source": "BBC",
+     "date": "2026-11-26"
     },
     {
-     "title": "How the Iran war ripples unexpectedly out to rolling English farm country",
-     "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNYnVfTlBDT0M5OFpxaS11LWdyZndDLUUzTEpmV0VtQmRMMWRXZmdqSW1rSkdlZFRhSkR3NjhmRExELVB1TTFnelZMU1FXcG5iaC1HS2F3OVlRaGgxWDR0dFVOTE92cXM5Z3V3OEVNLWlqQWNOZ0s1WFA3Ull0TmpTZG5EZk1QZ3JKY3pHSXk1S1M?oc=5",
-     "source": "The Christian Science Monitor",
-     "date": "2026-11-27"
+     "title": "Iran Braces For Winter Gas Shortages As War Damage Deepens Energy Crisis",
+     "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQQ1JkUlF0S0xDTUVCc19NcHRXYkpyc1REREJKQlM1TzFhdUlVY1U1RUxWdHkzOEJSRTBzQTRFandPSC13UUhiWnhENlVETmhNUVp2Q09iWjJPZ21lUkRlM3JfSmtSS01Nck4tS2hiVHZDMFE5dktaNnloUi1DdFhLVktJSlE2MHFL0gGLAUFVX3lxTE1CckpjV0huRnFwMVBfdG50c2s3dFZXUnZHdkR0X3d3cWV5dFplbVlPNEdQa09sdDNMeGRVR0puOUx0WnNkYVEyamlPWE00Z3FSSnZSMWpNVEhIaTlqbHpkdUJCT3B4VXo1YjRJNTI5b3VGc0trYXFheEVYZy1PX0Z5VE5RVkRqRDl2U3c?oc=5",
+     "source": "Radio Free Europe/Radio Liberty",
+     "date": "2026-11-23"
     }
    ],
    "newsVia": "Google News"
@@ -1542,16 +1642,10 @@
    "sides": [],
    "news": [
     {
-     "title": "Turkey summons Georgia envoy over clashes at Besiktas match against Israeli club",
-     "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNelcyWWJvenk5ZWctM1g4T3VSd0s2RkVxNVlETnRNU3JUcGU5VHRlZFpwTzdPbzhlWkQwTFZabElxUUNnbjQ2YmxtbzFad083dHF4Zy1XeHNVOG1uSWJ1RUhDWVFxR1JyOUZqTllUeGNzc2FNV2JVTTlpXzlQTXBXdXVJZkY2UXVFcGdYei1iMFVoOHBPLWZKclJIMXJ0RHY0V1hqTHF1NENUQVZzeFZYZENORHNFT2NJamswa0hXZw?oc=5",
+     "title": "How Iran war is driving Turkey’s defense deals with Qatar, Gulf states",
+     "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNS0FTRzZOQ19YQjFuUnc2aGcyZVBORk5hTXFiSUF5VjRaSzRNX0xJWDB5TE5mZWVhblVoRkFEcVNZZThfVWRLclExU3FRS2RLdWtmWFpvcUhFOGxIVnQwUF9DTVJfNHd6R3dfNldsZExIRlE3SGZaV0JITFdOUTl0S3VlNGNMU3E3bTRpUWV3QzdqOGp0S2duR085YjhpektkcTJ5MHJuRUo?oc=5",
      "source": "Al-Monitor",
-     "date": "2026-11-26"
-    },
-    {
-     "title": "Turkey - Russia, Regional Affairs, Erdogan",
-     "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQWko5cXlobWwzWWVkc0pZYXhOaGFIdWhyWmo5ckxrdHBGbGgxRWI4RG9yc0liT01ieDM3TW9jRGJMdDBlTWR1MDdiSTYxLXNHWHVsUjZhaWNQZlZBZ0RSMlo5ZGhKVTlsR19lVWR1cFpCUVZBRGFYaW9SLURrTnltbTVEanM0dVNEQUd3bkFuQy1FU25ZbktPT2ptZ01TRWNXT0wxbkl5WjI?oc=5",
-     "source": "Britannica",
-     "date": "2026-11-23"
+     "date": "2026-11-22"
     },
     {
      "title": "Turkey summons Georgian envoy after football fans' pro-Palestine protest sparks clashes",
@@ -1560,10 +1654,16 @@
      "date": "2026-11-27"
     },
     {
-     "title": "Turkey capitalises on Ukraine attack to reinforce foothold in Libya",
-     "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPYU52ZEg2OXpiRUtLbVk4eEM0WW44bWxhcE1MZUg1dVlBaUdwVmJxYzBzWFhFMkg5NmVLZlRUNEJnWmVGU0xGUVphSGlPR24zNGxKa1hIYmx5UGtTNGthNkFFQjZzRWNkS1hrNXBmY0ZFMTk1XzRvdWJpcGdneS1LZ1RTa3JOYVNkcFI4d3V5aUwyZ3BOd2lB?oc=5",
-     "source": "Middle East Online",
-     "date": "2026-11-26"
+     "title": "Turkey - Russia, Regional Affairs, Erdogan",
+     "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQWko5cXlobWwzWWVkc0pZYXhOaGFIdWhyWmo5ckxrdHBGbGgxRWI4RG9yc0liT01ieDM3TW9jRGJMdDBlTWR1MDdiSTYxLXNHWHVsUjZhaWNQZlZBZ0RSMlo5ZGhKVTlsR19lVWR1cFpCUVZBRGFYaW9SLURrTnltbTVEanM0dVNEQUd3bkFuQy1FU25ZbktPT2ptZ01TRWNXT0wxbkl5WjI?oc=5",
+     "source": "Britannica",
+     "date": "2026-11-23"
+    },
+    {
+     "title": "Why is Turkey warning of an Israeli military operation in Syria?",
+     "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxON01TVHd6TFN2eTVWN3FsS19IRXl1TmVLZkxjN0tfdDNBejU3amRRZmJ1QkllWDI2cC1Wb0FXNEt3SEtBd0M3c3ZWSk92TmE0WTJrcmFBQzAtblcwUTJvUzBjX2ktSTB1cEhtem9RakYzUWNWNkxNbUpZTFB1cEhyZWg1Q3lkNk5FZFUzU3pBa1EyRWt2WlJZ?oc=5",
+     "source": "Middle East Eye",
+     "date": "2026-11-22"
     }
    ],
    "newsVia": "Google News"
@@ -1608,28 +1708,28 @@
    "sides": [],
    "news": [
     {
-     "title": "ElementUSA, Geophysx partner to advance Jamaica’s critical minerals sector",
-     "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOYkEyU1YtLVI0ODc3YVlMYUJQVXJxYW9YYlRJZE1GaHZlVmxhTGlHTUVzYUJHTmlBaG84MkhaalU0b0JnOTVORmpNYnNoQXZTVUFNbEU3dWdjMTR5b0RfTzI3dF9EUTVzTmZUVmYyLTFUOWthdFZoV2pMLThXdDdJbG5YZm1fcGFIbXZ2VHo0MmUzU2htUUJqRkNZWVY?oc=5",
-     "source": "Mining.com",
-     "date": "2026-11-20"
+     "title": "Jamaica Moana Unveils Ambitious Video Project",
+     "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxOWEdzRERFc3IxQXZyZ0xLQzRFZFFHekF6TWNaZGF6ZkpIUlE4cjFEU25rcTZxSzdfOHBPdEFYTWF5MU9KOW9YY1E1aE5BcTZGTThMd3ZfaDVrSFFWZTg0Y1F2X2xTcnBxNzJjQngtSWtHT3kwcWtCMGoyaFNSTWdORW44bGw?oc=5",
+     "source": "Clash Magazine",
+     "date": "2026-11-24"
     },
     {
-     "title": "Trademark Opposition Jamaica: 2026 Guide for Brand Owners",
-     "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxPdjJabVo0d21Xb2IzQ1dHR21wYXJobFhDcnhZazZuS3RpZmpqM0JTd2tYX3RzX2t6OXpwZDJFYnNlaVdlZkpOczJjMWVvRGlWeTAyNjZkbW80YTA5dnVKZ01JdkE4RWxkOE50OVNxMEJoeFRzSFZaOFhpZGNmMnZJUnJja0c?oc=5",
-     "source": "Global Advisory Experts",
-     "date": "2026-11-23"
+     "title": "Italy run riot as Young Reggae Boyz crushed 6-0 in World Cup opener",
+     "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPbk5VS1F6ZWQzQ0hPZEMxdzJBanJuZk93bE5kblZ4NUJMU0phY2tick44SzRoTkhUdldQOG1TVlFlTm95YkpvaGhBZEZBdy1jeXgwRHJVMlJUN05VMlJWd2xDWEJIZGFmQnNGbjVrcmRrTmtBdHdNdVNBZmIyNnpQMVQ3dTRWM3RIZFE4cDh4dHpXMDZPZHhvUTY4MGZzUVJzcjEyd3Uza1h6M0wyRy1tWW81OA?oc=5",
+     "source": "Caribbean National Weekly",
+     "date": "2026-11-21"
     },
     {
-     "title": "Jamaica - Caribbean Island, British Colony, Reggae Music",
-     "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9ZZkl0NkFvV2dOVDlLMmRGMlYwN1JQLVdacnRpOXdZZlVoc1dfaHl4LXAwR1JzR3c3Zk9sWE1RRjVVV0lHM1d6SURDckRGLVNvSl84OTBTcUVzd25FQ284X3pFN0N1c01meHFUUGFZVXRsUQ?oc=5",
-     "source": "Britannica",
-     "date": "2026-11-23"
+     "title": "NIGHT OF HORROR - 13-y-o's hand severed in vicious machete attack at home; suspect held",
+     "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQaG96aU5NRm9pc3R2dFdta3FMRi1ZeUVEa0dhZzlrekVaU0twVjNCem5jeFk3TkZoX29PcElJSGs4T1ZDN0pKa2N0eDBjUWk5RW9IWWp1N0t3NkVvd08zNy13SUxKVVdtNWV5LWItVExiRmdId3JIUWRINlRkb050YWk4SnBsQVBEeks0V3FocXRoWkIyNWh6ZGRTR2xoVXlhS21UcnF4SkxBY1FEUk1mMGRpYzllT2lNUlpUMUo3UGk?oc=5",
+     "source": "Jamaica Gleaner",
+     "date": "2026-11-21"
     },
     {
-     "title": "Immigration: South Africa no longer an El Dorado for foreigners - Reporters",
-     "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPTE9WMWkybl9MTFp6a3NmWENQMk9EdXBiWUFUU25MVUEwdXJzZFM1QzBueUpESWd3a2dTdXFydkNlcHNwMWJGRk4xRFBneWlaZGlsOG9vTkhYaGJtdjA5NWc0OWs0OTJkMXBHQ1EtZXlzM29ZVGUxM0hkS0VEZnpudURqSjZuV3VVc1BNNVBkQWJBZzRoMGY0UkljMzQzYjlaVlF2UGpqTXVjblNwVjZCSU1tdG8td3UyMXc?oc=5",
-     "source": "France 24",
-     "date": "2026-11-27"
+     "title": "BOJ Urges Stronger Economic Resilience to Safeguard Macroeconomic Stability",
+     "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNaENrZ0ZpZ1RocTVLNU96ZVJDcDZpR2NhSVJNMjJoNmhvdmJMRjlXTHdMQTB2REVNbjV1eGc1RHJEekJqOXBRbXZORENPV2daUU41QU9ZbHlEa2pHb1QyOWsyVEk2UTEyUTRaM0I3QXY4VEdMT1hCMDZSRXZ1R2RxWG13VVhfTXk0TVBOcDNWU1ZBeWJIWEFtalpHOA?oc=5",
+     "source": "Jamaica Information Service",
+     "date": "2026-11-25"
     }
    ],
    "newsVia": "Google News"
@@ -1759,6 +1859,12 @@
    "sides": [],
    "news": [
     {
+     "title": "Why India and Pakistan Are Heading Toward a Major War",
+     "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOVVM3RjJTNENfS1ZTdy1LV0FsMzJ6QmZtTlNWQWxldWZKcE51SWlNZUdYYWpaa0ZhZ1pyMlFueVR0ZENPQWdLeE5zQWVDcjBWYjRLV29GR2M1ZVNhdE9UandaWjZWM0s5bUc5YlVGTDZBdVd5azlVLXBqZFFiVTRja1Ezc05DMG5jVlBHbzdGQnhEM2g5?oc=5",
+     "source": "Middle East Forum",
+     "date": "2026-11-27"
+    },
+    {
      "title": "India's Congress warns of more protests against Meta after clashes with police",
      "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNTmdhX3h3bjctYVFyRXFLZHQ5Zm9aTmQ3cS15R01pWHFxdnRySDBDa1JJbFBHVEZmMm9scHV0VW1xOVlHT19FWlpWaWcxN25aZ3NUQjR6SkFRU2RwQ3Y0YVg5X3A3bTZDT0FXV0JBeEF0SHRjUUM5UWg0cm80YVNyT2JlWHVYR0Iwc2pDZGZKcFNyaG1EWmEtenViMnBDajltODNOUUg2QWo4Yk5sdTllelNGUEdiNGxPWjNKYkthdkg?oc=5",
      "source": "Reuters",
@@ -1775,12 +1881,6 @@
      "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNUUJRdUNRRXhnbERmUzJMcjMwOWZqOUl1RmZYLXRMTTZmMzJhUW50clpub2M1OVpDcW0tOVEyUGljcHcxanVYUk9yYnRNQWpJYXozVlFTaFozODdSSEp5VzVySUFLamQxZlZQR1RiSVdSdEc2dVRDNExEQ09zbG82VGg1ckJBNTkzckJZX0ZVeTFtdXhpd0E?oc=5",
      "source": "The Guardian",
      "date": "2026-11-22"
-    },
-    {
-     "title": "Rahul Gandhi backs strong India-Israel ties despite Gaza war",
-     "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOVFhmelpvVmdCTDRRd0dhQnI0VzU2WUhYQUlyMElIRDBYN0hQLXN2TFduajNSTzJ3N3ppWTRoSlN5Njl6dWloWTh1Rk04NXdPVnlTcUozMVlsTnZ0UkhoWVlXYmZjajJHTE1UWFdSTWI0ajZZaXBoWXZwLU5RSGJ4ekhTQlJjLWZFOUZoc2xPd1liOFRNUWw4TFFQXzY4WnVqVFdEVkpwUzF4UTJoVmJERUpn0gG3AUFVX3lxTE5xWnlQaDgyOFdhemRJSXRHWWZ5NnRPdHBaaFVCQURmN1VvN2t4X0JnNGlGRXhxMHVYeGo3QmVpUXB1andNUXNmbjBYcF95NEF6cGtuSUFGQmlJVFVvVDFpbFY3NnExbWswbVA2Tm0zMkNWb01WU3VGb1dYSTJfNWRPTHVPUkVRRVpTMGZ5VDFNNEVNa2drXzhUcWF3NVVFRFRNenIwdGRsV3FMd0NHalQ1dXZwZ1Badw?oc=5",
-     "source": "Al Jazeera",
-     "date": "2026-11-20"
     }
    ],
    "newsVia": "Google News"
@@ -1837,16 +1937,16 @@
      "date": "2026-11-27"
     },
     {
-     "title": "The Mechanism for Electing the Vice President Begins, How to Ensure Transparency?",
-     "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNSzBCdXQySFRyWjdmcGtoemJfaXBLZUdWWWM4UHZNcG1hclJRYWFUUHJNMnIwMV9SVkFNWlpBaHlPTXBuRzBYNExLVk0xM2txYmpFeEhNYUhELU45MEdibk1JZGFqYU1Kb0RMaWxqeGlHcy1USUJsZ1g0RTlMbjltRUNKUk14aTNpRnZTeERtZEN4RWd0c3FoZ1ItRVNjdG5YRTVyUFBZX21nYW5tc2poazMzdmdrQkNFNkFOOGZaNkk3bjVs?oc=5",
-     "source": "Kompas.com",
-     "date": "2026-11-24"
-    },
-    {
      "title": "Schedule for Verification Stages of Andi Amran Sulaiman and Sugiono as Prabowo's Vice-Presidential Candidates",
      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQVVZ6eV92a2stcEFac0NSZ211aER0dXRob3gtVkVjU2hTanhZLVAwM1c2MzlRSUdhYTluVmFNWld5dHBqTEZHRHF0TnYyT0JaSU9iYWhITktETGd5Y1BkWC1Ga2dVaGRRaUxzVmMtMnUxVXFEelkzMFN2SGRCWkpobWwtZS0tV1p3YVMxNHJvNUgxRzZFX01CZlpZYnhadFIzTzF1empaZ0FCY1UyMWduRWVRb1B3ZmNTVTB6OFZOMWxLaWtv?oc=5",
      "source": "Kompas.com",
      "date": "2026-11-24"
+    },
+    {
+     "title": "Two Vice Presidential Candidates, One Constitutional Question",
+     "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPaHd2T2hyVXVyaXJpQVlzZVAzdkxEalE4VnpjX2RDaWM5THBXdUIxWWNuZ1ItOFpjZjdJdEJrRk0tNFRndHdwMjhEcG8zNXQtbGctZkI2YklXZ2JjTkYxYmY4eHlpWWtvckpJdGZzU1dZN2h2NjhGMkFXcFFaQkRXcWRpRkdtcy1uMHRoMkhXOXVmeFZyeTh4bHJ1YUQ2SkJXejd3cHk4UFdVUkpF?oc=5",
+     "source": "Kompas.com",
+     "date": "2026-11-23"
     }
    ],
    "newsVia": "Google News"
@@ -1901,22 +2001,22 @@
      "date": "2026-11-26"
     },
     {
+     "title": "World war ‘could erupt from clash involving Philippines or Japan’",
+     "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNRUxIZlh6bkhzTnVEdXliSHZpS1ZBODM3MklPNnJ3QUFzdXhpc0NFYnhKRm5SMEV6d1VqQXlUNjNXQjNTa0RXVUFPQWlWSE5veGJUTGJMS2hyQlRkNXc0SW1UR0JfNVdzUkh6SFM4NUFaeXNVLWRaV1JYdFNWaXpIMVE1cWVVaWdHOF9Cd2xlWHU4MUtPQzJySFI0WnA3a1NBRmZJZ3Zrako1eWcwZUlybF9heWI4MEQzRmc?oc=5",
+     "source": "The Times",
+     "date": "2026-11-22"
+    },
+    {
      "title": "Philippines declares national energy emergency as Asia risks energy crisis amid Iran war",
      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOeE1ldVFZSXdBWWRGcDlTNDdpaEE0aFNicTNidEJrLWlycTQ4NDlqdzFhdXk2cl9XWXRxdExqWFhtcDgzNzdNMTljVmVCQ28zQjhIM1hzUXd5TllON2dEaGZYTm8xSUNtT0xQUm5fOVQzX19RT1E5b3FYVmpXejZWYkFnenVmMllSOVAxNk8xMFRSUXgwblJ6TFdkUXgxbzU3ZFQ2cnNxXzVZeVVhY1VkUzdB0gG3AUFVX3lxTE5mSTJ3M2xnS2g1Nm80TzZ4WGtla3RQSWkzdjRXRXNacWtJQUZvSTdRbXltSy15ZW51cGhzTnBVRXZ0X0JMT1h3Y0ZBOWZrNlZHWGszR3RmVGxRTGFNaUdIMzJpSWRYM3pFY1U3aEtlYnlubVJtZTFyWDRHdExfYnlySWFibktCN2ZPTjROSjgtVnB0Ymk2UkxIdHJkTEVuQWxEM0NMMzBKXzI3dmE4ZENUdllMakRXSQ?oc=5",
      "source": "ABC News - Breaking News, Latest News and Videos",
      "date": "2026-11-26"
     },
     {
-     "title": "Duterte's ICC trial: What is at stake for the Philippines?",
-     "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPRnFjc0t3Zk5tSkFPV1gtZzZyVldQTFlHdUUweVJwRTJjeHFoM0lOM0VtVVJVUnZUWERERWoyNGhlSzUxQTNZQ3MxTTVZOVZBWWRGcHNfbkRtbWU4WGhvVnVLVFhEazBkVHV4Q2kwcnhaMUNSWGtuWWo2SmRKNkJhOFNUZWhjQnhmdG1qREVZX0t5Z9IBkgFBVV95cUxPRnFjc0t3Zk5tSkFPV1gtZzZyVldQTFlHdUUweVJwRTJjeHFoM0lOM0VtVVJVUnZUWERERWoyNGhlSzUxQTNZQ3MxTTVZOVZBWWRGcHNfbkRtbWU4WGhvVnVLVFhEazBkVHV4Q2kwcnhaMUNSWGtuWWo2SmRKNkJhOFNUZWhjQnhmdG1qREVZX0t5Zw?oc=5",
-     "source": "DW.com",
+     "title": "Frontline Update: The Trial of Rodrigo Duterte",
+     "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE84TjFUMS1SN3lHTEZIcExZZGN2MldyYVdmZ1hqZk1MbVlYek1IZjFfdFpGalhtRTdlcDlPRWV3bFpaQWZORWdHcHJLOHNxUU13UWdhaWJQbzJDMWdac3Q4WjBn?oc=5",
+     "source": "Institute for War & Peace Reporting - IWPR",
      "date": "2026-11-27"
-    },
-    {
-     "title": "Naval Logistics Command Delivers Critical Care Worldwide",
-     "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQVWJ1Vk5GYjVIQUx4N1NuYlBGMnoxcGVCWFFCdkx5WjQydkc1VkI2cTd4SF9paVFPVEl0TE52cmdmUFlZV1h4UmF5aDVlOXRwNzk2WlNSVTl4dzFnVzRIU1JEenUzSWdiTklHX1c3aTdNM0R2cUR0T240aXkyVFBGaEt1bl9YMHM4V0wwTkJkUTFpTnVVRHNfYjlJTDN3S0V5MHVSMUVQaW41cGFNUy1TdU5YSGdMTlhwS1Iw?oc=5",
-     "source": "U.S. Department of War (.gov)",
-     "date": "2026-11-20"
     }
    ],
    "newsVia": "Google News"
@@ -1979,16 +2079,16 @@
      "date": "2026-11-24"
     },
     {
-     "title": "Pakistan, Bangladesh condemn Houthi attack on Saudi financial district",
-     "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNQ1FvMFJjbjJaV29Val9RV0Q3TC1Ld0hTc0JFcmRNZWlTdlBlN1JUMnlhZUp2U0M0eWFEcU1rYnJMbWVlN01BWUJ0Vjk0VV96M3o1UnREaUc1dF9yblBPci16Q1lBd3BETzNSLVRtNW9tdWFNdERYUzlKbXFfY1AxME8wd2ZiNFpuczJEeld3QzZaanJmcjlKNWxLeC03WDVRVGZoakE0OU9DaFdNLTRZZFRWTkU?oc=5",
-     "source": "Anadolu Ajansı",
-     "date": "2026-11-20"
-    },
-    {
      "title": "The Persecution Continues: Minority Communities Under Sustained Attack in Bangladesh (January - October 2026)",
      "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxObFpBbkpwX2ZrSjhfcEdrNkYxb1BmcUFyclpkZFd2cDJLaFlmSEJZdFVSbXBJZVRjcm96SXhSS2FEcDF2YkJldVVESTEwdlYwM2ZIWG83Vzcwa1kxR2JTMHJFSG5ScS1BNXVaX0dSb1BrWjNqSVJYZ1JFNjhMOHRHOURYYi1zM1BGZUg3SllQNW85Z1dZbnVxVG9qNFp4UjVXdFZRc2RpMDhQeWdieV9YRWxIdmRmWUlKczRzN3hZNUJzdzdjLUZ3SndiSEZ0dHdHamdN?oc=5",
      "source": "ReliefWeb",
      "date": "2026-11-26"
+    },
+    {
+     "title": "Bangladesh garment wage hike sparks fresh clashes near Dhaka | Daily Sabah",
+     "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPbTVjOVJMUDJOd1AwdC12TWlMUjYtcDlqMTFlUDVMbFh1NkNXRWVxSm05RkJydGFia0pTMTNySUdjaUlDbkJKaE1wbmdpX3R2UWZIZk1qU0otd3BWUGp3eXI5aElrUjlqQWV3MmhWWDM5Uk1DUm5rOTRSWWozZ0Zvby1Xc2NsOFdMVFN4c0lHVWxCdThRVVJIN2djbVRmcnlDSk42cHBmSkVqUdIBrwFBVV95cUxNb0RfUmRSYnlkNjZKb21INk03dXNraXI0WmJwWW1HRllCOWowbjdHa2IzMTdGMXFrcnBydzRReUhzVUw2Z3paNk9tRk5ENU1XVkllTEZ3LTROLVg5OXprWkVHVW01SG9BSVBCVG5xRDd5VUhNTHcxM1IzQ0xpVDlWTDRsOVpWaDV5VG1zY0JQc1Jsc1JCelVCdGRFQVNQRkZlMW5WSjVKaDNNcXB4OF9V?oc=5",
+     "source": "Daily Sabah",
+     "date": "2026-11-25"
     }
    ],
    "newsVia": "Google News"
@@ -2115,16 +2215,16 @@
      "date": "2026-11-23"
     },
     {
-     "title": "EU and UNDP Expand Partnership to Strengthen Local Conflict Prevention and Peacebuilding",
-     "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxOUTBnS2NKZEtBV2hVTFFoUGNZZFFpS0JSRXg4emJFYXE2VGYzeENoanJXYVRzT3Y3bkk1SV9FMzlWUTRyMXlVdzVGajN1REFDMVZIRk5KNDVXVjloTkE1X3ZGX0VYdG9ZR2pBRmx6d2VqN2VsRE5HRjlFa2ZYQk93Q1V2UTF4SGdFRDVhVzNjU2NxY3JMRmR4djI1eUlVTmY4NFZzWWdPbXEzbG1QSWJvQ3pOQVN5Mmd2bEJoNk9mSGQxOFZ3dVczR2NPNFY0eXZ6c2c?oc=5",
-     "source": "United Nations Development Programme",
-     "date": "2026-11-23"
+     "title": "Papua New Guinea clan chiefs seek to block massive copper mine",
+     "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQWEdLMkdRcVZsaHFMNFhucTlyTU52VXVsUEd3ZHVrWDlFUnB4VC1NR0drU3ZjNkJfazZiTWF3TWNCTEZhNmE0QnVWSGd3MDFxdU9jYTBRbWtzZWdSNERtc29NWmZGelJ1c3p4RmprSjljZWhXLUh3NVdHX0kzeFBTWlpMTk0zLWhrZW9TV09oM18zTzBT?oc=5",
+     "source": "Mining.com",
+     "date": "2026-11-25"
     },
     {
-     "title": "Australia’s conflict prevention choice: build the system, not just the parts",
-     "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQaThvZXVsWEVIWkJLQW1leVlKUHprNjNtMzhsM1BBRmM5LXdyd3REV2F6djlSa25xWk00cUZZamFlZkI2ZGluNThKV1QyZWphSXgxZVc1Nng2bkNTNlJ3cUhjbERfS1M4UWdjX2sxNFlRVEVjdVpqS3JYcjhtN3RjWjc2ZHVCRHg2dHNrQ0VkS2NoRS01YTRoZC1rbXRiYW9YbzNEUWNtM0E4ZmstYUx4ZGUyMmxhaDVLX0VGZA?oc=5",
-     "source": "Lowy Institute",
-     "date": "2026-11-25"
+     "title": "Food & Nutrition Security Update (November 2026)",
+     "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxQdlAzYmF2TXFrMUZlQlp6S0RCYmw5UXJwXzVoRnpoY2xjTmtqOEhKUUItNWdhZGtKeDFpc3NpSDl3TWVKaWIzR2c5T195MnRPVVk1ZmcybktaWlZDZVdEQ1Q3ZHpKOU5pTlpYQUhueTZtRWdxc0JDU2xITUtqdUlmdGpLZWdXUQ?oc=5",
+     "source": "ReliefWeb",
+     "date": "2026-11-24"
     }
    ],
    "newsVia": "Google News"
@@ -2245,10 +2345,10 @@
    "sides": [],
    "news": [
     {
-     "title": "Luxury US Startup Bets Big On 10 Airbus A220s With A Private Suite And Just 54 Seats",
-     "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPUUM5LUh5d2lKNW15eVlveUZwQjFHcVRaREcwMmQ1cmlpV2NkYjVnNm1FRDQ0bXBTQ0txVWhUa3FqVzBCTGdWMGxLNF85LUYtMmMydnN1NFlNb3dZVDcyMlZWQm5laXJIQUdvWC1FYzdpczhjNzhibS1hZzRpRnNfQ242aGx0ak9nTGg2SW51TmpfRDZzeXM5akFITG1SU1dLaGpwc3RqczBSOEVXcFlWQTVVUVJQSm8?oc=5",
+     "title": "Airbus A350-1000ULR Sets Extraordinary Nonstop Flight Distance Record",
+     "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxONjBnQ3lzSnJTMVppZTY5VjV5Z1lESmxOLWpVVkpqOFVFcjNkMWVWWUIwMENhZmE3SzdWV2ZKdldHbVhQQWxaVU5ZcjRPdm5kdTQ0eDhFcFhvVW9jOTU3M3gtN0hBZmlFYmI2MzhvMkwwd3I0UEc3VWs1WlJ5R3djLVlEVDJ4N3drTU5NMkNMLVV1bXF0Yk9SNDRxek5vT19zb3Vr?oc=5",
      "source": "Simple Flying",
-     "date": "2026-11-23"
+     "date": "2026-11-27"
     },
     {
      "title": "French politician who stood up to Bush over invasion of Iraq is back to stop Le Pen",
@@ -2257,16 +2357,16 @@
      "date": "2026-11-27"
     },
     {
-     "title": "Airbus A350-1000ULR Sets Extraordinary Nonstop Flight Distance Record",
-     "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxONjBnQ3lzSnJTMVppZTY5VjV5Z1lESmxOLWpVVkpqOFVFcjNkMWVWWUIwMENhZmE3SzdWV2ZKdldHbVhQQWxaVU5ZcjRPdm5kdTQ0eDhFcFhvVW9jOTU3M3gtN0hBZmlFYmI2MzhvMkwwd3I0UEc3VWs1WlJ5R3djLVlEVDJ4N3drTU5NMkNMLVV1bXF0Yk9SNDRxek5vT19zb3Vr?oc=5",
-     "source": "Simple Flying",
+     "title": "What’s behind Trump’s post about Iraq?",
+     "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxNNnhvNVo1Mjd1U1lKaU1JWGdfUnAxV3NBSWdpb05WTUhBQXZkYUFTYVRpbndlckZQWDZGWWM2aGF5S3NFMEFIRDdUX25saldoMHBuTlI0Y0JoV2VuWER2cmlkcUJLR0ZZSDNxcUtFa19aUTdNMEZGUGVWelJxRE1iTVRya3pkblBqQmVVODc5WnFoZXFQTE10TzVMRENNNkR6WHNUMndJZVRsVi1VX1JtalRHZjUzZ1VsTjdUeU45WWp6RUJHS3JhLWpWZw?oc=5",
+     "source": "Action News Now",
      "date": "2026-11-27"
     },
     {
-     "title": "Mayday At 33,000 Feet: Leaky Faucet Floods Frontier Airlines Airbus A321neo Cabin",
-     "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOX0M2dk1fWUhQX2kxdkhoV0JzUkgteGhpbTkycE1FWVlZejFIRnN1aXZXMlVzbnBjc2tlX0E5M2U0a2xQZGJkRi02ME9QSXprWFZqNndtd3pLLVpMZEUwNHZOQ3FidTZ4aWZFSDZ5eGZiRzhUZ3RZNjEyaFcycjJZR0djSWxYeDZfb2VneXlHUTFEV2ZsSEFsa2pBeFc1aWM5bWpMMGVIT2o1NEpkQWh4ZnVR?oc=5",
+     "title": "Luxury US Startup Bets Big On 10 Airbus A220s With A Private Suite And Just 54 Seats",
+     "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPUUM5LUh5d2lKNW15eVlveUZwQjFHcVRaREcwMmQ1cmlpV2NkYjVnNm1FRDQ0bXBTQ0txVWhUa3FqVzBCTGdWMGxLNF85LUYtMmMydnN1NFlNb3dZVDcyMlZWQm5laXJIQUdvWC1FYzdpczhjNzhibS1hZzRpRnNfQ242aGx0ak9nTGg2SW51TmpfRDZzeXM5akFITG1SU1dLaGpwc3RqczBSOEVXcFlWQTVVUVJQSm8?oc=5",
      "source": "Simple Flying",
-     "date": "2026-11-27"
+     "date": "2026-11-23"
     }
    ],
    "newsVia": "Google News"
@@ -2331,9 +2431,9 @@
      "date": "2026-11-26"
     },
     {
-     "title": "Defense: After Benghazi, Rabat Opens Cooperation Talks with Tripoli Showing Its Diplomatic Balancing Act",
-     "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxQc1lhcFlIcFhRMWc5X1QtRnduXzRsank2dnBWSHRPZF95QU5PZ09WYUsxbGxpNXRnSE1nR2pRWTFnTEJDM0VHbWpoUlEtb1E3dDVHT0x2UnNYWHVMc2RTTTNCMmRQOHJFdzdsa1lzSjBTdjBwS19oMW9wYV91STBQbVJnaDMySnR5SHdRbjRUWUdJXzFKY2NjYTIxMjBTZTNVOWhCclZBaGxaOVBYTjNzNGMyNzRPN0U2Nk5fLUF0SGlGRW5CZ0x4UmdFXzNfYlNkWmhtWDl3djZWQQ?oc=5",
-     "source": "The North Africa Post",
+     "title": "US backs Libyan-led political process based on consensus",
+     "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNM0o3Um5tMkp3cUZNcTVvV0tieTdaWUVPaHpVU1hzYTFNOWpxSHl3MTlNVnowVnNxYzI0aEM1MkRaUG9TUDhzdlk1MWdzam5HWEtMX2xMWmZFSHdLNHowbEwxVEk3d0lzaDR1N3plMGYtWW9Eb1AxOUgyNS1NWk45aG8zZkdMenQ0cG1ISWdYVQ?oc=5",
+     "source": "The Libya Observer",
      "date": "2026-11-25"
     }
    ],
@@ -2440,10 +2540,10 @@
    "sides": [],
    "news": [
     {
-     "title": "Hegseth Wraps Central, South American Trip by Delivering Anti-Cartel Message",
-     "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxOcWVBNzlnSnZ2aExqTUJ1M0VjaExjZk1xSHBsd2NwcHBYSkw1dTFHb29WSjZZV2J6NXluX0F0c1g4T0gtcG1MMTJJUEkxelpmYUtadlQzd1BnZ0F5OGRMci1URjBGSERia0tsRlJ5a0pqcEVBenVKVmlYTU9Wek0zVjNHOUNET0FHZG80dFVVell3MG4yY0l0ZVRxT0ltWHlTZ0J6VTM3MlE5SHpnRXlwY0FtV0tNLWRqamhFSWd6NXc0UXpidzJTczRMdXRYcVZETndVNg?oc=5",
-     "source": "U.S. Department of War (.gov)",
-     "date": "2026-11-20"
+     "title": "Sudan: Drone strike kills 10-year-old pupil attending NRC-supported school in attack on family home",
+     "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOa1duMENORkRrVjFUWWl2bTRfRXlJMTRQV3V0dVJnM1o1S0xNQ0xwR0RiMHEwQkNvUXZmWnpvajdYQ3M2T2hBZGgyVTRCWWFJUkNibkxYZHFtM2hGSmxaLXhzOXpSQ3dHTkt6clNnLWVFQXBUTUNSZXhjbzd5RTFjNmJ0V2lXUUwtazFCNTYxb09iSXZXVTZnRS14a29yT3NLZGd6QXJjb1lRQjRlbkQ3YWtWbVI0bFN0cGtYa21uTS1vdHF6VkE?oc=5",
+     "source": "Norwegian Refugee Council",
+     "date": "2026-11-25"
     },
     {
      "title": "El Salvador - Postconflict, Economy, Politics",
@@ -2470,7 +2570,8 @@
    "id": "ethnic-conflict-in-ghana",
    "name": "Ethnic conflict in Ghana",
    "includes": [
-    "Bawku conflict"
+    "Bawku conflict",
+    "Western Togoland Rebellion"
    ],
    "intensity": "Skirmishes and clashes",
    "tier": 3,
@@ -2508,6 +2609,12 @@
    "sides": [],
    "news": [
     {
+     "title": "Ghana domestic worker from Iraq recount ordeal afta viral video, say her employer 'point gun' for her head",
+     "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5SeVl4LXJ5eENiM1Qtd1RtaTljcFFqS0s1aGtTLXBNWVJaLTBZRFQ2d1FsQUs0MGtDZzJoLWdaV3c5Q3JuNFRiaGotMEZpNUU5TFdWNV94X000cS05dEHSAWNBVV95cUxNdENtcHRSQl9xQ2tFU3E3aWNwOUNWcXhUSFhwV05WOG16UXh3X3JEZ0dLeTBqUVNONFdOQlU0Qk9MMWV4Wl80NERyaGtpdEdmZnNSTTlvbGxYQ29wWmRaOE5udVk?oc=5",
+     "source": "BBC",
+     "date": "2026-11-26"
+    },
+    {
      "title": "Ghana Steps Up Efforts to Protect Children in Armed Conflict",
      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE5XYmo1b3p6YUV5WnBHTjQ0c2hSQURJSlZyS2tUdHN4YWxyS0Vnd3M1a0JlRkdaY1R1WnFYQmEtR3duS3BTZUd0cVlQSEYxUVFuRFhHbWRDUnFkZW5mV0ctYXZHRdIBXEFVX3lxTE5zeDhaYURlYzJXVDZvUXFqa2dSSlhfeXpldXlmRXFWMzJ6SHQ3ZGRxRUJoLTRPa2ViSlByZHd0WXZZWnFicFYxYkFiOGNGQm53NDNLZFMxWXJheUZZ?oc=5",
      "source": "Modern Ghana",
@@ -2518,12 +2625,6 @@
      "url": "https://news.google.com/rss/articles/CBMiQkFVX3lxTE9NbUk2R3FyRGFDb2VjbnowQW53ZEtCdjF2R2hjZ003cUVzY2hENzl2eC04YlVkaHRsWDJxZHZvV1gyUQ?oc=5",
      "source": "YouTube",
      "date": "2026-11-26"
-    },
-    {
-     "title": "Bryan Acheampong clashes with Feed Ghana Coordinator over 'Nkoko Nkitinkiti' programme",
-     "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPNmV5Wnk2N2Q0TVZRQjcwZEFnWkk0REpyVkJ1cmtRcTRyNGhac0ticDdRaDdjYW95blBlRjRXUFFYZ19ueFJXam9CeFpjNXRaQXVjelRTWGhXZWJiVXVDeUhPTjcxME9xUGNuUkxEXzJOeHJxTGNBaUJfUGpxYmRNZ3N1ZU9qMjMySHNlU2VXZHRmdmtCMVl1NDc2U1hCOUU2b1RKNkR4RmoxOFRXS1ZfSHFGVk5xTXhWRzhDdUxsSQ?oc=5",
-     "source": "CitiNewsroom.com",
-     "date": "2026-11-20"
     },
     {
      "title": "FIFA confirms cyber attack after hackers access confidential data",
@@ -2581,22 +2682,22 @@
      "date": "2026-11-25"
     },
     {
+     "title": "Malaysia set to return thousands of Rohingya refugees to Myanmar",
+     "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPYWczaE96aHBTQkVocnh1MmlITjR0cUV4c2tzdFlaQmpUX2RNLVQ0U081bFlGSnFQdXZ1Q1A1T2FFbXY3VDJtejRXWlJiZThuN3RDTkhVQk1UUGRiTzVLTXZzTFBMcDNscjlicld6R0NfeWxKX0ZyZ01tNHhvUEZiYm91V0daQm52LTZ1UTdtSl9BRWRrTTVnR0ZIeExaRE1sdEpNeHNtMXFTSXdp0gGyAUFVX3lxTE05WnZxVE9rLXlIVTJabGIzalRqcGl6M0VudG1HWGtvbDZPdGtQOTRvaXB5Z1JPZl9rZTRsTnRMQjUwLTQyN2Y1RGdGZjVaUE4yOTNXT1dvTXU4Ri1Dc3V1blF0N2hJT1RfcFRlMklWVGRjR3dkMUhaMk90Ny1rTkh5ZW03emlueE1sSXRPNlAzSzNxVUtKWWVrRFdmeWJhR2Nvc2NRV1dlSjU4QjQ3SUNXUEE?oc=5",
+     "source": "Al Jazeera",
+     "date": "2026-11-24"
+    },
+    {
      "title": "Suspects in first Daesh attack in Malaysia change plea",
      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNbUMtUFR5eUtiLVE2RE40RTFRdnBXa3VUd1U0dGc0a0NDWXBiYWt3VS1jNFdBZVZNTmRYZDMtb2o1S1pBTW9FVjVsaG5QbkVWWkpjOXQzYmEtQzFfME1nQ19CLTF1Y3NrUkJxT0wzU1pKT0lXVGFZWW5xS2kxZmd4MHdscHBtcVNjQktwdWtNS0ZJMy1ZY3dseA?oc=5",
      "source": "Yeni Safak English",
      "date": "2026-11-24"
     },
     {
-     "title": "Baling machete attack kills man, revenge motive suspected",
-     "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE9VT0NlRXgtNlh4eU5jOU40S1FSeEs1dTU1Q0pmczVkVzJ6MXpQN2NCeXFocVFzWEZLXzNjWEJ5NTRESkVBWWN3VWYwWHBjbDNBcHc3RG92RTZtSXJOMkd1UnJpcXNWRUx4TWtXSUJGRkt1UjEtcnA3djhvTnZDUQ?oc=5",
-     "source": "The Sun Malaysia",
-     "date": "2026-11-26"
-    },
-    {
-     "title": "Man slashed 16 times in fatal Baling machete attack, police suspect revenge and turf dispute",
-     "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxNNmhTbmxLcUpSR3B2eVd2RjJzZnJtQk5Rams2X1BnM3pfemFMb0dHUEdDYTNHWlBLUE5hdVE2S2FCT0NOdkV6NFBLT0FqVGtUN01iQnRoZkVCS01yZUxqdEpjVkNBbUl4cnZIbHVMSFhfX2xkYVRHY19GRGlRdmVseWxaY09xMWNhcUcwa2t6VjR6RmVvTDVpcVlTQTd5a3N3Ykc3QVJtS2VTS3BULUEtLVVCUFhaZTZDUURoeVlfeWxwU2dLVnNWeUF4Qk5Ibm1tZFFNU3ZXVHVJTEhRZlRCTTZBSmg2anVO0gHoAUFVX3lxTE02aFNubEtxSlJHcHZ5V3ZGMnNmcm1CTlFqazZfUGczel96YUxvR0dQR0NhM0daUEtQTmF1UTZLYUJPQ052RXo0UEtPQWpUa1Q3TWJCdGhmRUJLTXJlTGp0SmNWQ0FtSXhydkhsdUxIWF9fbGRhVEdjX0ZEaVF2ZWx5bFpjT3ExY2FxRzBra3pWNHpGZW9MNWlxWVNBN3lrc3diRzdBUm1LZVNLcFQtQS0tVUJQWFplNkNRRGh5WV95bHBTZ0tWc1Z5QXhCTkhubW1kUU1TdldUdUlMSFFmVEJNNkFKaDZqdU4?oc=5",
-     "source": "Malay Mail",
-     "date": "2026-11-26"
+     "title": "Malaysia to repatriate thousands more back to Myanmar",
+     "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxONzVaMGRYc1VpeDZjMmN4dFRBanNaXzB1eGVSY09yZUxhUldzalhRaGZ1T19GdW9GcFoyWWR0YnhjSGVDZkVGeVJRb3RwVGZPN0w1WE5PS1FUaDFJb3Y1QVN1bjR3XzBCbGJxcUhjM0xrTjdMMTJxRHBBZzdaOXpTdDlVZ1oyWTDSAYcBQVVfeXFMTjc1WjBkWHNVaXg2YzJjeHRUQWpzWl8wdXhlUmNPcmVMYVJXc2pYUWhmdU9fRnVvRnBaMllkdGJ4Y0hlQ2ZFRnlSUW90cFRmTzdMNVhOT0tRVGgxSW92NUFTdW40d18wQmxicXFIYzNMa043TDEycURwQWc3Wjl6U3Q5VWdaMlkw?oc=5",
+     "source": "The New Arab",
+     "date": "2026-11-24"
     }
    ],
    "newsVia": "Google News"
@@ -2644,12 +2745,6 @@
    ],
    "news": [
     {
-     "title": "What Withdrawal of the UN Mission Means for Western Sahara",
-     "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQMVNFYXNGRVRUaTBPZkpGVThVb1dGWHBNSFlRcU9OVHFMQUtLUDdYYklpSFgwNnU0SERlYlotbkhxMnh5akVIR1V2LUlqc1dTd0R3SVRMUW1lNTNLbGVISXhlTFFCclB5LWJucHk3QlFRZGp0d3d0Y0J0UUhoblN3Qnc5d1lSRVNhaFBlT2xIbTZBZTBUc2hvVmtKS2lkbDY5SklINDBoMUMzSWVmbmZhYllhVi1Fd0FSdlJV?oc=5",
-     "source": "International Crisis Group",
-     "date": "2026-11-20"
-    },
-    {
      "title": "EU stresses importance of reaching just and lasting solution to Western Sahara conflict",
      "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBWaERtMUhIdTdqNEtsSEhGOGh1bnNSZVpBVVJPd29QRXZjSDhhVktuTjdRMXktblRvcjkzbkN1QU51U2Q4bkR1RW9fOVNLb1FwUkR1YXhkaG1sR09BbFE?oc=5",
      "source": "وكالة الأنباء الصحراوية",
@@ -2666,6 +2761,12 @@
      "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPV25BZElKWHB0MDZsbnFBa0tYbFBtdEZGOGxTTDhwb3dLckRNVEZXZVBRVkxZZ1pMWENhR2VaWkZrNUZHRm9jMTk5Q0tFeVl2dm1LR1VOQ2d0bi01d0hzVEZvWkFwQ3ZVd3JkQUZkTG8yVnBKLVpNWjFXQ2xFbnBfS0ljdlBGcTdyRFhYX0p5UW1xWWJkcE9FbFhiQmJaUk9vOXRHT21jcDFUVWdIZUU0?oc=5",
      "source": "Gibraltar Chronicle",
      "date": "2026-11-27"
+    },
+    {
+     "title": "Conclusion of solidarity weeks with Sahrawi people in Germany",
+     "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE1kaDM1TnVOanh1WVd5SldLcnBjUEVpUGs2cEt2OWRGd1NoRHR5VmM1OEhWZDgzbUlqR0NhdGV3UHBfeUxXRGJCSEFfZGQzS2ZDem01VkJDZnlKb1Rremc?oc=5",
+     "source": "وكالة الأنباء الصحراوية",
+     "date": "2026-11-25"
     }
    ],
    "newsVia": "Google News"
@@ -2719,21 +2820,21 @@
      "date": "2026-11-24"
     },
     {
-     "title": "EU Delegation in Laos Warns of Fake Job Ads Luring Foreigners Into Russia's Army",
-     "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPcG5nd1lIM3V0RWVuSEZmbmVGd1c5M3NjZjhEVXBiWmZMMVB6eVUxbHZVWnlYcEg0LVd3N3ZBYXd3Q3RVcWNKWGYta05sTGZFT19DSzlacU5TSkhSZGRGMm83THlNaFpaNFNwTWtWVmxVYzdzTDdLTUtRUWdLZWxYOXo4eVlWNEItb1ZxYWdDM2tHbzR0TmRBMVdKMzRNczQ4bXp1dVdNcUhvM2h2c1pYcEdjZk9ybVFIZnU4eDFR?oc=5",
-     "source": "Stop Russian Recruiters",
-     "date": "2026-11-20"
-    },
-    {
      "title": "Operation Igloo White: The Sensor War on the Ho Chi Minh Trail",
      "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPeFVwSXlNRGJXeUxTUFVsa0NkaURUSFJHWk42NksxX3AyUTBmOWc2SlQ5Slp4QmpHQ1hYNHpwY2hvVTluOVZOaUVsMi0tdmx0bEdMUnc5cWdFY28wcW9fdUFkQXFzX3VwYlFFNGl2Q3V3MGZmN1ppVm03Y2p3bmxyaE1PLUotZDNBd2lVVVJlYlJySkpaUlNhWG1pTjY5Slh0bTFLWEZRcnM?oc=5",
      "source": "MiGFlug",
      "date": "2026-11-24"
     },
     {
-     "title": "A Man Seeks to Understand a CIA Brother’s Loss in Laos",
-     "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE9zRVdrVGlvQ3RXSkY3Q3BIemM1T1hqYTFIU2FaNTdLYV81dmJfU005WFpUVW9VMi1UWnpyTG9md0NZNlNHeGxYbUtQVlFtZ3hLZ3VvLWhOTndBZktkSEFGT3FWNy1Kc2xfWjU0?oc=5",
-     "source": "SpyTalk",
+     "title": "Cambodian genocide | Background, Methods, Killing Fields, Intervention, & Aftermath",
+     "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBmVFB0YWxCcG5WalJ1TnBwUngwSkUtZXV5bnA1N0dQbWQ4eDhYT3BaNjNWSWp1VmFFaVVLMjE1T2I0XzVsZ08wNDNiSEp5b0RfTlhUUzJQTEo0TTVCZTRyQQ?oc=5",
+     "source": "Britannica",
+     "date": "2026-11-25"
+    },
+    {
+     "title": "Laos’ economic miracle: From bombed-out semi-colony to advancing socialist nation",
+     "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQWEZCalgtSWd6eGtnM0w1b3dEVDNEQ0Z4Y2VWVk9UVEJyX0VUMTZTc2trSlhfWTNRYl95ajJ1YzZzSnNuM1dydWZ0OHpvS1BVbVZxLXQzM2N6VzBTdk1iR2NyektaYmw2ZTlId0tpSkJJRkpKT3JoYmJqZzNCc1lwYUVWN2xybXMxUngtU2x2b3M2NEV1MUtGZ3pYMlFBYUdqZFU1RmxfOE42TGM4QTVIMUk1NlRtYTNX?oc=5",
+     "source": "People's World",
      "date": "2026-11-24"
     }
    ],
@@ -2787,22 +2888,28 @@
    ],
    "news": [
     {
-     "title": "In Peru’s Callao, Fujimori’s war on crime meets a gritty reality",
-     "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPMlZBZVRuOEFhX0ZlWW9uc0Q2d3BSRTY5aUw1T3pFa1B6MUU1b1FDdGpOOEdMdlJNSTNicUI3c1RUOXM2bUhVUVB3Y3psS0pCdlk2ZUdDVmRkcl9PdDdqdUl6VG9YWlhleUMtam1GRUZVQWt1THd3Qy10dGRmQW9IZnF4cGlzbkJtUTVMa25LTUcyMDh2aFBRTkdJMlo3XzAyc05aNWhHdENTVENHVDZhZFUweFJJZ2ZWUTN3R3l6ZklNOWdPV1ByNGFIbkw0dw?oc=5",
-     "source": "TradingView",
-     "date": "2026-11-27"
+     "title": "Peru burns more than 10 tonnes of seized drugs",
+     "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPMzBycHNxT0JlVWp4Y016a0JQWjVRaV9fUlAzVjlBTzhJRUowd0RucEVWV0hleEl4MmFvY0p1ajBBSkxrZTdURFNXcmdaYXEtbFZCU1VsT21ld2QxalQyLXlvTlZWYTBRMXVWcjFOT3c5bGVqQlZJQUhUdWJlMlNYbDRZcnA3bzN3RzhvY2FmbkItWjRUWV9DVzV5aFNxZWvSAaQBQVVfeXFMTWlHSDZMS25lc2pmd0hPeEE3Q1lySkdhLTRyRmx1SnI4YzhSd1NKa3ZvdDBIY1lxXy1veHVueXR2TUcyeUlrUlQyUGg0bWthODRNbUJPdmg3SV91OXJmSzBjMWVVZmtrNTdTYjVIUFA3UkU4STJMNE1KNWNNWGFJTlY1RVFRN0l0a29EWmczQjdHYXBiejNfMk1tQTg0TUxQamtxT0U?oc=5",
+     "source": "Al Jazeera",
+     "date": "2026-11-26"
     },
     {
-     "title": "In Peru’s Callao, Fujimori’s war on crime meets a gritty reality",
-     "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOUGNMWmYyWUVKNzNfN2ZhRTg5WHhCNU9SSk9UMnN1TFFja0txbVE5MkkyRl8wcDlHbmhqeTNoc011enEwTjVBZHlkXzc2dFBiWXVPZnlxM0xoREl0S2FQc1RETGdzZWxZX3FGZnU2cDlJX2toZ2VqMDhVQTNPbDg4anhkRmFtQWhVbmRjV0lscHVxRDFJMDllOEVEZDk5M1JtZjVGUTBR?oc=5",
-     "source": "The Straits Times",
-     "date": "2026-11-27"
+     "title": "6.7-magnitude earthquake strikes central Peru, no fatalities reported",
+     "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBpTkFDSW9qLWg3OFBNQ19keUFLX3pCdnVCcHRBQUtHejZkQ3JxaU9LeEN4a1ZMSzRBb3BtZGZRdVFMOE5XekxpM2dLcjFxbHN0Yy1DbWREdU8?oc=5",
+     "source": "TRT World",
+     "date": "2026-11-21"
     },
     {
-     "title": "Peru seeks to resolve social conflict at Vinicunca Rainbow Mountain | News | ANDINA - Peru News Agency",
-     "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPcVVFSFQ4b1FXRmppcWs2eDVYT0lJU3MxX2RjMTVWbkhLVWpIVWhKWkpNeUNFRm13S25ReWUzU3huallFR1BxZlNlWXZoQzktSGFjZ3lfYjlPUU40RFlPcDRyUkRsajFNaExRMWIxd3ZuSFFsWHFsd1FkWnYzR1RlN1dweXo5VWthVFlzMVFGZEV2SW1jMVROcTJGMUZSbW5RM3Y3TWJpQWhxNm1TOENvX2VpOA?oc=5",
-     "source": "Agencia Andina",
-     "date": "2026-11-24"
+     "title": "Cerimedo recordings tie Fujimori’s narrow victory in Peru to US manipulation",
+     "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5oSDZlMkhTYm5Wbm14cjVQaWRFdjU5emlBUEsybVkyUW1rd1ZjOEF1SlFOUkRQYm9CVnMyLTlVc0V6Q0RySDdfNDZwMDhuUnAwbHVxd25Zd0Y5cDM2TUZTVjNKb3RtYzN3?oc=5",
+     "source": "World Socialist Web Site",
+     "date": "2026-11-25"
+    },
+    {
+     "title": "Manuel Scorza | Indigenous rights, Poetry, Novels",
+     "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE0wekUtS2hnRmtPU0VWSnQ2LUo2RmhxbXNPMkFxOUh4eTFHalJ0YV9XYjFaMUJick10dFFyU3JZMVBBY2o3VElxa3p2cDhfWVFOT0FCV1dNLUk2eS0yZnJN?oc=5",
+     "source": "Britannica",
+     "date": "2026-11-23"
     }
    ],
    "newsVia": "Google News"
@@ -2852,12 +2959,6 @@
     "Movement of Democratic Forces of Casamance"
    ],
    "news": [
-    {
-     "title": "Senegal - West Africa, Dakar, Culture",
-     "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE8zT1BIVWMwdXNuU2FwR2RuSG1CUnhKSXJjbzByNnRCMFJRZjJSLW43UDktOU44Vnh1a1BNZ3B3bnFjTXNrOXNKWU94cVphT1Qxbm5CRXZLaFg2WWVuNFhEMDBRaDMzbk9DVXQ3dw?oc=5",
-     "source": "Britannica",
-     "date": "2026-11-24"
-    },
     {
      "title": "Stakeholders demand transformation in ECOWAS operations",
      "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxOcXdMX3NXSlpHNFJKQzZpbHpEMTI1NHBmenRqTENHWmEta3JwcFFoMlRGQU5jRUcwU0JiRTBPM2U0V0I4aTNJWDhTSkZBQ1dyQ3ZFckFYb2Y1X3dheFRhQm91SjJRY0FybmJSbi1TUEthTmJtR3BoeHNQNEZOREt5N1pRbw?oc=5",
@@ -2986,16 +3087,16 @@
      "date": "2026-11-25"
     },
     {
-     "title": "Russia’s war dead: the hidden toll of the Ukraine conflict",
-     "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQcHEzaFFZSHUwdzN0LS1RbTVLRlF1MFpWblFUV2l1eUtybk9fOHJzNmQzeW8zSi13TEdMWGtYTE9UTFNHbGx4UUZ6Z2UyRlJQUU1kY3hKNmtsV3V1ZkVsWWR3UmxvdDlud0NQa2VRRldnWFQwdV85R0RNZTVKaTJKbko0UV9Qa3FLR0J1S1FNSkZxM01k?oc=5",
-     "source": "The Guardian",
-     "date": "2026-11-23"
-    },
-    {
      "title": "Russia’s Unconventional War on Europe: Sabotage, Deterrence and Future Scenarios",
      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQT2dPdEtIRUVhSTJTblFnVHVGZEE1ZDU4SGhRa1p4UERzZVdLS180ZEh4RTBuOG1vbXhFWEtoSWUwbnpIVFo3cjJCYk9uZjc5bnoxZDZZNHJWN3NOWFF4ZVlQSXFuZ0RMMWxFUE4wN24yT0o1R0xxR1lRdzh5a25XaEpNaEdFVG5FMnI4Z3kzQUlYNFdId3JBam5NQ0JNUENGWkM0ZnFLWUtjVmFlS2FBbDE3R2hzeTF1bUlpVUw5bw?oc=5",
      "source": "The International Institute for Strategic Studies",
      "date": "2026-11-26"
+    },
+    {
+     "title": "Russia’s war dead: the hidden toll of the Ukraine conflict",
+     "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQcHEzaFFZSHUwdzN0LS1RbTVLRlF1MFpWblFUV2l1eUtybk9fOHJzNmQzeW8zSi13TEdMWGtYTE9UTFNHbGx4UUZ6Z2UyRlJQUU1kY3hKNmtsV3V1ZkVsWWR3UmxvdDlud0NQa2VRRldnWFQwdV85R0RNZTVKaTJKbko0UV9Qa3FLR0J1S1FNSkZxM01k?oc=5",
+     "source": "The Guardian",
+     "date": "2026-11-23"
     },
     {
      "title": "Europe Is 'Somewhere Between Peace And War' With Russia, Former Finnish Defense Chief Says",
@@ -3055,15 +3156,15 @@
    ],
    "news": [
     {
-     "title": "Ukrainian Oplot Tanks Prove More Reliable Than Chinese VT-4s in Thailand’s Clashes, Reports Say",
-     "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxQNzhjT1d4dTk5U3BscTBGMzQ2ZVQwRE1aOVhOallTWTBhemRzeFdROU9pajVoN1JWZUFVVWJkcHAwak9QLU1qaDRVSUhhOFNPZ0xSVXV6S3U1X0V6WVgyZUY0ZlZtLTJaVGM5a2VhdUd3cm1zX0Z4Skx3S2Jxd1ZfSDE1bWJoU1Z0MWN0cjdsYUhScTJPVHFiLUNFNnZwd0VwWkttS2t0YXR3Z3gtWFVwMDNJbDNtSHpTRUI0Wm9yekdENklRTDItWW9WYw?oc=5",
-     "source": "UNITED24 Media",
-     "date": "2026-11-23"
-    },
-    {
      "title": "Nine injured in explosion at oil facility in Thailand’s Bangkok",
      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxOZWNWUWFfMnZSdENxR0VlSFJrYW4tSmkwSzE4ampGZlNwUkxBdEYwcXZha0dKbzJmRFEyT0hnUFFCbGVWWldGMHd3d3ZGejl1UklVYWhxRExSZGhGNEtPZWQtaFVwa19OcHRfQjFHalBmaHQ0dEE1YTdka2hpOWJ6V3pNdUowdGc2R3Bsbmd2eUxYd3MycUZESVd6b9IBoAFBVV95cUxPVWVRdXdlLVZtNTRUZnp0XzlBaS0yb1lHSFBZV01BbXNCajBVVmxqdEJqX3hEc3JicFdWcFZpWk5aODlnNE9RdjNWcGVvSjFINlZXXzBKZ3NrclpkVEZMNG1UakFmd3U3SFIxQUE5OER4MTdjTC1YSEJCOE5yamhodFJmX1I2aEU5TFE4WmtxZ3c1cTdGSWJQM3VqNTN6YXds?oc=5",
      "source": "Al Jazeera",
+     "date": "2026-11-26"
+    },
+    {
+     "title": "Brent up 3.5% on 25 Nov as Houthis claim Saudi refinery attack",
+     "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9DY0M3S3NlWGw4TG5oR1M1d0pjc0w1cFZLLWhWN0Z3UFJfSG9qdkFGWVUzdUkzTVF5QVp6c0ptbDVfaGpLMU9YNGxmQ3ozWnNNYzYyNXh6NlhjYUc4aUhn?oc=5",
+     "source": "Nation Thailand",
      "date": "2026-11-26"
     },
     {
@@ -3073,10 +3174,10 @@
      "date": "2026-11-25"
     },
     {
-     "title": "Brent up 3.5% on 25 Nov as Houthis claim Saudi refinery attack",
-     "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9DY0M3S3NlWGw4TG5oR1M1d0pjc0w1cFZLLWhWN0Z3UFJfSG9qdkFGWVUzdUkzTVF5QVp6c0ptbDVfaGpLMU9YNGxmQ3ozWnNNYzYyNXh6NlhjYUc4aUhn?oc=5",
-     "source": "Nation Thailand",
-     "date": "2026-11-26"
+     "title": "Thailand to Ban Export of Mining Chemicals Believed Responsible For Crossborder River Contamination",
+     "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxONTlWNHRLdmJDdTZydFljeFpMb0JvejJ1OWUwMXNSenhxcDFpYnFLR0JSNnltWFlIdTdyVmhMR1JjRU5xSnRMaTd0YWI3Vlg4XzVVa0p1MXpwZlJmbzBhWEp3dnhIdGxaWEhQTXBGMUZqYVl4SEk1amwxS2VCY2V6ZGswTUE1TDNGTU9DQmh4OV9lOTVPLVE2aWFQbjVXMEo0U0Yzeng4NzE0aWFsbWo1T243Z3dBVG1jWlY5SThjUm8ybDZNVGZjWG9FUkE?oc=5",
+     "source": "The Diplomat – Asia-Pacific Current Affairs Magazine",
+     "date": "2026-11-23"
     }
    ],
    "newsVia": "Google News"
@@ -3121,10 +3222,10 @@
    "sides": [],
    "news": [
     {
-     "title": "Nacional vs. Cerro Porteño (23 Nov, 2026) Live Score - ESPN (UK)",
-     "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE8zMGRuUjdyX055dnpXN2VtcU9pMFJOUEhXamMwY0tiRFl4U09vMk5vS1FINHB1ZnNQTzVYTV9fdnEwRzhNbDd6eWtJeGJXODliQjFqc3U4dVdrZ0o5Vkg3TktZVUYwc3M?oc=5",
+     "title": "Nacional vs. Rubio Ñú (27 Nov, 2026) Live Score",
+     "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE02VFl5OWFkNUdEZGt2OXJPX0RDVDlYb0k0aXZkbU5UbDA4WUNpXzhid1BlbFFQcjU2cG9kMVAwaFVjSXFzME01TVRQWGk0NHR1ZHhiS1BYVGxsR3BBMFNUaEsyOEJ0ZlE?oc=5",
      "source": "ESPN",
-     "date": "2026-11-23"
+     "date": "2026-11-27"
     },
     {
      "title": "9 Worst Generals in History",
@@ -3133,16 +3234,16 @@
      "date": "2026-11-25"
     },
     {
+     "title": "Taiwan to send 15 retired AT-3 jets to Paraguay",
+     "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTFByR3BTcTE4M1VIcHJOZzk5OTJ3c3NnRF8xbmctbEN3djBVUkh3d2JvR3k2cWpJTl9YZks1akdWNGpqLVNkNThJX2JvMFBheVVsU1BYZG5FWi1qMC0tUkFsWmtLclNjYllJZ2pzVWcyT2R3Mk1Nc1ctNHNB?oc=5",
+     "source": "Taipei Times",
+     "date": "2026-11-27"
+    },
+    {
      "title": "Two Banks, Two Reckonings: What Paraguay and Brazil Share",
      "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTFBuM195YzdRc200bUlOVVlsenhvcXRPR25PY1JOekFpY2Y3dDRoQV9aUTZ6ajRFc1I3NDJyZFA1S19ZOXMxanB6ODgwVWMxeHUwU2w2UUxIb1NWYzEzRnEzeWJ5a045UlVOMTlNZVkyOVVxc080ajl0MmdSbTBZdw?oc=5",
      "source": "Foreign Policy in Focus",
      "date": "2026-11-25"
-    },
-    {
-     "title": "Why I Had to Leave: My First Year in Paraguay",
-     "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9HOUFSa0d6OE5nSXdHZEN4bWQtRlJrUklaTXVBTU01bHVJcTRFMlY5UHVicGZkTHpPTjAyUURpRDlOMFB5Yk05bER5UXc1NFhTOG9qdzBEVWpkRk40MHA3U19QZnRCb3Q0dlJjQ21DbGhnekhHekpSWmJsQldiN2s?oc=5",
-     "source": "The Advocates for Self-Government",
-     "date": "2026-11-24"
     }
    ],
    "newsVia": "Google News"
@@ -3330,15 +3431,15 @@
    "sides": [],
    "news": [
     {
-     "title": "New UN Report Investigates Attacks on Aid Workers During Sri Lanka’s Civil War",
-     "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxOTm9XQ3gwa1FXVTU2RHE0YktIWEJncS1HaUdIWk9QYnFEUGwzUVFOYTNlbTNENnhpYXBDWmhReDJ6SVYzTkhRYjk3WUo2XzU2OXJjNG12MnBNcGc4YlFPTmZDaV94c3ZYY09SRFd2dEZ0ekF2MTlwVGVwNldnNFdBbFAwUDlMT0xGaGZaRWxmaThRZmRtX1U2aWRfSkNvQ0lFSWpmX1ZpbzRvemh1a0Iwc3VMWQ?oc=5",
-     "source": "Human Rights Watch",
-     "date": "2026-11-26"
-    },
-    {
      "title": "Sri Lanka: UN report urges State apology for wartime attacks on humanitarian assistance",
      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNRW9vX29WcTRVdUVsdi03OXZWLXRUVURsb0N4SmVVdEhGYmhJZXNQOWZCRVYyRVcyVHVHRkR6d0dKcXBuU3RlSHYxSTVTYlVBQk41d0RqVGliT0JwOTQyaGZrUVJpb0htOVBQVFFZOEwyNlo3NEd3TzRqb05VclZBbXM2c0Vvcjh0MHFjbTdOTS1uVmk2RzVIejQwbHFVN0hGSFJpZW1nd0llQktvM0FjTnBleGVER1E?oc=5",
      "source": "ohchr",
+     "date": "2026-11-26"
+    },
+    {
+     "title": "New UN Report Investigates Attacks on Aid Workers During Sri Lanka’s Civil War",
+     "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxOTm9XQ3gwa1FXVTU2RHE0YktIWEJncS1HaUdIWk9QYnFEUGwzUVFOYTNlbTNENnhpYXBDWmhReDJ6SVYzTkhRYjk3WUo2XzU2OXJjNG12MnBNcGc4YlFPTmZDaV94c3ZYY09SRFd2dEZ0ekF2MTlwVGVwNldnNFdBbFAwUDlMT0xGaGZaRWxmaThRZmRtX1U2aWRfSkNvQ0lFSWpmX1ZpbzRvemh1a0Iwc3VMWQ?oc=5",
+     "source": "Human Rights Watch",
      "date": "2026-11-26"
     },
     {
